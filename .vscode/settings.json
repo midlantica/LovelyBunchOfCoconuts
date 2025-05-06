@@ -1,0 +1,18 @@
+{
+  "files.exclude": {
+    "**/.git": false,
+    "**/.svn": false,
+    "**/.hg": false,
+    "**/.DS_Store": false,
+    "**/Thumbs.db": false,
+    "node_modules": false,
+    ".output": false,
+    ".nuxt": false,
+    ".data": false,
+    "**/.vscode": false,
+    ".vscode": false
+  },
+  "explorerExclude.backup": {},
+  "prettier.vueIndentScriptAndStyle": true,
+  "nuxtr.defaultPackageManager": "pnpm"
+}

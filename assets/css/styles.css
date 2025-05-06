@@ -1,0 +1,66 @@
+/* assets/css/styles.css */
+@import "tailwind.css";
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,600;1,100;1,200;1,300;1,400;1,600&display=swap");
+@import "scrollbar.css";
+
+@layer base {
+  body {
+    @apply font-Barlow;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-Barlow font-[100] tracking-wider leading-normal;
+  }
+  h1 {
+    @apply text-[1.5rem];
+  }
+  h2 {
+    @apply text-[1.3rem];
+  }
+  h3 {
+    @apply text-[1.1rem];
+  }
+  h4 {
+    @apply text-base;
+  }
+  h5 {
+    @apply text-sm;
+  }
+  h6 {
+    @apply text-xs;
+  }
+
+  p,
+  ul,
+  li,
+  ol {
+    @apply text-xl font-thin tracking-wider leading-normal mb-2 last:mb-0;
+  }
+
+  .prose h2 {
+    /* @apply mb-4; */
+  }
+
+  h2 + p {
+    @apply mb-4;
+  }
+}
+
+@layer utilities {
+  .line-clamp-1 {
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+.claims-details {
+  /* background: red; */
+}
