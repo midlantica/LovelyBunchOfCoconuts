@@ -2,7 +2,7 @@
 <template>
   <router-link
     v-if="meme && meme.image && slug"
-    :to="slug"
+    :to="`/memes/${getSlug(meme._path)}`"
     class="mx-auto w-full h-full overflow-hidden block p-3 bg-gray-800 rounded-lg shadow-[inset_0_0_12px_0_#0f1e24] hover:bg-gray-700"
   >
     <img :src="meme.image" alt="Meme" class="w-full h-full object-contain object-center" />
@@ -25,4 +25,12 @@
     meme: Object,
     slug: String,
   })
+
+  // Extract the slug from the path, handling nested paths
+  const getSlug = (path) => {
+    if (!path) return '';
+    // Extract the last part of the path (after the last slash)
+    const parts = path.split('/');
+    return parts[parts.length - 1];
+  }
 </script>

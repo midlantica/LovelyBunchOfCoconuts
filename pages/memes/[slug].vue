@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <Button to="index" iconLeft="heroicons:arrow-left-16-solid" text="BACK" />
+    <Button to="/" iconLeft="heroicons:arrow-left-16-solid" text="BACK" />
   </div>
   <div v-else class="mx-auto max-w-3xl px-4 py-8 text-white">
     <p>Loading meme...</p>
@@ -40,13 +40,20 @@ onMounted(async () => {
     const response = await fetch(`/api/content?type=memes`)
     const data = await response.json()
 
-    // Find the meme with matching slug
-    const fullPath = `/memes/${slug}`
-    const foundMeme = data.find((item) => item._path === fullPath)
+    // Find the meme with matching slug at the end of the path
+    const foundMeme = data.find((item) => {
+      if (!item._path) return false;
+      const pathParts = item._path.split('/');
+      const itemSlug = pathParts[pathParts.length - 1];
+      return itemSlug === slug;
+    })
 
     if (foundMeme) {
       meme.value = foundMeme
+      console.log("Found meme:", foundMeme)
     } else {
+      console.error("Meme not found for slug:", slug)
+      console.log("Available paths:", data.map(item => item._path))
       error.value = "Meme not found"
     }
   } catch (err) {

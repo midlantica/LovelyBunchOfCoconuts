@@ -30,8 +30,6 @@ export function useContentFeed(providedSearchTerm = ref(""), providedContentFilt
   
   // Initialize data - fetch content directly using Nuxt Content v3
   const initialize = async () => {
-    if (isInitialized.value) return
-    
     loading.value = true
     try {
       console.log("Starting content initialization");
@@ -169,39 +167,47 @@ export function useContentFeed(providedSearchTerm = ref(""), providedContentFilt
     
     try {
       if (query) {
-        // Create search queries for each content type based on filters
-        const searchPromises = [];
+        // Build search URL with query parameter
+        const searchParams = new URLSearchParams({ query });
+        const searchUrl = `/api/content/search?${searchParams.toString()}`;
+        
+        console.log(`Searching for: "${query}" using ${searchUrl}`);
+        
+        // Fetch search results from dedicated search endpoint
+        const response = await fetch(searchUrl);
+        const searchResults = await response.json();
+        
+        console.log(`Search returned ${searchResults.length} total results`);
+        
+        // Filter results by content type based on filters
         let claimsResults = [];
         let quotesResults = [];
         let memesResults = [];
         
-        // Build search URL with query parameter
-        const searchParams = new URLSearchParams({ query });
-        const searchUrl = `/api/content?${searchParams.toString()}`;
-        
-        // Fetch all content and filter client-side based on content type and search term
-        const response = await fetch(searchUrl);
-        const allResults = await response.json();
-        
-        // Filter results by content type and search term
         if (contentFilters.value.claims) {
-          claimsResults = allResults.filter(item => item._path?.startsWith('/claims/'));
+          claimsResults = searchResults.filter(item => item._path?.startsWith('/claims/'));
+          console.log(`Found ${claimsResults.length} claim results`);
         }
         
         if (contentFilters.value.quotes) {
-          quotesResults = allResults.filter(item => item._path?.startsWith('/quotes/'));
+          quotesResults = searchResults.filter(item => item._path?.startsWith('/quotes/'));
+          console.log(`Found ${quotesResults.length} quote results`);
         }
         
         if (contentFilters.value.memes) {
-          memesResults = allResults.filter(item => item._path?.startsWith('/memes/'));
+          memesResults = searchResults.filter(item => item._path?.startsWith('/memes/'));
+          console.log(`Found ${memesResults.length} meme results`);
         }
         
-        // Update collections with search results
+        // Update collections with filtered search results
         contentCollections.claims.value = claimsResults;
         contentCollections.quotes.value = quotesResults;
         contentCollections.memes.value = memesResults;
       } else {
         // If search is cleared, reinitialize to get all content
+        console.log("Search cleared, restoring all content");
+        
+        // Reset to original content collections
         await initialize();
         return; // initialize will call createContentWall
       }
@@ -217,10 +223,24 @@ export function useContentFeed(providedSearchTerm = ref(""), providedContentFilt
   };
   
   // Debounced search function
-  const debouncedSearch = debounce(performSearch, 300);
+  const debouncedSearch = debounce((term) => {
+    console.log(`Debounced search triggered with term: "${term}"`);
+    if (term === "") {
+      // For empty search, immediately restore all content
+      console.log("Empty search term detected, restoring all content");
+      // Force reload all content and rebuild wall
+      initialize().then(() => {
+        console.log("Content reinitialized after search cleared");
+        createContentWall();
+      });
+    } else {
+      performSearch(term);
+    }
+  }, 300);
   
   // Watch for search term and filter changes
   watch([searchTerm, contentFilters], ([newSearchTerm, newFilters]) => {
+    console.log(`Search term changed to: "${newSearchTerm}"`);
     debouncedSearch(newSearchTerm);
   }, { deep: true });
   
