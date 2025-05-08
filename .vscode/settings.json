@@ -14,5 +14,6 @@
   },
   "explorerExclude.backup": {},
   "prettier.vueIndentScriptAndStyle": true,
-  "nuxtr.defaultPackageManager": "pnpm"
+  "nuxtr.defaultPackageManager": "pnpm",
+  "svg.preview.background": "editor"
 }

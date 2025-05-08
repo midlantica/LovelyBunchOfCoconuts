@@ -1,21 +1,57 @@
 <!-- pages/memes/[slug].vue -->
 <template>
-  <div class="meme-pg w-full flex flex-col gap-3">
-    <div v-if="currentItem">
-      <div class="flex flex-col gap-3 text-white">
-        <ContentNavigation :prev-slug="prevSlug" :next-slug="nextSlug" />
-        <ContentRenderer
-          :value="currentItem"
-          class="memes-details flex flex-col items-center [&_img]:max-w-full [&_img]:max-h-[70vh] [&_img]:h-auto [&_img]:mb-4"
+  <div v-if="meme" class="mx-auto max-w-3xl px-4 py-8">
+    <div class="p-6 mb-3 text-white bg-gray-800 rounded-lg shadow-lg">
+      <h1 class="mb-6 text-2xl font-light">{{ meme.title }}</h1>
+
+      <div class="mb-6 text-center">
+        <img
+          v-if="meme.image"
+          :src="meme.image"
+          :alt="meme.title"
+          class="mx-auto max-w-full rounded-lg"
         />
+        <p v-else class="text-red-500">Image not found</p>
       </div>
     </div>
-    <p v-else class="text-red-500">🚨 Meme not found!</p>
+
+    <Button to="index" iconLeft="heroicons:arrow-left-16-solid" text="BACK" />
+  </div>
+  <div v-else class="mx-auto max-w-3xl px-4 py-8 text-white">
+    <p>Loading meme...</p>
+    <div v-if="error" class="mt-4 text-red-500">Error: {{ error }}</div>
   </div>
 </template>
 
 <script setup>
-  import { useContentNavigation } from "@/composables/useContentNavigation"
+import { ref, onMounted } from "vue"
+import { useRoute } from "vue-router"
 
-  const { currentItem, prevSlug, nextSlug } = useContentNavigation("memes")
+const route = useRoute()
+const meme = ref(null)
+const error = ref(null)
+
+onMounted(async () => {
+  try {
+    // Get the slug from the route
+    const slug = route.params.slug
+
+    // Fetch the meme data
+    const response = await fetch(`/api/content?type=memes`)
+    const data = await response.json()
+
+    // Find the meme with matching slug
+    const fullPath = `/memes/${slug}`
+    const foundMeme = data.find((item) => item._path === fullPath)
+
+    if (foundMeme) {
+      meme.value = foundMeme
+    } else {
+      error.value = "Meme not found"
+    }
+  } catch (err) {
+    console.error("Error fetching meme:", err)
+    error.value = err.message
+  }
+})
 </script>

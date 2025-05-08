@@ -16,6 +16,7 @@ The site displays three types of content:
 
 1. Click the "Fork" button at the top right of the GitHub repository
 2. This creates your own copy of the project
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 ### Step 2: Add Your Content
 
@@ -63,6 +64,7 @@ Any additional context or notes about the claim can go here.
 #### Adding a Meme
 
 1. First, upload your image:
+
    - Navigate to the `public/memes/` folder
    - Click "Add file" > "Upload files"
    - Select your image file (PNG or JPG recommended)

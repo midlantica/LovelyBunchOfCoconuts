@@ -1,8 +1,6 @@
 // utils/imageProcessing.js
 import fs from "fs/promises"
 import path from "path"
-import Tesseract from "tesseract.js"
-import Jimp from "jimp"
 import { exec } from "child_process"
 import { promisify } from "util"
 
@@ -35,16 +33,6 @@ export async function isDescriptiveFilename(filename) {
   // At least 3 alphanumeric chars, not just numbers or random strings
   return /^[a-zA-Z0-9][a-zA-Z0-9-]{2,}$/.test(basename) && 
          !/^[0-9a-f]{8,}$/.test(basename)
-}
-
-/**
- * Checks if OCR text is valid and meaningful
- * @param {string} text - OCR text to validate
- * @returns {boolean} Whether the text is valid
- */
-export async function isValidOcrText(text) {
-  // Require at least 5 chars and at least one vowel
-  return text.length >= 5 && /[aeiou]/i.test(text)
 }
 
 /**
@@ -84,38 +72,7 @@ export async function optimizeImages(directory) {
 }
 
 /**
- * Extracts text from an image using OCR
- * @param {string} imagePath - Path to the image
- * @returns {Promise<string>} Extracted text
- */
-export async function extractTextFromImage(imagePath) {
-  try {
-    // Enhance image for better OCR
-    const image = await Jimp.read(imagePath)
-    image.grayscale()
-      .contrast(0.7)
-      .scale(2)
-      .normalize()
-      .threshold({ max: 200, replace: 0 })
-    
-    const buffer = await image.getBufferAsync(Jimp.MIME_JPEG)
-    
-    // Perform OCR
-    const { data: { text } } = await Tesseract.recognize(buffer, "eng", {
-      logger: m => console.log(m.status)
-    })
-    
-    // Take first few words for filename
-    const trimmedText = text.trim().split(" ").slice(0, 3).join(" ")
-    return trimmedText
-  } catch (error) {
-    console.error(`OCR failed: ${error.message}`)
-    return ""
-  }
-}
-
-/**
- * Renames an image file based on its content or existing name
+ * Renames an image file based on its existing name
  * @param {string} directory - Directory containing the image
  * @param {string} filename - Current filename
  * @returns {Promise<string>} New filename
@@ -130,16 +87,9 @@ export async function renameImageFile(directory, filename) {
     const basename = path.basename(filename, ext)
     newFilename = `${await sanitizeFilename(basename, 20)}${ext}`
   } else {
-    // Try to extract text from image
-    const extractedText = await extractTextFromImage(filePath)
-    
-    if (extractedText && await isValidOcrText(extractedText)) {
-      newFilename = `${await sanitizeFilename(extractedText, 20)}${ext}`
-    } else {
-      // Fall back to sanitized original name
-      const basename = path.basename(filename, ext)
-      newFilename = `${await sanitizeFilename(basename, 20)}${ext}`
-    }
+    // Fall back to sanitized original name
+    const basename = path.basename(filename, ext)
+    newFilename = `${await sanitizeFilename(basename, 20)}${ext}`
   }
   
   // Ensure filename is unique

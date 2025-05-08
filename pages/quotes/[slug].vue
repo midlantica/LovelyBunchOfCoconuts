@@ -1,58 +1,52 @@
 <!-- pages/quotes/[slug].vue -->
 <template>
-  <div v-if="currentItem" class="quotes-pg w-full flex flex-col gap-3">
-    <ContentNavigation :prev-slug="prevSlug" :next-slug="nextSlug" />
-    <div class="quote-details p-4 text-white bg-gray-800 rounded-md">
-      <article class="prose prose-invert">
-        <div v-if="currentItem.body">
-          <ContentRenderer :value="currentItem.body">
-            <template #default="{ data }">
-              <div v-for="(node, index) in data" :key="index">
-                <!-- Render h2 (quote) -->
-                <h2 v-if="node.tag === 'h2'" class="text-xl font-light tracking-wider">
-                  {{ node.children[0]?.value }}
-                </h2>
-                <!-- Render attribution with em-dash -->
-                <p
-                  v-else-if="node.type === 'element' && node.children?.[0]?.value"
-                  class="text-lg font-light text-slate-300"
-                >
-                  — {{ node.children[0].value }}
-                </p>
-              </div>
-            </template>
-          </ContentRenderer>
-        </div>
-        <div v-else>
-          <!-- Fallback rendering -->
-          <h2 class="text-xl font-light tracking-wider">{{ currentItem.title || "No title" }}</h2>
-          <p class="text-lg font-light text-slate-300">— (Attribution missing)</p>
-        </div>
-      </article>
+  <div v-if="quote" class="mx-auto max-w-3xl px-6 py-3">
+    <div class="flex flex-col flex-wrap gap-1 p-6 text-slate-100 bg-gray-800 rounded-lg shadow-lg">
+      <h1 class="text-2xl font-light tracking-wide">
+        {{ quote.headings && quote.headings.length > 0 ? quote.headings[0] : quote.title }}
+      </h1>
+      <p class="text-xl font-light tracking-wide text-slate-200" v-if="quote.attribution">
+        — {{ quote.attribution }}
+      </p>
     </div>
+
+    <Button to="index" iconLeft="heroicons:arrow-left-16-solid" text="BACK" />
   </div>
-  <div v-else>
-    <p class="text-red-500">🚨 Quote not found!</p>
+  <div v-else class="mx-auto max-w-3xl px-6 py-4 text-white">
+    <p>Loading quote...</p>
+    <div v-if="error" class="mt-4 text-red-500">Error: {{ error }}</div>
   </div>
 </template>
 
 <script setup>
-import { useContentNavigation } from "@/composables/useContentNavigation"
+import { ref, onMounted } from "vue"
+import { useRoute } from "vue-router"
 
-const { currentItem, prevSlug, nextSlug } = useContentNavigation("quotes")
+const route = useRoute()
+const quote = ref(null)
+const error = ref(null)
 
-// Safe debug
-console.log("currentItem:", {
-  title: currentItem.title,
-  slug: currentItem._path,
-  bodyExists: !!currentItem.body,
-  body: currentItem.body ? "present" : "undefined",
+onMounted(async () => {
+  try {
+    // Get the slug from the route
+    const slug = route.params.slug
+
+    // Fetch the quote data
+    const response = await fetch(`/api/content?type=quotes`)
+    const data = await response.json()
+
+    // Find the quote with matching slug
+    const fullPath = `/quotes/${slug}`
+    const foundQuote = data.find((item) => item._path === fullPath)
+
+    if (foundQuote) {
+      quote.value = foundQuote
+    } else {
+      error.value = "Quote not found"
+    }
+  } catch (err) {
+    console.error("Error fetching quote:", err)
+    error.value = err.message
+  }
 })
 </script>
-
-<style scoped>
-/* Keep Tailwind styles consistent */
-.prose :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  @apply text-lg font-light text-slate-300 tracking-wider;
-}
-</style>

@@ -1,44 +1,88 @@
 <!-- components/SearchBar.vue -->
 <template>
-  <div
-    class="pl-[0.9rem] pr-[1rem] search-bar w-full h-12 max-h-12 flex flex-row items-center text-white bg-slate-950 rounded-md"
-  >
-    <input
-      type="search"
-      v-model="searchTerm"
-      class="placeholder-slate-400 w-full h-full p-3 ps-4 text-xl tracking-wider leading-none text-slate-200 bg-slate-900 rounded-md outline-none focus:bg-slate-800 sm:rounded-r-none xs:rounded-r-none"
-      3
-      placeholder="Search..."
-      @input="emitSearch"
-    />
+  <div class="search-bar w-full h-12 flex flex-row items-center text-white bg-slate-950 rounded-md">
+    <div class="w-full relative">
+      <input
+        type="search"
+        v-model="searchTerm"
+        class="placeholder-slate-400 w-full h-12 p-3 ps-4 pr-24 text-xl tracking-wider leading-none text-slate-200 bg-slate-900 rounded-md outline-none focus:bg-slate-700 sm:rounded-r-none xs:rounded-r-none"
+        placeholder="Search..."
+        @input="emitSearch"
+      />
+
+      <!-- Content type filter pills inside the search input -->
+      <div class="-translate-y-1/2 transform absolute right-2 top-1/2 flex flex-row gap-1">
+        <button
+          @click.prevent="toggleFilter('claims')"
+          class="flex justify-center gap-2 px-3 py-0.5 text-sm tracking-wider uppercase rounded-full transition-colors duration-100"
+          :class="filters.claims ? 'bg-slate-800 text-slate-400' : 'bg-slate-600 text-slate-200'"
+        >
+          <span class="self-center leading-none">⦿</span>NPC Claims
+        </button>
+        <button
+          @click.prevent="toggleFilter('quotes')"
+          class="flex justify-center gap-2 px-3 py-0.5 text-sm tracking-wider uppercase rounded-full transition-colors duration-100"
+          :class="filters.quotes ? 'bg-slate-800 text-slate-400' : 'bg-slate-600 text-slate-200'"
+        >
+          <span class="self-center leading-none">⦿</span>Quotes
+        </button>
+        <button
+          @click.prevent="toggleFilter('memes')"
+          class="flex justify-center gap-2 px-3 py-0.5 text-sm tracking-wider uppercase rounded-full transition-colors duration-100"
+          :class="filters.memes ? 'bg-slate-800 text-slate-400' : 'bg-slate-600 text-slate-200'"
+        >
+          <span class="self-center leading-none">⦿</span>Memes
+        </button>
+      </div>
+    </div>
+
     <button
       type="submit"
-      class="h-full hidden px-4 text-slate-200 bg-slate-700 rounded-r-md hover:text-white hover:bg-slate-800 lg:block md:block xs:block"
+      class="h-12 hidden px-4 text-slate-100 bg-slate-700 rounded-r-md hover:text-white hover:bg-slate-800 lg:block md:block xs:block"
       @click="emitSearch"
     >
-      <Icon name="mdi:magnify"
-size="1.85rem"
-class="mt-2" />
+      <Icon name="mdi:magnify" size="1.85rem" />
     </button>
   </div>
 </template>
 
 <script setup>
-  import { ref, watch } from "vue"
+import { ref, watch } from "vue"
 
-  const props = defineProps({
-    search: String,
-  })
-  const emit = defineEmits(["update:search"])
+const props = defineProps({
+  search: String,
+  filters: {
+    type: Object,
+    default: () => ({ claims: true, quotes: true, memes: true }),
+  },
+})
 
-  const searchTerm = ref(props.search || "")
-  const emitSearch = () => emit("update:search", searchTerm.value)
+const emit = defineEmits(["update:search", "update:filters"])
 
-  watch(searchTerm, (newValue) => emit("update:search", newValue))
-  watch(
-    () => props.search,
-    (newValue) => (searchTerm.value = newValue)
-  )
+const searchTerm = ref(props.search || "")
+const filters = ref(props.filters)
+
+const emitSearch = () => emit("update:search", searchTerm.value)
+
+const toggleFilter = (type) => {
+  filters.value = {
+    ...filters.value,
+    [type]: !filters.value[type],
+  }
+  emit("update:filters", filters.value)
+}
+
+watch(searchTerm, (newValue) => emit("update:search", newValue))
+watch(
+  () => props.search,
+  (newValue) => (searchTerm.value = newValue)
+)
+
+watch(
+  () => props.filters,
+  (newValue) => (filters.value = newValue),
+  { deep: true }
+)
 </script>
 
 <style scoped>
@@ -56,6 +100,7 @@ input[type="search"]::-webkit-search-cancel-button {
     no-repeat center;
   background-size: contain;
   cursor: pointer;
+  margin-right: 60px; /* Make room for the filter pills */
 }
 
 /* Optional: Hover effect */

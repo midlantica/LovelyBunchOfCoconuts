@@ -1,41 +1,32 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  modules: ["@nuxt/content", "@nuxtjs/tailwindcss", "nuxt-icon", "@nuxt/eslint"],
-  css: ["@/assets/css/styles.css"],
-  eslint: {
-    config: {
-      standalone: false, // Merge with your existing eslint.config.js
-    },
-  },
-  plugins: [{ src: "~/plugins/dev-log.client.js", mode: "client" }],
+  modules: ["@nuxt/content", "nuxt-icon", "@nuxtjs/tailwindcss"],
+  css: ["~/assets/css/main.css"],
   content: {
-    documentDriven: false,
-    ignores: [
-      'README.md',
-      'readme.md'
-    ],
-    api: {
-      baseURL: '/api/_content'
+    build: {
+      markdown: {
+        highlight: {
+          // Theme used in all color schemes.
+          theme: {
+            // Default theme (same as single string)
+            default: "github-light",
+            // Theme used if `html.dark`
+            dark: "github-dark",
+          },
+        },
+      },
     },
-    experimental: {
-      search: {
-        indexed: true
-      }
-    },
-    // Use memory driver to avoid SQLite issues
-    storage: {
-      fs: {
-        driver: 'memory'
-      }
-    }
   },
-  tailwindcss: {
-    config: {
-      plugins: [
-        require('@tailwindcss/typography')
-      ]
-    }
-  }
+  app: {
+    head: {
+      title: "WakeUpNPC2",
+      meta: [{ name: "description", content: "A wall of claims, quotes, and memes" }],
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    },
+  },
+  nitro: {
+    // Add compatibility date for Nitro
+    compatibilityDate: "2025-05-07",
+  },
 })
