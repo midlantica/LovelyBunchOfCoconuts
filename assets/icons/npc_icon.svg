@@ -1,8 +1,0 @@
-<svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0.5" y="0.0146942" width="64" height="64" rx="9.76562" fill="#BEBEBE" />
-  <circle cx="19.7157" cy="21.1715" r="4.07609" fill="black" />
-  <circle cx="43.7841" cy="21.1715" r="4.07609" fill="black" />
-  <path d="M32.2907 25.7517L37.2454 39.6676C37.343 39.9416 37.1156 40.2217 36.8274 40.1825L26.0408 38.7156"
-    stroke="black" stroke-width="2.71739" stroke-linecap="round" />
-  <path d="M42.8136 50.8687H20.2981" stroke="black" stroke-width="2.71739" stroke-linecap="round" />
-</svg>
