@@ -101,16 +101,17 @@ onUnmounted(() => {
     </div>
 
     <!-- No content message -->
-    <h1 
-      v-else 
-      class="text-white text-center"
+    <h1
+      v-else
+      class="text-center text-white"
       :class="{ 'mt-8': !contentFilters.claims && !contentFilters.quotes && !contentFilters.memes }"
     >
-      {{ searchTerm 
-        ? "No results found." 
-        : (!contentFilters.claims && !contentFilters.quotes && !contentFilters.memes) 
-          ? "No content found. Select a category above." 
-          : "No content found." 
+      {{
+        searchTerm
+          ? "No results found."
+          : !contentFilters.claims && !contentFilters.quotes && !contentFilters.memes
+          ? "No content found. Select a category above."
+          : "No content found."
       }}
     </h1>
 

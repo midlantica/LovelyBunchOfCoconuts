@@ -1,8 +1,8 @@
 <!-- layouts/default.vue -->
 <template>
-  <div class="grid-rows-[auto_1fr_auto] h-screen grid gap-3 bg-slate-950">
-    <TheHeader class="w-full sticky top-0 left-0 z-10" />
-    <main class="mx-auto w-full max-w-screen-md overflow-y-auto gap-3 px-4">
+  <div class="gap-3 grid grid-rows-[auto_1fr_auto] h-screen">
+    <TheHeader class="top-0 left-0 z-10 sticky w-full" />
+    <main class="gap-3 mx-auto px-4 w-full max-w-screen-md overflow-y-auto">
       <slot />
     </main>
     <TheFooter class="w-full" />

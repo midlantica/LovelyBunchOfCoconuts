@@ -1,37 +1,49 @@
 <!-- layouts/home.vue -->
 <template>
-  <div class="grid-rows-[auto_auto_1fr_auto] h-screen grid gap-3 bg-slate-950">
-    <TheHeader class="w-full sticky top-0 left-0 z-10" />
-    <SearchBar
-      v-model:search="searchTerm"
-      v-model:filters="contentFilters"
-      class="w-full max-w-screen-md sticky top-0 z-10 justify-self-center px-4"
-    />
-    <main class="grid-rows-[auto] mx-auto w-full max-w-screen-md overflow-y-auto grid gap-3 px-4">
-      <slot />
-    </main>
+  <div class="gap-3 grid grid-rows-[auto_1fr_auto] h-screen baser">
+    <TheHeader class="top-0 left-0 z-10 sticky w-full" />
+    <div class="gap-3 grid grid-rows-[auto_1fr] px-4 h-screen">
+      <SearchBar
+        v-model:search="searchTerm"
+        v-model:filters="contentFilters"
+        class="top-0 z-10 sticky justify-self-center w-full max-w-screen-md"
+      />
+      <main class="gap-3 grid grid-rows-[auto] mx-auto pr-3 w-full max-w-screen-md overflow-y-auto">
+        <slot />
+      </main>
+    </div>
     <TheFooter class="w-full" />
   </div>
 </template>
 
 <script setup>
-  import { ref, provide, watch } from "vue"
+import { ref, provide, watch } from "vue"
 
-  const searchTerm = ref("")
-  const contentFilters = ref({
-    claims: true,
-    quotes: true,
-    memes: true
-  })
-  
-  provide("searchTerm", searchTerm)
-  provide("contentFilters", contentFilters)
+const searchTerm = ref("")
+const contentFilters = ref({
+  claims: true,
+  quotes: true,
+  memes: true,
+})
 
-  watch(searchTerm, (newVal) => {
-    console.log("Home layout searchTerm:", newVal)
-  })
-  
-  watch(contentFilters, (newVal) => {
+provide("searchTerm", searchTerm)
+provide("contentFilters", contentFilters)
+
+watch(searchTerm, (newVal) => {
+  console.log("Home layout searchTerm:", newVal)
+})
+
+watch(
+  contentFilters,
+  (newVal) => {
     console.log("Home layout contentFilters:", newVal)
-  }, { deep: true })
+  },
+  { deep: true }
+)
 </script>
+
+<style scoped>
+.baser {
+  /* @apply bg-[url('/grainy-background.jpg')] bg-cover; */
+}
+</style>

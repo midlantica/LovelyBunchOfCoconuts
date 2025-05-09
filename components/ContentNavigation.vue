@@ -25,18 +25,18 @@
 </template>
 
 <script setup>
-  import { useRouter } from "vue-router"
+import { useRouter } from "vue-router"
 
-  const router = useRouter()
-  const { prevSlug, nextSlug } = defineProps({
-    prevSlug: String,
-    nextSlug: String,
-  })
+const router = useRouter()
+const { prevSlug, nextSlug } = defineProps({
+  prevSlug: String,
+  nextSlug: String,
+})
 
-  const goToPrev = () => {
-    if (prevSlug) router.push(prevSlug)
-  }
-  const goToNext = () => {
-    if (nextSlug) router.push(nextSlug)
-  }
+const goToPrev = () => {
+  if (prevSlug) router.push(prevSlug)
+}
+const goToNext = () => {
+  if (nextSlug) router.push(nextSlug)
+}
 </script>

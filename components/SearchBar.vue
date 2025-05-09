@@ -1,13 +1,11 @@
 <!-- components/SearchBar.vue -->
 <template>
-  <div
-    class="search-bar w-full h-10 flex flex-col items-center gap-0 text-white bg-slate-950 rounded-t-md"
-  >
-    <div class="w-full relative flex flex-row gap-0">
+  <div class="flex flex-col items-center gap-[0px] rounded-t-md w-full h-10 text-white search-bar">
+    <div class="relative flex flex-row gap-0 border-b-[1px] border-b-slate-800 w-full">
       <input
         type="search"
         v-model="searchTerm"
-        class="placeholder-slate-400 w-full h-10 p-0 ps-3 pr-0 text-xl font-light tracking-wider leading-none text-slate-100 bg-slate-900 rounded-t-md outline-none focus:bg-slate-800 sm:rounded-r-none xs:rounded-r-none"
+        class="focus:bg-slate-800 bg-gradient-to-b from-slate-700 to-slate-800 p-0 ps-3 pr-0 rounded-t-md xs:rounded-r-none sm:rounded-r-none outline-none w-full h-10 font-light text-slate-100 text-xl leading-none tracking-wider placeholder-slate-400"
         placeholder="Search..."
         @input="emitSearch"
         @keydown.esc="clearSearch"
@@ -15,58 +13,67 @@
       />
       <button
         type="submit"
-        class="h-10 hidden px-2 text-slate-400 bg-slate-900 rounded-tr-md hover:text-slate-100 lg:block md:block xs:block"
+        class="hidden xs:block md:block lg:block bg-slate-900 px-2 rounded-tr-md h-10 text-slate-400 hover:text-slate-100"
         @click="emitSearch"
       >
         <Icon name="mdi:magnify" size="1.75rem" />
       </button>
     </div>
     <!-- Content type filter pills inside the search input -->
-    <div id="ButtonBar" class="gap-[1px] w-full flex flex-row flex-wrap justify-center">
+    <div id="ButtonBar" class="flex flex-row flex-wrap justify-center gap-[2px] w-full">
       <button
         @click.prevent="toggleFilter('claims')"
-        class="flex grow justify-center gap-1 px-2 py-1 text-base tracking-wider uppercase rounded-bl-md transition-colors duration-100"
+        class="flex justify-center gap-[.25rem] px-2 py-1 border-slate-700/50 border-b-2 rounded-bl-md text-base uppercase tracking-wider transition-colors duration-100 grow"
         :class="[
-          filters.claims ? 'bg-slate-700' : 'bg-slate-600',
-          allFiltersOff ? 'pulse-animation' : '',
+          filters.claims ? 'bg-slate-900' : 'text-slate-800 border-b-2 border-slate-700/50',
+          allFiltersOff ? 'animate-pulse' : '',
         ]"
       >
-        <span
-          class="top-[-1px] relative self-center leading-none"
-          :class="filters.claims ? 'text-sky-200' : 'text-slate-400'"
-          >⦿</span
+        <span :class="filters.claims ? 'text-slate-200' : 'text-slate-200/40 blur-[.5px]'"
+          >Claims</span
         >
-        <span :class="filters.claims ? 'text-slate-200' : 'text-slate-400'">Claims</span>
+        <span
+          class="top-[-1px] relative self-center rounded-full text-2xl leading-none"
+          :class="filters.claims ? 'text-sky-400' : 'text-slate-200/40 blur-[.5px]'"
+        >
+          <Icon name="heroicons:check" class="top-[-2px] relative text-[1rem] text-lg" />
+        </span>
       </button>
       <button
         @click.prevent="toggleFilter('quotes')"
-        class="flex grow justify-center gap-1 px-2 py-1 text-base tracking-wider uppercase rounded-none transition-colors duration-100"
+        class="flex justify-center gap-[.25rem] px-2 py-1 border-slate-700/50 border-b-2 rounded-none text-base uppercase tracking-wider transition-colors duration-100 grow"
         :class="[
-          filters.quotes ? 'bg-slate-700' : 'bg-slate-600',
-          allFiltersOff ? 'pulse-animation' : '',
+          filters.quotes ? 'bg-slate-900' : 'text-slate-800 border-b-2 border-slate-700/50',
+          allFiltersOff ? 'animate-pulse' : '',
         ]"
       >
-        <span
-          class="top-[-1px] relative self-center leading-none"
-          :class="filters.quotes ? 'text-sky-200' : 'text-slate-400'"
-          >⦿</span
+        <span :class="filters.quotes ? 'text-slate-200' : 'text-slate-200/40 blur-[.5px]'"
+          >Quotes</span
         >
-        <span :class="filters.quotes ? 'text-slate-200' : 'text-slate-400'">Quotes</span>
+        <span
+          class="top-[-1px] relative self-center rounded-full text-2xl leading-none"
+          :class="filters.quotes ? 'text-sky-400' : 'text-slate-200/40 blur-[.5px]'"
+        >
+          <Icon name="heroicons:check" class="top-[-2px] relative text-[1rem] text-lg" />
+        </span>
       </button>
       <button
         @click.prevent="toggleFilter('memes')"
-        class="flex grow justify-center gap-1 px-2 py-1 text-base tracking-wider uppercase rounded-br-md transition-colors duration-100"
+        class="flex justify-center gap-[.25rem] px-2 py-1 border-slate-700/50 border-b-2 rounded-br-md text-base uppercase tracking-wider transition-colors duration-100 grow"
         :class="[
-          filters.memes ? 'bg-slate-700' : 'bg-slate-600',
-          allFiltersOff ? 'pulse-animation' : '',
+          filters.memes ? 'bg-slate-900' : 'text-slate-800 border-b-2 border-slate-700/50',
+          allFiltersOff ? 'animate-pulse' : '',
         ]"
       >
-        <span
-          class="top-[-1px] relative self-center leading-none"
-          :class="filters.memes ? 'text-sky-200' : 'text-slate-400'"
-          >⦿</span
+        <span :class="filters.memes ? 'text-slate-200' : 'text-slate-200/40 blur-[.5px]'"
+          >Memes</span
         >
-        <span :class="filters.memes ? 'text-slate-200' : 'text-slate-400'">Memes</span>
+        <span
+          class="top-[-1px] relative self-center rounded-full text-2xl leading-none"
+          :class="filters.memes ? 'text-sky-400' : 'text-slate-200/40 blur-[.5px]'"
+        >
+          <Icon name="heroicons:check" class="top-[-2px] relative text-[1rem] text-lg" />
+        </span>
       </button>
     </div>
   </div>

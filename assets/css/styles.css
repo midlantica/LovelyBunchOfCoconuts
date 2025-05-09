@@ -2,7 +2,7 @@
 
 @layer base {
   body {
-    @apply font-Barlow;
+    @apply bg-slate-950 font-Barlow;
   }
 
   h1,
@@ -11,7 +11,7 @@
   h4,
   h5,
   h6 {
-    @apply font-Barlow font-[100] tracking-wider leading-normal;
+    @apply font-[100] font-Barlow leading-normal tracking-wider;
   }
   h1 {
     @apply text-2xl;
@@ -36,7 +36,7 @@
   ul,
   li,
   ol {
-    @apply text-2xl font-thin tracking-wider leading-normal mb-2 last:mb-0;
+    @apply mb-2 last:mb-0 font-thin text-2xl leading-normal tracking-wider;
   }
 
   h2 + p {
