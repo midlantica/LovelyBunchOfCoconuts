@@ -1,0 +1,28 @@
+Starting image renaming process at 2025-05-02T17:33:00.654Z
+Renamed: Socialism irons out the boom-bust cycle.png → socialism-irons-out-the-boom-bust-cycle.png
+Skipping a-free-market-economy-is-a-giant-computer.png (metadata already exists)
+Skipping cnn-npc-woke-dystopia.png (metadata already exists)
+Skipping dei-blm-crt-esg-end-woke-insanity.png (metadata already exists)
+Skipping democrat-savior-complex.png (metadata already exists)
+Skipping doge-reorg-3.png (metadata already exists)
+Skipping greta-pay-300-more-for-your-electricity.png (metadata already exists)
+Skipping imaginary-socialism-vs-reality.png (metadata already exists)
+Skipping la-fiery-but-mostly-burning.png (metadata already exists)
+Skipping lets-see-if-ive-got-this-right.png (metadata already exists)
+Skipping man-pregnant.png (metadata already exists)
+Skipping modern-barbarians20.png (metadata already exists)
+Skipping richard-winn-livingstone-quote.png (metadata already exists)
+Skipping ricky-gervias-fuck-off-hollywood.png (metadata already exists)
+Skipping ronald-reagan-if-it-moves-tax-it.png (metadata already exists)
+Skipping seneca-quote-religion.png (metadata already exists)
+Skipping supreme-court-on-free-speech.png (metadata already exists)
+Skipping thomas-sowell-it-was-thomas-edison.png (metadata already exists)
+Skipping toxic-leftist-media-mass-formation-psychosis-04.png (metadata already exists)
+Renamed: we're-way-past-swamp-britain.png → were-way-past-swamp-britain.png
+Skipping what-have-conservatives-ever-done-for-us.png (metadata already exists)
+Skipping wokezilla-hollywood.png (metadata already exists)
+Renamed: you-think-that's-news-you're-reading.png → you-think-thats-news-youre-reading.png
+
+Renaming complete at 2025-05-02T17:33:00.666Z
+3 files renamed, 20 files skipped
+Renamed files are logged in /Users/drewtwo/Documents/_work/WakeUpNPC2/scripts/rename-log.txt
