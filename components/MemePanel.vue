@@ -3,34 +3,39 @@
   <router-link
     v-if="meme && meme.image && slug"
     :to="`/memes/${getSlug(meme._path)}`"
-    class="mx-auto w-full h-full overflow-hidden block p-3 bg-gray-800 rounded-lg shadow-[inset_0_0_12px_0_#0f1e24] hover:bg-gray-700"
+    class="block bg-gray-800 hover:bg-gray-700 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 rounded-lg w-full h-full overflow-hidden"
   >
-    <img :src="meme.image" alt="Meme" class="w-full h-full object-contain object-center" />
+    <img :src="meme.image" alt="Meme" class="w-full h-full object-center object-contain" />
   </router-link>
-  <div 
+  <div
     v-else-if="meme && meme.image"
-    class="mx-auto w-full h-full overflow-hidden block p-3 bg-gray-800 rounded-lg shadow-[inset_0_0_12px_0_#0f1e24]"
+    class="block bg-gray-800 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 rounded-lg w-full h-full overflow-hidden"
   >
-    <img :src="meme.image" alt="Meme" class="w-full h-full object-contain object-center" />
+    <img :src="meme.image" alt="Meme" class="w-full h-full object-center object-contain" />
   </div>
-  <div v-else class="mx-auto w-full h-full overflow-hidden block p-3 bg-gray-800 rounded-lg shadow-[inset_0_0_12px_0_#0f1e24]">
+  <div
+    v-else
+    class="block bg-gray-800 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 rounded-lg w-full h-full overflow-hidden"
+  >
     <p class="text-white text-center">🚨 Meme image not found!</p>
   </div>
 </template>
 
 <script setup>
-  import { computed } from "vue"
+import { computed } from "vue"
 
-  const props = defineProps({
-    meme: Object,
-    slug: String,
-  })
+const props = defineProps({
+  meme: Object,
+  slug: String,
+})
 
-  // Extract the slug from the path, handling nested paths
-  const getSlug = (path) => {
-    if (!path) return '';
-    // Extract the last part of the path (after the last slash)
-    const parts = path.split('/');
-    return parts[parts.length - 1];
+// Extract the slug from the path, handling nested paths
+const getSlug = (path) => {
+  if (!path) return ""
+  // Remove the leading '/memes/' prefix to get the relative path
+  if (path.startsWith("/memes/")) {
+    return path.substring("/memes/".length)
   }
+  return path
+}
 </script>

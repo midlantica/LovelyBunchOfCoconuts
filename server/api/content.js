@@ -12,6 +12,10 @@ async function readDir(dir) {
       const fullPath = path.join(dir, entry.name)
       
       if (entry.isDirectory()) {
+        // Skip directories that start with underscore
+        if (entry.name.startsWith('_')) {
+          return []
+        }
         return readDir(fullPath)
       } else if (entry.name.endsWith('.md') && !entry.name.toLowerCase().includes('readme')) {
         return fullPath
