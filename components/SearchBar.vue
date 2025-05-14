@@ -1,12 +1,12 @@
 <!-- components/SearchBar.vue -->
 <template>
-  <div class="flex flex-col items-center gap-[0px] w-full h-auto text-white">
-    <div class="relative flex flex-row gap-0 border-b-[1px] border-b-slate-800 w-full">
+  <div class="flex flex-col items-center gap-[0px] w-full h-auto text-seagull-950">
+    <div class="relative flex flex-row gap-0 border-b-[1px] border-b-seagull-900 w-full">
       <Icon name="mdi:magnify" size="1.75rem" class="top-2 left-2 absolute" />
       <input
         type="search"
         v-model="searchTerm"
-        class="focus:bg-slate-800 bg-gradient-to-b from-slate-700 to-slate-800 p-0 ps-10 pr-0 rounded-t-md outline-none w-full h-10 font-light text-slate-100 text-xl leading-none tracking-wider placeholder-slate-400"
+        class="focus:bg-seagull-900 bg-gradient-to-t from-seagull-200 to-seagull-100 p-0 ps-10 pr-0 rounded-t-md outline-none w-full h-10 text-seagull-900 text-xl leading-none tracking-wider placeholder-seagull-700"
         placeholder="Search..."
         @input="emitSearch"
         @keydown.esc="clearSearch"
@@ -19,9 +19,9 @@
         v-for="(label, type) in filterTypes"
         :key="type"
         @click.prevent="toggleFilter(type)"
-        class="flex justify-center gap-[.25rem] px-2 py-1.5 border-slate-700/50 border-b-2 text-base uppercase tracking-wider transition-colors duration-100 grow"
+        class="flex justify-center gap-[.25rem] px-2 py-1.5 border-slate-700 border-b-2 text-base uppercase tracking-wider transition-colors duration-100 grow"
         :class="[
-          filters[type] ? 'bg-slate-900' : 'text-slate-800',
+          filters[type] ? 'bg-seagull-950 ' : 'bg-slate-900 text-slate-800',
           allFiltersOff ? 'animate-pulse' : '',
           type === 'claims' ? 'rounded-bl-md' : '',
           type === 'memes' ? 'rounded-br-md' : '',
@@ -29,7 +29,7 @@
       >
         <span
           class="tracking-widest"
-          :class="filters[type] ? 'text-sky-200' : 'text-slate-200/40 blur-[.5px]'"
+          :class="filters[type] ? 'text-slate-300' : 'text-slate-200/40 blur-[.5px]'"
           >{{ label }}</span
         >
       </button>
@@ -57,7 +57,7 @@ const filters = ref(props.filters)
 const filterTypes = {
   claims: "Claims",
   quotes: "Quotes",
-  memes: "Memes"
+  memes: "Memes",
 }
 
 // Computed property to check if all filters are off
@@ -97,29 +97,29 @@ const handleSearchEvent = (event) => {
 
 const toggleFilter = (type) => {
   // Check if this is the first click after initial state (all buttons on)
-  const allOn = filters.value.claims && filters.value.quotes && filters.value.memes;
-  
+  const allOn = filters.value.claims && filters.value.quotes && filters.value.memes
+
   if (allOn) {
     // First click after initial state - implement radio button behavior
     const newFilters = {
       claims: false,
       quotes: false,
-      memes: false
-    };
-    
+      memes: false,
+    }
+
     // Set only the clicked one to true
-    newFilters[type] = true;
-    
-    filters.value = newFilters;
+    newFilters[type] = true
+
+    filters.value = newFilters
   } else {
     // After first click - revert to toggle behavior
     filters.value = {
       ...filters.value,
       [type]: !filters.value[type],
-    };
+    }
   }
-  
-  emit("update:filters", filters.value);
+
+  emit("update:filters", filters.value)
 }
 
 watch(searchTerm, (newValue) => emit("update:search", newValue))
@@ -142,7 +142,7 @@ input[type="search"]::-webkit-search-cancel-button {
   appearance: none; /* For future-proofing */
   width: 16px; /* Size it */
   height: 16px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23CBD5E1' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E")
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306304b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E")
     no-repeat center;
   background-size: contain;
   cursor: pointer;
@@ -151,20 +151,20 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* Optional: Hover effect */
 input[type="search"]::-webkit-search-cancel-button:hover {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFFFFF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E")
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306304b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E")
     no-repeat center;
 }
 
 /* Pulsing animation for unlit pills when all filters are off */
 @keyframes softPulse {
   0% {
-    background-color: rgb(71 85 105);
+    background-color: hsl(214, 22%, 20%);
   } /* bg-slate-600 */
   50% {
-    background-color: rgb(100 116 139);
+    background-color: hsl(215, 21%, 78%);
   } /* bg-slate-500 */
   100% {
-    background-color: rgb(71 85 105);
+    background-color: hsl(214, 22%, 20%);
   } /* bg-slate-600 */
 }
 
