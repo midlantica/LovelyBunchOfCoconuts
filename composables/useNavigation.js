@@ -8,7 +8,8 @@ export function useNavigation(items, currentSlug, basePath = "") {
       return { prevSlug: "/", nextSlug: "/" }
     }
 
-    const normalizedSlug = currentSlug.toLowerCase()
+    // Ensure currentSlug is a string
+    const normalizedSlug = String(currentSlug.value || currentSlug).toLowerCase()
     // console.log("🔍 Normalized Current Slug:", normalizedSlug);
 
     // ✅ Find index properly
@@ -19,7 +20,7 @@ export function useNavigation(items, currentSlug, basePath = "") {
     })
 
     if (index === -1) {
-      // console.warn(`⚠️ Could not find slug: ${currentSlug} in ${basePath}`);
+      // console.warn(`⚠️ Could not find slug: ${normalizedSlug} in ${basePath}`);
       return { prevSlug: "/", nextSlug: "/" }
     }
 

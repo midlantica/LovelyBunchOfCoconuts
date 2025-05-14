@@ -3,14 +3,14 @@
   <router-link
     v-if="quote && quote.headings && quote.headings.length > 0 && slug"
     :to="slug"
-    class="quotePanel shadow-[inset_0_0_12px_0_#0f1e24] flex flex-col gap-2 px-6 py-4 text-white bg-gray-800 rounded-lg hover:bg-gray-700"
+    class="flex flex-col gap-2 bg-gray-800 hover:bg-gray-700 shadow-[inset_0_0_12px_0_#0f1e24] px-6 py-4 rounded-lg text-white quotePanel"
   >
-    <div class="my-auto flex flex-col flex-wrap gap-0.5">
-      <h1 class="inline-block text-xl font-light tracking-wide align-baseline">
+    <div class="flex flex-col flex-wrap gap-0.5 my-auto">
+      <h1 class="inline-block font-light text-xl align-baseline tracking-wide">
         {{ quote.headings[0] }}
       </h1>
       <p
-        class="inline-block text-lg font-light tracking-wide text-slate-300 align-baseline"
+        class="inline-block font-light text-slate-300 text-lg align-baseline tracking-wide"
         v-if="quote.attribution"
       >
         — {{ quote.attribution }}
@@ -19,7 +19,7 @@
   </router-link>
   <div
     v-else
-    class="quotePanel shadow-[inset_0_0_12px_0_#0f1e24] flex flex-col gap-2 px-5 py-4 text-white bg-gray-800 rounded-lg"
+    class="flex flex-col gap-2 bg-gray-800 shadow-[inset_0_0_12px_0_#0f1e24] px-5 py-4 rounded-lg text-white quotePanel"
   >
     <div class="my-auto">
       <h2 class="inline-block align-baseline">
@@ -30,7 +30,7 @@
         }}
       </h2>
       <p
-        class="inline-block text-lg font-light text-slate-300 align-baseline"
+        class="inline-block font-light text-slate-300 text-lg align-baseline"
         v-if="quote && quote.attribution"
       >
         — {{ quote.attribution }}
