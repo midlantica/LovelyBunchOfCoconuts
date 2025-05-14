@@ -22,6 +22,21 @@ export default {
         xs: "320px",
         // => @media (min-width: 320px) { ... }
       },
+      colors: {
+        seagull: {
+          50: "#f0f9ff",
+          100: "#dff3ff",
+          200: "#b8e8ff",
+          300: "#6dd3ff",
+          400: "#33c3fd",
+          500: "#09acee",
+          600: "#0089cc",
+          700: "#006ea5",
+          800: "#045d88",
+          900: "#0a4d70",
+          950: "#06304b",
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

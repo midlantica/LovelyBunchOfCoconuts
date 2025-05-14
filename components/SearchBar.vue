@@ -16,45 +16,21 @@
     <!-- Content type filter pills inside the search input -->
     <div id="ButtonBar" class="flex flex-row flex-wrap justify-center gap-[2px] w-full">
       <button
-        @click.prevent="toggleFilter('claims')"
-        class="flex justify-center gap-[.25rem] px-2 py-1.5 border-slate-700/50 border-b-2 rounded-bl-md text-base uppercase tracking-wider transition-colors duration-100 grow"
+        v-for="(label, type) in filterTypes"
+        :key="type"
+        @click.prevent="toggleFilter(type)"
+        class="flex justify-center gap-[.25rem] px-2 py-1.5 border-slate-700/50 border-b-2 text-base uppercase tracking-wider transition-colors duration-100 grow"
         :class="[
-          filters.claims ? 'bg-slate-900' : 'text-slate-800',
+          filters[type] ? 'bg-slate-900' : 'text-slate-800',
           allFiltersOff ? 'animate-pulse' : '',
+          type === 'claims' ? 'rounded-bl-md' : '',
+          type === 'memes' ? 'rounded-br-md' : '',
         ]"
       >
         <span
           class="tracking-widest"
-          :class="filters.claims ? 'text-sky-200' : 'text-slate-200/40 blur-[.5px]'"
-          >Claims</span
-        >
-      </button>
-      <button
-        @click.prevent="toggleFilter('quotes')"
-        class="flex justify-center gap-[.25rem] px-2 py-1.5 border-slate-700/50 border-b-2 rounded-none text-base uppercase tracking-wider transition-colors duration-100 grow"
-        :class="[
-          filters.quotes ? 'bg-slate-900' : 'text-slate-800',
-          allFiltersOff ? 'animate-pulse' : '',
-        ]"
-      >
-        <span
-          class="tracking-widest"
-          :class="filters.quotes ? 'text-sky-200' : 'text-slate-200/40 blur-[.5px]'"
-          >Quotes</span
-        >
-      </button>
-      <button
-        @click.prevent="toggleFilter('memes')"
-        class="flex justify-center gap-[.25rem] px-2 py-1.5 border-slate-700/50 border-b-2 rounded-br-md text-base uppercase tracking-wider transition-colors duration-100 grow"
-        :class="[
-          filters.memes ? 'bg-slate-900' : 'text-slate-800',
-          allFiltersOff ? 'animate-pulse' : '',
-        ]"
-      >
-        <span
-          class="tracking-widest"
-          :class="filters.memes ? 'text-sky-200' : 'text-slate-200/40 blur-[.5px]'"
-          >Memes</span
+          :class="filters[type] ? 'text-sky-200' : 'text-slate-200/40 blur-[.5px]'"
+          >{{ label }}</span
         >
       </button>
     </div>
@@ -76,6 +52,13 @@ const emit = defineEmits(["update:search", "update:filters"])
 
 const searchTerm = ref(props.search || "")
 const filters = ref(props.filters)
+
+// Define filter types and their labels
+const filterTypes = {
+  claims: "Claims",
+  quotes: "Quotes",
+  memes: "Memes"
+}
 
 // Computed property to check if all filters are off
 const allFiltersOff = computed(() => {
@@ -113,11 +96,30 @@ const handleSearchEvent = (event) => {
 }
 
 const toggleFilter = (type) => {
-  filters.value = {
-    ...filters.value,
-    [type]: !filters.value[type],
+  // Check if this is the first click after initial state (all buttons on)
+  const allOn = filters.value.claims && filters.value.quotes && filters.value.memes;
+  
+  if (allOn) {
+    // First click after initial state - implement radio button behavior
+    const newFilters = {
+      claims: false,
+      quotes: false,
+      memes: false
+    };
+    
+    // Set only the clicked one to true
+    newFilters[type] = true;
+    
+    filters.value = newFilters;
+  } else {
+    // After first click - revert to toggle behavior
+    filters.value = {
+      ...filters.value,
+      [type]: !filters.value[type],
+    };
   }
-  emit("update:filters", filters.value)
+  
+  emit("update:filters", filters.value);
 }
 
 watch(searchTerm, (newValue) => emit("update:search", newValue))
