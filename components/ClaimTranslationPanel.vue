@@ -3,7 +3,7 @@
   <router-link
     v-if="claim && claim.claim && claim.translation && slug"
     :to="slug"
-    class="flex flex-col gap-2 bg-gray-800 hover:bg-gray-700 shadow-[inset_0_0_12px_0_#0f1e24] px-4 py-3 rounded-lg h-full text-white transition-colors"
+    class="flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 shadow-[inset_0_0_12px_0_#0f1e24] px-4 py-3 rounded-lg h-full text-white transition-colors"
   >
     <div class="my-auto">
       <div class="flex items-center gap-3">
@@ -23,7 +23,7 @@
   </router-link>
   <div
     v-else
-    class="flex flex-col gap-2 bg-gray-800 shadow-[inset_0_0_12px_0_#0f1e24] px-4 py-3 rounded-lg h-full text-white"
+    class="flex flex-col gap-2 bg-slate-800 shadow-[inset_0_0_12px_0_#0f1e24] px-4 py-3 rounded-lg h-full text-white"
   >
     <div class="my-auto">
       <div class="flex items-center gap-3">

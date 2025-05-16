@@ -25,6 +25,7 @@
   "dependencies": {
     "gray-matter": "^4.0.3",
     "jimp": "^1.6.0",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "markdown-it": "^14.1.0"
   }
 }
