@@ -1,18 +1,24 @@
 <!-- layouts/content-detail.vue -->
 <template>
-  <div class="gap-3 grid grid-rows-[auto_1fr_auto] h-screen">
+  <div class="gap-3 grid grid-rows-[auto_auto_1fr_auto] h-screen">
     <TheHeader class="top-0 left-0 z-10 sticky w-full" />
-    <main class="gap-3 mx-auto px-4 w-full max-w-screen-md overflow-y-auto">
-      <!-- Content Navigation stays outside the page transition -->
+    
+    <!-- Content Navigation stays outside the scrolling area -->
+    <div class="mx-auto px-4 w-full max-w-screen-md">
       <ContentNavigation 
         :prev-slug="prevSlug" 
         :next-slug="nextSlug" 
         :content-type="contentType"
       />
-      
-      <!-- Page content will be rendered here with transitions -->
-      <slot />
-    </main>
+    </div>
+    
+    <!-- Scrollable content area -->
+    <div class="detail-scroll-container">
+      <main class="gap-3 mx-auto px-4 w-full max-w-screen-md">
+        <slot />
+      </main>
+    </div>
+    
     <TheFooter class="w-full" />
   </div>
 </template>
@@ -35,3 +41,11 @@ watch(() => route.meta.navigation, (newNavigation) => {
   }
 }, { immediate: true, deep: true })
 </script>
+
+<style scoped>
+.detail-scroll-container {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+}
+</style>

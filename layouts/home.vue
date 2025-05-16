@@ -8,9 +8,13 @@
         v-model:filters="contentFilters"
         class="top-0 z-10 sticky justify-self-center max-w-screen-md"
       />
-      <main class="grid grid-rows-[auto] mx-auto pr-3 w-full max-w-screen-md overflow-y-auto">
-        <slot />
-      </main>
+      <div class="overflow-y-auto">
+        <div class="mx-auto w-full max-w-screen-md">
+          <main class="grid grid-rows-[auto]">
+            <slot />
+          </main>
+        </div>
+      </div>
     </div>
     <TheFooter class="w-full" />
   </div>

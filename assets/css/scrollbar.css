@@ -28,3 +28,23 @@
   scrollbar-width: thin;
   scrollbar-color: var(--accent) var(--dark);
 }
+
+/* Specific styling for scroll containers */
+.scroll-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 6px;
+}
+
+/* Firefox specific styling */
+.scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--dark);
+}
