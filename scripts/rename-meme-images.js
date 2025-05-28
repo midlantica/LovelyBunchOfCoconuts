@@ -50,12 +50,15 @@ function cleanFilename(filename) {
     return null
   }
 
-  // Remove all types of quotes (straight and curly)
+  // Remove all types of quotes (straight and curly), convert to lowercase, replace spaces with hyphens, remove special chars, collapse multiple hyphens, and trim to 50 chars
   let newBase = base
     .toLowerCase()
-    .replace(/["'‘’“”`´]/g, "") // Remove straight and curly quotes
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "")
+    .replace(/["'‘’“”`´]/g, "") // Remove quotes
+    .replace(/\s+/g, "-") // Spaces to hyphens
+    .replace(/[^a-z0-9-]/g, "") // Remove non-alphanum except hyphen
+    .replace(/-+/g, "-") // Collapse multiple hyphens (2 or more)
+    .replace(/^-+|-+$/g, "") // Trim leading/trailing hyphens
+    .slice(0, 50) // Limit to 50 chars
 
   return newBase + ext
 }

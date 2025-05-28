@@ -1,105 +1,165 @@
-Starting markdown file creation at 2025-05-28T21:36:04.296Z
-Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell
-Created markdown file for activism-is-a-way-for-useless-people-to-feel-1748468164254.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/activism-is-a-way-for-useless-people-to-feel-1748468164254.md
-Markdown file already exists for activism-is-a-way-for-useless-people-to-feel.png
-Created markdown file for blacks-were-not-enslaved-becuase-they-were-black-1748468164255.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/blacks-were-not-enslaved-becuase-they-were-black-1748468164255.md
-Markdown file already exists for blacks-were-not-enslaved-becuase-they-were-black.png
-Created markdown file for both-free-speech-rights-and-property-rights-belong-legally-to-individuals-1748468164228.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/both-free-speech-rights-and-property-rights-belong-legally-to-individuals-1748468164228.md
-Markdown file already exists for both-free-speech-rights-and-property-rights-belong-legally-to-individuals.png
-Created markdown file for despite-a-voluminous-and-often-fervent-literature-on-income-distribution.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/despite-a-voluminous-and-often-fervent-literature-on-income-distribution.md
-Markdown file already exists for during-the-1920s-and-the-early-1930s-fascism-was.png
-Created markdown file for europe-is-belatedly-discovering-how-unbelievably-stupid-it-was.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/europe-is-belatedly-discovering-how-unbelievably-stupid-it-was.md
-Markdown file already exists for europe-is-belatedly-discovering-how-unbelievably-stupid.png
-Created markdown file for guilt-has-so-furtively-stolen-into-many-hearts.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/guilt-has-so-furtively-stolen-into-many-hearts.md
-Markdown file already exists for guilt-has-so-furtively-stolen-intoi-many-hearts.png
-Created markdown file for hours-may-become-the-first-civilization-destroyed.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/hours-may-become-the-first-civilization-destroyed.md
-Created markdown file for i-have-never-understood-why-it-is-agreed-to-want-to-keep-the-money-you-have-earned.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/i-have-never-understood-why-it-is-agreed-to-want-to-keep-the-money-you-have-earned.md
-Created markdown file for if-you-are-not-prepared-to-use-force-to-defend-1748468164232.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/if-you-are-not-prepared-to-use-force-to-defend-1748468164232.md
-Markdown file already exists for if-you-are-not-prepared-to-use-force-to-defend.png
-Created markdown file for if-you-cannot-achieve-a-quality-of-performance-among-people-born-to-the-same-parents.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/if-you-cannot-achieve-a-quality-of-performance-among-people-born-to-the-same-parents.md
-Created markdown file for if-you-want-to-see-the-poor-remain-poor-generation-after-generation.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/if-you-want-to-see-the-poor-remain-poor-generation-after-generation.md
-Markdown file already exists for immigration-laws-are-the-only-laws.png
-Created markdown file for it-is-a-fascinating-to-watch-politicians-come-up-with-solutions-to-problems-that-are-the-direct-result-of-the-previous-solution-solutions.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/it-is-a-fascinating-to-watch-politicians-come-up-with-solutions-to-problems-that-are-the-direct-result-of-the-previous-solution-solutions.md
-Created markdown file for it-is-fascinating-to-watch-politicians-come-up-with-solutions-1748468164234.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/it-is-fascinating-to-watch-politicians-come-up-with-solutions-1748468164234.md
-Markdown file already exists for it-is-fascinating-to-watch-politicians-come-up-with-solutions.png
-Created markdown file for it-is-not-enough-for-us-to-discover-belatedly-that-we-have-been-lied-to-1748468164235.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/it-is-not-enough-for-us-to-discover-belatedly-that-we-have-been-lied-to-1748468164235.md
-Markdown file already exists for it-is-not-enough-for-us-to-discover-belatedly-that-we-have-been-lied-to.png
-Created markdown file for it-is-usually-futile-to-try-to-talk-facts.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/it-is-usually-futile-to-try-to-talk-facts.md
-Created markdown file for it-was-thomas-edison-who-brought-us-elctricity-1748468164257.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/it-was-thomas-edison-who-brought-us-elctricity-1748468164257.md
-Markdown file already exists for it-was-thomas-edison-who-brought-us-elctricity.png
-Markdown file already exists for its-amazing-how-fast-people-learn-when-they-are.png
-Created markdown file for many-on-the-political-left-are-so-entranced-by-the-beauty-of-their-vision.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/many-on-the-political-left-are-so-entranced-by-the-beauty-of-their-vision.md
-Markdown file already exists for many-on-the-political-left-are-so-in-transit-by-the-beauty-of-their-vision.png
-Created markdown file for much-of-the-social-history-of-the-western-world-over-the-past-three-decades.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/much-of-the-social-history-of-the-western-world-over-the-past-three-decades.md
-Markdown file already exists for much-of-the-social-history-of-the-western-world.png
-Created markdown file for much-of-what-are-called-social-problems.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/much-of-what-are-called-social-problems.md
-Created markdown file for multiculturalism-like-the-cast-system.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/multiculturalism-like-the-cast-system.md
-Created markdown file for no-matter-how-disastrously-some-policy-has-turned-out-1748468164239.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/no-matter-how-disastrously-some-policy-has-turned-out-1748468164239.md
-Markdown file already exists for no-matter-how-disastrously-some-policy-has-turned-out.png
-Markdown file already exists for nobody-is-equal-to-anybody.png
-Created markdown file for nobody-is-equal-to-anybody2.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/nobody-is-equal-to-anybody2.md
-Created markdown file for one-of-the-many-services-done-to-young-people-is-giving-them-a-puffed-up-notion.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/one-of-the-many-services-done-to-young-people-is-giving-them-a-puffed-up-notion.md
-Created markdown file for one-of-the-most-important-reasons-for-studying-history.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/one-of-the-most-important-reasons-for-studying-history.md
-Created markdown file for one-of-them-many-disservices-done-to-young-people.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/one-of-them-many-disservices-done-to-young-people.md
-Created markdown file for people-who-are-very-aware-that-they-have-more-knowledge-1748468164240.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/people-who-are-very-aware-that-they-have-more-knowledge-1748468164240.md
-Markdown file already exists for people-who-are-very-aware-that-they-have-more-knowledge.png
-Created markdown file for people-who-pride-themselves-on-their-complexity.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/people-who-pride-themselves-on-their-complexity.md
-Created markdown file for people-who-try-themselves.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/people-who-try-themselves.md
-Markdown file already exists for racism-is-not-dead-but-it-is-on-life-support-kept-alive-by-politicians.png
-Created markdown file for schools-exist-for-the-education-of-children.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/schools-exist-for-the-education-of-children.md
-Created markdown file for since-wealth-is-the-only-thing-that-can-cure-poverty.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/since-wealth-is-the-only-thing-that-can-cure-poverty.md
-Created markdown file for socialism-in-general-has-a-record-of-failure-so-blatant.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/socialism-in-general-has-a-record-of-failure-so-blatant.md
-Markdown file already exists for some-americans-will-never-appreciate.png
-Markdown file already exists for sowell-on-slavery.png
-Created markdown file for the-assumption-that-spending-more-of-the-taxpayers-money-will-1748468164243.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-assumption-that-spending-more-of-the-taxpayers-money-will-1748468164243.md
-Markdown file already exists for the-assumption-that-spending-more-of-the-taxpayers-money-will.png
-Created markdown file for the-beauty-of-doing-nothing-is-that-you-can-do-it-perfectly.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-beauty-of-doing-nothing-is-that-you-can-do-it-perfectly.md
-Created markdown file for the-beauty-of-doing-nothing-is-that.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-beauty-of-doing-nothing-is-that.md
-Created markdown file for the-black-family-survived-centuries-of-slavery-1748468164244.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-black-family-survived-centuries-of-slavery-1748468164244.md
-Markdown file already exists for the-black-family-survived-centuries-of-slavery.png
-Created markdown file for the-endlessly-repeated-argument-that-most-americans-are-the-descendants.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-endlessly-repeated-argument-that-most-americans-are-the-descendants.md
-Created markdown file for the-fact-that-crime-and-poverty-are-correlated-is-automatically-taken-to-mean.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-fact-that-crime-and-poverty-are-correlated-is-automatically-taken-to-mean.md
-Markdown file already exists for the-first-lesson-of-economics-is-scarcity-.png
-Created markdown file for the-first-lesson-of-economics-is-scarcity.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-first-lesson-of-economics-is-scarcity.md
-Created markdown file for the-left-attempts-to-silence-ideas-they-cannot-or-will-not-debate.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-left-attempts-to-silence-ideas-they-cannot-or-will-not-debate.md
-Created markdown file for the-left-takes-its-vision-seriously.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-left-takes-its-vision-seriously.md
-Created markdown file for the-more-i-study-the-history-of-intellectuals-the-more-they-seem-like-a-wrecking-crew.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-more-i-study-the-history-of-intellectuals-the-more-they-seem-like-a-wrecking-crew.md
-Created markdown file for the-most-basic-question-is-not-what-is-best-but-who-shall-decide-what-is-best.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-most-basic-question-is-not-what-is-best-but-who-shall-decide-what-is-best.md
-Created markdown file for the-most-basic-question-is-not-what-is-best2.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-most-basic-question-is-not-what-is-best2.md
-Markdown file already exists for the-most-basic-question-is-not-what-is.png
-Created markdown file for the-next-time-some-academics-tell-you-how-important-diversity-is-ask-1748468164247.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-next-time-some-academics-tell-you-how-important-diversity-is-ask-1748468164247.md
-Markdown file already exists for the-next-time-some-academics-tell-you-how-important-diversity-is-ask.png
-Created markdown file for the-purpose-of-politics-is-not-to-solve-problems.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-purpose-of-politics-is-not-to-solve-problems.md
-Markdown file already exists for the-purpose-of-politics-is.png
-Created markdown file for the-real-motives-of-liberals-have-nothing-to-do-with-the-welfare-of-other-people.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-real-motives-of-liberals-have-nothing-to-do-with-the-welfare-of-other-people.md
-Created markdown file for the-reason-so-many-people-misunderstand-so-many-issues.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/the-reason-so-many-people-misunderstand-so-many-issues.md
-Created markdown file for there-are-no-solutions-there-are-only-trade-offs.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/there-are-no-solutions-there-are-only-trade-offs.md
-Created markdown file for there-has-now-been-created-a-world.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/there-has-now-been-created-a-world.md
-Markdown file already exists for thomas-sowell-discrimination-and-disparities.png
-Markdown file already exists for thomas-sowell-quote-freedom-unlikely-to-be-lost.png
-Created markdown file for thomas-sowell-sexual-activity-vs-economic-activity-1748468164250.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/thomas-sowell-sexual-activity-vs-economic-activity-1748468164250.md
-Markdown file already exists for thomas-sowell-sexual-activity-vs-economic-activity.png
-Markdown file already exists for too-much-of-what-is-called-education.png
-Created markdown file for we-are-a-nation-of-immigrants-we-are-constantly-reminded.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/we-are-a-nation-of-immigrants-we-are-constantly-reminded.md
-Created markdown file for we-seem-to-be-closer-and-closer-to-a-situation-where-nobody-is-responsible.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/we-seem-to-be-closer-and-closer-to-a-situation-where-nobody-is-responsible.md
-Markdown file already exists for what-do-you-call-it-when-someone-steals-money-secretly.png
-Markdown file already exists for what-do-you-call-it-when-someone-steals-money.png
-Markdown file already exists for what-do-you-replace-a-fire-with-thomas-sowell.png
-Created markdown file for what-exactly-is-your-fair-share-of-what-someone-else-has-worked-for.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/what-exactly-is-your-fair-share-of-what-someone-else-has-worked-for.md
-Markdown file already exists for what-exactly-is-your-fair-share.png
-Created markdown file for what-multiculturalism-boils-down-to-is-that-you-can-praise-any-culture-in-the-world-except-1748468164251.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/what-multiculturalism-boils-down-to-is-that-you-can-praise-any-culture-in-the-world-except-1748468164251.md
-Markdown file already exists for what-multiculturalism-boils-down-to-is-that-you-can-praise-any-culture-in-the-world-except.png
-Markdown file already exists for what-multiculturalism-boils-down-to.png
-Created markdown file for when-i-was-growing-up-we-were-taught-1748468164253.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/when-i-was-growing-up-we-were-taught-1748468164253.md
-Markdown file already exists for when-i-was-growing-up-we-were-taught.png
-Created markdown file for when-i-was-growing-up.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/when-i-was-growing-up.md
-Created markdown file for when-it-is-proclaimed-that-one-must-become-more-1748468164253.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/when-it-is-proclaimed-that-one-must-become-more-1748468164253.md
-Markdown file already exists for when-it-is-proclaimed-that-one-must-become-more.png
-Created markdown file for when-you-import-people-you-import-cultures.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/when-you-import-people-you-import-cultures.md
-Markdown file already exists for when-you-import-people.png
-Created markdown file for when-you-want-to-help-people-you-tell-them-the-truth.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/when-you-want-to-help-people-you-tell-them-the-truth.md
-Created markdown file for you-have-to-have-a-sense-of-humor-if-you-follow-politics.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/you-have-to-have-a-sense-of-humor-if-you-follow-politics.md
+Starting markdown file creation at 2025-05-28T22:12:22.237Z
+Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data
+Created markdown file for 1700ceworldmap.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/1700ceworldmap.md
+Created markdown file for 2018-corruption-perceptions-index.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/2018-corruption-perceptions-index.md
+Created markdown file for 56-of-liberal-women-aged-18-29-have-been-diagnosed-with-a-mental-health-condition.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/56-of-liberal-women-aged-18-29-have-been-diagnosed-with-a-mental-health-condition.md
+Created markdown file for 95-of-americans-who-mainstream-media-call-far-right.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/95-of-americans-who-mainstream-media-call-far-right.md
+Created markdown file for actual-individual-consumption-per-head-in-2017-for-the-25-countries-with-populations-of-over-one-million.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/actual-individual-consumption-per-head-in-2017-for-the-25-countries-with-populations-of-over-one-million.md
+Created markdown file for americas-richest--poorest-states-vs-g7-countries.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/americas-richest--poorest-states-vs-g7-countries.md
+Created markdown file for average-annual-wage-usd-2025.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/average-annual-wage-usd-2025.md
+Created markdown file for average-consumption-per-person-in-oecd-nations-2010.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/average-consumption-per-person-in-oecd-nations-2010.md
+Created markdown file for average-male-height-in-europe.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/average-male-height-in-europe.md
+Created markdown file for better-life-index---2013.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/better-life-index---2013.md
+Created markdown file for birth-of-liberalism-and-capitalism-period-end-of-human-slavery.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/birth-of-liberalism-and-capitalism-period-end-of-human-slavery.md
+Created markdown file for birth-of-liberalism-and-capitalism-united-kingdom-abolishes-the-slave-trade.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/birth-of-liberalism-and-capitalism-united-kingdom-abolishes-the-slave-trade.md
+Created markdown file for blacks-are-more-likely-than-other-groups-to-see-their-race-or-ethnicity-as-central-to-their-identity.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/blacks-are-more-likely-than-other-groups-to-see-their-race-or-ethnicity-as-central-to-their-identity.md
+Created markdown file for blonde-hair-distribution-in-europe.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/blonde-hair-distribution-in-europe.md
+Created markdown file for capitalism-has-failed.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/capitalism-has-failed.md
+Created markdown file for chance-of-surviving-covid-19-by-age-and-sex-2020.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/chance-of-surviving-covid-19-by-age-and-sex-2020.md
+Created markdown file for christianity-in-the-us-by-county-distribution-of-catholicism-protestantism-and-mornonism-in-the-us.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/christianity-in-the-us-by-county-distribution-of-catholicism-protestantism-and-mornonism-in-the-us.md
+Created markdown file for claim--nazi-was-right-wing.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/claim--nazi-was-right-wing.md
+Created markdown file for corporate-america-pledged-to-hire-more-people-of-color-it-actually-did.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/corporate-america-pledged-to-hire-more-people-of-color-it-actually-did.md
+Created markdown file for countries-vs-us-metros-nearest-gdp-equivalent.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/countries-vs-us-metros-nearest-gdp-equivalent.md
+Created markdown file for cps-population-and-per-capita-money-income-all-races-1967-2014.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/cps-population-and-per-capita-money-income-all-races-1967-2014.md
+Created markdown file for dcjiu83kulhoxafre0axaomr-xaw-brqeo4dgapljn8-1748470342147.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/dcjiu83kulhoxafre0axaomr-xaw-brqeo4dgapljn8-1748470342147.md
+Created markdown file for death-rate-from-famines-by-decade-world.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/death-rate-from-famines-by-decade-world.md
+Created markdown file for democratic-socialist-countries.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/democratic-socialist-countries.md
+Created markdown file for democrats-have-shifted-sharply-leftwards-on-cultural-issues-in-recent-years-leaving-the-median-voter-behind.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/democrats-have-shifted-sharply-leftwards-on-cultural-issues-in-recent-years-leaving-the-median-voter-behind.md
+Created markdown file for distribution-of-us-national-income-pretax.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/distribution-of-us-national-income-pretax.md
+Created markdown file for doctoral-degrees-by-field-and-gender-2022.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/doctoral-degrees-by-field-and-gender-2022.md
+Created markdown file for equality-vs-equity-vs-capitalism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/equality-vs-equity-vs-capitalism.md
+Created markdown file for european-countries-as-us-states-by-gdp-ppp-per-capita.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/european-countries-as-us-states-by-gdp-ppp-per-capita.md
+Created markdown file for european-per-capita-gdp-2015.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/european-per-capita-gdp-2015.md
+Created markdown file for europes-fertility-crisis-2022.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/europes-fertility-crisis-2022.md
+Created markdown file for far-right-1.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/far-right-1.md
+Created markdown file for far-right-vs-good-person-2.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/far-right-vs-good-person-2.md
+Created markdown file for far-right-vs-good-person.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/far-right-vs-good-person.md
+Created markdown file for far-right.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/far-right.md
+Created markdown file for federal-spending-revenue-and-net-deficit-in-.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/federal-spending-revenue-and-net-deficit-in-.md
+Created markdown file for fertility-rate-2024.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/fertility-rate-2024.md
+Created markdown file for fertility-rate-collpase-2024.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/fertility-rate-collpase-2024.md
+Created markdown file for fertility-rates-are-declining-everywhere-2023.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/fertility-rates-are-declining-everywhere-2023.md
+Created markdown file for frequency-of-red-hair-in-europe.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/frequency-of-red-hair-in-europe.md
+Created markdown file for frequency-of-words-denoting-prejudice-in-the-new-york-times-and-the-washington-post.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/frequency-of-words-denoting-prejudice-in-the-new-york-times-and-the-washington-post.md
+Created markdown file for gdp-per-capita-by-ancestry-2014.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/gdp-per-capita-by-ancestry-2014.md
+Created markdown file for gdp-per-capita-ppp-2017.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/gdp-per-capita-ppp-2017.md
+Created markdown file for gdp-per-capita-since-1ad-1748470342157.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/gdp-per-capita-since-1ad-1748470342157.md
+Created markdown file for gdp-per-person-1990-international-dollars.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/gdp-per-person-1990-international-dollars.md
+Created markdown file for gdp-ppp-international-dollars-2018-billions.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/gdp-ppp-international-dollars-2018-billions.md
+Created markdown file for german-ancestory.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/german-ancestory.md
+Created markdown file for germanfederalelectionmarch1933-wikipediathefreeencyclopedia.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/germanfederalelectionmarch1933-wikipediathefreeencyclopedia.md
+Created markdown file for germanic-migrations-4th-5th-century.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/germanic-migrations-4th-5th-century.md
+Created markdown file for global-deaths-in-conflicts-since-the-year-1400---by-max-roser.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/global-deaths-in-conflicts-since-the-year-1400---by-max-roser.md
+Created markdown file for global-fertility-2021.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/global-fertility-2021.md
+Created markdown file for global-impact-of-terrorism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/global-impact-of-terrorism.md
+Created markdown file for global-poverty-rate.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/global-poverty-rate.md
+Created markdown file for growth-in-administrative-staff-principals-teachers-and-students-in-public-schools.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/growth-in-administrative-staff-principals-teachers-and-students-in-public-schools.md
+Created markdown file for growth-of-physicians-and-administrators-1970-2009.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/growth-of-physicians-and-administrators-1970-2009.md
+Created markdown file for growth-of-the-upper-middle-class.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/growth-of-the-upper-middle-class.md
+Created markdown file for homicide-rate-per-100000-people-in-us-state-and-canadian-provinces.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/homicide-rate-per-100000-people-in-us-state-and-canadian-provinces.md
+Created markdown file for household-appliances-1973---2009-hours-of-work.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/household-appliances-1973---2009-hours-of-work.md
+Created markdown file for household-income-immigrant-by-country-per-capita-2016.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/household-income-immigrant-by-country-per-capita-2016.md
+Created markdown file for how-socialists-think-socialism-works.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/how-socialists-think-socialism-works.md
+Created markdown file for income-inequality-and-equality.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/income-inequality-and-equality.md
+Created markdown file for income-inequality-in-4-charts.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/income-inequality-in-4-charts.md
+Created markdown file for individual-consumption-per-cap-ppp-2020-07-29.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/individual-consumption-per-cap-ppp-2020-07-29.md
+Created markdown file for inflation-adjusted-consumption-per-person.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/inflation-adjusted-consumption-per-person.md
+Created markdown file for inflation-adjusted-cost-of-a-k-12-public-education.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/inflation-adjusted-cost-of-a-k-12-public-education.md
+Created markdown file for interracial-violent-crime-incidents-2018-media.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/interracial-violent-crime-incidents-2018-media.md
+Created markdown file for invasion-of-the-drug-cartels.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/invasion-of-the-drug-cartels.md
+Created markdown file for italy-by-municipality-annual-gdp-per-capita.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/italy-by-municipality-annual-gdp-per-capita.md
+Created markdown file for keynesian-economics.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/keynesian-economics.md
+Created markdown file for latin-america-corruption-perceptions-index-2014.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/latin-america-corruption-perceptions-index-2014.md
+Created markdown file for light-eyes-in-ancestral-population.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/light-eyes-in-ancestral-population.md
+Created markdown file for margaret-thatcher-rich-poorer-if-poor-poorerpng.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/margaret-thatcher-rich-poorer-if-poor-poorerpng.md
+Created markdown file for median-earnings-for-full-time-year-round-female-workers-by-ethnic-ancestry-group-2019.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/median-earnings-for-full-time-year-round-female-workers-by-ethnic-ancestry-group-2019.md
+Created markdown file for median-us-household-income-by-selected-ethnic-groups-2018-1.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/median-us-household-income-by-selected-ethnic-groups-2018-1.md
+Created markdown file for median-us-household-income-by-selected-ethnic-groups-2018-2.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/median-us-household-income-by-selected-ethnic-groups-2018-2.md
+Created markdown file for median-us-household-income-by-selected-ethnic-groups-2018.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/median-us-household-income-by-selected-ethnic-groups-2018.md
+Created markdown file for mens-work-percentages.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/mens-work-percentages.md
+Created markdown file for most-common-self-identified-ancestry-of-the-united-states.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/most-common-self-identified-ancestry-of-the-united-states.md
+Created markdown file for msm-news-word-frequency.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/msm-news-word-frequency.md
+Created markdown file for muslim-conquest-battles-vs-crusades.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/muslim-conquest-battles-vs-crusades.md
+Created markdown file for muslims-in-the-eu-norway-and-switzerland-in-2050-.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/muslims-in-the-eu-norway-and-switzerland-in-2050-.md
+Created markdown file for new-york-times-word-usage-frequency-1970-2018.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/new-york-times-word-usage-frequency-1970-2018.md
+Created markdown file for no-wage-gap-between-men-and-women.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/no-wage-gap-between-men-and-women.md
+Created markdown file for north-america-agrilculture.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/north-america-agrilculture.md
+Created markdown file for number-of-homicides-in-each-state-of-mexico-during-2024.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/number-of-homicides-in-each-state-of-mexico-during-2024.md
+Created markdown file for number-of-regulatory-restrictions.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/number-of-regulatory-restrictions.md
+Created markdown file for obama-economy-6-charts-1748470342173.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/obama-economy-6-charts-1748470342173.md
+Created markdown file for ourworldindatawars-long-run-military-civilian-fatalities-from-brecke10.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/ourworldindatawars-long-run-military-civilian-fatalities-from-brecke10.md
+Created markdown file for outlays-in-trillions-of-2015-dollars.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/outlays-in-trillions-of-2015-dollars.md
+Created markdown file for per-capita-average-individual-consumption.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/per-capita-average-individual-consumption.md
+Created markdown file for percent-of-american-adults-who-reached-various-ineome-distribution-levels-over-a-44-year-period.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/percent-of-american-adults-who-reached-various-ineome-distribution-levels-over-a-44-year-period.md
+Created markdown file for percent-of-spending-including-discretionary-and-mandatory.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/percent-of-spending-including-discretionary-and-mandatory.md
+Created markdown file for percent-shares-of-us-households-by-total-money-income-levels.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/percent-shares-of-us-households-by-total-money-income-levels.md
+Created markdown file for percentage-of-white-british-in-britain.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/percentage-of-white-british-in-britain.md
+Created markdown file for percentage-of-years-americans-reach-top-10.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/percentage-of-years-americans-reach-top-10.md
+Created markdown file for pg-2015-07-08globalclass-26.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/pg-2015-07-08globalclass-26.md
+Created markdown file for poverty-rate-was-falling-until-the-war-on-poverty-began.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/poverty-rate-was-falling-until-the-war-on-poverty-began.md
+Created markdown file for presidential-vote-by-district-2024.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/presidential-vote-by-district-2024.md
+Created markdown file for pure-alcohol-consumption-among-2010.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/pure-alcohol-consumption-among-2010.md
+Created markdown file for reagan-obama-recoveries.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/reagan-obama-recoveries.md
+Created markdown file for screenshot8921.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/screenshot8921.md
+Created markdown file for seiu-vs-kochbrothers-for-donations.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/seiu-vs-kochbrothers-for-donations.md
+Created markdown file for share-of-federal-income-taxes-paid--top-1-vs-bottom-95-of-us-taxpayers-1980-2021.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/share-of-federal-income-taxes-paid--top-1-vs-bottom-95-of-us-taxpayers-1980-2021.md
+Created markdown file for share-of-world-population-living-in-extreme-poverty-1820-2015.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/share-of-world-population-living-in-extreme-poverty-1820-2015.md
+Created markdown file for socialism-crony-capitalism-free-markets.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/socialism-crony-capitalism-free-markets.md
+Created markdown file for spread-of-indo-europeans.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/spread-of-indo-europeans.md
+Created markdown file for spreadofchristianitytoad6001.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/spreadofchristianitytoad6001.md
+Created markdown file for swimming-records--boys-15-18-world-junior-vs-womens-world.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/swimming-records--boys-15-18-world-junior-vs-womens-world.md
+Created markdown file for the-left-would-rather-the-poor-were-poorer-provided-the-rich-were-less-rich.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/the-left-would-rather-the-poor-were-poorer-provided-the-rich-were-less-rich.md
+Created markdown file for the-middle-east-prior-to-arab-colonization.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/the-middle-east-prior-to-arab-colonization.md
+Created markdown file for the-tax-burden-has-grown-more-progressive-over-time.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/the-tax-burden-has-grown-more-progressive-over-time.md
+Created markdown file for the-two-totalitarian-systems-which-we-in-britain-had-to-fight.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/the-two-totalitarian-systems-which-we-in-britain-had-to-fight.md
+Created markdown file for the-us-middle-class-is-shrinking-because-americans-are-moving-up.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/the-us-middle-class-is-shrinking-because-americans-are-moving-up.md
+Created markdown file for the-waning-of-war.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/the-waning-of-war.md
+Created markdown file for the-world-as-100-people-over-the-last-two-centuries.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/the-world-as-100-people-over-the-last-two-centuries.md
+Created markdown file for the-worlds-population-concentrated.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/the-worlds-population-concentrated.md
+Created markdown file for thomas-sowell-discrimination-and-disparities.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/thomas-sowell-discrimination-and-disparities.md
+Created markdown file for top-10-most-dangerous-us-occupations-and-percent-male-2019.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/top-10-most-dangerous-us-occupations-and-percent-male-2019.md
+Created markdown file for top-10-most-dangerous-us-occupations-and-percent-male-2021.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/top-10-most-dangerous-us-occupations-and-percent-male-2021.md
+Created markdown file for top-20-most-dangerous-us-occupations-and-percent-male-2015.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/top-20-most-dangerous-us-occupations-and-percent-male-2015.md
+Created markdown file for top-20-us-metro-areas-by-economic-activity-renamed-for-countries-with-similar-gdps-2015.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/top-20-us-metro-areas-by-economic-activity-renamed-for-countries-with-similar-gdps-2015.md
+Created markdown file for top-20-us-metro-areas-by-gdp-2017-vs-countries.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/top-20-us-metro-areas-by-gdp-2017-vs-countries.md
+Created markdown file for top-20-us-metro-areas-by-gdp-per-capita-2023-vs-countries-1-million-pop.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/top-20-us-metro-areas-by-gdp-per-capita-2023-vs-countries-1-million-pop.md
+Created markdown file for toppoliticaldonors.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/toppoliticaldonors.md
+Created markdown file for total-means-tested-welfare-spending-and-official-poverty-rate-1947-2012.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/total-means-tested-welfare-spending-and-official-poverty-rate-1947-2012.md
+Created markdown file for track--field-and-cross-country-records--us-high-school-boys-vs-womens-world-records.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/track--field-and-cross-country-records--us-high-school-boys-vs-womens-world-records.md
+Created markdown file for trends-in-inflation-adjusted-cost-of-a-complete-k-12-public-education--scale-and-achievement-of-17-year-olds.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/trends-in-inflation-adjusted-cost-of-a-complete-k-12-public-education--scale-and-achievement-of-17-year-olds.md
+Created markdown file for un-total-fertility-rate-by-country-2023.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/un-total-fertility-rate-by-country-2023.md
+Created markdown file for unemployment-labor-force-participation.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/unemployment-labor-force-participation.md
+Created markdown file for united-states-croplands-ports-and-rivers.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/united-states-croplands-ports-and-rivers.md
+Created markdown file for untitled-1748470342191.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/untitled-1748470342191.md
+Created markdown file for us-carbon-dioxide-emissions-per-capita-1973-to-2017.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/us-carbon-dioxide-emissions-per-capita-1973-to-2017.md
+Created markdown file for us-deaths-in-wars.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/us-deaths-in-wars.md
+Created markdown file for us-households-according-to-income-2013.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/us-households-according-to-income-2013.md
+Created markdown file for us-manufacturing-output-vs-world-1748470342189.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/us-manufacturing-output-vs-world-1748470342189.md
+Created markdown file for us-political-spectrum.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/us-political-spectrum.md
+Created markdown file for us-poverty-rate-20-trillion-spent.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/us-poverty-rate-20-trillion-spent.md
+Created markdown file for us-presidential-election-popular-vote--democrat-vs-republican-2012-2024.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/us-presidential-election-popular-vote--democrat-vs-republican-2012-2024.md
+Created markdown file for us-states-renamed-for-countries-with-similar-gdps-2017.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/us-states-renamed-for-countries-with-similar-gdps-2017.md
+Created markdown file for us-states-vs-countries-2016.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/us-states-vs-countries-2016.md
+Created markdown file for us-states-vs-countries-gdp-per-capita-2024.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/us-states-vs-countries-gdp-per-capita-2024.md
+Created markdown file for us-total-fertility-rate-tfr-over-time-1800-2023-total-fertility-rate-coollapse.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/us-total-fertility-rate-tfr-over-time-1800-2023-total-fertility-rate-coollapse.md
+Created markdown file for usa--excessive-drinking-by-county.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/usa--excessive-drinking-by-county.md
+Created markdown file for usa-average-credit-score.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/usa-average-credit-score.md
+Created markdown file for usa-cultural-regions.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/usa-cultural-regions.md
+Created markdown file for usa-german-ancestry-2012.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/usa-german-ancestry-2012.md
+Created markdown file for usa-political-axis.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/usa-political-axis.md
+Created markdown file for when-slavery-was-abolished.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/when-slavery-was-abolished.md
+Created markdown file for which-dictator-killed-the-most-people.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/which-dictator-killed-the-most-people.md
+Created markdown file for white-women-college-voter-opinion.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/white-women-college-voter-opinion.md
+Created markdown file for whos-paying-what-taxes.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/whos-paying-what-taxes.md
+Created markdown file for whoweretheterroristseverythingweknowabouttheisilattackerssofar-telegraph.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/whoweretheterroristseverythingweknowabouttheisilattackerssofar-telegraph.md
+Created markdown file for world-corruption-homicide-why.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/world-corruption-homicide-why.md
+Created markdown file for world-gdp-over-the-last-two-millennia-where-the-left-thinks-it-all-went-wrong.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/world-gdp-over-the-last-two-millennia-where-the-left-thinks-it-all-went-wrong.md
+Created markdown file for world-gdp-ppp-since-1820.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/world-gdp-ppp-since-1820.md
+Created markdown file for world-homicide-murder-rate.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/world-homicide-murder-rate.md
+Created markdown file for world-population-living-in-extreme-poverty-1820-2015.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/world-population-living-in-extreme-poverty-1820-2015.md
+Created markdown file for wrong-enemy-correct-enemy.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/wrong-enemy-correct-enemy.md
+Created markdown file for yearly-mentions-of-prejudice-in-popular-us-news-media-outlets.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/yearly-mentions-of-prejudice-in-popular-us-news-media-outlets.md
 
-Markdown file creation complete at 2025-05-28T21:36:04.328Z
-60 markdown files created, 39 files skipped
+Markdown file creation complete at 2025-05-28T22:12:22.299Z
+159 markdown files created, 0 files skipped
 Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/markdown-creation-log.txt

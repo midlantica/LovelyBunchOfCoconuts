@@ -1,25 +1,12 @@
-Starting subdirectory processing at 2025-05-28T21:36:04.184Z
-Step 1: Renaming image files in /Users/drew/Documents/_work/WakeUpNPC2/public/memes/thomas-sowell
+Starting subdirectory processing at 2025-05-28T22:12:22.092Z
+Step 1: Renaming image files in /Users/drew/Documents/_work/WakeUpNPC2/public/memes/data
 Renaming completed successfully
 
-Step 2: Creating matching markdown files for images in /Users/drew/Documents/_work/WakeUpNPC2/public/memes/thomas-sowell
+Step 2: Creating matching markdown files for images in /Users/drew/Documents/_work/WakeUpNPC2/public/memes/data
 Markdown file creation completed successfully
 
-Step 3: Checking for orphaned markdown files in content/memes/thomas-sowell
-Orphaned markdown: activism-is-a-way-for-useless-people-to-feel-1748461458850.md (missing image: memes/thomas-sowell/activism-is-a-way-for-useless-people-to-feel-1748461458850.png)
-Orphaned markdown: i-have-never-understood-why-it-is-greed-to.md (missing image: memes/thomas-sowell/i-have-never-understood-why-it-is-greed-to.png)
-Orphaned markdown: if-you-are-not-prepared-to-use-force-to-defend-1748461458841.md (missing image: memes/thomas-sowell/if-you-are-not-prepared-to-use-force-to-defend-1748461458841.png)
-Orphaned markdown: lblxdxn-1748461458843.md (missing image: memes/thomas-sowell/lblxdxn-1748461458843.png)
-Orphaned markdown: people-who-are-very-aware.md (missing image: memes/thomas-sowell/people-who-are-very-aware.png)
-Orphaned markdown: quote-i-have-never-understood-why-it-is-greed-to-want-to-keep-the-money-you-have-earned-but-thomas-sowell-43-1-0165.md (missing image: memes/thomas-sowell/quote-i-have-never-understood-why-it-is-greed-to-want-to-keep-the-money-you-have-earned-but-thomas-sowell-43-1-0165.png)
-Orphaned markdown: quote-one-of-the-most-important-reasons-for-studying-history-is-that-virtually-every-stupid-thomas-sowell-141-24-86-86385364.md (missing image: memes/thomas-sowell/quote-one-of-the-most-important-reasons-for-studying-history-is-that-virtually-every-stupid-thomas-sowell-141-24-86-86385364.png)
-Orphaned markdown: some-americans-will-never-appreciate-.md (missing image: memes/thomas-sowell/some-americans-will-never-appreciate-.png)
-Orphaned markdown: the-beuauty-of-doinhg-nothing-is-that.md (missing image: memes/thomas-sowell/the-beuauty-of-doinhg-nothing-is-that.png)
-Orphaned markdown: the-most-basic-question.md (missing image: memes/thomas-sowell/the-most-basic-question.png)
-Orphaned markdown: untitled-1748461458848.md (missing image: memes/thomas-sowell/untitled-1748461458848.png)
-Orphaned markdown: what-multiculturalism-boild-down-to.md (missing image: memes/thomas-sowell/what-multiculturalism-boild-down-to.png)
-Orphaned markdown: wisdom-sowell-on-who-decides-whats-best-1748461458850.md (missing image: memes/thomas-sowell/wisdom-sowell-on-who-decides-whats-best-1748461458850.png)
-Total orphaned markdown files: 13
+Step 3: Checking for orphaned markdown files in content/memes/data
+No orphaned markdown files found.
 
-Processing of subdirectory thomas-sowell completed at 2025-05-28T21:36:04.337Z
+Processing of subdirectory data completed at 2025-05-28T22:12:22.308Z
 Check individual log files for details on renamed files and created markdown files.
