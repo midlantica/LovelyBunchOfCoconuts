@@ -1,7 +1,7 @@
 ---
-title: "usa--excessive-drinking-by-county"
+title: "usa-excessive-drinking-by-county"
 ---
 
-![usa--excessive-drinking-by-county](/memes/data/usa--excessive-drinking-by-county.png)
+![usa-excessive-drinking-by-county](/memes/data/usa-excessive-drinking-by-county.png)
 
-Usa  Excessive Drinking By County
+Usa Excessive Drinking By County

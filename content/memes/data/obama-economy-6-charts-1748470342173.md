@@ -1,7 +1,7 @@
 ---
-title: "obama-economy-6-charts-1748470342173"
+title: "obama-economy-6-charts"
 ---
 
-![obama-economy-6-charts-1748470342173](/memes/data/obama-economy-6-charts-1748470342173.png)
+![obama-economy-6-charts](/memes/data/obama-economy-6-charts.png)
 
-Obama Economy 6 Charts 1748470342173
+Obama Economy 6 Charts

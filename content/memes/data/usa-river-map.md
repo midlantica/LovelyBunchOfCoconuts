@@ -1,7 +1,7 @@
 ---
-title: "usa-river-map"
+title: "united-states-croplands-ports-and-rivers"
 ---
 
-![usa-river-map](/memes/data/usa-river-map.png)
+![united-states-croplands-ports-and-rivers](/memes/data/united-states-croplands-ports-and-rivers.png)
 
 Usa River Map
