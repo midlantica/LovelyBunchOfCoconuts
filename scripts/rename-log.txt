@@ -1,28 +1,104 @@
-Starting image renaming process at 2025-05-02T17:33:00.654Z
-Renamed: Socialism irons out the boom-bust cycle.png → socialism-irons-out-the-boom-bust-cycle.png
-Skipping a-free-market-economy-is-a-giant-computer.png (metadata already exists)
-Skipping cnn-npc-woke-dystopia.png (metadata already exists)
-Skipping dei-blm-crt-esg-end-woke-insanity.png (metadata already exists)
-Skipping democrat-savior-complex.png (metadata already exists)
-Skipping doge-reorg-3.png (metadata already exists)
-Skipping greta-pay-300-more-for-your-electricity.png (metadata already exists)
-Skipping imaginary-socialism-vs-reality.png (metadata already exists)
-Skipping la-fiery-but-mostly-burning.png (metadata already exists)
-Skipping lets-see-if-ive-got-this-right.png (metadata already exists)
-Skipping man-pregnant.png (metadata already exists)
-Skipping modern-barbarians20.png (metadata already exists)
-Skipping richard-winn-livingstone-quote.png (metadata already exists)
-Skipping ricky-gervias-fuck-off-hollywood.png (metadata already exists)
-Skipping ronald-reagan-if-it-moves-tax-it.png (metadata already exists)
-Skipping seneca-quote-religion.png (metadata already exists)
-Skipping supreme-court-on-free-speech.png (metadata already exists)
-Skipping thomas-sowell-it-was-thomas-edison.png (metadata already exists)
-Skipping toxic-leftist-media-mass-formation-psychosis-04.png (metadata already exists)
-Renamed: we're-way-past-swamp-britain.png → were-way-past-swamp-britain.png
-Skipping what-have-conservatives-ever-done-for-us.png (metadata already exists)
-Skipping wokezilla-hollywood.png (metadata already exists)
-Renamed: you-think-that's-news-you're-reading.png → you-think-thats-news-youre-reading.png
+Starting image renaming process at 2025-05-28T21:36:04.221Z
+Renamed: Both free speech rights and property rights belong legally to individuals,.png → both-free-speech-rights-and-property-rights-belong-legally-to-individuals-1748468164228.png
+Renamed: Despite a voluminous and often fervent literature on income distribution.png → despite-a-voluminous-and-often-fervent-literature-on-income-distribution.png
+Renamed: Europe is belatedly discovering how unbelievably stupid it was.png → europe-is-belatedly-discovering-how-unbelievably-stupid-it-was.png
+Renamed: Guilt has so furtively stolen into many hearts.png → guilt-has-so-furtively-stolen-into-many-hearts.png
+Renamed: Hours may become the first civilization destroyed.png → hours-may-become-the-first-civilization-destroyed.png
+Renamed: I have never understood why it is agreed to want to keep the money you have earned.png → i-have-never-understood-why-it-is-agreed-to-want-to-keep-the-money-you-have-earned.png
+Renamed: If you are not prepared to use force to defend.png → if-you-are-not-prepared-to-use-force-to-defend-1748468164232.png
+Renamed: If you cannot achieve a quality of performance among people born to the same parents.png → if-you-cannot-achieve-a-quality-of-performance-among-people-born-to-the-same-parents.png
+Renamed: If you want to see the poor remain poor generation after generation.png → if-you-want-to-see-the-poor-remain-poor-generation-after-generation.png
+Renamed: It is a fascinating to watch politicians come up with solutions to problems that are the direct result of the previous solution solutions.png → it-is-a-fascinating-to-watch-politicians-come-up-with-solutions-to-problems-that-are-the-direct-result-of-the-previous-solution-solutions.png
+Renamed: It is fascinating to watch politicians come up with Solutions.png → it-is-fascinating-to-watch-politicians-come-up-with-solutions-1748468164234.png
+Renamed: It is not enough for us to discover belatedly that we have been lied to.png → it-is-not-enough-for-us-to-discover-belatedly-that-we-have-been-lied-to-1748468164235.png
+Renamed: It is usually futile to try to talk facts.png → it-is-usually-futile-to-try-to-talk-facts.png
+Renamed: Many on the political left are so entranced by the beauty of their vision.png → many-on-the-political-left-are-so-entranced-by-the-beauty-of-their-vision.png
+Renamed: Much of the social history of the western world over the past three decades.png → much-of-the-social-history-of-the-western-world-over-the-past-three-decades.png
+Renamed: Much of what are called social problems.png → much-of-what-are-called-social-problems.png
+Renamed: Multiculturalism like the cast system.png → multiculturalism-like-the-cast-system.png
+Renamed: NOBODY IS EQUAL TO ANYBODY2.png → nobody-is-equal-to-anybody2.png
+Renamed: No matter how disastrously some policy has turned out.png → no-matter-how-disastrously-some-policy-has-turned-out-1748468164239.png
+Renamed: One of the many services done to young people is giving them a puffed up notion.png → one-of-the-many-services-done-to-young-people-is-giving-them-a-puffed-up-notion.png
+Renamed: One of them many disservices done to young people.png → one-of-them-many-disservices-done-to-young-people.png
+Renamed: People who are very aware that they have more knowledge.png → people-who-are-very-aware-that-they-have-more-knowledge-1748468164240.png
+Renamed: People who pride themselves on their complexity.png → people-who-pride-themselves-on-their-complexity.png
+Renamed: People who try themselves.png → people-who-try-themselves.png
+Renamed: Schools exist for the education of children.png → schools-exist-for-the-education-of-children.png
+Renamed: Since wealth is the only thing that can cure poverty.png → since-wealth-is-the-only-thing-that-can-cure-poverty.png
+Renamed: Socialism in general has a record of failure so blatant.png → socialism-in-general-has-a-record-of-failure-so-blatant.png
+Renamed: The assumption that spending more of the taxpayers money will.png → the-assumption-that-spending-more-of-the-taxpayers-money-will-1748468164243.png
+Renamed: The beauty of doing nothing is that you can do it perfectly.png → the-beauty-of-doing-nothing-is-that-you-can-do-it-perfectly.png
+Renamed: The black family survived centuries of slavery.png → the-black-family-survived-centuries-of-slavery-1748468164244.png
+Renamed: The endlessly repeated argument that most Americans are the descendants.png → the-endlessly-repeated-argument-that-most-americans-are-the-descendants.png
+Renamed: The fact that crime and poverty are correlated is automatically taken to mean.png → the-fact-that-crime-and-poverty-are-correlated-is-automatically-taken-to-mean.png
+Renamed: The first lesson of economics is scarcity.png → the-first-lesson-of-economics-is-scarcity.png
+Renamed: The left attempts to silence ideas they cannot or will not debate.png → the-left-attempts-to-silence-ideas-they-cannot-or-will-not-debate.png
+Renamed: The left takes its vision seriously.png → the-left-takes-its-vision-seriously.png
+Renamed: The more I study the history of intellectuals the more they seem like a wrecking crew.png → the-more-i-study-the-history-of-intellectuals-the-more-they-seem-like-a-wrecking-crew.png
+Renamed: The most basic question is not what is best, but who shall decide what is best.png → the-most-basic-question-is-not-what-is-best-but-who-shall-decide-what-is-best.png
+Renamed: The most basic question is not what is best2.png → the-most-basic-question-is-not-what-is-best2.png
+Renamed: The next time some academics tell you how important diversity is, ask.png → the-next-time-some-academics-tell-you-how-important-diversity-is-ask-1748468164247.png
+Renamed: The purpose of politics is not to solve problems.png → the-purpose-of-politics-is-not-to-solve-problems.png
+Renamed: The real motives of liberals have nothing to do with the welfare of other people.png → the-real-motives-of-liberals-have-nothing-to-do-with-the-welfare-of-other-people.png
+Renamed: The reason so many people misunderstand so many issues.png → the-reason-so-many-people-misunderstand-so-many-issues.png
+Renamed: There are no solutions there are only trade-offs.png → there-are-no-solutions-there-are-only-trade-offs.png
+Renamed: There has now been created a world.png → there-has-now-been-created-a-world.png
+Renamed: Thomas Sowell sexual activity vs economic activity.png → thomas-sowell-sexual-activity-vs-economic-activity-1748468164250.png
+Renamed: We are a nation of immigrants we are constantly reminded.png → we-are-a-nation-of-immigrants-we-are-constantly-reminded.png
+Renamed: We seem to be closer and closer to a situation where nobody is responsible.png → we-seem-to-be-closer-and-closer-to-a-situation-where-nobody-is-responsible.png
+Renamed: What 'multiculturalism' boils down to is that you can praise any culture in the world except.png → what-multiculturalism-boils-down-to-is-that-you-can-praise-any-culture-in-the-world-except-1748468164251.png
+Renamed: What do you call it when someone steals money secretly.png → what-do-you-call-it-when-someone-steals-money-secretly.png
+Renamed: What exactly is your fair share of what someone else has worked for.png → what-exactly-is-your-fair-share-of-what-someone-else-has-worked-for.png
+Renamed: What multiculturalism boils down to.png → what-multiculturalism-boils-down-to.png
+Renamed: When I was growing up we were taught.png → when-i-was-growing-up-we-were-taught-1748468164253.png
+Renamed: When I was growing up.png → when-i-was-growing-up.png
+Renamed: When it is proclaimed that one must become more.png → when-it-is-proclaimed-that-one-must-become-more-1748468164253.png
+Renamed: When you import people you import cultures.png → when-you-import-people-you-import-cultures.png
+Renamed: When you want to help people you tell them the truth.png → when-you-want-to-help-people-you-tell-them-the-truth.png
+Renamed: activism is a way for useless people to feel.png → activism-is-a-way-for-useless-people-to-feel-1748468164254.png
+No change needed for activism-is-a-way-for-useless-people-to-feel.png
+Renamed: blacks were not enslaved becuase they were black.png → blacks-were-not-enslaved-becuase-they-were-black-1748468164255.png
+No change needed for blacks-were-not-enslaved-becuase-they-were-black.png
+No change needed for both-free-speech-rights-and-property-rights-belong-legally-to-individuals.png
+No change needed for during-the-1920s-and-the-early-1930s-fascism-was.png
+No change needed for europe-is-belatedly-discovering-how-unbelievably-stupid.png
+No change needed for guilt-has-so-furtively-stolen-intoi-many-hearts.png
+No change needed for if-you-are-not-prepared-to-use-force-to-defend.png
+No change needed for immigration-laws-are-the-only-laws.png
+Renamed: it was thomas edison who brought us elctricity.png → it-was-thomas-edison-who-brought-us-elctricity-1748468164257.png
+No change needed for it-is-fascinating-to-watch-politicians-come-up-with-solutions.png
+No change needed for it-is-not-enough-for-us-to-discover-belatedly-that-we-have-been-lied-to.png
+No change needed for it-was-thomas-edison-who-brought-us-elctricity.png
+No change needed for its-amazing-how-fast-people-learn-when-they-are.png
+No change needed for many-on-the-political-left-are-so-in-transit-by-the-beauty-of-their-vision.png
+No change needed for much-of-the-social-history-of-the-western-world.png
+No change needed for no-matter-how-disastrously-some-policy-has-turned-out.png
+No change needed for nobody-is-equal-to-anybody.png
+No change needed for one-of-the-most-important-reasons-for-studying-history.png
+No change needed for people-who-are-very-aware-that-they-have-more-knowledge.png
+No change needed for racism-is-not-dead-but-it-is-on-life-support-kept-alive-by-politicians.png
+No change needed for some-americans-will-never-appreciate.png
+No change needed for sowell-on-slavery.png
+No change needed for the-assumption-that-spending-more-of-the-taxpayers-money-will.png
+No change needed for the-beauty-of-doing-nothing-is-that.png
+No change needed for the-black-family-survived-centuries-of-slavery.png
+No change needed for the-first-lesson-of-economics-is-scarcity-.png
+No change needed for the-most-basic-question-is-not-what-is.png
+No change needed for the-next-time-some-academics-tell-you-how-important-diversity-is-ask.png
+No change needed for the-purpose-of-politics-is.png
+No change needed for thomas-sowell-discrimination-and-disparities.png
+No change needed for thomas-sowell-quote-freedom-unlikely-to-be-lost.png
+No change needed for thomas-sowell-sexual-activity-vs-economic-activity.png
+No change needed for too-much-of-what-is-called-education.png
+Renamed: what do you replace a fire with? Thomas Sowell.png → what-do-you-replace-a-fire-with-thomas-sowell.png
+No change needed for what-do-you-call-it-when-someone-steals-money.png
+No change needed for what-exactly-is-your-fair-share.png
+No change needed for what-multiculturalism-boils-down-to-is-that-you-can-praise-any-culture-in-the-world-except.png
+No change needed for when-i-was-growing-up-we-were-taught.png
+No change needed for when-it-is-proclaimed-that-one-must-become-more.png
+No change needed for when-you-import-people.png
+Renamed: you have to have a sense of humor if you follow politics.png → you-have-to-have-a-sense-of-humor-if-you-follow-politics.png
 
-Renaming complete at 2025-05-02T17:33:00.666Z
-3 files renamed, 20 files skipped
-Renamed files are logged in /Users/drewtwo/Documents/_work/WakeUpNPC2/scripts/rename-log.txt
+Renaming complete at 2025-05-28T21:36:04.262Z
+61 files renamed, 38 files skipped
+Renamed files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/rename-log.txt
