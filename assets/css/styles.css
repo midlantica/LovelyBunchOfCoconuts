@@ -11,7 +11,7 @@
   h4,
   h5,
   h6 {
-    @apply last:mb-0 font-[100] font-Barlow leading-normal tracking-wider;
+    @apply first:mt-0 last:mb-0 font-[100] font-Barlow leading-normal tracking-wider;
   }
   h1 {
     @apply text-2xl;
@@ -36,7 +36,7 @@
   ul,
   li,
   ol {
-    @apply mb-2 last:mb-0 font-thin text-2xl leading-normal tracking-wider;
+    @apply mb-2 last:mb-0 font-thin text-xl leading-normal tracking-wider;
   }
 
   h2 + p {

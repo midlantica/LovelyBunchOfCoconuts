@@ -6,7 +6,7 @@
       @mousedown.self="close"
     >
       <div
-        class="relative flex flex-col bg-slate-900 shadow-lg p-4 rounded-lg w-full max-w-2xl max-h-[90vh]"
+        class="relative flex flex-col bg-slate-800 shadow-lg px-8 py-6 rounded-lg w-full max-w-2xl max-h-[90vh]"
         @mousedown.stop
       >
         <CloseButton @click="close" />
@@ -22,9 +22,9 @@
         >
           {{ error }}
         </div>
-        <div v-else-if="claim" class="flex flex-col flex-1 min-h-0">
+        <div v-else-if="claim" class="flex flex-col flex-1 gap-2 min-h-0">
           <div
-            class="flex-1 prose-invert max-w-none min-h-0 overflow-y-auto prose prose-sm"
+            class="flex-1 prose-invert px-2 py-2 max-w-none min-h-0 overflow-y-auto prose prose-sm"
             style="max-height: 60vh"
           >
             <div v-html="markdownContent"></div>
@@ -84,4 +84,11 @@ const loadClaim = async () => {
 watch(() => props.slug, loadClaim, { immediate: true })
 </script>
 
-<style scoped></style>
+<style scoped>
+:deep(.prose h2) {
+  margin-top: 0.5em !important;
+  margin-bottom: 0.5em !important;
+  font-size: 2em !important;
+  font-weight: 400 !important;
+}
+</style>

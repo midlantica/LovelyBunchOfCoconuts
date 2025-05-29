@@ -6,7 +6,9 @@ title: "A government which lays taxes on the people"
 
 Calvin Coolidge
 
-## Explained:
+---
+
+### Explained:
 
 Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod. Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Curabitur blandit tempus porttitor. Curabitur blandit tempus porttitor.
 

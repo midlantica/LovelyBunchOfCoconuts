@@ -6,10 +6,9 @@
       @mousedown.self="close"
     >
       <div
-        class="relative flex flex-col bg-slate-900 shadow-lg p-4 rounded-lg w-full max-w-2xl max-h-[90vh]"
-        @mousedown.stop
+        class="relative flex flex-col bg-slate-800 shadow-lg rounded-lg w-full max-w-2xl"
+        style="max-height: 100dvh"
       >
-        <CloseButton @click="close" />
         <div
           v-if="loading"
           class="flex flex-1 justify-center items-center py-8 text-white text-center"
@@ -22,12 +21,26 @@
         >
           {{ error }}
         </div>
-        <div v-else-if="meme" class="flex flex-col flex-1 min-h-0">
-          <div
-            class="flex-1 prose-invert max-w-none min-h-0 overflow-y-auto prose prose-sm"
-            style="max-height: 60vh"
-          >
-            <div v-html="markdownContent"></div>
+        <div
+          v-else-if="meme"
+          class="flex flex-col flex-1 min-h-0 overflow-y-auto"
+          style="max-height: 80vh"
+        >
+          <div class="flex flex-col gap-2 p-6 h-full">
+            <div v-if="meme.image" class="flex justify-center items-center">
+              <img
+                :src="meme.image"
+                :alt="meme.alt || ''"
+                class="shadow mx-auto rounded w-auto max-h-80 object-contain"
+                style="margin-bottom: 0"
+              />
+            </div>
+            <div class="prose-invert max-w-none min-h-0 prose prose-sm">
+              <div :class="'meme-caption-snug'" v-html="markdownContent"></div>
+            </div>
+          </div>
+          <div class="flex justify-end mt-4">
+            <CloseButton @click="close" />
           </div>
         </div>
       </div>
@@ -90,7 +103,19 @@ watch(() => props.slug, loadMeme, { immediate: true })
 </script>
 
 <style scoped>
-.prose > :first-child {
+.meme-caption-snug > :first-child {
   margin-top: 0 !important;
+}
+:deep(img) {
+  margin-bottom: 0.25em !important;
+}
+:deep(.prose > *:first-child) {
+  margin-top: 0 !important;
+}
+:deep(.prose img + *) {
+  margin-top: 0.25rem !important;
+}
+:deep(.prose h2) {
+  font-weight: 300 !important;
 }
 </style>
