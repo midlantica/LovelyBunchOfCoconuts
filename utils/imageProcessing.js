@@ -18,7 +18,7 @@ export async function sanitizeFilename(text, maxLength = 20) {
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
     .toLowerCase()
-  
+
   cleanText = cleanText.slice(0, maxLength).replace(/^-+|-+$/g, "")
   return cleanText || "unnamed"
 }
@@ -31,8 +31,7 @@ export async function sanitizeFilename(text, maxLength = 20) {
 export async function isDescriptiveFilename(filename) {
   const basename = path.basename(filename, path.extname(filename))
   // At least 3 alphanumeric chars, not just numbers or random strings
-  return /^[a-zA-Z0-9][a-zA-Z0-9-]{2,}$/.test(basename) && 
-         !/^[0-9a-f]{8,}$/.test(basename)
+  return /^[a-zA-Z0-9][a-zA-Z0-9-]{2,}$/.test(basename) && !/^[0-9a-f]{8,}$/.test(basename)
 }
 
 /**
@@ -43,26 +42,26 @@ export async function isDescriptiveFilename(filename) {
 export async function optimizeImages(directory) {
   const extensions = ["png", "jpg", "jpeg", "gif", "webp"]
   const existingExt = []
-  
+
   // Find which image types exist in the directory
   for (const ext of extensions) {
     const files = await fs.readdir(directory)
-    if (files.some(file => file.toLowerCase().endsWith(`.${ext}`))) {
+    if (files.some((file) => file.toLowerCase().endsWith(`.${ext}`))) {
       existingExt.push(ext)
     }
   }
-  
+
   if (existingExt.length === 0) {
     console.log("No images to optimize")
     return
   }
-  
+
   const extGlob = existingExt.join(",")
-  const command = `mogrify -format png -quality 85 -resize 1080x1080 ${path.join(
+  const command = `mogrify +profile "*" -format png -quality 85 -resize 1080x1080 ${path.join(
     directory,
     "*.{" + extGlob + "}"
   )}`
-  
+
   try {
     await execPromise(command)
     console.log(`Images optimized in ${directory}`)
@@ -81,7 +80,7 @@ export async function renameImageFile(directory, filename) {
   const filePath = path.join(directory, filename)
   const ext = path.extname(filename).toLowerCase()
   let newFilename
-  
+
   // Check if current name is already descriptive
   if (await isDescriptiveFilename(filename)) {
     const basename = path.basename(filename, ext)
@@ -91,23 +90,28 @@ export async function renameImageFile(directory, filename) {
     const basename = path.basename(filename, ext)
     newFilename = `${await sanitizeFilename(basename, 20)}${ext}`
   }
-  
+
   // Ensure filename is unique
   let newFilePath = path.join(directory, newFilename)
   let counter = 1
-  
-  while (await fs.access(newFilePath).then(() => true).catch(() => false)) {
+
+  while (
+    await fs
+      .access(newFilePath)
+      .then(() => true)
+      .catch(() => false)
+  ) {
     newFilename = `${newFilename.split(ext)[0]}-${counter}${ext}`
     newFilePath = path.join(directory, newFilename)
     counter++
   }
-  
+
   // Rename the file
   if (newFilename !== filename) {
     await fs.rename(filePath, newFilePath)
     console.log(`Renamed '${filename}' to '${newFilename}'`)
   }
-  
+
   return newFilename
 }
 
@@ -118,10 +122,10 @@ export async function renameImageFile(directory, filename) {
  */
 export async function processImages(directory) {
   const imageExtensions = [".png", ".jpg", ".jpeg", ".bmp", ".tiff", ".gif", ".webp"]
-  
+
   try {
     const files = await fs.readdir(directory)
-    
+
     // Process each image file
     for (const filename of files) {
       const ext = path.extname(filename).toLowerCase()
@@ -129,10 +133,9 @@ export async function processImages(directory) {
         await renameImageFile(directory, filename)
       }
     }
-    
+
     // Optimize all images after renaming
     await optimizeImages(directory)
-    
   } catch (error) {
     console.error(`Error processing images: ${error.message}`)
   }

@@ -1,9 +1,9 @@
 <!-- components/QuotePanel.vue -->
 <template>
-  <router-link
+  <div
     v-if="quote && quote.headings && quote.headings.length > 0 && slug"
-    :to="slug"
-    class="flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 shadow-[inset_0_0_12px_0_#0f1e24] px-6 py-4 rounded-lg text-white quotePanel"
+    class="flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 shadow-[inset_0_0_12px_0_#0f1e24] px-6 py-4 rounded-lg text-white cursor-pointer quotePanel"
+    @click="openModal"
   >
     <div class="flex flex-col flex-wrap gap-0.5 my-auto">
       <h1 class="inline-block font-light text-xl align-baseline tracking-wide">
@@ -16,7 +16,8 @@
         — {{ quote.attribution }}
       </p>
     </div>
-  </router-link>
+    <QuoteDetailModal v-if="showModal" :slug="slug" :show="showModal" @close="closeModal" />
+  </div>
   <div
     v-else
     class="flex flex-col gap-2 bg-slate-800 shadow-[inset_0_0_12px_0_#0f1e24] px-5 py-4 rounded-lg text-white quotePanel"
@@ -40,10 +41,15 @@
 </template>
 
 <script setup>
-import { computed } from "vue"
+import { ref } from "vue"
+import QuoteDetailModal from "./QuoteDetailModal.vue"
 
 const props = defineProps({
   quote: Object,
   slug: String,
 })
+
+const showModal = ref(false)
+const openModal = () => (showModal.value = true)
+const closeModal = () => (showModal.value = false)
 </script>

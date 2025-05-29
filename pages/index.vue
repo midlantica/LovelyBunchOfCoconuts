@@ -43,24 +43,26 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="w-full grid grid-cols-1 gap-3">
+  <div class="gap-3 grid grid-cols-1 w-full">
+    <div id="modal-root"></div>
+
     <!-- Error message -->
     <div v-if="error" class="text-red-500">Error loading content: {{ error.message }}</div>
 
     <!-- Content wall -->
     <section
       v-if="displayedItems.length"
-      class="grid grid-cols-1 auto-rows-min gap-3 lg:grid-cols-2 sm:grid-cols-2"
+      class="gap-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 auto-rows-min"
     >
       <div
         v-for="(item, index) in displayedItems"
         :key="index"
-        class="col-span-1 lg:col-span-2 sm:col-span-2"
+        class="col-span-1 sm:col-span-2 lg:col-span-2"
       >
         <!-- Claim translations (displayed in pairs) -->
         <div
           v-if="item.type === 'claimPair'"
-          class="grid grid-cols-1 gap-3 lg:grid-cols-2 sm:grid-cols-2"
+          class="gap-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
         >
           <ClaimTranslationPanel
             v-for="(claimItem, idx) in item.data"
@@ -80,7 +82,7 @@ onUnmounted(() => {
         <!-- Memes (displayed in pairs) -->
         <div
           v-else-if="item.type === 'memeRow'"
-          class="grid grid-cols-1 gap-3 lg:grid-cols-2 sm:grid-cols-2"
+          class="gap-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
         >
           <MemePanel
             v-for="(memeItem, idx) in item.data"
@@ -95,7 +97,7 @@ onUnmounted(() => {
     <!-- Initial loading state -->
     <div
       v-else-if="loading"
-      class="align-center flex flex-col justify-center justify-self-center content-center self-center place-content-center place-items-center gap-4 py-4 text-center text-white"
+      class="flex flex-col justify-center justify-self-center content-center place-content-center self-center place-items-center gap-4 py-4 text-white text-center align-center"
     >
       <Icon name="svg-spinners:90-ring-with-bg" size="1.75rem" />
     </div>
@@ -103,7 +105,7 @@ onUnmounted(() => {
     <!-- No content message -->
     <h1
       v-else
-      class="text-center text-white"
+      class="text-white text-center"
       :class="{ 'mt-8': !contentFilters.claims && !contentFilters.quotes && !contentFilters.memes }"
     >
       {{
@@ -118,7 +120,7 @@ onUnmounted(() => {
     <!-- Loading more indicator -->
     <div
       v-if="loading && displayedItems.length"
-      class="align-center flex flex-col justify-center justify-self-center content-center self-center place-content-center place-items-center gap-4 py-4 text-center text-white"
+      class="flex flex-col justify-center justify-self-center content-center place-content-center self-center place-items-center gap-4 py-4 text-white text-center align-center"
     >
       <Icon name="svg-spinners:90-ring-with-bg" size="1.75rem" />
     </div>
