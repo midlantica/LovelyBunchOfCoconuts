@@ -1,6 +1,6 @@
 <!-- pages/index.vue -->
 <script setup>
-import { onMounted, onUnmounted, ref, inject } from "vue"
+import { onMounted, onUnmounted, ref, inject, computed } from "vue"
 import { useContentFeed } from "~/composables/useContentFeed"
 
 definePageMeta({
@@ -16,6 +16,22 @@ const { loadMoreContent, displayedItems, loading, hasMore, error } = useContentF
   searchTerm,
   contentFilters
 )
+
+// --- Add result counts for claims, quotes, memes ---
+const claimCount = computed(() => {
+  return displayedItems.value
+    .flatMap((item) => (item.type === "claimPair" ? item.data : []))
+    .filter((item) => item.type === "claim").length
+})
+const quoteCount = computed(() => {
+  return displayedItems.value.filter((item) => item.type === "quote").length
+})
+const memeCount = computed(() => {
+  return displayedItems.value
+    .flatMap((item) => (item.type === "memeRow" ? item.data : []))
+    .filter((item) => item.type === "meme").length
+})
+const totalCount = computed(() => claimCount.value + quoteCount.value + memeCount.value)
 
 // Set up infinite scrolling
 const loadMoreTrigger = ref(null)

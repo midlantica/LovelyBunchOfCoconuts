@@ -6,6 +6,14 @@
       <SearchBar
         v-model:search="searchTerm"
         v-model:filters="contentFilters"
+        :claim-count="claimCount"
+        :quote-count="quoteCount"
+        :meme-count="memeCount"
+        :total-count="totalCount"
+        :total-claim-count="totalClaimCount"
+        :total-quote-count="totalQuoteCount"
+        :total-meme-count="totalMemeCount"
+        :total-item-count="totalItemCount"
         class="top-0 z-10 sticky justify-self-center max-w-screen-md"
       />
       <div class="overflow-y-auto">
@@ -21,7 +29,8 @@
 </template>
 
 <script setup>
-import { ref, provide, watch } from "vue"
+import { computed, ref, provide, watch } from "vue"
+import { useContentFeed } from "~/composables/useContentFeed"
 
 const searchTerm = ref("")
 const contentFilters = ref({
@@ -33,21 +42,39 @@ const contentFilters = ref({
 provide("searchTerm", searchTerm)
 provide("contentFilters", contentFilters)
 
-watch(searchTerm, (newVal) => {
-  console.log("Home layout searchTerm:", newVal)
+// --- Add result counts for claims, quotes, memes ---
+const { displayedItems, contentCollections } = useContentFeed(searchTerm, contentFilters)
+
+const totalClaimCount = computed(() => contentCollections.claims.value.length)
+const totalQuoteCount = computed(() => contentCollections.quotes.value.length)
+const totalMemeCount = computed(() => contentCollections.memes.value.length)
+const totalItemCount = computed(
+  () => totalClaimCount.value + totalQuoteCount.value + totalMemeCount.value
+)
+
+const claimCount = computed(() => {
+  return displayedItems.value
+    .flatMap((item) => (item.type === "claimPair" ? item.data : []))
+    .filter((item) => item.type === "claim").length
 })
+const quoteCount = computed(() => {
+  return displayedItems.value.filter((item) => item.type === "quote").length
+})
+const memeCount = computed(() => {
+  return displayedItems.value
+    .flatMap((item) => (item.type === "memeRow" ? item.data : []))
+    .filter((item) => item.type === "meme").length
+})
+const totalCount = computed(() => claimCount.value + quoteCount.value + memeCount.value)
 
 watch(
   contentFilters,
   (newVal) => {
-    console.log("Home layout contentFilters:", newVal)
+    // This ensures pills in SearchBar stay in sync with the content wall
+    // and that the correct filters are passed as props
   },
   { deep: true }
 )
 </script>
 
-<style scoped>
-.baser {
-  /* @apply bg-[url('/grainy-background.jpg')] bg-cover; */
-}
-</style>
+<style scoped></style>
