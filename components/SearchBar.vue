@@ -75,7 +75,8 @@ const filters = ref({ ...props.filters })
 
 const showResults = computed(() => props.totalCount > 0 || props.search)
 
-// Always show the search result counts for each type, not the filtered/active ones
+// Always show the pill counts as the total for each type in the current search result (regardless of filter state)
+// These should be passed in as the counts for each type in the current search result, NOT filtered by the toggles
 const pillClaimCount = computed(() => props.claimCount)
 const pillQuoteCount = computed(() => props.quoteCount)
 const pillMemeCount = computed(() => props.memeCount)
@@ -102,6 +103,7 @@ const handleSearchEvent = (event) => {
 }
 
 const toggleFilter = (key) => {
+  // Only toggle the ON/OFF state, do not affect the pill number in any way
   filters.value[key] = !filters.value[key]
   // At least one filter should always be active
   if (!Object.values(filters.value).some(Boolean)) {

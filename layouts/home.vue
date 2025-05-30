@@ -6,9 +6,9 @@
       <SearchBar
         v-model:search="searchTerm"
         v-model:filters="contentFilters"
-        :claim-count="claimCount"
-        :quote-count="quoteCount"
-        :meme-count="memeCount"
+        :claim-count="searchClaimCount"
+        :quote-count="searchQuoteCount"
+        :meme-count="searchMemeCount"
         :total-count="totalCount"
         :total-claim-count="totalClaimCount"
         :total-quote-count="totalQuoteCount"
@@ -45,13 +45,15 @@ provide("contentFilters", contentFilters)
 // --- Add result counts for claims, quotes, memes ---
 const { displayedItems, contentCollections } = useContentFeed(searchTerm, contentFilters)
 
-const totalClaimCount = computed(() => contentCollections.claims.value.length)
-const totalQuoteCount = computed(() => contentCollections.quotes.value.length)
-const totalMemeCount = computed(() => contentCollections.memes.value.length)
-const totalItemCount = computed(
-  () => totalClaimCount.value + totalQuoteCount.value + totalMemeCount.value
+// --- Compute pill counts from ALL content, never filtered by search or pills ---
+const pillClaimCount = computed(() => contentCollections.claims.value.length)
+const pillQuoteCount = computed(() => contentCollections.quotes.value.length)
+const pillMemeCount = computed(() => contentCollections.memes.value.length)
+const pillTotalCount = computed(
+  () => pillClaimCount.value + pillQuoteCount.value + pillMemeCount.value
 )
 
+// --- Compute wall counts from displayedItems (filtered by search and pills) ---
 const claimCount = computed(() => {
   return displayedItems.value
     .flatMap((item) => (item.type === "claimPair" ? item.data : []))
@@ -67,6 +69,26 @@ const memeCount = computed(() => {
 })
 const totalCount = computed(() => claimCount.value + quoteCount.value + memeCount.value)
 
+// --- Global totals (all content, not search filtered) ---
+const totalClaimCount = computed(() => contentCollections.claims.value.length)
+const totalQuoteCount = computed(() => contentCollections.quotes.value.length)
+const totalMemeCount = computed(() => contentCollections.memes.value.length)
+const totalItemCount = computed(
+  () => totalClaimCount.value + totalQuoteCount.value + totalMemeCount.value
+)
+
+// --- Compute pill counts from search results, NOT filtered by pill toggles ---
+// These are the counts for each type in the current search result, regardless of which pills are toggled
+const { contentCollections: searchCollections } = useContentFeed(
+  searchTerm,
+  ref({ claims: true, quotes: true, memes: true })
+)
+const searchClaimCount = computed(() => searchCollections.claims.value.length)
+const searchQuoteCount = computed(() => searchCollections.quotes.value.length)
+const searchMemeCount = computed(() => searchCollections.memes.value.length)
+
+// Pass the pill counts (unfiltered search results) to SearchBar
+// Pass the wall counts (filtered by pills) to the wall
 watch(
   contentFilters,
   (newVal) => {
