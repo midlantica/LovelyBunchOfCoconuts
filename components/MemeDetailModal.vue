@@ -1,57 +1,33 @@
 <template>
-  <teleport to="#modal-root">
+  <ModalFrame :show="show" @close="close">
+    <div v-if="loading" class="flex flex-1 justify-center items-center py-8 text-white text-center">
+      <Icon name="svg-spinners:90-ring-with-bg" size="2rem" />
+    </div>
     <div
-      v-if="show"
-      class="z-50 fixed inset-0 flex justify-center items-center bg-black/80"
-      @mousedown.self="close"
+      v-else-if="error"
+      class="flex flex-1 justify-center items-center py-8 text-red-500 text-center"
     >
-      <div
-        class="relative flex flex-col bg-slate-800 shadow-lg rounded-lg w-full max-w-2xl"
-        style="max-height: 100dvh"
-      >
-        <div
-          v-if="loading"
-          class="flex flex-1 justify-center items-center py-8 text-white text-center"
-        >
-          <Icon name="svg-spinners:90-ring-with-bg" size="2rem" />
-        </div>
-        <div
-          v-else-if="error"
-          class="flex flex-1 justify-center items-center py-8 text-red-500 text-center"
-        >
-          {{ error }}
-        </div>
-        <div
-          v-else-if="meme"
-          class="flex flex-col flex-1 min-h-0 overflow-y-auto"
-          style="max-height: 80vh"
-        >
-          <div class="flex flex-col gap-2 p-6 h-full">
-            <div v-if="meme.image" class="flex justify-center items-center">
-              <img
-                :src="meme.image"
-                :alt="meme.alt || ''"
-                class="shadow mx-auto rounded w-auto max-h-80 object-contain"
-                style="margin-bottom: 0"
-              />
-            </div>
-            <div class="prose-invert max-w-none min-h-0 prose prose-sm">
-              <div :class="'meme-caption-snug'" v-html="markdownContent"></div>
-            </div>
-          </div>
-          <div class="flex justify-end mt-4">
-            <CloseButton @click="close" />
-          </div>
+      {{ error }}
+    </div>
+    <div v-else-if="meme" class="flex flex-col flex-1 min-h-0">
+      <div class="prose-invert mx-auto max-w-none prose prose-base">
+        <div v-html="getAboveHr(markdownContent)"></div>
+      </div>
+      <div class="flex-1 w-full overflow-y-auto" style="max-height: 90vh">
+        <div class="prose-invert mx-auto max-w-none prose prose-base">
+          <div v-html="getBelowHr(markdownContent)"></div>
         </div>
       </div>
     </div>
-  </teleport>
+  </ModalFrame>
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue"
+import { ref, watch } from "vue"
 import { useContentCache } from "~/composables/useContentCache"
 import MarkdownIt from "markdown-it"
+import ModalFrame from "./ModalFrame.vue"
+import CloseButton from "./CloseButton.vue"
 
 const props = defineProps({
   slug: { type: String, required: true },
@@ -75,19 +51,14 @@ const loadMeme = async () => {
   meme.value = null
   markdownContent.value = ""
   try {
-    const found = await getContentItem("memes", props.slug)
+    // Robustly ensure slug is just the filename, not a path
+    const cleanSlug = props.slug.replace(/^\/*memes\//, "").replace(/^\/*/, "")
+    const found = await getContentItem("memes", cleanSlug)
     if (found && !found.error) {
       meme.value = found
       if (found.body) {
-        // Remove frontmatter and render markdown
         let content = found.body.replace(/^---[\s\S]*?---/, "").trim()
-        // Remove <p> tags wrapping a single image at the top
-        content = content.replace(/^<p>(<img [^>]+>)<\/p>\n<p>(.*?)<\/p>/, "$1") // Remove both image and duplicate title
-        content = content.replace(/^<p>(<img [^>]+>)<\/p>/, "$1")
-        content = content.replace(/^<p>\s*<img([^>]+)>\s*<\/p>/, "<img$1>")
         markdownContent.value = md.render(content)
-        // Remove <p> wrapping image if markdown-it still adds it
-        markdownContent.value = markdownContent.value.replace(/^<p>(<img [^>]+>)<\/p>/, "$1")
       }
     } else {
       error.value = found?.message || "Meme not found"
@@ -99,23 +70,21 @@ const loadMeme = async () => {
   }
 }
 
+function getAboveHr(html) {
+  if (!html) return ""
+  const idx = html.indexOf("<hr")
+  if (idx === -1) return html
+  return html.slice(0, idx)
+}
+function getBelowHr(html) {
+  if (!html) return ""
+  const idx = html.indexOf("<hr")
+  if (idx === -1) return ""
+  // Find the closing > of the first <hr ...>
+  const closeIdx = html.indexOf(">", idx)
+  if (closeIdx === -1) return ""
+  return html.slice(closeIdx + 1)
+}
+
 watch(() => props.slug, loadMeme, { immediate: true })
 </script>
-
-<style scoped>
-.meme-caption-snug > :first-child {
-  margin-top: 0 !important;
-}
-:deep(img) {
-  margin-bottom: 0.25em !important;
-}
-:deep(.prose > *:first-child) {
-  margin-top: 0 !important;
-}
-:deep(.prose img + *) {
-  margin-top: 0.25rem !important;
-}
-:deep(.prose h2) {
-  font-weight: 300 !important;
-}
-</style>
