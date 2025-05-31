@@ -59,7 +59,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="gap-3 grid grid-cols-1 w-full">
+  <div class="grid grid-cols-1 w-full">
     <div id="modal-root"></div>
 
     <!-- Error message -->
@@ -119,19 +119,17 @@ onUnmounted(() => {
     </div>
 
     <!-- No content message -->
-    <h1
-      v-else
-      class="text-white text-center"
-      :class="{ 'mt-8': !contentFilters.claims && !contentFilters.quotes && !contentFilters.memes }"
-    >
-      {{
-        searchTerm
-          ? "No results found."
-          : !contentFilters.claims && !contentFilters.quotes && !contentFilters.memes
-          ? "No content found. Select a category above."
-          : "No content found."
-      }}
-    </h1>
+    <div v-else class="flex flex-col justify-center items-center min-h-[60vh]">
+      <h1 class="font-light text-white text-2xl text-center">
+        {{
+          searchTerm
+            ? "No results found."
+            : !contentFilters.claims && !contentFilters.quotes && !contentFilters.memes
+            ? "No content found. Select a category above."
+            : "No content found."
+        }}
+      </h1>
+    </div>
 
     <!-- Loading more indicator -->
     <div
