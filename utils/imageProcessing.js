@@ -1,8 +1,8 @@
 // utils/imageProcessing.js
-import fs from "fs/promises"
-import path from "path"
-import { exec } from "child_process"
-import { promisify } from "util"
+const fs = require("fs/promises")
+const path = require("path")
+const { exec } = require("child_process")
+const { promisify } = require("util")
 
 const execPromise = promisify(exec)
 
@@ -12,13 +12,19 @@ const execPromise = promisify(exec)
  * @param {number} maxLength - Maximum length for the sanitized name
  * @returns {string} Sanitized filename
  */
-export async function sanitizeFilename(text, maxLength = 20) {
+function sanitizeFilename(text, maxLength = 40) {
+  // Allow hyphens and underscores, remove other non-alphanum
   let cleanText = text
-    .replace(/[^a-zA-Z0-9\s]/g, "")
+    .replace(/[^a-zA-Z0-9\-_\s]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
+    .replace(/_+/g, "_")
     .toLowerCase()
-
+    .replace(/-+$/g, "") // Remove trailing hyphens
+    .replace(/_+$/g, "") // Remove trailing underscores
+    .replace(/[0-9a-f]{8,}$/g, "") // Remove trailing hashes/numbers
+    .replace(/-+$/g, "") // Remove trailing hyphens again
+    .replace(/_+$/g, "") // Remove trailing underscores again
   cleanText = cleanText.slice(0, maxLength).replace(/^-+|-+$/g, "")
   return cleanText || "unnamed"
 }
@@ -28,10 +34,15 @@ export async function sanitizeFilename(text, maxLength = 20) {
  * @param {string} filename - Filename to check
  * @returns {boolean} Whether the filename is good enough
  */
-export async function isDescriptiveFilename(filename) {
+function isDescriptiveFilename(filename) {
   const basename = path.basename(filename, path.extname(filename))
-  // At least 3 alphanumeric chars, not just numbers or random strings
-  return /^[a-zA-Z0-9][a-zA-Z0-9-]{2,}$/.test(basename) && !/^[0-9a-f]{8,}$/.test(basename)
+  // Human-readable: at least 2 words or a word with hyphens/underscores, not just numbers or hashes
+  // No trailing random numbers/hashes (8+ digits/hex)
+  return (
+    /[a-zA-Z]/.test(basename) &&
+    (basename.includes("-") || basename.includes("_") || /[a-zA-Z]{3,}/.test(basename)) &&
+    !/[0-9a-f]{8,}$/.test(basename)
+  )
 }
 
 /**
@@ -39,7 +50,7 @@ export async function isDescriptiveFilename(filename) {
  * @param {string} directory - Directory containing images
  * @returns {Promise<void>}
  */
-export async function optimizeImages(directory) {
+async function optimizeImages(directory) {
   const extensions = ["png", "jpg", "jpeg", "gif", "webp"]
   const existingExt = []
 
@@ -76,39 +87,35 @@ export async function optimizeImages(directory) {
  * @param {string} filename - Current filename
  * @returns {Promise<string>} New filename
  */
-export async function renameImageFile(directory, filename) {
-  const filePath = path.join(directory, filename)
+async function renameImageFile(directory, filename) {
   const ext = path.extname(filename).toLowerCase()
+  const basename = path.basename(filename, ext)
   let newFilename
 
-  // Check if current name is already descriptive
-  if (await isDescriptiveFilename(filename)) {
-    const basename = path.basename(filename, ext)
-    newFilename = `${await sanitizeFilename(basename, 20)}${ext}`
+  if (isDescriptiveFilename(filename)) {
+    // Already human-readable, just sanitize for safety (but don't remove hyphens/underscores)
+    newFilename = sanitizeFilename(basename, 40) + ext
   } else {
-    // Fall back to sanitized original name
-    const basename = path.basename(filename, ext)
-    newFilename = `${await sanitizeFilename(basename, 20)}${ext}`
+    // Not readable, sanitize
+    newFilename = sanitizeFilename(basename, 40) + ext
   }
 
-  // Ensure filename is unique
   let newFilePath = path.join(directory, newFilename)
   let counter = 1
-
   while (
-    await fs
+    newFilename !== filename &&
+    (await fs
       .access(newFilePath)
       .then(() => true)
-      .catch(() => false)
+      .catch(() => false))
   ) {
-    newFilename = `${newFilename.split(ext)[0]}-${counter}${ext}`
+    newFilename = `${sanitizeFilename(basename, 40)}-${counter}${ext}`
     newFilePath = path.join(directory, newFilename)
     counter++
   }
 
-  // Rename the file
   if (newFilename !== filename) {
-    await fs.rename(filePath, newFilePath)
+    await fs.rename(path.join(directory, filename), newFilePath)
     console.log(`Renamed '${filename}' to '${newFilename}'`)
   }
 
@@ -120,7 +127,7 @@ export async function renameImageFile(directory, filename) {
  * @param {string} directory - Directory containing images
  * @returns {Promise<void>}
  */
-export async function processImages(directory) {
+async function processImages(directory) {
   const imageExtensions = [".png", ".jpg", ".jpeg", ".bmp", ".tiff", ".gif", ".webp"]
 
   try {
@@ -139,4 +146,12 @@ export async function processImages(directory) {
   } catch (error) {
     console.error(`Error processing images: ${error.message}`)
   }
+}
+
+module.exports = {
+  sanitizeFilename,
+  isDescriptiveFilename,
+  optimizeImages,
+  renameImageFile,
+  processImages,
 }

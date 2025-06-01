@@ -48,6 +48,19 @@ async function processSubdirectory() {
       process.exit(1)
     }
 
+    // Step 0: Optimize images using mogrify
+    log(`Step 0: Optimizing images in ${TARGET_DIR}`)
+    try {
+      // Use dynamic import to load ESM module
+      await import(path.join(__dirname, "../utils/imageProcessing.js")).then((mod) =>
+        mod.processImages(TARGET_DIR)
+      )
+      log("Image optimization completed successfully")
+    } catch (error) {
+      log(`Error during image optimization: ${error.message}`)
+      // Continue even if optimization fails
+    }
+
     log(`Step 1: Renaming image files in ${TARGET_DIR}`)
     try {
       execSync(

@@ -1,0 +1,7 @@
+---
+title: "at-least-im-not-a-capitalist-capitalism"
+---
+
+![at-least-im-not-a-capitalist-capitalism](/memes/capitalism/at-least-im-not-a-capitalist-capitalism.png)
+
+At Least Im Not A Capitalist Capitalism

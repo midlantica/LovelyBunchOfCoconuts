@@ -142,34 +142,8 @@ async function createMarkdownFiles() {
       // Create image path for markdown
       const imagePathFull = `${imagePath}${file}`
 
-      // Extract meta tags from image
-      let tags = []
-      try {
-        const meta = await exifr.parse(path.join(targetDir, file), {
-          iptc: true,
-          xmp: true,
-          exif: true,
-          tiff: true,
-          mergeOutput: true,
-        })
-        // Collect keywords/tags from IPTC, XMP, EXIF if present
-        if (meta) {
-          if (meta.Keywords && Array.isArray(meta.Keywords)) tags = tags.concat(meta.Keywords)
-          if (meta.Subject && Array.isArray(meta.Subject)) tags = tags.concat(meta.Subject)
-          if (meta.tags && Array.isArray(meta.tags)) tags = tags.concat(meta.tags)
-          if (meta.Category && typeof meta.Category === "string") tags.push(meta.Category)
-          if (meta.Genre && typeof meta.Genre === "string") tags.push(meta.Genre)
-          // Remove duplicates and falsy
-          tags = Array.from(new Set(tags.filter(Boolean)))
-        }
-      } catch (err) {
-        log(`Warning: Could not extract meta tags from ${file}: ${err.message}`)
-      }
-
-      // Create markdown content with tags in frontmatter if any
-      const markdown = `---\ntitle: "${basename}"\nimage: "${imagePathFull}"\ndate: "${today}"${
-        tags.length ? `\ntags: [${tags.map((t) => `\"${t.replace(/"/g, "")}\"`).join(", ")}]` : ""
-      }\n---\n\n![${basename}](${imagePathFull})\n\n${title}\n`
+      // Create markdown content: only title in frontmatter, then image and caption in body
+      const markdown = `---\ntitle: "${basename}"\n---\n\n![${basename}](${imagePathFull})\n\n${title}\n`
 
       // Write markdown file
       await writeFile(markdownPath, markdown)
