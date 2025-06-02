@@ -1,7 +1,7 @@
 ---
-title: "percent-of-american-adults-who-reached-various-ineome-distribution-levels-over-a-44-year-period"
+title: "percent-of-american-adults-who-reached-various-income"
 ---
 
-![percent-of-american-adults-who-reached-various-ineome-distribution-levels-over-a-44-year-period](/memes/data/percent-of-american-adults-who-reached-various-ineome-distribution-levels-over-a-44-year-period.png)
+![percent-of-american-adults-who-reached-various-income](/memes/data/percent-of-american-adults-who-reached-various-income.png)
 
-Percent Of American Adults Who Reached Various Ineome Distribution Levels Over A 44 Year Period
+Percent of American Adults Who Reached Various Income Distribution Levels Over A 44 Year Period

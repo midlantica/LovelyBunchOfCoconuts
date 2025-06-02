@@ -1,76 +1,76 @@
-Starting markdown file creation at 2025-06-01T04:46:33.278Z
+Starting markdown file creation at 2025-06-02T22:27:52.289Z
 Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism
-Created markdown file for a-free-market-free-exchange-economy-is-a.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/a-free-market-free-exchange-economy-is-a.md
-Created markdown file for at-least-im-not-a-capitalist-capitalism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/at-least-im-not-a-capitalist-capitalism.md
-Created markdown file for biz-vs-govt.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/biz-vs-govt.md
-Created markdown file for but-that-wasnt-redi-communism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/but-that-wasnt-redi-communism.md
-Created markdown file for capitalism-fishing.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/capitalism-fishing.md
-Created markdown file for capitalism-im-relatively-tame.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/capitalism-im-relatively-tame.md
-Created markdown file for capitalism-vs-socialism-for-dummies.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/capitalism-vs-socialism-for-dummies.md
-Created markdown file for capitalists-will-always-pay-their-worker.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/capitalists-will-always-pay-their-worker.md
-Created markdown file for characters-whose-plans-always-fail-miser.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/characters-whose-plans-always-fail-miser.md
-Created markdown file for collectivism-100-million-people-murdered.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/collectivism-100-million-people-murdered.md
-Created markdown file for commiepoly-1.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/commiepoly-1.md
-Created markdown file for corporatism-is-not-capitalism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/corporatism-is-not-capitalism.md
-Created markdown file for could-the-problem-be-marxism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/could-the-problem-be-marxism.md
-Created markdown file for damn-capitalism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/damn-capitalism.md
-Created markdown file for fictional-country-socialists.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/fictional-country-socialists.md
-Created markdown file for gdp-per-person-1990-international-dollar.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/gdp-per-person-1990-international-dollar.md
-Created markdown file for how-to-do-communism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/how-to-do-communism.md
-Created markdown file for imaginary-socialism-socialists-living-in.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/imaginary-socialism-socialists-living-in.md
-Created markdown file for individualism-versus-collectivism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/individualism-versus-collectivism.md
-Created markdown file for keynesian-economics.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/keynesian-economics.md
-Created markdown file for less-marx-more-milei.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/less-marx-more-milei.md
-Created markdown file for lets-divide-a-country-into-half-capitali.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/lets-divide-a-country-into-half-capitali.md
-Created markdown file for lets-see-if-ive-got-this-correct.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/lets-see-if-ive-got-this-correct.md
-Created markdown file for margaret-thatcher-rich-poorer-if-poor-po.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/margaret-thatcher-rich-poorer-if-poor-po.md
-Created markdown file for marxism-is-an-anti-human-cult.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/marxism-is-an-anti-human-cult.md
-Created markdown file for minimum-wage-jobs.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/minimum-wage-jobs.md
-Created markdown file for modern-feudalism-socialism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/modern-feudalism-socialism.md
-Created markdown file for my-dog-when-hes-eating.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/my-dog-when-hes-eating.md
-Created markdown file for my-labor-is-exploited-by-capitalists.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/my-labor-is-exploited-by-capitalists.md
-Created markdown file for nazi-democrat.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/nazi-democrat.md
-Created markdown file for nazis-and-communists-and-antifa-the-same.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/nazis-and-communists-and-antifa-the-same.md
-Created markdown file for planned-economy-or-planned-destruction-1.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/planned-economy-or-planned-destruction-1.md
-Created markdown file for poverty-rate-was-falling-until-the-war-o.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/poverty-rate-was-falling-until-the-war-o.md
-Created markdown file for prior-to-capitalism-the-way-people-amass.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/prior-to-capitalism-the-way-people-amass.md
-Created markdown file for real-socialism-has-never-been-tried-in-t.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/real-socialism-has-never-been-tried-in-t.md
-Created markdown file for real-socialism-hasnt-been-done-yet.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/real-socialism-hasnt-been-done-yet.md
-Created markdown file for regimes-endorsed-by-noam-chomsky.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/regimes-endorsed-by-noam-chomsky.md
-Created markdown file for robin-hood-corrected.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/robin-hood-corrected.md
-Created markdown file for robin-hood-didnt-rob-from-the-rich.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/robin-hood-didnt-rob-from-the-rich.md
-Created markdown file for six-charts-showing-capitalism-last-200-y.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/six-charts-showing-capitalism-last-200-y.md
-Created markdown file for small-business-vs-unions.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/small-business-vs-unions.md
-Created markdown file for socialism-free-prison-soap.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/socialism-free-prison-soap.md
-Created markdown file for socialism-in-theory-vs-practice.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/socialism-in-theory-vs-practice.md
-Created markdown file for socialism-is-better-than-capitalism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/socialism-is-better-than-capitalism.md
-Created markdown file for socialism-making-everyone-equally-poor-s.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/socialism-making-everyone-equally-poor-s.md
-Created markdown file for socialism-not-even-germans-could-make-it.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/socialism-not-even-germans-could-make-it.md
-Created markdown file for socialism-people-wait-for-bread.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/socialism-people-wait-for-bread.md
-Created markdown file for socialism-revolutions.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/socialism-revolutions.md
-Created markdown file for socialism-stick-a-fork-in-it.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/socialism-stick-a-fork-in-it.md
-Created markdown file for socialism-vs-capitalism-buildings.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/socialism-vs-capitalism-buildings.md
-Created markdown file for socialism-vs-capitalism-diving-board.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/socialism-vs-capitalism-diving-board.md
-Created markdown file for socialists-living-in-capitalism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/socialists-living-in-capitalism.md
-Created markdown file for socialists-you-guys-always-act-like-your.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/socialists-you-guys-always-act-like-your.md
-Created markdown file for south-korea-capitalism-vs-north-korea-so.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/south-korea-capitalism-vs-north-korea-so.md
-Created markdown file for the-american-dream-is-more-apt-to-be-rea.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/the-american-dream-is-more-apt-to-be-rea.md
-Created markdown file for the-birth-of-free-market-economics.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/the-birth-of-free-market-economics.md
-Created markdown file for the-free-market-has-failed.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/the-free-market-has-failed.md
-Created markdown file for the-left-would-rather-the-poor-were-poor.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/the-left-would-rather-the-poor-were-poor.md
-Created markdown file for the-problem-with-socialism-is.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/the-problem-with-socialism-is.md
-Created markdown file for the-problems-the-left-assigns-to-capital.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/the-problems-the-left-assigns-to-capital.md
-Created markdown file for the-socialist-dream-vs-reality.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/the-socialist-dream-vs-reality.md
-Created markdown file for the-state-more-laws-and-regulations-fire.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/the-state-more-laws-and-regulations-fire.md
-Created markdown file for trust-in-government-knowledge-of-history.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/trust-in-government-knowledge-of-history.md
-Created markdown file for useful-idiots-hugo-chavez-socialism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/useful-idiots-hugo-chavez-socialism.md
-Created markdown file for venezuela-before-after-socialism.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/venezuela-before-after-socialism.md
-Created markdown file for when-a-trades-with-b.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/when-a-trades-with-b.md
-Created markdown file for when-government-attempts-to-regulate-the.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/when-government-attempts-to-regulate-the.md
-Created markdown file for without-ownership-there-is-no-exchange-m.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/without-ownership-there-is-no-exchange-m.md
-Created markdown file for you-vs-government.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/you-vs-government.md
-Created markdown file for your-government-at-work.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/your-government-at-work.md
+Markdown file already exists for a-free-market-free-exchange-economy-is-a.png
+Markdown file already exists for at-least-im-not-a-capitalist-capitalism.png
+Markdown file already exists for biz-vs-govt.png
+Markdown file already exists for but-that-wasnt-redi-communism.png
+Markdown file already exists for capitalism-fishing.png
+Markdown file already exists for capitalism-im-relatively-tame.png
+Markdown file already exists for capitalism-vs-socialism-for-dummies.png
+Markdown file already exists for capitalists-will-always-pay-their-worker.png
+Markdown file already exists for characters-whose-plans-always-fail-miser.png
+Markdown file already exists for collectivism-100-million-people-murdered.png
+Markdown file already exists for commiepoly-1.png
+Markdown file already exists for corporatism-is-not-capitalism.png
+Markdown file already exists for could-the-problem-be-marxism.png
+Markdown file already exists for damn-capitalism.png
+Markdown file already exists for fictional-country-socialists.png
+Markdown file already exists for gdp-per-person-1990-international-dollar.png
+Markdown file already exists for how-to-do-communism.png
+Markdown file already exists for imaginary-socialism-socialists-living-in.png
+Markdown file already exists for individualism-versus-collectivism.png
+Markdown file already exists for keynesian-economics.png
+Markdown file already exists for less-marx-more-milei.png
+Markdown file already exists for lets-divide-a-country-into-half-capitali.png
+Markdown file already exists for lets-see-if-ive-got-this-correct.png
+Markdown file already exists for margaret-thatcher-rich-poorer-if-poor-po.png
+Markdown file already exists for marxism-is-an-anti-human-cult.png
+Markdown file already exists for minimum-wage-jobs.png
+Markdown file already exists for modern-feudalism-socialism.png
+Markdown file already exists for my-dog-when-hes-eating.png
+Markdown file already exists for my-labor-is-exploited-by-capitalists.png
+Markdown file already exists for nazi-democrat.png
+Markdown file already exists for nazis-and-communists-and-antifa-the-same.png
+Markdown file already exists for planned-economy-or-planned-destruction-1.png
+Markdown file already exists for poverty-rate-was-falling-until-the-war-o.png
+Markdown file already exists for prior-to-capitalism-the-way-people-amass.png
+Markdown file already exists for real-socialism-has-never-been-tried-in-t.png
+Markdown file already exists for real-socialism-hasnt-been-done-yet.png
+Markdown file already exists for regimes-endorsed-by-noam-chomsky.png
+Markdown file already exists for robin-hood-corrected.png
+Markdown file already exists for robin-hood-didnt-rob-from-the-rich.png
+Markdown file already exists for six-charts-showing-capitalism-last-200-y.png
+Markdown file already exists for small-business-vs-unions.png
+Markdown file already exists for socialism-free-prison-soap.png
+Markdown file already exists for socialism-in-theory-vs-practice.png
+Markdown file already exists for socialism-is-better-than-capitalism.png
+Markdown file already exists for socialism-making-everyone-equally-poor-s.png
+Markdown file already exists for socialism-not-even-germans-could-make-it.png
+Markdown file already exists for socialism-people-wait-for-bread.png
+Markdown file already exists for socialism-revolutions.png
+Markdown file already exists for socialism-stick-a-fork-in-it.png
+Markdown file already exists for socialism-vs-capitalism-buildings.png
+Markdown file already exists for socialism-vs-capitalism-diving-board.png
+Markdown file already exists for socialists-living-in-capitalism.png
+Markdown file already exists for socialists-you-guys-always-act-like-your.png
+Markdown file already exists for south-korea-capitalism-vs-north-korea-so.png
+Markdown file already exists for the-american-dream-is-more-apt-to-be-rea.png
+Markdown file already exists for the-birth-of-free-market-economics.png
+Markdown file already exists for the-free-market-has-failed.png
+Markdown file already exists for the-left-would-rather-the-poor-were-poor.png
+Markdown file already exists for the-problem-with-socialism-is.png
+Markdown file already exists for the-problems-the-left-assigns-to-capital.png
+Markdown file already exists for the-socialist-dream-vs-reality.png
+Markdown file already exists for the-state-more-laws-and-regulations-fire.png
+Markdown file already exists for trust-in-government-knowledge-of-history.png
+Markdown file already exists for useful-idiots-hugo-chavez-socialism.png
+Markdown file already exists for venezuela-before-after-socialism.png
+Markdown file already exists for when-a-trades-with-b.png
+Markdown file already exists for when-government-attempts-to-regulate-the.png
+Markdown file already exists for without-ownership-there-is-no-exchange-m.png
+Markdown file already exists for you-vs-government.png
+Markdown file already exists for your-government-at-work.png
 
-Markdown file creation complete at 2025-06-01T04:46:33.307Z
-70 markdown files created, 0 files skipped
+Markdown file creation complete at 2025-06-02T22:27:52.304Z
+0 markdown files created, 70 files skipped
 Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/markdown-creation-log.txt

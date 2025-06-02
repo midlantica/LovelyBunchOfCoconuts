@@ -37,6 +37,18 @@ function log(message) {
   console.log(message)
 }
 
+// Helper to parse summary info from a log file
+function parseLogSummary(logPath, patterns) {
+  if (!fs.existsSync(logPath)) return {}
+  const logContent = fs.readFileSync(logPath, "utf8")
+  const summary = {}
+  for (const [key, regex] of Object.entries(patterns)) {
+    const match = logContent.match(regex)
+    summary[key] = match ? (isNaN(Number(match[1])) ? match[1] : Number(match[1])) : 0
+  }
+  return summary
+}
+
 // Main function
 async function processSubdirectory() {
   try {
@@ -123,6 +135,84 @@ async function processSubdirectory() {
 
     log(`\nProcessing of subdirectory ${subdirName} completed at ${new Date().toISOString()}`)
     log(`Check individual log files for details on renamed files and created markdown files.`)
+
+    // Count images in the subdirectory
+    let imageCount = 0
+    try {
+      const files = await readdir(TARGET_DIR)
+      imageCount = files.filter((f) => /\.(png|jpe?g|gif|webp)$/i.test(f)).length
+    } catch (e) {
+      imageCount = 0
+    }
+    // --- SUMMARY REPORT ---
+    // Parse step logs for summary info
+    const renameSummary = parseLogSummary(path.join(__dirname, "rename-log.txt"), {
+      renamed: /([0-9]+) files renamed/,
+      skipped: /([0-9]+) files skipped/,
+    })
+    const mdSummary = parseLogSummary(path.join(__dirname, "markdown-creation-log.txt"), {
+      created: /([0-9]+) markdown files created/,
+      skipped: /([0-9]+) files skipped/,
+    })
+    // Orphan count is already tracked
+    // Add color and emoji for terminal output
+    const color = (code) => `\x1b[${code}m`
+    const reset = "\x1b[0m"
+    const green = color(32)
+    const yellow = color(33)
+    const red = color(31)
+    const cyan = color(36)
+    const bold = color(1)
+    // Table-style summary for terminal (no index column, no single quotes)
+    const summaryRows = [
+      { Action: "Images renamed", Count: `${renameSummary.renamed || 0}` },
+      { Action: "Images skipped", Count: `${renameSummary.skipped || 0}` },
+      { Action: "Markdown files created", Count: `${mdSummary.created || 0}` },
+      { Action: "Markdown files skipped", Count: `${mdSummary.skipped || 0}` },
+      { Action: "Orphaned markdown files", Count: `${orphanCount}` },
+    ]
+    if (process.stdout.isTTY) {
+      console.log(`\n\x1b[1;36m--- Meme Processing Summary ---\x1b[0m`)
+      console.log(`\x1b[1;36mSubdirectory:\x1b[0m ${subdirName}`)
+      // Print a table with aligned columns, no emojis, and numbers in the second column
+      const tableRows = [
+        { label: "Images", value: imageCount },
+        { label: "Images renamed", value: renameSummary.renamed || 0 },
+        { label: "Images skipped", value: renameSummary.skipped || 0 },
+        { label: "Markdown files created", value: mdSummary.created || 0 },
+        { label: "Markdown files skipped", value: mdSummary.skipped || 0 },
+        { label: "Orphaned markdown files", value: orphanCount },
+      ]
+      const maxLabel = Math.max(...tableRows.map((row) => row.label.length))
+      const maxValue = Math.max(...tableRows.map((row) => String(row.value).length))
+      tableRows.forEach((row) => {
+        const label = row.label.padEnd(maxLabel, " ")
+        const value = String(row.value).padStart(maxValue, " ")
+        console.log(`${label} | ${value}`)
+      })
+      console.log(`\x1b[36mCompleted at:\x1b[0m ${new Date().toLocaleString()}`)
+      console.log(`\x1b[36m-------------------------------\x1b[0m\n`)
+    }
+    // Write summary to log file (plain, no color, as a text table)
+    const logTable = [
+      "",
+      "--- Meme Processing Summary ---",
+      `Subdirectory: ${subdirName}`,
+      `Images: ${imageCount}`,
+      "+---------------------------+-------+",
+      "| Action                    | Count |",
+      "+---------------------------+-------+",
+      `| Images renamed            | ${renameSummary.renamed || 0}     |`,
+      `| Images skipped            | ${renameSummary.skipped || 0}     |`,
+      `| Markdown files created    | ${mdSummary.created || 0}     |`,
+      `| Markdown files skipped    | ${mdSummary.skipped || 0}     |`,
+      `| Orphaned markdown files   | ${orphanCount}     |`,
+      "+---------------------------+-------+",
+      `Completed at: ${new Date().toLocaleString()}`,
+      "-------------------------------",
+      "",
+    ]
+    logTable.forEach((line) => fs.appendFileSync(LOG_FILE, line + "\n"))
   } catch (error) {
     log(`Error: ${error.message}`)
     process.exit(1)

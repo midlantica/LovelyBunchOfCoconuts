@@ -1,7 +1,7 @@
 ---
-title: "1700ceworldmap"
+title: "1700-ce-world-map"
 ---
 
-![1700ceworldmap](/memes/data/1700ceworldmap.png)
+![1700-ce-world-map](/memes/data/1700-ce-world-map.png)
 
-1700ceworldmap
+1700-ce-world-map

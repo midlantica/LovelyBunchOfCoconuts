@@ -1,4 +1,4 @@
-Starting subdirectory processing at 2025-06-01T04:45:57.618Z
+Starting subdirectory processing at 2025-06-02T22:27:51.857Z
 Step 0: Optimizing images in /Users/drew/Documents/_work/WakeUpNPC2/public/memes/capitalism
 Image optimization completed successfully
 Step 1: Renaming image files in /Users/drew/Documents/_work/WakeUpNPC2/public/memes/capitalism
@@ -10,5 +10,21 @@ Markdown file creation completed successfully
 Step 3: Checking for orphaned markdown files in content/memes/capitalism
 No orphaned markdown files found.
 
-Processing of subdirectory capitalism completed at 2025-06-01T04:46:33.313Z
+Processing of subdirectory capitalism completed at 2025-06-02T22:27:52.316Z
 Check individual log files for details on renamed files and created markdown files.
+
+--- Meme Processing Summary ---
+Subdirectory: capitalism
+Images: 70
++---------------------------+-------+
+| Action                    | Count |
++---------------------------+-------+
+| Images renamed            | 0     |
+| Images skipped            | 70     |
+| Markdown files created    | 0     |
+| Markdown files skipped    | 70     |
+| Orphaned markdown files   | 0     |
++---------------------------+-------+
+Completed at: 6/2/2025, 5:27:52 PM
+-------------------------------
+

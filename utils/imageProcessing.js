@@ -1,7 +1,7 @@
 // utils/imageProcessing.js
 const fs = require("fs/promises")
 const path = require("path")
-const { exec } = require("child_process")
+const { exec, execSync } = require("child_process")
 const { promisify } = require("util")
 
 const execPromise = promisify(exec)
@@ -45,6 +45,25 @@ function isDescriptiveFilename(filename) {
   )
 }
 
+// Helper: Check if image is already optimized (macOS xattr)
+async function isImageOptimized(filePath) {
+  try {
+    const { stdout } = await execPromise(`xattr -p user.meme_optimized "${filePath}"`)
+    return stdout.trim() === "1"
+  } catch {
+    return false
+  }
+}
+
+// Helper: Mark image as optimized (macOS xattr)
+async function markImageOptimized(filePath) {
+  try {
+    await execPromise(`xattr -w user.meme_optimized 1 "${filePath}"`)
+  } catch (err) {
+    // Ignore errors
+  }
+}
+
 /**
  * Optimizes images in a directory using mogrify
  * @param {string} directory - Directory containing images
@@ -52,30 +71,34 @@ function isDescriptiveFilename(filename) {
  */
 async function optimizeImages(directory) {
   const extensions = ["png", "jpg", "jpeg", "gif", "webp"]
-  const existingExt = []
-
-  // Find which image types exist in the directory
-  for (const ext of extensions) {
-    const files = await fs.readdir(directory)
-    if (files.some((file) => file.toLowerCase().endsWith(`.${ext}`))) {
-      existingExt.push(ext)
+  const files = await fs.readdir(directory)
+  const imagesToOptimize = []
+  for (const file of files) {
+    const ext = path.extname(file).toLowerCase().replace(".", "")
+    if (extensions.includes(ext)) {
+      const filePath = path.join(directory, file)
+      if (!(await isImageOptimized(filePath))) {
+        imagesToOptimize.push(file)
+      }
     }
   }
-
-  if (existingExt.length === 0) {
-    console.log("No images to optimize")
+  if (imagesToOptimize.length === 0) {
+    console.log("No new images to optimize")
     return
   }
-
-  const extGlob = existingExt.join(",")
-  const command = `mogrify +profile "*" -format png -quality 85 -resize 1080x1080 ${path.join(
-    directory,
-    "*.{" + extGlob + "}"
-  )}`
-
+  const extGlob = [
+    ...new Set(imagesToOptimize.map((f) => path.extname(f).slice(1).toLowerCase())),
+  ].join(",")
+  const command = `mogrify +profile "*" -format png -quality 85 -resize 1080x1080 ${imagesToOptimize
+    .map((f) => '"' + path.join(directory, f) + '"')
+    .join(" ")}`
   try {
     await execPromise(command)
-    console.log(`Images optimized in ${directory}`)
+    // Mark all as optimized
+    for (const file of imagesToOptimize) {
+      await markImageOptimized(path.join(directory, file))
+    }
+    console.log(`Images optimized in ${directory}: ${imagesToOptimize.length}`)
   } catch (error) {
     console.error(`Image optimization failed: ${error.message}`)
   }
