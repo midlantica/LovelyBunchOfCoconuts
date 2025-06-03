@@ -16,7 +16,6 @@ The site displays three types of content:
 
 1. Click the "Fork" button at the top right of the GitHub repository
 2. This creates your own copy of the project
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 ### Step 2: Add Your Content
 
@@ -30,9 +29,6 @@ The site displays three types of content:
 ```md
 ---
 title: "Quote Title"
-author: "Author Name"
-date: "YYYY-MM-DD"
-tags: ["tag1", "tag2"]
 ---
 
 The full text of the quote goes here.
@@ -52,8 +48,6 @@ The full text of the quote goes here.
 title: "Claim Title"
 original: "Original claim text"
 translation: "Translated claim text"
-date: "YYYY-MM-DD"
-tags: ["tag1", "tag2"]
 ---
 
 Any additional context or notes about the claim can go here.
@@ -79,10 +73,6 @@ Any additional context or notes about the claim can go here.
 ```md
 ---
 title: "Meme Title"
-image: "/memes/funny-cat-meme.png"
-alt: "Brief description of the meme for accessibility"
-date: "YYYY-MM-DD"
-tags: ["tag1", "tag2"]
 ---
 
 Any caption or description of the meme can go here.

@@ -36,6 +36,16 @@ export function useContentFeed(
   const quoteCount = ref(0)
   const memeCount = ref(0)
 
+  // Defensive: always ensure contentFilters.value is a valid object with all keys
+  function ensureFilterKeys(obj) {
+    obj = obj && typeof obj === "object" ? obj : {}
+    return {
+      claims: typeof obj.claims === "boolean" ? obj.claims : true,
+      quotes: typeof obj.quotes === "boolean" ? obj.quotes : true,
+      memes: typeof obj.memes === "boolean" ? obj.memes : true,
+    }
+  }
+
   // Initialize data - fetch content directly using Nuxt Content v3
   const initialize = async () => {
     loading.value = true
@@ -104,9 +114,15 @@ export function useContentFeed(
   const createContentWall = () => {
     // Get only the content types that are enabled by filters
     const filteredCollections = {
-      claims: contentFilters.value.claims ? contentCollections.claims.value.slice() : [],
-      quotes: contentFilters.value.quotes ? contentCollections.quotes.value.slice() : [],
-      memes: contentFilters.value.memes ? contentCollections.memes.value.slice() : [],
+      claims: ensureFilterKeys(contentFilters.value).claims
+        ? contentCollections.claims.value.slice()
+        : [],
+      quotes: ensureFilterKeys(contentFilters.value).quotes
+        ? contentCollections.quotes.value.slice()
+        : [],
+      memes: ensureFilterKeys(contentFilters.value).memes
+        ? contentCollections.memes.value.slice()
+        : [],
     }
 
     // Deduplicate items by path
@@ -122,22 +138,110 @@ export function useContentFeed(
       ),
     }
 
-    // Shuffle arrays in place (Fisher-Yates)
-    function shuffle(arr) {
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        ;[arr[i], arr[j]] = [arr[j], arr[i]]
-      }
-      return arr
-    }
-    shuffle(uniqueItems.claims)
-    shuffle(uniqueItems.quotes)
-    shuffle(uniqueItems.memes)
+    // Only show the enabled types
+    const enabledTypes = Object.entries(ensureFilterKeys(contentFilters.value))
+      .filter(([k, v]) => v)
+      .map(([k]) => k)
 
-    // Use interleaveContent to randomize meme order and interleave content
-    const wall = interleaveContent(uniqueItems.claims, uniqueItems.quotes, uniqueItems.memes)
+    let wall = []
+    if (enabledTypes.length === 1) {
+      // Only one pill on: show only that type
+      const type = enabledTypes[0]
+      if (type === "claims") {
+        // Group claims into pairs for wall
+        for (let i = 0; i < uniqueItems.claims.length; i += 2) {
+          const pair = [
+            { type: "claim", data: uniqueItems.claims[i] },
+            uniqueItems.claims[i + 1] ? { type: "claim", data: uniqueItems.claims[i + 1] } : null,
+          ].filter(Boolean)
+          wall.push({ type: "claimPair", data: pair })
+        }
+      } else if (type === "quotes") {
+        wall = uniqueItems.quotes.map((q) => ({ type: "quote", data: q }))
+      } else if (type === "memes") {
+        for (let i = 0; i < uniqueItems.memes.length; i += 2) {
+          const pair = [
+            { type: "meme", data: uniqueItems.memes[i] },
+            uniqueItems.memes[i + 1] ? { type: "meme", data: uniqueItems.memes[i + 1] } : null,
+          ].filter(Boolean)
+          wall.push({ type: "memeRow", data: pair })
+        }
+      }
+    } else if (enabledTypes.length === 2) {
+      // Two pills on: interleave only those two types
+      if (!contentFilters.value.claims) {
+        // Only quotes + memes
+        // Interleave quotes and memes as pairs
+        const maxLen = Math.max(uniqueItems.quotes.length, uniqueItems.memes.length)
+        for (let i = 0; i < maxLen; i++) {
+          if (uniqueItems.quotes[i]) wall.push({ type: "quote", data: uniqueItems.quotes[i] })
+          if (uniqueItems.memes[i]) {
+            const pair = [
+              { type: "meme", data: uniqueItems.memes[i] },
+              uniqueItems.memes[i + 1] ? { type: "meme", data: uniqueItems.memes[i + 1] } : null,
+            ].filter(Boolean)
+            wall.push({ type: "memeRow", data: pair })
+            i++
+          }
+        }
+      } else if (!contentFilters.value.quotes) {
+        // Only claims + memes
+        const maxLen = Math.max(
+          Math.ceil(uniqueItems.claims.length / 2),
+          Math.ceil(uniqueItems.memes.length / 2)
+        )
+        for (let i = 0, ci = 0, mi = 0; i < maxLen; i++) {
+          if (ci < uniqueItems.claims.length) {
+            const pair = [
+              { type: "claim", data: uniqueItems.claims[ci++] },
+              ci < uniqueItems.claims.length
+                ? { type: "claim", data: uniqueItems.claims[ci++] }
+                : null,
+            ].filter(Boolean)
+            wall.push({ type: "claimPair", data: pair })
+          }
+          if (mi < uniqueItems.memes.length) {
+            const pair = [
+              { type: "meme", data: uniqueItems.memes[mi++] },
+              mi < uniqueItems.memes.length
+                ? { type: "meme", data: uniqueItems.memes[mi++] }
+                : null,
+            ].filter(Boolean)
+            wall.push({ type: "memeRow", data: pair })
+          }
+        }
+      } else if (!contentFilters.value.memes) {
+        // Only claims + quotes
+        // Use original interleave logic for claims and quotes only
+        // Group claims into pairs
+        const claimPairs = []
+        for (let i = 0; i < uniqueItems.claims.length; i += 2) {
+          const pair = [
+            { type: "claim", data: uniqueItems.claims[i] },
+            uniqueItems.claims[i + 1] ? { type: "claim", data: uniqueItems.claims[i + 1] } : null,
+          ].filter(Boolean)
+          claimPairs.push({ type: "claimPair", data: pair })
+        }
+        // Interleave claims and quotes
+        let quoteIndex = 0
+        const pairsPerQuote = 2
+        for (let i = 0; i < claimPairs.length; i++) {
+          wall.push(claimPairs[i])
+          if ((i + 1) % pairsPerQuote === 0 && quoteIndex < uniqueItems.quotes.length) {
+            wall.push({ type: "quote", data: uniqueItems.quotes[quoteIndex++] })
+          }
+        }
+        while (quoteIndex < uniqueItems.quotes.length) {
+          wall.push({ type: "quote", data: uniqueItems.quotes[quoteIndex++] })
+        }
+      }
+    } else {
+      // All three pills on: use full interleave
+      wall = interleaveContent(uniqueItems.claims, uniqueItems.quotes, uniqueItems.memes)
+    }
 
     // Update state
+    console.log("WALL STRUCTURE", JSON.stringify(wall, null, 2))
     allItems.value = wall
     displayedItems.value = wall.slice(0, limit.value)
     hasMore.value = wall.length > limit.value
@@ -246,7 +350,12 @@ export function useContentFeed(
     [searchTerm, contentFilters],
     ([newSearchTerm, newFilters]) => {
       console.log(`Search term changed to: "${newSearchTerm}"`)
-      debouncedSearch(newSearchTerm)
+      if (newSearchTerm === "") {
+        // No search: just update the wall with current filters
+        createContentWall()
+      } else {
+        debouncedSearch(newSearchTerm)
+      }
     },
     { deep: true }
   )

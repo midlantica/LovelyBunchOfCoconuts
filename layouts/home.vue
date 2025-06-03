@@ -97,6 +97,8 @@ watch(
   },
   { deep: true }
 )
+
+console.log("SearchBar rendered", contentFilters.value)
 </script>
 
 <style scoped></style>
