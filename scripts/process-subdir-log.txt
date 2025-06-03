@@ -1,30 +1,25 @@
-Starting subdirectory processing at 2025-06-02T22:27:51.857Z
-Step 0: Optimizing images in /Users/drew/Documents/_work/WakeUpNPC2/public/memes/capitalism
+Starting subdirectory processing at 2025-06-03T06:22:42.910Z
+Step 0: Optimizing images in /Users/drew/Documents/_work/WakeUpNPC2/public/memes/politics
 Image optimization completed successfully
-Step 1: Renaming image files in /Users/drew/Documents/_work/WakeUpNPC2/public/memes/capitalism
+Step 1: Renaming image files in /Users/drew/Documents/_work/WakeUpNPC2/public/memes/politics
 Renaming completed successfully
 
-Step 2: Creating matching markdown files for images in /Users/drew/Documents/_work/WakeUpNPC2/public/memes/capitalism
+Step 2: Creating matching markdown files for images in /Users/drew/Documents/_work/WakeUpNPC2/public/memes/politics
 Markdown file creation completed successfully
 
-Step 3: Checking for orphaned markdown files in content/memes/capitalism
+Step 3: Checking for orphaned markdown files in content/memes/politics
 No orphaned markdown files found.
 
-Processing of subdirectory capitalism completed at 2025-06-02T22:27:52.316Z
+Processing of subdirectory politics completed at 2025-06-03T06:22:43.772Z
 Check individual log files for details on renamed files and created markdown files.
 
 --- Meme Processing Summary ---
-Subdirectory: capitalism
-Images: 70
-+---------------------------+-------+
-| Action                    | Count |
-+---------------------------+-------+
-| Images renamed            | 0     |
-| Images skipped            | 70     |
-| Markdown files created    | 0     |
-| Markdown files skipped    | 70     |
-| Orphaned markdown files   | 0     |
-+---------------------------+-------+
-Completed at: 6/2/2025, 5:27:52 PM
+Subdirectory: politics
+Images: 133
+Images renamed: 0
+Markdown files created: 133
+Markdown files skipped: 0
+Orphaned markdown files: 0
+Completed at: 6/3/2025, 1:22:43 AM
 -------------------------------
 

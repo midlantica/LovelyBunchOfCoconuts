@@ -1,7 +1,7 @@
 ---
-title: "americas-richest--poorest-states-vs-g7-countries"
+title: "americas-richest-poorest-states-vs-g7-countries"
 ---
 
-![americas-richest--poorest-states-vs-g7-countries](/memes/data/americas-richest--poorest-states-vs-g7-countries.png)
+![americas-richest-poorest-states-vs-g7-countries](/memes/data/americas-richest-poorest-states-vs-g7-countries.png)
 
-Americas Richest  Poorest States Vs G7 Countries
+Americas Richest Poorest States Vs G7 Countries

@@ -127,23 +127,29 @@ async function createMarkdownFiles() {
 
       // Get base name without extension
       const basename = path.basename(file, path.extname(file))
-      const markdownPath = path.join(contentDir, `${basename}.md`)
-
-      // Check if markdown file already exists
-      if ((await fileExists(markdownPath)) && !forceUpdate) {
+      let markdownBase = basename
+      let markdownPath = path.join(contentDir, `${markdownBase}.md`)
+      let suffix = 1
+      // If file exists, increment suffix until unique filename is found
+      while ((await fileExists(markdownPath)) && !forceUpdate) {
+        markdownBase = `${basename}-${suffix}`
+        markdownPath = path.join(contentDir, `${markdownBase}.md`)
+        suffix++
+      }
+      if ((await fileExists(markdownPath)) && !forceUpdate && suffix === 1) {
         log(`Markdown file already exists for ${file}`)
         skippedCount++
         continue
       }
 
       // Create a title from the filename
-      const title = createTitle(basename)
+      const title = createTitle(markdownBase)
 
       // Create image path for markdown
       const imagePathFull = `${imagePath}${file}`
 
       // Create markdown content: only title in frontmatter, then image and caption in body
-      const markdown = `---\ntitle: "${basename}"\n---\n\n![${basename}](${imagePathFull})\n\n${title}\n`
+      const markdown = `---\ntitle: "${markdownBase}"\n---\n\n![${markdownBase}](${imagePathFull})\n\n${title}\n`
 
       // Write markdown file
       await writeFile(markdownPath, markdown)

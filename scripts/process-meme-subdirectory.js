@@ -49,6 +49,13 @@ function parseLogSummary(logPath, patterns) {
   return summary
 }
 
+// Helper to count all lines starting with 'Renamed:' in the log file (cumulative)
+function countCumulativeRenamed(logPath) {
+  if (!fs.existsSync(logPath)) return 0
+  const logContent = fs.readFileSync(logPath, "utf8")
+  return logContent.split("\n").filter((line) => line.startsWith("Renamed:")).length
+}
+
 // Main function
 async function processSubdirectory() {
   try {
@@ -58,6 +65,15 @@ async function processSubdirectory() {
     } catch (err) {
       log(`Error: Subdirectory ${subdirName} does not exist in ${BASE_MEMES_DIR}`)
       process.exit(1)
+    }
+
+    // Count images in the subdirectory BEFORE renaming
+    let imageFilesBefore = []
+    try {
+      const files = await readdir(TARGET_DIR)
+      imageFilesBefore = files.filter((f) => /\.(png|jpe?g|gif|webp)$/i.test(f)).sort()
+    } catch (e) {
+      imageFilesBefore = []
     }
 
     // Step 0: Optimize images using mogrify
@@ -74,15 +90,35 @@ async function processSubdirectory() {
     }
 
     log(`Step 1: Renaming image files in ${TARGET_DIR}`)
+    let imageFilesAfter = []
     try {
       execSync(
         `node ${path.join(__dirname, "rename-meme-images.js")} "${TARGET_DIR}" ${forceFlag}`,
         { stdio: "inherit" }
       )
       log("Renaming completed successfully")
+      // Get image files after renaming
+      const filesAfter = await readdir(TARGET_DIR)
+      imageFilesAfter = filesAfter.filter((f) => /\.(png|jpe?g|gif|webp)$/i.test(f)).sort()
     } catch (error) {
       log(`Error during renaming: ${error.message}`)
       process.exit(1)
+    }
+
+    // Calculate how many files were renamed (by comparing before/after names)
+    let renamedCount = 0
+    let renamedPairs = []
+    if (imageFilesBefore.length === imageFilesAfter.length) {
+      for (let i = 0; i < imageFilesBefore.length; i++) {
+        if (imageFilesBefore[i] !== imageFilesAfter[i]) {
+          renamedCount++
+          renamedPairs.push(`${imageFilesBefore[i]} → ${imageFilesAfter[i]}`)
+        }
+      }
+    } else {
+      // If the number of files changed, fallback to 0 and warn
+      log("Warning: Number of image files changed during renaming, cannot reliably count renames.")
+      renamedCount = 0
     }
 
     log(`\nStep 2: Creating matching markdown files for images in ${TARGET_DIR}`)
@@ -146,10 +182,6 @@ async function processSubdirectory() {
     }
     // --- SUMMARY REPORT ---
     // Parse step logs for summary info
-    const renameSummary = parseLogSummary(path.join(__dirname, "rename-log.txt"), {
-      renamed: /([0-9]+) files renamed/,
-      skipped: /([0-9]+) files skipped/,
-    })
     const mdSummary = parseLogSummary(path.join(__dirname, "markdown-creation-log.txt"), {
       created: /([0-9]+) markdown files created/,
       skipped: /([0-9]+) files skipped/,
@@ -164,50 +196,32 @@ async function processSubdirectory() {
     const cyan = color(36)
     const bold = color(1)
     // Table-style summary for terminal (no index column, no single quotes)
-    const summaryRows = [
-      { Action: "Images renamed", Count: `${renameSummary.renamed || 0}` },
-      { Action: "Images skipped", Count: `${renameSummary.skipped || 0}` },
-      { Action: "Markdown files created", Count: `${mdSummary.created || 0}` },
-      { Action: "Markdown files skipped", Count: `${mdSummary.skipped || 0}` },
-      { Action: "Orphaned markdown files", Count: `${orphanCount}` },
+    const tableRows = [
+      { label: "Images", value: imageFilesAfter.length },
+      { label: "Images renamed", value: renamedCount },
+      { label: "Markdown files created", value: mdSummary.created || 0 },
+      { label: "Markdown files skipped", value: mdSummary.skipped || 0 },
+      { label: "Orphaned markdown files", value: orphanCount },
     ]
-    if (process.stdout.isTTY) {
-      console.log(`\n\x1b[1;36m--- Meme Processing Summary ---\x1b[0m`)
-      console.log(`\x1b[1;36mSubdirectory:\x1b[0m ${subdirName}`)
-      // Print a table with aligned columns, no emojis, and numbers in the second column
-      const tableRows = [
-        { label: "Images", value: imageCount },
-        { label: "Images renamed", value: renameSummary.renamed || 0 },
-        { label: "Images skipped", value: renameSummary.skipped || 0 },
-        { label: "Markdown files created", value: mdSummary.created || 0 },
-        { label: "Markdown files skipped", value: mdSummary.skipped || 0 },
-        { label: "Orphaned markdown files", value: orphanCount },
-      ]
-      const maxLabel = Math.max(...tableRows.map((row) => row.label.length))
-      const maxValue = Math.max(...tableRows.map((row) => String(row.value).length))
-      tableRows.forEach((row) => {
-        const label = row.label.padEnd(maxLabel, " ")
-        const value = String(row.value).padStart(maxValue, " ")
-        console.log(`${label} | ${value}`)
-      })
-      console.log(`\x1b[36mCompleted at:\x1b[0m ${new Date().toLocaleString()}`)
-      console.log(`\x1b[36m-------------------------------\x1b[0m\n`)
-    }
+    const maxLabel = Math.max(...tableRows.map((row) => row.label.length))
+    const maxValue = Math.max(...tableRows.map((row) => String(row.value).length))
+    tableRows.forEach((row) => {
+      const label = row.label.padEnd(maxLabel, " ")
+      const value = String(row.value).padStart(maxValue, " ")
+      console.log(`${label} | ${value}`)
+    })
+    console.log(`\x1b[36mCompleted at:\x1b[0m ${new Date().toLocaleString()}`)
+    console.log(`\x1b[36m-------------------------------\x1b[0m\n`)
     // Write summary to log file (plain, no color, as a text table)
     const logTable = [
       "",
       "--- Meme Processing Summary ---",
       `Subdirectory: ${subdirName}`,
-      `Images: ${imageCount}`,
-      "+---------------------------+-------+",
-      "| Action                    | Count |",
-      "+---------------------------+-------+",
-      `| Images renamed            | ${renameSummary.renamed || 0}     |`,
-      `| Images skipped            | ${renameSummary.skipped || 0}     |`,
-      `| Markdown files created    | ${mdSummary.created || 0}     |`,
-      `| Markdown files skipped    | ${mdSummary.skipped || 0}     |`,
-      `| Orphaned markdown files   | ${orphanCount}     |`,
-      "+---------------------------+-------+",
+      `Images: ${imageFilesAfter.length}`,
+      `Images renamed: ${renamedCount}`,
+      `Markdown files created: ${mdSummary.created || 0}`,
+      `Markdown files skipped: ${mdSummary.skipped || 0}`,
+      `Orphaned markdown files: ${orphanCount}`,
       `Completed at: ${new Date().toLocaleString()}`,
       "-------------------------------",
       "",

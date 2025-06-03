@@ -3,6 +3,7 @@ import { ref, watch, onMounted } from "vue"
 import { debounce } from "lodash-es"
 import { useRuntimeConfig } from "#app"
 import { useAsyncData } from "#app"
+import { interleaveContent } from "~/utils/interleaveContent"
 
 export function useContentFeed(
   providedSearchTerm = ref(""),
@@ -30,6 +31,10 @@ export function useContentFeed(
 
   // Track initialization
   const isInitialized = ref(false)
+  // Expose counts for UI and logging
+  const claimCount = ref(0)
+  const quoteCount = ref(0)
+  const memeCount = ref(0)
 
   // Initialize data - fetch content directly using Nuxt Content v3
   const initialize = async () => {
@@ -42,7 +47,7 @@ export function useContentFeed(
       const fetchQuotes = fetch("/api/content?type=quotes").then((res) => res.json())
       const fetchMemes = fetch("/api/content?type=memes").then((res) => res.json())
 
-      // Execute all fetches in parallel
+      // Execute all fetchs in parallel
       const [claims, quotes, memes] = await Promise.all([fetchClaims, fetchQuotes, fetchMemes])
 
       // Filter out README.md files and files with "__" in their name
@@ -58,9 +63,30 @@ export function useContentFeed(
       contentCollections.quotes.value = filterSpecialFiles(quotes || [])
       contentCollections.memes.value = filterSpecialFiles(memes || [])
 
-      console.log("Loaded claims:", contentCollections.claims.value.length)
-      console.log("Loaded quotes:", contentCollections.quotes.value.length)
-      console.log("Loaded memes:", contentCollections.memes.value.length)
+      // Update counts for UI and logging
+      claimCount.value = contentCollections.claims.value.length
+      quoteCount.value = contentCollections.quotes.value.length
+      memeCount.value = contentCollections.memes.value.length
+
+      // Always log the counts in the dev terminal
+      if (process.client && typeof window !== "undefined") {
+        // Browser log
+        console.log(
+          `%cClaims: %c${claimCount.value}  %cQuotes: %c${quoteCount.value}  %cMemes: %c${memeCount.value}`,
+          "color: #888; font-weight: bold;",
+          "color: #2d8cf0; font-weight: bold;",
+          "color: #888; font-weight: bold;",
+          "color: #19be6b; font-weight: bold;",
+          "color: #888; font-weight: bold;",
+          "color: #ff9900; font-weight: bold;"
+        )
+      } else {
+        // Node/terminal log
+        // eslint-disable-next-line no-console
+        console.log(
+          `Claims: ${claimCount.value}  Quotes: ${quoteCount.value}  Memes: ${memeCount.value}`
+        )
+      }
 
       isInitialized.value = true
 
@@ -78,9 +104,9 @@ export function useContentFeed(
   const createContentWall = () => {
     // Get only the content types that are enabled by filters
     const filteredCollections = {
-      claims: contentFilters.value.claims ? contentCollections.claims.value : [],
-      quotes: contentFilters.value.quotes ? contentCollections.quotes.value : [],
-      memes: contentFilters.value.memes ? contentCollections.memes.value : [],
+      claims: contentFilters.value.claims ? contentCollections.claims.value.slice() : [],
+      quotes: contentFilters.value.quotes ? contentCollections.quotes.value.slice() : [],
+      memes: contentFilters.value.memes ? contentCollections.memes.value.slice() : [],
     }
 
     // Deduplicate items by path
@@ -96,45 +122,20 @@ export function useContentFeed(
       ),
     }
 
-    console.log("Unique claims for wall:", uniqueItems.claims.length)
-    console.log("Unique quotes for wall:", uniqueItems.quotes.length)
-    console.log("Unique memes for wall:", uniqueItems.memes.length)
-
-    const wall = []
-    let indices = { claims: 0, quotes: 0, memes: 0 }
-
-    // Interleave content types to create a balanced wall
-    while (
-      indices.claims < uniqueItems.claims.length ||
-      indices.quotes < uniqueItems.quotes.length ||
-      indices.memes < uniqueItems.memes.length
-    ) {
-      // Add claim pairs (two side by side)
-      if (indices.claims < uniqueItems.claims.length) {
-        const pair = [uniqueItems.claims[indices.claims], uniqueItems.claims[indices.claims + 1]]
-          .filter(Boolean)
-          .map((c) => ({ type: "claim", data: c }))
-
-        if (pair.length) wall.push({ type: "claimPair", data: pair })
-        indices.claims += 2
+    // Shuffle arrays in place (Fisher-Yates)
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[arr[i], arr[j]] = [arr[j], arr[i]]
       }
-
-      // Add a quote
-      if (indices.quotes < uniqueItems.quotes.length) {
-        wall.push({ type: "quote", data: uniqueItems.quotes[indices.quotes] })
-        indices.quotes++
-      }
-
-      // Add meme pairs (two side by side)
-      if (indices.memes < uniqueItems.memes.length) {
-        const pair = [uniqueItems.memes[indices.memes], uniqueItems.memes[indices.memes + 1]]
-          .filter(Boolean)
-          .map((m) => ({ type: "meme", data: m }))
-
-        if (pair.length) wall.push({ type: "memeRow", data: pair })
-        indices.memes += 2
-      }
+      return arr
     }
+    shuffle(uniqueItems.claims)
+    shuffle(uniqueItems.quotes)
+    shuffle(uniqueItems.memes)
+
+    // Use interleaveContent to randomize meme order and interleave content
+    const wall = interleaveContent(uniqueItems.claims, uniqueItems.quotes, uniqueItems.memes)
 
     // Update state
     allItems.value = wall
@@ -264,5 +265,8 @@ export function useContentFeed(
     hasMore,
     error,
     contentCollections, // <-- expose contentCollections for global counts
+    claimCount,
+    quoteCount,
+    memeCount,
   }
 }

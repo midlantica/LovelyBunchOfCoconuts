@@ -50,7 +50,7 @@ function cleanFilename(filename) {
     return null
   }
 
-  // Remove all types of quotes (straight and curly), convert to lowercase, replace spaces with hyphens, remove special chars, collapse multiple hyphens, and trim to 50 chars
+  // Remove all types of quotes (straight and curly), convert to lowercase, replace spaces with hyphens, remove special chars, collapse multiple hyphens
   let newBase = base
     .toLowerCase()
     .replace(/["'‘’“”`´]/g, "") // Remove quotes
@@ -58,9 +58,34 @@ function cleanFilename(filename) {
     .replace(/[^a-z0-9-]/g, "") // Remove non-alphanum except hyphen
     .replace(/-+/g, "-") // Collapse multiple hyphens (2 or more)
     .replace(/^-+|-+$/g, "") // Trim leading/trailing hyphens
-    .slice(0, 50) // Limit to 50 chars
 
-  return newBase + ext
+  // Split into words by hyphen
+  const words = newBase.split("-").filter(Boolean)
+  let result = ""
+  let i = 0
+  // Add words until adding the next would exceed 50 chars
+  while (i < words.length) {
+    const next = result ? result + "-" + words[i] : words[i]
+    if (next.length > 50) break
+    result = next
+    i++
+  }
+  // If the result is empty (first word is too long), fallback to first word truncated to 50 chars
+  if (!result && words.length > 0) {
+    result = words[0].slice(0, 50)
+  }
+  // Ensure we do not end with a partial word: if result is not the full base, and the next word would fit, remove the last word
+  if (i < words.length && result.length > 0) {
+    const lastHyphen = result.lastIndexOf("-")
+    if (lastHyphen > 0) {
+      result = result.slice(0, lastHyphen)
+    } else {
+      // Only one word, and it's too long, so fallback to first word under 50 chars
+      result = words[0].slice(0, 50)
+    }
+  }
+  result = result.replace(/-+$/g, "")
+  return result + ext
 }
 
 // Helper function to check if a file exists
@@ -84,6 +109,14 @@ async function renameImages() {
       process.exit(1)
     }
 
+    // Get all files in the target directory (before renaming)
+    const filesBefore = await readdir(targetDir)
+    const imageFilesBefore = filesBefore.filter((file) => {
+      const ext = path.extname(file).toLowerCase()
+      return [".jpg", ".jpeg", ".png", ".gif"].includes(ext)
+    })
+    const beforeSet = new Set(imageFilesBefore)
+
     // Get all files in the target directory
     const files = await readdir(targetDir)
 
@@ -95,6 +128,8 @@ async function renameImages() {
 
     let renamedCount = 0
     let skippedCount = 0
+    let renamedFiles = []
+    let skippedFiles = []
 
     // Process each image file
     for (const file of imageFiles) {
@@ -104,6 +139,7 @@ async function renameImages() {
       if (file.startsWith("__")) {
         log(`Skipping ${file} (starts with __)`)
         skippedCount++
+        skippedFiles.push(file)
         continue
       }
 
@@ -114,19 +150,25 @@ async function renameImages() {
       if (!newName) {
         log(`Skipping ${file} (invalid name)`)
         skippedCount++
+        skippedFiles.push(file)
         continue
       }
 
-      // Check if we should skip files with existing metadata
-      if (skipExisting) {
-        const basename = path.basename(newName, path.extname(newName))
-        const metadataPath = path.join(CONTENT_DIR, `${basename}.md`)
-
-        if (await fileExists(metadataPath)) {
-          log(`Skipping ${file} (metadata already exists)`)
-          skippedCount++
-          continue
-        }
+      // If the cleaned filename already exists as an image AND a markdown file exists, skip this file
+      const cleanImagePath = path.join(targetDir, newName)
+      const cleanMarkdownPath = path.join(
+        CONTENT_DIR,
+        `${path.basename(newName, path.extname(newName))}.md`
+      )
+      if (
+        file !== newName &&
+        (await fileExists(cleanImagePath)) &&
+        (await fileExists(cleanMarkdownPath))
+      ) {
+        log(`Skipping ${file} (clean image and markdown already exist as ${newName})`)
+        skippedCount++
+        skippedFiles.push(file)
+        continue
       }
 
       // Check if the name needs to be changed
@@ -134,7 +176,7 @@ async function renameImages() {
         let finalName = newName
         let newPath = path.join(targetDir, finalName)
 
-        // Check if the new filename already exists
+        // Check if the new filename already exists (but not a full pair)
         if (await fileExists(newPath)) {
           // Add a timestamp to make it unique
           const timestamp = Date.now()
@@ -144,18 +186,40 @@ async function renameImages() {
           newPath = path.join(targetDir, finalName)
         }
 
-        // Rename the file
         await rename(filePath, newPath)
         log(`Renamed: ${file} → ${finalName}`)
         renamedCount++
+        renamedFiles.push(`${file} → ${finalName}`)
       } else {
         log(`No change needed for ${file}`)
         skippedCount++
+        skippedFiles.push(file)
+      }
+    }
+
+    // Get all files in the target directory (after renaming)
+    const filesAfter = await readdir(targetDir)
+    const imageFilesAfter = filesAfter.filter((file) => {
+      const ext = path.extname(file).toLowerCase()
+      return [".jpg", ".jpeg", ".png", ".gif"].includes(ext)
+    })
+    const afterSet = new Set(imageFilesAfter)
+
+    // Compare before and after sets to find renamed files
+    const actuallyRenamed = []
+    for (const before of beforeSet) {
+      if (!afterSet.has(before)) {
+        actuallyRenamed.push(before)
       }
     }
 
     log(`\nRenaming complete at ${new Date().toISOString()}`)
-    log(`${renamedCount} files renamed, ${skippedCount} files skipped`)
+    log(`Images renamed: ${actuallyRenamed.length}`)
+    if (actuallyRenamed.length > 0) {
+      log(`Renamed files:`)
+      actuallyRenamed.forEach((f) => log(`  ${f}`))
+    }
+    log(`${skippedCount} files skipped`)
     log(`Renamed files are logged in ${LOG_FILE}`)
   } catch (error) {
     log(`Error: ${error.message}`)

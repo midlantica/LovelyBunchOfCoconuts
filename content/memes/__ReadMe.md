@@ -24,37 +24,21 @@ Adding a meme is a two-step process:
 ```md
 ---
 title: "Short Title for the Meme"
-image: "/memes/your-filename.png"
-alt: "Brief description of what's in the image for accessibility"
-date: "YYYY-MM-DD"
-tags: ["relevant", "tags", "here"]
 ---
+
+![alt tag usually same as title?](/memes/path-to/meme-image-name.png)
 
 Any caption or description of the meme can go here (optional).
 ```
-
-## Required Fields
-
-- `title`: A short, descriptive title for the meme
-- `image`: The path to your image file (must start with `/memes/`)
-- `alt`: A brief description of the image for accessibility
-- `date`: The date you're adding this meme (format: YYYY-MM-DD)
-
-## Optional Fields
-
-- `tags`: Keywords related to the meme (helps with searching)
-- `source`: Where you found the meme (if applicable)
 
 ## Example
 
 ```md
 ---
-title: "Confused Math Lady Meme"
-image: "/memes/confused-math-lady.png"
-alt: "Woman looking confused with mathematical equations floating around her head"
-date: "2023-04-30"
-tags: ["funny", "confusion", "math"]
+title: "cnn-npc-woke-dystopia"
 ---
 
-When someone tries to explain cryptocurrency to me for the fifth time.
+![Meme](/memes/cnn-npc-woke-dystopia.png)
+
+cnn-npc-woke-dystopia
 ```

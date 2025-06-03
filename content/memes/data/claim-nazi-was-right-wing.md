@@ -1,7 +1,7 @@
 ---
-title: "claim--nazi-was-right-wing"
+title: "claim-nazi-was-right-wing"
 ---
 
-![claim--nazi-was-right-wing](/memes/data/claim--nazi-was-right-wing.png)
+![claim-nazi-was-right-wing](/memes/data/claim-nazi-was-right-wing.png)
 
-Claim  Nazi Was Right Wing
+Claim Nazi Was Right Wing
