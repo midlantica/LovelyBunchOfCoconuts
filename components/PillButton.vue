@@ -1,9 +1,9 @@
 <template>
   <button
     class="pill-btn"
-    :class="active ? 'pill-on' : 'pill-off'"
+    :class="on ? 'pill-on' : 'pill-off'"
     @click="$emit('click')"
-    :aria-pressed="active"
+    type="button"
   >
     <span class="pill-label">{{ label }}</span>
     <span class="pill-count">{{ count }}</span>
@@ -14,7 +14,7 @@
 const props = defineProps({
   label: { type: String, required: true },
   count: { type: [Number, String], default: 0 },
-  active: { type: Boolean, default: false },
+  on: { type: Boolean, default: false },
 })
 </script>
 

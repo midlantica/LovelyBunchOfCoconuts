@@ -1,5 +1,25 @@
 // utils/interleaveContent.js
+
+// Fisher-Yates shuffle for true randomness
+function shuffle(array) {
+  let m = array.length,
+    t,
+    i
+  while (m) {
+    i = Math.floor(Math.random() * m--)
+    t = array[m]
+    array[m] = array[i]
+    array[i] = t
+  }
+  return array
+}
+
 export function interleaveContent(claims, quotes, memes) {
+  // Shuffle each content type for random order
+  claims = shuffle([...claims])
+  quotes = shuffle([...quotes])
+  memes = shuffle([...memes])
+
   const output = []
   let quoteIndex = 0
   let memeIndex = 0

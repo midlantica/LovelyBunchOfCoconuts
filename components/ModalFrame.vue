@@ -6,8 +6,8 @@
       @mousedown.self="onClose"
     >
       <div
-        class="relative flex flex-col bg-slate-800 shadow-lg px-8 py-6 rounded-lg w-full max-w-2xl modal-frame"
-        style="max-height: 90vh"
+        class="relative flex flex-col bg-slate-800 shadow-lg rounded-lg modal-frame"
+        :style="modalStyle ? modalStyle : { maxHeight: '90vh', padding: '1rem 1.75rem' }"
         @mousedown.stop
       >
         <CloseButton @click="onClose" />
@@ -21,6 +21,7 @@
 import { onMounted, onBeforeUnmount } from "vue"
 const props = defineProps({
   show: { type: Boolean, default: false },
+  modalStyle: { type: Object, default: null },
 })
 const emit = defineEmits(["close"])
 const onClose = () => emit("close")

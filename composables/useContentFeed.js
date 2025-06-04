@@ -241,7 +241,6 @@ export function useContentFeed(
     }
 
     // Update state
-    console.log("WALL STRUCTURE", JSON.stringify(wall, null, 2))
     allItems.value = wall
     displayedItems.value = wall.slice(0, limit.value)
     hasMore.value = wall.length > limit.value
@@ -351,8 +350,8 @@ export function useContentFeed(
     ([newSearchTerm, newFilters]) => {
       console.log(`Search term changed to: "${newSearchTerm}"`)
       if (newSearchTerm === "") {
-        // No search: just update the wall with current filters
-        createContentWall()
+        // No search: reload all content and update the wall
+        initialize()
       } else {
         debouncedSearch(newSearchTerm)
       }

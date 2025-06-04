@@ -10,40 +10,22 @@
       <input
         type="search"
         v-model="searchTerm"
-        class="bg-transparent focus:bg-transparent ps-12 pt-[.3rem] pr-3 pb-[.5rem] border-[#999999] border-2 focus:border-seagull-400/50 rounded-lg outline-none w-full text-[1.5rem] text-slate-200 placeholder:text-seagull-200/50 leading-tight tracking-wide"
+        class="bg-transparent focus:bg-transparent ps-12 pt-[.3rem] pr-3 pb-[.5rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400/50 rounded-lg outline-none w-full text-[1.5rem] text-slate-200 placeholder:text-seagull-200/50 leading-tight tracking-wide"
         placeholder="Search..."
-        @input="emitSearch"
         @keydown.esc="clearSearch"
-        @search="handleSearchEvent"
         ref="searchInputRef"
       />
     </div>
     <div class="flex flex-row items-center gap-3 px-0 w-full">
       <div class="flex flex-row gap-2">
-        <button
-          class="pill-btn"
-          :class="filters.claims ? 'pill-on' : 'pill-off'"
-          @click="toggleFilter('claims')"
-        >
-          <span class="pill-label">CLAIMS</span>
-          <span class="pill-count">{{ pillClaimCount }}</span>
-        </button>
-        <button
-          class="pill-btn"
-          :class="filters.quotes ? 'pill-on' : 'pill-off'"
-          @click="toggleFilter('quotes')"
-        >
-          <span class="pill-label">QUOTES</span>
-          <span class="pill-count">{{ pillQuoteCount }}</span>
-        </button>
-        <button
-          class="pill-btn"
-          :class="filters.memes ? 'pill-on' : 'pill-off'"
-          @click="toggleFilter('memes')"
-        >
-          <span class="pill-label">MEMES</span>
-          <span class="pill-count">{{ pillMemeCount }}</span>
-        </button>
+        <PillButton
+          v-for="pill in pills"
+          :key="pill.key"
+          :label="pill.label"
+          :count="pill.count.value"
+          :on="filters[pill.key]"
+          @click="toggleFilter(pill.key)"
+        />
       </div>
       <span class="font-light text-slate-400 uppercase tracking-wider" style="font-size: 1.155rem">
         {{ props.totalItemCount }}
@@ -60,7 +42,8 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted } from "vue"
+import { ref, watch, computed, onMounted, onUnmounted } from "vue"
+import PillButton from "~/components/PillButton.vue"
 
 const props = defineProps({
   search: String,
@@ -80,11 +63,36 @@ const props = defineProps({
 const emit = defineEmits(["update:search", "update:filters"])
 
 const searchTerm = ref(props.search || "")
-const filters = ref({ ...props.filters })
+const searchInputRef = ref(null)
 
-const pillClaimCount = computed(() => props.totalClaimCount ?? props.claimCount ?? 0)
-const pillQuoteCount = computed(() => props.totalQuoteCount ?? props.quoteCount ?? 0)
-const pillMemeCount = computed(() => props.totalMemeCount ?? props.memeCount ?? 0)
+const pillClaimCount = computed(() => {
+  // Show the number of claims matching the current search, regardless of pill toggles
+  return props.claimCount ?? 0
+})
+const pillQuoteCount = computed(() => {
+  return props.quoteCount ?? 0
+})
+const pillMemeCount = computed(() => {
+  return props.memeCount ?? 0
+})
+
+const pills = [
+  {
+    key: "claims",
+    label: "CLAIMS",
+    count: pillClaimCount, // pass the computed ref itself
+  },
+  {
+    key: "quotes",
+    label: "QUOTES",
+    count: pillQuoteCount,
+  },
+  {
+    key: "memes",
+    label: "MEMES",
+    count: pillMemeCount,
+  },
+]
 
 function ensureFilterKeys(obj) {
   obj = obj && typeof obj === "object" ? obj : {}
@@ -95,43 +103,52 @@ function ensureFilterKeys(obj) {
   }
 }
 
-onMounted(() => {
-  filters.value = ensureFilterKeys(props.filters)
-})
-
-watch(
-  () => props.filters,
-  (newVal) => {
-    filters.value = ensureFilterKeys(newVal)
-  },
-  { deep: true }
-)
-
 function toggleFilter(key) {
-  const keys = Object.keys(filters.value)
-  const onCount = keys.filter((k) => filters.value[k]).length
+  // Defensive: always work with a copy
+  const filters = ensureFilterKeys(props.filters)
+  const keys = Object.keys(filters)
+  const onCount = keys.filter((k) => filters[k]).length
   if (onCount === keys.length) {
     // All ON: clicking one turns only it ON
-    keys.forEach((k) => (filters.value[k] = false))
-    filters.value[key] = true
-  } else if (onCount === 1 && filters.value[key]) {
+    keys.forEach((k) => (filters[k] = false))
+    filters[key] = true
+  } else if (onCount === 1 && filters[key]) {
     // Only one ON and it's clicked: turn all ON
-    keys.forEach((k) => (filters.value[k] = true))
+    keys.forEach((k) => (filters[k] = true))
   } else {
     // Toggle the clicked pill
-    filters.value[key] = !filters.value[key]
+    filters[key] = !filters[key]
     // Never allow all OFF
-    if (Object.values(filters.value).every((v) => !v)) {
-      filters.value[key] = true
+    if (Object.values(filters).every((v) => !v)) {
+      filters[key] = true
     }
   }
-  emit("update:filters", { ...filters.value })
+  emit("update:filters", { ...filters })
 }
 
 function resetFilters() {
-  filters.value = { claims: true, quotes: true, memes: true }
-  emit("update:filters", { ...filters.value })
+  emit("update:filters", { claims: true, quotes: true, memes: true })
 }
+
+function clearSearch() {
+  searchTerm.value = ""
+  resetFilters()
+  // Optionally, focus the input again
+  // nextTick(() => searchInputRef.value?.focus())
+}
+
+function onGlobalKeydown(e) {
+  if (e.key === "Escape") {
+    clearSearch()
+  }
+}
+
+onMounted(() => {
+  window.addEventListener("keydown", onGlobalKeydown)
+})
+onUnmounted(() => {
+  window.removeEventListener("keydown", onGlobalKeydown)
+})
 
 watch(searchTerm, (newValue) => {
   emit("update:search", newValue)
