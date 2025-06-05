@@ -17,3 +17,16 @@
   flex-direction: column;
   padding: 0.5rem 0.5rem;
 }
+
+/* Special image sizing for meme modal in column mode (≤ 762px) */
+@media (max-width: 762px) {
+  .meme-modal-img-column {
+    max-height: 55vh !important;
+    width: auto !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto !important;
+    object-fit: contain;
+    object-position: top;
+  }
+}

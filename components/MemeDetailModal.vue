@@ -41,47 +41,53 @@
               :src="meme.image"
               :alt="meme.title || 'Meme'"
               class="rounded object-contain"
-              style="
-                max-width: 100%;
-                max-height: 45vh;
-                width: 100%;
-                height: auto;
-                display: block;
-                margin: 0;
-                padding: 0;
-                object-fit: contain;
-                object-position: top;
+              :class="!isLandscape ? 'meme-modal-img-column' : ''"
+              :style="
+                isLandscape
+                  ? 'max-width: 100%; max-height: 45vh; width: 100%; height: auto; display: block; margin: 0; padding: 0; object-fit: contain; object-position: top;'
+                  : 'max-width: 100%; width: auto; height: auto; display: block; margin: 0; padding: 0; object-fit: contain; object-position: top;'
               "
             />
           </div>
           <div
-            v-if="markdownContent"
-            class="flex flex-col flex-1 items-stretch w-full text-slate-200"
-            style="
-              flex: 1 1 0%;
+            v-if="hasExtraText"
+            :class="[
+              'flex flex-1 items-stretch w-full text-slate-200',
+              isLandscape ? 'flex-row gap-4' : 'flex-col',
+            ]"
+            :style="`
+              flex: 0 1 50%;
               min-height: 0;
               overflow: hidden;
               width: 100%;
               display: flex;
-              flex-direction: column;
+              flex-direction: ${isLandscape ? 'row' : 'column'};
               align-items: flex-start;
               justify-content: flex-start;
               padding: 0;
               margin: 0;
-            "
+              ${isLandscape ? 'gap: 1rem;' : ''}
+            `"
           >
             <div
-              class="flex-shrink-0 prose-invert mx-auto pt-2 w-full prose prose-base"
+              class="prose-invert mx-auto pt-2 w-full shrink prose prose-base"
               style="font-size: clamp(1rem, 2vw, 1.5rem); width: 100%"
             >
               <div v-html="getAboveHr(markdownContent)"></div>
             </div>
             <div
-              class="flex-1 bg-slate-800 w-full min-h-0 text-slate-200 modal-scrollable-text"
+              class="bg-slate-800 w-full min-h-0 text-slate-200 shrink modal-scrollable-text"
               style="overflow-y: auto; max-height: 100%; width: 100%"
             >
               <div v-html="getBelowHr(markdownContent)"></div>
             </div>
+          </div>
+          <div
+            v-else
+            class="prose-invert mx-auto pt-2 w-full shrink prose prose-base"
+            style="font-size: clamp(1rem, 2vw, 1.5rem); width: 100%"
+          >
+            <div v-html="markdownContent"></div>
           </div>
         </div>
       </div>
@@ -93,7 +99,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from "vue"
+import { ref, watch, computed, onMounted, onUnmounted } from "vue"
 import { useContentCache } from "~/composables/useContentCache"
 import MarkdownIt from "markdown-it"
 import ModalFrame from "./ModalFrame.vue"
@@ -111,6 +117,7 @@ const meme = ref(null)
 const error = ref(null)
 const loading = ref(true)
 const markdownContent = ref("")
+const isLandscape = ref(false)
 
 const { getContentItem } = useContentCache()
 const md = new MarkdownIt({ html: true, linkify: true, typographer: true })
@@ -268,5 +275,32 @@ const textContainerStyle = computed(() => {
   }
 })
 
+function updateOrientation() {
+  isLandscape.value = window.innerWidth > 762
+}
+onMounted(() => {
+  updateOrientation()
+  window.addEventListener("resize", updateOrientation)
+})
+onUnmounted(() => {
+  window.removeEventListener("resize", updateOrientation)
+})
+
 watch(() => props.slug, loadMeme, { immediate: true })
+
+const hasExtraText = computed(() => {
+  if (!markdownContent.value) return false
+  const idx = markdownContent.value.indexOf("<hr")
+  if (idx === -1) return false
+  // Find the closing > of the first <hr ...>
+  const closeIdx = markdownContent.value.indexOf(">", idx)
+  if (closeIdx === -1) return false
+  // If there is any non-whitespace after the <hr>, consider it extra text
+  return (
+    markdownContent.value
+      .slice(closeIdx + 1)
+      .replace(/<[^>]+>/g, "")
+      .trim().length > 0
+  )
+})
 </script>
