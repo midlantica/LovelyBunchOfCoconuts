@@ -2,7 +2,7 @@
 title: "Example Meme with Explanation"
 ---
 
-![Meme](/memes/dei-blm-crt-esg-end-woke-insanity.png)
+![Meme](/memes/cartoons/dei-blm-crt-esg-end-woke-insanity.png)
 
 ## Understanding This Meme
 

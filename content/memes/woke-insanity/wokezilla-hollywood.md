@@ -2,5 +2,5 @@
 title: "wokezilla-hollywood"
 ---
 
-![Meme](/memes/wokezilla-hollywood.png)
+![Meme](/memes/cartoons/wokezilla-hollywood.png)
 wokezilla-hollywood

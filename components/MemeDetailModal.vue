@@ -16,6 +16,7 @@
           style="
             max-width: 90vw;
             max-height: 90vh;
+            min-width: 41vw;
             height: 100%;
             box-sizing: border-box;
             display: flex;
