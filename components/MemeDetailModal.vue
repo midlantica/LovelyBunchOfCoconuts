@@ -103,7 +103,6 @@ import { ref, watch, computed, onMounted, onUnmounted } from "vue"
 import { useContentCache } from "~/composables/useContentCache"
 import MarkdownIt from "markdown-it"
 import ModalFrame from "./ModalFrame.vue"
-import CloseButton from "./CloseButton.vue"
 import { useModalLogic } from "~/composables/useModalLogic"
 import { useModalSizing } from "~/composables/useModalSizing"
 
@@ -185,19 +184,6 @@ const modalFrameStyle = computed(() => {
     justifyContent: "center",
     margin: "auto",
     boxSizing: "border-box",
-  }
-})
-
-// --- Use modalLayout for content style ---
-const modalContentStyle = computed(() => {
-  return {
-    width: "100%",
-    height: "100%",
-    boxSizing: "border-box",
-    display: "flex",
-    flexDirection: modalLayout.value.flexDirection,
-    alignItems: "center",
-    justifyContent: "center",
   }
 })
 
