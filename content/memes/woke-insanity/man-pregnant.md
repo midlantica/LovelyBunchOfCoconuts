@@ -2,5 +2,5 @@
 title: "man-pregnant"
 ---
 
-![Meme](/memes/man-pregnant.png)
+![Meme](/memes/woke-insanity/man-pregnant.png)
 man-pregnant

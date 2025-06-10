@@ -38,7 +38,7 @@ Any caption or description of the meme can go here (optional).
 title: "cnn-npc-woke-dystopia"
 ---
 
-![Meme](/memes/cnn-npc-woke-dystopia.png)
+![Meme](/memes/media/cnn-npc-woke-dystopia.png)
 
 cnn-npc-woke-dystopia
 ```

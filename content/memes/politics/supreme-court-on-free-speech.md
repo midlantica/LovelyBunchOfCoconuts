@@ -2,5 +2,6 @@
 title: "supreme-court-on-free-speech"
 ---
 
-![Meme](/memes/supreme-court-on-free-speech.png)
-supreme-court-on-free-speech
+![Supreme Court on Free Speech](/memes/quotes/supreme-court-on-free-speech.png)
+
+Supreme Court on Free Speech

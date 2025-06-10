@@ -2,5 +2,5 @@
 title: "democrat-savior-complex"
 ---
 
-![Meme](/memes/democrat-savior-complex.png)
+![Meme](/memes/woke-insanity/democrat-savior-complex.png)
 democrat-savior-complex
