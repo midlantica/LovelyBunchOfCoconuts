@@ -2,6 +2,6 @@
 title: "There are no solutions"
 ---
 
-## "There are no solutions. There are only trade-offs."
+## "There are no solutions; there are only trade-offs."
 
 Thomas Sowell

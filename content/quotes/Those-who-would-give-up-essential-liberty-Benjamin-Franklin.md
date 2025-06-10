@@ -1,0 +1,7 @@
+---
+title: "Those who would give up essential liberty"
+---
+
+## "Those who would give up essential liberty to purchase a little temporary safety deserve neither liberty nor safety."
+
+Benjamin Franklin
