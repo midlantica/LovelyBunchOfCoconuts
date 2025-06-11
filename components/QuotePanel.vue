@@ -7,7 +7,7 @@
   >
     <div class="flex flex-col flex-wrap gap-0.5 my-auto">
       <h1 class="inline-block font-light text-xl align-baseline tracking-wide">
-        {{ quote.headings[0] }}
+        &ldquo;{{ quote.headings[0] }}&rdquo;
       </h1>
       <p
         class="inline-block font-light text-slate-300 text-lg align-baseline tracking-wide"
@@ -26,7 +26,7 @@
       <h2 class="inline-block align-baseline">
         {{
           quote && quote.headings && quote.headings.length > 0
-            ? quote.headings[0]
+            ? `“${quote.headings[0]}”`
             : "🚨 No content found!"
         }}
       </h2>
