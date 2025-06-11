@@ -26,7 +26,7 @@
       <h2 class="inline-block align-baseline">
         {{
           quote && quote.headings && quote.headings.length > 0
-            ? `“${quote.headings[0]}”`
+            ? `&ldquo;${quote.headings[0]}&rdquo;`
             : "🚨 No content found!"
         }}
       </h2>
