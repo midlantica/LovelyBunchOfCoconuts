@@ -1,7 +1,7 @@
 ---
-title: "spreadofchristianitytoad6001"
+title: "spread-of-christianity"
 ---
 
-![spreadofchristianitytoad6001](/memes/data/spreadofchristianitytoad6001.png)
+![Spread of Christianity](/memes/data/spread-of-christianity.png)
 
-Spreadofchristianitytoad6001
+Spread of Christianity

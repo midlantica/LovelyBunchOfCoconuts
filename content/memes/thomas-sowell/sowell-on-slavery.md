@@ -1,7 +1,7 @@
 ---
-title: "sowell-on-slavery"
+title: "More whites were brought as slaves to North Africa than blacks brought as slaves to the United States"
 ---
 
-![sowell-on-slavery](/memes/thomas-sowell/sowell-on-slavery.png)
+![More whites were brought as slaves to North Africa than blacks brought as slaves to the United States](/memes/thomas-sowell/More-whites-were-brought-as-slaves-to-North-Africa-than.png)
 
 Sowell On Slavery

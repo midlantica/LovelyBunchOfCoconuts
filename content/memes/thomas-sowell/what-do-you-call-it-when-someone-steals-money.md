@@ -2,6 +2,6 @@
 title: "what-do-you-call-it-when-someone-steals-money"
 ---
 
-![what-do-you-call-it-when-someone-steals-money](/memes/thomas-sowell/what-do-you-call-it-when-someone-steals-money.png)
+![What do you call it when someone steals money secretly?](/memes/thomas-sowell/what-do-you-call-it-when-someone-steals-money-secretly.png)
 
-What Do You Call It When Someone Steals Money
+What do you call it when someone steals money secretly? Theft. What do you call it when someone takes money by force? Robbery. What do you call it when a politician takes someone else's money and gives it to someone likely to vote for him? Social Justice.
