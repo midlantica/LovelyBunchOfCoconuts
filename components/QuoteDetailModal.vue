@@ -1,6 +1,9 @@
 <template>
   <ModalFrame :show="show" @close="close">
-    <div v-if="loading" class="flex flex-1 justify-center items-center py-8 text-white text-center">
+    <div
+      v-if="loading"
+      class="flex flex-1 justify-center items-center py-8 text-center wqatext-white"
+    >
       <Icon name="svg-spinners:90-ring-with-bg" size="2rem" />
     </div>
     <div
@@ -23,8 +26,11 @@
           class="flex-1 bg-slate-800 py-2 rounded-b-lg min-h-0 overflow-y-auto"
           style="max-height: 40vh"
         >
-          <div class="prose-invert max-w-none prose prose-sm">
-            <div v-html="markdownContent.split('<hr>')[1]" class="quote-explanation-text"></div>
+          <div class="prose-invert max-w-none text-seagull-200 prose prose-sm">
+            <div
+              v-html="markdownContent.split('<hr>')[1]"
+              class="text-seagull-200 quote-explanation-text"
+            ></div>
           </div>
         </div>
       </template>
