@@ -92,7 +92,7 @@ watch(() => props.slug, loadClaim, { immediate: true })
 }
 @media (max-width: 640px) {
   .modal-frame > div {
-    width: 90vw !important;
+    /* width: 100% !important; */
     min-width: 0 !important;
     max-width: 90vw !important;
   }

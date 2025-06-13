@@ -1,11 +1,11 @@
 ---
 title: "Claim Title"
-original: "Original claim text"
-translation: "Translated claim text"
-date: "YYYY-MM-DD"
-tags: ["tag1", "tag2"]
-# Optional: source: "Where this claim comes from"
-# Optional: author: "Who made this claim"
+claim: "Claim text"
+translation: "Translation of Claim's true meaning text"
 ---
 
-Any additional context or notes about the claim can go here.
+## Claim Title
+
+## Translation of Claim's true meaning text
+
+Claim text goes here. This is the main assertion or statement that is being made.

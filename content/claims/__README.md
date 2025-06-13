@@ -15,8 +15,6 @@ This folder contains claim translations displayed on the website.
 title: "Short Title for the Claim"
 original: "The original claim text goes here"
 translation: "The translated or clarified version goes here"
-date: "YYYY-MM-DD"
-tags: ["relevant", "tags", "here"]
 ---
 
 Any additional context or notes about the claim can go here (optional).

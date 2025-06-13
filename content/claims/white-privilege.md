@@ -1,9 +1,9 @@
 ---
 title: "White Privilege"
 claim: "White Privilege"
-translation: "Your success isn’t yours, it’s stolen."
+translation: "Your success isn't yours, it's stolen."
 ---
 
 ## "White Privilege"
 
-## Your success isn’t yours, it’s stolen.
+## Your success isn't yours, it's stolen.
