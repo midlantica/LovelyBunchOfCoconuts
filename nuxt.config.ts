@@ -4,18 +4,20 @@ export default defineNuxtConfig({
   modules: ["@nuxt/content", "nuxt-icon", "@nuxtjs/tailwindcss"],
   css: ["~/assets/css/main.css", "~/assets/css/transitions.css"],
   content: {
-    build: {
-      markdown: {
-        highlight: {
-          // Theme used in all color schemes.
-          theme: {
-            // Default theme (same as single string)
-            default: "github-light",
-            // Theme used if `html.dark`
-            dark: "github-dark",
-          },
+    markdown: {
+      html: true, // Allow raw HTML tags like <wbr> in markdown
+      highlight: {
+        // Theme used in all color schemes.
+        theme: {
+          // Default theme (same as single string)
+          default: "github-light",
+          // Theme used if `html.dark`
+          dark: "github-dark",
         },
       },
+    },
+    build: {
+      // ...existing code...
     },
   },
   app: {

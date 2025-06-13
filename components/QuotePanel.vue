@@ -6,9 +6,10 @@
     @click="openModal"
   >
     <div class="flex flex-col flex-wrap gap-0.5 my-auto">
-      <h1 class="inline-block font-light text-xl align-baseline tracking-wide">
-        &ldquo;{{ quote.headings[0] }}&rdquo;
-      </h1>
+      <h1
+        class="inline-block font-light text-xl align-baseline tracking-wide"
+        v-html="formatQuote(quote.headings[0])"
+      ></h1>
       <p
         class="inline-block font-light text-seagull-200 text-lg align-baseline tracking-wide"
         v-if="quote.attribution"
@@ -52,4 +53,9 @@ const props = defineProps({
 const showModal = ref(false)
 const openModal = () => (showModal.value = true)
 const closeModal = () => (showModal.value = false)
+
+function formatQuote(text) {
+  // Replace &lt;wbr&gt; or <wbr> with real <wbr> tags (for browsers that support it)
+  return text.replace(/&lt;wbr&gt;/g, "<wbr>").replace(/<wbr>/g, "<wbr>")
+}
 </script>

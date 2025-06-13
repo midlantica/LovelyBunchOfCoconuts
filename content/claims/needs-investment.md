@@ -6,9 +6,9 @@ translation: "More taxes."
 
 ## "Needs Investment"
 
-### Not enough money spent on housing...
+## Not enough money spent on housing...
 
-![some-image](/memes/cartoons/dei-blm-crt-esg-end-woke-insanity.png){width=400}
+![some-image](/memes/cartoons/dei-blm-crt-esg-end-woke-insanity.png)
 
 Explantory copy for Claim... Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
 
@@ -20,7 +20,7 @@ Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo l
 
 ### Not enough money spent on housing...
 
-![some-image](/memes/cartoons/dei-blm-crt-esg-end-woke-insanity.png){width=400}
+![some-image](/memes/cartoons/dei-blm-crt-esg-end-woke-insanity.png)
 
 Explantory copy for Claim Translation... Donec id elit non mi porta gravida at eget metus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
 

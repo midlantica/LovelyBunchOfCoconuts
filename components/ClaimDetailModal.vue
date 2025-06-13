@@ -1,19 +1,28 @@
 <template>
   <ModalFrame :show="show" @close="close">
-    <div v-if="loading" class="flex flex-1 justify-center items-center py-8 text-white text-center">
-      <Icon name="svg-spinners:90-ring-with-bg" size="2rem" />
-    </div>
     <div
-      v-else-if="error"
-      class="flex flex-1 justify-center items-center py-8 text-red-500 text-center"
+      class="flex flex-col w-[470px] sm:w-[470px] min-w-0 sm:min-w-0 max-w-[760px] sm:max-w-[760px] max-h-[80vh]"
     >
-      {{ error }}
-    </div>
-    <div v-else-if="claim" class="flex flex-col flex-1 min-h-0">
-      <!-- Claim translation section -->
-      <div class="pb-2">
-        <div class="prose-invert max-w-none prose prose-lg">
-          <div v-html="markdownContent"></div>
+      <div class="flex-1 min-h-0 overflow-y-auto">
+        <div
+          v-if="loading"
+          class="flex flex-1 justify-center items-center py-8 text-white text-center"
+        >
+          <Icon name="svg-spinners:90-ring-with-bg" size="2rem" />
+        </div>
+        <div
+          v-else-if="error"
+          class="flex flex-1 justify-center items-center py-8 text-red-500 text-center"
+        >
+          {{ error }}
+        </div>
+        <div v-else-if="claim" class="flex flex-col flex-1 min-h-0">
+          <!-- Claim translation section -->
+          <div class="pb-2">
+            <div class="prose-invert max-w-none prose prose-lg">
+              <div v-html="markdownContent"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -25,7 +34,6 @@ import { ref, watch } from "vue"
 import { useContentCache } from "~/composables/useContentCache"
 import MarkdownIt from "markdown-it"
 import ModalFrame from "./ModalFrame.vue"
-import CloseButton from "./CloseButton.vue"
 
 const props = defineProps({
   slug: { type: String, required: true },
@@ -70,3 +78,23 @@ const loadClaim = async () => {
 
 watch(() => props.slug, loadClaim, { immediate: true })
 </script>
+
+<style scoped>
+.prose img,
+.prose-invert img {
+  max-width: 500px;
+  max-height: 500px;
+  height: auto;
+  width: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 640px) {
+  .modal-frame > div {
+    width: 90vw !important;
+    min-width: 0 !important;
+    max-width: 90vw !important;
+  }
+}
+</style>
