@@ -1,8 +1,6 @@
 <template>
   <ModalFrame :show="show" @close="close">
-    <div
-      class="flex flex-col w-[470px] sm:w-[470px] min-w-0 sm:min-w-0 max-w-[760px] sm:max-w-[760px] max-h-[80vh]"
-    >
+    <div class="flex flex-col w-full overflow-y-auto">
       <div class="flex-1 min-h-0 overflow-y-auto">
         <div
           v-if="loading"
@@ -89,6 +87,10 @@ watch(() => props.slug, loadClaim, { immediate: true })
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.prose p {
+  margin-bottom: 1rem;
+  margin-right: 0.5rem;
 }
 @media (max-width: 640px) {
   .modal-frame > div {

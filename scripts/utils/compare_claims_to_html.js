@@ -64,7 +64,7 @@ function generateReport() {
   const missingClaims = compareClaims(htmlClaims, markdownTitles)
 
   // Output only the missing claims
-  const report = {
+  const report = {Corporate Greed
     missingClaims,
   }
 

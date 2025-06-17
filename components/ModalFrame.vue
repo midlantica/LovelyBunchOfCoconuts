@@ -6,12 +6,14 @@
       @mousedown.self="onClose"
     >
       <div
-        class="relative flex flex-col bg-slate-800 shadow-lg rounded-lg min-w-[40vw] max-w-[500px] modal-frame"
+        class="relative flex flex-col bg-slate-800 shadow-lg mx-6 rounded-lg min-w-[60vw] max-w-[500px] modal-frame"
         :style="modalStyle ? modalStyle : { maxHeight: '90vh', padding: '1rem 1.75rem' }"
         @mousedown.stop
       >
         <CloseButton @click="onClose" />
-        <slot />
+        <div class="w-full overflow-y-auto">
+          <slot />
+        </div>
       </div>
     </div>
   </teleport>

@@ -80,7 +80,7 @@ async function processSubdirectory() {
     log(`Step 0: Optimizing images in ${TARGET_DIR}`)
     try {
       // Use dynamic import to load ESM module
-      await import(path.join(__dirname, "../utils/imageProcessing.js")).then((mod) =>
+      await import(path.join(__dirname, "./utils/imageProcessing.js")).then((mod) =>
         mod.processImages(TARGET_DIR)
       )
       log("Image optimization completed successfully")

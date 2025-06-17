@@ -46,7 +46,7 @@
               :style="
                 isLandscape
                   ? 'max-width: 100%; max-height: 45vh; width: 100%; height: auto; display: block; margin: 0; padding: 0; object-fit: contain; object-position: top;'
-                  : 'max-width: 100%; width: auto; height: auto; display: block; margin: 0; padding: 0; object-fit: contain; object-position: top;'
+                  : 'max-width: 100%; width: 100%; height: auto; display: block; margin: 0; padding: 0; object-fit: contain; object-position: top;'
               "
             />
           </div>
@@ -57,7 +57,7 @@
               isLandscape ? 'flex-row gap-4' : 'flex-col',
             ]"
             :style="`
-              flex: 0 1 50%;
+              flex: 0 1 auto;
               min-height: 0;
               overflow: hidden;
               width: 100%;
@@ -71,8 +71,8 @@
             `"
           >
             <div
-              class="prose-invert mx-auto pt-2 w-full shrink prose prose-base"
-              style="font-size: clamp(1rem, 2vw, 1.5rem); width: 100%"
+              class="prose-invert mx-auto pt-2 w-full text-center shrink prose prose-base"
+              style="font-size: clamp(1rem, 2vw, 1.5rem); width: 100%; margin-bottom: 1rem"
             >
               <div v-html="getAboveHr(markdownContent)"></div>
             </div>
@@ -85,7 +85,7 @@
           </div>
           <div
             v-else
-            class="prose-invert mx-auto pt-2 w-full shrink prose prose-base"
+            class="prose-invert mx-auto pt-2 w-full text-center shrink prose prose-base"
             style="font-size: clamp(1rem, 2vw, 1.5rem); width: 100%"
           >
             <div v-html="markdownContent"></div>
@@ -291,3 +291,62 @@ const hasExtraText = computed(() => {
   )
 })
 </script>
+
+<style scoped>
+.prose img,
+.prose-invert img {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  max-width: 500px;
+  max-height: 500px;
+  height: auto;
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .meme-modal-img-column {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .meme-modal-img-column {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .meme-modal-img-column {
+    max-width: 45%;
+    height: auto;
+    object-fit: contain;
+    margin-right: 1rem;
+  }
+}
+
+.modal-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.modal-scrollable-text {
+  padding: 1rem;
+}
+</style>

@@ -1,7 +1,7 @@
-// scripts/imageProcessing.cjs
-const { processImages } = require("../utils/imageProcessing.cjs")
+#!/usr/bin/env node
 
 const path = require("path")
+const { processImages } = require("./utils/imageProcessing.js")
 
 const args = process.argv.slice(2)
 const targetDir = args[0] ? path.resolve(args[0]) : path.join(__dirname, "..", "public", "memes")
