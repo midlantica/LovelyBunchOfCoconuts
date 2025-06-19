@@ -1,0 +1,7 @@
+---
+title: "Good intentions will always be pleaded"
+---
+
+## "Good intentions will always be pleaded for every assumption of authority. It is hardly too strong to say that the Constitution was made to guard the people against the dangers of good intentions."
+
+Daniel Webster
