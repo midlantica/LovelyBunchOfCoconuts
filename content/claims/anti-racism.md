@@ -1,9 +1,9 @@
 ---
 title: "Anti-Racism"
 claim: "Anti-Racism"
-translation: "Racism with better branding."
+translation: "Racism, but with new targets."
 ---
 
 ## "Anti-Racism"
 
-## Racism with better branding.
+## Racism, but with new targets.

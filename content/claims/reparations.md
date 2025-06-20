@@ -1,9 +1,9 @@
 ---
 title: "Reparations"
 claim: "Reparations"
-translation: "Increased division and poverty."
+translation: "Punish people for the sins of others, long dead."
 ---
 
-## "Reparations".
+## "Reparations"
 
-## Increased division and poverty.
+## Punish people for the sins of others, long dead.

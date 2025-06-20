@@ -1,9 +1,9 @@
 ---
 title: "Intersectionality"
 claim: "Intersectionality"
-translation: "Oppression Olympics scorecard."
+translation: "Oppression Olympics, now with spreadsheets."
 ---
 
 ## "Intersectionality"
 
-## Oppression Olympics scorecard.
+## Oppression Olympics, now with spreadsheets.
