@@ -3,7 +3,7 @@
   <div>
     <div
       v-if="meme && meme.image && slug"
-      class="block bg-slate-800 hover:bg-slate-900 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 rounded-lg w-full h-full overflow-hidden cursor-pointer"
+      class="block bg-slate-800 hover:bg-slate-900 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 border hover:border hover:border-seagull-400 border-transparent rounded-lg w-full h-full overflow-hidden cursor-pointer"
       @click="openModal"
     >
       <img

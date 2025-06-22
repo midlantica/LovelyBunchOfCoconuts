@@ -2,7 +2,7 @@
 <template>
   <div
     v-if="claim && claim.claim && claim.translation && slug"
-    class="flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 shadow-[inset_0_0_12px_0_#0f1e24] px-4 py-3 rounded-lg h-full text-white transition-colors cursor-pointer"
+    class="flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 shadow-[inset_0_0_12px_0_#0f1e24] px-4 py-3 border hover:border hover:border-seagull-400 border-transparent rounded-lg h-full text-white transition-colors cursor-pointer"
     @click="openModal"
   >
     <div class="my-auto">

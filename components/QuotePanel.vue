@@ -2,7 +2,7 @@
 <template>
   <div
     v-if="quote && quote.headings && quote.headings.length > 0 && slug"
-    class="flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 shadow-[inset_0_0_12px_0_#0f1e24] px-6 py-4 rounded-lg text-white cursor-pointer quotePanel"
+    class="flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 shadow-[inset_0_0_12px_0_#0f1e24] px-6 py-4 border hover:border hover:border-seagull-400 border-transparent rounded-lg text-white cursor-pointer quotePanel"
     @click="openModal"
   >
     <div class="flex flex-col flex-wrap gap-0.5 my-auto">

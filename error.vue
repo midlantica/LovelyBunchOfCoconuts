@@ -1,17 +1,17 @@
 <!-- error.vue -->
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen px-4 py-16 text-white">
+  <div class="flex flex-col justify-center items-center px-4 py-16 min-h-screen text-white">
     <div class="text-center">
-      <h1 class="text-4xl font-light mb-4">Page Not Found</h1>
-      <p class="text-xl mb-8">The page you're looking for doesn't exist or has been moved.</p>
-      
-      <NuxtLink 
+      <h1 class="mb-4 font-light text-4xl">Page Not Found</h1>
+      <p class="mb-8 text-xl">The page you're looking for doesn't exist or has been moved.</p>
+
+      <!-- <NuxtLink 
         to="/" 
-        class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg text-white transition-colors"
         @click="handleError"
       >
         Return to Home
-      </NuxtLink>
+      </NuxtLink> -->
     </div>
   </div>
 </template>
@@ -20,6 +20,6 @@
 const error = useError()
 
 function handleError() {
-  clearError({ redirect: '/' })
+  clearError({ redirect: "/" })
 }
 </script>
