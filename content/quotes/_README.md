@@ -1,29 +1,20 @@
 # Quotes
 
-This folder contains all quotes displayed on the website.
+This folder contains all quote markdown files for the site.
 
-## How to Add a New Quote
+## How to Add a Quote
 
-1. Create a new file with a `.md` extension
-2. Use a descriptive filename (e.g., `einstein-imagination.md`)
-3. Copy the template below and fill in your quote details
+1. Create a new `.md` file in this folder.
+2. Use the following frontmatter and structure:
 
-## Template
-
-```md
----
-title: "Short Title for the Quote"
----
-
-The full text of the quote goes here.
 ```
-
-## Example
-
-```md
 ---
-title: "Imagination Quote"
+quoteText: "The quote goes here."
 ---
 
-Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.
+
+## quoteText is the main quote.
+
+attribution is the person or source of the quote.
+
 ```
