@@ -1,6 +1,6 @@
 # WakeUpNPC2
 
-A Nuxt 3 application that displays a balanced wall of content including claim translations, quotes, and memes.
+A Nuxt 3 application that displays a balanced wall of content including claims & claim translations, quotes, and memes.
 
 ## For Content Contributors
 
