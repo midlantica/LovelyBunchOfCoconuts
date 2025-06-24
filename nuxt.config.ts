@@ -3,7 +3,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxt/content", "nuxt-icon", "@nuxtjs/tailwindcss"],
   css: ["~/assets/css/main.css", "~/assets/css/transitions.css"],
-  ssr: false,
+  target: "static", // Enable static site generation
+  ssr: true, // Enable SSR for pre-rendering content
   content: {
     markdown: {
       html: true, // Allow raw HTML tags like <wbr> in markdown
@@ -15,6 +16,13 @@ export default defineNuxtConfig({
           // Theme used if `html.dark`
           dark: "github-dark",
         },
+      },
+    },
+    // Ensure content is sourced from the content/ directory
+    sources: {
+      content: {
+        driver: "fs",
+        base: "content",
       },
     },
     build: {
@@ -47,6 +55,24 @@ export default defineNuxtConfig({
   },
   nitro: {
     // Add compatibility date for Nitro
+    preset: "netlify", // Optimize for Netlify
     compatibilityDate: "2025-06-20",
+    experimental: {
+      openAPI: true,
+    },
+  },
+  // Pre-render dynamic routes for content
+  generate: {
+    routes: async () => {
+      const { $content } = require("@nuxt/content")
+      const claims = await $content("claims").fetch()
+      const quotes = await $content("quotes").fetch()
+      const memes = await $content("memes").fetch()
+      return [
+        ...claims.map((item) => `/claims/${item.slug || item._path.split("/").pop()}`),
+        ...quotes.map((item) => `/quotes/${item.slug || item._path.split("/").pop()}`),
+        ...memes.map((item) => `/memes/${item.slug || item._path.split("/").pop()}`),
+      ]
+    },
   },
 })
