@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxt/content", "nuxt-icon", "@nuxtjs/tailwindcss", "@nuxthub/core"],
+  modules: ["@nuxt/content", "nuxt-icon", "@nuxtjs/tailwindcss"],
   css: ["~/assets/css/main.css", "~/assets/css/transitions.css"],
   target: "static", // Enable static site generation
   ssr: true, // Enable SSR for pre-rendering content
