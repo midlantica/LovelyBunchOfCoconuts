@@ -53,9 +53,15 @@ export function useContentFeed(
       console.log("Starting content initialization")
 
       // Use fetch API to get content directly from the server API
-      const fetchClaims = fetch("/api/content?type=claims").then((res) => res.json())
-      const fetchQuotes = fetch("/api/content?type=quotes").then((res) => res.json())
-      const fetchMemes = fetch("/api/content?type=memes").then((res) => res.json())
+      const fetchClaims = fetch("/api/content?type=claims")
+        .then((res) => res.json())
+        .then((data) => (Array.isArray(data) ? data : []))
+      const fetchQuotes = fetch("/api/content?type=quotes")
+        .then((res) => res.json())
+        .then((data) => (Array.isArray(data) ? data : []))
+      const fetchMemes = fetch("/api/content?type=memes")
+        .then((res) => res.json())
+        .then((data) => (Array.isArray(data) ? data : []))
 
       // Execute all fetchs in parallel
       const [claims, quotes, memes] = await Promise.all([fetchClaims, fetchQuotes, fetchMemes])
