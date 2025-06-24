@@ -7,4 +7,13 @@
 [[redirects]]
   from = "/*"
   to = "/index.html"
+  status = 200[build]
+  command = "pnpm run generate"
+  publish = "dist"
+[build.environment]
+  PNPM_FLAGS = "--shamefully-hoist"
+  NODE_VERSION = "18.14.0"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
   status = 200

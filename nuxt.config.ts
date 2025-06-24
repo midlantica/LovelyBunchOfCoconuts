@@ -52,21 +52,8 @@ export default defineNuxtConfig({
       openAPI: true,
     },
     prerender: {
-      routes: (() => {
-        const fs = require("fs")
-        const path = require("path")
-        interface GetSlugs {
-          (dir: string): string[]
-        }
-
-        const getSlugs: GetSlugs = (dir: string): string[] =>
-          fs
-            .readdirSync(path.join(process.cwd(), "content", dir))
-            .filter((f: string) => f.endsWith(".md"))
-            .map((f: string) => `/${dir}/${f.replace(/\.md$/, "")}`)
-        return ["/", ...getSlugs("claims"), ...getSlugs("quotes"), ...getSlugs("memes")]
-      })(),
-      crawlLinks: true,
+      routes: ["/"],
+      crawlLinks: false,
     },
   },
   generate: {
