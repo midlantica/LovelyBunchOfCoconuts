@@ -22,29 +22,58 @@ export function interleaveContent(claims, quotes, memes) {
   let quoteIndex = 0
   let memeIndex = 0
 
-  while (claimIndex < claims.length || quoteIndex < quotes.length || memeIndex < memes.length) {
-    // Add 2 claims (or 1 pair)
-    const claimPair = [
-      { type: "claim", data: claims[claimIndex++] },
-      claimIndex < claims.length ? { type: "claim", data: claims[claimIndex++] } : null,
-    ].filter(Boolean)
-    output.push({ type: "claimPair", data: claimPair })
+  // Precompute valid claim pairs
+  const claimPairs = []
+  while (claimIndex + 1 < claims.length) {
+    claimPairs.push([
+      { type: "claim", data: claims[claimIndex] },
+      { type: "claim", data: claims[claimIndex + 1] },
+    ])
+    claimIndex += 2
+  }
+  // If odd number, you can choose to skip the last or show a single (not paired)
+  if (claimIndex < claims.length) {
+    // Optionally, add a single claim as a pair with only one item
+    claimPairs.push([{ type: "claim", data: claims[claimIndex] }])
+  }
 
-    // Add 1 quote
-    if (quoteIndex < quotes.length) {
-      output.push({ type: "quote", data: quotes[quoteIndex++] })
+  // Precompute valid meme pairs
+  const memePairs = []
+  while (memeIndex + 1 < memes.length) {
+    memePairs.push([
+      { type: "meme", data: memes[memeIndex] },
+      { type: "meme", data: memes[memeIndex + 1] },
+    ])
+    memeIndex += 2
+  }
+  if (memeIndex < memes.length) {
+    memePairs.push([{ type: "meme", data: memes[memeIndex] }])
+  }
+
+  // Interleave: claimPair, quote, memePair, quote, repeat
+  let pairIndex = 0,
+    quoteIdx = 0,
+    memePairIdx = 0
+  while (
+    pairIndex < claimPairs.length ||
+    quoteIdx < quotes.length ||
+    memePairIdx < memePairs.length
+  ) {
+    // Add claim pair if available
+    if (pairIndex < claimPairs.length) {
+      output.push({ type: "claimPair", data: claimPairs[pairIndex++] })
     }
-
-    // Add 2 memes (or 1 pair)
-    const memePair = [
-      { type: "meme", data: memes[memeIndex++] },
-      memeIndex < memes.length ? { type: "meme", data: memes[memeIndex++] } : null,
-    ].filter(Boolean)
-    output.push({ type: "memeRow", data: memePair })
-
-    // Add 1 quote
-    if (quoteIndex < quotes.length) {
-      output.push({ type: "quote", data: quotes[quoteIndex++] })
+    // Add quote if available
+    if (quoteIdx < quotes.length) {
+      output.push({ type: "quote", data: quotes[quoteIdx++] })
+    }
+    // Add meme pair if available
+    if (memePairIdx < memePairs.length) {
+      output.push({ type: "memeRow", data: memePairs[memePairIdx++] })
+    }
+    // Add quote if available
+    if (quoteIdx < quotes.length) {
+      output.push({ type: "quote", data: quotes[quoteIdx++] })
     }
   }
 
