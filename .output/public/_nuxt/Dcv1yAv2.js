@@ -1,1 +1,0 @@
-import{c as o,g as t,o as s}from"./P94DfexP.js";const n={class:"py-12 text-white text-center"},i={__name:"[...slug]",setup(a){return(l,e)=>(s(),o("div",n,e[0]||(e[0]=[t("h1",null,"Meme detail is now shown in a modal.",-1),t("p",null,"Return to the main wall to view memes.",-1)])))}};export{i as default};
