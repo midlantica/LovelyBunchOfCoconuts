@@ -1,5 +1,5 @@
-import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import ft, { Server as Server$1 } from 'node:http';
-import Qa, { Server } from 'node:https';
+import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import http, { Server as Server$1 } from 'node:http';
+import https, { Server } from 'node:https';
 import { EventEmitter } from 'node:events';
 import { Buffer as Buffer$1 } from 'node:buffer';
 import { promises, existsSync, mkdirSync } from 'node:fs';
@@ -158,8 +158,6 @@ function stringifyQuery(query) {
 const PROTOCOL_STRICT_REGEX = /^[\s\w\0+.-]{2,}:([/\\]{1,2})/;
 const PROTOCOL_REGEX = /^[\s\w\0+.-]{2,}:([/\\]{2})?/;
 const PROTOCOL_RELATIVE_REGEX = /^([/\\]\s*){2,}[^/\\]/;
-const PROTOCOL_SCRIPT_RE = /^[\s\0]*(blob|data|javascript|vbscript):$/i;
-const TRAILING_SLASH_RE = /\/$|\/\?|\/#/;
 const JOIN_LEADING_SLASH_RE = /^\.?\//;
 function hasProtocol(inputString, opts = {}) {
   if (typeof opts === "boolean") {
@@ -170,52 +168,20 @@ function hasProtocol(inputString, opts = {}) {
   }
   return PROTOCOL_REGEX.test(inputString) || (opts.acceptRelative ? PROTOCOL_RELATIVE_REGEX.test(inputString) : false);
 }
-function isScriptProtocol(protocol) {
-  return !!protocol && PROTOCOL_SCRIPT_RE.test(protocol);
-}
 function hasTrailingSlash(input = "", respectQueryAndFragment) {
-  if (!respectQueryAndFragment) {
+  {
     return input.endsWith("/");
   }
-  return TRAILING_SLASH_RE.test(input);
 }
 function withoutTrailingSlash(input = "", respectQueryAndFragment) {
-  if (!respectQueryAndFragment) {
+  {
     return (hasTrailingSlash(input) ? input.slice(0, -1) : input) || "/";
   }
-  if (!hasTrailingSlash(input, true)) {
-    return input || "/";
-  }
-  let path = input;
-  let fragment = "";
-  const fragmentIndex = input.indexOf("#");
-  if (fragmentIndex !== -1) {
-    path = input.slice(0, fragmentIndex);
-    fragment = input.slice(fragmentIndex);
-  }
-  const [s0, ...s] = path.split("?");
-  const cleanPath = s0.endsWith("/") ? s0.slice(0, -1) : s0;
-  return (cleanPath || "/") + (s.length > 0 ? `?${s.join("?")}` : "") + fragment;
 }
 function withTrailingSlash(input = "", respectQueryAndFragment) {
-  if (!respectQueryAndFragment) {
+  {
     return input.endsWith("/") ? input : input + "/";
   }
-  if (hasTrailingSlash(input, true)) {
-    return input || "/";
-  }
-  let path = input;
-  let fragment = "";
-  const fragmentIndex = input.indexOf("#");
-  if (fragmentIndex !== -1) {
-    path = input.slice(0, fragmentIndex);
-    fragment = input.slice(fragmentIndex);
-    if (!path) {
-      return fragment;
-    }
-  }
-  const [s0, ...s] = path.split("?");
-  return s0 + "/" + (s.length > 0 ? `?${s.join("?")}` : "") + fragment;
 }
 function hasLeadingSlash(input = "") {
   return input.startsWith("/");
@@ -2549,8 +2515,8 @@ function createNodeFetch() {
     return l;
   }
   const agentOptions = { keepAlive: true };
-  const httpAgent = new ft.Agent(agentOptions);
-  const httpsAgent = new Qa.Agent(agentOptions);
+  const httpAgent = new http.Agent(agentOptions);
+  const httpsAgent = new https.Agent(agentOptions);
   const nodeFetchOptions = {
     agent(parsedURL) {
       return parsedURL.protocol === "http:" ? httpAgent : httpsAgent;
@@ -4054,7 +4020,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "b173c76b-23e3-43ab-848e-eaa05eeecd88",
+    "buildId": "7cb165d1-813e-4572-b47b-94a093c18167",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -4267,28 +4233,6 @@ const defaultNamespace = _globalThis[globalKey] || (_globalThis[globalKey] = cre
 const getContext = (key, opts = {}) => defaultNamespace.get(key, opts);
 const asyncHandlersKey = "__unctx_async_handlers__";
 const asyncHandlers = _globalThis[asyncHandlersKey] || (_globalThis[asyncHandlersKey] = /* @__PURE__ */ new Set());
-function executeAsync(function_) {
-  const restores = [];
-  for (const leaveHandler of asyncHandlers) {
-    const restore2 = leaveHandler();
-    if (restore2) {
-      restores.push(restore2);
-    }
-  }
-  const restore = () => {
-    for (const restore2 of restores) {
-      restore2();
-    }
-  };
-  let awaitable = function_();
-  if (awaitable && typeof awaitable === "object" && "catch" in awaitable) {
-    awaitable = awaitable.catch((error) => {
-      restore();
-      throw error;
-    });
-  }
-  return [awaitable, restore];
-}
 
 getContext("nitro-app", {
   asyncContext: false,
@@ -4566,4251 +4510,4258 @@ const assets = {
   "/.DS_Store": {
     "type": "text/plain; charset=utf-8",
     "etag": "\"3804-HqpsG9tRU5f8Y3pGwm3aXBQDLho\"",
-    "mtime": "2025-06-24T06:02:51.054Z",
+    "mtime": "2025-06-24T17:15:27.365Z",
     "size": 14340,
     "path": "../public/.DS_Store"
   },
   "/apple-touch-icon.png": {
     "type": "image/png",
     "etag": "\"3351-BbwKT7ZwuNme44Pxgt5/wcdl+KY\"",
-    "mtime": "2025-06-24T06:02:51.052Z",
+    "mtime": "2025-06-24T17:15:27.364Z",
     "size": 13137,
     "path": "../public/apple-touch-icon.png"
   },
   "/favicon.ico": {
     "type": "image/vnd.microsoft.icon",
     "etag": "\"15b6-q4UusjSMIKbfI4K4TDrSR3lBdrc\"",
-    "mtime": "2025-06-24T06:02:51.053Z",
+    "mtime": "2025-06-24T17:15:27.364Z",
     "size": 5558,
     "path": "../public/favicon.ico"
   },
   "/grainy-background-aqua.afphoto": {
     "type": "text/plain; charset=utf-8",
     "etag": "\"28e5f5-eIGCz6TjueqMi6V6qClPLMdRpXQ\"",
-    "mtime": "2025-06-24T06:02:51.059Z",
+    "mtime": "2025-06-24T17:15:27.369Z",
     "size": 2680309,
     "path": "../public/grainy-background-aqua.afphoto"
   },
   "/grainy-background-aqua.jpg": {
     "type": "image/jpeg",
     "etag": "\"810ec-nenZ4pd+szn1A1zNiyfErUn1rLI\"",
-    "mtime": "2025-06-24T06:02:51.052Z",
+    "mtime": "2025-06-24T17:15:27.366Z",
     "size": 528620,
     "path": "../public/grainy-background-aqua.jpg"
   },
   "/grainy-background.afphoto": {
     "type": "text/plain; charset=utf-8",
     "etag": "\"3a480b-Y6THzpDVD180Ip0ggQXsO8o5lRQ\"",
-    "mtime": "2025-06-24T06:02:51.068Z",
+    "mtime": "2025-06-24T17:15:27.369Z",
     "size": 3819531,
     "path": "../public/grainy-background.afphoto"
   },
   "/grainy-background.jpg": {
     "type": "image/jpeg",
     "etag": "\"41eda-6RPt9FPngRTZpIIKtBgVZJQ30Z0\"",
-    "mtime": "2025-06-24T06:02:51.059Z",
+    "mtime": "2025-06-24T17:15:27.367Z",
     "size": 270042,
     "path": "../public/grainy-background.jpg"
   },
   "/robots.txt": {
     "type": "text/plain; charset=utf-8",
     "etag": "\"1-rcg7GeeTSRscbqD9i0bNnzLlkvw\"",
-    "mtime": "2025-06-24T06:02:51.054Z",
+    "mtime": "2025-06-24T17:15:27.365Z",
     "size": 1,
     "path": "../public/robots.txt"
-  },
-  "/_nuxt/-vrz-jqy.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"d3-1lStyc2HpEE/15r6OcX01QNrnow\"",
-    "mtime": "2025-06-24T06:02:50.368Z",
-    "size": 211,
-    "path": "../public/_nuxt/-vrz-jqy.js"
-  },
-  "/_nuxt/6-NTlUJ3.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"244-c7eTR/kgjsaH5AexNa+0f4RxFfA\"",
-    "mtime": "2025-06-24T06:02:50.360Z",
-    "size": 580,
-    "path": "../public/_nuxt/6-NTlUJ3.js"
-  },
-  "/_nuxt/B0TGxY1p.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"cf-2rlnC2aZhFV0QhhE3eGvvZfnJOc\"",
-    "mtime": "2025-06-24T06:02:50.360Z",
-    "size": 207,
-    "path": "../public/_nuxt/B0TGxY1p.js"
-  },
-  "/_nuxt/B2dhDTSZ.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"24f-Qlg159P53JqFEx2NdHrM48i1Qck\"",
-    "mtime": "2025-06-24T06:02:50.360Z",
-    "size": 591,
-    "path": "../public/_nuxt/B2dhDTSZ.js"
-  },
-  "/_nuxt/BDEtQsgo.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"218-FHdxdELXG+yrrJvKoOrrBW8DRtQ\"",
-    "mtime": "2025-06-24T06:02:50.360Z",
-    "size": 536,
-    "path": "../public/_nuxt/BDEtQsgo.js"
-  },
-  "/_nuxt/BDynH7hR.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"cf-echvFMgFdFpY8YDBHHKW0HicCJQ\"",
-    "mtime": "2025-06-24T06:02:50.362Z",
-    "size": 207,
-    "path": "../public/_nuxt/BDynH7hR.js"
-  },
-  "/_nuxt/BE5zHdzd.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"ce-0meYWO6meaCQSukbuwe3pd29eVg\"",
-    "mtime": "2025-06-24T06:02:50.360Z",
-    "size": 206,
-    "path": "../public/_nuxt/BE5zHdzd.js"
-  },
-  "/_nuxt/BOubcU75.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"24f-E4iBDTwbwwAl+x+7SdWCv8Qq1pU\"",
-    "mtime": "2025-06-24T06:02:50.361Z",
-    "size": 591,
-    "path": "../public/_nuxt/BOubcU75.js"
-  },
-  "/_nuxt/BQeVINCb.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"1182-ga5sBABR82C1f5HZ2T/0EAglIlM\"",
-    "mtime": "2025-06-24T06:02:50.362Z",
-    "size": 4482,
-    "path": "../public/_nuxt/BQeVINCb.js"
-  },
-  "/_nuxt/BU5_BEkG.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"4b40-a9Mv7n1Ba8q/Zb12rGg2EkEX/XM\"",
-    "mtime": "2025-06-24T06:02:50.363Z",
-    "size": 19264,
-    "path": "../public/_nuxt/BU5_BEkG.js"
-  },
-  "/_nuxt/BgSgEyVw.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"24f-PMjrltnSjP8zt0MYUsGfUebxne0\"",
-    "mtime": "2025-06-24T06:02:50.361Z",
-    "size": 591,
-    "path": "../public/_nuxt/BgSgEyVw.js"
-  },
-  "/_nuxt/BlkSsfS4.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"2bb9d-6aMnsSVXwOIzyk+AEJBPs+cDiZE\"",
-    "mtime": "2025-06-24T06:02:50.363Z",
-    "size": 179101,
-    "path": "../public/_nuxt/BlkSsfS4.js"
-  },
-  "/_nuxt/BnJMp8Yc.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"24f-3bzzbLvqJG+00R01kSJxb6JW2gM\"",
-    "mtime": "2025-06-24T06:02:50.363Z",
-    "size": 591,
-    "path": "../public/_nuxt/BnJMp8Yc.js"
-  },
-  "/_nuxt/BprqOTfc.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"bcc-unBvvhQv9jkvMRFQxVUvnrmzApk\"",
-    "mtime": "2025-06-24T06:02:50.363Z",
-    "size": 3020,
-    "path": "../public/_nuxt/BprqOTfc.js"
-  },
-  "/_nuxt/BqGnSgMl.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"43a-wwxhrEPsTr/7GSBh7/iTJ5OHdmw\"",
-    "mtime": "2025-06-24T06:02:50.363Z",
-    "size": 1082,
-    "path": "../public/_nuxt/BqGnSgMl.js"
-  },
-  "/_nuxt/Bv1lD7L-.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"199-zktW8nMmuB1crrGnBGQ/v9Yu0Qs\"",
-    "mtime": "2025-06-24T06:02:50.363Z",
-    "size": 409,
-    "path": "../public/_nuxt/Bv1lD7L-.js"
-  },
-  "/_nuxt/C7Pwu5JS.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"d1-1NyDzags73ak9xSnOM6wsOu8aYg\"",
-    "mtime": "2025-06-24T06:02:50.363Z",
-    "size": 209,
-    "path": "../public/_nuxt/C7Pwu5JS.js"
-  },
-  "/_nuxt/CEepk55G.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"15c6-vsdnXAPPX/zEMVlenKB9CZGIWTk\"",
-    "mtime": "2025-06-24T06:02:50.364Z",
-    "size": 5574,
-    "path": "../public/_nuxt/CEepk55G.js"
-  },
-  "/_nuxt/CH4a5A87.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"cf-65oISvvXW+jf3R6BK/byMxfoefM\"",
-    "mtime": "2025-06-24T06:02:50.364Z",
-    "size": 207,
-    "path": "../public/_nuxt/CH4a5A87.js"
-  },
-  "/_nuxt/CIUbOc5i.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"269-KmLwBmf86arJ64sP27DTZc6CNmk\"",
-    "mtime": "2025-06-24T06:02:50.364Z",
-    "size": 617,
-    "path": "../public/_nuxt/CIUbOc5i.js"
-  },
-  "/_nuxt/CLTkJI3C.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"cf-mxHPCZyvrr154PJ9NeVrot8Fvss\"",
-    "mtime": "2025-06-24T06:02:50.364Z",
-    "size": 207,
-    "path": "../public/_nuxt/CLTkJI3C.js"
-  },
-  "/_nuxt/CU0UHvx8.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"d2-AgykR7J/aR0QKQztsLxTr3Rtrh0\"",
-    "mtime": "2025-06-24T06:02:50.364Z",
-    "size": 210,
-    "path": "../public/_nuxt/CU0UHvx8.js"
-  },
-  "/_nuxt/CeRHLO8c.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"d7-uWM1EZE9FyfrB6Pe3aKQRRZx0cQ\"",
-    "mtime": "2025-06-24T06:02:50.364Z",
-    "size": 215,
-    "path": "../public/_nuxt/CeRHLO8c.js"
-  },
-  "/_nuxt/Cq_RholM.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"20bc-oWOZS0b7qNmUMf5h4xLweBbv7+Y\"",
-    "mtime": "2025-06-24T06:02:50.364Z",
-    "size": 8380,
-    "path": "../public/_nuxt/Cq_RholM.js"
-  },
-  "/_nuxt/Cxtg_kZF.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"cf-sv85FT3YJ67HmQt/CEQGbG/J+bE\"",
-    "mtime": "2025-06-24T06:02:50.366Z",
-    "size": 207,
-    "path": "../public/_nuxt/Cxtg_kZF.js"
-  },
-  "/_nuxt/D1NMTosE.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"b24-3INemMa77rrQ/5U26AOgBEUF2bs\"",
-    "mtime": "2025-06-24T06:02:50.364Z",
-    "size": 2852,
-    "path": "../public/_nuxt/D1NMTosE.js"
-  },
-  "/_nuxt/DA-7lDkf.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"15cd-I7nobKVF7f4OyLPM8U7fKQuBDho\"",
-    "mtime": "2025-06-24T06:02:50.366Z",
-    "size": 5581,
-    "path": "../public/_nuxt/DA-7lDkf.js"
-  },
-  "/_nuxt/DA0r6xB8.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"c9a-J51/CZyo70e+N+1lCHw16eYIZ18\"",
-    "mtime": "2025-06-24T06:02:50.366Z",
-    "size": 3226,
-    "path": "../public/_nuxt/DA0r6xB8.js"
-  },
-  "/_nuxt/DIQmgA77.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"cf-ZAfKLzxYP4qG6cJ0PEGzrSlKgos\"",
-    "mtime": "2025-06-24T06:02:50.365Z",
-    "size": 207,
-    "path": "../public/_nuxt/DIQmgA77.js"
-  },
-  "/_nuxt/DOeo7Ekd.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"1cc-7LmWxXhQ7w9zxhL7VXhU0mttFUI\"",
-    "mtime": "2025-06-24T06:02:50.365Z",
-    "size": 460,
-    "path": "../public/_nuxt/DOeo7Ekd.js"
-  },
-  "/_nuxt/DR-5EWpO.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"132-55neQwAywolT4IlxBm+7Sswp6hQ\"",
-    "mtime": "2025-06-24T06:02:50.365Z",
-    "size": 306,
-    "path": "../public/_nuxt/DR-5EWpO.js"
-  },
-  "/_nuxt/Dhd-T9a_.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"a6-ymYM6XveuNiAIi9Z2EAkUrQOXBg\"",
-    "mtime": "2025-06-24T06:02:50.365Z",
-    "size": 166,
-    "path": "../public/_nuxt/Dhd-T9a_.js"
-  },
-  "/_nuxt/DiWx5xmB.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"cf-qnfq2dDuerAxdCVYuf7d6NMObjk\"",
-    "mtime": "2025-06-24T06:02:50.367Z",
-    "size": 207,
-    "path": "../public/_nuxt/DiWx5xmB.js"
-  },
-  "/_nuxt/DlAUqK2U.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"5b-eFCz/UrraTh721pgAl0VxBNR1es\"",
-    "mtime": "2025-06-24T06:02:50.366Z",
-    "size": 91,
-    "path": "../public/_nuxt/DlAUqK2U.js"
-  },
-  "/_nuxt/DwjP_fan.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"1985e-B/m33LANFoFOEYtXkFSalaV2R9E\"",
-    "mtime": "2025-06-24T06:02:50.367Z",
-    "size": 104542,
-    "path": "../public/_nuxt/DwjP_fan.js"
-  },
-  "/_nuxt/DyA96n8b.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"bcb-O+aZoZTUQtiFLV4qy4yoxQGEBAg\"",
-    "mtime": "2025-06-24T06:02:50.367Z",
-    "size": 3019,
-    "path": "../public/_nuxt/DyA96n8b.js"
-  },
-  "/_nuxt/Icon.SPH2noX5.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"43-6cLOdVoYTf4bgZQe2fs4Lut/BbU\"",
-    "mtime": "2025-06-24T06:02:50.367Z",
-    "size": 67,
-    "path": "../public/_nuxt/Icon.SPH2noX5.css"
-  },
-  "/_nuxt/IconCSS.OBKc-302.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"102-kwgjOmDUV00fbCCETi4ER0B40e8\"",
-    "mtime": "2025-06-24T06:02:50.367Z",
-    "size": 258,
-    "path": "../public/_nuxt/IconCSS.OBKc-302.css"
-  },
-  "/_nuxt/LaldNIsF.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"d2-UTEJsnMenDAycbGAhI6+3tIaxuU\"",
-    "mtime": "2025-06-24T06:02:50.367Z",
-    "size": 210,
-    "path": "../public/_nuxt/LaldNIsF.js"
-  },
-  "/_nuxt/ProsePre.D5orA6B_.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"1e-jczvRAVUXbzGL6yotozKFbyMO4s\"",
-    "mtime": "2025-06-24T06:02:50.367Z",
-    "size": 30,
-    "path": "../public/_nuxt/ProsePre.D5orA6B_.css"
-  },
-  "/_nuxt/WakeUpNPC.cxikUEtC.svg": {
-    "type": "image/svg+xml",
-    "etag": "\"13fe-mCCYyEDoY4FmtGp4uVozuO1AP/o\"",
-    "mtime": "2025-06-24T06:02:50.367Z",
-    "size": 5118,
-    "path": "../public/_nuxt/WakeUpNPC.cxikUEtC.svg"
-  },
-  "/_nuxt/_...B-dNEtXS.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"129-Tm5xpZbq7JEsNwpvgUKc7hv8mto\"",
-    "mtime": "2025-06-24T06:02:50.367Z",
-    "size": 297,
-    "path": "../public/_nuxt/_...B-dNEtXS.css"
-  },
-  "/_nuxt/_...B34Y31rT.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"105-vjGA4c8NfArHqLmuh7YJBuacs0U\"",
-    "mtime": "2025-06-24T06:02:50.367Z",
-    "size": 261,
-    "path": "../public/_nuxt/_...B34Y31rT.css"
-  },
-  "/_nuxt/content-detail.pywetWIK.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"59-L7wiXP9bq1WX7o2fOPl/QizQAlQ\"",
-    "mtime": "2025-06-24T06:02:50.368Z",
-    "size": 89,
-    "path": "../public/_nuxt/content-detail.pywetWIK.css"
-  },
-  "/_nuxt/dRzfz4w7.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"24f-38Wx8fJcNDatr+tEg2aZHfJYIMU\"",
-    "mtime": "2025-06-24T06:02:50.368Z",
-    "size": 591,
-    "path": "../public/_nuxt/dRzfz4w7.js"
-  },
-  "/_nuxt/default.9Qa0p9ZD.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"ce-MfSCp3WN8vM3DHh//9L8tjwoGfo\"",
-    "mtime": "2025-06-24T06:02:50.368Z",
-    "size": 206,
-    "path": "../public/_nuxt/default.9Qa0p9ZD.css"
-  },
-  "/_nuxt/home.DdMWlvMV.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"c1b-zqE6ieKhhib6LGRDzTAapOe7jH8\"",
-    "mtime": "2025-06-24T06:02:50.368Z",
-    "size": 3099,
-    "path": "../public/_nuxt/home.DdMWlvMV.css"
-  },
-  "/_nuxt/index.BX2qW4Yn.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"52a-ToceEoEzD9FTPKQMFMyCndUtaIc\"",
-    "mtime": "2025-06-24T06:02:50.368Z",
-    "size": 1322,
-    "path": "../public/_nuxt/index.BX2qW4Yn.css"
-  },
-  "/_nuxt/mW6DcdhX.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"2cb-uBUZAyfxqeY4H3BG/8lYD0D3Xew\"",
-    "mtime": "2025-06-24T06:02:50.368Z",
-    "size": 715,
-    "path": "../public/_nuxt/mW6DcdhX.js"
-  },
-  "/_nuxt/pfR4NcV7.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"52de-yADj0H5G/5dKuEvBD7Te8j0m4Bk\"",
-    "mtime": "2025-06-24T06:02:50.368Z",
-    "size": 21214,
-    "path": "../public/_nuxt/pfR4NcV7.js"
-  },
-  "/_nuxt/pwnflWlf.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"bc9-ml8LCN4m5nAQFtRUbRIVqsy/l8g\"",
-    "mtime": "2025-06-24T06:02:50.368Z",
-    "size": 3017,
-    "path": "../public/_nuxt/pwnflWlf.js"
-  },
-  "/_nuxt/vc_e5V70.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"d2-iD8s+hEHQtkM8hbZu5lGKGvB350\"",
-    "mtime": "2025-06-24T06:02:50.368Z",
-    "size": 210,
-    "path": "../public/_nuxt/vc_e5V70.js"
-  },
-  "/favicon/.DS_Store": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"1804-ebUEhEpT3vH/zS28ukgdkg/s1Hs\"",
-    "mtime": "2025-06-24T06:02:50.412Z",
-    "size": 6148,
-    "path": "../public/favicon/.DS_Store"
-  },
-  "/favicon/favicon-120x120.png": {
-    "type": "image/png",
-    "etag": "\"1cc4-ZxJddprgOHr4xuGiG3CLTXoftbY\"",
-    "mtime": "2025-06-24T06:02:50.424Z",
-    "size": 7364,
-    "path": "../public/favicon/favicon-120x120.png"
-  },
-  "/favicon/favicon-144x144.png": {
-    "type": "image/png",
-    "etag": "\"24cf-78tfa/iqqYwE4vlqQ/6mT7IrZY4\"",
-    "mtime": "2025-06-24T06:02:50.424Z",
-    "size": 9423,
-    "path": "../public/favicon/favicon-144x144.png"
-  },
-  "/favicon/favicon-16x16.png": {
-    "type": "image/png",
-    "etag": "\"15b6-q4UusjSMIKbfI4K4TDrSR3lBdrc\"",
-    "mtime": "2025-06-24T06:02:50.424Z",
-    "size": 5558,
-    "path": "../public/favicon/favicon-16x16.png"
-  },
-  "/favicon/favicon-192x192.png": {
-    "type": "image/png",
-    "etag": "\"3858-oS3ylkkCRLRsmGZCv2Rbb+i1pWg\"",
-    "mtime": "2025-06-24T06:02:50.423Z",
-    "size": 14424,
-    "path": "../public/favicon/favicon-192x192.png"
-  },
-  "/favicon/favicon-32x32.png": {
-    "type": "image/png",
-    "etag": "\"640-KNXy0weQzRFYBuMbiJnJ5ge1Oec\"",
-    "mtime": "2025-06-24T06:02:50.423Z",
-    "size": 1600,
-    "path": "../public/favicon/favicon-32x32.png"
-  },
-  "/favicon/favicon-36x36.png": {
-    "type": "image/png",
-    "etag": "\"6d9-gDBpYSJN5jYejoQ00/xntojkqgM\"",
-    "mtime": "2025-06-24T06:02:50.424Z",
-    "size": 1753,
-    "path": "../public/favicon/favicon-36x36.png"
-  },
-  "/favicon/favicon-48x48.png": {
-    "type": "image/png",
-    "etag": "\"953-gdQhU0sXDBR/kGLVV60Q+cYZfl4\"",
-    "mtime": "2025-06-24T06:02:50.426Z",
-    "size": 2387,
-    "path": "../public/favicon/favicon-48x48.png"
-  },
-  "/favicon/favicon-512x512.png": {
-    "type": "image/png",
-    "etag": "\"125b3-AoqZFQVvWQA1jlyU6+AWbtxo/X4\"",
-    "mtime": "2025-06-24T06:02:50.428Z",
-    "size": 75187,
-    "path": "../public/favicon/favicon-512x512.png"
-  },
-  "/favicon/favicon-57x57.png": {
-    "type": "image/png",
-    "etag": "\"b98-TPHIY2Bp2lW5laMpyBEL9zJIHQI\"",
-    "mtime": "2025-06-24T06:02:50.426Z",
-    "size": 2968,
-    "path": "../public/favicon/favicon-57x57.png"
-  },
-  "/favicon/favicon-60x60.png": {
-    "type": "image/png",
-    "etag": "\"c19-WU+qtXGysE1qN9s+d8ZuEsIcflk\"",
-    "mtime": "2025-06-24T06:02:50.428Z",
-    "size": 3097,
-    "path": "../public/favicon/favicon-60x60.png"
-  },
-  "/favicon/favicon-72x72.png": {
-    "type": "image/png",
-    "etag": "\"e63-mnptv9SoRgL5gp59K3WxSNmH2+g\"",
-    "mtime": "2025-06-24T06:02:50.428Z",
-    "size": 3683,
-    "path": "../public/favicon/favicon-72x72.png"
-  },
-  "/favicon/favicon-96x96.png": {
-    "type": "image/png",
-    "etag": "\"14ad-BqfFc8G7US3mSb9m0/t+yh5JUS8\"",
-    "mtime": "2025-06-24T06:02:50.426Z",
-    "size": 5293,
-    "path": "../public/favicon/favicon-96x96.png"
-  },
-  "/favicon/site.webmanifest": {
-    "type": "application/manifest+json",
-    "etag": "\"6a9-qcJePSdkPjcNALCjRgxPJwDMyZY\"",
-    "mtime": "2025-06-24T06:02:50.428Z",
-    "size": 1705,
-    "path": "../public/favicon/site.webmanifest"
   },
   "/memes/.DS_Store": {
     "type": "text/plain; charset=utf-8",
     "etag": "\"4804-cnpP0n8HY2gDSBL6PaUatbc/8Io\"",
-    "mtime": "2025-06-24T06:02:50.412Z",
+    "mtime": "2025-06-24T17:15:26.763Z",
     "size": 18436,
     "path": "../public/memes/.DS_Store"
   },
   "/memes/__ReadMe.md": {
     "type": "text/markdown; charset=utf-8",
     "etag": "\"3a1-qTvFWdPhFA7q/hCusb1H0b5QeSs\"",
-    "mtime": "2025-06-24T06:02:50.428Z",
+    "mtime": "2025-06-24T17:15:26.772Z",
     "size": 929,
     "path": "../public/memes/__ReadMe.md"
+  },
+  "/favicon/.DS_Store": {
+    "type": "text/plain; charset=utf-8",
+    "etag": "\"1804-ebUEhEpT3vH/zS28ukgdkg/s1Hs\"",
+    "mtime": "2025-06-24T17:15:26.763Z",
+    "size": 6148,
+    "path": "../public/favicon/.DS_Store"
+  },
+  "/favicon/favicon-120x120.png": {
+    "type": "image/png",
+    "etag": "\"1cc4-ZxJddprgOHr4xuGiG3CLTXoftbY\"",
+    "mtime": "2025-06-24T17:15:26.773Z",
+    "size": 7364,
+    "path": "../public/favicon/favicon-120x120.png"
+  },
+  "/favicon/favicon-144x144.png": {
+    "type": "image/png",
+    "etag": "\"24cf-78tfa/iqqYwE4vlqQ/6mT7IrZY4\"",
+    "mtime": "2025-06-24T17:15:26.772Z",
+    "size": 9423,
+    "path": "../public/favicon/favicon-144x144.png"
+  },
+  "/favicon/favicon-16x16.png": {
+    "type": "image/png",
+    "etag": "\"15b6-q4UusjSMIKbfI4K4TDrSR3lBdrc\"",
+    "mtime": "2025-06-24T17:15:26.772Z",
+    "size": 5558,
+    "path": "../public/favicon/favicon-16x16.png"
+  },
+  "/favicon/favicon-192x192.png": {
+    "type": "image/png",
+    "etag": "\"3858-oS3ylkkCRLRsmGZCv2Rbb+i1pWg\"",
+    "mtime": "2025-06-24T17:15:26.773Z",
+    "size": 14424,
+    "path": "../public/favicon/favicon-192x192.png"
+  },
+  "/favicon/favicon-32x32.png": {
+    "type": "image/png",
+    "etag": "\"640-KNXy0weQzRFYBuMbiJnJ5ge1Oec\"",
+    "mtime": "2025-06-24T17:15:26.773Z",
+    "size": 1600,
+    "path": "../public/favicon/favicon-32x32.png"
+  },
+  "/favicon/favicon-36x36.png": {
+    "type": "image/png",
+    "etag": "\"6d9-gDBpYSJN5jYejoQ00/xntojkqgM\"",
+    "mtime": "2025-06-24T17:15:26.773Z",
+    "size": 1753,
+    "path": "../public/favicon/favicon-36x36.png"
+  },
+  "/favicon/favicon-48x48.png": {
+    "type": "image/png",
+    "etag": "\"953-gdQhU0sXDBR/kGLVV60Q+cYZfl4\"",
+    "mtime": "2025-06-24T17:15:26.774Z",
+    "size": 2387,
+    "path": "../public/favicon/favicon-48x48.png"
+  },
+  "/favicon/favicon-512x512.png": {
+    "type": "image/png",
+    "etag": "\"125b3-AoqZFQVvWQA1jlyU6+AWbtxo/X4\"",
+    "mtime": "2025-06-24T17:15:26.774Z",
+    "size": 75187,
+    "path": "../public/favicon/favicon-512x512.png"
+  },
+  "/favicon/favicon-57x57.png": {
+    "type": "image/png",
+    "etag": "\"b98-TPHIY2Bp2lW5laMpyBEL9zJIHQI\"",
+    "mtime": "2025-06-24T17:15:26.776Z",
+    "size": 2968,
+    "path": "../public/favicon/favicon-57x57.png"
+  },
+  "/favicon/favicon-60x60.png": {
+    "type": "image/png",
+    "etag": "\"c19-WU+qtXGysE1qN9s+d8ZuEsIcflk\"",
+    "mtime": "2025-06-24T17:15:26.776Z",
+    "size": 3097,
+    "path": "../public/favicon/favicon-60x60.png"
+  },
+  "/favicon/favicon-72x72.png": {
+    "type": "image/png",
+    "etag": "\"e63-mnptv9SoRgL5gp59K3WxSNmH2+g\"",
+    "mtime": "2025-06-24T17:15:26.778Z",
+    "size": 3683,
+    "path": "../public/favicon/favicon-72x72.png"
+  },
+  "/favicon/favicon-96x96.png": {
+    "type": "image/png",
+    "etag": "\"14ad-BqfFc8G7US3mSb9m0/t+yh5JUS8\"",
+    "mtime": "2025-06-24T17:15:26.793Z",
+    "size": 5293,
+    "path": "../public/favicon/favicon-96x96.png"
+  },
+  "/favicon/site.webmanifest": {
+    "type": "application/manifest+json",
+    "etag": "\"6a9-qcJePSdkPjcNALCjRgxPJwDMyZY\"",
+    "mtime": "2025-06-24T17:15:26.776Z",
+    "size": 1705,
+    "path": "../public/favicon/site.webmanifest"
+  },
+  "/_nuxt/4TxibJK0.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"4b40-FoE1HUmdZbOlbKk1bFJ+cVVSR0k\"",
+    "mtime": "2025-06-24T17:15:26.712Z",
+    "size": 19264,
+    "path": "../public/_nuxt/4TxibJK0.js"
+  },
+  "/_nuxt/B-BlGZgS.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"d2-Y2DgX+LshKdGkO/j1s8cvYIa8Y0\"",
+    "mtime": "2025-06-24T17:15:26.712Z",
+    "size": 210,
+    "path": "../public/_nuxt/B-BlGZgS.js"
+  },
+  "/_nuxt/B2baDu1c.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"cf-E5KPAlRJTjkblQLi8+McUfY1Z64\"",
+    "mtime": "2025-06-24T17:15:26.712Z",
+    "size": 207,
+    "path": "../public/_nuxt/B2baDu1c.js"
+  },
+  "/_nuxt/B7_0rgcz.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"bc9-M7EsVdEdazV2+SYir2Dfn+O+Xh0\"",
+    "mtime": "2025-06-24T17:15:26.712Z",
+    "size": 3017,
+    "path": "../public/_nuxt/B7_0rgcz.js"
+  },
+  "/_nuxt/BPTJBfYp.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"199-oLvrD5H/+q4heNAKF/SFjBNn7mY\"",
+    "mtime": "2025-06-24T17:15:26.712Z",
+    "size": 409,
+    "path": "../public/_nuxt/BPTJBfYp.js"
+  },
+  "/_nuxt/BROHMhgv.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"15cd-JpaLQQ55nHozWURU2ra0Y7ZTZ8Y\"",
+    "mtime": "2025-06-24T17:15:26.712Z",
+    "size": 5581,
+    "path": "../public/_nuxt/BROHMhgv.js"
+  },
+  "/_nuxt/BaUARQXD.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"269-kGBdAMjVwEoznyDvmer9kJFiitM\"",
+    "mtime": "2025-06-24T17:15:26.712Z",
+    "size": 617,
+    "path": "../public/_nuxt/BaUARQXD.js"
+  },
+  "/_nuxt/BwDhNnI0.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"cf-pUMwLDIR3rLGejja1yyMI8XLMIY\"",
+    "mtime": "2025-06-24T17:15:26.712Z",
+    "size": 207,
+    "path": "../public/_nuxt/BwDhNnI0.js"
+  },
+  "/_nuxt/C-b68yCC.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"2cb-7d15IGonoem2/mold429BZiSRq0\"",
+    "mtime": "2025-06-24T17:15:26.712Z",
+    "size": 715,
+    "path": "../public/_nuxt/C-b68yCC.js"
+  },
+  "/_nuxt/C38XuK44.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"cf-Q1P8rnEReJx96lSLh5y6Eb5DXc0\"",
+    "mtime": "2025-06-24T17:15:26.712Z",
+    "size": 207,
+    "path": "../public/_nuxt/C38XuK44.js"
+  },
+  "/_nuxt/C8QJIIc3.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"cf-u77rgX8PtcFbMXnpVRjj4zD5XlU\"",
+    "mtime": "2025-06-24T17:15:26.712Z",
+    "size": 207,
+    "path": "../public/_nuxt/C8QJIIc3.js"
+  },
+  "/_nuxt/C9_fo7gj.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"d7-+s2jhkCtDPlSSPyX48wAeKde+Rc\"",
+    "mtime": "2025-06-24T17:15:26.712Z",
+    "size": 215,
+    "path": "../public/_nuxt/C9_fo7gj.js"
+  },
+  "/_nuxt/C9tRyYzR.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"2119-jKU3NAjqaK2a3Di90gWdur6q8dA\"",
+    "mtime": "2025-06-24T17:15:26.713Z",
+    "size": 8473,
+    "path": "../public/_nuxt/C9tRyYzR.js"
+  },
+  "/_nuxt/CEZIuhus.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"cf-DDezI2cPtEzQsNL5eZIcGO21+4A\"",
+    "mtime": "2025-06-24T17:15:26.712Z",
+    "size": 207,
+    "path": "../public/_nuxt/CEZIuhus.js"
+  },
+  "/_nuxt/CYEia8Os.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"244-wvvL+ZIrqD3RDS45hYR3dfD8M1I\"",
+    "mtime": "2025-06-24T17:15:26.713Z",
+    "size": 580,
+    "path": "../public/_nuxt/CYEia8Os.js"
+  },
+  "/_nuxt/Cmxf2Eta.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"bcc-JmdouPUbOytVt8U32SxWUpA14O0\"",
+    "mtime": "2025-06-24T17:15:26.713Z",
+    "size": 3020,
+    "path": "../public/_nuxt/Cmxf2Eta.js"
+  },
+  "/_nuxt/CzayonYK.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"15c6-9EsUfHIvaqpL5sH+0jJQYTsYFpc\"",
+    "mtime": "2025-06-24T17:15:26.713Z",
+    "size": 5574,
+    "path": "../public/_nuxt/CzayonYK.js"
+  },
+  "/_nuxt/D1BJWO3s.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"24f-GecSNFps7GoLRdLHM3oUxInReHQ\"",
+    "mtime": "2025-06-24T17:15:26.713Z",
+    "size": 591,
+    "path": "../public/_nuxt/D1BJWO3s.js"
+  },
+  "/_nuxt/D1NMTosE.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"b24-3INemMa77rrQ/5U26AOgBEUF2bs\"",
+    "mtime": "2025-06-24T17:15:26.713Z",
+    "size": 2852,
+    "path": "../public/_nuxt/D1NMTosE.js"
+  },
+  "/_nuxt/D39kHikk.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"c9a-TKNYpKFznGeUry8gLnZ7PUnBsyQ\"",
+    "mtime": "2025-06-24T17:15:26.713Z",
+    "size": 3226,
+    "path": "../public/_nuxt/D39kHikk.js"
+  },
+  "/_nuxt/DDaKK5bo.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"d3-75IM56r8+tX+t73kEGo6eKVHciQ\"",
+    "mtime": "2025-06-24T17:15:26.713Z",
+    "size": 211,
+    "path": "../public/_nuxt/DDaKK5bo.js"
+  },
+  "/_nuxt/DKSk2hwS.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"24f-k05XpqwltaL5QGL9ryXJEFwGARc\"",
+    "mtime": "2025-06-24T17:15:26.713Z",
+    "size": 591,
+    "path": "../public/_nuxt/DKSk2hwS.js"
+  },
+  "/_nuxt/DLa_W-HH.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"52de-k1DUWcxmfMKlmH+7TSJd3GUlCW4\"",
+    "mtime": "2025-06-24T17:15:26.713Z",
+    "size": 21214,
+    "path": "../public/_nuxt/DLa_W-HH.js"
+  },
+  "/_nuxt/DTdGg2Zx.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"1985e-4CLGJwFCmGSbYb0AM3DBzBM1nQ8\"",
+    "mtime": "2025-06-24T17:15:26.714Z",
+    "size": 104542,
+    "path": "../public/_nuxt/DTdGg2Zx.js"
+  },
+  "/_nuxt/DVyywvu7.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"d1-cxJpWEAKBotv6ocCnS+yzIcbnWQ\"",
+    "mtime": "2025-06-24T17:15:26.713Z",
+    "size": 209,
+    "path": "../public/_nuxt/DVyywvu7.js"
+  },
+  "/_nuxt/DZMszD3q.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"bcb-KZe9UyjEN5zxnPbGaVY5183Cfng\"",
+    "mtime": "2025-06-24T17:15:26.713Z",
+    "size": 3019,
+    "path": "../public/_nuxt/DZMszD3q.js"
+  },
+  "/_nuxt/DZR8T9-r.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"24f-VoFaEoj+LE9DjT0U9DmqusD/dx8\"",
+    "mtime": "2025-06-24T17:15:26.713Z",
+    "size": 591,
+    "path": "../public/_nuxt/DZR8T9-r.js"
+  },
+  "/_nuxt/Dcv1yAv2.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"132-I6pf65RJ4c+nDA5jzBinjnW/xKs\"",
+    "mtime": "2025-06-24T17:15:26.714Z",
+    "size": 306,
+    "path": "../public/_nuxt/Dcv1yAv2.js"
+  },
+  "/_nuxt/DfhGtcxV.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"43a-4aQSATo+Fx9QpliilvoxiROJw/Y\"",
+    "mtime": "2025-06-24T17:15:26.714Z",
+    "size": 1082,
+    "path": "../public/_nuxt/DfhGtcxV.js"
+  },
+  "/_nuxt/DlAUqK2U.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"5b-eFCz/UrraTh721pgAl0VxBNR1es\"",
+    "mtime": "2025-06-24T17:15:26.714Z",
+    "size": 91,
+    "path": "../public/_nuxt/DlAUqK2U.js"
+  },
+  "/_nuxt/Dy74UTSv.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"cf-9nlnSLfK3uuryS4A06qWsyIl2BA\"",
+    "mtime": "2025-06-24T17:15:26.714Z",
+    "size": 207,
+    "path": "../public/_nuxt/Dy74UTSv.js"
+  },
+  "/_nuxt/FjVHhawu.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"ce-KFxf/bUPMM2Eb2A3FgY+Q7zoJB4\"",
+    "mtime": "2025-06-24T17:15:26.714Z",
+    "size": 206,
+    "path": "../public/_nuxt/FjVHhawu.js"
+  },
+  "/_nuxt/Icon.SPH2noX5.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"43-6cLOdVoYTf4bgZQe2fs4Lut/BbU\"",
+    "mtime": "2025-06-24T17:15:26.714Z",
+    "size": 67,
+    "path": "../public/_nuxt/Icon.SPH2noX5.css"
+  },
+  "/_nuxt/IconCSS.OBKc-302.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"102-kwgjOmDUV00fbCCETi4ER0B40e8\"",
+    "mtime": "2025-06-24T17:15:26.714Z",
+    "size": 258,
+    "path": "../public/_nuxt/IconCSS.OBKc-302.css"
+  },
+  "/_nuxt/P94DfexP.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"2bb9d-5U4pzH/mILsZjzXAARuPxE/WPkA\"",
+    "mtime": "2025-06-24T17:15:26.715Z",
+    "size": 179101,
+    "path": "../public/_nuxt/P94DfexP.js"
+  },
+  "/_nuxt/ProsePre.D5orA6B_.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"1e-jczvRAVUXbzGL6yotozKFbyMO4s\"",
+    "mtime": "2025-06-24T17:15:26.714Z",
+    "size": 30,
+    "path": "../public/_nuxt/ProsePre.D5orA6B_.css"
+  },
+  "/_nuxt/ScS2WLEy.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"24f-iITXblaOwqZFzk7kUKL028Jlhgw\"",
+    "mtime": "2025-06-24T17:15:26.714Z",
+    "size": 591,
+    "path": "../public/_nuxt/ScS2WLEy.js"
+  },
+  "/_nuxt/VgbdPiEc.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"1cc-vOIgisOpc7Y4v4++HWsxAP4OQWw\"",
+    "mtime": "2025-06-24T17:15:26.714Z",
+    "size": 460,
+    "path": "../public/_nuxt/VgbdPiEc.js"
+  },
+  "/_nuxt/WakeUpNPC.cxikUEtC.svg": {
+    "type": "image/svg+xml",
+    "etag": "\"13fe-mCCYyEDoY4FmtGp4uVozuO1AP/o\"",
+    "mtime": "2025-06-24T17:15:26.715Z",
+    "size": 5118,
+    "path": "../public/_nuxt/WakeUpNPC.cxikUEtC.svg"
+  },
+  "/_nuxt/_...B-dNEtXS.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"129-Tm5xpZbq7JEsNwpvgUKc7hv8mto\"",
+    "mtime": "2025-06-24T17:15:26.715Z",
+    "size": 297,
+    "path": "../public/_nuxt/_...B-dNEtXS.css"
+  },
+  "/_nuxt/_...B34Y31rT.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"105-vjGA4c8NfArHqLmuh7YJBuacs0U\"",
+    "mtime": "2025-06-24T17:15:26.715Z",
+    "size": 261,
+    "path": "../public/_nuxt/_...B34Y31rT.css"
+  },
+  "/_nuxt/content-detail.pywetWIK.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"59-L7wiXP9bq1WX7o2fOPl/QizQAlQ\"",
+    "mtime": "2025-06-24T17:15:26.715Z",
+    "size": 89,
+    "path": "../public/_nuxt/content-detail.pywetWIK.css"
+  },
+  "/_nuxt/default.9Qa0p9ZD.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"ce-MfSCp3WN8vM3DHh//9L8tjwoGfo\"",
+    "mtime": "2025-06-24T17:15:26.715Z",
+    "size": 206,
+    "path": "../public/_nuxt/default.9Qa0p9ZD.css"
+  },
+  "/_nuxt/entry.BBeCtgc4.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"c50d-Lh83fWc+JwQJFwILTVb8pPPEax8\"",
+    "mtime": "2025-06-24T17:15:26.716Z",
+    "size": 50445,
+    "path": "../public/_nuxt/entry.BBeCtgc4.css"
+  },
+  "/_nuxt/gBPlaM_d.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"1182-YyTAvQBSvIRmfUO7JJ9WQFOymaM\"",
+    "mtime": "2025-06-24T17:15:26.716Z",
+    "size": 4482,
+    "path": "../public/_nuxt/gBPlaM_d.js"
+  },
+  "/_nuxt/h3OCBXpR.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"cf-gjHwxr07I9kFTqHpDpmklk68kiE\"",
+    "mtime": "2025-06-24T17:15:26.715Z",
+    "size": 207,
+    "path": "../public/_nuxt/h3OCBXpR.js"
+  },
+  "/_nuxt/home.DdMWlvMV.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"c1b-zqE6ieKhhib6LGRDzTAapOe7jH8\"",
+    "mtime": "2025-06-24T17:15:26.716Z",
+    "size": 3099,
+    "path": "../public/_nuxt/home.DdMWlvMV.css"
+  },
+  "/_nuxt/iVrq4uvB.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"d2-qQZUDDuolDAfGUnQFYphB7YMsD4\"",
+    "mtime": "2025-06-24T17:15:26.715Z",
+    "size": 210,
+    "path": "../public/_nuxt/iVrq4uvB.js"
+  },
+  "/_nuxt/index.BX2qW4Yn.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"52a-ToceEoEzD9FTPKQMFMyCndUtaIc\"",
+    "mtime": "2025-06-24T17:15:26.716Z",
+    "size": 1322,
+    "path": "../public/_nuxt/index.BX2qW4Yn.css"
+  },
+  "/_nuxt/o7hx4kTI.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"a6-G7cu5rjP6ppb3RVdi3nXvneG8Og\"",
+    "mtime": "2025-06-24T17:15:26.716Z",
+    "size": 166,
+    "path": "../public/_nuxt/o7hx4kTI.js"
+  },
+  "/_nuxt/s2ddXXur.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"218-Ce1ctg4RsT5KsJO5uxA66iWPO94\"",
+    "mtime": "2025-06-24T17:15:26.716Z",
+    "size": 536,
+    "path": "../public/_nuxt/s2ddXXur.js"
+  },
+  "/_nuxt/taQxJhpz.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"24f-2TkZZNxM4qY6m6P1KoVUkV0MnIM\"",
+    "mtime": "2025-06-24T17:15:26.716Z",
+    "size": 591,
+    "path": "../public/_nuxt/taQxJhpz.js"
+  },
+  "/_nuxt/xFfz45kB.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"d2-P91dP0bxVvGASwfrG/Nr/Efpf4A\"",
+    "mtime": "2025-06-24T17:15:26.716Z",
+    "size": 210,
+    "path": "../public/_nuxt/xFfz45kB.js"
   },
   "/__nuxt_content/claims/sql_dump": {
     "type": "text/plain; charset=utf-8",
     "etag": "\"13634-nuLyo7SxN7KkXhgQHDmfvWXDb6I\"",
-    "mtime": "2025-06-24T06:02:50.335Z",
+    "mtime": "2025-06-24T17:15:26.682Z",
     "size": 79412,
     "path": "../public/__nuxt_content/claims/sql_dump"
-  },
-  "/__nuxt_content/quotes/sql_dump": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"dbb8-wz6+KSDRBvYtiQkD0gJHounxjRc\"",
-    "mtime": "2025-06-24T06:02:50.335Z",
-    "size": 56248,
-    "path": "../public/__nuxt_content/quotes/sql_dump"
   },
   "/__nuxt_content/memes/sql_dump": {
     "type": "text/plain; charset=utf-8",
     "etag": "\"5b4-V8P7a5/TkUY9uop+zaQnAf+tyL0\"",
-    "mtime": "2025-06-24T06:02:50.335Z",
+    "mtime": "2025-06-24T17:15:26.682Z",
     "size": 1460,
     "path": "../public/__nuxt_content/memes/sql_dump"
   },
-  "/_nuxt/builds/latest.json": {
-    "type": "application/json",
-    "etag": "\"47-bjmHRnc/sLJIVN5pKfZqKP4S+lw\"",
-    "mtime": "2025-06-24T06:02:50.350Z",
-    "size": 71,
-    "path": "../public/_nuxt/builds/latest.json"
+  "/__nuxt_content/quotes/sql_dump": {
+    "type": "text/plain; charset=utf-8",
+    "etag": "\"dbb8-wz6+KSDRBvYtiQkD0gJHounxjRc\"",
+    "mtime": "2025-06-24T17:15:26.682Z",
+    "size": 56248,
+    "path": "../public/__nuxt_content/quotes/sql_dump"
   },
   "/memes/cartoons/dei-blm-crt-esg-end-woke-insanity.png": {
     "type": "image/png",
     "etag": "\"96fba-GEOO4q3BfvBNKwCJJLyMaSiJHcM\"",
-    "mtime": "2025-06-24T06:02:51.053Z",
+    "mtime": "2025-06-24T17:15:26.865Z",
     "size": 618426,
     "path": "../public/memes/cartoons/dei-blm-crt-esg-end-woke-insanity.png"
   },
   "/memes/cartoons/modern-barbarians20.png": {
     "type": "image/png",
     "etag": "\"20c7e3-CzAF9DvSJa9AusBE8lEh5R6fPhs\"",
-    "mtime": "2025-06-24T06:02:51.055Z",
+    "mtime": "2025-06-24T17:15:26.767Z",
     "size": 2148323,
     "path": "../public/memes/cartoons/modern-barbarians20.png"
   },
   "/memes/cartoons/toxic-leftist-media-mass-formation-psychosis-04.png": {
     "type": "image/png",
     "etag": "\"16869a-jmNiKy3sSffb1X9g3/QAzZh7K+I\"",
-    "mtime": "2025-06-24T06:02:51.054Z",
+    "mtime": "2025-06-24T17:15:26.866Z",
     "size": 1476250,
     "path": "../public/memes/cartoons/toxic-leftist-media-mass-formation-psychosis-04.png"
   },
   "/memes/cartoons/were-way-past-swamp-britain.png": {
     "type": "image/png",
     "etag": "\"15765a-uPRwo5Dei/q1uiXd2Cq8tA6wW5A\"",
-    "mtime": "2025-06-24T06:02:50.432Z",
+    "mtime": "2025-06-24T17:15:26.874Z",
     "size": 1406554,
     "path": "../public/memes/cartoons/were-way-past-swamp-britain.png"
   },
   "/memes/cartoons/were-way-past-swamp.png": {
     "type": "image/png",
     "etag": "\"13c003-EBidXTJWAGXnbJksK3aC7vP3eVw\"",
-    "mtime": "2025-06-24T06:02:50.414Z",
+    "mtime": "2025-06-24T17:15:26.872Z",
     "size": 1294339,
     "path": "../public/memes/cartoons/were-way-past-swamp.png"
   },
   "/memes/cartoons/what-have-the-left-ever-done-for-us.png": {
     "type": "image/png",
     "etag": "\"f0c9a-nCDfmLOiuRNZvcHMfw+VDTPJuFk\"",
-    "mtime": "2025-06-24T06:02:50.432Z",
+    "mtime": "2025-06-24T17:15:26.892Z",
     "size": 986266,
     "path": "../public/memes/cartoons/what-have-the-left-ever-done-for-us.png"
   },
   "/memes/cartoons/wokezilla-hollywood.png": {
     "type": "image/png",
     "etag": "\"10971e-34TThibVNSW77cCNkh771+yPYxE\"",
-    "mtime": "2025-06-24T06:02:50.432Z",
+    "mtime": "2025-06-24T17:15:26.866Z",
     "size": 1087262,
     "path": "../public/memes/cartoons/wokezilla-hollywood.png"
   },
   "/memes/immigration/\"We simply cannot allow people to pour into the United States.png": {
     "type": "image/png",
     "etag": "\"69547-3BUAP+X+HJy2AHC1OCJSKvilEkc\"",
-    "mtime": "2025-06-24T06:02:50.437Z",
+    "mtime": "2025-06-24T17:15:26.766Z",
     "size": 431431,
     "path": "../public/memes/immigration/\"We simply cannot allow people to pour into the United States.png"
   },
   "/memes/immigration/BUILD A BARRIER TO TRY TO PREVENT ILLEGAL IMMIGRANTS FROM COMING IN Hillary.png": {
     "type": "image/png",
     "etag": "\"775f9-R98yXXY3hQ3bZYrEBuvUgNeuB9c\"",
-    "mtime": "2025-06-24T06:02:50.413Z",
+    "mtime": "2025-06-24T17:15:27.003Z",
     "size": 488953,
     "path": "../public/memes/immigration/BUILD A BARRIER TO TRY TO PREVENT ILLEGAL IMMIGRANTS FROM COMING IN Hillary.png"
   },
   "/memes/immigration/Clinton Americans... are rightly disturbed by the number of illegal aliens.png": {
     "type": "image/png",
     "etag": "\"e5deb-HCgJVMPMg0lJ3Xiu32qjwAYGZCc\"",
-    "mtime": "2025-06-24T06:02:50.436Z",
+    "mtime": "2025-06-24T17:15:27.008Z",
     "size": 941547,
     "path": "../public/memes/immigration/Clinton Americans... are rightly disturbed by the number of illegal aliens.png"
   },
   "/memes/immigration/DEMOCRATIC PARTY VOTER REGISTRATION for illegals.png": {
     "type": "image/png",
     "etag": "\"51613-5reQFnWOCBPKHbXJnVUfHkG2Ioo\"",
-    "mtime": "2025-06-24T06:02:50.437Z",
+    "mtime": "2025-06-24T17:15:27.006Z",
     "size": 333331,
     "path": "../public/memes/immigration/DEMOCRATIC PARTY VOTER REGISTRATION for illegals.png"
   },
   "/memes/immigration/Democratic Party looks illegal aliens American citizens upset.png": {
     "type": "image/png",
     "etag": "\"80827-TSl3KcFuDL5Es+cF3/EYBkzylgc\"",
-    "mtime": "2025-06-24T06:02:50.431Z",
+    "mtime": "2025-06-24T17:15:27.001Z",
     "size": 526375,
     "path": "../public/memes/immigration/Democratic Party looks illegal aliens American citizens upset.png"
   },
   "/memes/immigration/Democrats immigration policy welcoming illegals.png": {
     "type": "image/png",
     "etag": "\"57a87-7Yn8J+cXyVvRaM9giiSQ5oTQlDY\"",
-    "mtime": "2025-06-24T06:02:50.433Z",
+    "mtime": "2025-06-24T17:15:27.001Z",
     "size": 359047,
     "path": "../public/memes/immigration/Democrats immigration policy welcoming illegals.png"
   },
   "/memes/immigration/Democrats weren't always against building a wall and securing the border....png": {
     "type": "image/png",
     "etag": "\"686f5-EZ4IsxOnEYVOf40QhscC1VLtwPM\"",
-    "mtime": "2025-06-24T06:02:50.437Z",
+    "mtime": "2025-06-24T17:15:27.006Z",
     "size": 427765,
     "path": "../public/memes/immigration/Democrats weren't always against building a wall and securing the border....png"
   },
   "/memes/immigration/Harry Reid Our borders have overflowed with illegal immigrants.png": {
     "type": "image/png",
     "etag": "\"41f5b-ZRsM6KR4o1I+rP6IYzwaZeOpG/w\"",
-    "mtime": "2025-06-24T06:02:50.440Z",
+    "mtime": "2025-06-24T17:15:27.005Z",
     "size": 270171,
     "path": "../public/memes/immigration/Harry Reid Our borders have overflowed with illegal immigrants.png"
   },
   "/memes/immigration/I am, you know, adamantly against illegal immigration. Hillary.png": {
     "type": "image/png",
     "etag": "\"15be1-RXR9INpt4+I1Nf6oLioAQPRvN2c\"",
-    "mtime": "2025-06-24T06:02:50.440Z",
+    "mtime": "2025-06-24T17:15:27.005Z",
     "size": 89057,
     "path": "../public/memes/immigration/I am, you know, adamantly against illegal immigration. Hillary.png"
   },
   "/memes/immigration/Schmucky imperative to enforce and strengthen existing immigration laws to prevent illegal immigrants.png": {
     "type": "image/png",
     "etag": "\"b2b5b-Oqu6uPl6S9v2ZttW9cRXqvZSH7w\"",
-    "mtime": "2025-06-24T06:02:50.438Z",
+    "mtime": "2025-06-24T17:15:27.007Z",
     "size": 731995,
     "path": "../public/memes/immigration/Schmucky imperative to enforce and strengthen existing immigration laws to prevent illegal immigrants.png"
   },
   "/memes/immigration/We must say no to illegal immigration Clinton.png": {
     "type": "image/png",
     "etag": "\"1751c-4dlN9f4zh4WBfSag1jveCD57aos\"",
-    "mtime": "2025-06-24T06:02:50.438Z",
+    "mtime": "2025-06-24T17:15:27.007Z",
     "size": 95516,
     "path": "../public/memes/immigration/We must say no to illegal immigration Clinton.png"
-  },
-  "/memes/media/cnn-npc-woke-dystopia.png": {
-    "type": "image/png",
-    "etag": "\"16609f-xKw0sgEsrUunNwPShDqMW/l0sMY\"",
-    "mtime": "2025-06-24T06:02:50.417Z",
-    "size": 1466527,
-    "path": "../public/memes/media/cnn-npc-woke-dystopia.png"
-  },
-  "/memes/media/you-think-thats-news-youre-reading.png": {
-    "type": "image/png",
-    "etag": "\"f4b5d-qMe4QIphxJmIshDajQx7Z59NRTM\"",
-    "mtime": "2025-06-24T06:02:50.450Z",
-    "size": 1002333,
-    "path": "../public/memes/media/you-think-thats-news-youre-reading.png"
-  },
-  "/memes/capitalism/.DS_Store": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"1804-3y++sUAKzaCQmjLBz2v0kvESHgc\"",
-    "mtime": "2025-06-24T06:02:50.414Z",
-    "size": 6148,
-    "path": "../public/memes/capitalism/.DS_Store"
-  },
-  "/memes/capitalism/a-free-market-economy-is-a-giant-computer.png": {
-    "type": "image/png",
-    "etag": "\"1ab685-gitrcGyNaZBu8A6BvO+FWbbyIoE\"",
-    "mtime": "2025-06-24T06:02:50.463Z",
-    "size": 1750661,
-    "path": "../public/memes/capitalism/a-free-market-economy-is-a-giant-computer.png"
-  },
-  "/memes/capitalism/a-free-market-free-exchange-economy-is-a.png": {
-    "type": "image/png",
-    "etag": "\"2aaba-Uz/9egzfr7wZEF1m/qPOvWmq9Xg\"",
-    "mtime": "2025-06-24T06:02:50.462Z",
-    "size": 174778,
-    "path": "../public/memes/capitalism/a-free-market-free-exchange-economy-is-a.png"
-  },
-  "/memes/capitalism/at-least-im-not-a-capitalist-capitalism.png": {
-    "type": "image/png",
-    "etag": "\"10254a-363Z3NNKGwKoD0edFO+7RzAZDtU\"",
-    "mtime": "2025-06-24T06:02:50.474Z",
-    "size": 1058122,
-    "path": "../public/memes/capitalism/at-least-im-not-a-capitalist-capitalism.png"
-  },
-  "/memes/capitalism/biz-vs-govt.png": {
-    "type": "image/png",
-    "etag": "\"eac6d-Vh+5R9zbO1UAsAuMJlVMU8xgdNo\"",
-    "mtime": "2025-06-24T06:02:50.463Z",
-    "size": 961645,
-    "path": "../public/memes/capitalism/biz-vs-govt.png"
-  },
-  "/memes/capitalism/but-that-wasnt-redi-communism.png": {
-    "type": "image/png",
-    "etag": "\"8f68b-yxTvyeTWX3jt9NvVPw8q9+wZmRA\"",
-    "mtime": "2025-06-24T06:02:50.459Z",
-    "size": 587403,
-    "path": "../public/memes/capitalism/but-that-wasnt-redi-communism.png"
-  },
-  "/memes/capitalism/capitalism-fishing.png": {
-    "type": "image/png",
-    "etag": "\"f92ed-6rNR8V4bVA6ZbK/hvaxWG57JPNA\"",
-    "mtime": "2025-06-24T06:02:50.463Z",
-    "size": 1020653,
-    "path": "../public/memes/capitalism/capitalism-fishing.png"
-  },
-  "/memes/capitalism/capitalism-im-relatively-tame.png": {
-    "type": "image/png",
-    "etag": "\"73216-yNXb8JNG62zvVUC/httKaG0lpjo\"",
-    "mtime": "2025-06-24T06:02:50.463Z",
-    "size": 471574,
-    "path": "../public/memes/capitalism/capitalism-im-relatively-tame.png"
-  },
-  "/memes/capitalism/capitalism-vs-socialism-for-dummies.png": {
-    "type": "image/png",
-    "etag": "\"54ea1-wQNi29/CcUPur5X9/nORNFy9O2k\"",
-    "mtime": "2025-06-24T06:02:50.473Z",
-    "size": 347809,
-    "path": "../public/memes/capitalism/capitalism-vs-socialism-for-dummies.png"
-  },
-  "/memes/capitalism/capitalists-will-always-pay-their-worker.png": {
-    "type": "image/png",
-    "etag": "\"47fee-jM3rWBidRjKglZFa0V7QnlEW1Cw\"",
-    "mtime": "2025-06-24T06:02:50.473Z",
-    "size": 294894,
-    "path": "../public/memes/capitalism/capitalists-will-always-pay-their-worker.png"
-  },
-  "/memes/capitalism/characters-whose-plans-always-fail-miser.png": {
-    "type": "image/png",
-    "etag": "\"b0815-Q8K2nyPkcyoYnY0HCqwII5kDpcU\"",
-    "mtime": "2025-06-24T06:02:50.476Z",
-    "size": 722965,
-    "path": "../public/memes/capitalism/characters-whose-plans-always-fail-miser.png"
-  },
-  "/memes/capitalism/collectivism-100-million-people-murdered.png": {
-    "type": "image/png",
-    "etag": "\"cde62-lRy9eLTSoddYCqU0Gn5aybQ4bHo\"",
-    "mtime": "2025-06-24T06:02:50.476Z",
-    "size": 843362,
-    "path": "../public/memes/capitalism/collectivism-100-million-people-murdered.png"
-  },
-  "/memes/capitalism/commiepoly-1.png": {
-    "type": "image/png",
-    "etag": "\"13f0b4-fXuu9DPCuoVyBAu4jhGXvpg2OUk\"",
-    "mtime": "2025-06-24T06:02:50.478Z",
-    "size": 1306804,
-    "path": "../public/memes/capitalism/commiepoly-1.png"
-  },
-  "/memes/capitalism/corporatism-is-not-capitalism.png": {
-    "type": "image/png",
-    "etag": "\"174b6e-loTmgeVPrEGIp5930HFwe9Z81VA\"",
-    "mtime": "2025-06-24T06:02:50.480Z",
-    "size": 1526638,
-    "path": "../public/memes/capitalism/corporatism-is-not-capitalism.png"
-  },
-  "/memes/capitalism/could-the-problem-be-marxism.png": {
-    "type": "image/png",
-    "etag": "\"cbbea-x0/DfDhVg2baZVUW3aasFRzBqyQ\"",
-    "mtime": "2025-06-24T06:02:50.485Z",
-    "size": 834538,
-    "path": "../public/memes/capitalism/could-the-problem-be-marxism.png"
-  },
-  "/memes/capitalism/damn-capitalism.png": {
-    "type": "image/png",
-    "etag": "\"90efe-CA9b5Hgce7mpC3eTHra9DZ6l7/w\"",
-    "mtime": "2025-06-24T06:02:50.487Z",
-    "size": 593662,
-    "path": "../public/memes/capitalism/damn-capitalism.png"
-  },
-  "/memes/capitalism/fictional-country-socialists.png": {
-    "type": "image/png",
-    "etag": "\"90211-0p9Y52HzzBGuS21zBmYOrWav4C8\"",
-    "mtime": "2025-06-24T06:02:50.486Z",
-    "size": 590353,
-    "path": "../public/memes/capitalism/fictional-country-socialists.png"
-  },
-  "/memes/capitalism/gdp-per-person-1990-international-dollar.png": {
-    "type": "image/png",
-    "etag": "\"450f9-ZOrrirbuTICOx0i1FWbC/y6xi7M\"",
-    "mtime": "2025-06-24T06:02:50.485Z",
-    "size": 282873,
-    "path": "../public/memes/capitalism/gdp-per-person-1990-international-dollar.png"
-  },
-  "/memes/capitalism/how-to-do-communism.png": {
-    "type": "image/png",
-    "etag": "\"635e0-NHIrK1dHqiuGYp2LPoX0p8Xy3/Y\"",
-    "mtime": "2025-06-24T06:02:50.488Z",
-    "size": 407008,
-    "path": "../public/memes/capitalism/how-to-do-communism.png"
-  },
-  "/memes/capitalism/imaginary-socialism-socialists-living-in.png": {
-    "type": "image/png",
-    "etag": "\"90483-ZhOBETJ7z9K312IB255no9kRbH0\"",
-    "mtime": "2025-06-24T06:02:50.488Z",
-    "size": 590979,
-    "path": "../public/memes/capitalism/imaginary-socialism-socialists-living-in.png"
-  },
-  "/memes/capitalism/imaginary-socialism-vs-reality.png": {
-    "type": "image/png",
-    "etag": "\"9146e-JbGNAnSBZm4haE+k7bIyi6bddHA\"",
-    "mtime": "2025-06-24T06:02:50.488Z",
-    "size": 595054,
-    "path": "../public/memes/capitalism/imaginary-socialism-vs-reality.png"
-  },
-  "/memes/capitalism/individualism-versus-collectivism.png": {
-    "type": "image/png",
-    "etag": "\"ecf36-vDL3E6Ume2lIsaCjB7PmS8X5dC8\"",
-    "mtime": "2025-06-24T06:02:50.491Z",
-    "size": 970550,
-    "path": "../public/memes/capitalism/individualism-versus-collectivism.png"
-  },
-  "/memes/capitalism/keynesian-economics.png": {
-    "type": "image/png",
-    "etag": "\"c58e3-nQqQNJvuGfDWjGyHg1Tvq6QkSaU\"",
-    "mtime": "2025-06-24T06:02:50.495Z",
-    "size": 809187,
-    "path": "../public/memes/capitalism/keynesian-economics.png"
-  },
-  "/memes/capitalism/less-marx-more-milei.png": {
-    "type": "image/png",
-    "etag": "\"12397e-1euZckLFVYg+hBTl8UZgDBZBAWs\"",
-    "mtime": "2025-06-24T06:02:50.501Z",
-    "size": 1194366,
-    "path": "../public/memes/capitalism/less-marx-more-milei.png"
-  },
-  "/memes/capitalism/lets-divide-a-country-into-half-capitali.png": {
-    "type": "image/png",
-    "etag": "\"ec71b-YD03ePVBgMrGiwcPNwD77Smmhqw\"",
-    "mtime": "2025-06-24T06:02:50.503Z",
-    "size": 968475,
-    "path": "../public/memes/capitalism/lets-divide-a-country-into-half-capitali.png"
-  },
-  "/memes/capitalism/lets-see-if-ive-got-this-correct.png": {
-    "type": "image/png",
-    "etag": "\"a161d-zqpmERPRXbTDQUlUkZT8zJvH8BU\"",
-    "mtime": "2025-06-24T06:02:50.495Z",
-    "size": 661021,
-    "path": "../public/memes/capitalism/lets-see-if-ive-got-this-correct.png"
-  },
-  "/memes/capitalism/margaret-thatcher-rich-poorer-if-poor-po.png": {
-    "type": "image/png",
-    "etag": "\"6e4ed-obZqtXvliKs+SCRQQOtQqFpqI9g\"",
-    "mtime": "2025-06-24T06:02:50.495Z",
-    "size": 451821,
-    "path": "../public/memes/capitalism/margaret-thatcher-rich-poorer-if-poor-po.png"
-  },
-  "/memes/capitalism/marxism-is-an-anti-human-cult.png": {
-    "type": "image/png",
-    "etag": "\"11f3e9-cKX6p7xqPd2I6sE6mgBC2Hw5iHA\"",
-    "mtime": "2025-06-24T06:02:50.496Z",
-    "size": 1176553,
-    "path": "../public/memes/capitalism/marxism-is-an-anti-human-cult.png"
-  },
-  "/memes/capitalism/minimum-wage-jobs.png": {
-    "type": "image/png",
-    "etag": "\"feadd-sTohIZS0zSiIZfsI4QHT1YQ8FkQ\"",
-    "mtime": "2025-06-24T06:02:50.508Z",
-    "size": 1043165,
-    "path": "../public/memes/capitalism/minimum-wage-jobs.png"
-  },
-  "/memes/capitalism/modern-feudalism-socialism.png": {
-    "type": "image/png",
-    "etag": "\"36943-Py1+F1gAfMhUL1+bWjqv1GFnLqk\"",
-    "mtime": "2025-06-24T06:02:50.496Z",
-    "size": 223555,
-    "path": "../public/memes/capitalism/modern-feudalism-socialism.png"
-  },
-  "/memes/capitalism/my-dog-when-hes-eating.png": {
-    "type": "image/png",
-    "etag": "\"bef63-xG9881k8fSWOY+K27rYhbkW5wr4\"",
-    "mtime": "2025-06-24T06:02:50.501Z",
-    "size": 782179,
-    "path": "../public/memes/capitalism/my-dog-when-hes-eating.png"
-  },
-  "/memes/capitalism/my-labor-is-exploited-by-capitalists.png": {
-    "type": "image/png",
-    "etag": "\"82e8f-1YCPpRRdRzrDzZvbnYnI2IEnJ98\"",
-    "mtime": "2025-06-24T06:02:50.503Z",
-    "size": 536207,
-    "path": "../public/memes/capitalism/my-labor-is-exploited-by-capitalists.png"
-  },
-  "/memes/capitalism/nazi-democrat.png": {
-    "type": "image/png",
-    "etag": "\"8d3da-jD8Ez0CSt2T1r2nneOAgFcYLlg4\"",
-    "mtime": "2025-06-24T06:02:50.509Z",
-    "size": 578522,
-    "path": "../public/memes/capitalism/nazi-democrat.png"
-  },
-  "/memes/capitalism/nazis-and-communists-and-antifa-the-same.png": {
-    "type": "image/png",
-    "etag": "\"7404a-dOde1n+4hfcFJ8eqKs+G1gFn/8k\"",
-    "mtime": "2025-06-24T06:02:50.504Z",
-    "size": 475210,
-    "path": "../public/memes/capitalism/nazis-and-communists-and-antifa-the-same.png"
-  },
-  "/memes/capitalism/planned-economy-or-planned-destruction-1.png": {
-    "type": "image/png",
-    "etag": "\"a6a82-tLIe3XRd1zD2bQx430zMVK7DoKA\"",
-    "mtime": "2025-06-24T06:02:50.510Z",
-    "size": 682626,
-    "path": "../public/memes/capitalism/planned-economy-or-planned-destruction-1.png"
-  },
-  "/memes/capitalism/prior-to-capitalism-the-way-people-amass.png": {
-    "type": "image/png",
-    "etag": "\"8507a-RjR/ps1E6WMj3pPabf9TeB7VjTg\"",
-    "mtime": "2025-06-24T06:02:50.508Z",
-    "size": 544890,
-    "path": "../public/memes/capitalism/prior-to-capitalism-the-way-people-amass.png"
-  },
-  "/memes/capitalism/real-socialism-has-never-been-tried-in-t.png": {
-    "type": "image/png",
-    "etag": "\"92304-rLrahR8fvuLFQuB08hoXIoRn6eA\"",
-    "mtime": "2025-06-24T06:02:50.510Z",
-    "size": 598788,
-    "path": "../public/memes/capitalism/real-socialism-has-never-been-tried-in-t.png"
-  },
-  "/memes/capitalism/real-socialism-hasnt-been-done-yet.png": {
-    "type": "image/png",
-    "etag": "\"8075a-N0rrvjkOBsYzxT94uUuHjTbg1Qo\"",
-    "mtime": "2025-06-24T06:02:50.510Z",
-    "size": 526170,
-    "path": "../public/memes/capitalism/real-socialism-hasnt-been-done-yet.png"
-  },
-  "/memes/capitalism/regimes-endorsed-by-noam-chomsky.png": {
-    "type": "image/png",
-    "etag": "\"c32ad-PW9CyVD74RNMRvZcVOwb0SqkIm0\"",
-    "mtime": "2025-06-24T06:02:50.514Z",
-    "size": 799405,
-    "path": "../public/memes/capitalism/regimes-endorsed-by-noam-chomsky.png"
-  },
-  "/memes/capitalism/robin-hood-corrected.png": {
-    "type": "image/png",
-    "etag": "\"dbdd0-E/z9DOqhRyrLMoAltprx7empXJE\"",
-    "mtime": "2025-06-24T06:02:50.519Z",
-    "size": 900560,
-    "path": "../public/memes/capitalism/robin-hood-corrected.png"
-  },
-  "/memes/capitalism/robin-hood-didnt-rob-from-the-rich.png": {
-    "type": "image/png",
-    "etag": "\"f6ab1-1y+H7M+XP/NyRnP1IjnhqQi8Aik\"",
-    "mtime": "2025-06-24T06:02:50.530Z",
-    "size": 1010353,
-    "path": "../public/memes/capitalism/robin-hood-didnt-rob-from-the-rich.png"
-  },
-  "/memes/capitalism/six-charts-showing-capitalism-last-200-y.png": {
-    "type": "image/png",
-    "etag": "\"3f985-wS2nZ0Na9UfVimWkF4DqfRoPPwM\"",
-    "mtime": "2025-06-24T06:02:50.516Z",
-    "size": 260485,
-    "path": "../public/memes/capitalism/six-charts-showing-capitalism-last-200-y.png"
-  },
-  "/memes/capitalism/small-business-vs-unions.png": {
-    "type": "image/png",
-    "etag": "\"b12de-zVprNRV/SlNmZ+Cs8T+d1llEzHk\"",
-    "mtime": "2025-06-24T06:02:50.519Z",
-    "size": 725726,
-    "path": "../public/memes/capitalism/small-business-vs-unions.png"
-  },
-  "/memes/capitalism/socialism-free-prison-soap.png": {
-    "type": "image/png",
-    "etag": "\"7fc72-J/jcMD3T1d8M/lNfJqPb4/yB6gA\"",
-    "mtime": "2025-06-24T06:02:50.520Z",
-    "size": 523378,
-    "path": "../public/memes/capitalism/socialism-free-prison-soap.png"
-  },
-  "/memes/capitalism/socialism-in-theory-vs-practice.png": {
-    "type": "image/png",
-    "etag": "\"7ce71-SG0VtFt2HnQ4qjY5RUvlIYgGbfM\"",
-    "mtime": "2025-06-24T06:02:50.520Z",
-    "size": 511601,
-    "path": "../public/memes/capitalism/socialism-in-theory-vs-practice.png"
-  },
-  "/memes/capitalism/socialism-is-better-than-capitalism.png": {
-    "type": "image/png",
-    "etag": "\"11b81b-2A4nuc+FPCL41sBwhhRNy8jayQ0\"",
-    "mtime": "2025-06-24T06:02:50.540Z",
-    "size": 1161243,
-    "path": "../public/memes/capitalism/socialism-is-better-than-capitalism.png"
-  },
-  "/memes/capitalism/socialism-making-everyone-equally-poor-s.png": {
-    "type": "image/png",
-    "etag": "\"a1cd8-ww3XlYB+L49JpGcWahuYF7fG9aU\"",
-    "mtime": "2025-06-24T06:02:50.529Z",
-    "size": 662744,
-    "path": "../public/memes/capitalism/socialism-making-everyone-equally-poor-s.png"
-  },
-  "/memes/capitalism/socialism-not-even-germans-could-make-it.png": {
-    "type": "image/png",
-    "etag": "\"5ef43-aVnE+ET5vSUnfu36USX83+rkUsg\"",
-    "mtime": "2025-06-24T06:02:50.529Z",
-    "size": 388931,
-    "path": "../public/memes/capitalism/socialism-not-even-germans-could-make-it.png"
-  },
-  "/memes/capitalism/socialism-people-wait-for-bread.png": {
-    "type": "image/png",
-    "etag": "\"131b75-dtsnXhy2erMqIqboeTi8BKTVs64\"",
-    "mtime": "2025-06-24T06:02:50.530Z",
-    "size": 1252213,
-    "path": "../public/memes/capitalism/socialism-people-wait-for-bread.png"
-  },
-  "/memes/capitalism/socialism-revolutions.png": {
-    "type": "image/png",
-    "etag": "\"51734-6Gq5LqxkSYn2OISWogmQ04Bxq3Y\"",
-    "mtime": "2025-06-24T06:02:50.531Z",
-    "size": 333620,
-    "path": "../public/memes/capitalism/socialism-revolutions.png"
-  },
-  "/memes/capitalism/socialism-stick-a-fork-in-it.png": {
-    "type": "image/png",
-    "etag": "\"c8e8b-A1k+TIBehuZPNcD7asDD3dKuTPA\"",
-    "mtime": "2025-06-24T06:02:50.540Z",
-    "size": 822923,
-    "path": "../public/memes/capitalism/socialism-stick-a-fork-in-it.png"
-  },
-  "/memes/capitalism/socialism-vs-capitalism-buildings.png": {
-    "type": "image/png",
-    "etag": "\"1a54ae-PNNbK2xO7LFrj9AMKdFJPbsgMUI\"",
-    "mtime": "2025-06-24T06:02:50.537Z",
-    "size": 1725614,
-    "path": "../public/memes/capitalism/socialism-vs-capitalism-buildings.png"
-  },
-  "/memes/capitalism/socialism-vs-capitalism-diving-board.png": {
-    "type": "image/png",
-    "etag": "\"e11e6-VgbXYrv8GbE6m/Av730/66huLwo\"",
-    "mtime": "2025-06-24T06:02:50.540Z",
-    "size": 922086,
-    "path": "../public/memes/capitalism/socialism-vs-capitalism-diving-board.png"
-  },
-  "/memes/capitalism/socialists-living-in-capitalism.png": {
-    "type": "image/png",
-    "etag": "\"113829-8O732TZnBHidpGHDo8b+20+ujCk\"",
-    "mtime": "2025-06-24T06:02:50.545Z",
-    "size": 1128489,
-    "path": "../public/memes/capitalism/socialists-living-in-capitalism.png"
-  },
-  "/memes/capitalism/socialists-you-guys-always-act-like-your.png": {
-    "type": "image/png",
-    "etag": "\"d4b4a-fFMD2h3VCMUIyLu43dYkha6ZrFI\"",
-    "mtime": "2025-06-24T06:02:50.540Z",
-    "size": 871242,
-    "path": "../public/memes/capitalism/socialists-you-guys-always-act-like-your.png"
-  },
-  "/memes/capitalism/south-korea-capitalism-vs-north-korea-so.png": {
-    "type": "image/png",
-    "etag": "\"c1e7b-eCSczXIrrqwGIe3Hqd56DaMhETo\"",
-    "mtime": "2025-06-24T06:02:50.546Z",
-    "size": 794235,
-    "path": "../public/memes/capitalism/south-korea-capitalism-vs-north-korea-so.png"
-  },
-  "/memes/capitalism/the-american-dream-is-more-apt-to-be-rea.png": {
-    "type": "image/png",
-    "etag": "\"11b70a-XfW1l02hIJKi0r8ZNLSxiIUWvfg\"",
-    "mtime": "2025-06-24T06:02:50.548Z",
-    "size": 1160970,
-    "path": "../public/memes/capitalism/the-american-dream-is-more-apt-to-be-rea.png"
-  },
-  "/memes/capitalism/the-birth-of-free-market-economics.png": {
-    "type": "image/png",
-    "etag": "\"b44d7-dDsRLx/Xs+qD/EZ38bnV2auyMdY\"",
-    "mtime": "2025-06-24T06:02:50.551Z",
-    "size": 738519,
-    "path": "../public/memes/capitalism/the-birth-of-free-market-economics.png"
-  },
-  "/memes/capitalism/the-free-market-has-failed.png": {
-    "type": "image/png",
-    "etag": "\"b44d1-qgDJdU0DeGTPiCjkwAvA/7fOD3w\"",
-    "mtime": "2025-06-24T06:02:50.546Z",
-    "size": 738513,
-    "path": "../public/memes/capitalism/the-free-market-has-failed.png"
-  },
-  "/memes/capitalism/the-left-would-rather-the-poor-were-poor.png": {
-    "type": "image/png",
-    "etag": "\"81bba-dcT/gzd6f+WlayC41+aZI+NNUr4\"",
-    "mtime": "2025-06-24T06:02:50.551Z",
-    "size": 531386,
-    "path": "../public/memes/capitalism/the-left-would-rather-the-poor-were-poor.png"
-  },
-  "/memes/capitalism/the-problem-with-socialism-is.png": {
-    "type": "image/png",
-    "etag": "\"81f25-RzJ9EJ5wx5FyvR+ijDi/RIK3yZk\"",
-    "mtime": "2025-06-24T06:02:50.556Z",
-    "size": 532261,
-    "path": "../public/memes/capitalism/the-problem-with-socialism-is.png"
-  },
-  "/memes/capitalism/the-problems-the-left-assigns-to-capital.png": {
-    "type": "image/png",
-    "etag": "\"639c1-7B7hIMh1gNMvtqOpAagIME9TGrM\"",
-    "mtime": "2025-06-24T06:02:50.561Z",
-    "size": 408001,
-    "path": "../public/memes/capitalism/the-problems-the-left-assigns-to-capital.png"
-  },
-  "/memes/capitalism/the-socialist-dream-vs-reality.png": {
-    "type": "image/png",
-    "etag": "\"14be29-0C/0mxDAdvWbaK/jobzYlE3d3o8\"",
-    "mtime": "2025-06-24T06:02:50.554Z",
-    "size": 1359401,
-    "path": "../public/memes/capitalism/the-socialist-dream-vs-reality.png"
-  },
-  "/memes/capitalism/the-state-more-laws-and-regulations-fire.png": {
-    "type": "image/png",
-    "etag": "\"e6bf2-fu0vk9O8H1sfngq6HaUr5Xgjrlo\"",
-    "mtime": "2025-06-24T06:02:50.552Z",
-    "size": 945138,
-    "path": "../public/memes/capitalism/the-state-more-laws-and-regulations-fire.png"
-  },
-  "/memes/capitalism/trust-in-government-knowledge-of-history.png": {
-    "type": "image/png",
-    "etag": "\"1a439-YdMT+wsHiDnlhA6PfDqVy83FPgA\"",
-    "mtime": "2025-06-24T06:02:50.556Z",
-    "size": 107577,
-    "path": "../public/memes/capitalism/trust-in-government-knowledge-of-history.png"
-  },
-  "/memes/capitalism/useful-idiots-hugo-chavez-socialism.png": {
-    "type": "image/png",
-    "etag": "\"1407be-tRJ2tIai8cdaawQZS+nAaWY2dRI\"",
-    "mtime": "2025-06-24T06:02:50.566Z",
-    "size": 1312702,
-    "path": "../public/memes/capitalism/useful-idiots-hugo-chavez-socialism.png"
-  },
-  "/memes/capitalism/venezuela-before-after-socialism.png": {
-    "type": "image/png",
-    "etag": "\"11c1e4-+BrbCuInPb0E8WOQKPLd7ICLcbk\"",
-    "mtime": "2025-06-24T06:02:50.558Z",
-    "size": 1163748,
-    "path": "../public/memes/capitalism/venezuela-before-after-socialism.png"
-  },
-  "/memes/capitalism/when-a-trades-with-b.png": {
-    "type": "image/png",
-    "etag": "\"47226-bwfXrzMqeT+D1BofjbE7raO6c48\"",
-    "mtime": "2025-06-24T06:02:50.558Z",
-    "size": 291366,
-    "path": "../public/memes/capitalism/when-a-trades-with-b.png"
-  },
-  "/memes/capitalism/when-government-attempts-to-regulate-the.png": {
-    "type": "image/png",
-    "etag": "\"bb1fb-GskkbSUYkiHyBDqUg4sl7UK1yOs\"",
-    "mtime": "2025-06-24T06:02:50.565Z",
-    "size": 766459,
-    "path": "../public/memes/capitalism/when-government-attempts-to-regulate-the.png"
-  },
-  "/memes/capitalism/without-ownership-there-is-no-exchange-m.png": {
-    "type": "image/png",
-    "etag": "\"17e88-nbXolv2hqstazJl6j12CsG/zQ+I\"",
-    "mtime": "2025-06-24T06:02:50.559Z",
-    "size": 97928,
-    "path": "../public/memes/capitalism/without-ownership-there-is-no-exchange-m.png"
-  },
-  "/memes/capitalism/you-vs-government.png": {
-    "type": "image/png",
-    "etag": "\"63ab1-KaE69LgHYo3qrMGxrMqJtF+L4Ig\"",
-    "mtime": "2025-06-24T06:02:50.559Z",
-    "size": 408241,
-    "path": "../public/memes/capitalism/you-vs-government.png"
-  },
-  "/memes/capitalism/your-government-at-work.png": {
-    "type": "image/png",
-    "etag": "\"118e45-ULgmPHF2nP8ny8syvDz8Yjq+tXQ\"",
-    "mtime": "2025-06-24T06:02:50.566Z",
-    "size": 1150533,
-    "path": "../public/memes/capitalism/your-government-at-work.png"
   },
   "/memes/margaret-thatcher/a-mans-right-to-work-as-he-will.png": {
     "type": "image/png",
     "etag": "\"98e32-AlK/4BOMtsrAmTqsg2IkrrgMQ7o\"",
-    "mtime": "2025-06-24T06:02:50.440Z",
+    "mtime": "2025-06-24T17:15:27.031Z",
     "size": 626226,
     "path": "../public/memes/margaret-thatcher/a-mans-right-to-work-as-he-will.png"
   },
   "/memes/margaret-thatcher/being-powerful-is-like-being-a-lady-if-y.png": {
     "type": "image/png",
     "etag": "\"c9072-UbhDE25l6STC1f9oUHPot9GCtSE\"",
-    "mtime": "2025-06-24T06:02:50.414Z",
+    "mtime": "2025-06-24T17:15:27.023Z",
     "size": 823410,
     "path": "../public/memes/margaret-thatcher/being-powerful-is-like-being-a-lady-if-y.png"
   },
   "/memes/margaret-thatcher/disciplining-yourself-to-do-what-you-kno.png": {
     "type": "image/png",
     "etag": "\"88a27-/O2qJB54ax96Z6uD1TgkYiRgQyc\"",
-    "mtime": "2025-06-24T06:02:50.441Z",
+    "mtime": "2025-06-24T17:15:26.767Z",
     "size": 559655,
     "path": "../public/memes/margaret-thatcher/disciplining-yourself-to-do-what-you-kno.png"
   },
   "/memes/margaret-thatcher/europe-will-never-be-like-america-europe.png": {
     "type": "image/png",
     "etag": "\"55e03-ZvsvgYEE5ysLZ8tijdvWbupbRzc\"",
-    "mtime": "2025-06-24T06:02:50.441Z",
+    "mtime": "2025-06-24T17:15:27.009Z",
     "size": 351747,
     "path": "../public/memes/margaret-thatcher/europe-will-never-be-like-america-europe.png"
   },
   "/memes/margaret-thatcher/free-enterprise-has-enabled-the-creative.png": {
     "type": "image/png",
     "etag": "\"9a7e2-1Y9gWrJ9fwNIpWgVDO+h1k3XNKo\"",
-    "mtime": "2025-06-24T06:02:50.445Z",
+    "mtime": "2025-06-24T17:15:27.012Z",
     "size": 632802,
     "path": "../public/memes/margaret-thatcher/free-enterprise-has-enabled-the-creative.png"
   },
   "/memes/margaret-thatcher/global-warming-provides-a-marvelous-excu-1.png": {
     "type": "image/png",
     "etag": "\"3d3c7-0RqKO+YD/x1ePYz9pLVLRFmsgSs\"",
-    "mtime": "2025-06-24T06:02:50.443Z",
+    "mtime": "2025-06-24T17:15:27.013Z",
     "size": 250823,
     "path": "../public/memes/margaret-thatcher/global-warming-provides-a-marvelous-excu-1.png"
   },
   "/memes/margaret-thatcher/global-warming-provides-a-marvelous-excu.png": {
     "type": "image/png",
     "etag": "\"15816c-M7cQtShZaRZhwgFvkTe+03YwhTg\"",
-    "mtime": "2025-06-24T06:02:50.445Z",
+    "mtime": "2025-06-24T17:15:27.015Z",
     "size": 1409388,
     "path": "../public/memes/margaret-thatcher/global-warming-provides-a-marvelous-excu.png"
   },
   "/memes/margaret-thatcher/i-always-cheer-up-and-mentally-if-an-att.png": {
     "type": "image/png",
     "etag": "\"f8919-VWiwS9HMP0IN9tBe9OPxjIoprgQ\"",
-    "mtime": "2025-06-24T06:02:50.445Z",
+    "mtime": "2025-06-24T17:15:27.014Z",
     "size": 1018137,
     "path": "../public/memes/margaret-thatcher/i-always-cheer-up-and-mentally-if-an-att.png"
   },
   "/memes/margaret-thatcher/if-they-attack-you-personally-it-means-t-1.png": {
     "type": "image/png",
     "etag": "\"b4ed7-qgdj3qtfYhpRnlwDv4ELFphtQoY\"",
-    "mtime": "2025-06-24T06:02:50.450Z",
+    "mtime": "2025-06-24T17:15:27.016Z",
     "size": 741079,
     "path": "../public/memes/margaret-thatcher/if-they-attack-you-personally-it-means-t-1.png"
   },
   "/memes/margaret-thatcher/if-they-attack-you-personally-it-means-t.png": {
     "type": "image/png",
     "etag": "\"11472a-qrXTXS/xK3tRY3hjoDHgeSTAIck\"",
-    "mtime": "2025-06-24T06:02:50.448Z",
+    "mtime": "2025-06-24T17:15:27.020Z",
     "size": 1132330,
     "path": "../public/memes/margaret-thatcher/if-they-attack-you-personally-it-means-t.png"
   },
   "/memes/margaret-thatcher/let-us-never-forget-this-fundamental-tru.png": {
     "type": "image/png",
     "etag": "\"b8522-PDgzXsJm1mxuLaZeGwALgwK0+zM\"",
-    "mtime": "2025-06-24T06:02:50.451Z",
+    "mtime": "2025-06-24T17:15:27.021Z",
     "size": 754978,
     "path": "../public/memes/margaret-thatcher/let-us-never-forget-this-fundamental-tru.png"
   },
   "/memes/margaret-thatcher/margaret-thatcher-rich-poorer-if-poor-po.png": {
     "type": "image/png",
     "etag": "\"6e50b-pjRxV9SwUAMjpQnK9ndp9SXaQaY\"",
-    "mtime": "2025-06-24T06:02:50.450Z",
+    "mtime": "2025-06-24T17:15:27.026Z",
     "size": 451851,
     "path": "../public/memes/margaret-thatcher/margaret-thatcher-rich-poorer-if-poor-po.png"
   },
   "/memes/margaret-thatcher/margaret-thatcher-stunning-and-brave.png": {
     "type": "image/png",
     "etag": "\"efe14-3nd9Ii384tO4NJTD6MKIobr+O/A\"",
-    "mtime": "2025-06-24T06:02:50.456Z",
+    "mtime": "2025-06-24T17:15:27.021Z",
     "size": 982548,
     "path": "../public/memes/margaret-thatcher/margaret-thatcher-stunning-and-brave.png"
   },
   "/memes/margaret-thatcher/one-way-to-destroy-capitalism.png": {
     "type": "image/png",
     "etag": "\"bdf71-DCCrdyK55/2BfcLlhXfz3TNsB2I\"",
-    "mtime": "2025-06-24T06:02:50.455Z",
+    "mtime": "2025-06-24T17:15:27.026Z",
     "size": 778097,
     "path": "../public/memes/margaret-thatcher/one-way-to-destroy-capitalism.png"
   },
   "/memes/margaret-thatcher/standing-in-the-middle-of-the-road-is-ve.png": {
     "type": "image/png",
     "etag": "\"5db34-MnFuQ0moVz55zAbY1j42yHjhFqA\"",
-    "mtime": "2025-06-24T06:02:50.455Z",
+    "mtime": "2025-06-24T17:15:27.026Z",
     "size": 383796,
     "path": "../public/memes/margaret-thatcher/standing-in-the-middle-of-the-road-is-ve.png"
   },
   "/memes/margaret-thatcher/the-problem-with-socialism-is.png": {
     "type": "image/png",
     "etag": "\"81f43-CqcEVxab2fIU3z0pSyFwC2etJKQ\"",
-    "mtime": "2025-06-24T06:02:50.456Z",
+    "mtime": "2025-06-24T17:15:27.025Z",
     "size": 532291,
     "path": "../public/memes/margaret-thatcher/the-problem-with-socialism-is.png"
   },
   "/memes/margaret-thatcher/the-problem-with-socialism.png": {
     "type": "image/png",
     "etag": "\"ada97-Z+oMHD4IceJDOP77SwQ04hFqo38\"",
-    "mtime": "2025-06-24T06:02:50.474Z",
+    "mtime": "2025-06-24T17:15:27.031Z",
     "size": 711319,
     "path": "../public/memes/margaret-thatcher/the-problem-with-socialism.png"
   },
   "/memes/margaret-thatcher/the-socialist-myth-is-that-governments-c.png": {
     "type": "image/png",
     "etag": "\"87e9f-vBJgK9BAEtAcatdeF4wCviA8sbo\"",
-    "mtime": "2025-06-24T06:02:50.457Z",
+    "mtime": "2025-06-24T17:15:27.027Z",
     "size": 556703,
     "path": "../public/memes/margaret-thatcher/the-socialist-myth-is-that-governments-c.png"
   },
   "/memes/margaret-thatcher/the-two-totalitarian-systems-which-we-in.png": {
     "type": "image/png",
     "etag": "\"b5a67-O2dsUJduNKhvci6m+noL189YBiU\"",
-    "mtime": "2025-06-24T06:02:50.459Z",
+    "mtime": "2025-06-24T17:15:27.032Z",
     "size": 744039,
     "path": "../public/memes/margaret-thatcher/the-two-totalitarian-systems-which-we-in.png"
   },
   "/memes/margaret-thatcher/you-cant-make-people-good.png": {
     "type": "image/png",
     "etag": "\"1472c3-qq1dRwtRIKacdOjLsCeeFROFGU8\"",
-    "mtime": "2025-06-24T06:02:50.459Z",
+    "mtime": "2025-06-24T17:15:27.043Z",
     "size": 1340099,
     "path": "../public/memes/margaret-thatcher/you-cant-make-people-good.png"
+  },
+  "/memes/media/cnn-npc-woke-dystopia.png": {
+    "type": "image/png",
+    "etag": "\"16609f-xKw0sgEsrUunNwPShDqMW/l0sMY\"",
+    "mtime": "2025-06-24T17:15:26.769Z",
+    "size": 1466527,
+    "path": "../public/memes/media/cnn-npc-woke-dystopia.png"
+  },
+  "/memes/media/you-think-thats-news-youre-reading.png": {
+    "type": "image/png",
+    "etag": "\"f4b5d-qMe4QIphxJmIshDajQx7Z59NRTM\"",
+    "mtime": "2025-06-24T17:15:27.009Z",
+    "size": 1002333,
+    "path": "../public/memes/media/you-think-thats-news-youre-reading.png"
+  },
+  "/memes/capitalism/.DS_Store": {
+    "type": "text/plain; charset=utf-8",
+    "etag": "\"1804-3y++sUAKzaCQmjLBz2v0kvESHgc\"",
+    "mtime": "2025-06-24T17:15:26.780Z",
+    "size": 6148,
+    "path": "../public/memes/capitalism/.DS_Store"
+  },
+  "/memes/capitalism/a-free-market-economy-is-a-giant-computer.png": {
+    "type": "image/png",
+    "etag": "\"1ab685-gitrcGyNaZBu8A6BvO+FWbbyIoE\"",
+    "mtime": "2025-06-24T17:15:26.765Z",
+    "size": 1750661,
+    "path": "../public/memes/capitalism/a-free-market-economy-is-a-giant-computer.png"
+  },
+  "/memes/capitalism/a-free-market-free-exchange-economy-is-a.png": {
+    "type": "image/png",
+    "etag": "\"2aaba-Uz/9egzfr7wZEF1m/qPOvWmq9Xg\"",
+    "mtime": "2025-06-24T17:15:26.779Z",
+    "size": 174778,
+    "path": "../public/memes/capitalism/a-free-market-free-exchange-economy-is-a.png"
+  },
+  "/memes/capitalism/at-least-im-not-a-capitalist-capitalism.png": {
+    "type": "image/png",
+    "etag": "\"10254a-363Z3NNKGwKoD0edFO+7RzAZDtU\"",
+    "mtime": "2025-06-24T17:15:26.779Z",
+    "size": 1058122,
+    "path": "../public/memes/capitalism/at-least-im-not-a-capitalist-capitalism.png"
+  },
+  "/memes/capitalism/biz-vs-govt.png": {
+    "type": "image/png",
+    "etag": "\"eac6d-Vh+5R9zbO1UAsAuMJlVMU8xgdNo\"",
+    "mtime": "2025-06-24T17:15:26.780Z",
+    "size": 961645,
+    "path": "../public/memes/capitalism/biz-vs-govt.png"
+  },
+  "/memes/capitalism/but-that-wasnt-redi-communism.png": {
+    "type": "image/png",
+    "etag": "\"8f68b-yxTvyeTWX3jt9NvVPw8q9+wZmRA\"",
+    "mtime": "2025-06-24T17:15:26.783Z",
+    "size": 587403,
+    "path": "../public/memes/capitalism/but-that-wasnt-redi-communism.png"
+  },
+  "/memes/capitalism/capitalism-fishing.png": {
+    "type": "image/png",
+    "etag": "\"f92ed-6rNR8V4bVA6ZbK/hvaxWG57JPNA\"",
+    "mtime": "2025-06-24T17:15:26.783Z",
+    "size": 1020653,
+    "path": "../public/memes/capitalism/capitalism-fishing.png"
+  },
+  "/memes/capitalism/capitalism-im-relatively-tame.png": {
+    "type": "image/png",
+    "etag": "\"73216-yNXb8JNG62zvVUC/httKaG0lpjo\"",
+    "mtime": "2025-06-24T17:15:26.788Z",
+    "size": 471574,
+    "path": "../public/memes/capitalism/capitalism-im-relatively-tame.png"
+  },
+  "/memes/capitalism/capitalism-vs-socialism-for-dummies.png": {
+    "type": "image/png",
+    "etag": "\"54ea1-wQNi29/CcUPur5X9/nORNFy9O2k\"",
+    "mtime": "2025-06-24T17:15:26.788Z",
+    "size": 347809,
+    "path": "../public/memes/capitalism/capitalism-vs-socialism-for-dummies.png"
+  },
+  "/memes/capitalism/capitalists-will-always-pay-their-worker.png": {
+    "type": "image/png",
+    "etag": "\"47fee-jM3rWBidRjKglZFa0V7QnlEW1Cw\"",
+    "mtime": "2025-06-24T17:15:26.785Z",
+    "size": 294894,
+    "path": "../public/memes/capitalism/capitalists-will-always-pay-their-worker.png"
+  },
+  "/memes/capitalism/characters-whose-plans-always-fail-miser.png": {
+    "type": "image/png",
+    "etag": "\"b0815-Q8K2nyPkcyoYnY0HCqwII5kDpcU\"",
+    "mtime": "2025-06-24T17:15:26.785Z",
+    "size": 722965,
+    "path": "../public/memes/capitalism/characters-whose-plans-always-fail-miser.png"
+  },
+  "/memes/capitalism/collectivism-100-million-people-murdered.png": {
+    "type": "image/png",
+    "etag": "\"cde62-lRy9eLTSoddYCqU0Gn5aybQ4bHo\"",
+    "mtime": "2025-06-24T17:15:26.799Z",
+    "size": 843362,
+    "path": "../public/memes/capitalism/collectivism-100-million-people-murdered.png"
+  },
+  "/memes/capitalism/commiepoly-1.png": {
+    "type": "image/png",
+    "etag": "\"13f0b4-fXuu9DPCuoVyBAu4jhGXvpg2OUk\"",
+    "mtime": "2025-06-24T17:15:26.799Z",
+    "size": 1306804,
+    "path": "../public/memes/capitalism/commiepoly-1.png"
+  },
+  "/memes/capitalism/corporatism-is-not-capitalism.png": {
+    "type": "image/png",
+    "etag": "\"174b6e-loTmgeVPrEGIp5930HFwe9Z81VA\"",
+    "mtime": "2025-06-24T17:15:26.789Z",
+    "size": 1526638,
+    "path": "../public/memes/capitalism/corporatism-is-not-capitalism.png"
+  },
+  "/memes/capitalism/could-the-problem-be-marxism.png": {
+    "type": "image/png",
+    "etag": "\"cbbea-x0/DfDhVg2baZVUW3aasFRzBqyQ\"",
+    "mtime": "2025-06-24T17:15:26.788Z",
+    "size": 834538,
+    "path": "../public/memes/capitalism/could-the-problem-be-marxism.png"
+  },
+  "/memes/capitalism/damn-capitalism.png": {
+    "type": "image/png",
+    "etag": "\"90efe-CA9b5Hgce7mpC3eTHra9DZ6l7/w\"",
+    "mtime": "2025-06-24T17:15:26.792Z",
+    "size": 593662,
+    "path": "../public/memes/capitalism/damn-capitalism.png"
+  },
+  "/memes/capitalism/fictional-country-socialists.png": {
+    "type": "image/png",
+    "etag": "\"90211-0p9Y52HzzBGuS21zBmYOrWav4C8\"",
+    "mtime": "2025-06-24T17:15:26.793Z",
+    "size": 590353,
+    "path": "../public/memes/capitalism/fictional-country-socialists.png"
+  },
+  "/memes/capitalism/gdp-per-person-1990-international-dollar.png": {
+    "type": "image/png",
+    "etag": "\"450f9-ZOrrirbuTICOx0i1FWbC/y6xi7M\"",
+    "mtime": "2025-06-24T17:15:26.793Z",
+    "size": 282873,
+    "path": "../public/memes/capitalism/gdp-per-person-1990-international-dollar.png"
+  },
+  "/memes/capitalism/how-to-do-communism.png": {
+    "type": "image/png",
+    "etag": "\"635e0-NHIrK1dHqiuGYp2LPoX0p8Xy3/Y\"",
+    "mtime": "2025-06-24T17:15:26.793Z",
+    "size": 407008,
+    "path": "../public/memes/capitalism/how-to-do-communism.png"
+  },
+  "/memes/capitalism/imaginary-socialism-socialists-living-in.png": {
+    "type": "image/png",
+    "etag": "\"90483-ZhOBETJ7z9K312IB255no9kRbH0\"",
+    "mtime": "2025-06-24T17:15:26.809Z",
+    "size": 590979,
+    "path": "../public/memes/capitalism/imaginary-socialism-socialists-living-in.png"
+  },
+  "/memes/capitalism/imaginary-socialism-vs-reality.png": {
+    "type": "image/png",
+    "etag": "\"9146e-JbGNAnSBZm4haE+k7bIyi6bddHA\"",
+    "mtime": "2025-06-24T17:15:26.798Z",
+    "size": 595054,
+    "path": "../public/memes/capitalism/imaginary-socialism-vs-reality.png"
+  },
+  "/memes/capitalism/individualism-versus-collectivism.png": {
+    "type": "image/png",
+    "etag": "\"ecf36-vDL3E6Ume2lIsaCjB7PmS8X5dC8\"",
+    "mtime": "2025-06-24T17:15:26.798Z",
+    "size": 970550,
+    "path": "../public/memes/capitalism/individualism-versus-collectivism.png"
+  },
+  "/memes/capitalism/keynesian-economics.png": {
+    "type": "image/png",
+    "etag": "\"c58e3-nQqQNJvuGfDWjGyHg1Tvq6QkSaU\"",
+    "mtime": "2025-06-24T17:15:26.806Z",
+    "size": 809187,
+    "path": "../public/memes/capitalism/keynesian-economics.png"
+  },
+  "/memes/capitalism/less-marx-more-milei.png": {
+    "type": "image/png",
+    "etag": "\"12397e-1euZckLFVYg+hBTl8UZgDBZBAWs\"",
+    "mtime": "2025-06-24T17:15:26.808Z",
+    "size": 1194366,
+    "path": "../public/memes/capitalism/less-marx-more-milei.png"
+  },
+  "/memes/capitalism/lets-divide-a-country-into-half-capitali.png": {
+    "type": "image/png",
+    "etag": "\"ec71b-YD03ePVBgMrGiwcPNwD77Smmhqw\"",
+    "mtime": "2025-06-24T17:15:26.806Z",
+    "size": 968475,
+    "path": "../public/memes/capitalism/lets-divide-a-country-into-half-capitali.png"
+  },
+  "/memes/capitalism/lets-see-if-ive-got-this-correct.png": {
+    "type": "image/png",
+    "etag": "\"a161d-zqpmERPRXbTDQUlUkZT8zJvH8BU\"",
+    "mtime": "2025-06-24T17:15:26.810Z",
+    "size": 661021,
+    "path": "../public/memes/capitalism/lets-see-if-ive-got-this-correct.png"
+  },
+  "/memes/capitalism/margaret-thatcher-rich-poorer-if-poor-po.png": {
+    "type": "image/png",
+    "etag": "\"6e4ed-obZqtXvliKs+SCRQQOtQqFpqI9g\"",
+    "mtime": "2025-06-24T17:15:26.806Z",
+    "size": 451821,
+    "path": "../public/memes/capitalism/margaret-thatcher-rich-poorer-if-poor-po.png"
+  },
+  "/memes/capitalism/marxism-is-an-anti-human-cult.png": {
+    "type": "image/png",
+    "etag": "\"11f3e9-cKX6p7xqPd2I6sE6mgBC2Hw5iHA\"",
+    "mtime": "2025-06-24T17:15:26.814Z",
+    "size": 1176553,
+    "path": "../public/memes/capitalism/marxism-is-an-anti-human-cult.png"
+  },
+  "/memes/capitalism/minimum-wage-jobs.png": {
+    "type": "image/png",
+    "etag": "\"feadd-sTohIZS0zSiIZfsI4QHT1YQ8FkQ\"",
+    "mtime": "2025-06-24T17:15:26.810Z",
+    "size": 1043165,
+    "path": "../public/memes/capitalism/minimum-wage-jobs.png"
+  },
+  "/memes/capitalism/modern-feudalism-socialism.png": {
+    "type": "image/png",
+    "etag": "\"36943-Py1+F1gAfMhUL1+bWjqv1GFnLqk\"",
+    "mtime": "2025-06-24T17:15:26.814Z",
+    "size": 223555,
+    "path": "../public/memes/capitalism/modern-feudalism-socialism.png"
+  },
+  "/memes/capitalism/my-dog-when-hes-eating.png": {
+    "type": "image/png",
+    "etag": "\"bef63-xG9881k8fSWOY+K27rYhbkW5wr4\"",
+    "mtime": "2025-06-24T17:15:26.818Z",
+    "size": 782179,
+    "path": "../public/memes/capitalism/my-dog-when-hes-eating.png"
+  },
+  "/memes/capitalism/my-labor-is-exploited-by-capitalists.png": {
+    "type": "image/png",
+    "etag": "\"82e8f-1YCPpRRdRzrDzZvbnYnI2IEnJ98\"",
+    "mtime": "2025-06-24T17:15:26.816Z",
+    "size": 536207,
+    "path": "../public/memes/capitalism/my-labor-is-exploited-by-capitalists.png"
+  },
+  "/memes/capitalism/nazi-democrat.png": {
+    "type": "image/png",
+    "etag": "\"8d3da-jD8Ez0CSt2T1r2nneOAgFcYLlg4\"",
+    "mtime": "2025-06-24T17:15:26.819Z",
+    "size": 578522,
+    "path": "../public/memes/capitalism/nazi-democrat.png"
+  },
+  "/memes/capitalism/nazis-and-communists-and-antifa-the-same.png": {
+    "type": "image/png",
+    "etag": "\"7404a-dOde1n+4hfcFJ8eqKs+G1gFn/8k\"",
+    "mtime": "2025-06-24T17:15:26.818Z",
+    "size": 475210,
+    "path": "../public/memes/capitalism/nazis-and-communists-and-antifa-the-same.png"
+  },
+  "/memes/capitalism/planned-economy-or-planned-destruction-1.png": {
+    "type": "image/png",
+    "etag": "\"a6a82-tLIe3XRd1zD2bQx430zMVK7DoKA\"",
+    "mtime": "2025-06-24T17:15:26.820Z",
+    "size": 682626,
+    "path": "../public/memes/capitalism/planned-economy-or-planned-destruction-1.png"
+  },
+  "/memes/capitalism/prior-to-capitalism-the-way-people-amass.png": {
+    "type": "image/png",
+    "etag": "\"8507a-RjR/ps1E6WMj3pPabf9TeB7VjTg\"",
+    "mtime": "2025-06-24T17:15:26.821Z",
+    "size": 544890,
+    "path": "../public/memes/capitalism/prior-to-capitalism-the-way-people-amass.png"
+  },
+  "/memes/capitalism/real-socialism-has-never-been-tried-in-t.png": {
+    "type": "image/png",
+    "etag": "\"92304-rLrahR8fvuLFQuB08hoXIoRn6eA\"",
+    "mtime": "2025-06-24T17:15:26.822Z",
+    "size": 598788,
+    "path": "../public/memes/capitalism/real-socialism-has-never-been-tried-in-t.png"
+  },
+  "/memes/capitalism/real-socialism-hasnt-been-done-yet.png": {
+    "type": "image/png",
+    "etag": "\"8075a-N0rrvjkOBsYzxT94uUuHjTbg1Qo\"",
+    "mtime": "2025-06-24T17:15:26.822Z",
+    "size": 526170,
+    "path": "../public/memes/capitalism/real-socialism-hasnt-been-done-yet.png"
+  },
+  "/memes/capitalism/regimes-endorsed-by-noam-chomsky.png": {
+    "type": "image/png",
+    "etag": "\"c32ad-PW9CyVD74RNMRvZcVOwb0SqkIm0\"",
+    "mtime": "2025-06-24T17:15:26.825Z",
+    "size": 799405,
+    "path": "../public/memes/capitalism/regimes-endorsed-by-noam-chomsky.png"
+  },
+  "/memes/capitalism/robin-hood-corrected.png": {
+    "type": "image/png",
+    "etag": "\"dbdd0-E/z9DOqhRyrLMoAltprx7empXJE\"",
+    "mtime": "2025-06-24T17:15:26.825Z",
+    "size": 900560,
+    "path": "../public/memes/capitalism/robin-hood-corrected.png"
+  },
+  "/memes/capitalism/robin-hood-didnt-rob-from-the-rich.png": {
+    "type": "image/png",
+    "etag": "\"f6ab1-1y+H7M+XP/NyRnP1IjnhqQi8Aik\"",
+    "mtime": "2025-06-24T17:15:26.831Z",
+    "size": 1010353,
+    "path": "../public/memes/capitalism/robin-hood-didnt-rob-from-the-rich.png"
+  },
+  "/memes/capitalism/six-charts-showing-capitalism-last-200-y.png": {
+    "type": "image/png",
+    "etag": "\"3f985-wS2nZ0Na9UfVimWkF4DqfRoPPwM\"",
+    "mtime": "2025-06-24T17:15:26.824Z",
+    "size": 260485,
+    "path": "../public/memes/capitalism/six-charts-showing-capitalism-last-200-y.png"
+  },
+  "/memes/capitalism/small-business-vs-unions.png": {
+    "type": "image/png",
+    "etag": "\"b12de-zVprNRV/SlNmZ+Cs8T+d1llEzHk\"",
+    "mtime": "2025-06-24T17:15:26.825Z",
+    "size": 725726,
+    "path": "../public/memes/capitalism/small-business-vs-unions.png"
+  },
+  "/memes/capitalism/socialism-free-prison-soap.png": {
+    "type": "image/png",
+    "etag": "\"7fc72-J/jcMD3T1d8M/lNfJqPb4/yB6gA\"",
+    "mtime": "2025-06-24T17:15:26.827Z",
+    "size": 523378,
+    "path": "../public/memes/capitalism/socialism-free-prison-soap.png"
+  },
+  "/memes/capitalism/socialism-in-theory-vs-practice.png": {
+    "type": "image/png",
+    "etag": "\"7ce71-SG0VtFt2HnQ4qjY5RUvlIYgGbfM\"",
+    "mtime": "2025-06-24T17:15:26.830Z",
+    "size": 511601,
+    "path": "../public/memes/capitalism/socialism-in-theory-vs-practice.png"
+  },
+  "/memes/capitalism/socialism-is-better-than-capitalism.png": {
+    "type": "image/png",
+    "etag": "\"11b81b-2A4nuc+FPCL41sBwhhRNy8jayQ0\"",
+    "mtime": "2025-06-24T17:15:26.830Z",
+    "size": 1161243,
+    "path": "../public/memes/capitalism/socialism-is-better-than-capitalism.png"
+  },
+  "/memes/capitalism/socialism-making-everyone-equally-poor-s.png": {
+    "type": "image/png",
+    "etag": "\"a1cd8-ww3XlYB+L49JpGcWahuYF7fG9aU\"",
+    "mtime": "2025-06-24T17:15:26.835Z",
+    "size": 662744,
+    "path": "../public/memes/capitalism/socialism-making-everyone-equally-poor-s.png"
+  },
+  "/memes/capitalism/socialism-not-even-germans-could-make-it.png": {
+    "type": "image/png",
+    "etag": "\"5ef43-aVnE+ET5vSUnfu36USX83+rkUsg\"",
+    "mtime": "2025-06-24T17:15:26.830Z",
+    "size": 388931,
+    "path": "../public/memes/capitalism/socialism-not-even-germans-could-make-it.png"
+  },
+  "/memes/capitalism/socialism-people-wait-for-bread.png": {
+    "type": "image/png",
+    "etag": "\"131b75-dtsnXhy2erMqIqboeTi8BKTVs64\"",
+    "mtime": "2025-06-24T17:15:26.836Z",
+    "size": 1252213,
+    "path": "../public/memes/capitalism/socialism-people-wait-for-bread.png"
+  },
+  "/memes/capitalism/socialism-revolutions.png": {
+    "type": "image/png",
+    "etag": "\"51734-6Gq5LqxkSYn2OISWogmQ04Bxq3Y\"",
+    "mtime": "2025-06-24T17:15:26.841Z",
+    "size": 333620,
+    "path": "../public/memes/capitalism/socialism-revolutions.png"
+  },
+  "/memes/capitalism/socialism-stick-a-fork-in-it.png": {
+    "type": "image/png",
+    "etag": "\"c8e8b-A1k+TIBehuZPNcD7asDD3dKuTPA\"",
+    "mtime": "2025-06-24T17:15:26.836Z",
+    "size": 822923,
+    "path": "../public/memes/capitalism/socialism-stick-a-fork-in-it.png"
+  },
+  "/memes/capitalism/socialism-vs-capitalism-buildings.png": {
+    "type": "image/png",
+    "etag": "\"1a54ae-PNNbK2xO7LFrj9AMKdFJPbsgMUI\"",
+    "mtime": "2025-06-24T17:15:26.836Z",
+    "size": 1725614,
+    "path": "../public/memes/capitalism/socialism-vs-capitalism-buildings.png"
+  },
+  "/memes/capitalism/socialism-vs-capitalism-diving-board.png": {
+    "type": "image/png",
+    "etag": "\"e11e6-VgbXYrv8GbE6m/Av730/66huLwo\"",
+    "mtime": "2025-06-24T17:15:26.845Z",
+    "size": 922086,
+    "path": "../public/memes/capitalism/socialism-vs-capitalism-diving-board.png"
+  },
+  "/memes/capitalism/socialists-living-in-capitalism.png": {
+    "type": "image/png",
+    "etag": "\"113829-8O732TZnBHidpGHDo8b+20+ujCk\"",
+    "mtime": "2025-06-24T17:15:26.845Z",
+    "size": 1128489,
+    "path": "../public/memes/capitalism/socialists-living-in-capitalism.png"
+  },
+  "/memes/capitalism/socialists-you-guys-always-act-like-your.png": {
+    "type": "image/png",
+    "etag": "\"d4b4a-fFMD2h3VCMUIyLu43dYkha6ZrFI\"",
+    "mtime": "2025-06-24T17:15:26.842Z",
+    "size": 871242,
+    "path": "../public/memes/capitalism/socialists-you-guys-always-act-like-your.png"
+  },
+  "/memes/capitalism/south-korea-capitalism-vs-north-korea-so.png": {
+    "type": "image/png",
+    "etag": "\"c1e7b-eCSczXIrrqwGIe3Hqd56DaMhETo\"",
+    "mtime": "2025-06-24T17:15:26.844Z",
+    "size": 794235,
+    "path": "../public/memes/capitalism/south-korea-capitalism-vs-north-korea-so.png"
+  },
+  "/memes/capitalism/the-american-dream-is-more-apt-to-be-rea.png": {
+    "type": "image/png",
+    "etag": "\"11b70a-XfW1l02hIJKi0r8ZNLSxiIUWvfg\"",
+    "mtime": "2025-06-24T17:15:26.850Z",
+    "size": 1160970,
+    "path": "../public/memes/capitalism/the-american-dream-is-more-apt-to-be-rea.png"
+  },
+  "/memes/capitalism/the-birth-of-free-market-economics.png": {
+    "type": "image/png",
+    "etag": "\"b44d7-dDsRLx/Xs+qD/EZ38bnV2auyMdY\"",
+    "mtime": "2025-06-24T17:15:26.845Z",
+    "size": 738519,
+    "path": "../public/memes/capitalism/the-birth-of-free-market-economics.png"
+  },
+  "/memes/capitalism/the-free-market-has-failed.png": {
+    "type": "image/png",
+    "etag": "\"b44d1-qgDJdU0DeGTPiCjkwAvA/7fOD3w\"",
+    "mtime": "2025-06-24T17:15:26.850Z",
+    "size": 738513,
+    "path": "../public/memes/capitalism/the-free-market-has-failed.png"
+  },
+  "/memes/capitalism/the-left-would-rather-the-poor-were-poor.png": {
+    "type": "image/png",
+    "etag": "\"81bba-dcT/gzd6f+WlayC41+aZI+NNUr4\"",
+    "mtime": "2025-06-24T17:15:26.845Z",
+    "size": 531386,
+    "path": "../public/memes/capitalism/the-left-would-rather-the-poor-were-poor.png"
+  },
+  "/memes/capitalism/the-problem-with-socialism-is.png": {
+    "type": "image/png",
+    "etag": "\"81f25-RzJ9EJ5wx5FyvR+ijDi/RIK3yZk\"",
+    "mtime": "2025-06-24T17:15:26.856Z",
+    "size": 532261,
+    "path": "../public/memes/capitalism/the-problem-with-socialism-is.png"
+  },
+  "/memes/capitalism/the-problems-the-left-assigns-to-capital.png": {
+    "type": "image/png",
+    "etag": "\"639c1-7B7hIMh1gNMvtqOpAagIME9TGrM\"",
+    "mtime": "2025-06-24T17:15:26.851Z",
+    "size": 408001,
+    "path": "../public/memes/capitalism/the-problems-the-left-assigns-to-capital.png"
+  },
+  "/memes/capitalism/the-socialist-dream-vs-reality.png": {
+    "type": "image/png",
+    "etag": "\"14be29-0C/0mxDAdvWbaK/jobzYlE3d3o8\"",
+    "mtime": "2025-06-24T17:15:26.851Z",
+    "size": 1359401,
+    "path": "../public/memes/capitalism/the-socialist-dream-vs-reality.png"
+  },
+  "/memes/capitalism/the-state-more-laws-and-regulations-fire.png": {
+    "type": "image/png",
+    "etag": "\"e6bf2-fu0vk9O8H1sfngq6HaUr5Xgjrlo\"",
+    "mtime": "2025-06-24T17:15:26.856Z",
+    "size": 945138,
+    "path": "../public/memes/capitalism/the-state-more-laws-and-regulations-fire.png"
+  },
+  "/memes/capitalism/trust-in-government-knowledge-of-history.png": {
+    "type": "image/png",
+    "etag": "\"1a439-YdMT+wsHiDnlhA6PfDqVy83FPgA\"",
+    "mtime": "2025-06-24T17:15:26.850Z",
+    "size": 107577,
+    "path": "../public/memes/capitalism/trust-in-government-knowledge-of-history.png"
+  },
+  "/memes/capitalism/useful-idiots-hugo-chavez-socialism.png": {
+    "type": "image/png",
+    "etag": "\"1407be-tRJ2tIai8cdaawQZS+nAaWY2dRI\"",
+    "mtime": "2025-06-24T17:15:26.859Z",
+    "size": 1312702,
+    "path": "../public/memes/capitalism/useful-idiots-hugo-chavez-socialism.png"
+  },
+  "/memes/capitalism/venezuela-before-after-socialism.png": {
+    "type": "image/png",
+    "etag": "\"11c1e4-+BrbCuInPb0E8WOQKPLd7ICLcbk\"",
+    "mtime": "2025-06-24T17:15:26.859Z",
+    "size": 1163748,
+    "path": "../public/memes/capitalism/venezuela-before-after-socialism.png"
+  },
+  "/memes/capitalism/when-a-trades-with-b.png": {
+    "type": "image/png",
+    "etag": "\"47226-bwfXrzMqeT+D1BofjbE7raO6c48\"",
+    "mtime": "2025-06-24T17:15:26.855Z",
+    "size": 291366,
+    "path": "../public/memes/capitalism/when-a-trades-with-b.png"
+  },
+  "/memes/capitalism/when-government-attempts-to-regulate-the.png": {
+    "type": "image/png",
+    "etag": "\"bb1fb-GskkbSUYkiHyBDqUg4sl7UK1yOs\"",
+    "mtime": "2025-06-24T17:15:26.859Z",
+    "size": 766459,
+    "path": "../public/memes/capitalism/when-government-attempts-to-regulate-the.png"
+  },
+  "/memes/capitalism/without-ownership-there-is-no-exchange-m.png": {
+    "type": "image/png",
+    "etag": "\"17e88-nbXolv2hqstazJl6j12CsG/zQ+I\"",
+    "mtime": "2025-06-24T17:15:26.864Z",
+    "size": 97928,
+    "path": "../public/memes/capitalism/without-ownership-there-is-no-exchange-m.png"
+  },
+  "/memes/capitalism/you-vs-government.png": {
+    "type": "image/png",
+    "etag": "\"63ab1-KaE69LgHYo3qrMGxrMqJtF+L4Ig\"",
+    "mtime": "2025-06-24T17:15:26.859Z",
+    "size": 408241,
+    "path": "../public/memes/capitalism/you-vs-government.png"
+  },
+  "/memes/capitalism/your-government-at-work.png": {
+    "type": "image/png",
+    "etag": "\"118e45-ULgmPHF2nP8ny8syvDz8Yjq+tXQ\"",
+    "mtime": "2025-06-24T17:15:26.864Z",
+    "size": 1150533,
+    "path": "../public/memes/capitalism/your-government-at-work.png"
   },
   "/memes/data/.DS_Store": {
     "type": "text/plain; charset=utf-8",
     "etag": "\"6804-Uu3iMmTwEuS3eAx9DcLUpZvBSQ0\"",
-    "mtime": "2025-06-24T06:02:50.422Z",
+    "mtime": "2025-06-24T17:15:26.866Z",
     "size": 26628,
     "path": "../public/memes/data/.DS_Store"
   },
   "/memes/data/2018-corruption-perceptions-index.png": {
     "type": "image/png",
     "etag": "\"5b236-fUA6q5g71flOiG0B4P9tuVOXIuA\"",
-    "mtime": "2025-06-24T06:02:50.647Z",
+    "mtime": "2025-06-24T17:15:26.765Z",
     "size": 373302,
     "path": "../public/memes/data/2018-corruption-perceptions-index.png"
   },
   "/memes/data/56-of-liberal-women-aged-18-29-have-been-diagnosed-with-a-mental-health-condition.png": {
     "type": "image/png",
     "etag": "\"91e16-GYJgvwJ6425CPtmEAZdsFReuHt4\"",
-    "mtime": "2025-06-24T06:02:50.660Z",
+    "mtime": "2025-06-24T17:15:26.873Z",
     "size": 597526,
     "path": "../public/memes/data/56-of-liberal-women-aged-18-29-have-been-diagnosed-with-a-mental-health-condition.png"
   },
   "/memes/data/95-of-americans-who-mainstream-media-call-far-right.png": {
     "type": "image/png",
     "etag": "\"c848b-zttaCouhfL9DLkLtt6zRbm36lgI\"",
-    "mtime": "2025-06-24T06:02:50.661Z",
+    "mtime": "2025-06-24T17:15:26.872Z",
     "size": 820363,
     "path": "../public/memes/data/95-of-americans-who-mainstream-media-call-far-right.png"
   },
   "/memes/data/actual-individual-consumption-per-head-in-2017-for-the-25-countries-with-populations-of-over-one-million.png": {
     "type": "image/png",
     "etag": "\"362bc-bVdakf9TkSHtKd6LoL84oaeUPDE\"",
-    "mtime": "2025-06-24T06:02:50.647Z",
+    "mtime": "2025-06-24T17:15:26.873Z",
     "size": 221884,
     "path": "../public/memes/data/actual-individual-consumption-per-head-in-2017-for-the-25-countries-with-populations-of-over-one-million.png"
   },
   "/memes/data/americas-richest-poorest-states-vs-g7-countries.png": {
     "type": "image/png",
     "etag": "\"1563c8-YJAEQt/oUkkuT8Ht0iGk/8Ejdgs\"",
-    "mtime": "2025-06-24T06:02:50.654Z",
+    "mtime": "2025-06-24T17:15:26.876Z",
     "size": 1401800,
     "path": "../public/memes/data/americas-richest-poorest-states-vs-g7-countries.png"
   },
   "/memes/data/average-annual-wage-usd-2025.png": {
     "type": "image/png",
     "etag": "\"5f43a-zrcxHLCaPasdVLMDANfmVU0Ic5U\"",
-    "mtime": "2025-06-24T06:02:50.650Z",
+    "mtime": "2025-06-24T17:15:26.879Z",
     "size": 390202,
     "path": "../public/memes/data/average-annual-wage-usd-2025.png"
   },
   "/memes/data/average-consumption-per-person-in-oecd-nations-2010.png": {
     "type": "image/png",
     "etag": "\"71fee-YmVVpaOdujj6Ps3dHKkBEed2Wqs\"",
-    "mtime": "2025-06-24T06:02:50.653Z",
+    "mtime": "2025-06-24T17:15:26.879Z",
     "size": 466926,
     "path": "../public/memes/data/average-consumption-per-person-in-oecd-nations-2010.png"
   },
   "/memes/data/better-life-index-2013.png": {
     "type": "image/png",
     "etag": "\"2e25d-ZbROXwR0S+m1MTZDWiQtrJc7yHM\"",
-    "mtime": "2025-06-24T06:02:50.652Z",
+    "mtime": "2025-06-24T17:15:26.874Z",
     "size": 189021,
     "path": "../public/memes/data/better-life-index-2013.png"
   },
   "/memes/data/birth-of-liberalism-and-capitalism-period-end-of-human-slavery.png": {
     "type": "image/png",
     "etag": "\"2c3bb-f+hMVBMcWyCbBneORYmjSz8VkWk\"",
-    "mtime": "2025-06-24T06:02:50.652Z",
+    "mtime": "2025-06-24T17:15:26.874Z",
     "size": 181179,
     "path": "../public/memes/data/birth-of-liberalism-and-capitalism-period-end-of-human-slavery.png"
   },
   "/memes/data/blacks-are-more-likely-than-other-groups-to-see-their-race-or-ethnicity-as-central-to-their-identity.png": {
     "type": "image/png",
     "etag": "\"12909-wJeDnCMdVdK1EtKmx3RE6v55Lcw\"",
-    "mtime": "2025-06-24T06:02:50.656Z",
+    "mtime": "2025-06-24T17:15:26.878Z",
     "size": 76041,
     "path": "../public/memes/data/blacks-are-more-likely-than-other-groups-to-see-their-race-or-ethnicity-as-central-to-their-identity.png"
   },
   "/memes/data/capitalism-has-failed.png": {
     "type": "image/png",
     "etag": "\"44519-oOJ2wbr4v2PG4ex+kNxEYwTL36Y\"",
-    "mtime": "2025-06-24T06:02:50.653Z",
+    "mtime": "2025-06-24T17:15:26.879Z",
     "size": 279833,
     "path": "../public/memes/data/capitalism-has-failed.png"
   },
   "/memes/data/chance-of-surviving-covid-19-by-age-and-sex-2020.png": {
     "type": "image/png",
     "etag": "\"4c85a-GcdkraE5/O6Ym02UFGuXd9fiGhk\"",
-    "mtime": "2025-06-24T06:02:50.654Z",
+    "mtime": "2025-06-24T17:15:26.880Z",
     "size": 313434,
     "path": "../public/memes/data/chance-of-surviving-covid-19-by-age-and-sex-2020.png"
   },
   "/memes/data/christianity-in-the-us-by-county-distribution-of-catholicism-protestantism-and-mornonism-in-the-us.png": {
     "type": "image/png",
     "etag": "\"104058-zhUKp4GankezJZ30h2Iu4Yv7K7Q\"",
-    "mtime": "2025-06-24T06:02:50.656Z",
+    "mtime": "2025-06-24T17:15:26.882Z",
     "size": 1065048,
     "path": "../public/memes/data/christianity-in-the-us-by-county-distribution-of-catholicism-protestantism-and-mornonism-in-the-us.png"
   },
   "/memes/data/claim-nazi-was-right-wing.png": {
     "type": "image/png",
     "etag": "\"7207b-gypjfKntnbZOsA5gNau8gvJl618\"",
-    "mtime": "2025-06-24T06:02:50.657Z",
+    "mtime": "2025-06-24T17:15:26.889Z",
     "size": 467067,
     "path": "../public/memes/data/claim-nazi-was-right-wing.png"
   },
   "/memes/data/corporate-america-pledged-to-hire-more-people-of-color-it-actually-did.png": {
     "type": "image/png",
     "etag": "\"c5e7e-wddLN3OiKtECt2hxS9X0otYFM1w\"",
-    "mtime": "2025-06-24T06:02:50.666Z",
+    "mtime": "2025-06-24T17:15:26.884Z",
     "size": 810622,
     "path": "../public/memes/data/corporate-america-pledged-to-hire-more-people-of-color-it-actually-did.png"
   },
   "/memes/data/countries-vs-us-metros-nearest-gdp-equivalent.png": {
     "type": "image/png",
     "etag": "\"80a3f-9h4HI1PNdZBd81VLIMtcHD+OX+Y\"",
-    "mtime": "2025-06-24T06:02:50.661Z",
+    "mtime": "2025-06-24T17:15:26.889Z",
     "size": 526911,
     "path": "../public/memes/data/countries-vs-us-metros-nearest-gdp-equivalent.png"
   },
   "/memes/data/cps-population-and-per-capita-money-income-all-races-1967-2014.png": {
     "type": "image/png",
     "etag": "\"109745-SG3cfI6fK8qdA8aRrYnbr0dZZJ4\"",
-    "mtime": "2025-06-24T06:02:50.666Z",
+    "mtime": "2025-06-24T17:15:26.890Z",
     "size": 1087301,
     "path": "../public/memes/data/cps-population-and-per-capita-money-income-all-races-1967-2014.png"
   },
   "/memes/data/death-rate-from-famines-by-decade-world.png": {
     "type": "image/png",
     "etag": "\"313fd-SUP+jbyjHNzNQ62+NG4dXjSEEJ8\"",
-    "mtime": "2025-06-24T06:02:50.661Z",
+    "mtime": "2025-06-24T17:15:26.880Z",
     "size": 201725,
     "path": "../public/memes/data/death-rate-from-famines-by-decade-world.png"
   },
   "/memes/data/democratic-socialist-countries.png": {
     "type": "image/png",
     "etag": "\"493a5-txYUergoISW8+mX0/iLESe+i0gA\"",
-    "mtime": "2025-06-24T06:02:50.664Z",
+    "mtime": "2025-06-24T17:15:26.892Z",
     "size": 299941,
     "path": "../public/memes/data/democratic-socialist-countries.png"
   },
   "/memes/data/democrats-have-shifted-sharply-leftwards-on-cultural-issues.png": {
     "type": "image/png",
     "etag": "\"608b6-pTlrUVUYfva8NJp43yneYoMZFXQ\"",
-    "mtime": "2025-06-24T06:02:50.664Z",
+    "mtime": "2025-06-24T17:15:26.888Z",
     "size": 395446,
     "path": "../public/memes/data/democrats-have-shifted-sharply-leftwards-on-cultural-issues.png"
   },
   "/memes/data/distribution-of-us-national-income-pretax.png": {
     "type": "image/png",
     "etag": "\"24489-K2j2cz/Hgq2a5iBM4DMkbz5TvH0\"",
-    "mtime": "2025-06-24T06:02:50.671Z",
+    "mtime": "2025-06-24T17:15:26.890Z",
     "size": 148617,
     "path": "../public/memes/data/distribution-of-us-national-income-pretax.png"
   },
   "/memes/data/doctoral-degrees-by-field-and-gender-2022.png": {
     "type": "image/png",
     "etag": "\"78692-EGDXmlIn0ZHkxheIZJS+msDL0BQ\"",
-    "mtime": "2025-06-24T06:02:50.671Z",
+    "mtime": "2025-06-24T17:15:26.893Z",
     "size": 493202,
     "path": "../public/memes/data/doctoral-degrees-by-field-and-gender-2022.png"
   },
   "/memes/data/equality-vs-equity-vs-capitalism.png": {
     "type": "image/png",
     "etag": "\"d6500-XKMR/xgvK9pMJEtiSiu8f6y9um4\"",
-    "mtime": "2025-06-24T06:02:50.671Z",
+    "mtime": "2025-06-24T17:15:26.895Z",
     "size": 877824,
     "path": "../public/memes/data/equality-vs-equity-vs-capitalism.png"
   },
   "/memes/data/european-per-capita-gdp-2015.png": {
     "type": "image/png",
     "etag": "\"db220-asHXWm5RgWnVyzwq16WiTefzBWg\"",
-    "mtime": "2025-06-24T06:02:50.672Z",
+    "mtime": "2025-06-24T17:15:26.897Z",
     "size": 897568,
     "path": "../public/memes/data/european-per-capita-gdp-2015.png"
   },
   "/memes/data/europes-fertility-crisis-2022.png": {
     "type": "image/png",
     "etag": "\"ab475-wFAkQVbLnICK+BXZqd7n1sT0+qg\"",
-    "mtime": "2025-06-24T06:02:50.675Z",
+    "mtime": "2025-06-24T17:15:26.898Z",
     "size": 701557,
     "path": "../public/memes/data/europes-fertility-crisis-2022.png"
   },
   "/memes/data/far-right-1.png": {
     "type": "image/png",
     "etag": "\"45830-ud7soiFSETX8ftkzybUr+Oe1mdI\"",
-    "mtime": "2025-06-24T06:02:50.672Z",
+    "mtime": "2025-06-24T17:15:26.897Z",
     "size": 284720,
     "path": "../public/memes/data/far-right-1.png"
   },
   "/memes/data/far-right-vs-good-person-2.png": {
     "type": "image/png",
     "etag": "\"c57e0-islIgIAk5VNWY/khJLk2u3eCdsM\"",
-    "mtime": "2025-06-24T06:02:50.672Z",
+    "mtime": "2025-06-24T17:15:26.902Z",
     "size": 808928,
     "path": "../public/memes/data/far-right-vs-good-person-2.png"
   },
   "/memes/data/far-right-vs-good-person.png": {
     "type": "image/png",
     "etag": "\"c5ab8-tO1x36DQfGz1a9urjpzpF0UBLEc\"",
-    "mtime": "2025-06-24T06:02:50.675Z",
+    "mtime": "2025-06-24T17:15:26.903Z",
     "size": 809656,
     "path": "../public/memes/data/far-right-vs-good-person.png"
   },
   "/memes/data/far-right.png": {
     "type": "image/png",
     "etag": "\"799c2-Yw42Ct1oq9P7Sa1z/UvIo34p+R4\"",
-    "mtime": "2025-06-24T06:02:50.675Z",
+    "mtime": "2025-06-24T17:15:26.898Z",
     "size": 498114,
     "path": "../public/memes/data/far-right.png"
   },
   "/memes/data/federal-spending-revenue-and-net-deficit-in-.png": {
     "type": "image/png",
     "etag": "\"2c92a-0KCOHws5g7pcz7OF55bvYdp9Q44\"",
-    "mtime": "2025-06-24T06:02:50.681Z",
+    "mtime": "2025-06-24T17:15:26.903Z",
     "size": 182570,
     "path": "../public/memes/data/federal-spending-revenue-and-net-deficit-in-.png"
   },
   "/memes/data/fertility-rate-2024.png": {
     "type": "image/png",
     "etag": "\"5c153-GzpdBnLVQFlXFUXtBrEr46+hc4U\"",
-    "mtime": "2025-06-24T06:02:50.682Z",
+    "mtime": "2025-06-24T17:15:26.902Z",
     "size": 377171,
     "path": "../public/memes/data/fertility-rate-2024.png"
   },
   "/memes/data/fertility-rate-collpase-2024.png": {
     "type": "image/png",
     "etag": "\"a823f-gwLl2HqYn7QKeBPa2+OtCubrMIw\"",
-    "mtime": "2025-06-24T06:02:50.676Z",
+    "mtime": "2025-06-24T17:15:26.904Z",
     "size": 688703,
     "path": "../public/memes/data/fertility-rate-collpase-2024.png"
   },
   "/memes/data/fertility-rates-are-declining-everywhere-2023.png": {
     "type": "image/png",
     "etag": "\"a0531-B3XVyPHQy1y8QiUQcWh0NrLRJPk\"",
-    "mtime": "2025-06-24T06:02:50.682Z",
+    "mtime": "2025-06-24T17:15:26.905Z",
     "size": 656689,
     "path": "../public/memes/data/fertility-rates-are-declining-everywhere-2023.png"
   },
   "/memes/data/frequency-of-words-denoting-prejudice-in-the-nyt-and-the-wapo.png": {
     "type": "image/png",
     "etag": "\"d3fb1-7uoDrMyNIptq6va0ay0jt4tVEB4\"",
-    "mtime": "2025-06-24T06:02:50.682Z",
+    "mtime": "2025-06-24T17:15:26.906Z",
     "size": 868273,
     "path": "../public/memes/data/frequency-of-words-denoting-prejudice-in-the-nyt-and-the-wapo.png"
   },
   "/memes/data/gdp-per-capita-by-ancestry-2014.png": {
     "type": "image/png",
     "etag": "\"5f75f-GIP0XwKq7zALthHfOH1uCqUWckI\"",
-    "mtime": "2025-06-24T06:02:50.682Z",
+    "mtime": "2025-06-24T17:15:26.904Z",
     "size": 391007,
     "path": "../public/memes/data/gdp-per-capita-by-ancestry-2014.png"
   },
   "/memes/data/gdp-per-capita-ppp-2017.png": {
     "type": "image/png",
     "etag": "\"70fa-Fq5jJg5lR+PG8yTODhWRiJ4kgA4\"",
-    "mtime": "2025-06-24T06:02:50.682Z",
+    "mtime": "2025-06-24T17:15:26.908Z",
     "size": 28922,
     "path": "../public/memes/data/gdp-per-capita-ppp-2017.png"
   },
   "/memes/data/gdp-per-capita-since-1ad-2018.png": {
     "type": "image/png",
     "etag": "\"4a61a-C8+BhHJKEkVoMAVTGzC2LPJqxC8\"",
-    "mtime": "2025-06-24T06:02:50.687Z",
+    "mtime": "2025-06-24T17:15:26.909Z",
     "size": 304666,
     "path": "../public/memes/data/gdp-per-capita-since-1ad-2018.png"
   },
   "/memes/data/gdp-per-person-1990-international-dollars.png": {
     "type": "image/png",
     "etag": "\"16d07-QumEKYgnuulglCuaMpVoPbYeILI\"",
-    "mtime": "2025-06-24T06:02:50.687Z",
+    "mtime": "2025-06-24T17:15:26.909Z",
     "size": 93447,
     "path": "../public/memes/data/gdp-per-person-1990-international-dollars.png"
   },
   "/memes/data/gdp-ppp-international-dollars-2018-billions.png": {
     "type": "image/png",
     "etag": "\"bd217-hPMhRpwg4566lvWPoHRc52OO0n0\"",
-    "mtime": "2025-06-24T06:02:50.688Z",
+    "mtime": "2025-06-24T17:15:26.911Z",
     "size": 774679,
     "path": "../public/memes/data/gdp-ppp-international-dollars-2018-billions.png"
   },
   "/memes/data/german-ancestory.png": {
     "type": "image/png",
     "etag": "\"dc2ac-YyNONqX2X0dV5dn1G3k4MlHWKio\"",
-    "mtime": "2025-06-24T06:02:50.689Z",
+    "mtime": "2025-06-24T17:15:26.910Z",
     "size": 901804,
     "path": "../public/memes/data/german-ancestory.png"
   },
   "/memes/data/global-deaths-in-conflicts-since-the-year-1400---by-max-roser.png": {
     "type": "image/png",
     "etag": "\"6b6f6-VA2ayXYTgsFlHPOfAbeY7poQutw\"",
-    "mtime": "2025-06-24T06:02:50.691Z",
+    "mtime": "2025-06-24T17:15:26.910Z",
     "size": 440054,
     "path": "../public/memes/data/global-deaths-in-conflicts-since-the-year-1400---by-max-roser.png"
   },
   "/memes/data/global-fertility-2021.png": {
     "type": "image/png",
     "etag": "\"70716-8h7Inhous6AIxLKbPfBt7DZNYHs\"",
-    "mtime": "2025-06-24T06:02:50.688Z",
+    "mtime": "2025-06-24T17:15:26.924Z",
     "size": 460566,
     "path": "../public/memes/data/global-fertility-2021.png"
   },
   "/memes/data/global-impact-of-terrorism.png": {
     "type": "image/png",
     "etag": "\"640b6-pZCXwTLcc7sBUhIpvNlUx4h7bN8\"",
-    "mtime": "2025-06-24T06:02:50.688Z",
+    "mtime": "2025-06-24T17:15:26.911Z",
     "size": 409782,
     "path": "../public/memes/data/global-impact-of-terrorism.png"
   },
   "/memes/data/global-poverty-rate.png": {
     "type": "image/png",
     "etag": "\"b278-XZgVIGx4DgrHtCrnUUXZ6/bgZDQ\"",
-    "mtime": "2025-06-24T06:02:50.688Z",
+    "mtime": "2025-06-24T17:15:26.911Z",
     "size": 45688,
     "path": "../public/memes/data/global-poverty-rate.png"
   },
   "/memes/data/growth-in-administrative-staff-principals-teachers-and-students-in-public-schools.png": {
     "type": "image/png",
     "etag": "\"3c311-PX2wiWa2shM+0AphFXPa5i5ZvnM\"",
-    "mtime": "2025-06-24T06:02:50.695Z",
+    "mtime": "2025-06-24T17:15:26.924Z",
     "size": 246545,
     "path": "../public/memes/data/growth-in-administrative-staff-principals-teachers-and-students-in-public-schools.png"
   },
   "/memes/data/growth-of-physicians-and-administrators-1970-2009.png": {
     "type": "image/png",
     "etag": "\"3a5bc-JOlZW1cVjCIbX1IsU9wvXTGRrbA\"",
-    "mtime": "2025-06-24T06:02:50.691Z",
+    "mtime": "2025-06-24T17:15:26.922Z",
     "size": 239036,
     "path": "../public/memes/data/growth-of-physicians-and-administrators-1970-2009.png"
   },
   "/memes/data/growth-of-the-upper-middle-class.png": {
     "type": "image/png",
     "etag": "\"3ee77-D88sq9YfV3Rtkk1VkPiIPRrTCL0\"",
-    "mtime": "2025-06-24T06:02:50.691Z",
+    "mtime": "2025-06-24T17:15:26.911Z",
     "size": 257655,
     "path": "../public/memes/data/growth-of-the-upper-middle-class.png"
   },
   "/memes/data/homicide-rate-per-100000-people-in-us-state-and-canadian-provinces.png": {
     "type": "image/png",
     "etag": "\"9cd5f-djkWCisOtOyGd540IajESqv0908\"",
-    "mtime": "2025-06-24T06:02:50.695Z",
+    "mtime": "2025-06-24T17:15:26.923Z",
     "size": 642399,
     "path": "../public/memes/data/homicide-rate-per-100000-people-in-us-state-and-canadian-provinces.png"
   },
   "/memes/data/household-appliances-1973-2009-hours-of-work.png": {
     "type": "image/png",
     "etag": "\"3abfb-W4ak/UyxH3HwIYbHL5Qt/khbybc\"",
-    "mtime": "2025-06-24T06:02:50.697Z",
+    "mtime": "2025-06-24T17:15:26.923Z",
     "size": 240635,
     "path": "../public/memes/data/household-appliances-1973-2009-hours-of-work.png"
   },
   "/memes/data/household-income-immigrant-by-country-per-capita-2016.png": {
     "type": "image/png",
     "etag": "\"635c1-l0XsQGqzYQAuw1nzMhsJSMk67qw\"",
-    "mtime": "2025-06-24T06:02:50.695Z",
+    "mtime": "2025-06-24T17:15:26.925Z",
     "size": 406977,
     "path": "../public/memes/data/household-income-immigrant-by-country-per-capita-2016.png"
   },
   "/memes/data/how-socialists-think-socialism-works.png": {
     "type": "image/png",
     "etag": "\"34b0e-ohavuIUSCTkYXzBmSQHcGhleQn4\"",
-    "mtime": "2025-06-24T06:02:50.695Z",
+    "mtime": "2025-06-24T17:15:26.929Z",
     "size": 215822,
     "path": "../public/memes/data/how-socialists-think-socialism-works.png"
   },
   "/memes/data/income-inequality-and-equality.png": {
     "type": "image/png",
     "etag": "\"49a68-mgemrqxN1w9phsFi4wTLh1T/0AA\"",
-    "mtime": "2025-06-24T06:02:50.696Z",
+    "mtime": "2025-06-24T17:15:26.923Z",
     "size": 301672,
     "path": "../public/memes/data/income-inequality-and-equality.png"
   },
   "/memes/data/income-inequality-in-4-charts.png": {
     "type": "image/png",
     "etag": "\"38eec-R7dWLP/ypZ2dz5POYQCf45x9OkM\"",
-    "mtime": "2025-06-24T06:02:50.696Z",
+    "mtime": "2025-06-24T17:15:26.929Z",
     "size": 233196,
     "path": "../public/memes/data/income-inequality-in-4-charts.png"
   },
   "/memes/data/individual-consumption-per-cap-ppp-2020-07-29.png": {
     "type": "image/png",
     "etag": "\"bb03f-41yoDAp5++n9aMd9DV5WQFLGkJc\"",
-    "mtime": "2025-06-24T06:02:50.697Z",
+    "mtime": "2025-06-24T17:15:26.927Z",
     "size": 766015,
     "path": "../public/memes/data/individual-consumption-per-cap-ppp-2020-07-29.png"
   },
   "/memes/data/inflation-adjusted-consumption-per-person.png": {
     "type": "image/png",
     "etag": "\"53bc0-nXkt4YZMLXbdc2H2ChMQ8y7hL6s\"",
-    "mtime": "2025-06-24T06:02:50.701Z",
+    "mtime": "2025-06-24T17:15:26.929Z",
     "size": 342976,
     "path": "../public/memes/data/inflation-adjusted-consumption-per-person.png"
   },
   "/memes/data/inflation-adjusted-cost-of-a-k-12-public-education.png": {
     "type": "image/png",
     "etag": "\"2c6d9-bPHwYGx+40DhQwBnfOrDhzl4cdg\"",
-    "mtime": "2025-06-24T06:02:50.701Z",
+    "mtime": "2025-06-24T17:15:26.930Z",
     "size": 181977,
     "path": "../public/memes/data/inflation-adjusted-cost-of-a-k-12-public-education.png"
   },
   "/memes/data/interracial-violent-crime-incidents-2018-media.png": {
     "type": "image/png",
     "etag": "\"7dbf3-DhfGFM1LA51Ew+68oi0vx/hCMto\"",
-    "mtime": "2025-06-24T06:02:50.703Z",
+    "mtime": "2025-06-24T17:15:26.931Z",
     "size": 515059,
     "path": "../public/memes/data/interracial-violent-crime-incidents-2018-media.png"
   },
   "/memes/data/invasion-of-the-drug-cartels.png": {
     "type": "image/png",
     "etag": "\"230462-5DUpVgLD94Gh7ykx9olWvAA2bzE\"",
-    "mtime": "2025-06-24T06:02:50.707Z",
+    "mtime": "2025-06-24T17:15:26.936Z",
     "size": 2294882,
     "path": "../public/memes/data/invasion-of-the-drug-cartels.png"
   },
   "/memes/data/italy-by-municipality-annual-gdp-per-capita.png": {
     "type": "image/png",
     "etag": "\"dc45c-39N6eRDZ+AxyDIS2qL2pQ+JCvXw\"",
-    "mtime": "2025-06-24T06:02:50.704Z",
+    "mtime": "2025-06-24T17:15:26.931Z",
     "size": 902236,
     "path": "../public/memes/data/italy-by-municipality-annual-gdp-per-capita.png"
   },
   "/memes/data/keynesian-economics.png": {
     "type": "image/png",
     "etag": "\"5b658-v7dwqlCEn3BugLEy6jlmCZGF3qA\"",
-    "mtime": "2025-06-24T06:02:50.703Z",
+    "mtime": "2025-06-24T17:15:26.936Z",
     "size": 374360,
     "path": "../public/memes/data/keynesian-economics.png"
   },
   "/memes/data/median-earnings-for-full-time-year-round-female-workers.png": {
     "type": "image/png",
     "etag": "\"619c6-bnLhEKSs+lBRKs+vR+1afKNegRQ\"",
-    "mtime": "2025-06-24T06:02:50.704Z",
+    "mtime": "2025-06-24T17:15:26.931Z",
     "size": 399814,
     "path": "../public/memes/data/median-earnings-for-full-time-year-round-female-workers.png"
   },
   "/memes/data/median-us-household-income-by-selected-ethnic-groups-2018.png": {
     "type": "image/png",
     "etag": "\"83b9a-NiJApOLaFDO4+jK/g9Xa6wlRd0w\"",
-    "mtime": "2025-06-24T06:02:50.705Z",
+    "mtime": "2025-06-24T17:15:26.941Z",
     "size": 539546,
     "path": "../public/memes/data/median-us-household-income-by-selected-ethnic-groups-2018.png"
   },
   "/memes/data/mens-work-percentages.png": {
     "type": "image/png",
     "etag": "\"7b265-6L3WMMB2xRFGml1p2FQSW86wIcU\"",
-    "mtime": "2025-06-24T06:02:50.705Z",
+    "mtime": "2025-06-24T17:15:26.935Z",
     "size": 504421,
     "path": "../public/memes/data/mens-work-percentages.png"
   },
   "/memes/data/most-common-self-identified-ancestry-of-the-united-states.png": {
     "type": "image/png",
     "etag": "\"95ff1-d8eTM7pcvMNDUTJA7ThxS3GhtEc\"",
-    "mtime": "2025-06-24T06:02:50.707Z",
+    "mtime": "2025-06-24T17:15:26.940Z",
     "size": 614385,
     "path": "../public/memes/data/most-common-self-identified-ancestry-of-the-united-states.png"
   },
   "/memes/data/msm-news-word-frequency.png": {
     "type": "image/png",
     "etag": "\"bee96-rhQlXZLX2l4c0IQ7n7EZmrhWHCg\"",
-    "mtime": "2025-06-24T06:02:50.713Z",
+    "mtime": "2025-06-24T17:15:26.941Z",
     "size": 781974,
     "path": "../public/memes/data/msm-news-word-frequency.png"
   },
   "/memes/data/muslim-conquest-battles-vs-crusades.png": {
     "type": "image/png",
     "etag": "\"109f1b-3G8VWF4q05GwJubfLOnAIxo6h/A\"",
-    "mtime": "2025-06-24T06:02:50.721Z",
+    "mtime": "2025-06-24T17:15:26.943Z",
     "size": 1089307,
     "path": "../public/memes/data/muslim-conquest-battles-vs-crusades.png"
   },
   "/memes/data/muslims-in-the-eu-norway-and-switzerland-in-2050.png": {
     "type": "image/png",
     "etag": "\"f0e26-abb7FtyhuJLYGwQb+9gFJTy87PE\"",
-    "mtime": "2025-06-24T06:02:50.715Z",
+    "mtime": "2025-06-24T17:15:26.942Z",
     "size": 986662,
     "path": "../public/memes/data/muslims-in-the-eu-norway-and-switzerland-in-2050.png"
   },
   "/memes/data/new-york-times-word-usage-frequency-1970-2018.png": {
     "type": "image/png",
     "etag": "\"ed2eb-nebDrflKBqL2LPomf3V6nP58RMo\"",
-    "mtime": "2025-06-24T06:02:50.721Z",
+    "mtime": "2025-06-24T17:15:26.946Z",
     "size": 971499,
     "path": "../public/memes/data/new-york-times-word-usage-frequency-1970-2018.png"
   },
   "/memes/data/no-wage-gap-between-men-and-women.png": {
     "type": "image/png",
     "etag": "\"6a1cb-EtZrbZaWNODFHfwCN2FgWM2M/pY\"",
-    "mtime": "2025-06-24T06:02:50.713Z",
+    "mtime": "2025-06-24T17:15:26.949Z",
     "size": 434635,
     "path": "../public/memes/data/no-wage-gap-between-men-and-women.png"
   },
   "/memes/data/north-america-agrilculture.png": {
     "type": "image/png",
     "etag": "\"18b67c-y54/jv0KRcQFpWrgC72Sb2lCXBs\"",
-    "mtime": "2025-06-24T06:02:50.721Z",
+    "mtime": "2025-06-24T17:15:26.948Z",
     "size": 1619580,
     "path": "../public/memes/data/north-america-agrilculture.png"
   },
   "/memes/data/number-of-regulatory-restrictions.png": {
     "type": "image/png",
     "etag": "\"8abf-h6EZINjWWlUym1IMdMEB4dTC4CE\"",
-    "mtime": "2025-06-24T06:02:50.717Z",
+    "mtime": "2025-06-24T17:15:26.948Z",
     "size": 35519,
     "path": "../public/memes/data/number-of-regulatory-restrictions.png"
   },
   "/memes/data/obama-economy-6-charts.png": {
     "type": "image/png",
     "etag": "\"9c7a0-mKjz/Z3kFvzP5lJwXZHjJb36nKs\"",
-    "mtime": "2025-06-24T06:02:50.721Z",
+    "mtime": "2025-06-24T17:15:26.948Z",
     "size": 640928,
     "path": "../public/memes/data/obama-economy-6-charts.png"
   },
   "/memes/data/ourworldindatawars-long-run-military-civilian-fatalities-from-brecke10.png": {
     "type": "image/png",
     "etag": "\"79886-GgladT8vfB0/rvxx7dSaIo06+ng\"",
-    "mtime": "2025-06-24T06:02:50.725Z",
+    "mtime": "2025-06-24T17:15:26.950Z",
     "size": 497798,
     "path": "../public/memes/data/ourworldindatawars-long-run-military-civilian-fatalities-from-brecke10.png"
   },
   "/memes/data/outlays-in-trillions-of-2015-dollars.png": {
     "type": "image/png",
     "etag": "\"26975-1gBQh+l8JXed1OQaz/Da5QYJ11M\"",
-    "mtime": "2025-06-24T06:02:50.733Z",
+    "mtime": "2025-06-24T17:15:26.950Z",
     "size": 158069,
     "path": "../public/memes/data/outlays-in-trillions-of-2015-dollars.png"
   },
   "/memes/data/per-capita-average-individual-consumption.png": {
     "type": "image/png",
     "etag": "\"47a9b-C8ah0TKEYAxORzAjBRPzbl05vRg\"",
-    "mtime": "2025-06-24T06:02:50.726Z",
+    "mtime": "2025-06-24T17:15:26.956Z",
     "size": 293531,
     "path": "../public/memes/data/per-capita-average-individual-consumption.png"
   },
   "/memes/data/percent-of-american-adults-who-reached-various-income.png": {
     "type": "image/png",
     "etag": "\"42dc2-T3q1OX9aS0pHFUyu9TNH848ye34\"",
-    "mtime": "2025-06-24T06:02:50.726Z",
+    "mtime": "2025-06-24T17:15:26.954Z",
     "size": 273858,
     "path": "../public/memes/data/percent-of-american-adults-who-reached-various-income.png"
   },
   "/memes/data/percent-of-spending-including-discretionary-and-mandatory.png": {
     "type": "image/png",
     "etag": "\"46172-O72Xuqc1gcUDdB1cGi+R6yjmUtI\"",
-    "mtime": "2025-06-24T06:02:50.726Z",
+    "mtime": "2025-06-24T17:15:26.955Z",
     "size": 287090,
     "path": "../public/memes/data/percent-of-spending-including-discretionary-and-mandatory.png"
   },
   "/memes/data/percent-shares-of-us-households-by-total-money-income-levels.png": {
     "type": "image/png",
     "etag": "\"54a27-Y35S9I5zpzmzYgMV6kax/ZV2W2c\"",
-    "mtime": "2025-06-24T06:02:50.729Z",
+    "mtime": "2025-06-24T17:15:26.952Z",
     "size": 346663,
     "path": "../public/memes/data/percent-shares-of-us-households-by-total-money-income-levels.png"
   },
   "/memes/data/percentage-of-white-british-in-britain.png": {
     "type": "image/png",
     "etag": "\"cd2b5-cd/d6zW6LGrGUeoi1NclSaPqxs8\"",
-    "mtime": "2025-06-24T06:02:50.733Z",
+    "mtime": "2025-06-24T17:15:26.955Z",
     "size": 840373,
     "path": "../public/memes/data/percentage-of-white-british-in-britain.png"
   },
   "/memes/data/percentage-of-years-americans-reach-top-10.png": {
     "type": "image/png",
     "etag": "\"69a6d-eg1isSzVquSXvKENlGG042OfkIk\"",
-    "mtime": "2025-06-24T06:02:50.732Z",
+    "mtime": "2025-06-24T17:15:26.954Z",
     "size": 432749,
     "path": "../public/memes/data/percentage-of-years-americans-reach-top-10.png"
   },
   "/memes/data/presidential-vote-by-district-2024.png": {
     "type": "image/png",
     "etag": "\"d9b28-sidIEN9Zt2ITdCRtyJa7yjYuvMY\"",
-    "mtime": "2025-06-24T06:02:50.732Z",
+    "mtime": "2025-06-24T17:15:26.956Z",
     "size": 891688,
     "path": "../public/memes/data/presidential-vote-by-district-2024.png"
   },
   "/memes/data/pure-alcohol-consumption-among-2010.png": {
     "type": "image/png",
     "etag": "\"51749-W96OHhgYlMvAgXGqg0d/cCfRkvI\"",
-    "mtime": "2025-06-24T06:02:50.732Z",
+    "mtime": "2025-06-24T17:15:26.960Z",
     "size": 333641,
     "path": "../public/memes/data/pure-alcohol-consumption-among-2010.png"
   },
   "/memes/data/reagan-obama-recoveries.png": {
     "type": "image/png",
     "etag": "\"246f8-Sl23o/R2Ytgj8pz6DaGAU8Y39sQ\"",
-    "mtime": "2025-06-24T06:02:50.733Z",
+    "mtime": "2025-06-24T17:15:26.956Z",
     "size": 149240,
     "path": "../public/memes/data/reagan-obama-recoveries.png"
   },
   "/memes/data/screenshot8921.png": {
     "type": "image/png",
     "etag": "\"20ce1-7AHqKCJO6UQWSmHMUGh1a/HlQTg\"",
-    "mtime": "2025-06-24T06:02:50.733Z",
+    "mtime": "2025-06-24T17:15:26.958Z",
     "size": 134369,
     "path": "../public/memes/data/screenshot8921.png"
   },
   "/memes/data/share-of-federal-income-taxes-paid--top-1-vs-bottom-95-of-us-taxpayers-1980-2021.png": {
     "type": "image/png",
     "etag": "\"7b289-2PON5QSAfG9qeinHL+CxAY1rtEc\"",
-    "mtime": "2025-06-24T06:02:50.735Z",
+    "mtime": "2025-06-24T17:15:26.961Z",
     "size": 504457,
     "path": "../public/memes/data/share-of-federal-income-taxes-paid--top-1-vs-bottom-95-of-us-taxpayers-1980-2021.png"
   },
   "/memes/data/share-of-world-population-living-in-extreme-poverty-1820-2015.png": {
     "type": "image/png",
     "etag": "\"359ba-QHQh8nl0lDmFVIrjO+2smDI7XWw\"",
-    "mtime": "2025-06-24T06:02:50.735Z",
+    "mtime": "2025-06-24T17:15:26.960Z",
     "size": 219578,
     "path": "../public/memes/data/share-of-world-population-living-in-extreme-poverty-1820-2015.png"
   },
   "/memes/data/socialism-crony-capitalism-free-markets.png": {
     "type": "image/png",
     "etag": "\"585a7-mKCLbpfZ9E/K6aZEAGoGnlGoOR4\"",
-    "mtime": "2025-06-24T06:02:50.735Z",
+    "mtime": "2025-06-24T17:15:26.962Z",
     "size": 361895,
     "path": "../public/memes/data/socialism-crony-capitalism-free-markets.png"
   },
   "/memes/data/spread-of-christianity.png": {
     "type": "image/png",
     "etag": "\"4ad9b-EG/JgMtuqHxny66YszY48P/izuk\"",
-    "mtime": "2025-06-24T06:02:50.735Z",
+    "mtime": "2025-06-24T17:15:26.962Z",
     "size": 306587,
     "path": "../public/memes/data/spread-of-christianity.png"
   },
   "/memes/data/swimming-records--boys-15-18-world-junior-vs-womens-world.png": {
     "type": "image/png",
     "etag": "\"c3808-apzZfMwk1S1zUvpnboB3zVGwbs4\"",
-    "mtime": "2025-06-24T06:02:50.740Z",
+    "mtime": "2025-06-24T17:15:26.961Z",
     "size": 800776,
     "path": "../public/memes/data/swimming-records--boys-15-18-world-junior-vs-womens-world.png"
   },
   "/memes/data/the-left-would-rather-the-poor-were-poorer-provided-the-rich-were-less-rich.png": {
     "type": "image/png",
     "etag": "\"91fdb-iNWDo4aWNSKWrmebj2kARNMQwvs\"",
-    "mtime": "2025-06-24T06:02:50.741Z",
+    "mtime": "2025-06-24T17:15:26.963Z",
     "size": 597979,
     "path": "../public/memes/data/the-left-would-rather-the-poor-were-poorer-provided-the-rich-were-less-rich.png"
   },
   "/memes/data/the-middle-east-prior-to-arab-colonization.png": {
     "type": "image/png",
     "etag": "\"59be5-1oSqN9TbQ7CsS/r+6tc3uciqYas\"",
-    "mtime": "2025-06-24T06:02:50.739Z",
+    "mtime": "2025-06-24T17:15:26.966Z",
     "size": 367589,
     "path": "../public/memes/data/the-middle-east-prior-to-arab-colonization.png"
   },
   "/memes/data/the-tax-burden-has-grown-more-progressive-over-time.png": {
     "type": "image/png",
     "etag": "\"178dd-UIsOG5CQ+bGcAArHAGrZdtc8xT8\"",
-    "mtime": "2025-06-24T06:02:50.739Z",
+    "mtime": "2025-06-24T17:15:26.965Z",
     "size": 96477,
     "path": "../public/memes/data/the-tax-burden-has-grown-more-progressive-over-time.png"
   },
   "/memes/data/the-two-totalitarian-systems-which-we-in-britain-had-to-fight.png": {
     "type": "image/png",
     "etag": "\"1710f5-O3/7J1uKoCyO7NTV0AEP22tpBTc\"",
-    "mtime": "2025-06-24T06:02:50.744Z",
+    "mtime": "2025-06-24T17:15:26.967Z",
     "size": 1511669,
     "path": "../public/memes/data/the-two-totalitarian-systems-which-we-in-britain-had-to-fight.png"
   },
   "/memes/data/the-us-middle-class-is-shrinking-because-americans-are-moving-up.png": {
     "type": "image/png",
     "etag": "\"3ea26-8ij/B9PWaNcCGUsQpHUw1Pfb5eY\"",
-    "mtime": "2025-06-24T06:02:50.739Z",
+    "mtime": "2025-06-24T17:15:26.966Z",
     "size": 256550,
     "path": "../public/memes/data/the-us-middle-class-is-shrinking-because-americans-are-moving-up.png"
   },
   "/memes/data/the-waning-of-war.png": {
     "type": "image/png",
     "etag": "\"1c650-92B26ubZUjPS8vho9WI9nDjTJUY\"",
-    "mtime": "2025-06-24T06:02:50.743Z",
+    "mtime": "2025-06-24T17:15:26.967Z",
     "size": 116304,
     "path": "../public/memes/data/the-waning-of-war.png"
   },
   "/memes/data/the-world-as-100-people-over-the-last-two-centuries.png": {
     "type": "image/png",
     "etag": "\"a21c3-+CmKAuaWnHA9SqB3JeSLXZPVK34\"",
-    "mtime": "2025-06-24T06:02:50.743Z",
+    "mtime": "2025-06-24T17:15:26.973Z",
     "size": 664003,
     "path": "../public/memes/data/the-world-as-100-people-over-the-last-two-centuries.png"
   },
   "/memes/data/the-worlds-population-concentrated.png": {
     "type": "image/png",
     "etag": "\"3a151-ZlpBXgxOFg0fu0MXdJ33pLbnCbM\"",
-    "mtime": "2025-06-24T06:02:50.741Z",
+    "mtime": "2025-06-24T17:15:26.966Z",
     "size": 237905,
     "path": "../public/memes/data/the-worlds-population-concentrated.png"
   },
   "/memes/data/thomas-sowell-discrimination-and-disparities.png": {
     "type": "image/png",
     "etag": "\"109c67-hD8OavbA8u7FVITPFpItreM2eEA\"",
-    "mtime": "2025-06-24T06:02:50.747Z",
+    "mtime": "2025-06-24T17:15:26.968Z",
     "size": 1088615,
     "path": "../public/memes/data/thomas-sowell-discrimination-and-disparities.png"
   },
   "/memes/data/top-10-most-dangerous-us-occupations-and-percent-male-2021.png": {
     "type": "image/png",
     "etag": "\"9d176-WMFh6Pv1dh8anWSG0KPNJkB1Fnk\"",
-    "mtime": "2025-06-24T06:02:50.745Z",
+    "mtime": "2025-06-24T17:15:26.968Z",
     "size": 643446,
     "path": "../public/memes/data/top-10-most-dangerous-us-occupations-and-percent-male-2021.png"
   },
   "/memes/data/top-20-most-dangerous-us-occupations-and-percent-male-2015.png": {
     "type": "image/png",
     "etag": "\"9be84-B9rYlDyD247cvsIkqopieeI57uQ\"",
-    "mtime": "2025-06-24T06:02:50.745Z",
+    "mtime": "2025-06-24T17:15:26.972Z",
     "size": 638596,
     "path": "../public/memes/data/top-20-most-dangerous-us-occupations-and-percent-male-2015.png"
   },
   "/memes/data/top-20-us-metro-areas-by-economic-activity-renamed-for-countries-with-similar-gdps-2015.png": {
     "type": "image/png",
     "etag": "\"317aa-jYOJuA9Wo591GS0K1xWHH//zsSE\"",
-    "mtime": "2025-06-24T06:02:50.747Z",
+    "mtime": "2025-06-24T17:15:26.973Z",
     "size": 202666,
     "path": "../public/memes/data/top-20-us-metro-areas-by-economic-activity-renamed-for-countries-with-similar-gdps-2015.png"
   },
   "/memes/data/top-20-us-metro-areas-by-gdp-2017-vs-countries.png": {
     "type": "image/png",
     "etag": "\"76954-t++UqL2qzMbaMrYxtgKdIcTXu2k\"",
-    "mtime": "2025-06-24T06:02:50.752Z",
+    "mtime": "2025-06-24T17:15:26.977Z",
     "size": 485716,
     "path": "../public/memes/data/top-20-us-metro-areas-by-gdp-2017-vs-countries.png"
   },
   "/memes/data/top-20-us-metro-areas-by-gdp-per-capita-2023-vs-countries-1-million-pop.png": {
     "type": "image/png",
     "etag": "\"716e0-gT7nxuGAZmb0aJOwDooyIp7OlHA\"",
-    "mtime": "2025-06-24T06:02:50.751Z",
+    "mtime": "2025-06-24T17:15:26.974Z",
     "size": 464608,
     "path": "../public/memes/data/top-20-us-metro-areas-by-gdp-per-capita-2023-vs-countries-1-million-pop.png"
   },
   "/memes/data/toppoliticaldonors.png": {
     "type": "image/png",
     "etag": "\"a49e9-11Za/YjBDJ52nHzoDLVniAIWtgs\"",
-    "mtime": "2025-06-24T06:02:50.752Z",
+    "mtime": "2025-06-24T17:15:26.974Z",
     "size": 674281,
     "path": "../public/memes/data/toppoliticaldonors.png"
   },
   "/memes/data/total-means-tested-welfare-spending-and-official-poverty-rate-1947-2012.png": {
     "type": "image/png",
     "etag": "\"29744-PxbX2LH2S3UZzs4uGDe093+HxBE\"",
-    "mtime": "2025-06-24T06:02:50.752Z",
+    "mtime": "2025-06-24T17:15:26.976Z",
     "size": 169796,
     "path": "../public/memes/data/total-means-tested-welfare-spending-and-official-poverty-rate-1947-2012.png"
   },
   "/memes/data/track-field-and-cross-country-records.png": {
     "type": "image/png",
     "etag": "\"7af57-5GlzCC+YqBcucwnlJWSiR6gBjiQ\"",
-    "mtime": "2025-06-24T06:02:50.753Z",
+    "mtime": "2025-06-24T17:15:26.974Z",
     "size": 503639,
     "path": "../public/memes/data/track-field-and-cross-country-records.png"
   },
   "/memes/data/trends-in-inflation-adjusted-cost-of-a-complete-k-12-public-education--scale-and-achievement-of-17-year-olds.png": {
     "type": "image/png",
     "etag": "\"258b5-A8wdBk9hcjeTTz8PS7TNGBTd3no\"",
-    "mtime": "2025-06-24T06:02:50.751Z",
+    "mtime": "2025-06-24T17:15:26.974Z",
     "size": 153781,
     "path": "../public/memes/data/trends-in-inflation-adjusted-cost-of-a-complete-k-12-public-education--scale-and-achievement-of-17-year-olds.png"
   },
   "/memes/data/un-total-fertility-rate-by-country-2023.png": {
     "type": "image/png",
     "etag": "\"608c3-XMudgTmBvT/s0xlM7T0U8SIHRrU\"",
-    "mtime": "2025-06-24T06:02:50.753Z",
+    "mtime": "2025-06-24T17:15:26.978Z",
     "size": 395459,
     "path": "../public/memes/data/un-total-fertility-rate-by-country-2023.png"
   },
   "/memes/data/unemployment-labor-force-participation.png": {
     "type": "image/png",
     "etag": "\"323fd-BhZv9ugCLHEjGfUWJqo61RwPvls\"",
-    "mtime": "2025-06-24T06:02:50.753Z",
+    "mtime": "2025-06-24T17:15:26.976Z",
     "size": 205821,
     "path": "../public/memes/data/unemployment-labor-force-participation.png"
   },
   "/memes/data/united-states-croplands-ports-and-rivers.png": {
     "type": "image/png",
     "etag": "\"143066-IYJOIjthpys+wLCQKdGj1aKZo9o\"",
-    "mtime": "2025-06-24T06:02:50.757Z",
+    "mtime": "2025-06-24T17:15:26.978Z",
     "size": 1323110,
     "path": "../public/memes/data/united-states-croplands-ports-and-rivers.png"
   },
   "/memes/data/us-carbon-dioxide-emissions-per-capita-1973-to-2017.png": {
     "type": "image/png",
     "etag": "\"46ab4-GfVwK3Xoaap9HTkxEh6N0pB0thg\"",
-    "mtime": "2025-06-24T06:02:50.767Z",
+    "mtime": "2025-06-24T17:15:26.978Z",
     "size": 289460,
     "path": "../public/memes/data/us-carbon-dioxide-emissions-per-capita-1973-to-2017.png"
   },
   "/memes/data/us-deaths-in-wars.png": {
     "type": "image/png",
     "etag": "\"13cdf-718SkWDd0sFTha3Nq7YGO8rlsEU\"",
-    "mtime": "2025-06-24T06:02:50.755Z",
+    "mtime": "2025-06-24T17:15:26.977Z",
     "size": 81119,
     "path": "../public/memes/data/us-deaths-in-wars.png"
   },
   "/memes/data/us-households-according-to-income-2013.png": {
     "type": "image/png",
     "etag": "\"4428e-cIOkEZhtNO61ThGJCvXMIvFfOYY\"",
-    "mtime": "2025-06-24T06:02:50.755Z",
+    "mtime": "2025-06-24T17:15:26.985Z",
     "size": 279182,
     "path": "../public/memes/data/us-households-according-to-income-2013.png"
   },
   "/memes/data/us-manufacturing-output-vs-world.png": {
     "type": "image/png",
     "etag": "\"1d5c2-TMJ9GaIOFKS4tMo3c6iQ3zH4B1Q\"",
-    "mtime": "2025-06-24T06:02:50.755Z",
+    "mtime": "2025-06-24T17:15:26.978Z",
     "size": 120258,
     "path": "../public/memes/data/us-manufacturing-output-vs-world.png"
   },
   "/memes/data/us-political-spectrum.png": {
     "type": "image/png",
     "etag": "\"5f7f6-qrVh+P1xWJlVPB+CcHuM90FN0BM\"",
-    "mtime": "2025-06-24T06:02:50.756Z",
+    "mtime": "2025-06-24T17:15:26.986Z",
     "size": 391158,
     "path": "../public/memes/data/us-political-spectrum.png"
   },
   "/memes/data/us-poverty-rate-20-trillion-spent.png": {
     "type": "image/png",
     "etag": "\"3add0-Dhmm3jFbuMZXu4NzTVGcDExJ31o\"",
-    "mtime": "2025-06-24T06:02:50.758Z",
+    "mtime": "2025-06-24T17:15:26.983Z",
     "size": 241104,
     "path": "../public/memes/data/us-poverty-rate-20-trillion-spent.png"
   },
   "/memes/data/us-presidential-election-popular-vote-democrat-vs-republican-2012-2024.png": {
     "type": "image/png",
     "etag": "\"b3158-cZ/a2y6aLV/vAk4QviH9chwEwmk\"",
-    "mtime": "2025-06-24T06:02:50.760Z",
+    "mtime": "2025-06-24T17:15:26.986Z",
     "size": 733528,
     "path": "../public/memes/data/us-presidential-election-popular-vote-democrat-vs-republican-2012-2024.png"
   },
   "/memes/data/us-states-renamed-for-countries-with-similar-gdps-2017.png": {
     "type": "image/png",
     "etag": "\"6ebc0-vW9g1GK6qaZdtLrHuvB9BUvTy8s\"",
-    "mtime": "2025-06-24T06:02:50.761Z",
+    "mtime": "2025-06-24T17:15:26.986Z",
     "size": 453568,
     "path": "../public/memes/data/us-states-renamed-for-countries-with-similar-gdps-2017.png"
   },
   "/memes/data/us-states-vs-countries-2016.png": {
     "type": "image/png",
     "etag": "\"134051-0Qd/B5L+R0tiXraGvXkoaxRIVPY\"",
-    "mtime": "2025-06-24T06:02:50.763Z",
+    "mtime": "2025-06-24T17:15:26.990Z",
     "size": 1261649,
     "path": "../public/memes/data/us-states-vs-countries-2016.png"
   },
   "/memes/data/us-states-vs-countries-gdp-per-capita-2024.png": {
     "type": "image/png",
     "etag": "\"a8ee4-+VsGUgPr9uWZPWiaFoSZWcG5Ylo\"",
-    "mtime": "2025-06-24T06:02:50.769Z",
+    "mtime": "2025-06-24T17:15:26.989Z",
     "size": 691940,
     "path": "../public/memes/data/us-states-vs-countries-gdp-per-capita-2024.png"
   },
   "/memes/data/us-total-fertility-rate-tfr-over-time-1800-2023-total-fertility-rate-coollapse.png": {
     "type": "image/png",
     "etag": "\"26e87-Y0RHUcWCHp4sXpfZv+q3vPcriWc\"",
-    "mtime": "2025-06-24T06:02:50.760Z",
+    "mtime": "2025-06-24T17:15:26.989Z",
     "size": 159367,
     "path": "../public/memes/data/us-total-fertility-rate-tfr-over-time-1800-2023-total-fertility-rate-coollapse.png"
   },
   "/memes/data/usa-german-ancestry-2012.png": {
     "type": "image/png",
     "etag": "\"f9f5c-8iDbdqvd5WuxUkXSEIaSYcZt8ko\"",
-    "mtime": "2025-06-24T06:02:50.774Z",
+    "mtime": "2025-06-24T17:15:26.991Z",
     "size": 1023836,
     "path": "../public/memes/data/usa-german-ancestry-2012.png"
   },
   "/memes/data/usa-political-axis.png": {
     "type": "image/png",
     "etag": "\"411be-d6U6QuCqYIFcne6J9PM27sderQ8\"",
-    "mtime": "2025-06-24T06:02:50.767Z",
+    "mtime": "2025-06-24T17:15:26.989Z",
     "size": 266686,
     "path": "../public/memes/data/usa-political-axis.png"
   },
   "/memes/data/when-slavery-was-abolished.png": {
     "type": "image/png",
     "etag": "\"6102f-5UCl7NC7FuvMrZAk+pHKTIr60P4\"",
-    "mtime": "2025-06-24T06:02:50.777Z",
+    "mtime": "2025-06-24T17:15:26.993Z",
     "size": 397359,
     "path": "../public/memes/data/when-slavery-was-abolished.png"
   },
   "/memes/data/which-dictator-killed-the-most-people.png": {
     "type": "image/png",
     "etag": "\"b22f7-4dVMFZTar/jEgg5sXoRDNxCWJYc\"",
-    "mtime": "2025-06-24T06:02:50.769Z",
+    "mtime": "2025-06-24T17:15:26.991Z",
     "size": 729847,
     "path": "../public/memes/data/which-dictator-killed-the-most-people.png"
   },
   "/memes/data/white-women-college-voter-opinion.png": {
     "type": "image/png",
     "etag": "\"6c4d7-RaxpURp84nsESFvgV1BoKKfgHzQ\"",
-    "mtime": "2025-06-24T06:02:50.771Z",
+    "mtime": "2025-06-24T17:15:26.998Z",
     "size": 443607,
     "path": "../public/memes/data/white-women-college-voter-opinion.png"
   },
   "/memes/data/whos-paying-what-taxes.png": {
     "type": "image/png",
     "etag": "\"4f000-j2LcxcUu6B0W3Q9dSRnBZP9H+LY\"",
-    "mtime": "2025-06-24T06:02:50.774Z",
+    "mtime": "2025-06-24T17:15:26.992Z",
     "size": 323584,
     "path": "../public/memes/data/whos-paying-what-taxes.png"
   },
   "/memes/data/world-corruption-homicide-why.png": {
     "type": "image/png",
     "etag": "\"9e00b-9laTAHuV0XOLY9xb7gIqYR0Au2M\"",
-    "mtime": "2025-06-24T06:02:50.774Z",
+    "mtime": "2025-06-24T17:15:26.998Z",
     "size": 647179,
     "path": "../public/memes/data/world-corruption-homicide-why.png"
   },
   "/memes/data/world-gdp-over-the-last-two-millennia-where-the-left-thinks-it-all-went-wrong.png": {
     "type": "image/png",
     "etag": "\"43123-jEVd+lgldUwpAIflZv/pWLn2FMw\"",
-    "mtime": "2025-06-24T06:02:50.774Z",
+    "mtime": "2025-06-24T17:15:26.999Z",
     "size": 274723,
     "path": "../public/memes/data/world-gdp-over-the-last-two-millennia-where-the-left-thinks-it-all-went-wrong.png"
   },
   "/memes/data/world-gdp-ppp-since-1820.png": {
     "type": "image/png",
     "etag": "\"f1d7-giGuMuRdrRHZWZrjS1tH+6lCJDw\"",
-    "mtime": "2025-06-24T06:02:50.774Z",
+    "mtime": "2025-06-24T17:15:26.999Z",
     "size": 61911,
     "path": "../public/memes/data/world-gdp-ppp-since-1820.png"
   },
   "/memes/data/world-homicide-murder-rate.png": {
     "type": "image/png",
     "etag": "\"55c7a-kGyO84PwzxJaLiljWc7Onsm7AhQ\"",
-    "mtime": "2025-06-24T06:02:50.777Z",
+    "mtime": "2025-06-24T17:15:26.998Z",
     "size": 351354,
     "path": "../public/memes/data/world-homicide-murder-rate.png"
   },
   "/memes/data/world-population-living-in-extreme-poverty-1820-2015.png": {
     "type": "image/png",
     "etag": "\"4877e-82NfSLy40ucAaF9qavcqkFVg88I\"",
-    "mtime": "2025-06-24T06:02:50.777Z",
+    "mtime": "2025-06-24T17:15:27.000Z",
     "size": 296830,
     "path": "../public/memes/data/world-population-living-in-extreme-poverty-1820-2015.png"
   },
   "/memes/data/wrong-enemy-correct-enemy.png": {
     "type": "image/png",
     "etag": "\"24412-rXvyCyRCEv5bduIjrgjzNzjdf+I\"",
-    "mtime": "2025-06-24T06:02:50.777Z",
+    "mtime": "2025-06-24T17:15:27.000Z",
     "size": 148498,
     "path": "../public/memes/data/wrong-enemy-correct-enemy.png"
   },
   "/memes/data/yearly-mentions-of-prejudice-in-popular-us-news-media-outlets.png": {
     "type": "image/png",
     "etag": "\"bc87d-5MC2B9b7HvYtQ6mueku5/TKiR8g\"",
-    "mtime": "2025-06-24T06:02:50.779Z",
+    "mtime": "2025-06-24T17:15:27.001Z",
     "size": 772221,
     "path": "../public/memes/data/yearly-mentions-of-prejudice-in-popular-us-news-media-outlets.png"
-  },
-  "/memes/woke-insanity/democrat-savior-complex.png": {
-    "type": "image/png",
-    "etag": "\"141fc8-ocAwUc4wTe3lRBirYMwZa5UH1zA\"",
-    "mtime": "2025-06-24T06:02:50.424Z",
-    "size": 1318856,
-    "path": "../public/memes/woke-insanity/democrat-savior-complex.png"
-  },
-  "/memes/woke-insanity/man-pregnant.png": {
-    "type": "image/png",
-    "etag": "\"77103-fzT3l3qHNbch0voFcmD+GjRgaYI\"",
-    "mtime": "2025-06-24T06:02:50.778Z",
-    "size": 487683,
-    "path": "../public/memes/woke-insanity/man-pregnant.png"
-  },
-  "/_nuxt/builds/meta/b173c76b-23e3-43ab-848e-eaa05eeecd88.json": {
-    "type": "application/json",
-    "etag": "\"128-ZN1eL8EDOROZjoWXf5i2qBDB/Io\"",
-    "mtime": "2025-06-24T06:02:50.348Z",
-    "size": 296,
-    "path": "../public/_nuxt/builds/meta/b173c76b-23e3-43ab-848e-eaa05eeecd88.json"
-  },
-  "/memes/thomas-sowell/.DS_Store": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"4804-/S698SoKhred3NItBFUaOlpOdZ4\"",
-    "mtime": "2025-06-24T06:02:50.778Z",
-    "size": 18436,
-    "path": "../public/memes/thomas-sowell/.DS_Store"
-  },
-  "/memes/thomas-sowell/More-whites-were-brought-as-slaves-to-North-Africa-than.png": {
-    "type": "image/png",
-    "etag": "\"ac74d-urFY5J4Qg+njgxb7C/3szOa4/bE\"",
-    "mtime": "2025-06-24T06:02:50.423Z",
-    "size": 706381,
-    "path": "../public/memes/thomas-sowell/More-whites-were-brought-as-slaves-to-North-Africa-than.png"
-  },
-  "/memes/thomas-sowell/activism-is-a-way-for-useless-people-to-feel.png": {
-    "type": "image/png",
-    "etag": "\"16c597-lytaGwne9bDdGIHlraq5N1NRBE8\"",
-    "mtime": "2025-06-24T06:02:50.787Z",
-    "size": 1492375,
-    "path": "../public/memes/thomas-sowell/activism-is-a-way-for-useless-people-to-feel.png"
-  },
-  "/memes/thomas-sowell/blacks-were-not-enslaved-becuase-they-were-black.png": {
-    "type": "image/png",
-    "etag": "\"46963-ig2xNlC4McOwmO0T4N0oIU5ib/A\"",
-    "mtime": "2025-06-24T06:02:50.778Z",
-    "size": 289123,
-    "path": "../public/memes/thomas-sowell/blacks-were-not-enslaved-becuase-they-were-black.png"
-  },
-  "/memes/thomas-sowell/both-free-speech-rights-and-property-rights-belong-legally-to-individuals.png": {
-    "type": "image/png",
-    "etag": "\"1deb7-MD31qimoWcDyc4K4q+PNdiTpzk0\"",
-    "mtime": "2025-06-24T06:02:50.779Z",
-    "size": 122551,
-    "path": "../public/memes/thomas-sowell/both-free-speech-rights-and-property-rights-belong-legally-to-individuals.png"
-  },
-  "/memes/thomas-sowell/despite-a-voluminous-and-often-fervent-literature-on-income-distribution.png": {
-    "type": "image/png",
-    "etag": "\"3b9c5-pqhExilMvRNquxa7ehW2AaDI5HQ\"",
-    "mtime": "2025-06-24T06:02:50.785Z",
-    "size": 244165,
-    "path": "../public/memes/thomas-sowell/despite-a-voluminous-and-often-fervent-literature-on-income-distribution.png"
-  },
-  "/memes/thomas-sowell/during-the-1920s-and-the-early-1930s-fascism-was.png": {
-    "type": "image/png",
-    "etag": "\"e8c6a-2uUkMHWR0AYyNWivV+AAjgvm6v0\"",
-    "mtime": "2025-06-24T06:02:50.786Z",
-    "size": 953450,
-    "path": "../public/memes/thomas-sowell/during-the-1920s-and-the-early-1930s-fascism-was.png"
-  },
-  "/memes/thomas-sowell/europe-is-belatedly-discovering-how-unbelievably-stupid.png": {
-    "type": "image/png",
-    "etag": "\"10e574-CuKPqGneVHL8jjRbvCuJdqwUM4s\"",
-    "mtime": "2025-06-24T06:02:50.787Z",
-    "size": 1107316,
-    "path": "../public/memes/thomas-sowell/europe-is-belatedly-discovering-how-unbelievably-stupid.png"
-  },
-  "/memes/thomas-sowell/guilt-has-so-furtively-stolen-into-many-hearts.png": {
-    "type": "image/png",
-    "etag": "\"4e397-vkzS740LDOqMA+xdfa0hGdu/lXY\"",
-    "mtime": "2025-06-24T06:02:50.786Z",
-    "size": 320407,
-    "path": "../public/memes/thomas-sowell/guilt-has-so-furtively-stolen-into-many-hearts.png"
-  },
-  "/memes/thomas-sowell/hours-may-become-the-first-civilization-destroyed.png": {
-    "type": "image/png",
-    "etag": "\"f9b08-ICmxKmoHwadpENGL0shPXWtbW8Q\"",
-    "mtime": "2025-06-24T06:02:50.792Z",
-    "size": 1022728,
-    "path": "../public/memes/thomas-sowell/hours-may-become-the-first-civilization-destroyed.png"
-  },
-  "/memes/thomas-sowell/i-have-never-understood-why-it-is-agreed-to-want-to-keep-the-money-you-have-earned.png": {
-    "type": "image/png",
-    "etag": "\"5bdfd-CKX+gvEf/Al31IDcU4a446X52tU\"",
-    "mtime": "2025-06-24T06:02:50.791Z",
-    "size": 376317,
-    "path": "../public/memes/thomas-sowell/i-have-never-understood-why-it-is-agreed-to-want-to-keep-the-money-you-have-earned.png"
-  },
-  "/memes/thomas-sowell/if-you-are-not-prepared-to-use-force-to-defend.png": {
-    "type": "image/png",
-    "etag": "\"39a3f-4PapunUzf1aJyu/8/BmgaCPXixU\"",
-    "mtime": "2025-06-24T06:02:50.792Z",
-    "size": 236095,
-    "path": "../public/memes/thomas-sowell/if-you-are-not-prepared-to-use-force-to-defend.png"
-  },
-  "/memes/thomas-sowell/if-you-cannot-achieve-a-quality-of-performance-among-people-born-to-the-same-parents.png": {
-    "type": "image/png",
-    "etag": "\"3b7bf-dOSjoTKvtVAYWJE+13lm7HpTUSM\"",
-    "mtime": "2025-06-24T06:02:50.791Z",
-    "size": 243647,
-    "path": "../public/memes/thomas-sowell/if-you-cannot-achieve-a-quality-of-performance-among-people-born-to-the-same-parents.png"
-  },
-  "/memes/thomas-sowell/if-you-want-to-see-the-poor-remain-poor-generation-after-generation.png": {
-    "type": "image/png",
-    "etag": "\"4956c-VsgIwTa89H58Ku+7P+kv9385A/g\"",
-    "mtime": "2025-06-24T06:02:50.796Z",
-    "size": 300396,
-    "path": "../public/memes/thomas-sowell/if-you-want-to-see-the-poor-remain-poor-generation-after-generation.png"
-  },
-  "/memes/thomas-sowell/immigration-laws-are-the-only-laws.png": {
-    "type": "image/png",
-    "etag": "\"45414-StnkeMrvx96OUZtydCKjf6PleUA\"",
-    "mtime": "2025-06-24T06:02:50.793Z",
-    "size": 283668,
-    "path": "../public/memes/thomas-sowell/immigration-laws-are-the-only-laws.png"
-  },
-  "/memes/thomas-sowell/it-is-fascinating-to-watch-politicians-come-up-with-solutions.png": {
-    "type": "image/png",
-    "etag": "\"a904e-cBM9ncku40kcTi2iaf4HM5WMNnU\"",
-    "mtime": "2025-06-24T06:02:50.794Z",
-    "size": 692302,
-    "path": "../public/memes/thomas-sowell/it-is-fascinating-to-watch-politicians-come-up-with-solutions.png"
-  },
-  "/memes/thomas-sowell/it-is-not-enough-for-us-to-discover-belatedly-that-we-have-been-lied-to.png": {
-    "type": "image/png",
-    "etag": "\"32348-/dy2sdjt0E783jkNUr2ClElUm+o\"",
-    "mtime": "2025-06-24T06:02:50.793Z",
-    "size": 205640,
-    "path": "../public/memes/thomas-sowell/it-is-not-enough-for-us-to-discover-belatedly-that-we-have-been-lied-to.png"
-  },
-  "/memes/thomas-sowell/it-is-usually-futile-to-try-to-talk-facts.png": {
-    "type": "image/png",
-    "etag": "\"19a02-hTgxBg6J1EwIz5vu3sELV4xPoCM\"",
-    "mtime": "2025-06-24T06:02:50.792Z",
-    "size": 104962,
-    "path": "../public/memes/thomas-sowell/it-is-usually-futile-to-try-to-talk-facts.png"
-  },
-  "/memes/thomas-sowell/it-was-thomas-edison-who-brought-us-elctricity.png": {
-    "type": "image/png",
-    "etag": "\"111806-F+CJUzYvIPOU7KfS+949wYu4YIQ\"",
-    "mtime": "2025-06-24T06:02:50.802Z",
-    "size": 1120262,
-    "path": "../public/memes/thomas-sowell/it-was-thomas-edison-who-brought-us-elctricity.png"
-  },
-  "/memes/thomas-sowell/its-amazing-how-fast-people-learn-when-they-are.png": {
-    "type": "image/png",
-    "etag": "\"756e9-53OY3Ikl9+1UH11e/FRHJMg2gyI\"",
-    "mtime": "2025-06-24T06:02:50.794Z",
-    "size": 481001,
-    "path": "../public/memes/thomas-sowell/its-amazing-how-fast-people-learn-when-they-are.png"
-  },
-  "/memes/thomas-sowell/many-on-the-political-left-are-so-entranced-by-the-beauty-of-their-vision.png": {
-    "type": "image/png",
-    "etag": "\"1849dc-yPxjqDz1XvrwbMrROaHLeVsB4xA\"",
-    "mtime": "2025-06-24T06:02:50.798Z",
-    "size": 1591772,
-    "path": "../public/memes/thomas-sowell/many-on-the-political-left-are-so-entranced-by-the-beauty-of-their-vision.png"
-  },
-  "/memes/thomas-sowell/much-of-the-social-history-of-the-western-world-over-the-past-three-decades.png": {
-    "type": "image/png",
-    "etag": "\"3703c-JF+vFUn7ekpG2VyG045kYtzJkio\"",
-    "mtime": "2025-06-24T06:02:50.800Z",
-    "size": 225340,
-    "path": "../public/memes/thomas-sowell/much-of-the-social-history-of-the-western-world-over-the-past-three-decades.png"
-  },
-  "/memes/thomas-sowell/much-of-the-social-history-of-the-western-world.png": {
-    "type": "image/png",
-    "etag": "\"7a1b2-TsmfakMcFFZ7mYi22K529ASQkPc\"",
-    "mtime": "2025-06-24T06:02:50.796Z",
-    "size": 500146,
-    "path": "../public/memes/thomas-sowell/much-of-the-social-history-of-the-western-world.png"
-  },
-  "/memes/thomas-sowell/much-of-what-are-called-social-problems.png": {
-    "type": "image/png",
-    "etag": "\"b2fc2-7VOnq//4hm9xebZMq3CgBAYzC64\"",
-    "mtime": "2025-06-24T06:02:50.801Z",
-    "size": 733122,
-    "path": "../public/memes/thomas-sowell/much-of-what-are-called-social-problems.png"
-  },
-  "/memes/thomas-sowell/multiculturalism-like-the-cast-system.png": {
-    "type": "image/png",
-    "etag": "\"f60c-Uqc1g2jyFjMZc2ixMRKuaH22JX8\"",
-    "mtime": "2025-06-24T06:02:50.801Z",
-    "size": 62988,
-    "path": "../public/memes/thomas-sowell/multiculturalism-like-the-cast-system.png"
-  },
-  "/memes/thomas-sowell/no-matter-how-disastrously-some-policy-has-turned-out.png": {
-    "type": "image/png",
-    "etag": "\"ad8d8-rufXqDLJ2kkfeiw5lmIaa08cmqw\"",
-    "mtime": "2025-06-24T06:02:50.803Z",
-    "size": 710872,
-    "path": "../public/memes/thomas-sowell/no-matter-how-disastrously-some-policy-has-turned-out.png"
-  },
-  "/memes/thomas-sowell/nobody-is-equal-to-anybody.png": {
-    "type": "image/png",
-    "etag": "\"b7b23-4jLq+eM8ne01nzV35L6/d8INUt0\"",
-    "mtime": "2025-06-24T06:02:50.811Z",
-    "size": 752419,
-    "path": "../public/memes/thomas-sowell/nobody-is-equal-to-anybody.png"
-  },
-  "/memes/thomas-sowell/one-of-the-many-services-done-to-young-people-is-giving-them-a-puffed-up-notion.png": {
-    "type": "image/png",
-    "etag": "\"ad658-crv6TcqdY5UNmAdFMA4g0EgqQDA\"",
-    "mtime": "2025-06-24T06:02:50.801Z",
-    "size": 710232,
-    "path": "../public/memes/thomas-sowell/one-of-the-many-services-done-to-young-people-is-giving-them-a-puffed-up-notion.png"
-  },
-  "/memes/thomas-sowell/one-of-the-most-important-reasons-for-studying-history.png": {
-    "type": "image/png",
-    "etag": "\"3c71e-0qyZjLGDB8yR2puyKQDhuhITgCc\"",
-    "mtime": "2025-06-24T06:02:50.808Z",
-    "size": 247582,
-    "path": "../public/memes/thomas-sowell/one-of-the-most-important-reasons-for-studying-history.png"
-  },
-  "/memes/thomas-sowell/one-of-them-many-disservices-done-to-young-people.png": {
-    "type": "image/png",
-    "etag": "\"ad658-crv6TcqdY5UNmAdFMA4g0EgqQDA\"",
-    "mtime": "2025-06-24T06:02:50.810Z",
-    "size": 710232,
-    "path": "../public/memes/thomas-sowell/one-of-them-many-disservices-done-to-young-people.png"
-  },
-  "/memes/thomas-sowell/people-who-are-very-aware-that-they-have-more-knowledge.png": {
-    "type": "image/png",
-    "etag": "\"68b8a-siUiAe7CST3Qz5VlGfW+ZoIs1VM\"",
-    "mtime": "2025-06-24T06:02:50.811Z",
-    "size": 428938,
-    "path": "../public/memes/thomas-sowell/people-who-are-very-aware-that-they-have-more-knowledge.png"
-  },
-  "/memes/thomas-sowell/people-who-pride-themselves-on-their-complexity.png": {
-    "type": "image/png",
-    "etag": "\"40975-ZiuSfWVtWb6hIarNy5KbPh5XWX8\"",
-    "mtime": "2025-06-24T06:02:50.808Z",
-    "size": 264565,
-    "path": "../public/memes/thomas-sowell/people-who-pride-themselves-on-their-complexity.png"
-  },
-  "/memes/thomas-sowell/racism-is-not-dead-but-it-is-on-life-support-kept-alive-by-politicians.png": {
-    "type": "image/png",
-    "etag": "\"5e115-yOEaNc0YDzPWFxSdKMvODuX/ZlA\"",
-    "mtime": "2025-06-24T06:02:50.808Z",
-    "size": 385301,
-    "path": "../public/memes/thomas-sowell/racism-is-not-dead-but-it-is-on-life-support-kept-alive-by-politicians.png"
-  },
-  "/memes/thomas-sowell/schools-exist-for-the-education-of-children.png": {
-    "type": "image/png",
-    "etag": "\"ae533-NjV99VHiCDxQ1A95nhNJdO8eWMw\"",
-    "mtime": "2025-06-24T06:02:50.812Z",
-    "size": 714035,
-    "path": "../public/memes/thomas-sowell/schools-exist-for-the-education-of-children.png"
-  },
-  "/memes/thomas-sowell/since-wealth-is-the-only-thing-that-can-cure-poverty.png": {
-    "type": "image/png",
-    "etag": "\"53891-IXm88X2celAfVZs3YUnNrrk/Z8s\"",
-    "mtime": "2025-06-24T06:02:50.811Z",
-    "size": 342161,
-    "path": "../public/memes/thomas-sowell/since-wealth-is-the-only-thing-that-can-cure-poverty.png"
-  },
-  "/memes/thomas-sowell/socialism-in-general-has-a-record-of-failure-so-blatant.png": {
-    "type": "image/png",
-    "etag": "\"2319b-6Og2gljnP8Mo2Vg4z3MgrbmbTwY\"",
-    "mtime": "2025-06-24T06:02:50.820Z",
-    "size": 143771,
-    "path": "../public/memes/thomas-sowell/socialism-in-general-has-a-record-of-failure-so-blatant.png"
-  },
-  "/memes/thomas-sowell/some-americans-will-never-appreciate.png": {
-    "type": "image/png",
-    "etag": "\"2da8f-0Ls/C9kd1SjrPWNHzZpmBj3LTCc\"",
-    "mtime": "2025-06-24T06:02:50.812Z",
-    "size": 187023,
-    "path": "../public/memes/thomas-sowell/some-americans-will-never-appreciate.png"
-  },
-  "/memes/thomas-sowell/the-assumption-that-spending-more-of-the-taxpayers-money-will.png": {
-    "type": "image/png",
-    "etag": "\"40c60-uV2PmapRmoZ2Kvakt8Owai7XgNQ\"",
-    "mtime": "2025-06-24T06:02:50.818Z",
-    "size": 265312,
-    "path": "../public/memes/thomas-sowell/the-assumption-that-spending-more-of-the-taxpayers-money-will.png"
-  },
-  "/memes/thomas-sowell/the-beauty-of-doing-nothing-is-that-you-can-do-it-perfectly.png": {
-    "type": "image/png",
-    "etag": "\"148bdf-wKf8MO5gDd0yXbgqi9eO9k7OvfM\"",
-    "mtime": "2025-06-24T06:02:50.818Z",
-    "size": 1346527,
-    "path": "../public/memes/thomas-sowell/the-beauty-of-doing-nothing-is-that-you-can-do-it-perfectly.png"
-  },
-  "/memes/thomas-sowell/the-black-family-survived-centuries-of-slavery.png": {
-    "type": "image/png",
-    "etag": "\"b389f-sdzYSVWkc6Bh8hxt5f0/TK7yG08\"",
-    "mtime": "2025-06-24T06:02:50.814Z",
-    "size": 735391,
-    "path": "../public/memes/thomas-sowell/the-black-family-survived-centuries-of-slavery.png"
-  },
-  "/memes/thomas-sowell/the-endlessly-repeated-argument-that-most-americans-are-the-descendants.png": {
-    "type": "image/png",
-    "etag": "\"2b5be-FKASXQmx2ReBMr2rZNM2lLcjMwo\"",
-    "mtime": "2025-06-24T06:02:50.821Z",
-    "size": 177598,
-    "path": "../public/memes/thomas-sowell/the-endlessly-repeated-argument-that-most-americans-are-the-descendants.png"
-  },
-  "/memes/thomas-sowell/the-fact-that-crime-and-poverty-are-correlated-is-automatically-taken-to-mean.png": {
-    "type": "image/png",
-    "etag": "\"b0048-w2S2t3HQQ5D9LOoD1PnbzA1RMfc\"",
-    "mtime": "2025-06-24T06:02:50.824Z",
-    "size": 720968,
-    "path": "../public/memes/thomas-sowell/the-fact-that-crime-and-poverty-are-correlated-is-automatically-taken-to-mean.png"
-  },
-  "/memes/thomas-sowell/the-first-lesson-of-economics-is-scarcity.png": {
-    "type": "image/png",
-    "etag": "\"13e3c-e1wyvv/UikCZ0Yhs0FgsJ0qp8HE\"",
-    "mtime": "2025-06-24T06:02:50.824Z",
-    "size": 81468,
-    "path": "../public/memes/thomas-sowell/the-first-lesson-of-economics-is-scarcity.png"
-  },
-  "/memes/thomas-sowell/the-left-attempts-to-silence-ideas-they-cannot-or-will-not-debate.png": {
-    "type": "image/png",
-    "etag": "\"db953-+sHfHBgtY1AP4q/KifMBJ8zikCg\"",
-    "mtime": "2025-06-24T06:02:50.821Z",
-    "size": 899411,
-    "path": "../public/memes/thomas-sowell/the-left-attempts-to-silence-ideas-they-cannot-or-will-not-debate.png"
-  },
-  "/memes/thomas-sowell/the-left-takes-its-vision-seriously.png": {
-    "type": "image/png",
-    "etag": "\"52e1f-noIJUSPQZH0hnTOeOadG2Thp9Vc\"",
-    "mtime": "2025-06-24T06:02:50.864Z",
-    "size": 339487,
-    "path": "../public/memes/thomas-sowell/the-left-takes-its-vision-seriously.png"
-  },
-  "/memes/thomas-sowell/the-more-i-study-the-history-of-intellectuals-the-more-they-seem-like-a-wrecking-crew.png": {
-    "type": "image/png",
-    "etag": "\"ba0c1-0JMRJyYIsgpPbzCCPd4BzMd7ExM\"",
-    "mtime": "2025-06-24T06:02:50.824Z",
-    "size": 762049,
-    "path": "../public/memes/thomas-sowell/the-more-i-study-the-history-of-intellectuals-the-more-they-seem-like-a-wrecking-crew.png"
-  },
-  "/memes/thomas-sowell/the-most-basic-question-is-not-what-is-best-but-who-shall-decide-what-is-best.png": {
-    "type": "image/png",
-    "etag": "\"ab030-FROVNQVqkEfkOqX4/wM4jfeMBTc\"",
-    "mtime": "2025-06-24T06:02:50.869Z",
-    "size": 700464,
-    "path": "../public/memes/thomas-sowell/the-most-basic-question-is-not-what-is-best-but-who-shall-decide-what-is-best.png"
-  },
-  "/memes/thomas-sowell/the-most-basic-question-is-not-what-is.png": {
-    "type": "image/png",
-    "etag": "\"2f7b7-P/82akYDbz1QB9p5XozhzCxw1AY\"",
-    "mtime": "2025-06-24T06:02:50.824Z",
-    "size": 194487,
-    "path": "../public/memes/thomas-sowell/the-most-basic-question-is-not-what-is.png"
-  },
-  "/memes/thomas-sowell/the-next-time-some-academics-tell-you-how-important-diversity-is-ask.png": {
-    "type": "image/png",
-    "etag": "\"5831d-eEsts+8BhF6fcnBdRq9pHGOQjh8\"",
-    "mtime": "2025-06-24T06:02:50.825Z",
-    "size": 361245,
-    "path": "../public/memes/thomas-sowell/the-next-time-some-academics-tell-you-how-important-diversity-is-ask.png"
-  },
-  "/memes/thomas-sowell/the-purpose-of-politics-is-not-to-solve-problems.png": {
-    "type": "image/png",
-    "etag": "\"271f50-a6WwQ0ygPYiWLTgHtpkQN/5Rwzc\"",
-    "mtime": "2025-06-24T06:02:50.830Z",
-    "size": 2563920,
-    "path": "../public/memes/thomas-sowell/the-purpose-of-politics-is-not-to-solve-problems.png"
-  },
-  "/memes/thomas-sowell/the-real-motives-of-liberals-have-nothing-to-do-with-the-welfare-of-other-people.png": {
-    "type": "image/png",
-    "etag": "\"13b164-Icey4iRrJfbyGNAh2tMCagOJCiY\"",
-    "mtime": "2025-06-24T06:02:50.830Z",
-    "size": 1290596,
-    "path": "../public/memes/thomas-sowell/the-real-motives-of-liberals-have-nothing-to-do-with-the-welfare-of-other-people.png"
-  },
-  "/memes/thomas-sowell/the-reason-so-many-people-misunderstand-so-many-issues.png": {
-    "type": "image/png",
-    "etag": "\"4a7ab-Fgaz6TUYYmxzjYn+McRtmTC754U\"",
-    "mtime": "2025-06-24T06:02:50.864Z",
-    "size": 305067,
-    "path": "../public/memes/thomas-sowell/the-reason-so-many-people-misunderstand-so-many-issues.png"
-  },
-  "/memes/thomas-sowell/there-are-no-solutions-there-are-only-trade-offs.png": {
-    "type": "image/png",
-    "etag": "\"21578-Ow8W8WAx+CgWjVUgGqtWbL7RddY\"",
-    "mtime": "2025-06-24T06:02:50.835Z",
-    "size": 136568,
-    "path": "../public/memes/thomas-sowell/there-are-no-solutions-there-are-only-trade-offs.png"
-  },
-  "/memes/thomas-sowell/there-has-now-been-created-a-world.png": {
-    "type": "image/png",
-    "etag": "\"1b01b-ePKzEufT5xM4mtLUMrgevyCbFOs\"",
-    "mtime": "2025-06-24T06:02:50.830Z",
-    "size": 110619,
-    "path": "../public/memes/thomas-sowell/there-has-now-been-created-a-world.png"
-  },
-  "/memes/thomas-sowell/thomas-sowell-discrimination-and-disparities.png": {
-    "type": "image/png",
-    "etag": "\"228860-VBudHJI0TDQDu+z1Qjqb8qOSYEE\"",
-    "mtime": "2025-06-24T06:02:50.840Z",
-    "size": 2263136,
-    "path": "../public/memes/thomas-sowell/thomas-sowell-discrimination-and-disparities.png"
-  },
-  "/memes/thomas-sowell/thomas-sowell-it-was-thomas-edison.png": {
-    "type": "image/png",
-    "etag": "\"7aeb4-CXkhvZvbjh/XVpP7AJT9SCNXK3c\"",
-    "mtime": "2025-06-24T06:02:50.830Z",
-    "size": 503476,
-    "path": "../public/memes/thomas-sowell/thomas-sowell-it-was-thomas-edison.png"
-  },
-  "/memes/thomas-sowell/thomas-sowell-quote-freedom-unlikely-to-be-lost.png": {
-    "type": "image/png",
-    "etag": "\"89457-aYdg+n8z727ldU7FjgEOWBkPn5Q\"",
-    "mtime": "2025-06-24T06:02:50.829Z",
-    "size": 562263,
-    "path": "../public/memes/thomas-sowell/thomas-sowell-quote-freedom-unlikely-to-be-lost.png"
-  },
-  "/memes/thomas-sowell/thomas-sowell-sexual-activity-vs-economic-activity.png": {
-    "type": "image/png",
-    "etag": "\"5bc78-uweHnNn7z4wZ4Yh34i4kQnhMot8\"",
-    "mtime": "2025-06-24T06:02:50.836Z",
-    "size": 375928,
-    "path": "../public/memes/thomas-sowell/thomas-sowell-sexual-activity-vs-economic-activity.png"
-  },
-  "/memes/thomas-sowell/too-much-of-what-is-called-education.png": {
-    "type": "image/png",
-    "etag": "\"23ba4-PDS7f8VCgX3w9BBrdi6I5utJK6Q\"",
-    "mtime": "2025-06-24T06:02:50.836Z",
-    "size": 146340,
-    "path": "../public/memes/thomas-sowell/too-much-of-what-is-called-education.png"
-  },
-  "/memes/thomas-sowell/we-are-a-nation-of-immigrants-we-are-constantly-reminded.png": {
-    "type": "image/png",
-    "etag": "\"3429a-9oI/+kuEq2H87EmZwNs+oA4FCiY\"",
-    "mtime": "2025-06-24T06:02:50.837Z",
-    "size": 213658,
-    "path": "../public/memes/thomas-sowell/we-are-a-nation-of-immigrants-we-are-constantly-reminded.png"
-  },
-  "/memes/thomas-sowell/we-seem-to-be-closer-and-closer-to-a-situation-where-nobody-is-responsible.png": {
-    "type": "image/png",
-    "etag": "\"127439-kC2q5uayBG+ouwntfLcfsFNI/ys\"",
-    "mtime": "2025-06-24T06:02:50.840Z",
-    "size": 1209401,
-    "path": "../public/memes/thomas-sowell/we-seem-to-be-closer-and-closer-to-a-situation-where-nobody-is-responsible.png"
-  },
-  "/memes/thomas-sowell/what-do-you-call-it-when-someone-steals-money-secretly.png": {
-    "type": "image/png",
-    "etag": "\"91b5a-XqHIaGFBs711rIX1JdTkIWveFOo\"",
-    "mtime": "2025-06-24T06:02:50.840Z",
-    "size": 596826,
-    "path": "../public/memes/thomas-sowell/what-do-you-call-it-when-someone-steals-money-secretly.png"
-  },
-  "/memes/thomas-sowell/what-do-you-replace-a-fire-with-thomas-sowell.png": {
-    "type": "image/png",
-    "etag": "\"2c363-kbkmwAd6Vr5kQCwPGRv5Dd2fJyI\"",
-    "mtime": "2025-06-24T06:02:50.838Z",
-    "size": 181091,
-    "path": "../public/memes/thomas-sowell/what-do-you-replace-a-fire-with-thomas-sowell.png"
-  },
-  "/memes/thomas-sowell/what-exactly-is-your-fair-share-of-what-someone-else-has-worked-for.png": {
-    "type": "image/png",
-    "etag": "\"42518-HTCsdztY/6HqcJlYMAqIqXT2/QA\"",
-    "mtime": "2025-06-24T06:02:50.845Z",
-    "size": 271640,
-    "path": "../public/memes/thomas-sowell/what-exactly-is-your-fair-share-of-what-someone-else-has-worked-for.png"
-  },
-  "/memes/thomas-sowell/what-multiculturalism-boils-down-to.png": {
-    "type": "image/png",
-    "etag": "\"170b91-+jC+wNEXBagytlZOnlwjvbrWy9s\"",
-    "mtime": "2025-06-24T06:02:50.845Z",
-    "size": 1510289,
-    "path": "../public/memes/thomas-sowell/what-multiculturalism-boils-down-to.png"
-  },
-  "/memes/thomas-sowell/when-i-was-growing-up-we-were-taught.png": {
-    "type": "image/png",
-    "etag": "\"16ac3b-zqV5a6S4GKnEOCA5q/x/iFzH7fQ\"",
-    "mtime": "2025-06-24T06:02:50.846Z",
-    "size": 1485883,
-    "path": "../public/memes/thomas-sowell/when-i-was-growing-up-we-were-taught.png"
-  },
-  "/memes/thomas-sowell/when-it-is-proclaimed-that-one-must-become-more.png": {
-    "type": "image/png",
-    "etag": "\"cf9dd-ziX3/Q3BD7mBmmNylt85ZWBUtMw\"",
-    "mtime": "2025-06-24T06:02:50.846Z",
-    "size": 850397,
-    "path": "../public/memes/thomas-sowell/when-it-is-proclaimed-that-one-must-become-more.png"
-  },
-  "/memes/thomas-sowell/when-you-import-people-you-import-cultures.png": {
-    "type": "image/png",
-    "etag": "\"884d5-2bMjMHQHhYE2eJrKvDS74/ppmgk\"",
-    "mtime": "2025-06-24T06:02:50.849Z",
-    "size": 558293,
-    "path": "../public/memes/thomas-sowell/when-you-import-people-you-import-cultures.png"
-  },
-  "/memes/thomas-sowell/when-you-want-to-help-people-you-tell-them-the-truth.png": {
-    "type": "image/png",
-    "etag": "\"b7e5f-QnXusVwhr9vXb5OVHG/BlY4+rKg\"",
-    "mtime": "2025-06-24T06:02:50.850Z",
-    "size": 753247,
-    "path": "../public/memes/thomas-sowell/when-you-want-to-help-people-you-tell-them-the-truth.png"
-  },
-  "/memes/thomas-sowell/you-have-to-have-a-sense-of-humor-if-you-follow-politics.png": {
-    "type": "image/png",
-    "etag": "\"39bd3-I3x0FtJ9Yri9vLcR28a4K2WFmbA\"",
-    "mtime": "2025-06-24T06:02:50.847Z",
-    "size": 236499,
-    "path": "../public/memes/thomas-sowell/you-have-to-have-a-sense-of-humor-if-you-follow-politics.png"
-  },
-  "/memes/quotes/.DS_Store": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"3804-ynvLNG+oIui6UjSQZOQMlRi+lNo\"",
-    "mtime": "2025-06-24T06:02:50.416Z",
-    "size": 14340,
-    "path": "../public/memes/quotes/.DS_Store"
-  },
-  "/memes/quotes/a-government-which-lays-t.png": {
-    "type": "image/png",
-    "etag": "\"11f646-SrQcSLlPTiO6G9ANqvdFfVg3Nhs\"",
-    "mtime": "2025-06-24T06:02:50.566Z",
-    "size": 1177158,
-    "path": "../public/memes/quotes/a-government-which-lays-t.png"
-  },
-  "/memes/quotes/a-man-who-knows-the-orig.png": {
-    "type": "image/png",
-    "etag": "\"14cc78-Ld7Ua5yIdv2LHYBcf59Y9Rf9Jg4\"",
-    "mtime": "2025-06-24T06:02:50.575Z",
-    "size": 1363064,
-    "path": "../public/memes/quotes/a-man-who-knows-the-orig.png"
-  },
-  "/memes/quotes/at-the-core-of-liberalism.png": {
-    "type": "image/png",
-    "etag": "\"454c1-pkuiYAuON9CHg6frah+9Oqzhh6w\"",
-    "mtime": "2025-06-24T06:02:50.575Z",
-    "size": 283841,
-    "path": "../public/memes/quotes/at-the-core-of-liberalism.png"
-  },
-  "/memes/quotes/beware-the-irrational,-ho.png": {
-    "type": "image/png",
-    "etag": "\"49ba7-bANsJ6blg/M/uyt+zxQm5YuakRA\"",
-    "mtime": "2025-06-24T06:02:50.575Z",
-    "size": 301991,
-    "path": "../public/memes/quotes/beware-the-irrational,-ho.png"
-  },
-  "/memes/quotes/britain-gave-the-world.png": {
-    "type": "image/png",
-    "etag": "\"16680-eoP9Y2yYo8Lli073gRo7x4+inUg\"",
-    "mtime": "2025-06-24T06:02:50.576Z",
-    "size": 91776,
-    "path": "../public/memes/quotes/britain-gave-the-world.png"
-  },
-  "/memes/quotes/can-a-people-tax-themselv.png": {
-    "type": "image/png",
-    "etag": "\"110bd-hyLMNbB9mqNjX//UzXZEdUua7bE\"",
-    "mtime": "2025-06-24T06:02:50.575Z",
-    "size": 69821,
-    "path": "../public/memes/quotes/can-a-people-tax-themselv.png"
-  },
-  "/memes/quotes/do-not-be-so-open-minded,.png": {
-    "type": "image/png",
-    "etag": "\"a13f3-TfJPkbWXdbpdbpw7zsFz5+s3tds\"",
-    "mtime": "2025-06-24T06:02:50.577Z",
-    "size": 660467,
-    "path": "../public/memes/quotes/do-not-be-so-open-minded,.png"
-  },
-  "/memes/quotes/elon-musk-did-not-make-x.png": {
-    "type": "image/png",
-    "etag": "\"43d52-fJZpLAc615PxGZ/A3PBzx0pYJ3k\"",
-    "mtime": "2025-06-24T06:02:50.576Z",
-    "size": 277842,
-    "path": "../public/memes/quotes/elon-musk-did-not-make-x.png"
-  },
-  "/memes/quotes/every-generation,-civiliz.png": {
-    "type": "image/png",
-    "etag": "\"37f4a6-4AfBjYKUATbdY7nBksk0j6Tvc8s\"",
-    "mtime": "2025-06-24T06:02:50.581Z",
-    "size": 3667110,
-    "path": "../public/memes/quotes/every-generation,-civiliz.png"
-  },
-  "/memes/quotes/government's-first-duty-i.png": {
-    "type": "image/png",
-    "etag": "\"9e436-6MxVRCyxYuCH589+7oe2fZswHuU\"",
-    "mtime": "2025-06-24T06:02:50.583Z",
-    "size": 648246,
-    "path": "../public/memes/quotes/government's-first-duty-i.png"
-  },
-  "/memes/quotes/government's-view-of-the.png": {
-    "type": "image/png",
-    "etag": "\"9c1e2-JYudBOV3HkaXiapwfln43FpkcMw\"",
-    "mtime": "2025-06-24T06:02:50.589Z",
-    "size": 639458,
-    "path": "../public/memes/quotes/government's-view-of-the.png"
-  },
-  "/memes/quotes/government-is-not-the-sol.png": {
-    "type": "image/png",
-    "etag": "\"4c8dd-Z2O2xz2kU6E6Uz5MncXc/vn1KYE\"",
-    "mtime": "2025-06-24T06:02:50.579Z",
-    "size": 313565,
-    "path": "../public/memes/quotes/government-is-not-the-sol.png"
-  },
-  "/memes/quotes/have-you-ever-noticed-how.png": {
-    "type": "image/png",
-    "etag": "\"85ffb-3exsBpxg/SwRp5vwS7MrsT6V/eg\"",
-    "mtime": "2025-06-24T06:02:50.580Z",
-    "size": 548859,
-    "path": "../public/memes/quotes/have-you-ever-noticed-how.png"
-  },
-  "/memes/quotes/hayek-to-act-on-the-belie.png": {
-    "type": "image/png",
-    "etag": "\"23317-G96yEw//YxbO802t6yZ1qafDUbg\"",
-    "mtime": "2025-06-24T06:02:50.580Z",
-    "size": 144151,
-    "path": "../public/memes/quotes/hayek-to-act-on-the-belie.png"
-  },
-  "/memes/quotes/homicide-is-the-leading-c.png": {
-    "type": "image/png",
-    "etag": "\"15c47-H2p5FJXjr5/gzUB520uW/4AmNGc\"",
-    "mtime": "2025-06-24T06:02:50.580Z",
-    "size": 89159,
-    "path": "../public/memes/quotes/homicide-is-the-leading-c.png"
-  },
-  "/memes/quotes/human-beings-are-born-wit.png": {
-    "type": "image/png",
-    "etag": "\"16cd32-svaOzkk/ihPQ21SbFW6qVDkwjQE\"",
-    "mtime": "2025-06-24T06:02:50.588Z",
-    "size": 1494322,
-    "path": "../public/memes/quotes/human-beings-are-born-wit.png"
-  },
-  "/memes/quotes/humiliating-to-human-prid.png": {
-    "type": "image/png",
-    "etag": "\"2dcff-bjMYuxGUUMdyiCg6y2vYGTfuIq8\"",
-    "mtime": "2025-06-24T06:02:50.581Z",
-    "size": 187647,
-    "path": "../public/memes/quotes/humiliating-to-human-prid.png"
-  },
-  "/memes/quotes/i-always-think-it's-a-sig.png": {
-    "type": "image/png",
-    "etag": "\"7bf00-Nwrq6aaq4dBU5F5aXcptTgbhROg\"",
-    "mtime": "2025-06-24T06:02:50.588Z",
-    "size": 507648,
-    "path": "../public/memes/quotes/i-always-think-it's-a-sig.png"
-  },
-  "/memes/quotes/in-100-years-we-have-gone.png": {
-    "type": "image/png",
-    "etag": "\"312d1-Vs91uzY7BVRJSolJ5doZ0UcC+Aw\"",
-    "mtime": "2025-06-24T06:02:50.587Z",
-    "size": 201425,
-    "path": "../public/memes/quotes/in-100-years-we-have-gone.png"
-  },
-  "/memes/quotes/intellectuals-are-natural.png": {
-    "type": "image/png",
-    "etag": "\"71e7b-KCcuSJsAOjaB2WwgDYvutAKP5DM\"",
-    "mtime": "2025-06-24T06:02:50.589Z",
-    "size": 466555,
-    "path": "../public/memes/quotes/intellectuals-are-natural.png"
-  },
-  "/memes/quotes/islam's-borders-are-blood.png": {
-    "type": "image/png",
-    "etag": "\"4c5dd-DJPesBBVMpXnG1IUTN5pR+6DwU8\"",
-    "mtime": "2025-06-24T06:02:50.601Z",
-    "size": 312797,
-    "path": "../public/memes/quotes/islam's-borders-are-blood.png"
-  },
-  "/memes/quotes/it-constantly-amazes-me-t.png": {
-    "type": "image/png",
-    "etag": "\"b6e35-S60M+86oK690WNRcdxvrKml/84w\"",
-    "mtime": "2025-06-24T06:02:50.604Z",
-    "size": 749109,
-    "path": "../public/memes/quotes/it-constantly-amazes-me-t.png"
-  },
-  "/memes/quotes/it-didn't-start-with-gas.png": {
-    "type": "image/png",
-    "etag": "\"1702ad-602hmShvn0Tr9Cm6KgMSLFgUGKI\"",
-    "mtime": "2025-06-24T06:02:50.604Z",
-    "size": 1508013,
-    "path": "../public/memes/quotes/it-didn't-start-with-gas.png"
-  },
-  "/memes/quotes/it-is-not-the-truth-of-ma.png": {
-    "type": "image/png",
-    "etag": "\"5b6e2-D9GILsoOqnP1JJR91wMSKYFWRMM\"",
-    "mtime": "2025-06-24T06:02:50.604Z",
-    "size": 374498,
-    "path": "../public/memes/quotes/it-is-not-the-truth-of-ma.png"
-  },
-  "/memes/quotes/it-is-simply-no-longer-po.png": {
-    "type": "image/png",
-    "etag": "\"342a3-rUYjryQySKV0gmau2adugznIMAM\"",
-    "mtime": "2025-06-24T06:02:50.601Z",
-    "size": 213667,
-    "path": "../public/memes/quotes/it-is-simply-no-longer-po.png"
-  },
-  "/memes/quotes/it-just-continues-to-be-o.png": {
-    "type": "image/png",
-    "etag": "\"3d795-bP5kfAy3oQALtvwaCbSqTn86CJQ\"",
-    "mtime": "2025-06-24T06:02:50.605Z",
-    "size": 251797,
-    "path": "../public/memes/quotes/it-just-continues-to-be-o.png"
-  },
-  "/memes/quotes/liberals-desperately-need.png": {
-    "type": "image/png",
-    "etag": "\"2f416-h3TWF65Tw0iPWee9INQVRcHQpqU\"",
-    "mtime": "2025-06-24T06:02:50.605Z",
-    "size": 193558,
-    "path": "../public/memes/quotes/liberals-desperately-need.png"
-  },
-  "/memes/quotes/live-a-good-life.-if-ther.png": {
-    "type": "image/png",
-    "etag": "\"d87f2-WoGcW5e5KF59W91Aqcrx9R773Tk\"",
-    "mtime": "2025-06-24T06:02:50.606Z",
-    "size": 886770,
-    "path": "../public/memes/quotes/live-a-good-life.-if-ther.png"
-  },
-  "/memes/quotes/marxism-is-the-most-destr.png": {
-    "type": "image/png",
-    "etag": "\"4dd18-T2uDZa7F+rB0kIAiJ60SA2gDSuM\"",
-    "mtime": "2025-06-24T06:02:50.608Z",
-    "size": 318744,
-    "path": "../public/memes/quotes/marxism-is-the-most-destr.png"
-  },
-  "/memes/quotes/not-to-have-a-correct-pol.png": {
-    "type": "image/png",
-    "etag": "\"56b4d-goA3wN6BDd1krFJ8OXuK6tPfYLo\"",
-    "mtime": "2025-06-24T06:02:50.606Z",
-    "size": 355149,
-    "path": "../public/memes/quotes/not-to-have-a-correct-pol.png"
-  },
-  "/memes/quotes/now-i-get-it.-when-they-s.png": {
-    "type": "image/png",
-    "etag": "\"13b6e7-USehbSwrVbyBSwXfRTXSNb5hIvc\"",
-    "mtime": "2025-06-24T06:02:50.610Z",
-    "size": 1292007,
-    "path": "../public/memes/quotes/now-i-get-it.-when-they-s.png"
-  },
-  "/memes/quotes/of-all-tyrannies,-a-tyran.png": {
-    "type": "image/png",
-    "etag": "\"39dc4-ghDnIeeMPwKzFjIl08inShQGyFg\"",
-    "mtime": "2025-06-24T06:02:50.610Z",
-    "size": 236996,
-    "path": "../public/memes/quotes/of-all-tyrannies,-a-tyran.png"
-  },
-  "/memes/quotes/people-who-wonder-whether.png": {
-    "type": "image/png",
-    "etag": "\"4fa2b-JNl7IMBsvaGjaz9Jodk2KY08DB4\"",
-    "mtime": "2025-06-24T06:02:50.609Z",
-    "size": 326187,
-    "path": "../public/memes/quotes/people-who-wonder-whether.png"
-  },
-  "/memes/quotes/political-correctness-is.png": {
-    "type": "image/png",
-    "etag": "\"5b297-G+Fe5d1QD8IezBU9dyDe3Ftd2+Q\"",
-    "mtime": "2025-06-24T06:02:50.620Z",
-    "size": 373399,
-    "path": "../public/memes/quotes/political-correctness-is.png"
-  },
-  "/memes/quotes/prior-to-capitalism,-the.png": {
-    "type": "image/png",
-    "etag": "\"3efa0-OATKides2ilyLfkXjR+DmVPL6v4\"",
-    "mtime": "2025-06-24T06:02:50.608Z",
-    "size": 257952,
-    "path": "../public/memes/quotes/prior-to-capitalism,-the.png"
-  },
-  "/memes/quotes/real-socialism-has-neve.png": {
-    "type": "image/png",
-    "etag": "\"80f3e-9Y+0cG33x98y/bQjAnCg2b+vdj8\"",
-    "mtime": "2025-06-24T06:02:50.610Z",
-    "size": 528190,
-    "path": "../public/memes/quotes/real-socialism-has-neve.png"
-  },
-  "/memes/quotes/religion-is-regarded-by-t.png": {
-    "type": "image/png",
-    "etag": "\"269e4-yUKAFwTQ7zLk95jJdljIk/akFD0\"",
-    "mtime": "2025-06-24T06:02:50.610Z",
-    "size": 158180,
-    "path": "../public/memes/quotes/religion-is-regarded-by-t.png"
-  },
-  "/memes/quotes/seneca-quote-religion.png": {
-    "type": "image/png",
-    "etag": "\"21470-2fV9X+SV84+88D/CGXGcwZ56fSc\"",
-    "mtime": "2025-06-24T06:02:50.609Z",
-    "size": 136304,
-    "path": "../public/memes/quotes/seneca-quote-religion.png"
-  },
-  "/memes/quotes/socialism-irons-out-the-b.png": {
-    "type": "image/png",
-    "etag": "\"3a7bf-Rb1oobzFGygWiWj3tRkLHsuwdwg\"",
-    "mtime": "2025-06-24T06:02:50.619Z",
-    "size": 239551,
-    "path": "../public/memes/quotes/socialism-irons-out-the-b.png"
-  },
-  "/memes/quotes/socialism-irons-out-the-boom-bust-cycle.png": {
-    "type": "image/png",
-    "etag": "\"3a758-777SlZVldGEj0609nrIqH5oTFiE\"",
-    "mtime": "2025-06-24T06:02:50.620Z",
-    "size": 239448,
-    "path": "../public/memes/quotes/socialism-irons-out-the-boom-bust-cycle.png"
-  },
-  "/memes/quotes/socialism-will-triumph-fi.png": {
-    "type": "image/png",
-    "etag": "\"670bc-uK+B+t5rsWy+cIy26Oo6vIkLNLc\"",
-    "mtime": "2025-06-24T06:02:50.621Z",
-    "size": 422076,
-    "path": "../public/memes/quotes/socialism-will-triumph-fi.png"
-  },
-  "/memes/quotes/some-ideas-are-so-stupid.png": {
-    "type": "image/png",
-    "etag": "\"62c7e-TlEfXQO5N8NkZnzJy9MJgW63Org\"",
-    "mtime": "2025-06-24T06:02:50.621Z",
-    "size": 404606,
-    "path": "../public/memes/quotes/some-ideas-are-so-stupid.png"
-  },
-  "/memes/quotes/step-1-prepare-the-enviro.png": {
-    "type": "image/png",
-    "etag": "\"556ff-NbR98CtYfzjdTZb51ixFpvANfZE\"",
-    "mtime": "2025-06-24T06:02:50.622Z",
-    "size": 349951,
-    "path": "../public/memes/quotes/step-1-prepare-the-enviro.png"
-  },
-  "/memes/quotes/supreme-court-on-free-speech.png": {
-    "type": "image/png",
-    "etag": "\"21617-2zpL12jkvYeyCWg69TJtO/e1nHI\"",
-    "mtime": "2025-06-24T06:02:50.622Z",
-    "size": 136727,
-    "path": "../public/memes/quotes/supreme-court-on-free-speech.png"
-  },
-  "/memes/quotes/that-men-do-not-learn-ver.png": {
-    "type": "image/png",
-    "etag": "\"5b375-89QuUIFrQ1PpX1gkAzwawBd0nMg\"",
-    "mtime": "2025-06-24T06:02:50.627Z",
-    "size": 373621,
-    "path": "../public/memes/quotes/that-men-do-not-learn-ver.png"
-  },
-  "/memes/quotes/the-advantage-of-a-free-m.png": {
-    "type": "image/png",
-    "etag": "\"83016-m20+R55vdlXxqvzv3iBTj/VE3tA\"",
-    "mtime": "2025-06-24T06:02:50.622Z",
-    "size": 536598,
-    "path": "../public/memes/quotes/the-advantage-of-a-free-m.png"
-  },
-  "/memes/quotes/the-appeal-of-political-c.png": {
-    "type": "image/png",
-    "etag": "\"33c2d-qfkXewY9vjzWjTbzDyfsWSVwOww\"",
-    "mtime": "2025-06-24T06:02:50.622Z",
-    "size": 212013,
-    "path": "../public/memes/quotes/the-appeal-of-political-c.png"
-  },
-  "/memes/quotes/the-basic-tool-for-the-ma.png": {
-    "type": "image/png",
-    "etag": "\"39514-L6qS9YPG3/IMjE91KuTuF2aVX/A\"",
-    "mtime": "2025-06-24T06:02:50.627Z",
-    "size": 234772,
-    "path": "../public/memes/quotes/the-basic-tool-for-the-ma.png"
-  },
-  "/memes/quotes/the-black-family-survived.png": {
-    "type": "image/png",
-    "etag": "\"2cf74-eaHG6hHJNbUknCAb5b+W/I82CIo\"",
-    "mtime": "2025-06-24T06:02:50.627Z",
-    "size": 184180,
-    "path": "../public/memes/quotes/the-black-family-survived.png"
-  },
-  "/memes/quotes/the-cosmos-is-full-beyon.png": {
-    "type": "image/png",
-    "etag": "\"a8c0a-DTibA8aUomUTDCPhUgWfpH5OMhU\"",
-    "mtime": "2025-06-24T06:02:50.633Z",
-    "size": 691210,
-    "path": "../public/memes/quotes/the-cosmos-is-full-beyon.png"
-  },
-  "/memes/quotes/the-curious-task-of-econoa.png": {
-    "type": "image/png",
-    "etag": "\"5633d-N0u+aZ8VpXBVlYRkGDBnPk6YcYg\"",
-    "mtime": "2025-06-24T06:02:50.627Z",
-    "size": 353085,
-    "path": "../public/memes/quotes/the-curious-task-of-econoa.png"
-  },
-  "/memes/quotes/the-curious-task-of-econob.png": {
-    "type": "image/png",
-    "etag": "\"9b4e0-/Lb/47bVmCXJSKqqweUoikJEzlk\"",
-    "mtime": "2025-06-24T06:02:50.631Z",
-    "size": 636128,
-    "path": "../public/memes/quotes/the-curious-task-of-econob.png"
-  },
-  "/memes/quotes/the-democrat-party-has-de.png": {
-    "type": "image/png",
-    "etag": "\"91fee-PPxEoyIYIWQm/+AK0HhrGT9jJS4\"",
-    "mtime": "2025-06-24T06:02:50.630Z",
-    "size": 597998,
-    "path": "../public/memes/quotes/the-democrat-party-has-de.png"
-  },
-  "/memes/quotes/the-fatal-conceit--the-er.png": {
-    "type": "image/png",
-    "etag": "\"241d1-cvVtVfAsfybgQa3ARtnoxQifspM\"",
-    "mtime": "2025-06-24T06:02:50.630Z",
-    "size": 147921,
-    "path": "../public/memes/quotes/the-fatal-conceit--the-er.png"
-  },
-  "/memes/quotes/the-greatest-enemy-of-the.png": {
-    "type": "image/png",
-    "etag": "\"c97df-gUdQ4irF1d6LxR2sQHEDCMk2Ea8\"",
-    "mtime": "2025-06-24T06:02:50.631Z",
-    "size": 825311,
-    "path": "../public/memes/quotes/the-greatest-enemy-of-the.png"
-  },
-  "/memes/quotes/the-limits-of-tyrants-are.png": {
-    "type": "image/png",
-    "etag": "\"538aa-MOtcJrFRibskPU2vXsrFoKF1GRk\"",
-    "mtime": "2025-06-24T06:02:50.633Z",
-    "size": 342186,
-    "path": "../public/memes/quotes/the-limits-of-tyrants-are.png"
-  },
-  "/memes/quotes/the-middle-east-bernard_l.png": {
-    "type": "image/png",
-    "etag": "\"21f5d-dcT5TXpB1eh0VDgMwp2qFjVA0dc\"",
-    "mtime": "2025-06-24T06:02:50.633Z",
-    "size": 139101,
-    "path": "../public/memes/quotes/the-middle-east-bernard_l.png"
-  },
-  "/memes/quotes/the-people-will-believe-w.png": {
-    "type": "image/png",
-    "etag": "\"89c6a-SsbwnBgrisomDhKWwCK0GK/FX5M\"",
-    "mtime": "2025-06-24T06:02:50.634Z",
-    "size": 564330,
-    "path": "../public/memes/quotes/the-people-will-believe-w.png"
-  },
-  "/memes/quotes/the-purpose-of-propaganda.png": {
-    "type": "image/png",
-    "etag": "\"3670d-WTXCiXnPT1li69NQPbI0TN98knc\"",
-    "mtime": "2025-06-24T06:02:50.634Z",
-    "size": 222989,
-    "path": "../public/memes/quotes/the-purpose-of-propaganda.png"
-  },
-  "/memes/quotes/the-reason-you-don't-know.png": {
-    "type": "image/png",
-    "etag": "\"6c7ae-EJMrmvdJYUXhauYbOaDIzv/BoLQ\"",
-    "mtime": "2025-06-24T06:02:50.640Z",
-    "size": 444334,
-    "path": "../public/memes/quotes/the-reason-you-don't-know.png"
-  },
-  "/memes/quotes/the-trouble-with-our-libe.png": {
-    "type": "image/png",
-    "etag": "\"18e90e-rGFqfN5WVMr3yfNp6iVz+pc7sE4\"",
-    "mtime": "2025-06-24T06:02:50.640Z",
-    "size": 1632526,
-    "path": "../public/memes/quotes/the-trouble-with-our-libe.png"
-  },
-  "/memes/quotes/there's-a-word-for-people.png": {
-    "type": "image/png",
-    "etag": "\"dea51-Wus+wMHweJB7HAVggwzNkC9w2/I\"",
-    "mtime": "2025-06-24T06:02:50.638Z",
-    "size": 911953,
-    "path": "../public/memes/quotes/there's-a-word-for-people.png"
-  },
-  "/memes/quotes/there's-simply-no-polite.png": {
-    "type": "image/png",
-    "etag": "\"7c200-hcXO4qpIQW5RSpCVl8km4m3tjGM\"",
-    "mtime": "2025-06-24T06:02:50.639Z",
-    "size": 508416,
-    "path": "../public/memes/quotes/there's-simply-no-polite.png"
-  },
-  "/memes/quotes/there-is-all-the-differen.png": {
-    "type": "image/png",
-    "etag": "\"1c7c2-ZnlK4jWOmJMvTUMYMtsB5UpTqok\"",
-    "mtime": "2025-06-24T06:02:50.639Z",
-    "size": 116674,
-    "path": "../public/memes/quotes/there-is-all-the-differen.png"
-  },
-  "/memes/quotes/there-is-no-swifter-route.png": {
-    "type": "image/png",
-    "etag": "\"4d55f-Rc+cZ63+BRMZcVEZB5N90+6AY0M\"",
-    "mtime": "2025-06-24T06:02:50.646Z",
-    "size": 316767,
-    "path": "../public/memes/quotes/there-is-no-swifter-route.png"
-  },
-  "/memes/quotes/we-didn't-love-freedom-en.png": {
-    "type": "image/png",
-    "etag": "\"26664-EzwtXGM6fC7bEN2AaYPG5WYrhcY\"",
-    "mtime": "2025-06-24T06:02:50.641Z",
-    "size": 157284,
-    "path": "../public/memes/quotes/we-didn't-love-freedom-en.png"
-  },
-  "/memes/quotes/we-in-america-have-learne.png": {
-    "type": "image/png",
-    "etag": "\"6c77a-4R5ujP471Tww1BLwm1P8Z2hAY28\"",
-    "mtime": "2025-06-24T06:02:50.647Z",
-    "size": 444282,
-    "path": "../public/memes/quotes/we-in-america-have-learne.png"
-  },
-  "/memes/quotes/we-know-they-are-lying-t.png": {
-    "type": "image/png",
-    "etag": "\"27c0e-uazf+8Y5jkcl5O/p9XLg+miokGU\"",
-    "mtime": "2025-06-24T06:02:50.641Z",
-    "size": 162830,
-    "path": "../public/memes/quotes/we-know-they-are-lying-t.png"
-  },
-  "/memes/quotes/we-must-reject-the-idea-t.png": {
-    "type": "image/png",
-    "etag": "\"c7b72-DNobh8Iqd1e2+kt1hdISTB9qmSc\"",
-    "mtime": "2025-06-24T06:02:50.643Z",
-    "size": 818034,
-    "path": "../public/memes/quotes/we-must-reject-the-idea-t.png"
-  },
-  "/memes/quotes/when-young-people-want-to.png": {
-    "type": "image/png",
-    "etag": "\"c455f-Ex/a/Rwc2NVuBk6vgyG6ngspfrc\"",
-    "mtime": "2025-06-24T06:02:50.645Z",
-    "size": 804191,
-    "path": "../public/memes/quotes/when-young-people-want-to.png"
-  },
-  "/memes/quotes/white-liberals-are-the-mo.png": {
-    "type": "image/png",
-    "etag": "\"2d769-lw+lFi+UAcU2+MzoaZ9C8WRVAtU\"",
-    "mtime": "2025-06-24T06:02:50.645Z",
-    "size": 186217,
-    "path": "../public/memes/quotes/white-liberals-are-the-mo.png"
-  },
-  "/memes/quotes/young-people-are-told-at.png": {
-    "type": "image/png",
-    "etag": "\"a5859-bDX70Kriud+KOL0GNdcXvW6kOLE\"",
-    "mtime": "2025-06-24T06:02:50.647Z",
-    "size": 677977,
-    "path": "../public/memes/quotes/young-people-are-told-at.png"
   },
   "/memes/politics/13th-14th-15th-amendments-gop-v-dems.png": {
     "type": "image/png",
     "etag": "\"104b4e-1N+ucARI+2nA8zXvagXppPmO/d8\"",
-    "mtime": "2025-06-24T06:02:50.424Z",
+    "mtime": "2025-06-24T17:15:27.099Z",
     "size": 1067854,
     "path": "../public/memes/politics/13th-14th-15th-amendments-gop-v-dems.png"
   },
   "/memes/politics/13th-amendment-14th-amendment-15th-amend.png": {
     "type": "image/png",
     "etag": "\"163696-2vSEgVU7ulTO2XWsUEKaLRPww00\"",
-    "mtime": "2025-06-24T06:02:50.852Z",
+    "mtime": "2025-06-24T17:15:26.774Z",
     "size": 1455766,
     "path": "../public/memes/politics/13th-amendment-14th-amendment-15th-amend.png"
   },
   "/memes/politics/25-of-liberals-are-on-medication-for-men.png": {
     "type": "image/png",
     "etag": "\"7d98b-9Aw/r0NTzSCl9MDDUG5nzH+Fa0M\"",
-    "mtime": "2025-06-24T06:02:50.858Z",
+    "mtime": "2025-06-24T17:15:27.095Z",
     "size": 514443,
     "path": "../public/memes/politics/25-of-liberals-are-on-medication-for-men.png"
   },
   "/memes/politics/a-person-who-wins-an-argument-with-a-lib.png": {
     "type": "image/png",
     "etag": "\"7c292-XR4yrkLbCDlNBac7DKkoozV197M\"",
-    "mtime": "2025-06-24T06:02:50.871Z",
+    "mtime": "2025-06-24T17:15:27.097Z",
     "size": 508562,
     "path": "../public/memes/politics/a-person-who-wins-an-argument-with-a-lib.png"
   },
   "/memes/politics/aoc-i-wish-you-privileged-white-people-w.png": {
     "type": "image/png",
     "etag": "\"d1a32-sKW5V20/VgJn4H5bZQ12HofK+II\"",
-    "mtime": "2025-06-24T06:02:50.852Z",
+    "mtime": "2025-06-24T17:15:27.097Z",
     "size": 858674,
     "path": "../public/memes/politics/aoc-i-wish-you-privileged-white-people-w.png"
   },
   "/memes/politics/awake-yet-1960s-oil-gone-in-10-years.png": {
     "type": "image/png",
     "etag": "\"bc49a-eAPOI7K55whGJld6aQdbbO/pOTo\"",
-    "mtime": "2025-06-24T06:02:50.852Z",
+    "mtime": "2025-06-24T17:15:27.099Z",
     "size": 771226,
     "path": "../public/memes/politics/awake-yet-1960s-oil-gone-in-10-years.png"
   },
   "/memes/politics/basic-political-spectrum.png": {
     "type": "image/png",
     "etag": "\"60a9d-Lhl++YoZwq9Asywxy1pK1z6Xb8c\"",
-    "mtime": "2025-06-24T06:02:50.855Z",
+    "mtime": "2025-06-24T17:15:27.095Z",
     "size": 395933,
     "path": "../public/memes/politics/basic-political-spectrum.png"
   },
   "/memes/politics/be-aware-transwomen-are-men-transmen-are.png": {
     "type": "image/png",
     "etag": "\"da95c-fkjSs+63LLo6pA4U6a8OrcAzULw\"",
-    "mtime": "2025-06-24T06:02:50.858Z",
+    "mtime": "2025-06-24T17:15:27.102Z",
     "size": 895324,
     "path": "../public/memes/politics/be-aware-transwomen-are-men-transmen-are.png"
   },
   "/memes/politics/birth-of-liberalism-and-capitalism-perio.png": {
     "type": "image/png",
     "etag": "\"36dce-Y38Pji5gvSHTQtCK+ZuundCAUl8\"",
-    "mtime": "2025-06-24T06:02:50.852Z",
+    "mtime": "2025-06-24T17:15:27.101Z",
     "size": 224718,
     "path": "../public/memes/politics/birth-of-liberalism-and-capitalism-perio.png"
   },
   "/memes/politics/brutally-oppressing-other-tribes-and-occ.png": {
     "type": "image/png",
     "etag": "\"a3faf-Rd1iYd7JfO2JYqW5vIc/xNyOpQY\"",
-    "mtime": "2025-06-24T06:02:50.857Z",
+    "mtime": "2025-06-24T17:15:27.104Z",
     "size": 671663,
     "path": "../public/memes/politics/brutally-oppressing-other-tribes-and-occ.png"
   },
   "/memes/politics/but-you-claim-the-government-was-almost.png": {
     "type": "image/png",
     "etag": "\"fc183-37ckkIrRFhjzxtcgo3HErLNdhIQ\"",
-    "mtime": "2025-06-24T06:02:50.859Z",
+    "mtime": "2025-06-24T17:15:27.104Z",
     "size": 1032579,
     "path": "../public/memes/politics/but-you-claim-the-government-was-almost.png"
   },
   "/memes/politics/catturd-the-democrat-party-has-destroyed.png": {
     "type": "image/png",
     "etag": "\"b8a0d-oiGAoan+KfM/cSchhhFhE+K6+V4\"",
-    "mtime": "2025-06-24T06:02:50.859Z",
+    "mtime": "2025-06-24T17:15:27.109Z",
     "size": 756237,
     "path": "../public/memes/politics/catturd-the-democrat-party-has-destroyed.png"
   },
   "/memes/politics/college-indoctrination-of-children.png": {
     "type": "image/png",
     "etag": "\"124d6a-PBhXTepAYxRVOV66FVpbS+tgzqA\"",
-    "mtime": "2025-06-24T06:02:50.869Z",
+    "mtime": "2025-06-24T17:15:27.109Z",
     "size": 1199466,
     "path": "../public/memes/politics/college-indoctrination-of-children.png"
   },
   "/memes/politics/creen-is-the-new-red.png": {
     "type": "image/png",
     "etag": "\"b0b6e-+ocRsIRoXmbmZewCYhz1XxCFFMM\"",
-    "mtime": "2025-06-24T06:02:50.863Z",
+    "mtime": "2025-06-24T17:15:27.109Z",
     "size": 723822,
     "path": "../public/memes/politics/creen-is-the-new-red.png"
   },
   "/memes/politics/dei-blm-crt-esg-maoism.png": {
     "type": "image/png",
     "etag": "\"a3990-Fgf2kIWW3LstP0n/CC11B9JfbVc\"",
-    "mtime": "2025-06-24T06:02:50.871Z",
+    "mtime": "2025-06-24T17:15:27.108Z",
     "size": 670096,
     "path": "../public/memes/politics/dei-blm-crt-esg-maoism.png"
   },
   "/memes/politics/democrat-party-cribbing-from-communists.png": {
     "type": "image/png",
     "etag": "\"bc6be-hdfY8XfJoWPVB6KYIPmHOOQ9QzQ\"",
-    "mtime": "2025-06-24T06:02:50.872Z",
+    "mtime": "2025-06-24T17:15:27.113Z",
     "size": 771774,
     "path": "../public/memes/politics/democrat-party-cribbing-from-communists.png"
   },
   "/memes/politics/democrat-voters-democrat-politicians.png": {
     "type": "image/png",
     "etag": "\"16690a-csZMN2Eqd9Hif/u2TLnKo20d7sg\"",
-    "mtime": "2025-06-24T06:02:50.874Z",
+    "mtime": "2025-06-24T17:15:27.114Z",
     "size": 1468682,
     "path": "../public/memes/politics/democrat-voters-democrat-politicians.png"
   },
   "/memes/politics/democrats-are-fuming-that-trump-deported.png": {
     "type": "image/png",
     "etag": "\"64296-ZjK9OC+WqK7XMR6v0FgGsRA8e/I\"",
-    "mtime": "2025-06-24T06:02:50.876Z",
+    "mtime": "2025-06-24T17:15:27.114Z",
     "size": 410262,
     "path": "../public/memes/politics/democrats-are-fuming-that-trump-deported.png"
   },
   "/memes/politics/democrats-fixing-the-economy.png": {
     "type": "image/png",
     "etag": "\"15acf9-OwChFDTdRmWRLAkRqbc+zvPETes\"",
-    "mtime": "2025-06-24T06:02:50.878Z",
+    "mtime": "2025-06-24T17:15:27.137Z",
     "size": 1420537,
     "path": "../public/memes/politics/democrats-fixing-the-economy.png"
   },
   "/memes/politics/democrats-racism.png": {
     "type": "image/png",
     "etag": "\"a8b69-+pW8aNfWbaj2WifbwdHu3rJSz/0\"",
-    "mtime": "2025-06-24T06:02:50.881Z",
+    "mtime": "2025-06-24T17:15:27.114Z",
     "size": 691049,
     "path": "../public/memes/politics/democrats-racism.png"
   },
   "/memes/politics/democrats-usaid-pig-trough.png": {
     "type": "image/png",
     "etag": "\"e30d4-DRNxrAgLOFRPTkXGjUJWD6Ag+HY\"",
-    "mtime": "2025-06-24T06:02:50.878Z",
+    "mtime": "2025-06-24T17:15:27.120Z",
     "size": 930004,
     "path": "../public/memes/politics/democrats-usaid-pig-trough.png"
   },
   "/memes/politics/democrats-when-you-say-anything-negative.png": {
     "type": "image/png",
     "etag": "\"dd2e2-6TAXBM7LRMaerE0HsMNxb9QiBOg\"",
-    "mtime": "2025-06-24T06:02:50.891Z",
+    "mtime": "2025-06-24T17:15:27.120Z",
     "size": 905954,
     "path": "../public/memes/politics/democrats-when-you-say-anything-negative.png"
   },
   "/memes/politics/dems-we-must-stop-elon-musk-from-exposin.png": {
     "type": "image/png",
     "etag": "\"133509-B32ssN42SNXNn+Aa+UDcvQt9FAM\"",
-    "mtime": "2025-06-24T06:02:50.879Z",
+    "mtime": "2025-06-24T17:15:27.118Z",
     "size": 1258761,
     "path": "../public/memes/politics/dems-we-must-stop-elon-musk-from-exposin.png"
   },
   "/memes/politics/doge-reorg-3.png": {
     "type": "image/png",
     "etag": "\"158645-+GwZBamgeTTS7c3n76KqE0Bt3MM\"",
-    "mtime": "2025-06-24T06:02:50.888Z",
+    "mtime": "2025-06-24T17:15:27.121Z",
     "size": 1410629,
     "path": "../public/memes/politics/doge-reorg-3.png"
   },
   "/memes/politics/donkey-pox-the-disease-destroying.png": {
     "type": "image/png",
     "etag": "\"c1159-LVyeH2UMk26acpJdP4FLfFHGuKo\"",
-    "mtime": "2025-06-24T06:02:50.886Z",
+    "mtime": "2025-06-24T17:15:27.128Z",
     "size": 790873,
     "path": "../public/memes/politics/donkey-pox-the-disease-destroying.png"
   },
   "/memes/politics/dr-king-i-thank-you-for-your-endorsement.png": {
     "type": "image/png",
     "etag": "\"ae0b7-1cHzND/rS+u0aCEEPB4hdMs70iI\"",
-    "mtime": "2025-06-24T06:02:50.885Z",
+    "mtime": "2025-06-24T17:15:27.126Z",
     "size": 712887,
     "path": "../public/memes/politics/dr-king-i-thank-you-for-your-endorsement.png"
   },
   "/memes/politics/elaboratelivelyalbertosaurus-sizerestri.png": {
     "type": "image/png",
     "etag": "\"7ea4f-/7q0w7s5FtrCBVDEsPIwVF848bE\"",
-    "mtime": "2025-06-24T06:02:50.885Z",
+    "mtime": "2025-06-24T17:15:27.120Z",
     "size": 518735,
     "path": "../public/memes/politics/elaboratelivelyalbertosaurus-sizerestri.png"
   },
   "/memes/politics/elizabeth-warrens-dog-1-1024th-wolf.png": {
     "type": "image/png",
     "etag": "\"118e00-bsNoJz7LRvbrxPLpHBbNw1Npin8\"",
-    "mtime": "2025-06-24T06:02:50.892Z",
+    "mtime": "2025-06-24T17:15:27.128Z",
     "size": 1150464,
     "path": "../public/memes/politics/elizabeth-warrens-dog-1-1024th-wolf.png"
   },
   "/memes/politics/external-contentduckduckgo.png": {
     "type": "image/png",
     "etag": "\"ca0f3-fcU3bYjRJC1Y+ufNqry2OM7VbkQ\"",
-    "mtime": "2025-06-24T06:02:50.896Z",
+    "mtime": "2025-06-24T17:15:27.126Z",
     "size": 827635,
     "path": "../public/memes/politics/external-contentduckduckgo.png"
   },
   "/memes/politics/fascism-mirror-democrats.png": {
     "type": "image/png",
     "etag": "\"e523d-i07lFx1eAIvZ+8R8Jz2pwLrBpWw\"",
-    "mtime": "2025-06-24T06:02:50.892Z",
+    "mtime": "2025-06-24T17:15:27.140Z",
     "size": 938557,
     "path": "../public/memes/politics/fascism-mirror-democrats.png"
   },
   "/memes/politics/fiery-but-mostly-peaceful-protests-after.png": {
     "type": "image/png",
     "etag": "\"727f6-QKJQr0t1Z+R0NtQLFFbv4ZmMUrk\"",
-    "mtime": "2025-06-24T06:02:50.891Z",
+    "mtime": "2025-06-24T17:15:27.130Z",
     "size": 468982,
     "path": "../public/memes/politics/fiery-but-mostly-peaceful-protests-after.png"
   },
   "/memes/politics/first-we-overlook-evil-then-we-permit-ev.png": {
     "type": "image/png",
     "etag": "\"d4aed-BsjaQLmsAz5Ss1hfKqPNL+EnvfU\"",
-    "mtime": "2025-06-24T06:02:50.898Z",
+    "mtime": "2025-06-24T17:15:27.136Z",
     "size": 871149,
     "path": "../public/memes/politics/first-we-overlook-evil-then-we-permit-ev.png"
   },
   "/memes/politics/four-out-of-five-citizens-love-democracy.png": {
     "type": "image/png",
     "etag": "\"ca79f-Bwwcd4x+rhBwH0jTREn5AuNBEss\"",
-    "mtime": "2025-06-24T06:02:50.901Z",
+    "mtime": "2025-06-24T17:15:27.136Z",
     "size": 829343,
     "path": "../public/memes/politics/four-out-of-five-citizens-love-democracy.png"
   },
   "/memes/politics/from-now-on-money-laundering-will-be-cag.png": {
     "type": "image/png",
     "etag": "\"eaab1-NctOGGJvm5vkDChbwSdLLZaUeT8\"",
-    "mtime": "2025-06-24T06:02:50.902Z",
+    "mtime": "2025-06-24T17:15:27.137Z",
     "size": 961201,
     "path": "../public/memes/politics/from-now-on-money-laundering-will-be-cag.png"
   },
   "/memes/politics/garbage-for-your-body-msm-garbage-for-yo.png": {
     "type": "image/png",
     "etag": "\"1129f9-4mV3XkaFoLVC7lQvTtyWrWNbHd4\"",
-    "mtime": "2025-06-24T06:02:50.904Z",
+    "mtime": "2025-06-24T17:15:27.140Z",
     "size": 1124857,
     "path": "../public/memes/politics/garbage-for-your-body-msm-garbage-for-yo.png"
   },
   "/memes/politics/gavin-newsom-joker.png": {
     "type": "image/png",
     "etag": "\"b9e8e-8m3gGrw4ji1vP3ol9tqchN1ZQIE\"",
-    "mtime": "2025-06-24T06:02:50.901Z",
+    "mtime": "2025-06-24T17:15:27.150Z",
     "size": 761486,
     "path": "../public/memes/politics/gavin-newsom-joker.png"
   },
   "/memes/politics/gavin-newsom-reptile.png": {
     "type": "image/png",
     "etag": "\"adca0-EjEtELBwPCUaYhsVInhDFgpq810\"",
-    "mtime": "2025-06-24T06:02:50.908Z",
+    "mtime": "2025-06-24T17:15:27.140Z",
     "size": 711840,
     "path": "../public/memes/politics/gavin-newsom-reptile.png"
   },
   "/memes/politics/give-a-democrat-a-fish-and-hell-eat-for.png": {
     "type": "image/png",
     "etag": "\"cb9cf-uh+z7wODHivXD4ySeGVLQiUxN84\"",
-    "mtime": "2025-06-24T06:02:50.908Z",
+    "mtime": "2025-06-24T17:15:27.140Z",
     "size": 833999,
     "path": "../public/memes/politics/give-a-democrat-a-fish-and-hell-eat-for.png"
   },
   "/memes/politics/government-is-not-the-solution-to-our-pr.png": {
     "type": "image/png",
     "etag": "\"be15e-1Cdl2TvusXzXdDCV4q5XrHDTnxc\"",
-    "mtime": "2025-06-24T06:02:50.907Z",
+    "mtime": "2025-06-24T17:15:27.150Z",
     "size": 778590,
     "path": "../public/memes/politics/government-is-not-the-solution-to-our-pr.png"
   },
   "/memes/politics/greta-pay-300-more-for-your-electricity.png": {
     "type": "image/png",
     "etag": "\"101e90-RLOTUFKSkITEB3HBVSoOaXTc2h8\"",
-    "mtime": "2025-06-24T06:02:50.907Z",
+    "mtime": "2025-06-24T17:15:27.157Z",
     "size": 1056400,
     "path": "../public/memes/politics/greta-pay-300-more-for-your-electricity.png"
   },
   "/memes/politics/how-real-racism-works-white-liberals.png": {
     "type": "image/png",
     "etag": "\"1382ec-bGpd5ceqVF6F5ap7/tQ9RZl3gmo\"",
-    "mtime": "2025-06-24T06:02:50.913Z",
+    "mtime": "2025-06-24T17:15:27.151Z",
     "size": 1278700,
     "path": "../public/memes/politics/how-real-racism-works-white-liberals.png"
   },
   "/memes/politics/how-to-hide-a-gun-from-socialists-basic.png": {
     "type": "image/png",
     "etag": "\"d71dc-rTdpU1WfViejrnl4f7jKote+t5I\"",
-    "mtime": "2025-06-24T06:02:50.914Z",
+    "mtime": "2025-06-24T17:15:27.150Z",
     "size": 881116,
     "path": "../public/memes/politics/how-to-hide-a-gun-from-socialists-basic.png"
   },
   "/memes/politics/how-white-leftists-see-themselves.png": {
     "type": "image/png",
     "etag": "\"1427ae-Xz1vhx3qxfNo1JVFeq6RxIebQDw\"",
-    "mtime": "2025-06-24T06:02:50.914Z",
+    "mtime": "2025-06-24T17:15:27.156Z",
     "size": 1320878,
     "path": "../public/memes/politics/how-white-leftists-see-themselves.png"
   },
   "/memes/politics/i-award-you-no-points.png": {
     "type": "image/png",
     "etag": "\"b736b-Fg33bJ76f6hTv8abY/Ry/T9+Zh0\"",
-    "mtime": "2025-06-24T06:02:50.914Z",
+    "mtime": "2025-06-24T17:15:27.156Z",
     "size": 750443,
     "path": "../public/memes/politics/i-award-you-no-points.png"
   },
   "/memes/politics/i-havent-seen-the-left-this-mad-since-ye.png": {
     "type": "image/png",
     "etag": "\"c1b66-0ySG6XQJw3z7QPwaqTLQr0mGWtc\"",
-    "mtime": "2025-06-24T06:02:50.919Z",
+    "mtime": "2025-06-24T17:15:27.156Z",
     "size": 793446,
     "path": "../public/memes/politics/i-havent-seen-the-left-this-mad-since-ye.png"
   },
   "/memes/politics/i-pity-you-americans-us-defense-funding.png": {
     "type": "image/png",
     "etag": "\"b361f-45qjs8dSjwtYOldxTnJP3HoYL8o\"",
-    "mtime": "2025-06-24T06:02:50.921Z",
+    "mtime": "2025-06-24T17:15:27.161Z",
     "size": 734751,
     "path": "../public/memes/politics/i-pity-you-americans-us-defense-funding.png"
   },
   "/memes/politics/i-refuse-to-be-lectured-about-racism-by.png": {
     "type": "image/png",
     "etag": "\"bb3e1-haDjMyAeGP6uPiIHMYwt0plha4A\"",
-    "mtime": "2025-06-24T06:02:50.921Z",
+    "mtime": "2025-06-24T17:15:27.161Z",
     "size": 766945,
     "path": "../public/memes/politics/i-refuse-to-be-lectured-about-racism-by.png"
   },
   "/memes/politics/idolizing-a-politician-is-like-believing.png": {
     "type": "image/png",
     "etag": "\"71406-/dXD7moc36nvuN9euennuw8cuQc\"",
-    "mtime": "2025-06-24T06:02:50.921Z",
+    "mtime": "2025-06-24T17:15:27.161Z",
     "size": 463878,
     "path": "../public/memes/politics/idolizing-a-politician-is-like-believing.png"
   },
   "/memes/politics/if-stopping-child-trafficking-is-far-rig.png": {
     "type": "image/png",
     "etag": "\"d0901-ZpR8NuaRBN7bBDriX5Xgsfg9S2c\"",
-    "mtime": "2025-06-24T06:02:50.922Z",
+    "mtime": "2025-06-24T17:15:27.163Z",
     "size": 854273,
     "path": "../public/memes/politics/if-stopping-child-trafficking-is-far-rig.png"
   },
   "/memes/politics/if-we-divide-123-genders-by-white-suprem.png": {
     "type": "image/png",
     "etag": "\"b2121-YS63933oBgnXE16opoIJb+fUPG8\"",
-    "mtime": "2025-06-24T06:02:50.929Z",
+    "mtime": "2025-06-24T17:15:27.163Z",
     "size": 729377,
     "path": "../public/memes/politics/if-we-divide-123-genders-by-white-suprem.png"
   },
   "/memes/politics/if-you-believe-that-a-man-who-went-71-ye.png": {
     "type": "image/png",
     "etag": "\"1ec92-m0Y6yIDa4R4h2em1pw5Us92zOL0\"",
-    "mtime": "2025-06-24T06:02:50.930Z",
+    "mtime": "2025-06-24T17:15:27.161Z",
     "size": 126098,
     "path": "../public/memes/politics/if-you-believe-that-a-man-who-went-71-ye.png"
   },
   "/memes/politics/im-not-a-racist-you-will-be.png": {
     "type": "image/png",
     "etag": "\"d5adf-G30cPIRQjVgFNp1nYhusZVO7lsM\"",
-    "mtime": "2025-06-24T06:02:50.929Z",
+    "mtime": "2025-06-24T17:15:27.163Z",
     "size": 875231,
     "path": "../public/memes/politics/im-not-a-racist-you-will-be.png"
   },
   "/memes/politics/imagine-how-much-propaganda-it-took-to-c.png": {
     "type": "image/png",
     "etag": "\"44050-NzpdFEKpWj3Rf+zzdgMmydWguF8\"",
-    "mtime": "2025-06-24T06:02:50.927Z",
+    "mtime": "2025-06-24T17:15:27.167Z",
     "size": 278608,
     "path": "../public/memes/politics/imagine-how-much-propaganda-it-took-to-c.png"
   },
   "/memes/politics/in-this-house-we-believe-the-news-is-pro.png": {
     "type": "image/png",
     "etag": "\"1a4710-eLEHHYEst4C1rF8QfbgAOtBY7IA\"",
-    "mtime": "2025-06-24T06:02:50.930Z",
+    "mtime": "2025-06-24T17:15:27.170Z",
     "size": 1722128,
     "path": "../public/memes/politics/in-this-house-we-believe-the-news-is-pro.png"
   },
   "/memes/politics/israel-v-hamas.png": {
     "type": "image/png",
     "etag": "\"426a6-LDnI6r6ssfsNfguhRe5XXIhoKRI\"",
-    "mtime": "2025-06-24T06:02:50.929Z",
+    "mtime": "2025-06-24T17:15:27.168Z",
     "size": 272038,
     "path": "../public/memes/politics/israel-v-hamas.png"
   },
   "/memes/politics/its-just-as-easy-to-buy-a-scientist-as-i.png": {
     "type": "image/png",
     "etag": "\"9fe28-5NU+bBFAjDcy/5wwyfRCRC35d+Y\"",
-    "mtime": "2025-06-24T06:02:50.933Z",
+    "mtime": "2025-06-24T17:15:27.163Z",
     "size": 654888,
     "path": "../public/memes/politics/its-just-as-easy-to-buy-a-scientist-as-i.png"
   },
   "/memes/politics/jaketapperimknownuzzing-1.png": {
     "type": "image/png",
     "etag": "\"d89aa-b0PtjvARYeci2aJNSNdZS9xDa10\"",
-    "mtime": "2025-06-24T06:02:50.935Z",
+    "mtime": "2025-06-24T17:15:27.172Z",
     "size": 887210,
     "path": "../public/memes/politics/jaketapperimknownuzzing-1.png"
   },
   "/memes/politics/la-fiery-but-mostly-burning.png": {
     "type": "image/png",
     "etag": "\"d4051-LzKWg/kjhIoouhN/bE6CXYRBIXs\"",
-    "mtime": "2025-06-24T06:02:50.936Z",
+    "mtime": "2025-06-24T17:15:27.173Z",
     "size": 868433,
     "path": "../public/memes/politics/la-fiery-but-mostly-burning.png"
   },
   "/memes/politics/land-of-liars-elizabeth-fauxcahontas.png": {
     "type": "image/png",
     "etag": "\"e5922-8hREcu4njf3pv4H+DV5Jm3ZEF4w\"",
-    "mtime": "2025-06-24T06:02:50.937Z",
+    "mtime": "2025-06-24T17:15:27.170Z",
     "size": 940322,
     "path": "../public/memes/politics/land-of-liars-elizabeth-fauxcahontas.png"
   },
   "/memes/politics/left-v-far-right.png": {
     "type": "image/png",
     "etag": "\"1deef-eAQk4Tb2ArL1QRF2ZmZE18K1kpc\"",
-    "mtime": "2025-06-24T06:02:50.930Z",
+    "mtime": "2025-06-24T17:15:27.167Z",
     "size": 122607,
     "path": "../public/memes/politics/left-v-far-right.png"
   },
   "/memes/politics/leftism-success.png": {
     "type": "image/png",
     "etag": "\"ad651-eQqlr0Ku4isQ2FPH8hjPrkJFBD8\"",
-    "mtime": "2025-06-24T06:02:50.936Z",
+    "mtime": "2025-06-24T17:15:27.179Z",
     "size": 710225,
     "path": "../public/memes/politics/leftism-success.png"
   },
   "/memes/politics/leftist-if-you-dont-agree-with-me-that-m.png": {
     "type": "image/png",
     "etag": "\"dc2ad-hqNAVETupMpKRbubVWuQxqUKnYU\"",
-    "mtime": "2025-06-24T06:02:50.937Z",
+    "mtime": "2025-06-24T17:15:27.176Z",
     "size": 901805,
     "path": "../public/memes/politics/leftist-if-you-dont-agree-with-me-that-m.png"
   },
   "/memes/politics/leftists-say-be-careful-what-we-say-now.png": {
     "type": "image/png",
     "etag": "\"71b8b-xfL8B24VoWDixLuV3W/+pLszG+I\"",
-    "mtime": "2025-06-24T06:02:50.941Z",
+    "mtime": "2025-06-24T17:15:27.170Z",
     "size": 465803,
     "path": "../public/memes/politics/leftists-say-be-careful-what-we-say-now.png"
   },
   "/memes/politics/lets-see-if-ive-got-this-right.png": {
     "type": "image/png",
     "etag": "\"b5b56-JbL7pbY1Emm/bpaPa9bMAFV32eA\"",
-    "mtime": "2025-06-24T06:02:50.943Z",
+    "mtime": "2025-06-24T17:15:27.174Z",
     "size": 744278,
     "path": "../public/memes/politics/lets-see-if-ive-got-this-right.png"
   },
   "/memes/politics/liberals-became-hyper-left-wing.png": {
     "type": "image/png",
     "etag": "\"249c5-Rc11g2uddnxvXis3PAOaK0kkbig\"",
-    "mtime": "2025-06-24T06:02:50.941Z",
+    "mtime": "2025-06-24T17:15:27.176Z",
     "size": 149957,
     "path": "../public/memes/politics/liberals-became-hyper-left-wing.png"
   },
   "/memes/politics/maoist-left.png": {
     "type": "image/png",
     "etag": "\"5f739-xeUy+KZ+OZSzPIGA5z6LNhGKJLo\"",
-    "mtime": "2025-06-24T06:02:50.942Z",
+    "mtime": "2025-06-24T17:15:27.179Z",
     "size": 390969,
     "path": "../public/memes/politics/maoist-left.png"
   },
   "/memes/politics/marxist-black-lives-matter.png": {
     "type": "image/png",
     "etag": "\"f16d3-MOlR/aP2OudLGdemxuU6J9PzLjM\"",
-    "mtime": "2025-06-24T06:02:50.949Z",
+    "mtime": "2025-06-24T17:15:27.176Z",
     "size": 988883,
     "path": "../public/memes/politics/marxist-black-lives-matter.png"
   },
   "/memes/politics/media-racism-democrats.png": {
     "type": "image/png",
     "etag": "\"895b7-uev++lE84NSsZpd84D48cFIfjKo\"",
-    "mtime": "2025-06-24T06:02:50.945Z",
+    "mtime": "2025-06-24T17:15:27.179Z",
     "size": 562615,
     "path": "../public/memes/politics/media-racism-democrats.png"
   },
   "/memes/politics/mediabiasmodified-1.png": {
     "type": "image/png",
     "etag": "\"ac651-J/wX1+/u4T/dRrMR8WHpnhHFLD8\"",
-    "mtime": "2025-06-24T06:02:50.946Z",
+    "mtime": "2025-06-24T17:15:27.180Z",
     "size": 706129,
     "path": "../public/memes/politics/mediabiasmodified-1.png"
   },
   "/memes/politics/nazis-and-communists-and-antifa-the-same.png": {
     "type": "image/png",
     "etag": "\"74068-Zqj9zuxokwCxoLgfHB0iH1s1iIU\"",
-    "mtime": "2025-06-24T06:02:50.945Z",
+    "mtime": "2025-06-24T17:15:27.180Z",
     "size": 475240,
     "path": "../public/memes/politics/nazis-and-communists-and-antifa-the-same.png"
   },
   "/memes/politics/nazis-were-left-wing.png": {
     "type": "image/png",
     "etag": "\"81c2d-gwsaNpNEr7sjah1+tPGNjweafMk\"",
-    "mtime": "2025-06-24T06:02:50.948Z",
+    "mtime": "2025-06-24T17:15:27.182Z",
     "size": 531501,
     "path": "../public/memes/politics/nazis-were-left-wing.png"
   },
   "/memes/politics/no-difference-between-the-nazis-and-the.png": {
     "type": "image/png",
     "etag": "\"b34c6-varNeSOPoMCjYqYqtmg0yFaSKeU\"",
-    "mtime": "2025-06-24T06:02:50.949Z",
+    "mtime": "2025-06-24T17:15:27.186Z",
     "size": 734406,
     "path": "../public/memes/politics/no-difference-between-the-nazis-and-the.png"
   },
   "/memes/politics/no-to-wolf-haters-no-to-wolfphobia.png": {
     "type": "image/png",
     "etag": "\"106bf9-QMha6drr77DSFCeWdRgUVtIp0L0\"",
-    "mtime": "2025-06-24T06:02:50.955Z",
+    "mtime": "2025-06-24T17:15:27.189Z",
     "size": 1076217,
     "path": "../public/memes/politics/no-to-wolf-haters-no-to-wolfphobia.png"
   },
   "/memes/politics/nope-just-a-democrat-from-20-years-ago.png": {
     "type": "image/png",
     "etag": "\"eba85-/tTA/dAgyMyj+LsGC/qZSfZo3s8\"",
-    "mtime": "2025-06-24T06:02:50.949Z",
+    "mtime": "2025-06-24T17:15:27.188Z",
     "size": 965253,
     "path": "../public/memes/politics/nope-just-a-democrat-from-20-years-ago.png"
   },
   "/memes/politics/only-16-of-us-citizens-owned-slaves-in-1.png": {
     "type": "image/png",
     "etag": "\"aaf9f-grNQWYu9bUTkLBCrNIkhmGKUTtU\"",
-    "mtime": "2025-06-24T06:02:50.958Z",
+    "mtime": "2025-06-24T17:15:27.188Z",
     "size": 700319,
     "path": "../public/memes/politics/only-16-of-us-citizens-owned-slaves-in-1.png"
   },
   "/memes/politics/operation-let-them-talk.png": {
     "type": "image/png",
     "etag": "\"10f89c-OEp7S2iCbDmM3RnzM+buq8sGmB4\"",
-    "mtime": "2025-06-24T06:02:50.958Z",
+    "mtime": "2025-06-24T17:15:27.193Z",
     "size": 1112220,
     "path": "../public/memes/politics/operation-let-them-talk.png"
   },
   "/memes/politics/optimist-pessimist-leftist-water-is-raci.png": {
     "type": "image/png",
     "etag": "\"444c0-597ePZrhkTEb43sS5AiJ0iR26JM\"",
-    "mtime": "2025-06-24T06:02:50.960Z",
+    "mtime": "2025-06-24T17:15:27.193Z",
     "size": 279744,
     "path": "../public/memes/politics/optimist-pessimist-leftist-water-is-raci.png"
   },
   "/memes/politics/our-ancestors-werent-evil-be-proud.png": {
     "type": "image/png",
     "etag": "\"12c473-R8DP4/64lTqn3845xxfPeit8dNw\"",
-    "mtime": "2025-06-24T06:02:50.959Z",
+    "mtime": "2025-06-24T17:15:27.191Z",
     "size": 1229939,
     "path": "../public/memes/politics/our-ancestors-werent-evil-be-proud.png"
   },
   "/memes/politics/our-founders-political-spectrum.png": {
     "type": "image/png",
     "etag": "\"3a085-PMyCW9bROfyb6xo5umoDviJlz4s\"",
-    "mtime": "2025-06-24T06:02:50.961Z",
+    "mtime": "2025-06-24T17:15:27.194Z",
     "size": 237701,
     "path": "../public/memes/politics/our-founders-political-spectrum.png"
   },
   "/memes/politics/quick-history-who-did-it-democrats.png": {
     "type": "image/png",
     "etag": "\"11185f-8m6suCDj6NN97mWMOMjs7jU4lDk\"",
-    "mtime": "2025-06-24T06:02:50.961Z",
+    "mtime": "2025-06-24T17:15:27.199Z",
     "size": 1120351,
     "path": "../public/memes/politics/quick-history-who-did-it-democrats.png"
   },
   "/memes/politics/race-card-a-tool-of-the-intellectually-w.png": {
     "type": "image/png",
     "etag": "\"9e1b6-Yo3kuHXrgSIn8D4Vy4ortChroM8\"",
-    "mtime": "2025-06-24T06:02:50.968Z",
+    "mtime": "2025-06-24T17:15:27.193Z",
     "size": 647606,
     "path": "../public/memes/politics/race-card-a-tool-of-the-intellectually-w.png"
   },
   "/memes/politics/reeeeetarded-1.png": {
     "type": "image/png",
     "etag": "\"bbd08-/RRWXIsbeD1F8FTaC0sFdP2j7mI\"",
-    "mtime": "2025-06-24T06:02:50.969Z",
+    "mtime": "2025-06-24T17:15:27.195Z",
     "size": 769288,
     "path": "../public/memes/politics/reeeeetarded-1.png"
   },
   "/memes/politics/remember-communism-killed-100-million-pe.png": {
     "type": "image/png",
     "etag": "\"1194fa-NSdN4ARLYp4g0PD15yroMMQfBFA\"",
-    "mtime": "2025-06-24T06:02:50.969Z",
+    "mtime": "2025-06-24T17:15:27.195Z",
     "size": 1152250,
     "path": "../public/memes/politics/remember-communism-killed-100-million-pe.png"
   },
   "/memes/politics/richard-winn-livingstone-quote.png": {
     "type": "image/png",
     "etag": "\"143cc4-4WLMFsMS6c+2OxKEW061s/6hax8\"",
-    "mtime": "2025-06-24T06:02:50.969Z",
+    "mtime": "2025-06-24T17:15:27.205Z",
     "size": 1326276,
     "path": "../public/memes/politics/richard-winn-livingstone-quote.png"
   },
   "/memes/politics/rioters-arsonists-and-looters-are-here-t.png": {
     "type": "image/png",
     "etag": "\"d56f2-s02wMhI5pSFEDAI9B/aL96ccukY\"",
-    "mtime": "2025-06-24T06:02:50.976Z",
+    "mtime": "2025-06-24T17:15:27.207Z",
     "size": 874226,
     "path": "../public/memes/politics/rioters-arsonists-and-looters-are-here-t.png"
   },
   "/memes/politics/ronald-reagan-if-it-moves-tax-it.png": {
     "type": "image/png",
     "etag": "\"7485d-9jF715luOhWxGcB/mMT0Dz+MYHI\"",
-    "mtime": "2025-06-24T06:02:50.973Z",
+    "mtime": "2025-06-24T17:15:27.204Z",
     "size": 477277,
     "path": "../public/memes/politics/ronald-reagan-if-it-moves-tax-it.png"
   },
   "/memes/politics/scott-jennings-doh-face.png": {
     "type": "image/png",
     "etag": "\"69e94-ZtkW7m+Q4f2PUib5A5oG1mhyNQE\"",
-    "mtime": "2025-06-24T06:02:50.979Z",
+    "mtime": "2025-06-24T17:15:27.204Z",
     "size": 433812,
     "path": "../public/memes/politics/scott-jennings-doh-face.png"
   },
   "/memes/politics/scottadams-hoax-list.png": {
     "type": "image/png",
     "etag": "\"4abef-egtte5rcEAdvvDPCnjhKkTgFtzQ\"",
-    "mtime": "2025-06-24T06:02:50.976Z",
+    "mtime": "2025-06-24T17:15:27.207Z",
     "size": 306159,
     "path": "../public/memes/politics/scottadams-hoax-list.png"
   },
   "/memes/politics/sheepdog-hes-a-threat-to-sheep-safety.png": {
     "type": "image/png",
     "etag": "\"f4c14-VhW2hBC61ccj8TiClliaTptqilQ\"",
-    "mtime": "2025-06-24T06:02:50.977Z",
+    "mtime": "2025-06-24T17:15:27.213Z",
     "size": 1002516,
     "path": "../public/memes/politics/sheepdog-hes-a-threat-to-sheep-safety.png"
   },
   "/memes/politics/should-the-government-nope.png": {
     "type": "image/png",
     "etag": "\"11fc82-0AceAX6/8U6sYHVUWPJT3rxWME0\"",
-    "mtime": "2025-06-24T06:02:50.977Z",
+    "mtime": "2025-06-24T17:15:27.210Z",
     "size": 1178754,
     "path": "../public/memes/politics/should-the-government-nope.png"
   },
   "/memes/politics/socialist-worker-from-the-rivek-to-the-s.png": {
     "type": "image/png",
     "etag": "\"1973f3-gqqYnXZKhMrJSk5ISZlggaweMJs\"",
-    "mtime": "2025-06-24T06:02:50.987Z",
+    "mtime": "2025-06-24T17:15:27.212Z",
     "size": 1668083,
     "path": "../public/memes/politics/socialist-worker-from-the-rivek-to-the-s.png"
   },
   "/memes/politics/socialists-you-guys-always-act-like-your.png": {
     "type": "image/png",
     "etag": "\"da9b2-u869XPLDDt54KthZVEJtWN708ew\"",
-    "mtime": "2025-06-24T06:02:50.985Z",
+    "mtime": "2025-06-24T17:15:27.212Z",
     "size": 895410,
     "path": "../public/memes/politics/socialists-you-guys-always-act-like-your.png"
   },
   "/memes/politics/soviet-slave-state-gulags.png": {
     "type": "image/png",
     "etag": "\"a787e-p3aLT5QkSZX00IAf6FzaM+5SjBY\"",
-    "mtime": "2025-06-24T06:02:50.981Z",
+    "mtime": "2025-06-24T17:15:27.213Z",
     "size": 686206,
     "path": "../public/memes/politics/soviet-slave-state-gulags.png"
   },
   "/memes/politics/that-wasnt-real-socialism.png": {
     "type": "image/png",
     "etag": "\"129fda-3LhMy5Lt7tl5PHgQYJdDCmP2mws\"",
-    "mtime": "2025-06-24T06:02:50.986Z",
+    "mtime": "2025-06-24T17:15:27.217Z",
     "size": 1220570,
     "path": "../public/memes/politics/that-wasnt-real-socialism.png"
   },
   "/memes/politics/the-demons-that-stole-our-country-have-s.png": {
     "type": "image/png",
     "etag": "\"11522e-Uzs016ngJEH0XX7b+hcCUmom4Cg\"",
-    "mtime": "2025-06-24T06:02:50.991Z",
+    "mtime": "2025-06-24T17:15:27.222Z",
     "size": 1135150,
     "path": "../public/memes/politics/the-demons-that-stole-our-country-have-s.png"
   },
   "/memes/politics/the-government-we-have-now-massive-book.png": {
     "type": "image/png",
     "etag": "\"dfa6a-oyZEJZ45pgoiDubbzHLKk3tAR8o\"",
-    "mtime": "2025-06-24T06:02:50.987Z",
+    "mtime": "2025-06-24T17:15:27.219Z",
     "size": 916074,
     "path": "../public/memes/politics/the-government-we-have-now-massive-book.png"
   },
   "/memes/politics/the-lefts-ideology-is-regarded-by-the-co.png": {
     "type": "image/png",
     "etag": "\"109cc8-OoXQgV2oYAtwwUNuz9YYDBV8Zjw\"",
-    "mtime": "2025-06-24T06:02:50.996Z",
+    "mtime": "2025-06-24T17:15:27.221Z",
     "size": 1088712,
     "path": "../public/memes/politics/the-lefts-ideology-is-regarded-by-the-co.png"
   },
   "/memes/politics/the-older-i-get-the-more-i-can-relate-to.png": {
     "type": "image/png",
     "etag": "\"e0d0f-iZKf1TJN4r+EmpbXpUbRK/7iT9I\"",
-    "mtime": "2025-06-24T06:02:50.994Z",
+    "mtime": "2025-06-24T17:15:27.220Z",
     "size": 920847,
     "path": "../public/memes/politics/the-older-i-get-the-more-i-can-relate-to.png"
   },
   "/memes/politics/the-political-spectrum-youre-taught.png": {
     "type": "image/png",
     "etag": "\"46380-7zdJFUiWmi8JS3LURkLX1SqYufU\"",
-    "mtime": "2025-06-24T06:02:50.995Z",
+    "mtime": "2025-06-24T17:15:27.226Z",
     "size": 287616,
     "path": "../public/memes/politics/the-political-spectrum-youre-taught.png"
   },
   "/memes/politics/the-political-spectrum.png": {
     "type": "image/png",
     "etag": "\"3b035-Ixf9kJsPhMWyNWZdM0kDXj8IxeI\"",
-    "mtime": "2025-06-24T06:02:50.991Z",
+    "mtime": "2025-06-24T17:15:27.220Z",
     "size": 241717,
     "path": "../public/memes/politics/the-political-spectrum.png"
   },
   "/memes/politics/the-problem-with-socialism-is.png": {
     "type": "image/png",
     "etag": "\"d781c-I7fl9dZYm8+8A43TvIEE6AVWXgs\"",
-    "mtime": "2025-06-24T06:02:50.997Z",
+    "mtime": "2025-06-24T17:15:27.226Z",
     "size": 882716,
     "path": "../public/memes/politics/the-problem-with-socialism-is.png"
   },
   "/memes/politics/the-reason-you-dont-know-youve-been-lied.png": {
     "type": "image/png",
     "etag": "\"71929-TaiWUQYVqhLt6AjYncgq17KRzQg\"",
-    "mtime": "2025-06-24T06:02:50.996Z",
+    "mtime": "2025-06-24T17:15:27.226Z",
     "size": 465193,
     "path": "../public/memes/politics/the-reason-you-dont-know-youve-been-lied.png"
   },
   "/memes/politics/the-same-analogy-can-be-made-about-human.png": {
     "type": "image/png",
     "etag": "\"e4e63-5zj1XBvicCBNUWu4VqEfcfVLX4M\"",
-    "mtime": "2025-06-24T06:02:51.010Z",
+    "mtime": "2025-06-24T17:15:27.230Z",
     "size": 937571,
     "path": "../public/memes/politics/the-same-analogy-can-be-made-about-human.png"
   },
   "/memes/politics/theres-no-such-thing-as-government-funde.png": {
     "type": "image/png",
     "etag": "\"c8c4b-TclXfzvwamKiHb5ETJDpHV3/KJ4\"",
-    "mtime": "2025-06-24T06:02:50.997Z",
+    "mtime": "2025-06-24T17:15:27.227Z",
     "size": 822347,
     "path": "../public/memes/politics/theres-no-such-thing-as-government-funde.png"
   },
   "/memes/politics/these-people-are-liberal-these-people-ar.png": {
     "type": "image/png",
     "etag": "\"97ce8-ITn/Uayk3IJs3u48YDFmFu7B1Q0\"",
-    "mtime": "2025-06-24T06:02:51.002Z",
+    "mtime": "2025-06-24T17:15:27.235Z",
     "size": 621800,
     "path": "../public/memes/politics/these-people-are-liberal-these-people-ar.png"
   },
   "/memes/politics/theyre-not-after-you-theyre-after-me-you.png": {
     "type": "image/png",
     "etag": "\"5f88f-3uaB8ItF1oq9JjUBK6RMVsSc61Y\"",
-    "mtime": "2025-06-24T06:02:51.002Z",
+    "mtime": "2025-06-24T17:15:27.240Z",
     "size": 391311,
     "path": "../public/memes/politics/theyre-not-after-you-theyre-after-me-you.png"
   },
   "/memes/politics/threat-to-their-corrupt-bureaucracy.png": {
     "type": "image/png",
     "etag": "\"dec6b-FbnwuJX/JGDcFMV4Zc3arwoanbg\"",
-    "mtime": "2025-06-24T06:02:51.002Z",
+    "mtime": "2025-06-24T17:15:27.230Z",
     "size": 912491,
     "path": "../public/memes/politics/threat-to-their-corrupt-bureaucracy.png"
   },
   "/memes/politics/trump-admin-cancel-bingo.png": {
     "type": "image/png",
     "etag": "\"22d04-RYLFaRiw5TH2HEIfWKEjeO/09vQ\"",
-    "mtime": "2025-06-24T06:02:50.997Z",
+    "mtime": "2025-06-24T17:15:27.229Z",
     "size": 142596,
     "path": "../public/memes/politics/trump-admin-cancel-bingo.png"
   },
   "/memes/politics/truth-about-the-crusades.png": {
     "type": "image/png",
     "etag": "\"125ead-1XTcydvy4OpWbx+wqGTdlhzruBw\"",
-    "mtime": "2025-06-24T06:02:51.007Z",
+    "mtime": "2025-06-24T17:15:27.230Z",
     "size": 1203885,
     "path": "../public/memes/politics/truth-about-the-crusades.png"
   },
   "/memes/politics/uk-down-planet-of-the-apes.png": {
     "type": "image/png",
     "etag": "\"ce878-GTcP3hinxE8TXSvjjw33Sqkk3dQ\"",
-    "mtime": "2025-06-24T06:02:51.010Z",
+    "mtime": "2025-06-24T17:15:27.237Z",
     "size": 845944,
     "path": "../public/memes/politics/uk-down-planet-of-the-apes.png"
   },
   "/memes/politics/unless-its-hate-for-trump-his-supporters.png": {
     "type": "image/png",
     "etag": "\"f1f94-nWq7F7ltKGyshBJxRMwf6m94dUQ\"",
-    "mtime": "2025-06-24T06:02:51.010Z",
+    "mtime": "2025-06-24T17:15:27.237Z",
     "size": 991124,
     "path": "../public/memes/politics/unless-its-hate-for-trump-his-supporters.png"
   },
   "/memes/politics/up-until-1913-americans-kept-all-of-thei.png": {
     "type": "image/png",
     "etag": "\"19561e-qRYc1Qs7RfTuEEXGU+CqXTSVa6M\"",
-    "mtime": "2025-06-24T06:02:51.020Z",
+    "mtime": "2025-06-24T17:15:27.240Z",
     "size": 1660446,
     "path": "../public/memes/politics/up-until-1913-americans-kept-all-of-thei.png"
   },
   "/memes/politics/us-political-spectrum-expanded.png": {
     "type": "image/png",
     "etag": "\"ae8c2-aoeXimNqT/qeUbNchf09RrBgw10\"",
-    "mtime": "2025-06-24T06:02:51.011Z",
+    "mtime": "2025-06-24T17:15:27.241Z",
     "size": 714946,
     "path": "../public/memes/politics/us-political-spectrum-expanded.png"
   },
   "/memes/politics/useful-idiots-hugo-chavez.png": {
     "type": "image/png",
     "etag": "\"127a51-lQez+cg9ENszOtgEuxv+z4ghpAg\"",
-    "mtime": "2025-06-24T06:02:51.020Z",
+    "mtime": "2025-06-24T17:15:27.248Z",
     "size": 1210961,
     "path": "../public/memes/politics/useful-idiots-hugo-chavez.png"
   },
   "/memes/politics/view-these-two-symbols-of-murder-and-sla.png": {
     "type": "image/png",
     "etag": "\"610b3-Hi4geCpLXAJxfIcxVwgBiLvCnL8\"",
-    "mtime": "2025-06-24T06:02:51.018Z",
+    "mtime": "2025-06-24T17:15:27.245Z",
     "size": 397491,
     "path": "../public/memes/politics/view-these-two-symbols-of-murder-and-sla.png"
   },
   "/memes/politics/virtue-signalling.png": {
     "type": "image/png",
     "etag": "\"936eb-uAojL3c/G0N5uiyqhl3s9I010x0\"",
-    "mtime": "2025-06-24T06:02:51.018Z",
+    "mtime": "2025-06-24T17:15:27.244Z",
     "size": 603883,
     "path": "../public/memes/politics/virtue-signalling.png"
   },
   "/memes/politics/watermelons-green-outside-red-within.png": {
     "type": "image/png",
     "etag": "\"816c4-9m+QiKxxgnS1v2GkPfvB3uy+XwM\"",
-    "mtime": "2025-06-24T06:02:51.026Z",
+    "mtime": "2025-06-24T17:15:27.238Z",
     "size": 530116,
     "path": "../public/memes/politics/watermelons-green-outside-red-within.png"
   },
   "/memes/politics/we-owe-joseph-mccarthy-an-apology.png": {
     "type": "image/png",
     "etag": "\"5bad4-p6IrBKrFQlw70wdVmi2mKGGRmnE\"",
-    "mtime": "2025-06-24T06:02:51.021Z",
+    "mtime": "2025-06-24T17:15:27.245Z",
     "size": 375508,
     "path": "../public/memes/politics/we-owe-joseph-mccarthy-an-apology.png"
   },
   "/memes/politics/well-need-to-be-more-vile-condescending.png": {
     "type": "image/png",
     "etag": "\"fe770-1w8xqYSX1t+1GjzNEYoA8u+56uw\"",
-    "mtime": "2025-06-24T06:02:51.025Z",
+    "mtime": "2025-06-24T17:15:27.260Z",
     "size": 1042288,
     "path": "../public/memes/politics/well-need-to-be-more-vile-condescending.png"
   },
   "/memes/politics/were-gonna-need-a-bigger-hoax.png": {
     "type": "image/png",
     "etag": "\"9ed7a-IRXN/nM8IpgprBrHra8IAwo0teY\"",
-    "mtime": "2025-06-24T06:02:51.031Z",
+    "mtime": "2025-06-24T17:15:27.248Z",
     "size": 650618,
     "path": "../public/memes/politics/were-gonna-need-a-bigger-hoax.png"
   },
   "/memes/politics/were-the-left-38-we-have-a-plan.png": {
     "type": "image/png",
     "etag": "\"cb9cc-oDO3yWbOP4fQQ60pXY7oRX4LMIg\"",
-    "mtime": "2025-06-24T06:02:51.026Z",
+    "mtime": "2025-06-24T17:15:27.252Z",
     "size": 833996,
     "path": "../public/memes/politics/were-the-left-38-we-have-a-plan.png"
   },
   "/memes/politics/were-way-past-swamp-britain.png": {
     "type": "image/png",
     "etag": "\"157303-t1hhLtET5S558qzPqByY4Lghb9U\"",
-    "mtime": "2025-06-24T06:02:51.025Z",
+    "mtime": "2025-06-24T17:15:27.261Z",
     "size": 1405699,
     "path": "../public/memes/politics/were-way-past-swamp-britain.png"
   },
   "/memes/politics/weve-voted-democrat-for-three-generation.png": {
     "type": "image/png",
     "etag": "\"b6087-NAR6rw5Gd6vMmgpNIg695IeFsRc\"",
-    "mtime": "2025-06-24T06:02:51.031Z",
+    "mtime": "2025-06-24T17:15:27.262Z",
     "size": 745607,
     "path": "../public/memes/politics/weve-voted-democrat-for-three-generation.png"
   },
   "/memes/politics/what-can-we-do-to-stop-living-in-fear-cl.png": {
     "type": "image/png",
     "etag": "\"edee1-sn4JMCw1VjKgjRU+nx4Plcqv1m4\"",
-    "mtime": "2025-06-24T06:02:51.032Z",
+    "mtime": "2025-06-24T17:15:27.261Z",
     "size": 974561,
     "path": "../public/memes/politics/what-can-we-do-to-stop-living-in-fear-cl.png"
   },
   "/memes/politics/what-government-agency-would-you-get-rid.png": {
     "type": "image/png",
     "etag": "\"1286c5-34Ke3d2XJBQ+RlryCGfKu5r4zFA\"",
-    "mtime": "2025-06-24T06:02:51.032Z",
+    "mtime": "2025-06-24T17:15:27.261Z",
     "size": 1214149,
     "path": "../public/memes/politics/what-government-agency-would-you-get-rid.png"
   },
   "/memes/politics/what-have-the-left-ever-done-for-us.png": {
     "type": "image/png",
     "etag": "\"10c43c-ZVxA5A3VDs5hV1L+EKzvzuOaBl4\"",
-    "mtime": "2025-06-24T06:02:51.040Z",
+    "mtime": "2025-06-24T17:15:27.267Z",
     "size": 1098812,
     "path": "../public/memes/politics/what-have-the-left-ever-done-for-us.png"
   },
   "/memes/politics/what-psyop-is-this.png": {
     "type": "image/png",
     "etag": "\"850f4-+f91xOpiSwvfYCnDvr2z8bZRIXI\"",
-    "mtime": "2025-06-24T06:02:51.038Z",
+    "mtime": "2025-06-24T17:15:27.266Z",
     "size": 545012,
     "path": "../public/memes/politics/what-psyop-is-this.png"
   },
   "/memes/politics/when-that-smell-of-democrat-desperation.png": {
     "type": "image/png",
     "etag": "\"5c7ce-oHFa9sm9lnJ3rM4xcrLUIDXaeWU\"",
-    "mtime": "2025-06-24T06:02:51.034Z",
+    "mtime": "2025-06-24T17:15:27.267Z",
     "size": 378830,
     "path": "../public/memes/politics/when-that-smell-of-democrat-desperation.png"
   },
   "/memes/politics/whoever-being-entrusted-with-national-se.png": {
     "type": "image/png",
     "etag": "\"c710d-J/HgzGBBqFRHM356PRbvs96lvHs\"",
-    "mtime": "2025-06-24T06:02:51.040Z",
+    "mtime": "2025-06-24T17:15:27.268Z",
     "size": 815373,
     "path": "../public/memes/politics/whoever-being-entrusted-with-national-se.png"
   },
   "/memes/politics/why-are-you-so-poor-and-primitive-its-go.png": {
     "type": "image/png",
     "etag": "\"f615a-g3AAwtuVlXOqTjYqIJrjFIcgzMQ\"",
-    "mtime": "2025-06-24T06:02:51.044Z",
+    "mtime": "2025-06-24T17:15:27.274Z",
     "size": 1007962,
     "path": "../public/memes/politics/why-are-you-so-poor-and-primitive-its-go.png"
   },
   "/memes/politics/world-racism-people-they-would-not-want.png": {
     "type": "image/png",
     "etag": "\"5e2c9-oPwjTAxrN7SbAydEMV5atAn0Cfc\"",
-    "mtime": "2025-06-24T06:02:51.039Z",
+    "mtime": "2025-06-24T17:15:27.269Z",
     "size": 385737,
     "path": "../public/memes/politics/world-racism-people-they-would-not-want.png"
   },
   "/memes/politics/you-will-be-hated-if-you-cant-be-manipul.png": {
     "type": "image/png",
     "etag": "\"f78dd-mcFpeaXFonQ2OqlTkSsSwxCfucQ\"",
-    "mtime": "2025-06-24T06:02:51.042Z",
+    "mtime": "2025-06-24T17:15:27.275Z",
     "size": 1013981,
     "path": "../public/memes/politics/you-will-be-hated-if-you-cant-be-manipul.png"
   },
   "/memes/politics/your-government-at-work.png": {
     "type": "image/png",
     "etag": "\"118e63-7inb4+LcSd+KE2loMGU92JrRwKw\"",
-    "mtime": "2025-06-24T06:02:51.044Z",
+    "mtime": "2025-06-24T17:15:27.274Z",
     "size": 1150563,
     "path": "../public/memes/politics/your-government-at-work.png"
   },
   "/memes/politics/your-race-card-has-been-declined.png": {
     "type": "image/png",
     "etag": "\"115a88-ku3K229c7IVyOSjP4xA9qvFp9aM\"",
-    "mtime": "2025-06-24T06:02:51.044Z",
+    "mtime": "2025-06-24T17:15:27.275Z",
     "size": 1137288,
     "path": "../public/memes/politics/your-race-card-has-been-declined.png"
+  },
+  "/memes/quotes/.DS_Store": {
+    "type": "text/plain; charset=utf-8",
+    "etag": "\"3804-ynvLNG+oIui6UjSQZOQMlRi+lNo\"",
+    "mtime": "2025-06-24T17:15:27.027Z",
+    "size": 14340,
+    "path": "../public/memes/quotes/.DS_Store"
+  },
+  "/memes/quotes/a-government-which-lays-t.png": {
+    "type": "image/png",
+    "etag": "\"11f646-SrQcSLlPTiO6G9ANqvdFfVg3Nhs\"",
+    "mtime": "2025-06-24T17:15:26.772Z",
+    "size": 1177158,
+    "path": "../public/memes/quotes/a-government-which-lays-t.png"
+  },
+  "/memes/quotes/a-man-who-knows-the-orig.png": {
+    "type": "image/png",
+    "etag": "\"14cc78-Ld7Ua5yIdv2LHYBcf59Y9Rf9Jg4\"",
+    "mtime": "2025-06-24T17:15:27.032Z",
+    "size": 1363064,
+    "path": "../public/memes/quotes/a-man-who-knows-the-orig.png"
+  },
+  "/memes/quotes/at-the-core-of-liberalism.png": {
+    "type": "image/png",
+    "etag": "\"454c1-pkuiYAuON9CHg6frah+9Oqzhh6w\"",
+    "mtime": "2025-06-24T17:15:27.038Z",
+    "size": 283841,
+    "path": "../public/memes/quotes/at-the-core-of-liberalism.png"
+  },
+  "/memes/quotes/beware-the-irrational,-ho.png": {
+    "type": "image/png",
+    "etag": "\"49ba7-bANsJ6blg/M/uyt+zxQm5YuakRA\"",
+    "mtime": "2025-06-24T17:15:27.033Z",
+    "size": 301991,
+    "path": "../public/memes/quotes/beware-the-irrational,-ho.png"
+  },
+  "/memes/quotes/britain-gave-the-world.png": {
+    "type": "image/png",
+    "etag": "\"16680-eoP9Y2yYo8Lli073gRo7x4+inUg\"",
+    "mtime": "2025-06-24T17:15:27.032Z",
+    "size": 91776,
+    "path": "../public/memes/quotes/britain-gave-the-world.png"
+  },
+  "/memes/quotes/can-a-people-tax-themselv.png": {
+    "type": "image/png",
+    "etag": "\"110bd-hyLMNbB9mqNjX//UzXZEdUua7bE\"",
+    "mtime": "2025-06-24T17:15:27.042Z",
+    "size": 69821,
+    "path": "../public/memes/quotes/can-a-people-tax-themselv.png"
+  },
+  "/memes/quotes/do-not-be-so-open-minded,.png": {
+    "type": "image/png",
+    "etag": "\"a13f3-TfJPkbWXdbpdbpw7zsFz5+s3tds\"",
+    "mtime": "2025-06-24T17:15:27.036Z",
+    "size": 660467,
+    "path": "../public/memes/quotes/do-not-be-so-open-minded,.png"
+  },
+  "/memes/quotes/elon-musk-did-not-make-x.png": {
+    "type": "image/png",
+    "etag": "\"43d52-fJZpLAc615PxGZ/A3PBzx0pYJ3k\"",
+    "mtime": "2025-06-24T17:15:27.039Z",
+    "size": 277842,
+    "path": "../public/memes/quotes/elon-musk-did-not-make-x.png"
+  },
+  "/memes/quotes/every-generation,-civiliz.png": {
+    "type": "image/png",
+    "etag": "\"37f4a6-4AfBjYKUATbdY7nBksk0j6Tvc8s\"",
+    "mtime": "2025-06-24T17:15:27.043Z",
+    "size": 3667110,
+    "path": "../public/memes/quotes/every-generation,-civiliz.png"
+  },
+  "/memes/quotes/government's-first-duty-i.png": {
+    "type": "image/png",
+    "etag": "\"9e436-6MxVRCyxYuCH589+7oe2fZswHuU\"",
+    "mtime": "2025-06-24T17:15:27.039Z",
+    "size": 648246,
+    "path": "../public/memes/quotes/government's-first-duty-i.png"
+  },
+  "/memes/quotes/government's-view-of-the.png": {
+    "type": "image/png",
+    "etag": "\"9c1e2-JYudBOV3HkaXiapwfln43FpkcMw\"",
+    "mtime": "2025-06-24T17:15:27.047Z",
+    "size": 639458,
+    "path": "../public/memes/quotes/government's-view-of-the.png"
+  },
+  "/memes/quotes/government-is-not-the-sol.png": {
+    "type": "image/png",
+    "etag": "\"4c8dd-Z2O2xz2kU6E6Uz5MncXc/vn1KYE\"",
+    "mtime": "2025-06-24T17:15:27.040Z",
+    "size": 313565,
+    "path": "../public/memes/quotes/government-is-not-the-sol.png"
+  },
+  "/memes/quotes/have-you-ever-noticed-how.png": {
+    "type": "image/png",
+    "etag": "\"85ffb-3exsBpxg/SwRp5vwS7MrsT6V/eg\"",
+    "mtime": "2025-06-24T17:15:27.040Z",
+    "size": 548859,
+    "path": "../public/memes/quotes/have-you-ever-noticed-how.png"
+  },
+  "/memes/quotes/hayek-to-act-on-the-belie.png": {
+    "type": "image/png",
+    "etag": "\"23317-G96yEw//YxbO802t6yZ1qafDUbg\"",
+    "mtime": "2025-06-24T17:15:27.043Z",
+    "size": 144151,
+    "path": "../public/memes/quotes/hayek-to-act-on-the-belie.png"
+  },
+  "/memes/quotes/homicide-is-the-leading-c.png": {
+    "type": "image/png",
+    "etag": "\"15c47-H2p5FJXjr5/gzUB520uW/4AmNGc\"",
+    "mtime": "2025-06-24T17:15:27.042Z",
+    "size": 89159,
+    "path": "../public/memes/quotes/homicide-is-the-leading-c.png"
+  },
+  "/memes/quotes/human-beings-are-born-wit.png": {
+    "type": "image/png",
+    "etag": "\"16cd32-svaOzkk/ihPQ21SbFW6qVDkwjQE\"",
+    "mtime": "2025-06-24T17:15:27.048Z",
+    "size": 1494322,
+    "path": "../public/memes/quotes/human-beings-are-born-wit.png"
+  },
+  "/memes/quotes/humiliating-to-human-prid.png": {
+    "type": "image/png",
+    "etag": "\"2dcff-bjMYuxGUUMdyiCg6y2vYGTfuIq8\"",
+    "mtime": "2025-06-24T17:15:27.050Z",
+    "size": 187647,
+    "path": "../public/memes/quotes/humiliating-to-human-prid.png"
+  },
+  "/memes/quotes/i-always-think-it's-a-sig.png": {
+    "type": "image/png",
+    "etag": "\"7bf00-Nwrq6aaq4dBU5F5aXcptTgbhROg\"",
+    "mtime": "2025-06-24T17:15:27.050Z",
+    "size": 507648,
+    "path": "../public/memes/quotes/i-always-think-it's-a-sig.png"
+  },
+  "/memes/quotes/in-100-years-we-have-gone.png": {
+    "type": "image/png",
+    "etag": "\"312d1-Vs91uzY7BVRJSolJ5doZ0UcC+Aw\"",
+    "mtime": "2025-06-24T17:15:27.050Z",
+    "size": 201425,
+    "path": "../public/memes/quotes/in-100-years-we-have-gone.png"
+  },
+  "/memes/quotes/intellectuals-are-natural.png": {
+    "type": "image/png",
+    "etag": "\"71e7b-KCcuSJsAOjaB2WwgDYvutAKP5DM\"",
+    "mtime": "2025-06-24T17:15:27.051Z",
+    "size": 466555,
+    "path": "../public/memes/quotes/intellectuals-are-natural.png"
+  },
+  "/memes/quotes/islam's-borders-are-blood.png": {
+    "type": "image/png",
+    "etag": "\"4c5dd-DJPesBBVMpXnG1IUTN5pR+6DwU8\"",
+    "mtime": "2025-06-24T17:15:27.050Z",
+    "size": 312797,
+    "path": "../public/memes/quotes/islam's-borders-are-blood.png"
+  },
+  "/memes/quotes/it-constantly-amazes-me-t.png": {
+    "type": "image/png",
+    "etag": "\"b6e35-S60M+86oK690WNRcdxvrKml/84w\"",
+    "mtime": "2025-06-24T17:15:27.052Z",
+    "size": 749109,
+    "path": "../public/memes/quotes/it-constantly-amazes-me-t.png"
+  },
+  "/memes/quotes/it-didn't-start-with-gas.png": {
+    "type": "image/png",
+    "etag": "\"1702ad-602hmShvn0Tr9Cm6KgMSLFgUGKI\"",
+    "mtime": "2025-06-24T17:15:27.060Z",
+    "size": 1508013,
+    "path": "../public/memes/quotes/it-didn't-start-with-gas.png"
+  },
+  "/memes/quotes/it-is-not-the-truth-of-ma.png": {
+    "type": "image/png",
+    "etag": "\"5b6e2-D9GILsoOqnP1JJR91wMSKYFWRMM\"",
+    "mtime": "2025-06-24T17:15:27.052Z",
+    "size": 374498,
+    "path": "../public/memes/quotes/it-is-not-the-truth-of-ma.png"
+  },
+  "/memes/quotes/it-is-simply-no-longer-po.png": {
+    "type": "image/png",
+    "etag": "\"342a3-rUYjryQySKV0gmau2adugznIMAM\"",
+    "mtime": "2025-06-24T17:15:27.051Z",
+    "size": 213667,
+    "path": "../public/memes/quotes/it-is-simply-no-longer-po.png"
+  },
+  "/memes/quotes/it-just-continues-to-be-o.png": {
+    "type": "image/png",
+    "etag": "\"3d795-bP5kfAy3oQALtvwaCbSqTn86CJQ\"",
+    "mtime": "2025-06-24T17:15:27.052Z",
+    "size": 251797,
+    "path": "../public/memes/quotes/it-just-continues-to-be-o.png"
+  },
+  "/memes/quotes/liberals-desperately-need.png": {
+    "type": "image/png",
+    "etag": "\"2f416-h3TWF65Tw0iPWee9INQVRcHQpqU\"",
+    "mtime": "2025-06-24T17:15:27.058Z",
+    "size": 193558,
+    "path": "../public/memes/quotes/liberals-desperately-need.png"
+  },
+  "/memes/quotes/live-a-good-life.-if-ther.png": {
+    "type": "image/png",
+    "etag": "\"d87f2-WoGcW5e5KF59W91Aqcrx9R773Tk\"",
+    "mtime": "2025-06-24T17:15:27.060Z",
+    "size": 886770,
+    "path": "../public/memes/quotes/live-a-good-life.-if-ther.png"
+  },
+  "/memes/quotes/marxism-is-the-most-destr.png": {
+    "type": "image/png",
+    "etag": "\"4dd18-T2uDZa7F+rB0kIAiJ60SA2gDSuM\"",
+    "mtime": "2025-06-24T17:15:27.058Z",
+    "size": 318744,
+    "path": "../public/memes/quotes/marxism-is-the-most-destr.png"
+  },
+  "/memes/quotes/not-to-have-a-correct-pol.png": {
+    "type": "image/png",
+    "etag": "\"56b4d-goA3wN6BDd1krFJ8OXuK6tPfYLo\"",
+    "mtime": "2025-06-24T17:15:27.058Z",
+    "size": 355149,
+    "path": "../public/memes/quotes/not-to-have-a-correct-pol.png"
+  },
+  "/memes/quotes/now-i-get-it.-when-they-s.png": {
+    "type": "image/png",
+    "etag": "\"13b6e7-USehbSwrVbyBSwXfRTXSNb5hIvc\"",
+    "mtime": "2025-06-24T17:15:27.067Z",
+    "size": 1292007,
+    "path": "../public/memes/quotes/now-i-get-it.-when-they-s.png"
+  },
+  "/memes/quotes/of-all-tyrannies,-a-tyran.png": {
+    "type": "image/png",
+    "etag": "\"39dc4-ghDnIeeMPwKzFjIl08inShQGyFg\"",
+    "mtime": "2025-06-24T17:15:27.060Z",
+    "size": 236996,
+    "path": "../public/memes/quotes/of-all-tyrannies,-a-tyran.png"
+  },
+  "/memes/quotes/people-who-wonder-whether.png": {
+    "type": "image/png",
+    "etag": "\"4fa2b-JNl7IMBsvaGjaz9Jodk2KY08DB4\"",
+    "mtime": "2025-06-24T17:15:27.059Z",
+    "size": 326187,
+    "path": "../public/memes/quotes/people-who-wonder-whether.png"
+  },
+  "/memes/quotes/political-correctness-is.png": {
+    "type": "image/png",
+    "etag": "\"5b297-G+Fe5d1QD8IezBU9dyDe3Ftd2+Q\"",
+    "mtime": "2025-06-24T17:15:27.066Z",
+    "size": 373399,
+    "path": "../public/memes/quotes/political-correctness-is.png"
+  },
+  "/memes/quotes/prior-to-capitalism,-the.png": {
+    "type": "image/png",
+    "etag": "\"3efa0-OATKides2ilyLfkXjR+DmVPL6v4\"",
+    "mtime": "2025-06-24T17:15:27.068Z",
+    "size": 257952,
+    "path": "../public/memes/quotes/prior-to-capitalism,-the.png"
+  },
+  "/memes/quotes/real-socialism-has-neve.png": {
+    "type": "image/png",
+    "etag": "\"80f3e-9Y+0cG33x98y/bQjAnCg2b+vdj8\"",
+    "mtime": "2025-06-24T17:15:27.066Z",
+    "size": 528190,
+    "path": "../public/memes/quotes/real-socialism-has-neve.png"
+  },
+  "/memes/quotes/religion-is-regarded-by-t.png": {
+    "type": "image/png",
+    "etag": "\"269e4-yUKAFwTQ7zLk95jJdljIk/akFD0\"",
+    "mtime": "2025-06-24T17:15:27.067Z",
+    "size": 158180,
+    "path": "../public/memes/quotes/religion-is-regarded-by-t.png"
+  },
+  "/memes/quotes/seneca-quote-religion.png": {
+    "type": "image/png",
+    "etag": "\"21470-2fV9X+SV84+88D/CGXGcwZ56fSc\"",
+    "mtime": "2025-06-24T17:15:27.066Z",
+    "size": 136304,
+    "path": "../public/memes/quotes/seneca-quote-religion.png"
+  },
+  "/memes/quotes/socialism-irons-out-the-b.png": {
+    "type": "image/png",
+    "etag": "\"3a7bf-Rb1oobzFGygWiWj3tRkLHsuwdwg\"",
+    "mtime": "2025-06-24T17:15:27.068Z",
+    "size": 239551,
+    "path": "../public/memes/quotes/socialism-irons-out-the-b.png"
+  },
+  "/memes/quotes/socialism-irons-out-the-boom-bust-cycle.png": {
+    "type": "image/png",
+    "etag": "\"3a758-777SlZVldGEj0609nrIqH5oTFiE\"",
+    "mtime": "2025-06-24T17:15:27.067Z",
+    "size": 239448,
+    "path": "../public/memes/quotes/socialism-irons-out-the-boom-bust-cycle.png"
+  },
+  "/memes/quotes/socialism-will-triumph-fi.png": {
+    "type": "image/png",
+    "etag": "\"670bc-uK+B+t5rsWy+cIy26Oo6vIkLNLc\"",
+    "mtime": "2025-06-24T17:15:27.069Z",
+    "size": 422076,
+    "path": "../public/memes/quotes/socialism-will-triumph-fi.png"
+  },
+  "/memes/quotes/some-ideas-are-so-stupid.png": {
+    "type": "image/png",
+    "etag": "\"62c7e-TlEfXQO5N8NkZnzJy9MJgW63Org\"",
+    "mtime": "2025-06-24T17:15:27.069Z",
+    "size": 404606,
+    "path": "../public/memes/quotes/some-ideas-are-so-stupid.png"
+  },
+  "/memes/quotes/step-1-prepare-the-enviro.png": {
+    "type": "image/png",
+    "etag": "\"556ff-NbR98CtYfzjdTZb51ixFpvANfZE\"",
+    "mtime": "2025-06-24T17:15:27.069Z",
+    "size": 349951,
+    "path": "../public/memes/quotes/step-1-prepare-the-enviro.png"
+  },
+  "/memes/quotes/supreme-court-on-free-speech.png": {
+    "type": "image/png",
+    "etag": "\"21617-2zpL12jkvYeyCWg69TJtO/e1nHI\"",
+    "mtime": "2025-06-24T17:15:27.072Z",
+    "size": 136727,
+    "path": "../public/memes/quotes/supreme-court-on-free-speech.png"
+  },
+  "/memes/quotes/that-men-do-not-learn-ver.png": {
+    "type": "image/png",
+    "etag": "\"5b375-89QuUIFrQ1PpX1gkAzwawBd0nMg\"",
+    "mtime": "2025-06-24T17:15:27.074Z",
+    "size": 373621,
+    "path": "../public/memes/quotes/that-men-do-not-learn-ver.png"
+  },
+  "/memes/quotes/the-advantage-of-a-free-m.png": {
+    "type": "image/png",
+    "etag": "\"83016-m20+R55vdlXxqvzv3iBTj/VE3tA\"",
+    "mtime": "2025-06-24T17:15:27.077Z",
+    "size": 536598,
+    "path": "../public/memes/quotes/the-advantage-of-a-free-m.png"
+  },
+  "/memes/quotes/the-appeal-of-political-c.png": {
+    "type": "image/png",
+    "etag": "\"33c2d-qfkXewY9vjzWjTbzDyfsWSVwOww\"",
+    "mtime": "2025-06-24T17:15:27.069Z",
+    "size": 212013,
+    "path": "../public/memes/quotes/the-appeal-of-political-c.png"
+  },
+  "/memes/quotes/the-basic-tool-for-the-ma.png": {
+    "type": "image/png",
+    "etag": "\"39514-L6qS9YPG3/IMjE91KuTuF2aVX/A\"",
+    "mtime": "2025-06-24T17:15:27.070Z",
+    "size": 234772,
+    "path": "../public/memes/quotes/the-basic-tool-for-the-ma.png"
+  },
+  "/memes/quotes/the-black-family-survived.png": {
+    "type": "image/png",
+    "etag": "\"2cf74-eaHG6hHJNbUknCAb5b+W/I82CIo\"",
+    "mtime": "2025-06-24T17:15:27.074Z",
+    "size": 184180,
+    "path": "../public/memes/quotes/the-black-family-survived.png"
+  },
+  "/memes/quotes/the-cosmos-is-full-beyon.png": {
+    "type": "image/png",
+    "etag": "\"a8c0a-DTibA8aUomUTDCPhUgWfpH5OMhU\"",
+    "mtime": "2025-06-24T17:15:27.075Z",
+    "size": 691210,
+    "path": "../public/memes/quotes/the-cosmos-is-full-beyon.png"
+  },
+  "/memes/quotes/the-curious-task-of-econoa.png": {
+    "type": "image/png",
+    "etag": "\"5633d-N0u+aZ8VpXBVlYRkGDBnPk6YcYg\"",
+    "mtime": "2025-06-24T17:15:27.074Z",
+    "size": 353085,
+    "path": "../public/memes/quotes/the-curious-task-of-econoa.png"
+  },
+  "/memes/quotes/the-curious-task-of-econob.png": {
+    "type": "image/png",
+    "etag": "\"9b4e0-/Lb/47bVmCXJSKqqweUoikJEzlk\"",
+    "mtime": "2025-06-24T17:15:27.078Z",
+    "size": 636128,
+    "path": "../public/memes/quotes/the-curious-task-of-econob.png"
+  },
+  "/memes/quotes/the-democrat-party-has-de.png": {
+    "type": "image/png",
+    "etag": "\"91fee-PPxEoyIYIWQm/+AK0HhrGT9jJS4\"",
+    "mtime": "2025-06-24T17:15:27.078Z",
+    "size": 597998,
+    "path": "../public/memes/quotes/the-democrat-party-has-de.png"
+  },
+  "/memes/quotes/the-fatal-conceit--the-er.png": {
+    "type": "image/png",
+    "etag": "\"241d1-cvVtVfAsfybgQa3ARtnoxQifspM\"",
+    "mtime": "2025-06-24T17:15:27.076Z",
+    "size": 147921,
+    "path": "../public/memes/quotes/the-fatal-conceit--the-er.png"
+  },
+  "/memes/quotes/the-greatest-enemy-of-the.png": {
+    "type": "image/png",
+    "etag": "\"c97df-gUdQ4irF1d6LxR2sQHEDCMk2Ea8\"",
+    "mtime": "2025-06-24T17:15:27.078Z",
+    "size": 825311,
+    "path": "../public/memes/quotes/the-greatest-enemy-of-the.png"
+  },
+  "/memes/quotes/the-limits-of-tyrants-are.png": {
+    "type": "image/png",
+    "etag": "\"538aa-MOtcJrFRibskPU2vXsrFoKF1GRk\"",
+    "mtime": "2025-06-24T17:15:27.080Z",
+    "size": 342186,
+    "path": "../public/memes/quotes/the-limits-of-tyrants-are.png"
+  },
+  "/memes/quotes/the-middle-east-bernard_l.png": {
+    "type": "image/png",
+    "etag": "\"21f5d-dcT5TXpB1eh0VDgMwp2qFjVA0dc\"",
+    "mtime": "2025-06-24T17:15:27.082Z",
+    "size": 139101,
+    "path": "../public/memes/quotes/the-middle-east-bernard_l.png"
+  },
+  "/memes/quotes/the-people-will-believe-w.png": {
+    "type": "image/png",
+    "etag": "\"89c6a-SsbwnBgrisomDhKWwCK0GK/FX5M\"",
+    "mtime": "2025-06-24T17:15:27.083Z",
+    "size": 564330,
+    "path": "../public/memes/quotes/the-people-will-believe-w.png"
+  },
+  "/memes/quotes/the-purpose-of-propaganda.png": {
+    "type": "image/png",
+    "etag": "\"3670d-WTXCiXnPT1li69NQPbI0TN98knc\"",
+    "mtime": "2025-06-24T17:15:27.082Z",
+    "size": 222989,
+    "path": "../public/memes/quotes/the-purpose-of-propaganda.png"
+  },
+  "/memes/quotes/the-reason-you-don't-know.png": {
+    "type": "image/png",
+    "etag": "\"6c7ae-EJMrmvdJYUXhauYbOaDIzv/BoLQ\"",
+    "mtime": "2025-06-24T17:15:27.085Z",
+    "size": 444334,
+    "path": "../public/memes/quotes/the-reason-you-don't-know.png"
+  },
+  "/memes/quotes/the-trouble-with-our-libe.png": {
+    "type": "image/png",
+    "etag": "\"18e90e-rGFqfN5WVMr3yfNp6iVz+pc7sE4\"",
+    "mtime": "2025-06-24T17:15:27.086Z",
+    "size": 1632526,
+    "path": "../public/memes/quotes/the-trouble-with-our-libe.png"
+  },
+  "/memes/quotes/there's-a-word-for-people.png": {
+    "type": "image/png",
+    "etag": "\"dea51-Wus+wMHweJB7HAVggwzNkC9w2/I\"",
+    "mtime": "2025-06-24T17:15:27.084Z",
+    "size": 911953,
+    "path": "../public/memes/quotes/there's-a-word-for-people.png"
+  },
+  "/memes/quotes/there's-simply-no-polite.png": {
+    "type": "image/png",
+    "etag": "\"7c200-hcXO4qpIQW5RSpCVl8km4m3tjGM\"",
+    "mtime": "2025-06-24T17:15:27.089Z",
+    "size": 508416,
+    "path": "../public/memes/quotes/there's-simply-no-polite.png"
+  },
+  "/memes/quotes/there-is-all-the-differen.png": {
+    "type": "image/png",
+    "etag": "\"1c7c2-ZnlK4jWOmJMvTUMYMtsB5UpTqok\"",
+    "mtime": "2025-06-24T17:15:27.085Z",
+    "size": 116674,
+    "path": "../public/memes/quotes/there-is-all-the-differen.png"
+  },
+  "/memes/quotes/there-is-no-swifter-route.png": {
+    "type": "image/png",
+    "etag": "\"4d55f-Rc+cZ63+BRMZcVEZB5N90+6AY0M\"",
+    "mtime": "2025-06-24T17:15:27.083Z",
+    "size": 316767,
+    "path": "../public/memes/quotes/there-is-no-swifter-route.png"
+  },
+  "/memes/quotes/we-didn't-love-freedom-en.png": {
+    "type": "image/png",
+    "etag": "\"26664-EzwtXGM6fC7bEN2AaYPG5WYrhcY\"",
+    "mtime": "2025-06-24T17:15:27.089Z",
+    "size": 157284,
+    "path": "../public/memes/quotes/we-didn't-love-freedom-en.png"
+  },
+  "/memes/quotes/we-in-america-have-learne.png": {
+    "type": "image/png",
+    "etag": "\"6c77a-4R5ujP471Tww1BLwm1P8Z2hAY28\"",
+    "mtime": "2025-06-24T17:15:27.092Z",
+    "size": 444282,
+    "path": "../public/memes/quotes/we-in-america-have-learne.png"
+  },
+  "/memes/quotes/we-know-they-are-lying-t.png": {
+    "type": "image/png",
+    "etag": "\"27c0e-uazf+8Y5jkcl5O/p9XLg+miokGU\"",
+    "mtime": "2025-06-24T17:15:27.095Z",
+    "size": 162830,
+    "path": "../public/memes/quotes/we-know-they-are-lying-t.png"
+  },
+  "/memes/quotes/we-must-reject-the-idea-t.png": {
+    "type": "image/png",
+    "etag": "\"c7b72-DNobh8Iqd1e2+kt1hdISTB9qmSc\"",
+    "mtime": "2025-06-24T17:15:27.090Z",
+    "size": 818034,
+    "path": "../public/memes/quotes/we-must-reject-the-idea-t.png"
+  },
+  "/memes/quotes/when-young-people-want-to.png": {
+    "type": "image/png",
+    "etag": "\"c455f-Ex/a/Rwc2NVuBk6vgyG6ngspfrc\"",
+    "mtime": "2025-06-24T17:15:27.090Z",
+    "size": 804191,
+    "path": "../public/memes/quotes/when-young-people-want-to.png"
+  },
+  "/memes/quotes/white-liberals-are-the-mo.png": {
+    "type": "image/png",
+    "etag": "\"2d769-lw+lFi+UAcU2+MzoaZ9C8WRVAtU\"",
+    "mtime": "2025-06-24T17:15:27.090Z",
+    "size": 186217,
+    "path": "../public/memes/quotes/white-liberals-are-the-mo.png"
+  },
+  "/memes/quotes/young-people-are-told-at.png": {
+    "type": "image/png",
+    "etag": "\"a5859-bDX70Kriud+KOL0GNdcXvW6kOLE\"",
+    "mtime": "2025-06-24T17:15:27.095Z",
+    "size": 677977,
+    "path": "../public/memes/quotes/young-people-are-told-at.png"
+  },
+  "/memes/woke-insanity/democrat-savior-complex.png": {
+    "type": "image/png",
+    "etag": "\"141fc8-ocAwUc4wTe3lRBirYMwZa5UH1zA\"",
+    "mtime": "2025-06-24T17:15:26.773Z",
+    "size": 1318856,
+    "path": "../public/memes/woke-insanity/democrat-savior-complex.png"
+  },
+  "/memes/woke-insanity/man-pregnant.png": {
+    "type": "image/png",
+    "etag": "\"77103-fzT3l3qHNbch0voFcmD+GjRgaYI\"",
+    "mtime": "2025-06-24T17:15:27.356Z",
+    "size": 487683,
+    "path": "../public/memes/woke-insanity/man-pregnant.png"
+  },
+  "/_nuxt/builds/latest.json": {
+    "type": "application/json",
+    "etag": "\"47-9VJ8YOWZHfunfGTIA0zYlbXeUiI\"",
+    "mtime": "2025-06-24T17:15:26.703Z",
+    "size": 71,
+    "path": "../public/_nuxt/builds/latest.json"
+  },
+  "/memes/thomas-sowell/.DS_Store": {
+    "type": "text/plain; charset=utf-8",
+    "etag": "\"4804-/S698SoKhred3NItBFUaOlpOdZ4\"",
+    "mtime": "2025-06-24T17:15:26.771Z",
+    "size": 18436,
+    "path": "../public/memes/thomas-sowell/.DS_Store"
+  },
+  "/memes/thomas-sowell/More-whites-were-brought-as-slaves-to-North-Africa-than.png": {
+    "type": "image/png",
+    "etag": "\"ac74d-urFY5J4Qg+njgxb7C/3szOa4/bE\"",
+    "mtime": "2025-06-24T17:15:27.279Z",
+    "size": 706381,
+    "path": "../public/memes/thomas-sowell/More-whites-were-brought-as-slaves-to-North-Africa-than.png"
+  },
+  "/memes/thomas-sowell/activism-is-a-way-for-useless-people-to-feel.png": {
+    "type": "image/png",
+    "etag": "\"16c597-lytaGwne9bDdGIHlraq5N1NRBE8\"",
+    "mtime": "2025-06-24T17:15:27.293Z",
+    "size": 1492375,
+    "path": "../public/memes/thomas-sowell/activism-is-a-way-for-useless-people-to-feel.png"
+  },
+  "/memes/thomas-sowell/blacks-were-not-enslaved-becuase-they-were-black.png": {
+    "type": "image/png",
+    "etag": "\"46963-ig2xNlC4McOwmO0T4N0oIU5ib/A\"",
+    "mtime": "2025-06-24T17:15:27.296Z",
+    "size": 289123,
+    "path": "../public/memes/thomas-sowell/blacks-were-not-enslaved-becuase-they-were-black.png"
+  },
+  "/memes/thomas-sowell/both-free-speech-rights-and-property-rights-belong-legally-to-individuals.png": {
+    "type": "image/png",
+    "etag": "\"1deb7-MD31qimoWcDyc4K4q+PNdiTpzk0\"",
+    "mtime": "2025-06-24T17:15:27.278Z",
+    "size": 122551,
+    "path": "../public/memes/thomas-sowell/both-free-speech-rights-and-property-rights-belong-legally-to-individuals.png"
+  },
+  "/memes/thomas-sowell/despite-a-voluminous-and-often-fervent-literature-on-income-distribution.png": {
+    "type": "image/png",
+    "etag": "\"3b9c5-pqhExilMvRNquxa7ehW2AaDI5HQ\"",
+    "mtime": "2025-06-24T17:15:27.280Z",
+    "size": 244165,
+    "path": "../public/memes/thomas-sowell/despite-a-voluminous-and-often-fervent-literature-on-income-distribution.png"
+  },
+  "/memes/thomas-sowell/during-the-1920s-and-the-early-1930s-fascism-was.png": {
+    "type": "image/png",
+    "etag": "\"e8c6a-2uUkMHWR0AYyNWivV+AAjgvm6v0\"",
+    "mtime": "2025-06-24T17:15:27.285Z",
+    "size": 953450,
+    "path": "../public/memes/thomas-sowell/during-the-1920s-and-the-early-1930s-fascism-was.png"
+  },
+  "/memes/thomas-sowell/europe-is-belatedly-discovering-how-unbelievably-stupid.png": {
+    "type": "image/png",
+    "etag": "\"10e574-CuKPqGneVHL8jjRbvCuJdqwUM4s\"",
+    "mtime": "2025-06-24T17:15:27.284Z",
+    "size": 1107316,
+    "path": "../public/memes/thomas-sowell/europe-is-belatedly-discovering-how-unbelievably-stupid.png"
+  },
+  "/memes/thomas-sowell/guilt-has-so-furtively-stolen-into-many-hearts.png": {
+    "type": "image/png",
+    "etag": "\"4e397-vkzS740LDOqMA+xdfa0hGdu/lXY\"",
+    "mtime": "2025-06-24T17:15:27.285Z",
+    "size": 320407,
+    "path": "../public/memes/thomas-sowell/guilt-has-so-furtively-stolen-into-many-hearts.png"
+  },
+  "/memes/thomas-sowell/hours-may-become-the-first-civilization-destroyed.png": {
+    "type": "image/png",
+    "etag": "\"f9b08-ICmxKmoHwadpENGL0shPXWtbW8Q\"",
+    "mtime": "2025-06-24T17:15:27.285Z",
+    "size": 1022728,
+    "path": "../public/memes/thomas-sowell/hours-may-become-the-first-civilization-destroyed.png"
+  },
+  "/memes/thomas-sowell/i-have-never-understood-why-it-is-agreed-to-want-to-keep-the-money-you-have-earned.png": {
+    "type": "image/png",
+    "etag": "\"5bdfd-CKX+gvEf/Al31IDcU4a446X52tU\"",
+    "mtime": "2025-06-24T17:15:27.293Z",
+    "size": 376317,
+    "path": "../public/memes/thomas-sowell/i-have-never-understood-why-it-is-agreed-to-want-to-keep-the-money-you-have-earned.png"
+  },
+  "/memes/thomas-sowell/if-you-are-not-prepared-to-use-force-to-defend.png": {
+    "type": "image/png",
+    "etag": "\"39a3f-4PapunUzf1aJyu/8/BmgaCPXixU\"",
+    "mtime": "2025-06-24T17:15:27.287Z",
+    "size": 236095,
+    "path": "../public/memes/thomas-sowell/if-you-are-not-prepared-to-use-force-to-defend.png"
+  },
+  "/memes/thomas-sowell/if-you-cannot-achieve-a-quality-of-performance-among-people-born-to-the-same-parents.png": {
+    "type": "image/png",
+    "etag": "\"3b7bf-dOSjoTKvtVAYWJE+13lm7HpTUSM\"",
+    "mtime": "2025-06-24T17:15:27.290Z",
+    "size": 243647,
+    "path": "../public/memes/thomas-sowell/if-you-cannot-achieve-a-quality-of-performance-among-people-born-to-the-same-parents.png"
+  },
+  "/memes/thomas-sowell/if-you-want-to-see-the-poor-remain-poor-generation-after-generation.png": {
+    "type": "image/png",
+    "etag": "\"4956c-VsgIwTa89H58Ku+7P+kv9385A/g\"",
+    "mtime": "2025-06-24T17:15:27.292Z",
+    "size": 300396,
+    "path": "../public/memes/thomas-sowell/if-you-want-to-see-the-poor-remain-poor-generation-after-generation.png"
+  },
+  "/memes/thomas-sowell/immigration-laws-are-the-only-laws.png": {
+    "type": "image/png",
+    "etag": "\"45414-StnkeMrvx96OUZtydCKjf6PleUA\"",
+    "mtime": "2025-06-24T17:15:27.295Z",
+    "size": 283668,
+    "path": "../public/memes/thomas-sowell/immigration-laws-are-the-only-laws.png"
+  },
+  "/memes/thomas-sowell/it-is-fascinating-to-watch-politicians-come-up-with-solutions.png": {
+    "type": "image/png",
+    "etag": "\"a904e-cBM9ncku40kcTi2iaf4HM5WMNnU\"",
+    "mtime": "2025-06-24T17:15:27.296Z",
+    "size": 692302,
+    "path": "../public/memes/thomas-sowell/it-is-fascinating-to-watch-politicians-come-up-with-solutions.png"
+  },
+  "/memes/thomas-sowell/it-is-not-enough-for-us-to-discover-belatedly-that-we-have-been-lied-to.png": {
+    "type": "image/png",
+    "etag": "\"32348-/dy2sdjt0E783jkNUr2ClElUm+o\"",
+    "mtime": "2025-06-24T17:15:27.296Z",
+    "size": 205640,
+    "path": "../public/memes/thomas-sowell/it-is-not-enough-for-us-to-discover-belatedly-that-we-have-been-lied-to.png"
+  },
+  "/memes/thomas-sowell/it-is-usually-futile-to-try-to-talk-facts.png": {
+    "type": "image/png",
+    "etag": "\"19a02-hTgxBg6J1EwIz5vu3sELV4xPoCM\"",
+    "mtime": "2025-06-24T17:15:27.296Z",
+    "size": 104962,
+    "path": "../public/memes/thomas-sowell/it-is-usually-futile-to-try-to-talk-facts.png"
+  },
+  "/memes/thomas-sowell/it-was-thomas-edison-who-brought-us-elctricity.png": {
+    "type": "image/png",
+    "etag": "\"111806-F+CJUzYvIPOU7KfS+949wYu4YIQ\"",
+    "mtime": "2025-06-24T17:15:27.303Z",
+    "size": 1120262,
+    "path": "../public/memes/thomas-sowell/it-was-thomas-edison-who-brought-us-elctricity.png"
+  },
+  "/memes/thomas-sowell/its-amazing-how-fast-people-learn-when-they-are.png": {
+    "type": "image/png",
+    "etag": "\"756e9-53OY3Ikl9+1UH11e/FRHJMg2gyI\"",
+    "mtime": "2025-06-24T17:15:27.301Z",
+    "size": 481001,
+    "path": "../public/memes/thomas-sowell/its-amazing-how-fast-people-learn-when-they-are.png"
+  },
+  "/memes/thomas-sowell/many-on-the-political-left-are-so-entranced-by-the-beauty-of-their-vision.png": {
+    "type": "image/png",
+    "etag": "\"1849dc-yPxjqDz1XvrwbMrROaHLeVsB4xA\"",
+    "mtime": "2025-06-24T17:15:27.305Z",
+    "size": 1591772,
+    "path": "../public/memes/thomas-sowell/many-on-the-political-left-are-so-entranced-by-the-beauty-of-their-vision.png"
+  },
+  "/memes/thomas-sowell/much-of-the-social-history-of-the-western-world-over-the-past-three-decades.png": {
+    "type": "image/png",
+    "etag": "\"3703c-JF+vFUn7ekpG2VyG045kYtzJkio\"",
+    "mtime": "2025-06-24T17:15:27.300Z",
+    "size": 225340,
+    "path": "../public/memes/thomas-sowell/much-of-the-social-history-of-the-western-world-over-the-past-three-decades.png"
+  },
+  "/memes/thomas-sowell/much-of-the-social-history-of-the-western-world.png": {
+    "type": "image/png",
+    "etag": "\"7a1b2-TsmfakMcFFZ7mYi22K529ASQkPc\"",
+    "mtime": "2025-06-24T17:15:27.305Z",
+    "size": 500146,
+    "path": "../public/memes/thomas-sowell/much-of-the-social-history-of-the-western-world.png"
+  },
+  "/memes/thomas-sowell/much-of-what-are-called-social-problems.png": {
+    "type": "image/png",
+    "etag": "\"b2fc2-7VOnq//4hm9xebZMq3CgBAYzC64\"",
+    "mtime": "2025-06-24T17:15:27.305Z",
+    "size": 733122,
+    "path": "../public/memes/thomas-sowell/much-of-what-are-called-social-problems.png"
+  },
+  "/memes/thomas-sowell/multiculturalism-like-the-cast-system.png": {
+    "type": "image/png",
+    "etag": "\"f60c-Uqc1g2jyFjMZc2ixMRKuaH22JX8\"",
+    "mtime": "2025-06-24T17:15:27.305Z",
+    "size": 62988,
+    "path": "../public/memes/thomas-sowell/multiculturalism-like-the-cast-system.png"
+  },
+  "/memes/thomas-sowell/no-matter-how-disastrously-some-policy-has-turned-out.png": {
+    "type": "image/png",
+    "etag": "\"ad8d8-rufXqDLJ2kkfeiw5lmIaa08cmqw\"",
+    "mtime": "2025-06-24T17:15:27.310Z",
+    "size": 710872,
+    "path": "../public/memes/thomas-sowell/no-matter-how-disastrously-some-policy-has-turned-out.png"
+  },
+  "/memes/thomas-sowell/nobody-is-equal-to-anybody.png": {
+    "type": "image/png",
+    "etag": "\"b7b23-4jLq+eM8ne01nzV35L6/d8INUt0\"",
+    "mtime": "2025-06-24T17:15:27.310Z",
+    "size": 752419,
+    "path": "../public/memes/thomas-sowell/nobody-is-equal-to-anybody.png"
+  },
+  "/memes/thomas-sowell/one-of-the-many-services-done-to-young-people-is-giving-them-a-puffed-up-notion.png": {
+    "type": "image/png",
+    "etag": "\"ad658-crv6TcqdY5UNmAdFMA4g0EgqQDA\"",
+    "mtime": "2025-06-24T17:15:27.311Z",
+    "size": 710232,
+    "path": "../public/memes/thomas-sowell/one-of-the-many-services-done-to-young-people-is-giving-them-a-puffed-up-notion.png"
+  },
+  "/memes/thomas-sowell/one-of-the-most-important-reasons-for-studying-history.png": {
+    "type": "image/png",
+    "etag": "\"3c71e-0qyZjLGDB8yR2puyKQDhuhITgCc\"",
+    "mtime": "2025-06-24T17:15:27.310Z",
+    "size": 247582,
+    "path": "../public/memes/thomas-sowell/one-of-the-most-important-reasons-for-studying-history.png"
+  },
+  "/memes/thomas-sowell/one-of-them-many-disservices-done-to-young-people.png": {
+    "type": "image/png",
+    "etag": "\"ad658-crv6TcqdY5UNmAdFMA4g0EgqQDA\"",
+    "mtime": "2025-06-24T17:15:27.310Z",
+    "size": 710232,
+    "path": "../public/memes/thomas-sowell/one-of-them-many-disservices-done-to-young-people.png"
+  },
+  "/memes/thomas-sowell/people-who-are-very-aware-that-they-have-more-knowledge.png": {
+    "type": "image/png",
+    "etag": "\"68b8a-siUiAe7CST3Qz5VlGfW+ZoIs1VM\"",
+    "mtime": "2025-06-24T17:15:27.313Z",
+    "size": 428938,
+    "path": "../public/memes/thomas-sowell/people-who-are-very-aware-that-they-have-more-knowledge.png"
+  },
+  "/memes/thomas-sowell/people-who-pride-themselves-on-their-complexity.png": {
+    "type": "image/png",
+    "etag": "\"40975-ZiuSfWVtWb6hIarNy5KbPh5XWX8\"",
+    "mtime": "2025-06-24T17:15:27.311Z",
+    "size": 264565,
+    "path": "../public/memes/thomas-sowell/people-who-pride-themselves-on-their-complexity.png"
+  },
+  "/memes/thomas-sowell/racism-is-not-dead-but-it-is-on-life-support-kept-alive-by-politicians.png": {
+    "type": "image/png",
+    "etag": "\"5e115-yOEaNc0YDzPWFxSdKMvODuX/ZlA\"",
+    "mtime": "2025-06-24T17:15:27.315Z",
+    "size": 385301,
+    "path": "../public/memes/thomas-sowell/racism-is-not-dead-but-it-is-on-life-support-kept-alive-by-politicians.png"
+  },
+  "/memes/thomas-sowell/schools-exist-for-the-education-of-children.png": {
+    "type": "image/png",
+    "etag": "\"ae533-NjV99VHiCDxQ1A95nhNJdO8eWMw\"",
+    "mtime": "2025-06-24T17:15:27.320Z",
+    "size": 714035,
+    "path": "../public/memes/thomas-sowell/schools-exist-for-the-education-of-children.png"
+  },
+  "/memes/thomas-sowell/since-wealth-is-the-only-thing-that-can-cure-poverty.png": {
+    "type": "image/png",
+    "etag": "\"53891-IXm88X2celAfVZs3YUnNrrk/Z8s\"",
+    "mtime": "2025-06-24T17:15:27.316Z",
+    "size": 342161,
+    "path": "../public/memes/thomas-sowell/since-wealth-is-the-only-thing-that-can-cure-poverty.png"
+  },
+  "/memes/thomas-sowell/socialism-in-general-has-a-record-of-failure-so-blatant.png": {
+    "type": "image/png",
+    "etag": "\"2319b-6Og2gljnP8Mo2Vg4z3MgrbmbTwY\"",
+    "mtime": "2025-06-24T17:15:27.316Z",
+    "size": 143771,
+    "path": "../public/memes/thomas-sowell/socialism-in-general-has-a-record-of-failure-so-blatant.png"
+  },
+  "/memes/thomas-sowell/some-americans-will-never-appreciate.png": {
+    "type": "image/png",
+    "etag": "\"2da8f-0Ls/C9kd1SjrPWNHzZpmBj3LTCc\"",
+    "mtime": "2025-06-24T17:15:27.320Z",
+    "size": 187023,
+    "path": "../public/memes/thomas-sowell/some-americans-will-never-appreciate.png"
+  },
+  "/memes/thomas-sowell/the-assumption-that-spending-more-of-the-taxpayers-money-will.png": {
+    "type": "image/png",
+    "etag": "\"40c60-uV2PmapRmoZ2Kvakt8Owai7XgNQ\"",
+    "mtime": "2025-06-24T17:15:27.316Z",
+    "size": 265312,
+    "path": "../public/memes/thomas-sowell/the-assumption-that-spending-more-of-the-taxpayers-money-will.png"
+  },
+  "/memes/thomas-sowell/the-beauty-of-doing-nothing-is-that-you-can-do-it-perfectly.png": {
+    "type": "image/png",
+    "etag": "\"148bdf-wKf8MO5gDd0yXbgqi9eO9k7OvfM\"",
+    "mtime": "2025-06-24T17:15:27.323Z",
+    "size": 1346527,
+    "path": "../public/memes/thomas-sowell/the-beauty-of-doing-nothing-is-that-you-can-do-it-perfectly.png"
+  },
+  "/memes/thomas-sowell/the-black-family-survived-centuries-of-slavery.png": {
+    "type": "image/png",
+    "etag": "\"b389f-sdzYSVWkc6Bh8hxt5f0/TK7yG08\"",
+    "mtime": "2025-06-24T17:15:27.321Z",
+    "size": 735391,
+    "path": "../public/memes/thomas-sowell/the-black-family-survived-centuries-of-slavery.png"
+  },
+  "/memes/thomas-sowell/the-endlessly-repeated-argument-that-most-americans-are-the-descendants.png": {
+    "type": "image/png",
+    "etag": "\"2b5be-FKASXQmx2ReBMr2rZNM2lLcjMwo\"",
+    "mtime": "2025-06-24T17:15:27.321Z",
+    "size": 177598,
+    "path": "../public/memes/thomas-sowell/the-endlessly-repeated-argument-that-most-americans-are-the-descendants.png"
+  },
+  "/memes/thomas-sowell/the-fact-that-crime-and-poverty-are-correlated-is-automatically-taken-to-mean.png": {
+    "type": "image/png",
+    "etag": "\"b0048-w2S2t3HQQ5D9LOoD1PnbzA1RMfc\"",
+    "mtime": "2025-06-24T17:15:27.327Z",
+    "size": 720968,
+    "path": "../public/memes/thomas-sowell/the-fact-that-crime-and-poverty-are-correlated-is-automatically-taken-to-mean.png"
+  },
+  "/memes/thomas-sowell/the-first-lesson-of-economics-is-scarcity.png": {
+    "type": "image/png",
+    "etag": "\"13e3c-e1wyvv/UikCZ0Yhs0FgsJ0qp8HE\"",
+    "mtime": "2025-06-24T17:15:27.327Z",
+    "size": 81468,
+    "path": "../public/memes/thomas-sowell/the-first-lesson-of-economics-is-scarcity.png"
+  },
+  "/memes/thomas-sowell/the-left-attempts-to-silence-ideas-they-cannot-or-will-not-debate.png": {
+    "type": "image/png",
+    "etag": "\"db953-+sHfHBgtY1AP4q/KifMBJ8zikCg\"",
+    "mtime": "2025-06-24T17:15:27.324Z",
+    "size": 899411,
+    "path": "../public/memes/thomas-sowell/the-left-attempts-to-silence-ideas-they-cannot-or-will-not-debate.png"
+  },
+  "/memes/thomas-sowell/the-left-takes-its-vision-seriously.png": {
+    "type": "image/png",
+    "etag": "\"52e1f-noIJUSPQZH0hnTOeOadG2Thp9Vc\"",
+    "mtime": "2025-06-24T17:15:27.327Z",
+    "size": 339487,
+    "path": "../public/memes/thomas-sowell/the-left-takes-its-vision-seriously.png"
+  },
+  "/memes/thomas-sowell/the-more-i-study-the-history-of-intellectuals-the-more-they-seem-like-a-wrecking-crew.png": {
+    "type": "image/png",
+    "etag": "\"ba0c1-0JMRJyYIsgpPbzCCPd4BzMd7ExM\"",
+    "mtime": "2025-06-24T17:15:27.330Z",
+    "size": 762049,
+    "path": "../public/memes/thomas-sowell/the-more-i-study-the-history-of-intellectuals-the-more-they-seem-like-a-wrecking-crew.png"
+  },
+  "/memes/thomas-sowell/the-most-basic-question-is-not-what-is-best-but-who-shall-decide-what-is-best.png": {
+    "type": "image/png",
+    "etag": "\"ab030-FROVNQVqkEfkOqX4/wM4jfeMBTc\"",
+    "mtime": "2025-06-24T17:15:27.329Z",
+    "size": 700464,
+    "path": "../public/memes/thomas-sowell/the-most-basic-question-is-not-what-is-best-but-who-shall-decide-what-is-best.png"
+  },
+  "/memes/thomas-sowell/the-most-basic-question-is-not-what-is.png": {
+    "type": "image/png",
+    "etag": "\"2f7b7-P/82akYDbz1QB9p5XozhzCxw1AY\"",
+    "mtime": "2025-06-24T17:15:27.329Z",
+    "size": 194487,
+    "path": "../public/memes/thomas-sowell/the-most-basic-question-is-not-what-is.png"
+  },
+  "/memes/thomas-sowell/the-next-time-some-academics-tell-you-how-important-diversity-is-ask.png": {
+    "type": "image/png",
+    "etag": "\"5831d-eEsts+8BhF6fcnBdRq9pHGOQjh8\"",
+    "mtime": "2025-06-24T17:15:27.333Z",
+    "size": 361245,
+    "path": "../public/memes/thomas-sowell/the-next-time-some-academics-tell-you-how-important-diversity-is-ask.png"
+  },
+  "/memes/thomas-sowell/the-purpose-of-politics-is-not-to-solve-problems.png": {
+    "type": "image/png",
+    "etag": "\"271f50-a6WwQ0ygPYiWLTgHtpkQN/5Rwzc\"",
+    "mtime": "2025-06-24T17:15:27.340Z",
+    "size": 2563920,
+    "path": "../public/memes/thomas-sowell/the-purpose-of-politics-is-not-to-solve-problems.png"
+  },
+  "/memes/thomas-sowell/the-real-motives-of-liberals-have-nothing-to-do-with-the-welfare-of-other-people.png": {
+    "type": "image/png",
+    "etag": "\"13b164-Icey4iRrJfbyGNAh2tMCagOJCiY\"",
+    "mtime": "2025-06-24T17:15:27.337Z",
+    "size": 1290596,
+    "path": "../public/memes/thomas-sowell/the-real-motives-of-liberals-have-nothing-to-do-with-the-welfare-of-other-people.png"
+  },
+  "/memes/thomas-sowell/the-reason-so-many-people-misunderstand-so-many-issues.png": {
+    "type": "image/png",
+    "etag": "\"4a7ab-Fgaz6TUYYmxzjYn+McRtmTC754U\"",
+    "mtime": "2025-06-24T17:15:27.335Z",
+    "size": 305067,
+    "path": "../public/memes/thomas-sowell/the-reason-so-many-people-misunderstand-so-many-issues.png"
+  },
+  "/memes/thomas-sowell/there-are-no-solutions-there-are-only-trade-offs.png": {
+    "type": "image/png",
+    "etag": "\"21578-Ow8W8WAx+CgWjVUgGqtWbL7RddY\"",
+    "mtime": "2025-06-24T17:15:27.333Z",
+    "size": 136568,
+    "path": "../public/memes/thomas-sowell/there-are-no-solutions-there-are-only-trade-offs.png"
+  },
+  "/memes/thomas-sowell/there-has-now-been-created-a-world.png": {
+    "type": "image/png",
+    "etag": "\"1b01b-ePKzEufT5xM4mtLUMrgevyCbFOs\"",
+    "mtime": "2025-06-24T17:15:27.336Z",
+    "size": 110619,
+    "path": "../public/memes/thomas-sowell/there-has-now-been-created-a-world.png"
+  },
+  "/memes/thomas-sowell/thomas-sowell-discrimination-and-disparities.png": {
+    "type": "image/png",
+    "etag": "\"228860-VBudHJI0TDQDu+z1Qjqb8qOSYEE\"",
+    "mtime": "2025-06-24T17:15:27.339Z",
+    "size": 2263136,
+    "path": "../public/memes/thomas-sowell/thomas-sowell-discrimination-and-disparities.png"
+  },
+  "/memes/thomas-sowell/thomas-sowell-it-was-thomas-edison.png": {
+    "type": "image/png",
+    "etag": "\"7aeb4-CXkhvZvbjh/XVpP7AJT9SCNXK3c\"",
+    "mtime": "2025-06-24T17:15:27.340Z",
+    "size": 503476,
+    "path": "../public/memes/thomas-sowell/thomas-sowell-it-was-thomas-edison.png"
+  },
+  "/memes/thomas-sowell/thomas-sowell-quote-freedom-unlikely-to-be-lost.png": {
+    "type": "image/png",
+    "etag": "\"89457-aYdg+n8z727ldU7FjgEOWBkPn5Q\"",
+    "mtime": "2025-06-24T17:15:27.340Z",
+    "size": 562263,
+    "path": "../public/memes/thomas-sowell/thomas-sowell-quote-freedom-unlikely-to-be-lost.png"
+  },
+  "/memes/thomas-sowell/thomas-sowell-sexual-activity-vs-economic-activity.png": {
+    "type": "image/png",
+    "etag": "\"5bc78-uweHnNn7z4wZ4Yh34i4kQnhMot8\"",
+    "mtime": "2025-06-24T17:15:27.344Z",
+    "size": 375928,
+    "path": "../public/memes/thomas-sowell/thomas-sowell-sexual-activity-vs-economic-activity.png"
+  },
+  "/memes/thomas-sowell/too-much-of-what-is-called-education.png": {
+    "type": "image/png",
+    "etag": "\"23ba4-PDS7f8VCgX3w9BBrdi6I5utJK6Q\"",
+    "mtime": "2025-06-24T17:15:27.346Z",
+    "size": 146340,
+    "path": "../public/memes/thomas-sowell/too-much-of-what-is-called-education.png"
+  },
+  "/memes/thomas-sowell/we-are-a-nation-of-immigrants-we-are-constantly-reminded.png": {
+    "type": "image/png",
+    "etag": "\"3429a-9oI/+kuEq2H87EmZwNs+oA4FCiY\"",
+    "mtime": "2025-06-24T17:15:27.346Z",
+    "size": 213658,
+    "path": "../public/memes/thomas-sowell/we-are-a-nation-of-immigrants-we-are-constantly-reminded.png"
+  },
+  "/memes/thomas-sowell/we-seem-to-be-closer-and-closer-to-a-situation-where-nobody-is-responsible.png": {
+    "type": "image/png",
+    "etag": "\"127439-kC2q5uayBG+ouwntfLcfsFNI/ys\"",
+    "mtime": "2025-06-24T17:15:27.347Z",
+    "size": 1209401,
+    "path": "../public/memes/thomas-sowell/we-seem-to-be-closer-and-closer-to-a-situation-where-nobody-is-responsible.png"
+  },
+  "/memes/thomas-sowell/what-do-you-call-it-when-someone-steals-money-secretly.png": {
+    "type": "image/png",
+    "etag": "\"91b5a-XqHIaGFBs711rIX1JdTkIWveFOo\"",
+    "mtime": "2025-06-24T17:15:27.348Z",
+    "size": 596826,
+    "path": "../public/memes/thomas-sowell/what-do-you-call-it-when-someone-steals-money-secretly.png"
+  },
+  "/memes/thomas-sowell/what-do-you-replace-a-fire-with-thomas-sowell.png": {
+    "type": "image/png",
+    "etag": "\"2c363-kbkmwAd6Vr5kQCwPGRv5Dd2fJyI\"",
+    "mtime": "2025-06-24T17:15:27.346Z",
+    "size": 181091,
+    "path": "../public/memes/thomas-sowell/what-do-you-replace-a-fire-with-thomas-sowell.png"
+  },
+  "/memes/thomas-sowell/what-exactly-is-your-fair-share-of-what-someone-else-has-worked-for.png": {
+    "type": "image/png",
+    "etag": "\"42518-HTCsdztY/6HqcJlYMAqIqXT2/QA\"",
+    "mtime": "2025-06-24T17:15:27.348Z",
+    "size": 271640,
+    "path": "../public/memes/thomas-sowell/what-exactly-is-your-fair-share-of-what-someone-else-has-worked-for.png"
+  },
+  "/memes/thomas-sowell/what-multiculturalism-boils-down-to.png": {
+    "type": "image/png",
+    "etag": "\"170b91-+jC+wNEXBagytlZOnlwjvbrWy9s\"",
+    "mtime": "2025-06-24T17:15:27.350Z",
+    "size": 1510289,
+    "path": "../public/memes/thomas-sowell/what-multiculturalism-boils-down-to.png"
+  },
+  "/memes/thomas-sowell/when-i-was-growing-up-we-were-taught.png": {
+    "type": "image/png",
+    "etag": "\"16ac3b-zqV5a6S4GKnEOCA5q/x/iFzH7fQ\"",
+    "mtime": "2025-06-24T17:15:27.355Z",
+    "size": 1485883,
+    "path": "../public/memes/thomas-sowell/when-i-was-growing-up-we-were-taught.png"
+  },
+  "/memes/thomas-sowell/when-it-is-proclaimed-that-one-must-become-more.png": {
+    "type": "image/png",
+    "etag": "\"cf9dd-ziX3/Q3BD7mBmmNylt85ZWBUtMw\"",
+    "mtime": "2025-06-24T17:15:27.350Z",
+    "size": 850397,
+    "path": "../public/memes/thomas-sowell/when-it-is-proclaimed-that-one-must-become-more.png"
+  },
+  "/memes/thomas-sowell/when-you-import-people-you-import-cultures.png": {
+    "type": "image/png",
+    "etag": "\"884d5-2bMjMHQHhYE2eJrKvDS74/ppmgk\"",
+    "mtime": "2025-06-24T17:15:27.355Z",
+    "size": 558293,
+    "path": "../public/memes/thomas-sowell/when-you-import-people-you-import-cultures.png"
+  },
+  "/memes/thomas-sowell/when-you-want-to-help-people-you-tell-them-the-truth.png": {
+    "type": "image/png",
+    "etag": "\"b7e5f-QnXusVwhr9vXb5OVHG/BlY4+rKg\"",
+    "mtime": "2025-06-24T17:15:27.355Z",
+    "size": 753247,
+    "path": "../public/memes/thomas-sowell/when-you-want-to-help-people-you-tell-them-the-truth.png"
+  },
+  "/memes/thomas-sowell/you-have-to-have-a-sense-of-humor-if-you-follow-politics.png": {
+    "type": "image/png",
+    "etag": "\"39bd3-I3x0FtJ9Yri9vLcR28a4K2WFmbA\"",
+    "mtime": "2025-06-24T17:15:27.355Z",
+    "size": 236499,
+    "path": "../public/memes/thomas-sowell/you-have-to-have-a-sense-of-humor-if-you-follow-politics.png"
+  },
+  "/_nuxt/builds/meta/7cb165d1-813e-4572-b47b-94a093c18167.json": {
+    "type": "application/json",
+    "etag": "\"128-3geRpMJYYFczjtzjykGNAK4GEqo\"",
+    "mtime": "2025-06-24T17:15:26.699Z",
+    "size": 296,
+    "path": "../public/_nuxt/builds/meta/7cb165d1-813e-4572-b47b-94a093c18167.json"
   }
 };
 
@@ -9475,9 +9426,6 @@ function defineRenderHandler(render) {
   });
 }
 
-function baseURL() {
-  return useRuntimeConfig().app.baseURL;
-}
 function buildAssetsDir() {
   return useRuntimeConfig().app.buildAssetsDir;
 }
@@ -9509,7 +9457,7 @@ const _lazy_Id3UyK = () => import('../routes/api/content/search.mjs');
 const _lazy_0n3a19 = () => import('../routes/api/search.mjs');
 const _lazy_vudxzG = () => import('../routes/.well-known/appspecific/com.chrome.devtools.json.mjs');
 const _lazy_XoLYtK = () => import('../routes/well-known.mjs');
-const _lazy_zvwZFb = () => import('../routes/renderer.mjs').then(function (n) { return n.r; });
+const _lazy_zvwZFb = () => import('../routes/renderer.mjs');
 
 const handlers = [
   { route: '', handler: _EkOEB2, lazy: false, middleware: true, method: undefined },
@@ -9722,7 +9670,7 @@ function GracefulShutdown(server, opts) {
   function destroy(socket, force = false) {
     if (socket._isIdle && isShuttingDown || force) {
       socket.destroy();
-      if (socket.server instanceof ft.Server) {
+      if (socket.server instanceof http.Server) {
         delete connections[socket._connectionId];
       } else {
         delete secureConnections[socket._connectionId];
@@ -9938,5 +9886,5 @@ trapUnhandledNodeErrors();
 setupGracefulShutdown(listener, nitroApp);
 const nodeServer = {};
 
-export { getResponseStatus as A, defineRenderHandler as B, publicAssetsURL as C, getRouteRules as D, useNitroApp as E, nodeServer as F, getContext as a, baseURL as b, createError$1 as c, defineEventHandler as d, createHooks as e, executeAsync as f, getQuery as g, hasProtocol as h, isScriptProtocol as i, joinURL as j, withBase as k, destr as l, createRouter$1 as m, defu as n, withTrailingSlash as o, parseQuery as p, withoutTrailingSlash as q, klona as r, sanitizeStatusCode as s, toRouteMatcher as t, defuFn as u, withLeadingSlash as v, withQuery as w, buildAssetsURL as x, useRuntimeConfig as y, getResponseStatusText as z };
+export { getResponseStatusText as a, buildAssetsURL as b, createError$1 as c, defineEventHandler as d, getResponseStatus as e, defineRenderHandler as f, getQuery as g, getRouteRules as h, useNitroApp as i, nodeServer as n, publicAssetsURL as p, useRuntimeConfig as u };
 //# sourceMappingURL=nitro.mjs.map

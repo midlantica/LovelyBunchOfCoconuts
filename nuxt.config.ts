@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxt/content", "nuxt-icon", "@nuxtjs/tailwindcss"],
   css: ["~/assets/css/main.css", "~/assets/css/transitions.css"],
+  ssr: false,
   content: {
     markdown: {
       html: true, // Allow raw HTML tags like <wbr> in markdown
