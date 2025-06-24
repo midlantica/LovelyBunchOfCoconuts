@@ -60,6 +60,12 @@ export default defineNuxtConfig({
     experimental: {
       openAPI: true,
     },
+    prerender: {
+      // Pre-render the homepage
+      routes: ["/"],
+      // Then crawl all the links on the page
+      crawlLinks: true,
+    },
   },
   // Pre-render dynamic routes for content
   generate: {
