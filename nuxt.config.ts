@@ -1,32 +1,24 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxt/content", "nuxt-icon", "@nuxtjs/tailwindcss"],
   css: ["~/assets/css/main.css", "~/assets/css/transitions.css"],
-  target: "static", // Enable static site generation
-  ssr: true, // Enable SSR for pre-rendering content
+  target: "static",
+  ssr: true,
   content: {
     markdown: {
-      html: true, // Allow raw HTML tags like <wbr> in markdown
+      html: true,
       highlight: {
-        // Theme used in all color schemes.
         theme: {
-          // Default theme (same as single string)
           default: "github-light",
-          // Theme used if `html.dark`
           dark: "github-dark",
         },
       },
     },
-    // Ensure content is sourced from the content/ directory
     sources: {
       content: {
         driver: "fs",
         base: "content",
       },
-    },
-    build: {
-      // ...existing code...
     },
   },
   app: {
@@ -54,31 +46,30 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
-    // Add compatibility date for Nitro
-    preset: "netlify", // Optimize for Netlify
+    preset: "netlify",
     compatibilityDate: "2025-06-20",
     experimental: {
       openAPI: true,
     },
     prerender: {
-      // Pre-render the homepage
-      routes: ["/"],
-      // Then crawl all the links on the page
+      routes: (() => {
+        const fs = require("fs")
+        const path = require("path")
+        interface GetSlugs {
+          (dir: string): string[]
+        }
+
+        const getSlugs: GetSlugs = (dir: string): string[] =>
+          fs
+            .readdirSync(path.join(process.cwd(), "content", dir))
+            .filter((f: string) => f.endsWith(".md"))
+            .map((f: string) => `/${dir}/${f.replace(/\.md$/, "")}`)
+        return ["/", ...getSlugs("claims"), ...getSlugs("quotes"), ...getSlugs("memes")]
+      })(),
       crawlLinks: true,
     },
   },
-  // Pre-render dynamic routes for content
   generate: {
-    routes: async () => {
-      const { $content } = require("@nuxt/content")
-      const claims = await $content("claims").fetch()
-      const quotes = await $content("quotes").fetch()
-      const memes = await $content("memes").fetch()
-      return [
-        ...claims.map((item) => `/claims/${item.slug || item._path.split("/").pop()}`),
-        ...quotes.map((item) => `/quotes/${item.slug || item._path.split("/").pop()}`),
-        ...memes.map((item) => `/memes/${item.slug || item._path.split("/").pop()}`),
-      ]
-    },
+    routes: ["/"],
   },
 })
