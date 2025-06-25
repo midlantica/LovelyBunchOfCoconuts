@@ -5,7 +5,8 @@ export default defineNuxtConfig({
   ssr: true,
   content: {
     // Remove the `markdown` nesting and place `highlight` directly under `content`
-    highlighter: {
+    mdc: true,
+    highlight: {
       theme: {
         default: "github-light",
         dark: "github-dark",
