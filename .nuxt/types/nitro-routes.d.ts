@@ -39,6 +39,15 @@ declare module "nitropack/types" {
     '/__nuxt_content/:collection/query': {
       'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxt+content@3.6.1_better-sqlite3@12.1.1_magicast@0.3.5/node_modules/@nuxt/content/dist/runtime/api/query.post').default>>>>
     }
+    '/_openapi.json': {
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/nitropack@2.11.13_better-sqlite3@12.1.1/node_modules/nitropack/dist/runtime/internal/routes/openapi').default>>>>
+    }
+    '/_scalar': {
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/nitropack@2.11.13_better-sqlite3@12.1.1/node_modules/nitropack/dist/runtime/internal/routes/scalar').default>>>>
+    }
+    '/_swagger': {
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/nitropack@2.11.13_better-sqlite3@12.1.1/node_modules/nitropack/dist/runtime/internal/routes/swagger').default>>>>
+    }
   }
 }
 export {}

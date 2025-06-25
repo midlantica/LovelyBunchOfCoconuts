@@ -1,0 +1,1 @@
+export { default } from "file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/@nuxt+vite-builder@3.17.5_@types+node@24.0.4_eslint@9.29.0_jiti@2.4.2__magicast@0.3.5_o_068723928a645a2c07bab8a4f719dd7a/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"
