@@ -4,13 +4,11 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css", "~/assets/css/transitions.css"],
   ssr: true,
   content: {
-    markdown: {
-      html: true,
-      highlight: {
-        theme: {
-          default: "github-light",
-          dark: "github-dark",
-        },
+    // Remove the `markdown` nesting and place `highlight` directly under `content`
+    highlighter: {
+      theme: {
+        default: "github-light",
+        dark: "github-dark",
       },
     },
     sources: {
