@@ -22,7 +22,7 @@
     "nuxt": "^3.17.5",
     "nuxt-icon": "^0.6.10"
   },
-  "packageManager": "pnpm@10.12.2",
+  "packageManager": "pnpm@10.12.3",
   "dependencies": {
     "@nuxtjs/mdc": "^0.17.0",
     "@vue/compiler-sfc": "latest",
