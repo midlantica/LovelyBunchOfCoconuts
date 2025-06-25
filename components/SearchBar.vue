@@ -43,6 +43,7 @@
 
 <script setup>
 import { ref, watch, computed, onMounted, onUnmounted } from "vue"
+import { debounce } from "lodash-es"
 import PillButton from "~/components/PillButton.vue"
 
 const props = defineProps({
@@ -65,33 +66,16 @@ const emit = defineEmits(["update:search", "update:filters"])
 const searchTerm = ref(props.search || "")
 const searchInputRef = ref(null)
 
-const pillClaimCount = computed(() => {
-  // Show the number of claims matching the current search, regardless of pill toggles
-  return props.claimCount ?? 0
-})
-const pillQuoteCount = computed(() => {
-  return props.quoteCount ?? 0
-})
-const pillMemeCount = computed(() => {
-  return props.memeCount ?? 0
-})
+const debouncedEmitSearch = debounce((val) => emit("update:search", val), 300)
+
+const pillClaimCount = computed(() => props.claimCount ?? 0)
+const pillQuoteCount = computed(() => props.quoteCount ?? 0)
+const pillMemeCount = computed(() => props.memeCount ?? 0)
 
 const pills = [
-  {
-    key: "claims",
-    label: "CLAIMS",
-    count: pillClaimCount, // pass the computed ref itself
-  },
-  {
-    key: "quotes",
-    label: "QUOTES",
-    count: pillQuoteCount,
-  },
-  {
-    key: "memes",
-    label: "MEMES",
-    count: pillMemeCount,
-  },
+  { key: "claims", label: "CLAIMS", count: pillClaimCount },
+  { key: "quotes", label: "QUOTES", count: pillQuoteCount },
+  { key: "memes", label: "MEMES", count: pillMemeCount },
 ]
 
 function ensureFilterKeys(obj) {
@@ -104,21 +88,17 @@ function ensureFilterKeys(obj) {
 }
 
 function toggleFilter(key) {
-  // Defensive: always work with a copy
   const filters = ensureFilterKeys(props.filters)
   const keys = Object.keys(filters)
   const onCount = keys.filter((k) => filters[k]).length
+
   if (onCount === keys.length) {
-    // All ON: clicking one turns only it ON
     keys.forEach((k) => (filters[k] = false))
     filters[key] = true
   } else if (onCount === 1 && filters[key]) {
-    // Only one ON and it's clicked: turn all ON
     keys.forEach((k) => (filters[k] = true))
   } else {
-    // Toggle the clicked pill
     filters[key] = !filters[key]
-    // Never allow all OFF
     if (Object.values(filters).every((v) => !v)) {
       filters[key] = true
     }
@@ -133,8 +113,7 @@ function resetFilters() {
 function clearSearch() {
   searchTerm.value = ""
   resetFilters()
-  // Optionally, focus the input again
-  // nextTick(() => searchInputRef.value?.focus())
+  // nextTick(() => searchInputRef.value?.focus()) // optional
 }
 
 function onGlobalKeydown(e) {
@@ -151,44 +130,11 @@ onUnmounted(() => {
 })
 
 watch(searchTerm, (newValue) => {
-  emit("update:search", newValue)
-  if (newValue === "") {
-    resetFilters()
-  }
+  debouncedEmitSearch(newValue)
+  if (newValue === "") resetFilters()
 })
 watch(
   () => props.search,
   (newValue) => (searchTerm.value = newValue)
 )
 </script>
-
-<style scoped>
-.pill-btn {
-  @apply flex justify-between items-center gap-1 bg-slate-800 px-3 pt-[.2rem] pb-[0.3rem] rounded-md w-[100px] font-light text-slate-200 text-sm uppercase tracking-wider transition;
-  font-size: 1rem;
-}
-.pill-label {
-  @apply ml-auto;
-}
-.pill-count {
-  @apply mr-auto;
-}
-.pill-on {
-  @apply opacity-100;
-}
-.pill-off {
-  @apply opacity-80 grayscale;
-}
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 24px;
-  height: 24px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E")
-    no-repeat center;
-  background-size: contain;
-  cursor: pointer;
-  margin-right: 0rem;
-  filter: none;
-}
-</style>

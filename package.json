@@ -5,9 +5,10 @@
   "scripts": {
     "build": "nuxt generate",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "generate": "pnpm run pregenerate && nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "pregenerate": "node scripts/generate-content-json.js",
     "rename-memes": "node scripts/rename-meme-images.js",
     "create-markdown": "node scripts/create-matching-markdown.js",
     "process-subdir": "node scripts/process-meme-subdirectory.js"

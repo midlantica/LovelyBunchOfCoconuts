@@ -53,13 +53,13 @@ export function useContentFeed(
       console.log("Starting content initialization")
 
       // Use fetch API to get content directly from the server API
-      const fetchClaims = fetch("/api/content?type=claims")
+      const fetchClaims = fetch("/content-claims.json")
         .then((res) => res.json())
         .then((data) => (Array.isArray(data) ? data : []))
-      const fetchQuotes = fetch("/api/content?type=quotes")
+      const fetchQuotes = fetch("/content-quotes.json")
         .then((res) => res.json())
         .then((data) => (Array.isArray(data) ? data : []))
-      const fetchMemes = fetch("/api/content?type=memes")
+      const fetchMemes = fetch("/content-memes.json")
         .then((res) => res.json())
         .then((data) => (Array.isArray(data) ? data : []))
 

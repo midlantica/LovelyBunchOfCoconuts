@@ -105,7 +105,7 @@ declare global {
   const useAsyncData: typeof import('../../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.5.1_@types+node@24.0.4_better-sqlite3@12.1.1_db0@0.3.2_be_1740375f8456d40c27ccdff16051e40c/node_modules/nuxt/dist/app/composables/asyncData')['useAsyncData']
   const useAttrs: typeof import('../../node_modules/.pnpm/vue@3.5.17_typescript@5.8.3/node_modules/vue')['useAttrs']
   const useContentCache: typeof import('../../composables/useContentCache')['useContentCache']
-  const useContentFeed: typeof import('../../composables/useContentFeed')['useContentFeed']
+  const useContentFeed: typeof import('../../composables/useContentFeed_Orig')['useContentFeed']
   const useContentNavigation: typeof import('../../composables/useContentNavigation')['useContentNavigation']
   const useCookie: typeof import('../../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.5.1_@types+node@24.0.4_better-sqlite3@12.1.1_db0@0.3.2_be_1740375f8456d40c27ccdff16051e40c/node_modules/nuxt/dist/app/composables/cookie')['useCookie']
   const useCssModule: typeof import('../../node_modules/.pnpm/vue@3.5.17_typescript@5.8.3/node_modules/vue')['useCssModule']
@@ -299,7 +299,7 @@ declare module 'vue' {
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.5.1_@types+node@24.0.4_better-sqlite3@12.1.1_db0@0.3.2_be_1740375f8456d40c27ccdff16051e40c/node_modules/nuxt/dist/app/composables/asyncData')['useAsyncData']>
     readonly useAttrs: UnwrapRef<typeof import('../../node_modules/.pnpm/vue@3.5.17_typescript@5.8.3/node_modules/vue')['useAttrs']>
     readonly useContentCache: UnwrapRef<typeof import('../../composables/useContentCache')['useContentCache']>
-    readonly useContentFeed: UnwrapRef<typeof import('../../composables/useContentFeed')['useContentFeed']>
+    readonly useContentFeed: UnwrapRef<typeof import('../../composables/useContentFeed_Orig')['useContentFeed']>
     readonly useContentNavigation: UnwrapRef<typeof import('../../composables/useContentNavigation')['useContentNavigation']>
     readonly useCookie: UnwrapRef<typeof import('../../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.5.1_@types+node@24.0.4_better-sqlite3@12.1.1_db0@0.3.2_be_1740375f8456d40c27ccdff16051e40c/node_modules/nuxt/dist/app/composables/cookie')['useCookie']>
     readonly useCssModule: UnwrapRef<typeof import('../../node_modules/.pnpm/vue@3.5.17_typescript@5.8.3/node_modules/vue')['useCssModule']>

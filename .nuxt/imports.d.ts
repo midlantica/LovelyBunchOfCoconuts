@@ -29,7 +29,7 @@ export { withCtx, withDirectives, withKeys, withMemo, withModifiers, withScopeId
 export { requestIdleCallback, cancelIdleCallback } from '#app/compat/idle-callback';
 export { setInterval } from '#app/compat/interval';
 export { useContentCache } from '../composables/useContentCache';
-export { useContentFeed } from '../composables/useContentFeed';
+export { useContentFeed } from '../composables/useContentFeed_Orig';
 export { useContentNavigation } from '../composables/useContentNavigation';
 export { useModalLogic } from '../composables/useModalLogic';
 export { useModalSizing } from '../composables/useModalSizing';
