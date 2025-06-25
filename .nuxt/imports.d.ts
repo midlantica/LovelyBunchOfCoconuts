@@ -39,4 +39,5 @@ export { queryCollection, queryCollectionSearchSections, queryCollectionNavigati
 export { flatUnwrap as unwrapSlot } from '../node_modules/.pnpm/@nuxtjs+mdc@0.17.0_magicast@0.3.5/node_modules/@nuxtjs/mdc/dist/runtime/utils/node';
 export { parseMarkdown } from '../node_modules/.pnpm/@nuxtjs+mdc@0.17.0_magicast@0.3.5/node_modules/@nuxtjs/mdc/dist/runtime/parser';
 export { stringifyMarkdown } from '../node_modules/.pnpm/@nuxtjs+mdc@0.17.0_magicast@0.3.5/node_modules/@nuxtjs/mdc/dist/runtime/stringify';
+export { useNuxtDevTools } from '../node_modules/.pnpm/@nuxt+devtools@2.5.0_vite@6.3.5_@types+node@24.0.4_jiti@2.4.2_terser@5.43.1_yaml@2.8.0__vue@3.5.17_typescript@5.8.3_/node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';
 export { definePageMeta } from '../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.5.1_@types+node@24.0.4_better-sqlite3@12.1.1_db0@0.3.2_be_1740375f8456d40c27ccdff16051e40c/node_modules/nuxt/dist/pages/runtime/composables';

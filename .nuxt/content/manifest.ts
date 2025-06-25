@@ -1,6 +1,6 @@
 export const checksums = {
   "claims": "v3.5.0--9TDlm67x4mY6MY2rs85FT0QyP68jSvbhxOOy8-80bf4",
-  "quotes": "v3.5.0--8dpJ9Jk8NwRJQ66YCbB86Xbo1nhz-JNvqogiYf67SDY",
+  "quotes": "v3.5.0--YdDX2AphLssyVFmRQSpusa3OyX_FIVHe8XDKxHGLx-s",
   "memes": "v3.5.0--inThamuldj3MesKG0d8BOFpTzuF4LhHZn5fFyxx2yc0"
 }
 export const checksumsStructure = {

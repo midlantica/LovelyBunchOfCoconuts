@@ -13,10 +13,12 @@ export default defineNuxtConfig({
     },
     sources: {
       content: {
-        driver: "fs",
-        base: "content",
+        documentDriven: true,
       },
     },
+  },
+  build: {
+    transpile: ["~/composables"], // 👈 This is the fix
   },
   app: {
     head: {
@@ -44,7 +46,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: "netlify",
-    compatibilityDate: "2025-06-24",
+    compatibilityDate: "2025-06-25",
     experimental: {
       openAPI: true,
     },
@@ -52,5 +54,8 @@ export default defineNuxtConfig({
       routes: ["/"],
       crawlLinks: false,
     },
+  },
+  alias: {
+    "#content": "./node_modules/@nuxt/content/dist/runtime",
   },
 })
