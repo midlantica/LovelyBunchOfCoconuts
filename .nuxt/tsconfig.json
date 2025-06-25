@@ -98,22 +98,22 @@
         "../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.5.1_@types+node@24.0.4_better-sqlite3@12.1.1_db0@0.3.2_be_1740375f8456d40c27ccdff16051e40c/node_modules/nuxt/dist/app/compat/vue-demi"
       ],
       "#content/components": [
-        "./content/components"
+        "./content/components.ts"
       ],
       "#content/manifest": [
-        "./content/manifest"
+        "./content/manifest.ts"
       ],
       "#mdc-configs": [
-        "./mdc-configs"
+        "./mdc-configs.mjs"
       ],
       "#mdc-highlighter": [
-        "./mdc-highlighter"
+        "./mdc-highlighter.mjs"
       ],
       "#mdc-imports": [
-        "./mdc-imports"
+        "./mdc-imports.mjs"
       ],
       "#icon-collections": [
-        "./icon-collections"
+        "./icon-collections.mjs"
       ],
       "#vue-router": [
         "../node_modules/.pnpm/vue-router@4.5.1_vue@3.5.17_typescript@5.8.3_/node_modules/vue-router"
@@ -125,7 +125,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/dev"
+        "./manifest/meta/8f7ab2f0-6cf8-4632-b02c-a28970fe5e92.json"
       ],
       "#components": [
         "./components"
@@ -205,7 +205,6 @@
     "../node_modules/.pnpm/@nuxt+devtools@2.5.0_vite@6.3.5_@types+node@24.0.4_jiti@2.4.2_terser@5.43.1_yaml@2.8.0__vue@3.5.17_typescript@5.8.3_/node_modules/@nuxt/devtools/runtime/server",
     "../node_modules/.pnpm/@nuxt+devtools@2.5.0_vite@6.3.5_@types+node@24.0.4_jiti@2.4.2_terser@5.43.1_yaml@2.8.0__vue@3.5.17_typescript@5.8.3_/node_modules/@nuxt/devtools/dist/runtime/server",
     "../node_modules/.pnpm/@nuxt+telemetry@2.6.6_magicast@0.3.5/node_modules/@nuxt/telemetry/runtime/server",
-    "../node_modules/.pnpm/@nuxt+telemetry@2.6.6_magicast@0.3.5/node_modules/@nuxt/telemetry/dist/runtime/server",
-    "dev"
+    "../node_modules/.pnpm/@nuxt+telemetry@2.6.6_magicast@0.3.5/node_modules/@nuxt/telemetry/dist/runtime/server"
   ]
 }
