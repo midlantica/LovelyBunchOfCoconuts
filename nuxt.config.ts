@@ -2,7 +2,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxt/content", "nuxt-icon", "@nuxtjs/tailwindcss"],
   css: ["~/assets/css/main.css", "~/assets/css/transitions.css"],
-  target: "static",
   ssr: true,
   content: {
     markdown: {
@@ -55,8 +54,5 @@ export default defineNuxtConfig({
       routes: ["/"],
       crawlLinks: false,
     },
-  },
-  generate: {
-    routes: ["/"],
   },
 })

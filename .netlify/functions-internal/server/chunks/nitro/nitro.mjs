@@ -4035,7 +4035,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "fb9a453e-12c7-4d0a-ae2c-ec6d84264b84",
+    "buildId": "fb22cd89-c7d5-4401-9a46-77e137ecf579",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -5042,7 +5042,7 @@ const _lazy_Id3UyK = () => import('../routes/api/content/search.mjs');
 const _lazy_0n3a19 = () => import('../routes/api/search.mjs');
 const _lazy_vudxzG = () => import('../routes/.well-known/appspecific/com.chrome.devtools.json.mjs');
 const _lazy_XoLYtK = () => import('../routes/well-known.mjs');
-const _lazy_zvwZFb = () => import('../routes/renderer.mjs').then(function (n) { return n.r; });
+const _lazy_IUTpOe = () => import('../routes/renderer.mjs').then(function (n) { return n.r; });
 
 const handlers = [
   { route: '/api/content-item', handler: _lazy_UITgJD, lazy: true, middleware: false, method: undefined },
@@ -5053,11 +5053,11 @@ const handlers = [
   { route: '/api/search', handler: _lazy_0n3a19, lazy: true, middleware: false, method: undefined },
   { route: '/.well-known/appspecific/com.chrome.devtools.json', handler: _lazy_vudxzG, lazy: true, middleware: false, method: undefined },
   { route: '/well-known', handler: _lazy_XoLYtK, lazy: true, middleware: false, method: undefined },
-  { route: '/__nuxt_error', handler: _lazy_zvwZFb, lazy: true, middleware: false, method: undefined },
+  { route: '/__nuxt_error', handler: _lazy_IUTpOe, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: _SxA8c9, lazy: false, middleware: false, method: undefined },
   { route: '/__nuxt_content/:collection/sql_dump.txt', handler: _kc1zkG, lazy: false, middleware: false, method: undefined },
   { route: '/__nuxt_content/:collection/query', handler: _1BCb0a, lazy: false, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_zvwZFb, lazy: true, middleware: false, method: undefined }
+  { route: '/**', handler: _lazy_IUTpOe, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
