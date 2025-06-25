@@ -1,14 +1,7 @@
-[build]
-  command = "pnpm run build"
-  publish = ".output/public"
+  [build]
+    command = "pnpm run build"
+    publish = "dist"
 
-[build.environment]
-  PNPM_FLAGS = "--shamefully-hoist"
-  NODE_VERSION = "18.14.0"
-
-# If you want to force all routes to your app (for SPA fallback, not SSR):
-# Remove this redirect for SSR/serverless Nuxt 3!
-# [[redirects]]
-#   from = "/*"
-#   to = "/index.html"
-#   status = 200
+  [build.environment]
+    PNPM_FLAGS = "--shamefully-hoist"
+    NODE_VERSION = "18.14.0"
