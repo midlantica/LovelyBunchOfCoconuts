@@ -47,7 +47,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: "netlify",
-    compatibilityDate: "2025-06-20",
+    compatibilityDate: "2025-06-24",
     experimental: {
       openAPI: true,
     },
