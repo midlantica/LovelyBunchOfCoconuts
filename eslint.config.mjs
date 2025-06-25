@@ -1,3 +1,4 @@
+// eslint.config.mjs
 import js from "@eslint/js"
 import vue from "eslint-plugin-vue"
 import vueParser from "vue-eslint-parser"
