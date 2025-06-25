@@ -1,0 +1,28 @@
+import { v as vueExports } from "../server.mjs";
+function useNavigation(items, currentSlug, basePath = "") {
+  return vueExports.computed(() => {
+    var _a, _b;
+    if (!items.value || !items.value.length) {
+      console.warn(`🚨 No items found for navigation in ${basePath}`);
+      return { prevSlug: "/", nextSlug: "/" };
+    }
+    const normalizedSlug = String(currentSlug.value || currentSlug).toLowerCase();
+    const index = items.value.findIndex((item) => {
+      const formattedPath = item.path.toLowerCase();
+      return formattedPath === `${basePath}/${normalizedSlug}`;
+    });
+    if (index === -1) {
+      return { prevSlug: "/", nextSlug: "/" };
+    }
+    const prevIndex = index === 0 ? items.value.length - 1 : index - 1;
+    const nextIndex = index === items.value.length - 1 ? 0 : index + 1;
+    return {
+      prevSlug: ((_a = items.value[prevIndex]) == null ? void 0 : _a.path) || "/",
+      nextSlug: ((_b = items.value[nextIndex]) == null ? void 0 : _b.path) || "/"
+    };
+  });
+}
+export {
+  useNavigation as u
+};
+//# sourceMappingURL=useNavigation-_x1YO2TU.js.map
