@@ -1,7 +1,8 @@
-[build]
-  command = "pnpm run build"
-  publish = "dist"
+# netlify.toml
 
-[build.environment]
-  NODE_VERSION = "18.14.0"
-  PNPM_FLAGS = "--shamefully-hoist"
+[build]
+command = "pnpm run build"
+publish = ".output/public"
+
+[functions]
+directory = ".netlify/functions"

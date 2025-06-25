@@ -55,7 +55,4 @@ export default defineNuxtConfig({
       crawlLinks: false,
     },
   },
-  alias: {
-    "#content": "./node_modules/@nuxt/content/dist/runtime",
-  },
 })
