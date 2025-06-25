@@ -1,8 +1,4 @@
-// tsconfig.json
 {
   // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tscfonfig.json",
-  "compilerOptions": {
-    "types": ["@nuxt/content"]
-  }
+  "extends": "./.nuxt/tsconfig.json"
 }

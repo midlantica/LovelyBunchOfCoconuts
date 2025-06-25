@@ -4,7 +4,6 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css", "~/assets/css/transitions.css"],
   ssr: true,
   content: {
-    // Remove the `markdown` nesting and place `highlight` directly under `content`
     mdc: true,
     highlight: {
       theme: {
