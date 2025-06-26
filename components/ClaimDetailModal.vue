@@ -1,3 +1,4 @@
+<!-- Claim de component. -->
 <template>
   <ModalFrame :show="show" @close="close">
     <div class="flex flex-col w-full overflow-y-auto">
@@ -65,7 +66,7 @@ const loadClaim = async () => {
         markdownContent.value = md.render(content)
       }
     } else {
-      error.value = found?.message || "Claim not found"
+      error.value = found?.message || "🚨 Claim not found!"
     }
   } catch (err) {
     error.value = err.message

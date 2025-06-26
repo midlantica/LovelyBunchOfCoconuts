@@ -1,3 +1,4 @@
+<!-- Meme detail component. -->
 <template>
   <ModalFrame :show="show" @close="close" :modalStyle="modalFrameStyle">
     <div v-if="loading" class="flex flex-1 justify-center items-center py-8 text-white text-center">
@@ -49,6 +50,7 @@
                   : 'max-width: 100%; width: 100%; height: auto; display: block; margin: 0; padding: 0; object-fit: contain; object-position: top;'
               "
             />
+            <div v-else class="py-4 text-red-400">🚨 Meme image not found!</div>
           </div>
           <div
             v-if="hasExtraText"
@@ -147,7 +149,7 @@ const loadMeme = async () => {
         markdownContent.value = md.render(content)
       }
     } else {
-      error.value = found?.message || "Meme not found"
+      error.value = found?.message || "🚨 Meme not found!"
     }
   } catch (err) {
     error.value = err.message

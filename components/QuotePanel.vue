@@ -28,7 +28,7 @@
         {{
           quote && quote.headings && quote.headings.length > 0
             ? `&ldquo;${quote.headings[0]}&rdquo;`
-            : "🚨 No content found!"
+            : "🚨 No quote found!"
         }}
       </h2>
       <p

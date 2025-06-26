@@ -51,8 +51,8 @@ export default defineNuxtConfig({
       openAPI: true,
     },
     prerender: {
-      routes: ["/"],
       crawlLinks: false,
+      routes: ["/"],
     },
   },
 })

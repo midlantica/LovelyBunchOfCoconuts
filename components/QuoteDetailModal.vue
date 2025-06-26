@@ -1,3 +1,4 @@
+<!-- Quote detail component -->
 <template>
   <ModalFrame :show="show" @close="close">
     <div v-if="loading" class="flex flex-1 justify-center items-center py-8 text-white text-center">
@@ -104,7 +105,7 @@ const loadQuote = async () => {
         markdownContent.value = md.render(content)
       }
     } else {
-      error.value = found?.message || "Quote not found"
+      error.value = found?.message || "🚨 Quote not found!"
     }
   } catch (err) {
     error.value = err.message
