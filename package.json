@@ -2,6 +2,7 @@
   "name": "wakeupnpc2",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "nuxt generate",
     "dev": "nuxt dev",
