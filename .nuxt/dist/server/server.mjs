@@ -41551,7 +41551,7 @@ const _routes = [
     name: "index",
     path: "/",
     meta: __nuxt_page_meta$2 || {},
-    component: () => import("./_nuxt/index-DAfdpj1i.js")
+    component: () => import("./_nuxt/index-NhvH7kMH.js")
   },
   {
     name: "memes-slug",

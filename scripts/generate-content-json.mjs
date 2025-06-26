@@ -17,15 +17,14 @@ async function walkMarkdownFiles(dir) {
   const entries = await fs.readdir(dir, { withFileTypes: true })
 
   for (const entry of entries) {
-    if (entry.name.startsWith("_")) continue
-
     const fullPath = path.join(dir, entry.name)
+
     if (entry.isDirectory()) {
-      files.push(...(await walkMarkdownFiles(fullPath)))
-    } else if (entry.isFile() && entry.name.endsWith(".md")) {
-      if (!shouldExclude(fullPath)) {
-        files.push(fullPath)
+      if (!entry.name.startsWith("_")) {
+        files.push(...(await walkMarkdownFiles(fullPath)))
       }
+    } else if (entry.isFile() && entry.name.endsWith(".md") && !shouldExclude(fullPath)) {
+      files.push(fullPath)
     }
   }
 
@@ -38,16 +37,40 @@ async function processContent(type) {
 
   const results = await Promise.all(
     files.map(async (file) => {
-      const content = await fs.readFile(file, "utf8")
-      const { data: frontmatter, content: body } = matter(content)
+      const raw = await fs.readFile(file, "utf8")
+      const { data: frontmatter, content: body } = matter(raw)
 
-      const relativePath = "/" + file.replace(baseDir + "/", "").replace(/\.md$/, "")
+      const rel = path.relative(baseDir, file).replace(/\.md$/, "")
+      const slug = rel.split(path.sep).join("/")
+      const _path = `/${type}/${slug}`
 
-      return {
-        _path: "/" + type + "/" + relativePath.split("/").slice(1).join("/"),
+      const item = {
+        _path,
         ...frontmatter,
         body: body.trim() || undefined,
       }
+
+      // Extra metadata for memes
+      if (type === "memes") {
+        if (!item.image) {
+          const match = body.match(/!\[.*?\]\((.*?)\)/)
+          if (match) item.image = match[1]
+        }
+      }
+
+      // Extra metadata for quotes
+      if (type === "quotes") {
+        const lines = body
+          .split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean)
+        const heading = lines.find((l) => l.startsWith("#"))
+        const attribution = lines.find((l, idx) => idx > 0 && !l.startsWith("#"))
+        if (heading) item.quoteText = heading.replace(/^#+\s*/, "")
+        if (attribution) item.attribution = attribution
+      }
+
+      return item
     })
   )
 

@@ -1,4 +1,4 @@
-<!-- Meme detail component. -->
+<!-- components/MemeDetailModal.vue -->
 <template>
   <ModalFrame :show="show" @close="close" :modalStyle="modalFrameStyle">
     <div v-if="loading" class="flex flex-1 justify-center items-center py-8 text-white text-center">
@@ -145,7 +145,11 @@ const loadMeme = async () => {
     if (found && !found.error) {
       meme.value = found
       if (found.body) {
-        let content = found.body.replace(/^---[\s\S]*?---/, "").trim()
+        let content = found.body
+          .replace(/^---[\s\S]*?---/, "") // Remove frontmatter if present
+          .replace(/^!\[.*?\]\(.*?\)\s*/, "") // Remove leading image markdown
+          .trim()
+
         markdownContent.value = md.render(content)
       }
     } else {
