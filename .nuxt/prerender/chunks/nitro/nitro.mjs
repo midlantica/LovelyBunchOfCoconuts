@@ -641,7 +641,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "9941c45a-95ab-4ef7-a2d5-c887f849f336",
+    "buildId": "9e5415ed-6853-4f07-8f77-37c84e168c2d",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -1525,6 +1525,9 @@ function defineRenderHandler(render) {
   });
 }
 
+function baseURL() {
+  return useRuntimeConfig().app.baseURL;
+}
 function buildAssetsDir() {
   return useRuntimeConfig().app.buildAssetsDir;
 }
@@ -1556,7 +1559,7 @@ const _lazy_Id3UyK = () => import('../routes/api/content/search.mjs');
 const _lazy_0n3a19 = () => import('../routes/api/search.mjs');
 const _lazy_vudxzG = () => import('../routes/.well-known/appspecific/com.chrome.devtools.json.mjs');
 const _lazy_XoLYtK = () => import('../routes/well-known.mjs');
-const _lazy_6kTiyW = () => import('../_/renderer.mjs');
+const _lazy_6kTiyW = () => import('../_/renderer.mjs').then(function (n) { return n.r; });
 
 const handlers = [
   { route: '', handler: _qeXqR8, lazy: false, middleware: true, method: undefined },
@@ -1717,5 +1720,5 @@ const localFetch = nitroApp.localFetch;
 const closePrerenderer = () => nitroApp.hooks.callHook("close");
 trapUnhandledNodeErrors();
 
-export { useStorage as a, buildAssetsURL as b, useNitroApp as c, defineRenderHandler as d, closePrerenderer as e, getRouteRules as g, localFetch as l, publicAssetsURL as p, useRuntimeConfig as u };
+export { buildAssetsURL as a, baseURL as b, useStorage as c, defineRenderHandler as d, useNitroApp as e, closePrerenderer as f, getRouteRules as g, localFetch as l, publicAssetsURL as p, useRuntimeConfig as u };
 //# sourceMappingURL=nitro.mjs.map
