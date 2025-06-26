@@ -1,7 +1,0 @@
----
-title: "No society can surely be flourishing"
----
-
-## "No society can surely be flourishing and happy, of which the far greater part of the members are poor and miserable."
-
-Adam Smith

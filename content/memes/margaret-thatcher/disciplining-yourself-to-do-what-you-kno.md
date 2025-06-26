@@ -1,7 +1,0 @@
----
-title: "disciplining-yourself-to-do-what-you-kno"
----
-
-![disciplining-yourself-to-do-what-you-kno](/memes/margaret-thatcher/disciplining-yourself-to-do-what-you-kno.png)
-
-Disciplining Yourself To Do What You Kno
