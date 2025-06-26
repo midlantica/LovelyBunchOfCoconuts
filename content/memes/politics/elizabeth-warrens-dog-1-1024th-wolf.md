@@ -1,0 +1,7 @@
+---
+title: "elizabeth-warrens-dog-1-1024th-wolf"
+---
+
+![elizabeth-warrens-dog-1-1024th-wolf](/memes/politics/elizabeth-warrens-dog-1-1024th-wolf.png)
+
+Elizabeth Warrens Dog 1 1024th Wolf
