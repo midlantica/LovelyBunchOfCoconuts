@@ -1,5 +1,5 @@
 ---
-title: "i-have-never-understood-why-it-is-agreed-to-want-to-keep-the-money-you-have-earned"
+title: 'i-have-never-understood-why-it-is-agreed-to-want-to-keep-the-money-you-have-earned'
 ---
 
 ![i-have-never-understood-why-it-is-agreed-to-want-to-keep-the-money-you-have-earned](/memes/thomas-sowell/i-have-never-understood-why-it-is-agreed-to-want-to-keep-the-money-you-have-earned.png)

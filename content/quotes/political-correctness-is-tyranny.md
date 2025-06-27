@@ -1,5 +1,5 @@
 ---
-title: "Political correctness is tyranny"
+title: 'Political correctness is tyranny'
 ---
 
 ## "Political correctness is tyranny with manners."

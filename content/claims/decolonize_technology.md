@@ -1,7 +1,7 @@
 ---
-title: "Decolonize Technology"
-claim: "Decolonize Technology"
-translation: "Smash the patriarchy with apps."
+title: 'Decolonize Technology'
+claim: 'Decolonize Technology'
+translation: 'Smash the patriarchy with apps.'
 ---
 
 ## "Decolonize Technology"

@@ -1,5 +1,5 @@
 ---
-title: "corporatism-is-not-capitalism"
+title: 'corporatism-is-not-capitalism'
 ---
 
 ![corporatism-is-not-capitalism](/memes/capitalism/corporatism-is-not-capitalism.png)

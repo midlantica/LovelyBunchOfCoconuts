@@ -20,7 +20,8 @@ This folder contains all the meme images displayed on the website.
 For each image you upload here, you must create a corresponding metadata file in the `content/memes/` folder with the same name but a `.md` extension.
 
 For example:
+
 - Image: `public/memes/funny-cat-meme.png`
 - Metadata: `content/memes/funny-cat-meme.md`
 
-See the __ReadMe.md in the `content/memes/` folder for instructions on creating the metadata file.
+See the \_\_ReadMe.md in the `content/memes/` folder for instructions on creating the metadata file.

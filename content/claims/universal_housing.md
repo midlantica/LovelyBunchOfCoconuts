@@ -1,7 +1,7 @@
 ---
-title: "Universal Housing"
-claim: "Universal Housing"
-translation: "The government is your landlord."
+title: 'Universal Housing'
+claim: 'Universal Housing'
+translation: 'The government is your landlord.'
 ---
 
 ## "Universal Housing"

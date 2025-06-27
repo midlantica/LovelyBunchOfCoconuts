@@ -1,7 +1,7 @@
 ---
-title: "Intersectionality"
-claim: "Intersectionality"
-translation: "Oppression Olympics, now with spreadsheets."
+title: 'Intersectionality'
+claim: 'Intersectionality'
+translation: 'Oppression Olympics, now with spreadsheets.'
 ---
 
 ## "Intersectionality"

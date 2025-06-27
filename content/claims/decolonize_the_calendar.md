@@ -1,7 +1,7 @@
 ---
-title: "Decolonize the Calendar"
-claim: "Decolonize the Calendar"
-translation: "Time itself is problematic."
+title: 'Decolonize the Calendar'
+claim: 'Decolonize the Calendar'
+translation: 'Time itself is problematic.'
 ---
 
 ## "Decolonize the Calendar"

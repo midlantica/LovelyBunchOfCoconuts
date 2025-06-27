@@ -1,5 +1,5 @@
 ---
-title: "thomas-sowell-it-was-thomas-edison"
+title: 'thomas-sowell-it-was-thomas-edison'
 ---
 
 ![Meme](/memes/thomas-sowell/thomas-sowell-it-was-thomas-edison.png)

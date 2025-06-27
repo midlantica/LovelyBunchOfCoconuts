@@ -1,7 +1,7 @@
 ---
-title: "Living Wage"
-claim: "Living Wage"
-translation: "Let bureaucrats decide your worth."
+title: 'Living Wage'
+claim: 'Living Wage'
+translation: 'Let bureaucrats decide your worth.'
 ---
 
 ## "Living Wage"

@@ -1,7 +1,7 @@
 ---
-title: "Ban Private Schools"
-claim: "Ban Private Schools"
-translation: "All must suffer equally."
+title: 'Ban Private Schools'
+claim: 'Ban Private Schools'
+translation: 'All must suffer equally.'
 ---
 
 ## "Ban Private Schools"

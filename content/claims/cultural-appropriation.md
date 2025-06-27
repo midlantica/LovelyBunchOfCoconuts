@@ -1,7 +1,7 @@
 ---
-title: "Cultural Appropriation"
-claim: "Cultural Appropriation"
-translation: "Admiring imitation."
+title: 'Cultural Appropriation'
+claim: 'Cultural Appropriation'
+translation: 'Admiring imitation.'
 ---
 
 ## "Cultural Appropriation"

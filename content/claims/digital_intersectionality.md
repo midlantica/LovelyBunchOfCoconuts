@@ -1,7 +1,7 @@
 ---
-title: "Digital Intersectionality"
-claim: "Digital Intersectionality"
-translation: "Oppression scored by algorithm."
+title: 'Digital Intersectionality'
+claim: 'Digital Intersectionality'
+translation: 'Oppression scored by algorithm.'
 ---
 
 ## "Digital Intersectionality"

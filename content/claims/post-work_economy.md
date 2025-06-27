@@ -1,7 +1,7 @@
 ---
-title: "Post-Work Economy"
-claim: "Post-Work Economy"
-translation: "Jobs are oppression."
+title: 'Post-Work Economy'
+claim: 'Post-Work Economy'
+translation: 'Jobs are oppression.'
 ---
 
 ## "Post-Work Economy"

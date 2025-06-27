@@ -10,11 +10,11 @@
 </template>
 
 <script setup>
-// No script needed, emits click
+  // No script needed, emits click
 </script>
 
 <style scoped>
-button {
-  /* Ensures the button overlays the corner and does not affect layout */
-}
+  button {
+    /* Ensures the button overlays the corner and does not affect layout */
+  }
 </style>

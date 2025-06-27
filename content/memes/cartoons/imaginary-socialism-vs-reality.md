@@ -1,5 +1,5 @@
 ---
-title: "imaginary-socialism-vs-reality"
+title: 'imaginary-socialism-vs-reality'
 ---
 
 ![Meme](/memes/capitalism/imaginary-socialism-vs-reality.png)

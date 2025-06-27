@@ -1,7 +1,7 @@
 ---
-title: "No Borders"
-claim: "No Borders"
-translation: "No country."
+title: 'No Borders'
+claim: 'No Borders'
+translation: 'No country.'
 ---
 
 ## "No Borders"

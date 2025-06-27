@@ -11,7 +11,8 @@
     "postinstall": "nuxt prepare",
     "rename-memes": "node scripts/rename-meme-images.js",
     "create-markdown": "node scripts/create-matching-markdown.js",
-    "process-subdir": "node scripts/process-meme-subdirectory.js"
+    "process-subdir": "node scripts/process-meme-subdirectory.js",
+    "format": "prettier --write \"**/*.{vue,js,ts,html,css,scss,md}\""
   },
   "devDependencies": {
     "@nuxt/content": "^3.6.1",
@@ -23,6 +24,7 @@
     "esbuild": "^0.19.12",
     "nuxt": "^3.17.5",
     "nuxt-icon": "^0.6.10",
+    "prettier": "^3.6.2",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "packageManager": "pnpm@10.12.3",

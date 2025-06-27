@@ -1,5 +1,5 @@
 ---
-title: "garbage-for-your-body-msm-garbage-for-yo"
+title: 'garbage-for-your-body-msm-garbage-for-yo'
 ---
 
 ![garbage-for-your-body-msm-garbage-for-yo](/memes/politics/garbage-for-your-body-msm-garbage-for-yo.png)

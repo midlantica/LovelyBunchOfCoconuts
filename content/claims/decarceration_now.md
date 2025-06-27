@@ -1,7 +1,7 @@
 ---
-title: "Decarceration Now"
-claim: "Decarceration Now"
-translation: "Let criminals walk free—justice!"
+title: 'Decarceration Now'
+claim: 'Decarceration Now'
+translation: 'Let criminals walk free—justice!'
 ---
 
 ## "Decarceration Now"

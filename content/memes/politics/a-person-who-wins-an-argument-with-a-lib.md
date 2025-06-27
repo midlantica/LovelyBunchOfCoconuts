@@ -1,5 +1,5 @@
 ---
-title: "a-person-who-wins-an-argument-with-a-lib"
+title: 'a-person-who-wins-an-argument-with-a-lib'
 ---
 
 ![a-person-who-wins-an-argument-with-a-lib](/memes/politics/a-person-who-wins-an-argument-with-a-lib.png)

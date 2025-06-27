@@ -1,5 +1,5 @@
 ---
-title: "we-owe-joseph-mccarthy-an-apology"
+title: 'we-owe-joseph-mccarthy-an-apology'
 ---
 
 ![we-owe-joseph-mccarthy-an-apology](/memes/politics/we-owe-joseph-mccarthy-an-apology.png)

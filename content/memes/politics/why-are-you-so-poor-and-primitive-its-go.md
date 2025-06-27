@@ -1,5 +1,5 @@
 ---
-title: "why-are-you-so-poor-and-primitive-its-go"
+title: 'why-are-you-so-poor-and-primitive-its-go'
 ---
 
 ![why-are-you-so-poor-and-primitive-its-go](/memes/politics/why-are-you-so-poor-and-primitive-its-go.png)

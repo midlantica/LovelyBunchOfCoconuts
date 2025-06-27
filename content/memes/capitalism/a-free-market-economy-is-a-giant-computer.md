@@ -1,5 +1,5 @@
 ---
-title: "a-free-market-economy-is-a-giant-computer"
+title: 'a-free-market-economy-is-a-giant-computer'
 ---
 
 ![a-free-market-economy-is-a-giant-computer](/memes/capitalism/a-free-market-economy-is-a-giant-computer.png)

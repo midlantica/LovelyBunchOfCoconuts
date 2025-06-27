@@ -1,7 +1,7 @@
 ---
-title: "Toxic Masculinity"
-claim: "Toxic Masculinity"
-translation: "Manhood rebranded as disease."
+title: 'Toxic Masculinity'
+claim: 'Toxic Masculinity'
+translation: 'Manhood rebranded as disease.'
 ---
 
 ## "Toxic Masculinity"

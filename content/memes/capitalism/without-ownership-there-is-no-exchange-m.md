@@ -1,5 +1,5 @@
 ---
-title: "without-ownership-there-is-no-exchange-m"
+title: 'without-ownership-there-is-no-exchange-m'
 ---
 
 ![without-ownership-there-is-no-exchange-m](/memes/capitalism/without-ownership-there-is-no-exchange-m.png)

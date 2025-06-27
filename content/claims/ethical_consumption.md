@@ -1,7 +1,7 @@
 ---
-title: "Ethical Consumption"
-claim: "Ethical Consumption"
-translation: "Buy guilt-free illusions."
+title: 'Ethical Consumption'
+claim: 'Ethical Consumption'
+translation: 'Buy guilt-free illusions.'
 ---
 
 ## "Ethical Consumption"

@@ -1,5 +1,5 @@
 ---
-title: "the-worlds-population-concentrated"
+title: 'the-worlds-population-concentrated'
 ---
 
 ![the-worlds-population-concentrated](/memes/data/the-worlds-population-concentrated.png)

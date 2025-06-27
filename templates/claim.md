@@ -1,6 +1,6 @@
 ---
-title: "Claim Title"
-claim: "Claim text"
+title: 'Claim Title'
+claim: 'Claim text'
 translation: "Translation of Claim's true meaning text"
 ---
 

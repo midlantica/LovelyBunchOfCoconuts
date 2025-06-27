@@ -1,7 +1,7 @@
 ---
-title: "Inclusive Language"
-claim: "Inclusive Language"
-translation: "Say what we say—or else."
+title: 'Inclusive Language'
+claim: 'Inclusive Language'
+translation: 'Say what we say—or else.'
 ---
 
 ## "Inclusive Language"

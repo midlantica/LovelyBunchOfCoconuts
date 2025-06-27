@@ -1,5 +1,5 @@
 ---
-title: "awake-yet-1960s-oil-gone-in-10-years"
+title: 'awake-yet-1960s-oil-gone-in-10-years'
 ---
 
 ![awake-yet-1960s-oil-gone-in-10-years](/memes/politics/awake-yet-1960s-oil-gone-in-10-years.png)

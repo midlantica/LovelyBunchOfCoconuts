@@ -1,5 +1,5 @@
 ---
-title: "one-of-the-many-services-done-to-young-people-is-giving-them-a-puffed-up-notion"
+title: 'one-of-the-many-services-done-to-young-people-is-giving-them-a-puffed-up-notion'
 ---
 
 ![one-of-the-many-services-done-to-young-people-is-giving-them-a-puffed-up-notion](/memes/thomas-sowell/one-of-the-many-services-done-to-young-people-is-giving-them-a-puffed-up-notion.png)

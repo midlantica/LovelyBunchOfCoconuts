@@ -1,5 +1,5 @@
 ---
-title: "the-beauty-of-doing-nothing-is-that-you-can-do-it-perfectly"
+title: 'the-beauty-of-doing-nothing-is-that-you-can-do-it-perfectly'
 ---
 
 ![the-beauty-of-doing-nothing-is-that-you-can-do-it-perfectly](/memes/thomas-sowell/the-beauty-of-doing-nothing-is-that-you-can-do-it-perfectly.png)

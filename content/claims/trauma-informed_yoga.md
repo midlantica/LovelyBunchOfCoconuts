@@ -1,7 +1,7 @@
 ---
-title: "Trauma-Informed Yoga"
-claim: "Trauma-Informed Yoga"
-translation: "Stretching with sorrow."
+title: 'Trauma-Informed Yoga'
+claim: 'Trauma-Informed Yoga'
+translation: 'Stretching with sorrow.'
 ---
 
 ## "Trauma-Informed Yoga"

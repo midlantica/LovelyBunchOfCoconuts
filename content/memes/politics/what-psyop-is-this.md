@@ -1,5 +1,5 @@
 ---
-title: "what-psyop-is-this"
+title: 'what-psyop-is-this'
 ---
 
 ![what-psyop-is-this](/memes/politics/what-psyop-is-this.png)

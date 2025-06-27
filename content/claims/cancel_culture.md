@@ -1,7 +1,7 @@
 ---
-title: "Cancel Culture"
-claim: "Cancel Culture"
-translation: "Mob justice at Wi-Fi speed."
+title: 'Cancel Culture'
+claim: 'Cancel Culture'
+translation: 'Mob justice at Wi-Fi speed.'
 ---
 
 ## "Cancel Culture"

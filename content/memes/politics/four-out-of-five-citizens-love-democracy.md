@@ -1,5 +1,5 @@
 ---
-title: "four-out-of-five-citizens-love-democracy"
+title: 'four-out-of-five-citizens-love-democracy'
 ---
 
 ![four-out-of-five-citizens-love-democracy](/memes/politics/four-out-of-five-citizens-love-democracy.png)

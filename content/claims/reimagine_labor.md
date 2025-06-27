@@ -1,7 +1,7 @@
 ---
-title: "Reimagine Labor"
-claim: "Reimagine Labor"
-translation: "Work less, demand more."
+title: 'Reimagine Labor'
+claim: 'Reimagine Labor'
+translation: 'Work less, demand more.'
 ---
 
 ## "Reimagine Labor"

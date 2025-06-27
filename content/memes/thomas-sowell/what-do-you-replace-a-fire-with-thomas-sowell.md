@@ -1,5 +1,5 @@
 ---
-title: "what-do-you-replace-a-fire-with-thomas-sowell"
+title: 'what-do-you-replace-a-fire-with-thomas-sowell'
 ---
 
 ![what-do-you-replace-a-fire-with-thomas-sowell](/memes/thomas-sowell/what-do-you-replace-a-fire-with-thomas-sowell.png)

@@ -1,5 +1,5 @@
 ---
-title: "no-to-wolf-haters-no-to-wolfphobia"
+title: 'no-to-wolf-haters-no-to-wolfphobia'
 ---
 
 ![no-to-wolf-haters-no-to-wolfphobia](/memes/politics/no-to-wolf-haters-no-to-wolfphobia.png)

@@ -1,5 +1,5 @@
 ---
-title: "doge-reorg-3"
+title: 'doge-reorg-3'
 ---
 
 ![Meme](/memes/politics/doge-reorg-3.png)

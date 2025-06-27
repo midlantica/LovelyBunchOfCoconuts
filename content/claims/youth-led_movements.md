@@ -1,7 +1,7 @@
 ---
-title: "Youth-Led Movements"
-claim: "Youth-Led Movements"
-translation: "Children as moral authorities."
+title: 'Youth-Led Movements'
+claim: 'Youth-Led Movements'
+translation: 'Children as moral authorities.'
 ---
 
 ## "Youth-Led Movements"

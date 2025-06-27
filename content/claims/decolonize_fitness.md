@@ -1,7 +1,7 @@
 ---
-title: "Decolonize Fitness"
-claim: "Decolonize Fitness"
-translation: "Exercise is privilege now."
+title: 'Decolonize Fitness'
+claim: 'Decolonize Fitness'
+translation: 'Exercise is privilege now.'
 ---
 
 ## "Decolonize Fitness"

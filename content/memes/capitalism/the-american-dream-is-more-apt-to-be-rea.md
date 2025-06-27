@@ -1,5 +1,5 @@
 ---
-title: "the-american-dream-is-more-apt-to-be-rea"
+title: 'the-american-dream-is-more-apt-to-be-rea'
 ---
 
 ![the-american-dream-is-more-apt-to-be-rea](/memes/capitalism/the-american-dream-is-more-apt-to-be-rea.png)

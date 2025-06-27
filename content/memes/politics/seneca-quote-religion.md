@@ -1,5 +1,5 @@
 ---
-title: "seneca-quote-religion"
+title: 'seneca-quote-religion'
 ---
 
 ![Meme](/memes/quotes/seneca-quote-religion.png)

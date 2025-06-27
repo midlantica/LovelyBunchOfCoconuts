@@ -1,5 +1,5 @@
 ---
-title: "The Constitution only gives people the right to pursue happiness"
+title: 'The Constitution only gives people the right to pursue happiness'
 ---
 
 ## "The Constitution only gives people the right to pursue happiness. You have to catch it yourself."

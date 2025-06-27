@@ -1,7 +1,7 @@
 ---
-title: "Sustainable Masculinity"
-claim: "Sustainable Masculinity"
-translation: "Neuter it with buzzwords."
+title: 'Sustainable Masculinity'
+claim: 'Sustainable Masculinity'
+translation: 'Neuter it with buzzwords.'
 ---
 
 ## "Sustainable Masculinity"

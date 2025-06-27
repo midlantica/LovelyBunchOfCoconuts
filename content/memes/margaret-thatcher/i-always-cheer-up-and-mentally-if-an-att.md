@@ -1,5 +1,5 @@
 ---
-title: "i-always-cheer-up-and-mentally-if-an-att"
+title: 'i-always-cheer-up-and-mentally-if-an-att'
 ---
 
 ![i-always-cheer-up-and-mentally-if-an-att](/memes/margaret-thatcher/i-always-cheer-up-and-mentally-if-an-att.png)

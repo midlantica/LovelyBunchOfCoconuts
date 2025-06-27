@@ -1,7 +1,7 @@
 ---
-title: "Social Justice"
-claim: "Social Justice"
-translation: "Revenge dressed up as fairness."
+title: 'Social Justice'
+claim: 'Social Justice'
+translation: 'Revenge dressed up as fairness.'
 ---
 
 ## "Social Justice"

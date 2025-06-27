@@ -1,5 +1,5 @@
 ---
-title: "small-business-vs-unions"
+title: 'small-business-vs-unions'
 ---
 
 ![small-business-vs-unions](/memes/capitalism/small-business-vs-unions.png)

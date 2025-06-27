@@ -12,5 +12,5 @@
 </template>
 
 <script setup>
-import ScrollContainer from '~/components/ScrollContainer.vue';
+  import ScrollContainer from '~/components/ScrollContainer.vue'
 </script>

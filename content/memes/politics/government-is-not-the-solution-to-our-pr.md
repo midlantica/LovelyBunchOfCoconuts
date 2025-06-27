@@ -1,5 +1,5 @@
 ---
-title: "government-is-not-the-solution-to-our-pr"
+title: 'government-is-not-the-solution-to-our-pr'
 ---
 
 ![government-is-not-the-solution-to-our-pr](/memes/politics/government-is-not-the-solution-to-our-pr.png)

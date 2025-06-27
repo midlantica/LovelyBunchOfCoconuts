@@ -1,7 +1,7 @@
 ---
-title: "Microaggressions"
-claim: "Microaggressions"
-translation: "Imaginary slights, maximum drama."
+title: 'Microaggressions'
+claim: 'Microaggressions'
+translation: 'Imaginary slights, maximum drama.'
 ---
 
 ## "Microaggressions"

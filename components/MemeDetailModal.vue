@@ -1,7 +1,10 @@
 <!-- components/MemeDetailModal.vue -->
 <template>
   <ModalFrame :show="show" @close="close" :modalStyle="modalFrameStyle">
-    <div v-if="loading" class="flex flex-1 justify-center items-center py-8 text-white text-center">
+    <div
+      v-if="loading"
+      class="flex flex-1 justify-center items-center py-8 text-white text-center"
+    >
       <Icon name="svg-spinners:90-ring-with-bg" size="2rem" />
     </div>
     <div
@@ -11,7 +14,9 @@
       {{ error }}
     </div>
     <div v-else-if="meme">
-      <div class="flex flex-col flex-1 justify-center items-center w-full h-full">
+      <div
+        class="flex flex-col flex-1 justify-center items-center w-full h-full"
+      >
         <div
           class="relative flex flex-col bg-slate-800 rounded-lg w-full h-full modal-frame"
           style="
@@ -74,7 +79,11 @@
           >
             <div
               class="prose-invert mx-auto pt-2 w-full text-center shrink prose prose-base"
-              style="font-size: clamp(1rem, 2vw, 1.5rem); width: 100%; margin-bottom: 1rem"
+              style="
+                font-size: clamp(1rem, 2vw, 1.5rem);
+                width: 100%;
+                margin-bottom: 1rem;
+              "
             >
               <div v-html="getAboveHr(markdownContent)"></div>
             </div>
@@ -95,260 +104,270 @@
         </div>
       </div>
     </div>
-    <div v-else class="flex flex-col justify-center items-center p-8 min-w-[10vw] min-h-[10vh]">
+    <div
+      v-else
+      class="flex flex-col justify-center items-center p-8 min-w-[10vw] min-h-[10vh]"
+    >
       <slot />
     </div>
   </ModalFrame>
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted, onUnmounted } from "vue"
-import { useContentCache } from "~/composables/useContentCache"
-import MarkdownIt from "markdown-it"
-import ModalFrame from "./ModalFrame.vue"
-import { useModalLogic } from "~/composables/useModalLogic"
-import { useModalSizing } from "~/composables/useModalSizing"
+  import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
+  import { useContentCache } from '~/composables/useContentCache'
+  import MarkdownIt from 'markdown-it'
+  import ModalFrame from './ModalFrame.vue'
+  import { useModalLogic } from '~/composables/useModalLogic'
+  import { useModalSizing } from '~/composables/useModalSizing'
 
-const props = defineProps({
-  slug: { type: String, required: true },
-  show: { type: Boolean, default: false },
-})
-const emit = defineEmits(["close"])
+  const props = defineProps({
+    slug: { type: String, required: true },
+    show: { type: Boolean, default: false },
+  })
+  const emit = defineEmits(['close'])
 
-const meme = ref(null)
-const error = ref(null)
-const loading = ref(true)
-const markdownContent = ref("")
-const isLandscape = ref(false)
+  const meme = ref(null)
+  const error = ref(null)
+  const loading = ref(true)
+  const markdownContent = ref('')
+  const isLandscape = ref(false)
 
-const { getContentItem } = useContentCache()
-const md = new MarkdownIt({ html: true, linkify: true, typographer: true })
+  const { getContentItem } = useContentCache()
+  const md = new MarkdownIt({ html: true, linkify: true, typographer: true })
 
-const close = () => emit("close")
+  const close = () => emit('close')
 
-// --- Use composable for modal logic (escape, scroll lock, etc.) ---
-useModalLogic({ show: props.show, onClose: close })
+  // --- Use composable for modal logic (escape, scroll lock, etc.) ---
+  useModalLogic({ show: props.show, onClose: close })
 
-// --- Use composable for modal sizing (image, viewport, layout) ---
-const imageUrl = computed(() => (meme.value && meme.value.image ? meme.value.image : ""))
-const { imageNatural, aspect, modalLayout, viewport } = useModalSizing(imageUrl)
+  // --- Use composable for modal sizing (image, viewport, layout) ---
+  const imageUrl = computed(() =>
+    meme.value && meme.value.image ? meme.value.image : ''
+  )
+  const { imageNatural, aspect, modalLayout, viewport } =
+    useModalSizing(imageUrl)
 
-const loadMeme = async () => {
-  loading.value = true
-  error.value = null
-  meme.value = null
-  markdownContent.value = ""
-  try {
-    const cleanSlug = props.slug.replace(/^\/*memes\//, "").replace(/^\/*/, "")
-    const found = await queryCollection("memes").where({ slug: cleanSlug }).fetch()
-    if (found.length > 0) {
-      meme.value = found[0]
-      if (meme.value.body) {
-        markdownContent.value = md.render(meme.value.body)
+  const loadMeme = async () => {
+    loading.value = true
+    error.value = null
+    meme.value = null
+    markdownContent.value = ''
+    try {
+      const cleanSlug = props.slug
+        .replace(/^\/*memes\//, '')
+        .replace(/^\/*/, '')
+      const found = await queryCollection('memes')
+        .where({ slug: cleanSlug })
+        .fetch()
+      if (found.length > 0) {
+        meme.value = found[0]
+        if (meme.value.body) {
+          markdownContent.value = md.render(meme.value.body)
+        }
+      } else {
+        error.value = '🚨 Meme not found!'
+      }
+    } catch (err) {
+      error.value = err.message
+    } finally {
+      loading.value = false
+    }
+  }
+
+  watch(() => props.slug, loadMeme, { immediate: true })
+
+  function getAboveHr(html) {
+    if (!html) return ''
+    const idx = html.indexOf('<hr')
+    if (idx === -1) return html
+    return html.slice(0, idx)
+  }
+  function getBelowHr(html) {
+    if (!html) return ''
+    const idx = html.indexOf('<hr')
+    if (idx === -1) return ''
+    // Find the closing > of the first <hr ...>
+    const closeIdx = html.indexOf('>', idx)
+    if (closeIdx === -1) return ''
+    return html.slice(closeIdx + 1)
+  }
+
+  // --- Use modalLayout for frame style ---
+  const modalFrameStyle = computed(() => {
+    const { width, height } = modalLayout.value
+    return {
+      width: width + 'px',
+      height: height + 'px',
+      maxWidth: '90vw',
+      maxHeight: '90vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: 'auto',
+      boxSizing: 'border-box',
+    }
+  })
+
+  const imageContainerStyle = computed(() => {
+    return {
+      width: modalLayout.value.flexDirection === 'row' ? '50%' : '100%',
+      height: modalLayout.value.flexDirection === 'row' ? '100%' : 'auto',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }
+  })
+
+  const imageStyle = computed(() => {
+    const w = imageNatural.value.width
+    const h = imageNatural.value.height
+    if (!w || !h)
+      return {
+        maxWidth: 'clamp(200px, 90vw, 1200px)',
+        maxHeight: 'clamp(200px, 90vh, 900px)',
+        width: 'auto',
+        height: 'auto',
+        display: 'block',
+        margin: '0 auto',
+        padding: '2rem',
+      }
+    const aspect = w / h
+    if (aspect > 1.2) {
+      // Landscape
+      return {
+        maxWidth: 'clamp(200px, 90vw, 1200px)',
+        maxHeight: 'clamp(200px, 90vh, 900px)',
+        width: '100%',
+        height: 'auto',
+        display: 'block',
+        margin: '0 auto',
+        padding: '2rem',
+      }
+    } else if (aspect < 0.8) {
+      // Portrait
+      return {
+        maxWidth: 'clamp(200px, 90vw, 700px)',
+        maxHeight: 'clamp(200px, 90vh, 900px)',
+        width: 'auto',
+        height: '100%',
+        display: 'block',
+        margin: '0 auto',
+        padding: '2rem',
       }
     } else {
-      error.value = "🚨 Meme not found!"
+      // Square-ish
+      return {
+        maxWidth: 'clamp(200px, 90vw, 900px)',
+        maxHeight: 'clamp(200px, 90vh, 900px)',
+        width: 'auto',
+        height: 'auto',
+        display: 'block',
+        margin: '0 auto',
+        padding: '2rem',
+      }
     }
-  } catch (err) {
-    error.value = err.message
-  } finally {
-    loading.value = false
-  }
-}
+  })
 
-watch(() => props.slug, loadMeme, { immediate: true })
-
-function getAboveHr(html) {
-  if (!html) return ""
-  const idx = html.indexOf("<hr")
-  if (idx === -1) return html
-  return html.slice(0, idx)
-}
-function getBelowHr(html) {
-  if (!html) return ""
-  const idx = html.indexOf("<hr")
-  if (idx === -1) return ""
-  // Find the closing > of the first <hr ...>
-  const closeIdx = html.indexOf(">", idx)
-  if (closeIdx === -1) return ""
-  return html.slice(closeIdx + 1)
-}
-
-// --- Use modalLayout for frame style ---
-const modalFrameStyle = computed(() => {
-  const { width, height } = modalLayout.value
-  return {
-    width: width + "px",
-    height: height + "px",
-    maxWidth: "90vw",
-    maxHeight: "90vh",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: "auto",
-    boxSizing: "border-box",
-  }
-})
-
-const imageContainerStyle = computed(() => {
-  return {
-    width: modalLayout.value.flexDirection === "row" ? "50%" : "100%",
-    height: modalLayout.value.flexDirection === "row" ? "100%" : "auto",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }
-})
-
-const imageStyle = computed(() => {
-  const w = imageNatural.value.width
-  const h = imageNatural.value.height
-  if (!w || !h)
+  const textContainerStyle = computed(() => {
+    // Text should take up remaining space, scroll if needed, but never push image out
     return {
-      maxWidth: "clamp(200px, 90vw, 1200px)",
-      maxHeight: "clamp(200px, 90vh, 900px)",
-      width: "auto",
-      height: "auto",
-      display: "block",
-      margin: "0 auto",
-      padding: "2rem",
+      minHeight: 0,
+      overflowY: 'auto',
+      maxHeight: '100%',
+      width: modalLayout.value.flexDirection === 'row' ? '50%' : '100%',
+      height: modalLayout.value.flexDirection === 'row' ? '100%' : 'auto',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     }
-  const aspect = w / h
-  if (aspect > 1.2) {
-    // Landscape
-    return {
-      maxWidth: "clamp(200px, 90vw, 1200px)",
-      maxHeight: "clamp(200px, 90vh, 900px)",
-      width: "100%",
-      height: "auto",
-      display: "block",
-      margin: "0 auto",
-      padding: "2rem",
-    }
-  } else if (aspect < 0.8) {
-    // Portrait
-    return {
-      maxWidth: "clamp(200px, 90vw, 700px)",
-      maxHeight: "clamp(200px, 90vh, 900px)",
-      width: "auto",
-      height: "100%",
-      display: "block",
-      margin: "0 auto",
-      padding: "2rem",
-    }
-  } else {
-    // Square-ish
-    return {
-      maxWidth: "clamp(200px, 90vw, 900px)",
-      maxHeight: "clamp(200px, 90vh, 900px)",
-      width: "auto",
-      height: "auto",
-      display: "block",
-      margin: "0 auto",
-      padding: "2rem",
-    }
+  })
+
+  function updateOrientation() {
+    isLandscape.value = window.innerWidth > 762
   }
-})
+  onMounted(() => {
+    updateOrientation()
+    window.addEventListener('resize', updateOrientation)
+  })
+  onUnmounted(() => {
+    window.removeEventListener('resize', updateOrientation)
+  })
 
-const textContainerStyle = computed(() => {
-  // Text should take up remaining space, scroll if needed, but never push image out
-  return {
-    minHeight: 0,
-    overflowY: "auto",
-    maxHeight: "100%",
-    width: modalLayout.value.flexDirection === "row" ? "50%" : "100%",
-    height: modalLayout.value.flexDirection === "row" ? "100%" : "auto",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }
-})
+  watch(() => props.slug, loadMeme, { immediate: true })
 
-function updateOrientation() {
-  isLandscape.value = window.innerWidth > 762
-}
-onMounted(() => {
-  updateOrientation()
-  window.addEventListener("resize", updateOrientation)
-})
-onUnmounted(() => {
-  window.removeEventListener("resize", updateOrientation)
-})
-
-watch(() => props.slug, loadMeme, { immediate: true })
-
-const hasExtraText = computed(() => {
-  if (!markdownContent.value) return false
-  const idx = markdownContent.value.indexOf("<hr")
-  if (idx === -1) return false
-  // Find the closing > of the first <hr ...>
-  const closeIdx = markdownContent.value.indexOf(">", idx)
-  if (closeIdx === -1) return false
-  // If there is any non-whitespace after the <hr>, consider it extra text
-  return (
-    markdownContent.value
-      .slice(closeIdx + 1)
-      .replace(/<[^>]+>/g, "")
-      .trim().length > 0
-  )
-})
+  const hasExtraText = computed(() => {
+    if (!markdownContent.value) return false
+    const idx = markdownContent.value.indexOf('<hr')
+    if (idx === -1) return false
+    // Find the closing > of the first <hr ...>
+    const closeIdx = markdownContent.value.indexOf('>', idx)
+    if (closeIdx === -1) return false
+    // If there is any non-whitespace after the <hr>, consider it extra text
+    return (
+      markdownContent.value
+        .slice(closeIdx + 1)
+        .replace(/<[^>]+>/g, '')
+        .trim().length > 0
+    )
+  })
 </script>
 
 <style scoped>
-.prose img,
-.prose-invert img {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  margin-block-start: 0 !important;
-  margin-block-end: 0 !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  max-width: 500px;
-  max-height: 500px;
-  height: auto;
-  width: 100%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@media (max-width: 768px) {
-  .meme-modal-img-column {
+  .prose img,
+  .prose-invert img {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-block-start: 0 !important;
+    margin-block-end: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    max-width: 500px;
+    max-height: 500px;
+    height: auto;
     width: 100%;
-    height: auto;
-    object-fit: contain;
-    margin: 0;
-    padding: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
-}
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .meme-modal-img-column {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    margin-bottom: 1rem;
+  @media (max-width: 768px) {
+    .meme-modal-img-column {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+      padding: 0;
+    }
   }
-}
 
-@media (min-width: 1025px) {
-  .meme-modal-img-column {
-    max-width: 45%;
-    height: auto;
-    object-fit: contain;
-    margin-right: 1rem;
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .meme-modal-img-column {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
   }
-}
 
-.modal-frame {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  overflow: hidden;
-}
+  @media (min-width: 1025px) {
+    .meme-modal-img-column {
+      max-width: 45%;
+      height: auto;
+      object-fit: contain;
+      margin-right: 1rem;
+    }
+  }
 
-.modal-scrollable-text {
-  padding: 1rem;
-}
+  .modal-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+
+  .modal-scrollable-text {
+    padding: 1rem;
+  }
 </style>

@@ -1,5 +1,5 @@
 ---
-title: "The ultimate authority resides in the people alone"
+title: 'The ultimate authority resides in the people alone'
 ---
 
 ## "The ultimate authority resides in the people alone."

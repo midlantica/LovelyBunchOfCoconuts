@@ -1,5 +1,5 @@
 ---
-title: "socialism-making-everyone-equally-poor-s"
+title: 'socialism-making-everyone-equally-poor-s'
 ---
 
 ![socialism-making-everyone-equally-poor-s](/memes/capitalism/socialism-making-everyone-equally-poor-s.png)

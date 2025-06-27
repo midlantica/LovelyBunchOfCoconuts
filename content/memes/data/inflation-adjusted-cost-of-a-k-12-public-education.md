@@ -1,5 +1,5 @@
 ---
-title: "inflation-adjusted-cost-of-a-k-12-public-education"
+title: 'inflation-adjusted-cost-of-a-k-12-public-education'
 ---
 
 ![inflation-adjusted-cost-of-a-k-12-public-education](/memes/data/inflation-adjusted-cost-of-a-k-12-public-education.png)

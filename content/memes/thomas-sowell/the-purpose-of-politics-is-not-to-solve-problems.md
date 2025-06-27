@@ -1,5 +1,5 @@
 ---
-title: "the-purpose-of-politics-is-not-to-solve-problems"
+title: 'the-purpose-of-politics-is-not-to-solve-problems'
 ---
 
 ![The purpose of politics is not to solve problems but](/memes/thomas-sowell/the-purpose-of-politics-is-not-to-solve-problems.png)

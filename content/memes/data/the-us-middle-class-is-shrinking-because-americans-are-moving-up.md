@@ -1,5 +1,5 @@
 ---
-title: "the-us-middle-class-is-shrinking-because-americans-are-moving-up"
+title: 'the-us-middle-class-is-shrinking-because-americans-are-moving-up'
 ---
 
 ![the-us-middle-class-is-shrinking-because-americans-are-moving-up](/memes/data/the-us-middle-class-is-shrinking-because-americans-are-moving-up.png)

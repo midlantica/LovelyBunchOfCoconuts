@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const fs = require("fs")
-const path = require("path")
-const { promisify } = require("util")
+const fs = require('fs')
+const path = require('path')
+const { promisify } = require('util')
 
 const readdir = promisify(fs.readdir)
 const stat = promisify(fs.stat)
@@ -10,7 +10,7 @@ const rename = promisify(fs.rename)
 
 // Parse command line arguments
 const args = process.argv.slice(2)
-let targetDir = path.join(__dirname, "..", "public", "memes") // Default directory
+let targetDir = path.join(__dirname, '..', 'public', 'memes') // Default directory
 let skipExisting = true // Default to skip files that already have metadata
 
 // Check for custom directory argument
@@ -19,23 +19,26 @@ if (args.length > 0) {
   targetDir = path.resolve(args[0])
 
   // Check if second arg is --force flag
-  if (args.length > 1 && args[1] === "--force") {
+  if (args.length > 1 && args[1] === '--force') {
     skipExisting = false
   }
 }
 
 // Configuration
-const CONTENT_DIR = path.join(__dirname, "..", "content", "memes")
-const LOG_FILE = path.join(__dirname, "rename-log.txt")
+const CONTENT_DIR = path.join(__dirname, '..', 'content', 'memes')
+const LOG_FILE = path.join(__dirname, 'rename-log.txt')
 
 // Initialize log file
-fs.writeFileSync(LOG_FILE, `Starting image renaming process at ${new Date().toISOString()}\n`)
+fs.writeFileSync(
+  LOG_FILE,
+  `Starting image renaming process at ${new Date().toISOString()}\n`
+)
 console.log(`Target directory: ${targetDir}`)
-console.log(`Skip files with existing metadata: ${skipExisting ? "Yes" : "No"}`)
+console.log(`Skip files with existing metadata: ${skipExisting ? 'Yes' : 'No'}`)
 
 // Helper function to log messages
 function log(message) {
-  fs.appendFileSync(LOG_FILE, message + "\n")
+  fs.appendFileSync(LOG_FILE, message + '\n')
   console.log(message)
 }
 
@@ -46,26 +49,26 @@ function cleanFilename(filename) {
   const base = path.basename(filename, ext)
 
   // Skip files that start with double underscore
-  if (base.startsWith("__")) {
+  if (base.startsWith('__')) {
     return null
   }
 
   // Remove all types of quotes (straight and curly), convert to lowercase, replace spaces with hyphens, remove special chars, collapse multiple hyphens
   let newBase = base
     .toLowerCase()
-    .replace(/["'‘’“”`´]/g, "") // Remove quotes
-    .replace(/\s+/g, "-") // Spaces to hyphens
-    .replace(/[^a-z0-9-]/g, "") // Remove non-alphanum except hyphen
-    .replace(/-+/g, "-") // Collapse multiple hyphens (2 or more)
-    .replace(/^-+|-+$/g, "") // Trim leading/trailing hyphens
+    .replace(/["'‘’“”`´]/g, '') // Remove quotes
+    .replace(/\s+/g, '-') // Spaces to hyphens
+    .replace(/[^a-z0-9-]/g, '') // Remove non-alphanum except hyphen
+    .replace(/-+/g, '-') // Collapse multiple hyphens (2 or more)
+    .replace(/^-+|-+$/g, '') // Trim leading/trailing hyphens
 
   // Split into words by hyphen
-  const words = newBase.split("-").filter(Boolean)
-  let result = ""
+  const words = newBase.split('-').filter(Boolean)
+  let result = ''
   let i = 0
   // Add words until adding the next would exceed 50 chars
   while (i < words.length) {
-    const next = result ? result + "-" + words[i] : words[i]
+    const next = result ? result + '-' + words[i] : words[i]
     if (next.length > 50) break
     result = next
     i++
@@ -76,7 +79,7 @@ function cleanFilename(filename) {
   }
   // Ensure we do not end with a partial word: if result is not the full base, and the next word would fit, remove the last word
   if (i < words.length && result.length > 0) {
-    const lastHyphen = result.lastIndexOf("-")
+    const lastHyphen = result.lastIndexOf('-')
     if (lastHyphen > 0) {
       result = result.slice(0, lastHyphen)
     } else {
@@ -84,7 +87,7 @@ function cleanFilename(filename) {
       result = words[0].slice(0, 50)
     }
   }
-  result = result.replace(/-+$/g, "")
+  result = result.replace(/-+$/g, '')
   return result + ext
 }
 
@@ -113,7 +116,7 @@ async function renameImages() {
     const filesBefore = await readdir(targetDir)
     const imageFilesBefore = filesBefore.filter((file) => {
       const ext = path.extname(file).toLowerCase()
-      return [".jpg", ".jpeg", ".png", ".gif"].includes(ext)
+      return ['.jpg', '.jpeg', '.png', '.gif'].includes(ext)
     })
     const beforeSet = new Set(imageFilesBefore)
 
@@ -123,7 +126,7 @@ async function renameImages() {
     // Filter for image files
     const imageFiles = files.filter((file) => {
       const ext = path.extname(file).toLowerCase()
-      return [".jpg", ".jpeg", ".png", ".gif"].includes(ext)
+      return ['.jpg', '.jpeg', '.png', '.gif'].includes(ext)
     })
 
     let renamedCount = 0
@@ -136,7 +139,7 @@ async function renameImages() {
       const filePath = path.join(targetDir, file)
 
       // Skip files that start with double underscore
-      if (file.startsWith("__")) {
+      if (file.startsWith('__')) {
         log(`Skipping ${file} (starts with __)`)
         skippedCount++
         skippedFiles.push(file)
@@ -165,7 +168,9 @@ async function renameImages() {
         (await fileExists(cleanImagePath)) &&
         (await fileExists(cleanMarkdownPath))
       ) {
-        log(`Skipping ${file} (clean image and markdown already exist as ${newName})`)
+        log(
+          `Skipping ${file} (clean image and markdown already exist as ${newName})`
+        )
         skippedCount++
         skippedFiles.push(file)
         continue
@@ -201,7 +206,7 @@ async function renameImages() {
     const filesAfter = await readdir(targetDir)
     const imageFilesAfter = filesAfter.filter((file) => {
       const ext = path.extname(file).toLowerCase()
-      return [".jpg", ".jpeg", ".png", ".gif"].includes(ext)
+      return ['.jpg', '.jpeg', '.png', '.gif'].includes(ext)
     })
     const afterSet = new Set(imageFilesAfter)
 

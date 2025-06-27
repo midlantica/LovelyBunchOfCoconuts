@@ -1,5 +1,5 @@
 ---
-title: "leftists-say-be-careful-what-we-say-now"
+title: 'leftists-say-be-careful-what-we-say-now'
 ---
 
 ![leftists-say-be-careful-what-we-say-now](/memes/politics/leftists-say-be-careful-what-we-say-now.png)

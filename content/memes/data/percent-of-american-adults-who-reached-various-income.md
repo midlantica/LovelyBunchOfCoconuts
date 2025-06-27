@@ -1,5 +1,5 @@
 ---
-title: "percent-of-american-adults-who-reached-various-income"
+title: 'percent-of-american-adults-who-reached-various-income'
 ---
 
 ![percent-of-american-adults-who-reached-various-income](/memes/data/percent-of-american-adults-who-reached-various-income.png)

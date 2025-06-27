@@ -1,5 +1,5 @@
 ---
-title: "Liberty means responsibility"
+title: 'Liberty means responsibility'
 ---
 
 ## "Liberty means responsibility. That is why most men dread it."

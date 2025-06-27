@@ -1,5 +1,5 @@
 ---
-title: "up-until-1913-americans-kept-all-of-thei"
+title: 'up-until-1913-americans-kept-all-of-thei'
 ---
 
 ![up-until-1913-americans-kept-all-of-thei](/memes/politics/up-until-1913-americans-kept-all-of-thei.png)

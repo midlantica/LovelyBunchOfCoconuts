@@ -15,12 +15,20 @@
       <hr class="my-2 border-white/10 border-t" />
       <div class="flex items-center gap-3">
         <img src="../assets/icons/player_icon.svg" alt="Player" class="w-8" />
-        <h2 class="font-light text-xl line-clamp-1 tracking-wide" v-if="claim.translation">
+        <h2
+          class="font-light text-xl line-clamp-1 tracking-wide"
+          v-if="claim.translation"
+        >
           {{ claim.translation }}
         </h2>
       </div>
     </div>
-    <ClaimDetailModal v-if="showModal" :slug="slug" :show="showModal" @close="closeModal" />
+    <ClaimDetailModal
+      v-if="showModal"
+      :slug="slug"
+      :show="showModal"
+      @close="closeModal"
+    />
   </div>
   <div
     v-else
@@ -30,7 +38,7 @@
       <div class="flex items-center gap-3">
         <img src="../assets/icons/npc_icon.svg" alt="NPC" class="w-8" />
         <h2 class="line-clamp-1">
-          {{ claim && claim.claim ? claim.claim : "Missing claim" }}
+          {{ claim && claim.claim ? claim.claim : 'Missing claim' }}
         </h2>
       </div>
       <hr class="my-2 border-white/10 border-t" />
@@ -45,15 +53,15 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
-import ClaimDetailModal from "./ClaimDetailModal.vue"
+  import { ref } from 'vue'
+  import ClaimDetailModal from './ClaimDetailModal.vue'
 
-const props = defineProps({
-  claim: Object,
-  slug: String,
-})
+  const props = defineProps({
+    claim: Object,
+    slug: String,
+  })
 
-const showModal = ref(false)
-const openModal = () => (showModal.value = true)
-const closeModal = () => (showModal.value = false)
+  const showModal = ref(false)
+  const openModal = () => (showModal.value = true)
+  const closeModal = () => (showModal.value = false)
 </script>

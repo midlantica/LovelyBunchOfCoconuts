@@ -1,5 +1,5 @@
 ---
-title: "us-total-fertility-rate-tfr-over-time-1800-2023-total-fertility-rate-coollapse"
+title: 'us-total-fertility-rate-tfr-over-time-1800-2023-total-fertility-rate-coollapse'
 ---
 
 ![us-total-fertility-rate-tfr-over-time-1800-2023-total-fertility-rate-coollapse](/memes/data/us-total-fertility-rate-tfr-over-time-1800-2023-total-fertility-rate-coollapse.png)

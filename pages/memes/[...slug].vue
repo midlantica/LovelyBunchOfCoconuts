@@ -8,33 +8,33 @@
 </template>
 
 <script setup>
-// No-op
+  // No-op
 </script>
 
 <style>
-/* Basic styling for the markdown content */
-.prose p {
-  margin-bottom: 1rem;
+  /* Basic styling for the markdown content */
+  .prose p {
+    margin-bottom: 1rem;
 
-  &:last-child {
-    margin-bottom: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
-}
-.prose h2 {
-  font-size: 1.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-  font-weight: 300;
-}
-.prose h3 {
-  font-size: 1.25rem;
-  margin-top: 1.25rem;
-  margin-bottom: 0.5rem;
-  font-weight: 300;
-}
-.prose img {
-  margin: 1.5rem auto;
-  border-radius: 0.375rem;
-  max-width: 100%;
-}
+  .prose h2 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 300;
+  }
+  .prose h3 {
+    font-size: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+  }
+  .prose img {
+    margin: 1.5rem auto;
+    border-radius: 0.375rem;
+    max-width: 100%;
+  }
 </style>

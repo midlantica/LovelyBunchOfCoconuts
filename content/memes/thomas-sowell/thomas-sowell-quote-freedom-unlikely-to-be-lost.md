@@ -1,5 +1,5 @@
 ---
-title: "thomas-sowell-quote-freedom-unlikely-to-be-lost"
+title: 'thomas-sowell-quote-freedom-unlikely-to-be-lost'
 ---
 
 ![thomas-sowell-quote-freedom-unlikely-to-be-lost](/memes/thomas-sowell/thomas-sowell-quote-freedom-unlikely-to-be-lost.png)

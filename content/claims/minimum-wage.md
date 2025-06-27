@@ -1,7 +1,7 @@
 ---
-title: "Minimum Wage"
-claim: "Minimum Wage"
-translation: "Increased Poverty."
+title: 'Minimum Wage'
+claim: 'Minimum Wage'
+translation: 'Increased Poverty.'
 ---
 
 ## "Minimum Wage"

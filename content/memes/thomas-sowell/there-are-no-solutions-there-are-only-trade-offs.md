@@ -1,5 +1,5 @@
 ---
-title: "there-are-no-solutions-there-are-only-trade-offs"
+title: 'there-are-no-solutions-there-are-only-trade-offs'
 ---
 
 ![there-are-no-solutions-there-are-only-trade-offs](/memes/thomas-sowell/there-are-no-solutions-there-are-only-trade-offs.png)

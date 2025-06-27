@@ -1,5 +1,5 @@
 ---
-title: "the-birth-of-free-market-economics"
+title: 'the-birth-of-free-market-economics'
 ---
 
 ![the-birth-of-free-market-economics](/memes/capitalism/the-birth-of-free-market-economics.png)

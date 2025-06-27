@@ -1,14 +1,14 @@
-const fs = require("fs")
-const path = require("path")
+const fs = require('fs')
+const path = require('path')
 
-const QUOTES_DIR = path.join(__dirname, "..", "..", "content", "quotes")
+const QUOTES_DIR = path.join(__dirname, '..', '..', 'content', 'quotes')
 
 function walk(dir, results = []) {
   fs.readdirSync(dir, { withFileTypes: true }).forEach((entry) => {
     const fullPath = path.join(dir, entry.name)
     if (entry.isDirectory()) {
       walk(fullPath, results)
-    } else if (entry.isFile() && entry.name.endsWith(".md")) {
+    } else if (entry.isFile() && entry.name.endsWith('.md')) {
       results.push(fullPath)
     }
   })
@@ -17,7 +17,7 @@ function walk(dir, results = []) {
 
 function cleanFilename(filename) {
   // Remove -digits before .md, but only if preceded by a hyphen and not part of a word
-  return filename.replace(/-\d+(?=\.md$)/, "")
+  return filename.replace(/-\d+(?=\.md$)/, '')
 }
 
 const allFiles = walk(QUOTES_DIR)

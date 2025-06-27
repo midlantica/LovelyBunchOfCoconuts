@@ -1,5 +1,5 @@
 ---
-title: "we-seem-to-be-closer-and-closer-to-a-situation-where-nobody-is-responsible"
+title: 'we-seem-to-be-closer-and-closer-to-a-situation-where-nobody-is-responsible'
 ---
 
 ![we-seem-to-be-closer-and-closer-to-a-situation-where-nobody-is-responsible](/memes/thomas-sowell/we-seem-to-be-closer-and-closer-to-a-situation-where-nobody-is-responsible.png)

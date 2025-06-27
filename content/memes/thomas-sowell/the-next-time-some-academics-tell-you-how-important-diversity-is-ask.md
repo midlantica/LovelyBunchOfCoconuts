@@ -1,5 +1,5 @@
 ---
-title: "the-next-time-some-academics-tell-you-how-important-diversity-is-ask"
+title: 'the-next-time-some-academics-tell-you-how-important-diversity-is-ask'
 ---
 
 ![the-next-time-some-academics-tell-you-how-important-diversity-is-ask](/memes/thomas-sowell/the-next-time-some-academics-tell-you-how-important-diversity-is-ask.png)

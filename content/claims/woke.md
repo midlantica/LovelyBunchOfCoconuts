@@ -1,7 +1,7 @@
 ---
-title: "Woke"
-claim: "Woke"
-translation: "Moral superiority with zero self-awareness."
+title: 'Woke'
+claim: 'Woke'
+translation: 'Moral superiority with zero self-awareness.'
 ---
 
 ## "Woke"

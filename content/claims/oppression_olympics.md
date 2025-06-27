@@ -1,7 +1,7 @@
 ---
-title: "Oppression Olympics"
-claim: "Oppression Olympics"
-translation: "Gold medals in grievance."
+title: 'Oppression Olympics'
+claim: 'Oppression Olympics'
+translation: 'Gold medals in grievance.'
 ---
 
 ## "Oppression Olympics"

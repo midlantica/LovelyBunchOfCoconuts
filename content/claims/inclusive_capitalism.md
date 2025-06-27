@@ -1,7 +1,7 @@
 ---
-title: "Inclusive Capitalism"
-claim: "Inclusive Capitalism"
-translation: "Profit with penance."
+title: 'Inclusive Capitalism'
+claim: 'Inclusive Capitalism'
+translation: 'Profit with penance.'
 ---
 
 ## "Inclusive Capitalism"

@@ -1,5 +1,5 @@
 ---
-title: "marxist-black-lives-matter"
+title: 'marxist-black-lives-matter'
 ---
 
 ![marxist-black-lives-matter](/memes/politics/marxist-black-lives-matter.png)

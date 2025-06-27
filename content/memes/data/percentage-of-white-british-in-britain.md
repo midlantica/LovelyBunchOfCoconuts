@@ -1,5 +1,5 @@
 ---
-title: "percentage-of-white-british-in-britain"
+title: 'percentage-of-white-british-in-britain'
 ---
 
 ![percentage-of-white-british-in-britain](/memes/data/percentage-of-white-british-in-britain.png)

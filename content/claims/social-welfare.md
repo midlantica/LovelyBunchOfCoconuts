@@ -1,7 +1,7 @@
 ---
-title: "Social Welfare"
-claim: "Social Welfare"
-translation: "Increased poverty."
+title: 'Social Welfare'
+claim: 'Social Welfare'
+translation: 'Increased poverty.'
 ---
 
 ## "Social Welfare"

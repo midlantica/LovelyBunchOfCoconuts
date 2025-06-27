@@ -1,7 +1,7 @@
 ---
-title: "LGBT+"
-claim: "LGBT+"
-translation: "Increased division."
+title: 'LGBT+'
+claim: 'LGBT+'
+translation: 'Increased division.'
 ---
 
 ## "LGBT+" etc etc

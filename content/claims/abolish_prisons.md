@@ -1,7 +1,7 @@
 ---
-title: "Abolish Prisons"
-claim: "Abolish Prisons"
-translation: "A society with no brakes."
+title: 'Abolish Prisons'
+claim: 'Abolish Prisons'
+translation: 'A society with no brakes.'
 ---
 
 ## "Abolish Prisons"

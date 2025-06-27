@@ -1,7 +1,7 @@
 ---
-title: "Ban Fossil Fuels"
-claim: "Ban Fossil Fuels"
-translation: "Freeze in winter, bake in summer."
+title: 'Ban Fossil Fuels'
+claim: 'Ban Fossil Fuels'
+translation: 'Freeze in winter, bake in summer.'
 ---
 
 ## "Ban Fossil Fuels"

@@ -1,5 +1,5 @@
 ---
-title: "if-you-cannot-achieve-a-quality-of-performance-among-people-born-to-the-same-parents"
+title: 'if-you-cannot-achieve-a-quality-of-performance-among-people-born-to-the-same-parents'
 ---
 
 ![if-you-cannot-achieve-a-quality-of-performance-among-people-born-to-the-same-parents](/memes/thomas-sowell/if-you-cannot-achieve-a-quality-of-performance-among-people-born-to-the-same-parents.png)

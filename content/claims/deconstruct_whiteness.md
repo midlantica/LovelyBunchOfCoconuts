@@ -1,7 +1,7 @@
 ---
-title: "Deconstruct Whiteness"
-claim: "Deconstruct Whiteness"
-translation: "Racial essentialism with a progressive twist."
+title: 'Deconstruct Whiteness'
+claim: 'Deconstruct Whiteness'
+translation: 'Racial essentialism with a progressive twist.'
 ---
 
 ## "Deconstruct Whiteness"

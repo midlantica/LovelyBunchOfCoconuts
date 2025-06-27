@@ -1,5 +1,5 @@
 ---
-title: "what-can-we-do-to-stop-living-in-fear-cl"
+title: 'what-can-we-do-to-stop-living-in-fear-cl'
 ---
 
 ![what-can-we-do-to-stop-living-in-fear-cl](/memes/politics/what-can-we-do-to-stop-living-in-fear-cl.png)

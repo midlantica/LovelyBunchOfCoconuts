@@ -1,5 +1,5 @@
 ---
-title: "Nothing is more permanent than a temporary government measure"
+title: 'Nothing is more permanent than a temporary government measure'
 ---
 
 ## "Nothing is more permanent than a temporary government measure."

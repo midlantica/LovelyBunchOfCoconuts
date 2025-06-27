@@ -1,5 +1,5 @@
 ---
-title: "scottadams-hoax-list"
+title: 'scottadams-hoax-list'
 ---
 
 ![scottadams-hoax-list](/memes/politics/scottadams-hoax-list.png)

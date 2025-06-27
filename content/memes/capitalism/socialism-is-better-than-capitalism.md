@@ -1,5 +1,5 @@
 ---
-title: "socialism-is-better-than-capitalism"
+title: 'socialism-is-better-than-capitalism'
 ---
 
 ![socialism-is-better-than-capitalism](/memes/capitalism/socialism-is-better-than-capitalism.png)

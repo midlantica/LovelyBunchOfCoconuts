@@ -1,7 +1,7 @@
 ---
-title: "Gun Control"
-claim: "Gun Control"
-translation: "Disarm the law-abiding."
+title: 'Gun Control'
+claim: 'Gun Control'
+translation: 'Disarm the law-abiding.'
 ---
 
 ## "Gun Control"

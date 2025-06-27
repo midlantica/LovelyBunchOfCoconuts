@@ -1,5 +1,5 @@
 ---
-title: "A free press stands as one of the great interpreters"
+title: 'A free press stands as one of the great interpreters'
 ---
 
 ## "A free press stands as one of the great interpreters between the government and the people."

@@ -1,7 +1,7 @@
 ---
-title: "Taxation"
-claim: "Taxation"
-translation: "Theft."
+title: 'Taxation'
+claim: 'Taxation'
+translation: 'Theft.'
 ---
 
 ## Taxation

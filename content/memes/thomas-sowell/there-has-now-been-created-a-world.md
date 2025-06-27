@@ -1,5 +1,5 @@
 ---
-title: "there-has-now-been-created-a-world"
+title: 'there-has-now-been-created-a-world'
 ---
 
 ![there-has-now-been-created-a-world](/memes/thomas-sowell/there-has-now-been-created-a-world.png)

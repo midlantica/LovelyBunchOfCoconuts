@@ -1,5 +1,5 @@
 ---
-title: "the-world-as-100-people-over-the-last-two-centuries"
+title: 'the-world-as-100-people-over-the-last-two-centuries'
 ---
 
 ![the-world-as-100-people-over-the-last-two-centuries](/memes/data/the-world-as-100-people-over-the-last-two-centuries.png)

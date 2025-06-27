@@ -1,5 +1,5 @@
 ---
-title: "median-us-household-income-by-selected-ethnic-groups-2018"
+title: 'median-us-household-income-by-selected-ethnic-groups-2018'
 ---
 
 ![median-us-household-income-by-selected-ethnic-groups-2018](/memes/data/median-us-household-income-by-selected-ethnic-groups-2018.png)

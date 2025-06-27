@@ -1,5 +1,5 @@
 ---
-title: "thomas-sowell-sexual-activity-vs-economic-activity"
+title: 'thomas-sowell-sexual-activity-vs-economic-activity'
 ---
 
 ![thomas-sowell-sexual-activity-vs-economic-activity](/memes/thomas-sowell/thomas-sowell-sexual-activity-vs-economic-activity.png)

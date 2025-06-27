@@ -1,5 +1,5 @@
 ---
-title: "Underlying most arguments against the free market"
+title: 'Underlying most arguments against the free market'
 ---
 
 ## "Underlying most arguments against the free market is a lack of belief in freedom itself."

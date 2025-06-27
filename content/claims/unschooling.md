@@ -1,7 +1,7 @@
 ---
-title: "Unschooling"
-claim: "Unschooling"
-translation: "Education without expectations."
+title: 'Unschooling'
+claim: 'Unschooling'
+translation: 'Education without expectations.'
 ---
 
 ## "Unschooling"

@@ -1,7 +1,7 @@
 ---
-title: "Equity-Focused Traffic Laws"
-claim: "Equity-Focused Traffic Laws"
-translation: "Tickets for justice."
+title: 'Equity-Focused Traffic Laws'
+claim: 'Equity-Focused Traffic Laws'
+translation: 'Tickets for justice.'
 ---
 
 ## "Equity-Focused Traffic Laws"

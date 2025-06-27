@@ -1,7 +1,7 @@
 ---
-title: "Decolonial Mindfulness"
-claim: "Decolonial Mindfulness"
-translation: "Meditate on your guilt."
+title: 'Decolonial Mindfulness'
+claim: 'Decolonial Mindfulness'
+translation: 'Meditate on your guilt.'
 ---
 
 ## "Decolonial Mindfulness"

@@ -1,5 +1,5 @@
 ---
-title: "its-amazing-how-fast-people-learn-when-they-are"
+title: 'its-amazing-how-fast-people-learn-when-they-are'
 ---
 
 ![its-amazing-how-fast-people-learn-when-they-are](/memes/thomas-sowell/its-amazing-how-fast-people-learn-when-they-are.png)

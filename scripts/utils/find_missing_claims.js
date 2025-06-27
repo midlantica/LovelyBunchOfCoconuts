@@ -1,8 +1,8 @@
-const fs = require("fs")
-const path = require("path")
+const fs = require('fs')
+const path = require('path')
 
 // Path to claims directory
-const claimsDir = path.join(__dirname, "../content/claims")
+const claimsDir = path.join(__dirname, '../content/claims')
 
 // Helper function to get all files in a directory recursively
 function getFilesRecursively(dir) {
@@ -20,8 +20,10 @@ function getFilesRecursively(dir) {
 
 // Find empty markdown files
 function findEmptyMarkdownFiles(dir) {
-  const files = getFilesRecursively(dir).filter((file) => file.endsWith(".md"))
-  const emptyFiles = files.filter((file) => fs.readFileSync(file, "utf-8").trim() === "")
+  const files = getFilesRecursively(dir).filter((file) => file.endsWith('.md'))
+  const emptyFiles = files.filter(
+    (file) => fs.readFileSync(file, 'utf-8').trim() === ''
+  )
   return emptyFiles
 }
 
@@ -34,10 +36,10 @@ function generateReport() {
   }
 
   fs.writeFileSync(
-    path.join(__dirname, "missing_claims_report.json"),
+    path.join(__dirname, 'missing_claims_report.json'),
     JSON.stringify(report, null, 2)
   )
-  console.log("Missing Claims Report generated:", report)
+  console.log('Missing Claims Report generated:', report)
 }
 
 // Run the script

@@ -1,7 +1,7 @@
 ---
-title: "Progressive"
-claim: "Progressive"
-translation: "Regressive."
+title: 'Progressive'
+claim: 'Progressive'
+translation: 'Regressive.'
 ---
 
 ## "Progressive"

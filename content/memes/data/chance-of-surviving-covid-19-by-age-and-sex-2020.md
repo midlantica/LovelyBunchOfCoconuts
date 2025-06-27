@@ -1,5 +1,5 @@
 ---
-title: "chance-of-surviving-covid-19-by-age-and-sex-2020"
+title: 'chance-of-surviving-covid-19-by-age-and-sex-2020'
 ---
 
 ![chance-of-surviving-covid-19-by-age-and-sex-2020](/memes/data/chance-of-surviving-covid-19-by-age-and-sex-2020.png)

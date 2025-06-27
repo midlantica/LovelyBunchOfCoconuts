@@ -1,5 +1,5 @@
 ---
-title: "The great aim of education is not knowledge but action"
+title: 'The great aim of education is not knowledge but action'
 ---
 
 ## "The great aim of education is not knowledge but action."

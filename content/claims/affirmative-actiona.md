@@ -1,7 +1,7 @@
 ---
-title: "Affirmative Action"
-claim: "Affirmative Action"
-translation: "Destroy Culture. Increase Poverty."
+title: 'Affirmative Action'
+claim: 'Affirmative Action'
+translation: 'Destroy Culture. Increase Poverty.'
 ---
 
 ## "Affirmative Action"

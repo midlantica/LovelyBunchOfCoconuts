@@ -1,5 +1,5 @@
 ---
-title: "msm-news-word-frequency"
+title: 'msm-news-word-frequency'
 ---
 
 ![msm-news-word-frequency](/memes/data/msm-news-word-frequency.png)

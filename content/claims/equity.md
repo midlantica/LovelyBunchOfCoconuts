@@ -1,7 +1,7 @@
 ---
-title: "Equity"
-claim: "Equity"
-translation: "Equal outcomes, unequal effort."
+title: 'Equity'
+claim: 'Equity'
+translation: 'Equal outcomes, unequal effort.'
 ---
 
 ## "Equity"

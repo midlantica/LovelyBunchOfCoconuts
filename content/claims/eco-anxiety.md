@@ -1,7 +1,7 @@
 ---
-title: "Eco-Anxiety"
-claim: "Eco-Anxiety"
-translation: "Induce fear for compliance."
+title: 'Eco-Anxiety'
+claim: 'Eco-Anxiety'
+translation: 'Induce fear for compliance.'
 ---
 
 ## "Eco-Anxiety"

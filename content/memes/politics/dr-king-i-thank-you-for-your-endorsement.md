@@ -1,5 +1,5 @@
 ---
-title: "dr-king-i-thank-you-for-your-endorsement"
+title: 'dr-king-i-thank-you-for-your-endorsement'
 ---
 
 ![dr-king-i-thank-you-for-your-endorsement](/memes/politics/dr-king-i-thank-you-for-your-endorsement.png)

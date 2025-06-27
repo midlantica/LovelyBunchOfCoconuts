@@ -1,5 +1,5 @@
 ---
-title: "countries-vs-us-metros-nearest-gdp-equivalent"
+title: 'countries-vs-us-metros-nearest-gdp-equivalent'
 ---
 
 ![countries-vs-us-metros-nearest-gdp-equivalent](/memes/data/countries-vs-us-metros-nearest-gdp-equivalent.png)

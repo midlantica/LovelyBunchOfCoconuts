@@ -1,7 +1,7 @@
 ---
-title: "Equity-Centered Journalism"
-claim: "Equity-Centered Journalism"
-translation: "Facts through a filter."
+title: 'Equity-Centered Journalism'
+claim: 'Equity-Centered Journalism'
+translation: 'Facts through a filter.'
 ---
 
 ## "Equity-Centered Journalism"

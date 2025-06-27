@@ -1,5 +1,5 @@
 ---
-title: "the-same-analogy-can-be-made-about-human"
+title: 'the-same-analogy-can-be-made-about-human'
 ---
 
 ![the-same-analogy-can-be-made-about-human](/memes/politics/the-same-analogy-can-be-made-about-human.png)

@@ -17,6 +17,7 @@ export default defineEventHandler(async (event) => {
     page: 1,
     limit: 10,
     totalPages: 0,
-    message: "This API endpoint is deprecated. Search is now handled directly via Nuxt Content v3.",
+    message:
+      'This API endpoint is deprecated. Search is now handled directly via Nuxt Content v3.',
   }
 })

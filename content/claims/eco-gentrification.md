@@ -1,7 +1,7 @@
 ---
-title: "Eco-Gentrification"
-claim: "Eco-Gentrification"
-translation: "Green the city, displace the poor."
+title: 'Eco-Gentrification'
+claim: 'Eco-Gentrification'
+translation: 'Green the city, displace the poor.'
 ---
 
 ## "Eco-Gentrification"

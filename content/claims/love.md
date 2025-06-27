@@ -1,7 +1,7 @@
 ---
-title: "Love"
-claim: "Love"
-translation: "Self-Love."
+title: 'Love'
+claim: 'Love'
+translation: 'Self-Love.'
 ---
 
 ## "Love"

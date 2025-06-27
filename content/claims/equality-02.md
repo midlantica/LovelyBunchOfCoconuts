@@ -1,7 +1,7 @@
 ---
-title: "Equality"
-claim: "Equality"
-translation: "Levelling down"
+title: 'Equality'
+claim: 'Equality'
+translation: 'Levelling down'
 ---
 
 ## "Equality"

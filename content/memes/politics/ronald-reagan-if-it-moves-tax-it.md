@@ -1,5 +1,5 @@
 ---
-title: "ronald-reagan-if-it-moves-tax-it"
+title: 'ronald-reagan-if-it-moves-tax-it'
 ---
 
 ![Meme](/memes/politics/ronald-reagan-if-it-moves-tax-it.png)

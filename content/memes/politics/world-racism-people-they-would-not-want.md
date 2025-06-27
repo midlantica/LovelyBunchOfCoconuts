@@ -1,5 +1,5 @@
 ---
-title: "world-racism-people-they-would-not-want"
+title: 'world-racism-people-they-would-not-want'
 ---
 
 ![world-racism-people-they-would-not-want](/memes/politics/world-racism-people-they-would-not-want.png)

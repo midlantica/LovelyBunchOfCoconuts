@@ -1,5 +1,5 @@
 ---
-title: "leftism-success"
+title: 'leftism-success'
 ---
 
 ![leftism-success](/memes/politics/leftism-success.png)

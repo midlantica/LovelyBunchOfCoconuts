@@ -1,5 +1,5 @@
 ---
-title: "us-states-renamed-for-countries-with-similar-gdps-2017"
+title: 'us-states-renamed-for-countries-with-similar-gdps-2017'
 ---
 
 ![us-states-renamed-for-countries-with-similar-gdps-2017](/memes/data/us-states-renamed-for-countries-with-similar-gdps-2017.png)

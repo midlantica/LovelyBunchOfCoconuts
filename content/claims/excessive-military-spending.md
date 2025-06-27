@@ -1,7 +1,7 @@
 ---
-title: "Excessive military spending"
-claim: "Excessive military spending"
-translation: "Decreased military readiness."
+title: 'Excessive military spending'
+claim: 'Excessive military spending'
+translation: 'Decreased military readiness.'
 ---
 
 ## "Excessive military spending"

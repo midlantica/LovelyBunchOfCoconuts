@@ -1,5 +1,5 @@
 ---
-title: "You cannot strengthen the weak by weakening the strong"
+title: 'You cannot strengthen the weak by weakening the strong'
 ---
 
 ## "You cannot strengthen the weak by weakening the strong."

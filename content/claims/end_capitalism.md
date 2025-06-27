@@ -1,7 +1,7 @@
 ---
-title: "End Capitalism"
-claim: "End Capitalism"
-translation: "Starvation is a small price for equality."
+title: 'End Capitalism'
+claim: 'End Capitalism'
+translation: 'Starvation is a small price for equality.'
 ---
 
 ## "End Capitalism"

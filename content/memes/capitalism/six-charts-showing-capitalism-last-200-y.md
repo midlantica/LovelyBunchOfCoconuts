@@ -1,5 +1,5 @@
 ---
-title: "six-charts-showing-capitalism-last-200-y"
+title: 'six-charts-showing-capitalism-last-200-y'
 ---
 
 ![six-charts-showing-capitalism-last-200-y](/memes/capitalism/six-charts-showing-capitalism-last-200-y.png)

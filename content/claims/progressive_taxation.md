@@ -1,7 +1,7 @@
 ---
-title: "Progressive Taxation"
-claim: "Progressive Taxation"
-translation: "Punish effort, reward complaint."
+title: 'Progressive Taxation'
+claim: 'Progressive Taxation'
+translation: 'Punish effort, reward complaint.'
 ---
 
 ## "Progressive Taxation"

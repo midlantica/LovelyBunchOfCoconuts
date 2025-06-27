@@ -1,6 +1,6 @@
 ---
-title: "Unconscious Bias Training"
-claim: "Unconscious Bias Training"
+title: 'Unconscious Bias Training'
+claim: 'Unconscious Bias Training'
 translation: "You're guilty—don't ask why."
 ---
 

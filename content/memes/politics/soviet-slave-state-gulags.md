@@ -1,5 +1,5 @@
 ---
-title: "soviet-slave-state-gulags"
+title: 'soviet-slave-state-gulags'
 ---
 
 ![soviet-slave-state-gulags](/memes/politics/soviet-slave-state-gulags.png)

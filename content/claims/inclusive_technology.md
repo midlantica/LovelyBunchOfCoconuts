@@ -1,7 +1,7 @@
 ---
-title: "Inclusive Technology"
-claim: "Inclusive Technology"
-translation: "Gadgets that lecture you."
+title: 'Inclusive Technology'
+claim: 'Inclusive Technology'
+translation: 'Gadgets that lecture you.'
 ---
 
 ## "Inclusive Technology"

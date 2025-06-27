@@ -1,7 +1,7 @@
 ---
-title: "Inclusive Language"
-claim: "Inclusive Language"
-translation: "Censoring speech to control thought."
+title: 'Inclusive Language'
+claim: 'Inclusive Language'
+translation: 'Censoring speech to control thought.'
 ---
 
 ## "Inclusive Language"

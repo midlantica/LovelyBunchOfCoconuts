@@ -1,7 +1,7 @@
 ---
-title: "Reproductive Equity"
-claim: "Reproductive Equity"
-translation: "Abortion, subsidized and sanctified."
+title: 'Reproductive Equity'
+claim: 'Reproductive Equity'
+translation: 'Abortion, subsidized and sanctified.'
 ---
 
 ## "Reproductive Equity"

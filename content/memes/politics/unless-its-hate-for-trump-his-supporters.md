@@ -1,5 +1,5 @@
 ---
-title: "unless-its-hate-for-trump-his-supporters"
+title: 'unless-its-hate-for-trump-his-supporters'
 ---
 
 ![unless-its-hate-for-trump-his-supporters](/memes/politics/unless-its-hate-for-trump-his-supporters.png)

@@ -1,7 +1,7 @@
 ---
-title: "Food Sovereignty"
-claim: "Food Sovereignty"
-translation: "Locally sourced control."
+title: 'Food Sovereignty'
+claim: 'Food Sovereignty'
+translation: 'Locally sourced control.'
 ---
 
 ## "Food Sovereignty"

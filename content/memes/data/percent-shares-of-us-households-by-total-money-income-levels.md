@@ -1,5 +1,5 @@
 ---
-title: "percent-shares-of-us-households-by-total-money-income-levels"
+title: 'percent-shares-of-us-households-by-total-money-income-levels'
 ---
 
 ![percent-shares-of-us-households-by-total-money-income-levels](/memes/data/percent-shares-of-us-households-by-total-money-income-levels.png)

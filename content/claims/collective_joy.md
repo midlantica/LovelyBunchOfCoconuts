@@ -1,7 +1,7 @@
 ---
-title: "Collective Joy"
-claim: "Collective Joy"
-translation: "Mandatory good vibes."
+title: 'Collective Joy'
+claim: 'Collective Joy'
+translation: 'Mandatory good vibes.'
 ---
 
 ## "Collective Joy"

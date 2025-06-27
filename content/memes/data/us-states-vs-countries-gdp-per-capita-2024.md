@@ -1,5 +1,5 @@
 ---
-title: "us-states-vs-countries-gdp-per-capita-2024"
+title: 'us-states-vs-countries-gdp-per-capita-2024'
 ---
 
 ![us-states-vs-countries-gdp-per-capita-2024](/memes/data/us-states-vs-countries-gdp-per-capita-2024.png)

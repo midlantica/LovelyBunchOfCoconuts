@@ -1,7 +1,7 @@
 ---
-title: "Public Healthcare"
-claim: "Public Healthcare"
-translation: "The DMV, but with needles."
+title: 'Public Healthcare'
+claim: 'Public Healthcare'
+translation: 'The DMV, but with needles.'
 ---
 
 ## "Public Healthcare"

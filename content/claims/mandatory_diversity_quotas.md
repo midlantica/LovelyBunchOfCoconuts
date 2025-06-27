@@ -1,7 +1,7 @@
 ---
-title: "Mandatory Diversity Quotas"
-claim: "Mandatory Diversity Quotas"
-translation: "Merit is now discriminatory."
+title: 'Mandatory Diversity Quotas'
+claim: 'Mandatory Diversity Quotas'
+translation: 'Merit is now discriminatory.'
 ---
 
 ## "Mandatory Diversity Quotas"

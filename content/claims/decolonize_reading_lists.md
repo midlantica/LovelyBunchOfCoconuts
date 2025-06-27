@@ -1,7 +1,7 @@
 ---
-title: "Decolonize Reading Lists"
-claim: "Decolonize Reading Lists"
-translation: "Goodbye classics."
+title: 'Decolonize Reading Lists'
+claim: 'Decolonize Reading Lists'
+translation: 'Goodbye classics.'
 ---
 
 ## "Decolonize Reading Lists"

@@ -1,5 +1,5 @@
 ---
-title: "the-middle-east-prior-to-arab-colonization"
+title: 'the-middle-east-prior-to-arab-colonization'
 ---
 
 ![the-middle-east-prior-to-arab-colonization](/memes/data/the-middle-east-prior-to-arab-colonization.png)

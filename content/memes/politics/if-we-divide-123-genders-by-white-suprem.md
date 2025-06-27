@@ -1,5 +1,5 @@
 ---
-title: "if-we-divide-123-genders-by-white-suprem"
+title: 'if-we-divide-123-genders-by-white-suprem'
 ---
 
 ![if-we-divide-123-genders-by-white-suprem](/memes/politics/if-we-divide-123-genders-by-white-suprem.png)

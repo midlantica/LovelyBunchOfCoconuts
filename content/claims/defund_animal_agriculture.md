@@ -1,7 +1,7 @@
 ---
-title: "Defund Animal Agriculture"
-claim: "Defund Animal Agriculture"
-translation: "Tofu or else."
+title: 'Defund Animal Agriculture'
+claim: 'Defund Animal Agriculture'
+translation: 'Tofu or else.'
 ---
 
 ## "Defund Animal Agriculture"

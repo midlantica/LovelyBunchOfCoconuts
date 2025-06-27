@@ -1,10 +1,10 @@
-const fs = require("fs")
-const path = require("path")
+const fs = require('fs')
+const path = require('path')
 
 // Paths
-const claimsDir = path.join(__dirname, "../content/claims")
-const memesImagesDir = path.join(__dirname, "../public/memes")
-const memesMarkdownDir = path.join(__dirname, "../content/memes")
+const claimsDir = path.join(__dirname, '../content/claims')
+const memesImagesDir = path.join(__dirname, '../public/memes')
+const memesMarkdownDir = path.join(__dirname, '../content/memes')
 
 // Helper function to get all files in a directory recursively
 function getFilesRecursively(dir) {
@@ -22,23 +22,34 @@ function getFilesRecursively(dir) {
 
 // Find empty markdown files
 function findEmptyMarkdownFiles(dir) {
-  const files = getFilesRecursively(dir).filter((file) => file.endsWith(".md"))
-  const emptyFiles = files.filter((file) => fs.readFileSync(file, "utf-8").trim() === "")
+  const files = getFilesRecursively(dir).filter((file) => file.endsWith('.md'))
+  const emptyFiles = files.filter(
+    (file) => fs.readFileSync(file, 'utf-8').trim() === ''
+  )
   return emptyFiles
 }
 
 // Updated function to handle variations in naming conventions
 function findUnmatchedMemeImages(imagesDir, markdownDir) {
-  const imageFiles = getFilesRecursively(imagesDir).filter((file) => file.match(/\.(png|jpg)$/))
-  const markdownFiles = getFilesRecursively(markdownDir).filter((file) => file.endsWith(".md"))
+  const imageFiles = getFilesRecursively(imagesDir).filter((file) =>
+    file.match(/\.(png|jpg)$/)
+  )
+  const markdownFiles = getFilesRecursively(markdownDir).filter((file) =>
+    file.endsWith('.md')
+  )
 
-  const markdownBaseNames = markdownFiles.map((file) => path.basename(file, ".md"))
+  const markdownBaseNames = markdownFiles.map((file) =>
+    path.basename(file, '.md')
+  )
   const unmatchedImages = imageFiles.filter((imageFile) => {
     const imageBaseName = path.basename(imageFile, path.extname(imageFile))
 
     // Check for partial matches or substring matches
     return !markdownBaseNames.some((markdownBaseName) => {
-      return markdownBaseName.includes(imageBaseName) || imageBaseName.includes(markdownBaseName)
+      return (
+        markdownBaseName.includes(imageBaseName) ||
+        imageBaseName.includes(markdownBaseName)
+      )
     })
   })
 
@@ -47,13 +58,17 @@ function findUnmatchedMemeImages(imagesDir, markdownDir) {
 
 // Updated function to verify image links in markdown files
 function findMissingImagesInMarkdown(markdownDir, imagesDir) {
-  const markdownFiles = getFilesRecursively(markdownDir).filter((file) => file.endsWith(".md"))
-  const imageFiles = getFilesRecursively(imagesDir).filter((file) => file.match(/\.(png|jpg)$/))
+  const markdownFiles = getFilesRecursively(markdownDir).filter((file) =>
+    file.endsWith('.md')
+  )
+  const imageFiles = getFilesRecursively(imagesDir).filter((file) =>
+    file.match(/\.(png|jpg)$/)
+  )
 
   const imagePathsInMarkdown = []
 
   markdownFiles.forEach((markdownFile) => {
-    const content = fs.readFileSync(markdownFile, "utf-8")
+    const content = fs.readFileSync(markdownFile, 'utf-8')
 
     // Extract image links using regex
     const matches = content.match(/!\[.*?\]\((.*?)\)/g)
@@ -68,7 +83,9 @@ function findMissingImagesInMarkdown(markdownDir, imagesDir) {
   })
 
   // Normalize image paths and check for missing images
-  const normalizedImageFiles = imageFiles.map((file) => path.relative(imagesDir, file))
+  const normalizedImageFiles = imageFiles.map((file) =>
+    path.relative(imagesDir, file)
+  )
   const missingImages = imagePathsInMarkdown.filter(
     (imagePath) => !normalizedImageFiles.includes(imagePath)
   )
@@ -93,8 +110,11 @@ function generateReport() {
     missingImages,
   }
 
-  fs.writeFileSync(path.join(__dirname, "report.json"), JSON.stringify(report, null, 2))
-  console.log("Report generated:", report)
+  fs.writeFileSync(
+    path.join(__dirname, 'report.json'),
+    JSON.stringify(report, null, 2)
+  )
+  console.log('Report generated:', report)
 }
 
 // Run the script

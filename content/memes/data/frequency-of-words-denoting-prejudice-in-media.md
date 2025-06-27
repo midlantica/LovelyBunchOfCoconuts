@@ -1,5 +1,5 @@
 ---
-title: "frequency-of-words-denoting-prejudice-in-the-nyt-and-the-wapo"
+title: 'frequency-of-words-denoting-prejudice-in-the-nyt-and-the-wapo'
 ---
 
 ![frequency-of-words-denoting-prejudice-in-the-nyt-and-the-wapo](/memes/data/frequency-of-words-denoting-prejudice-in-the-nyt-and-the-wapo.png)

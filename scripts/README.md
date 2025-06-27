@@ -11,6 +11,7 @@ pnpm run process-subdir thomas-sowell
 ```
 
 This will:
+
 1. Rename all image files in public/memes/thomas-sowell/ to be server-friendly
 2. Create matching markdown files in content/memes/ for each image
 
@@ -90,6 +91,6 @@ pnpm run process-subdir -- thomas-sowell --force
 
 ## Notes
 
-- Files starting with "__" are skipped
+- Files starting with "\_\_" are skipped
 - The scripts won't overwrite existing markdown files unless --force is used
 - Image paths in markdown files are correctly set based on the subdirectory structure

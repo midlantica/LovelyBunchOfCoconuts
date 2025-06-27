@@ -15,6 +15,7 @@ If you're here to add or edit content (quotes, claims, or memes), please read ou
 ## Templates
 
 For convenience, we provide templates for each content type in the `templates/` directory:
+
 - [Quote Template](templates/quote.md)
 - [Claim Template](templates/claim.md)
 - [Meme Template](templates/meme.md)

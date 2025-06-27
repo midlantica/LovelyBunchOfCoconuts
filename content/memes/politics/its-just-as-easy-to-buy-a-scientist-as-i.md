@@ -1,5 +1,5 @@
 ---
-title: "its-just-as-easy-to-buy-a-scientist-as-i"
+title: 'its-just-as-easy-to-buy-a-scientist-as-i'
 ---
 
 ![its-just-as-easy-to-buy-a-scientist-as-i](/memes/politics/its-just-as-easy-to-buy-a-scientist-as-i.png)

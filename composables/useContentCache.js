@@ -1,5 +1,5 @@
 // composables/useContentCache.js
-import { ref, reactive } from "vue"
+import { ref, reactive } from 'vue'
 
 // Create a reactive store to cache content items
 const contentCache = reactive({
@@ -34,14 +34,22 @@ export function useContentCache() {
 
     try {
       // Load all items of the content type
-      if (!contentCache[`all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`]) {
+      if (
+        !contentCache[
+          `all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`
+        ]
+      ) {
         const res = await fetch(`/content-${contentType}.json`)
         const data = await res.json()
-        contentCache[`all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`] = data
+        contentCache[
+          `all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`
+        ] = data
       }
 
       const allItems =
-        contentCache[`all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`]
+        contentCache[
+          `all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`
+        ]
       const item = allItems.find((entry) => entry._path === fullPath)
 
       if (item) {
@@ -50,7 +58,10 @@ export function useContentCache() {
 
       return item || null
     } catch (error) {
-      console.error(`Error loading ${contentType} item from static JSON:`, error)
+      console.error(
+        `Error loading ${contentType} item from static JSON:`,
+        error
+      )
       return null
     } finally {
       loadingStates[contentType][fullPath] = false
@@ -60,12 +71,20 @@ export function useContentCache() {
   // Get all items of a specific content type
   const getAllContent = async (contentType) => {
     // Check if we already have all items cached
-    if (contentCache[`all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`]) {
-      return contentCache[`all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`]
+    if (
+      contentCache[
+        `all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`
+      ]
+    ) {
+      return contentCache[
+        `all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`
+      ]
     }
 
     // Mark as loading
-    loadingStates[`all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`] = true
+    loadingStates[
+      `all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`
+    ] = true
 
     try {
       // Fetch all items
@@ -74,7 +93,9 @@ export function useContentCache() {
 
       // Cache the result
       if (data && !data.error) {
-        contentCache[`all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`] = data
+        contentCache[
+          `all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`
+        ] = data
       }
 
       return data
@@ -82,25 +103,27 @@ export function useContentCache() {
       console.error(`Error fetching all ${contentType}:`, error)
       return []
     } finally {
-      loadingStates[`all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`] = false
+      loadingStates[
+        `all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`
+      ] = false
     }
   }
 
   // Prefetch a content item
   const prefetchContentItem = async (path) => {
-    if (!path || path === "/") return
+    if (!path || path === '/') return
 
     // Extract content type and slug from path
-    const pathParts = path.split("/")
+    const pathParts = path.split('/')
     if (pathParts.length < 3) return
 
     const contentType = pathParts[1] // 'claims', 'quotes', or 'memes'
     const slugParts = pathParts.slice(2)
-    const slug = slugParts.join("/")
+    const slug = slugParts.join('/')
 
     // Only prefetch if it's a valid content type and not already cached
     if (
-      ["claims", "quotes", "memes"].includes(contentType) &&
+      ['claims', 'quotes', 'memes'].includes(contentType) &&
       !contentCache[contentType][`/${contentType}/${slug}`]
     ) {
       console.log(`Prefetching ${contentType} item: ${slug}`)
@@ -118,7 +141,9 @@ export function useContentCache() {
 
   // Check if all items of a content type are loading
   const isLoadingAll = (contentType) => {
-    return loadingStates[`all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`]
+    return loadingStates[
+      `all${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`
+    ]
   }
 
   return {

@@ -1,7 +1,7 @@
 ---
-title: "De-Gender Toys"
-claim: "De-Gender Toys"
-translation: "Let kids be pawns."
+title: 'De-Gender Toys'
+claim: 'De-Gender Toys'
+translation: 'Let kids be pawns.'
 ---
 
 ## "De-Gender Toys"

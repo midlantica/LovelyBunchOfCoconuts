@@ -1,5 +1,5 @@
 ---
-title: "the-real-motives-of-liberals-have-nothing-to-do-with-the-welfare-of-other-people"
+title: 'the-real-motives-of-liberals-have-nothing-to-do-with-the-welfare-of-other-people'
 ---
 
 ![the-real-motives-of-liberals-have-nothing-to-do-with-the-welfare-of-other-people](/memes/thomas-sowell/the-real-motives-of-liberals-have-nothing-to-do-with-the-welfare-of-other-people.png)

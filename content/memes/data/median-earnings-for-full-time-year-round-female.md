@@ -1,5 +1,5 @@
 ---
-title: "median-earnings-for-full-time-year-round-female-workers"
+title: 'median-earnings-for-full-time-year-round-female-workers'
 ---
 
 ![median-earnings-for-full-time-year-round-female-workers](/memes/data/median-earnings-for-full-time-year-round-female-workers.png)

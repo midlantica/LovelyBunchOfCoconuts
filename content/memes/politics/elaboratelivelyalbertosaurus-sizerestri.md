@@ -1,5 +1,5 @@
 ---
-title: "elaboratelivelyalbertosaurus-sizerestri"
+title: 'elaboratelivelyalbertosaurus-sizerestri'
 ---
 
 ![elaboratelivelyalbertosaurus-sizerestri](/memes/politics/elaboratelivelyalbertosaurus-sizerestri.png)

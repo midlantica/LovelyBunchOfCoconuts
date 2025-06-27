@@ -1,5 +1,5 @@
 ---
-title: "If you have ten thousand regulations"
+title: 'If you have ten thousand regulations'
 ---
 
 ## "If you have ten thousand regulations, you destroy all respect for the law."

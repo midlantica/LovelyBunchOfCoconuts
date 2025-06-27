@@ -1,5 +1,5 @@
 ---
-title: "far-right-1"
+title: 'far-right-1'
 ---
 
 ![far-right-1](/memes/data/far-right-1.png)

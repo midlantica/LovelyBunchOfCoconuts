@@ -1,5 +1,5 @@
 ---
-title: "I predict future happiness for Americans"
+title: 'I predict future happiness for Americans'
 ---
 
 ## "I predict future happiness for Americans if they can prevent the government from wasting the labors of the people under the pretense of taking care of them."

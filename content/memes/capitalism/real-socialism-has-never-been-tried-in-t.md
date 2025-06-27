@@ -1,5 +1,5 @@
 ---
-title: "real-socialism-has-never-been-tried-in-t"
+title: 'real-socialism-has-never-been-tried-in-t'
 ---
 
 ![real-socialism-has-never-been-tried-in-t](/memes/capitalism/real-socialism-has-never-been-tried-in-t.png)

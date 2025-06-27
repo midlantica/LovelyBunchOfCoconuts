@@ -1,5 +1,5 @@
 ---
-title: "leftist-if-you-dont-agree-with-me-that-m"
+title: 'leftist-if-you-dont-agree-with-me-that-m'
 ---
 
 ![leftist-if-you-dont-agree-with-me-that-m](/memes/politics/leftist-if-you-dont-agree-with-me-that-m.png)

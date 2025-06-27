@@ -1,7 +1,7 @@
 ---
-title: "Gender Expansive Curriculum"
-claim: "Gender Expansive Curriculum"
-translation: "Teach identity, forget math."
+title: 'Gender Expansive Curriculum'
+claim: 'Gender Expansive Curriculum'
+translation: 'Teach identity, forget math.'
 ---
 
 ## "Gender Expansive Curriculum"

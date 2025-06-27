@@ -1,5 +1,5 @@
 ---
-title: "socialism-crony-capitalism-free-markets"
+title: 'socialism-crony-capitalism-free-markets'
 ---
 
 ![socialism-crony-capitalism-free-markets](/memes/data/socialism-crony-capitalism-free-markets.png)

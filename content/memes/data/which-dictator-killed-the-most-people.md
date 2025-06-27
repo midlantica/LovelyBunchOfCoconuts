@@ -1,5 +1,5 @@
 ---
-title: "which-dictator-killed-the-most-people"
+title: 'which-dictator-killed-the-most-people'
 ---
 
 ![which-dictator-killed-the-most-people](/memes/data/which-dictator-killed-the-most-people.png)

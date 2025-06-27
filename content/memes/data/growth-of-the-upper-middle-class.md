@@ -1,5 +1,5 @@
 ---
-title: "growth-of-the-upper-middle-class"
+title: 'growth-of-the-upper-middle-class'
 ---
 
 ![growth-of-the-upper-middle-class](/memes/data/growth-of-the-upper-middle-class.png)

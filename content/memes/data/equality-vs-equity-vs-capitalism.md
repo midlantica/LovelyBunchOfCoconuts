@@ -1,5 +1,5 @@
 ---
-title: "equality-vs-equity-vs-capitalism"
+title: 'equality-vs-equity-vs-capitalism'
 ---
 
 ![equality-vs-equity-vs-capitalism](/memes/data/equality-vs-equity-vs-capitalism.png)

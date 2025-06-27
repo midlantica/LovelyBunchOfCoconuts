@@ -1,5 +1,5 @@
 ---
-title: "You cannot multiply wealth"
+title: 'You cannot multiply wealth'
 ---
 
 ## "You cannot multiply wealth by dividing it."

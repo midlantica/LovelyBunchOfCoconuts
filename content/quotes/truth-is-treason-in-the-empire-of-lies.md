@@ -1,5 +1,5 @@
 ---
-title: "Truth is treason in the empire of lies"
+title: 'Truth is treason in the empire of lies'
 ---
 
 ## "Truth is treason in the empire of lies."

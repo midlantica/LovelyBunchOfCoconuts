@@ -1,5 +1,5 @@
 // composables/useModalSizing.js
-import { ref, computed, onMounted, onUnmounted } from "vue"
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 export function useModalSizing(imageUrlRef) {
   const imageNatural = ref({ width: 1, height: 1 })
@@ -14,17 +14,20 @@ export function useModalSizing(imageUrlRef) {
 
   onMounted(() => {
     updateViewport()
-    window.addEventListener("resize", updateViewport)
+    window.addEventListener('resize', updateViewport)
     if (imageUrlRef && imageUrlRef.value) {
       const img = new window.Image()
       img.onload = () => {
-        imageNatural.value = { width: img.naturalWidth, height: img.naturalHeight }
+        imageNatural.value = {
+          width: img.naturalWidth,
+          height: img.naturalHeight,
+        }
       }
       img.src = imageUrlRef.value
     }
   })
   onUnmounted(() => {
-    window.removeEventListener("resize", updateViewport)
+    window.removeEventListener('resize', updateViewport)
   })
 
   const aspect = computed(() => {
@@ -37,9 +40,9 @@ export function useModalSizing(imageUrlRef) {
   const modalLayout = computed(() => {
     // Always use 90vw/90vh and column flex for max size and simplicity
     return {
-      width: "90vw",
-      height: "90vh",
-      flexDirection: "column",
+      width: '90vw',
+      height: '90vh',
+      flexDirection: 'column',
     }
   })
 

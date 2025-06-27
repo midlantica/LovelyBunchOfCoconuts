@@ -1,7 +1,7 @@
 ---
-title: "Radical Transparency"
-claim: "Radical Transparency"
-translation: "Overshare for equity."
+title: 'Radical Transparency'
+claim: 'Radical Transparency'
+translation: 'Overshare for equity.'
 ---
 
 ## "Radical Transparency"

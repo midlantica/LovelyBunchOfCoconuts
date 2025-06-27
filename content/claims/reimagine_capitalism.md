@@ -1,7 +1,7 @@
 ---
-title: "Reimagine Capitalism"
-claim: "Reimagine Capitalism"
-translation: "Imagine poverty, but fair."
+title: 'Reimagine Capitalism'
+claim: 'Reimagine Capitalism'
+translation: 'Imagine poverty, but fair.'
 ---
 
 ## "Reimagine Capitalism"

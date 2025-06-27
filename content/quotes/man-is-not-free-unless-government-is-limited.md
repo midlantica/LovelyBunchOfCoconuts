@@ -1,5 +1,5 @@
 ---
-title: "Man is not free unless government is limited"
+title: 'Man is not free unless government is limited'
 ---
 
 ## "Man is not free unless government is limited."

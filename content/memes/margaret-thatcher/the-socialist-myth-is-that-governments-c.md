@@ -1,5 +1,5 @@
 ---
-title: "the-socialist-myth-is-that-governments-c"
+title: 'the-socialist-myth-is-that-governments-c'
 ---
 
 ![the-socialist-myth-is-that-governments-c](/memes/margaret-thatcher/the-socialist-myth-is-that-governments-c.png)

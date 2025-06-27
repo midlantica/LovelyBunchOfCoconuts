@@ -1,5 +1,5 @@
 ---
-title: "dems-we-must-stop-elon-musk-from-exposin"
+title: 'dems-we-must-stop-elon-musk-from-exposin'
 ---
 
 ![dems-we-must-stop-elon-musk-from-exposin](/memes/politics/dems-we-must-stop-elon-musk-from-exposin.png)

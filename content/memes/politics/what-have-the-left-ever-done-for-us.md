@@ -1,5 +1,5 @@
 ---
-title: "what-have-the-left-ever-done-for-us"
+title: 'what-have-the-left-ever-done-for-us'
 ---
 
 ![what-have-the-left-ever-done-for-us](/memes/politics/what-have-the-left-ever-done-for-us.png)

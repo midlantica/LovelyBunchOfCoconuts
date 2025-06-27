@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const fs = require("fs")
-const path = require("path")
-const { promisify } = require("util")
-const exifr = require("exifr")
+const fs = require('fs')
+const path = require('path')
+const { promisify } = require('util')
+const exifr = require('exifr')
 
 const readdir = promisify(fs.readdir)
 const stat = promisify(fs.stat)
@@ -13,7 +13,7 @@ const mkdir = promisify(fs.mkdir)
 
 // Parse command line arguments
 const args = process.argv.slice(2)
-let targetDir = path.join(__dirname, "..", "public", "memes") // Default directory
+let targetDir = path.join(__dirname, '..', 'public', 'memes') // Default directory
 let forceUpdate = false // Default to not overwrite existing markdown files
 
 // Check for custom directory argument
@@ -22,24 +22,29 @@ if (args.length > 0) {
   targetDir = path.resolve(args[0])
 
   // Check if second arg is --force flag
-  if (args.length > 1 && args[1] === "--force") {
+  if (args.length > 1 && args[1] === '--force') {
     forceUpdate = true
   }
 }
 
 // Configuration
-const BASE_CONTENT_DIR = path.join(__dirname, "..", "content", "memes")
-const BASE_PUBLIC_DIR = path.join(__dirname, "..", "public", "memes")
-const LOG_FILE = path.join(__dirname, "markdown-creation-log.txt")
+const BASE_CONTENT_DIR = path.join(__dirname, '..', 'content', 'memes')
+const BASE_PUBLIC_DIR = path.join(__dirname, '..', 'public', 'memes')
+const LOG_FILE = path.join(__dirname, 'markdown-creation-log.txt')
 
 // Initialize log file
-fs.writeFileSync(LOG_FILE, `Starting markdown file creation at ${new Date().toISOString()}\n`)
+fs.writeFileSync(
+  LOG_FILE,
+  `Starting markdown file creation at ${new Date().toISOString()}\n`
+)
 console.log(`Target directory: ${targetDir}`)
-console.log(`Force update existing markdown files: ${forceUpdate ? "Yes" : "No"}`)
+console.log(
+  `Force update existing markdown files: ${forceUpdate ? 'Yes' : 'No'}`
+)
 
 // Helper function to log messages
 function log(message) {
-  fs.appendFileSync(LOG_FILE, message + "\n")
+  fs.appendFileSync(LOG_FILE, message + '\n')
   console.log(message)
 }
 
@@ -50,9 +55,9 @@ function createTitle(filename) {
 
   // Replace hyphens with spaces and capitalize words
   return base
-    .split("-")
+    .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ")
+    .join(' ')
 }
 
 // Helper function to check if a file exists
@@ -71,7 +76,7 @@ function getRelativePath(fullPath) {
   if (fullPath.startsWith(BASE_PUBLIC_DIR)) {
     return path.relative(BASE_PUBLIC_DIR, fullPath)
   }
-  return ""
+  return ''
 }
 
 // Main function
@@ -98,11 +103,11 @@ async function createMarkdownFiles() {
     }
 
     // Construct the image path prefix for markdown files
-    const imagePath = relativePath ? `/memes/${relativePath}/` : "/memes/"
+    const imagePath = relativePath ? `/memes/${relativePath}/` : '/memes/'
 
     // Get current time
     const now = new Date()
-    const today = now.toISOString().split("T")[0] // YYYY-MM-DD format
+    const today = now.toISOString().split('T')[0] // YYYY-MM-DD format
 
     // Get all files in the target directory
     const files = await readdir(targetDir)
@@ -110,7 +115,7 @@ async function createMarkdownFiles() {
     // Filter for image files
     const imageFiles = files.filter((file) => {
       const ext = path.extname(file).toLowerCase()
-      return [".jpg", ".jpeg", ".png", ".gif"].includes(ext)
+      return ['.jpg', '.jpeg', '.png', '.gif'].includes(ext)
     })
 
     let createdCount = 0
@@ -119,7 +124,7 @@ async function createMarkdownFiles() {
     // Process each image file
     for (const file of imageFiles) {
       // Skip files that start with double underscore
-      if (file.startsWith("__")) {
+      if (file.startsWith('__')) {
         log(`Skipping ${file} (starts with __)`)
         skippedCount++
         continue

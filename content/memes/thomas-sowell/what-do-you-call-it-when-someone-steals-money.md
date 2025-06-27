@@ -1,5 +1,5 @@
 ---
-title: "what-do-you-call-it-when-someone-steals-money"
+title: 'what-do-you-call-it-when-someone-steals-money'
 ---
 
 ![What do you call it when someone steals money secretly?](/memes/thomas-sowell/what-do-you-call-it-when-someone-steals-money-secretly.png)

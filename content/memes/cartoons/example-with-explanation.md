@@ -1,5 +1,5 @@
 ---
-title: "Example Meme with Explanation"
+title: 'Example Meme with Explanation'
 ---
 
 ![Meme](/memes/cartoons/dei-blm-crt-esg-end-woke-insanity.png)

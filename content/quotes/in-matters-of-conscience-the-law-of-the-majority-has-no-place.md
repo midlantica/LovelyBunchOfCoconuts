@@ -1,5 +1,5 @@
 ---
-title: "In matters of conscience, the law of the majority has no place"
+title: 'In matters of conscience, the law of the majority has no place'
 ---
 
 ## "In matters of conscience, the law of the majority has no place."

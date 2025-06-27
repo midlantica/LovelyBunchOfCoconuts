@@ -1,5 +1,5 @@
 ---
-title: "im-not-a-racist-you-will-be"
+title: 'im-not-a-racist-you-will-be'
 ---
 
 ![im-not-a-racist-you-will-be](/memes/politics/im-not-a-racist-you-will-be.png)

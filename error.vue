@@ -1,9 +1,13 @@
 <!-- error.vue -->
 <template>
-  <div class="flex flex-col justify-center items-center px-4 py-16 min-h-screen text-white">
+  <div
+    class="flex flex-col justify-center items-center px-4 py-16 min-h-screen text-white"
+  >
     <div class="text-center">
       <h1 class="mb-4 font-light text-4xl">Page Not Found</h1>
-      <p class="mb-8 text-xl">The page you're looking for doesn't exist or has been moved.</p>
+      <p class="mb-8 text-xl">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
 
       <!-- <NuxtLink 
         to="/" 
@@ -17,9 +21,9 @@
 </template>
 
 <script setup>
-const error = useError()
+  const error = useError()
 
-function handleError() {
-  clearError({ redirect: "/" })
-}
+  function handleError() {
+    clearError({ redirect: '/' })
+  }
 </script>

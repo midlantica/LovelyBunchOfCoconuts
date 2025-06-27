@@ -17,7 +17,12 @@
         — {{ quote.attribution }}
       </p>
     </div>
-    <QuoteDetailModal v-if="showModal" :slug="slug" :show="showModal" @close="closeModal" />
+    <QuoteDetailModal
+      v-if="showModal"
+      :slug="slug"
+      :show="showModal"
+      @close="closeModal"
+    />
   </div>
   <div
     v-else
@@ -28,7 +33,7 @@
         {{
           quote && quote.headings && quote.headings.length > 0
             ? `&ldquo;${quote.headings[0]}&rdquo;`
-            : "🚨 No quote found!"
+            : '🚨 No quote found!'
         }}
       </h2>
       <p
@@ -42,20 +47,20 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
-import QuoteDetailModal from "./QuoteDetailModal.vue"
+  import { ref } from 'vue'
+  import QuoteDetailModal from './QuoteDetailModal.vue'
 
-const props = defineProps({
-  quote: Object,
-  slug: String,
-})
+  const props = defineProps({
+    quote: Object,
+    slug: String,
+  })
 
-const showModal = ref(false)
-const openModal = () => (showModal.value = true)
-const closeModal = () => (showModal.value = false)
+  const showModal = ref(false)
+  const openModal = () => (showModal.value = true)
+  const closeModal = () => (showModal.value = false)
 
-function formatQuote(text) {
-  // Replace &lt;wbr&gt; or <wbr> with real <wbr> tags (for browsers that support it)
-  return text.replace(/&lt;wbr&gt;/g, "<wbr>").replace(/<wbr>/g, "<wbr>")
-}
+  function formatQuote(text) {
+    // Replace &lt;wbr&gt; or <wbr> with real <wbr> tags (for browsers that support it)
+    return text.replace(/&lt;wbr&gt;/g, '<wbr>').replace(/<wbr>/g, '<wbr>')
+  }
 </script>

@@ -1,7 +1,7 @@
 ---
-title: "Dismantling Capitalism"
-claim: "Dismantling Capitalism"
-translation: "Begging for bread lines."
+title: 'Dismantling Capitalism'
+claim: 'Dismantling Capitalism'
+translation: 'Begging for bread lines.'
 ---
 
 ## "Dismantling Capitalism"

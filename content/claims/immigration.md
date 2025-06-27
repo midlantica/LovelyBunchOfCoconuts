@@ -1,7 +1,7 @@
 ---
-title: "Immigration"
-claim: "Immigration"
-translation: "Increased poverty. Increased division. Increased crime. Destroy native culture."
+title: 'Immigration'
+claim: 'Immigration'
+translation: 'Increased poverty. Increased division. Increased crime. Destroy native culture.'
 ---
 
 ## "Immigration"

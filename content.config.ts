@@ -5,15 +5,15 @@ export default defineContentConfig({
   collections: {
     claims: defineCollection({
       type: 'page',
-      source: 'claims/*.md'
+      source: 'claims/*.md',
     }),
     quotes: defineCollection({
       type: 'page',
-      source: 'quotes/*.md'
+      source: 'quotes/*.md',
     }),
     memes: defineCollection({
       type: 'page',
-      source: 'memes/*.md'
+      source: 'memes/*.md',
     }),
-  }
+  },
 })

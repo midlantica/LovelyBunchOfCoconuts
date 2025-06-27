@@ -1,7 +1,7 @@
 ---
-title: "Neopronouns"
-claim: "Neopronouns"
-translation: "Invent your truth, enforce mine."
+title: 'Neopronouns'
+claim: 'Neopronouns'
+translation: 'Invent your truth, enforce mine.'
 ---
 
 ## "Neopronouns"

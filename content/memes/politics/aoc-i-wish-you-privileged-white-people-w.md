@@ -1,5 +1,5 @@
 ---
-title: "aoc-i-wish-you-privileged-white-people-w"
+title: 'aoc-i-wish-you-privileged-white-people-w'
 ---
 
 ![aoc-i-wish-you-privileged-white-people-w](/memes/politics/aoc-i-wish-you-privileged-white-people-w.png)

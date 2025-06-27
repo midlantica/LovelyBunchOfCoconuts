@@ -1,7 +1,7 @@
 ---
-title: "Critical Wellness"
-claim: "Critical Wellness"
-translation: "Mindfulness meets Marx."
+title: 'Critical Wellness'
+claim: 'Critical Wellness'
+translation: 'Mindfulness meets Marx.'
 ---
 
 ## "Critical Wellness"

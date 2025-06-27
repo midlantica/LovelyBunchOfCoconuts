@@ -1,5 +1,5 @@
 ---
-title: "Injustice anywhere is a threat to justice everywhere"
+title: 'Injustice anywhere is a threat to justice everywhere'
 ---
 
 ## "Injustice anywhere is a threat to justice everywhere."

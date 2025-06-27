@@ -28,7 +28,7 @@ The site displays three types of content:
 
 ```md
 ---
-title: "Quote Title"
+title: 'Quote Title'
 ---
 
 The full text of the quote goes here.
@@ -45,9 +45,9 @@ The full text of the quote goes here.
 
 ```md
 ---
-title: "Claim Title"
-original: "Original claim text"
-translation: "Translated claim text"
+title: 'Claim Title'
+original: 'Original claim text'
+translation: 'Translated claim text'
 ---
 
 Any additional context or notes about the claim can go here.
@@ -58,7 +58,6 @@ Any additional context or notes about the claim can go here.
 #### Adding a Meme
 
 1. First, upload your image:
-
    - Navigate to the `public/memes/` folder
    - Click "Add file" > "Upload files"
    - Select your image file (PNG or JPG recommended)
@@ -72,7 +71,7 @@ Any additional context or notes about the claim can go here.
 
 ```md
 ---
-title: "Meme Title"
+title: 'Meme Title'
 ---
 
 Any caption or description of the meme can go here.

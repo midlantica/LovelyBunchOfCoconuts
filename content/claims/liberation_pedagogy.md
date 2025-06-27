@@ -1,7 +1,7 @@
 ---
-title: "Liberation Pedagogy"
-claim: "Liberation Pedagogy"
-translation: "Teach rebellion, fail math."
+title: 'Liberation Pedagogy'
+claim: 'Liberation Pedagogy'
+translation: 'Teach rebellion, fail math.'
 ---
 
 ## "Liberation Pedagogy"

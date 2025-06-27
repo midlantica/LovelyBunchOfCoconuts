@@ -1,5 +1,5 @@
 ---
-title: "It was Thomas Edison who brought"
+title: 'It was Thomas Edison who brought'
 ---
 
 ## "It was Thomas Edison who brought us electricity not the Sierra Club. It was the Wright Brothers who got us off the ground not the Federal Aviation Administration.

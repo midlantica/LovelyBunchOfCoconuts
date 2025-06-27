@@ -1,7 +1,7 @@
 ---
-title: "Trust the Science"
-claim: "Trust the Science"
-translation: "Obey the narrative."
+title: 'Trust the Science'
+claim: 'Trust the Science'
+translation: 'Obey the narrative.'
 ---
 
 ## "Trust the Science"

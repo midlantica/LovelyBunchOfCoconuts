@@ -1,7 +1,7 @@
 ---
-title: "Ban Billionaires"
-claim: "Ban Billionaires"
-translation: "Cap success, praise mediocrity."
+title: 'Ban Billionaires'
+claim: 'Ban Billionaires'
+translation: 'Cap success, praise mediocrity.'
 ---
 
 ## "Ban Billionaires"

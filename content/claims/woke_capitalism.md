@@ -1,7 +1,7 @@
 ---
-title: "Woke Capitalism"
-claim: "Woke Capitalism"
-translation: "Corporate activism, shareholder pain."
+title: 'Woke Capitalism'
+claim: 'Woke Capitalism'
+translation: 'Corporate activism, shareholder pain.'
 ---
 
 ## "Woke Capitalism"

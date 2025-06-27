@@ -1,5 +1,5 @@
 ---
-title: "how-to-hide-a-gun-from-socialists-basic"
+title: 'how-to-hide-a-gun-from-socialists-basic'
 ---
 
 ![how-to-hide-a-gun-from-socialists-basic](/memes/politics/how-to-hide-a-gun-from-socialists-basic.png)

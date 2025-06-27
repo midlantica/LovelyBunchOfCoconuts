@@ -1,5 +1,5 @@
 ---
-title: "The freedom of the individual"
+title: 'The freedom of the individual'
 ---
 
 ## "The freedom of the individual is the ultimate goal in a free society."

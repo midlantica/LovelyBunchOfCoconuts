@@ -1,5 +1,5 @@
 ---
-title: "The two totalitarian systems"
+title: 'The two totalitarian systems'
 ---
 
 ## "The two totalitarian systems which we in Britain had to fight — Nazism and Communism — two socialist tyrannies, let's remember - represented one single model.

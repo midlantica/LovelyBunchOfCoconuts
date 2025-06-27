@@ -1,7 +1,7 @@
 ---
-title: "Restorative Urbanism"
-claim: "Restorative Urbanism"
-translation: "Design cities that apologize."
+title: 'Restorative Urbanism'
+claim: 'Restorative Urbanism'
+translation: 'Design cities that apologize.'
 ---
 
 ## "Restorative Urbanism"

@@ -1,7 +1,7 @@
 ---
-title: "Reclaim Public Transport"
-claim: "Reclaim Public Transport"
-translation: "Smell the justice."
+title: 'Reclaim Public Transport'
+claim: 'Reclaim Public Transport'
+translation: 'Smell the justice.'
 ---
 
 ## "Reclaim Public Transport"

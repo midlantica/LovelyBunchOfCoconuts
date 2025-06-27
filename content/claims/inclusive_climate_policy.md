@@ -1,7 +1,7 @@
 ---
-title: "Inclusive Climate Policy"
-claim: "Inclusive Climate Policy"
-translation: "Emissions with identity in mind."
+title: 'Inclusive Climate Policy'
+claim: 'Inclusive Climate Policy'
+translation: 'Emissions with identity in mind.'
 ---
 
 ## "Inclusive Climate Policy"

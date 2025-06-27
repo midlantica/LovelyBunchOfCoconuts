@@ -1,5 +1,5 @@
 ---
-title: "marxism-is-an-anti-human-cult"
+title: 'marxism-is-an-anti-human-cult'
 ---
 
 ![marxism-is-an-anti-human-cult](/memes/capitalism/marxism-is-an-anti-human-cult.png)

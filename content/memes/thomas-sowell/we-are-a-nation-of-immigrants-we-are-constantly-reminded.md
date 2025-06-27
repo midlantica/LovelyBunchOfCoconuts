@@ -1,5 +1,5 @@
 ---
-title: "we-are-a-nation-of-immigrants-we-are-constantly-reminded"
+title: 'we-are-a-nation-of-immigrants-we-are-constantly-reminded'
 ---
 
 ![we-are-a-nation-of-immigrants-we-are-constantly-reminded](/memes/thomas-sowell/we-are-a-nation-of-immigrants-we-are-constantly-reminded.png)

@@ -1,7 +1,7 @@
 ---
-title: "Therapy for All"
-claim: "Therapy for All"
-translation: "Pathologize normal life."
+title: 'Therapy for All'
+claim: 'Therapy for All'
+translation: 'Pathologize normal life.'
 ---
 
 ## "Therapy for All"

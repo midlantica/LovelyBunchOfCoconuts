@@ -1,5 +1,5 @@
 ---
-title: "I would rather be exposed to the inconveniences"
+title: 'I would rather be exposed to the inconveniences'
 ---
 
 ## "I would rather be exposed to the inconveniences attending too much liberty than those attending too small a degree of it."

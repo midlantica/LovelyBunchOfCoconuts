@@ -1,7 +1,7 @@
 ---
-title: "Trigger Warnings"
-claim: "Trigger Warnings"
-translation: "Coddling adult babies."
+title: 'Trigger Warnings'
+claim: 'Trigger Warnings'
+translation: 'Coddling adult babies.'
 ---
 
 ## "Trigger Warnings"

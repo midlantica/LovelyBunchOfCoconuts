@@ -1,5 +1,5 @@
 ---
-title: "Giving money and power to government"
+title: 'Giving money and power to government'
 ---
 
 ## "Giving money and power to government is like giving whiskey and car keys to teenage boys."

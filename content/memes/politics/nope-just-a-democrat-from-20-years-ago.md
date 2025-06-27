@@ -1,5 +1,5 @@
 ---
-title: "nope-just-a-democrat-from-20-years-ago"
+title: 'nope-just-a-democrat-from-20-years-ago'
 ---
 
 ![nope-just-a-democrat-from-20-years-ago](/memes/politics/nope-just-a-democrat-from-20-years-ago.png)

@@ -1,5 +1,5 @@
 ---
-title: "socialist-worker-from-the-rivek-to-the-s"
+title: 'socialist-worker-from-the-rivek-to-the-s'
 ---
 
 ![socialist-worker-from-the-rivek-to-the-s](/memes/politics/socialist-worker-from-the-rivek-to-the-s.png)

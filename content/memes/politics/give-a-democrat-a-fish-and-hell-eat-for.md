@@ -1,5 +1,5 @@
 ---
-title: "give-a-democrat-a-fish-and-hell-eat-for"
+title: 'give-a-democrat-a-fish-and-hell-eat-for'
 ---
 
 ![give-a-democrat-a-fish-and-hell-eat-for](/memes/politics/give-a-democrat-a-fish-and-hell-eat-for.png)

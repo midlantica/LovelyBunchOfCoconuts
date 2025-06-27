@@ -1,5 +1,5 @@
 ---
-title: "Freedom is never more than one generation away from extinction"
+title: 'Freedom is never more than one generation away from extinction'
 ---
 
 ## "Freedom is never more than one generation away from extinction."

@@ -1,5 +1,5 @@
 ---
-title: "ourworldindatawars-long-run-military-civilian-fatalities-from-brecke10"
+title: 'ourworldindatawars-long-run-military-civilian-fatalities-from-brecke10'
 ---
 
 ![ourworldindatawars-long-run-military-civilian-fatalities-from-brecke10](/memes/data/ourworldindatawars-long-run-military-civilian-fatalities-from-brecke10.png)

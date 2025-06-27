@@ -1,5 +1,5 @@
 ---
-title: "socialism-vs-capitalism-diving-board"
+title: 'socialism-vs-capitalism-diving-board'
 ---
 
 ![socialism-vs-capitalism-diving-board](/memes/capitalism/socialism-vs-capitalism-diving-board.png)

@@ -1,5 +1,5 @@
 ---
-title: "sheepdog-hes-a-threat-to-sheep-safety"
+title: 'sheepdog-hes-a-threat-to-sheep-safety'
 ---
 
 ![sheepdog-hes-a-threat-to-sheep-safety](/memes/politics/sheepdog-hes-a-threat-to-sheep-safety.png)

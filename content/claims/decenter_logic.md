@@ -1,7 +1,7 @@
 ---
-title: "Decenter Logic"
-claim: "Decenter Logic"
-translation: "Reason is colonial now."
+title: 'Decenter Logic'
+claim: 'Decenter Logic'
+translation: 'Reason is colonial now.'
 ---
 
 ## "Decenter Logic"

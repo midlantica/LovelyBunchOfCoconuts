@@ -2,7 +2,7 @@
 export default defineNuxtRouteMiddleware((to, from) => {
   if (process.server) return // Only run on client
 
-  const domainName = "wakeupnpc.com"
+  const domainName = 'wakeupnpc.com'
   const allowedHosts = [
     window.location.host, // Always allow the current host (dev or prod)
     `www.${domainName}`,
@@ -14,14 +14,16 @@ export default defineNuxtRouteMiddleware((to, from) => {
   if (!isAllowed) {
     window.location.replace(
       window.location.protocol +
-        "//" +
-        (process.env.NODE_ENV === "development" ? window.location.host + "/" : domainName)
+        '//' +
+        (process.env.NODE_ENV === 'development'
+          ? window.location.host + '/'
+          : domainName)
     )
     return
   }
 
   // If on dev or prod, but not at root path, redirect to root
-  if (window.location.pathname !== "/") {
-    window.location.replace(window.location.origin + "/")
+  if (window.location.pathname !== '/') {
+    window.location.replace(window.location.origin + '/')
   }
 })

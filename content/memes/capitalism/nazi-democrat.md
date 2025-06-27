@@ -1,5 +1,5 @@
 ---
-title: "nazi-democrat"
+title: 'nazi-democrat'
 ---
 
 ![nazi-democrat](/memes/capitalism/nazi-democrat.png)

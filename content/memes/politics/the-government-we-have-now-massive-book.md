@@ -1,5 +1,5 @@
 ---
-title: "the-government-we-have-now-massive-book"
+title: 'the-government-we-have-now-massive-book'
 ---
 
 ![the-government-we-have-now-massive-book](/memes/politics/the-government-we-have-now-massive-book.png)

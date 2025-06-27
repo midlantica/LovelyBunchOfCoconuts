@@ -14,7 +14,7 @@ Example:
 
 ```md
 ---
-title: "Example Title"
+title: 'Example Title'
 ---
 
 Content goes here.

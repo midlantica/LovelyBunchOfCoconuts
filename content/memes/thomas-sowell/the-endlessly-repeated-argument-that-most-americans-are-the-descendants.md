@@ -1,5 +1,5 @@
 ---
-title: "the-endlessly-repeated-argument-that-most-americans-are-the-descendants"
+title: 'the-endlessly-repeated-argument-that-most-americans-are-the-descendants'
 ---
 
 ![the-endlessly-repeated-argument-that-most-americans-are-the-descendants](/memes/thomas-sowell/the-endlessly-repeated-argument-that-most-americans-are-the-descendants.png)

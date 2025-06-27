@@ -1,5 +1,5 @@
 ---
-title: "All socialism involves slavery"
+title: 'All socialism involves slavery'
 ---
 
 ## "All socialism involves slavery."

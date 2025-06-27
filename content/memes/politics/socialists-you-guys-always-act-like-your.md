@@ -1,5 +1,5 @@
 ---
-title: "socialists-you-guys-always-act-like-your"
+title: 'socialists-you-guys-always-act-like-your'
 ---
 
 ![socialists-you-guys-always-act-like-your](/memes/politics/socialists-you-guys-always-act-like-your.png)

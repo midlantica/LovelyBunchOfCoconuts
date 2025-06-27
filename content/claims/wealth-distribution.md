@@ -1,7 +1,7 @@
 ---
-title: "Wealth distribution"
-claim: "Wealth distribution"
-translation: "Misallocation of investemnet. More poverty and Corruption"
+title: 'Wealth distribution'
+claim: 'Wealth distribution'
+translation: 'Misallocation of investemnet. More poverty and Corruption'
 ---
 
 ## "Wealth distribution"

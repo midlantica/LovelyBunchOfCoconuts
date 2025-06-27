@@ -1,7 +1,7 @@
 ---
-title: "Radical Reparations"
-claim: "Radical Reparations"
-translation: "Money for inherited pain."
+title: 'Radical Reparations'
+claim: 'Radical Reparations'
+translation: 'Money for inherited pain.'
 ---
 
 ## "Radical Reparations"

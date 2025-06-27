@@ -1,7 +1,7 @@
 ---
-title: "Patriarchy"
-claim: "Patriarchy"
-translation: "Men existing, apparently."
+title: 'Patriarchy'
+claim: 'Patriarchy'
+translation: 'Men existing, apparently.'
 ---
 
 ## "Patriarchy"

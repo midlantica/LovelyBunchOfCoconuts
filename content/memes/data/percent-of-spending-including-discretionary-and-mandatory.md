@@ -1,5 +1,5 @@
 ---
-title: "percent-of-spending-including-discretionary-and-mandatory"
+title: 'percent-of-spending-including-discretionary-and-mandatory'
 ---
 
 ![percent-of-spending-including-discretionary-and-mandatory](/memes/data/percent-of-spending-including-discretionary-and-mandatory.png)

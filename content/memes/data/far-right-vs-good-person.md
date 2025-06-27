@@ -1,5 +1,5 @@
 ---
-title: "far-right-vs-good-person"
+title: 'far-right-vs-good-person'
 ---
 
 ![far-right-vs-good-person](/memes/data/far-right-vs-good-person.png)

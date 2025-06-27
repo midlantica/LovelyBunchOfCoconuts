@@ -1,5 +1,5 @@
 ---
-title: "socialism-not-even-germans-could-make-it"
+title: 'socialism-not-even-germans-could-make-it'
 ---
 
 ![socialism-not-even-germans-could-make-it](/memes/capitalism/socialism-not-even-germans-could-make-it.png)

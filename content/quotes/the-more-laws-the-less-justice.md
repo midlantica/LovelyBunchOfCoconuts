@@ -1,5 +1,5 @@
 ---
-title: "The more laws, the less justice"
+title: 'The more laws, the less justice'
 ---
 
 ## "The more laws, the less justice."

@@ -1,5 +1,5 @@
 ---
-title: "the-first-lesson-of-economics-is-scarcity"
+title: 'the-first-lesson-of-economics-is-scarcity'
 ---
 
 ![the-first-lesson-of-economics-is-scarcity](/memes/thomas-sowell/the-first-lesson-of-economics-is-scarcity.png)

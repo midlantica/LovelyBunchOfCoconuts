@@ -1,7 +1,7 @@
 ---
-title: "Ban Fireworks"
-claim: "Ban Fireworks"
-translation: "Too loud for liberation."
+title: 'Ban Fireworks'
+claim: 'Ban Fireworks'
+translation: 'Too loud for liberation.'
 ---
 
 ## "Ban Fireworks"

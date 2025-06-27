@@ -1,7 +1,7 @@
 ---
-title: "Restorative Justice"
-claim: "Restorative Justice"
-translation: "Letting criminals off easy."
+title: 'Restorative Justice'
+claim: 'Restorative Justice'
+translation: 'Letting criminals off easy.'
 ---
 
 ## "Restorative Justice"

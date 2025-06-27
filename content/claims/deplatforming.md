@@ -1,7 +1,7 @@
 ---
-title: "Deplatforming"
-claim: "Deplatforming"
-translation: "Debate is violence."
+title: 'Deplatforming'
+claim: 'Deplatforming'
+translation: 'Debate is violence.'
 ---
 
 ## "Deplatforming"

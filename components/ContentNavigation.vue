@@ -29,118 +29,118 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router"
-import { onMounted, watch } from "vue"
+  import { useRouter } from 'vue-router'
+  import { onMounted, watch } from 'vue'
 
-const router = useRouter()
-const props = defineProps({
-  prevSlug: String,
-  nextSlug: String,
-  contentType: {
-    type: String,
-    default: "",
-  },
-})
+  const router = useRouter()
+  const props = defineProps({
+    prevSlug: String,
+    nextSlug: String,
+    contentType: {
+      type: String,
+      default: '',
+    },
+  })
 
-// Pre-fetch content for smoother navigation - without using router.prefetch
-const prefetchContent = async (slug) => {
-  if (!slug || slug === "/") return
+  // Pre-fetch content for smoother navigation - without using router.prefetch
+  const prefetchContent = async (slug) => {
+    if (!slug || slug === '/') return
 
-  try {
-    // Extract the content type from the slug path
-    const pathParts = slug.split("/")
-    const contentType = pathParts[1] // e.g., 'claims', 'quotes', 'memes'
+    try {
+      // Extract the content type from the slug path
+      const pathParts = slug.split('/')
+      const contentType = pathParts[1] // e.g., 'claims', 'quotes', 'memes'
 
-    // Only prefetch if we have a valid content type
-    if (contentType && ["claims", "quotes", "memes"].includes(contentType)) {
-      console.log(`Pre-fetching content for: ${slug}`)
+      // Only prefetch if we have a valid content type
+      if (contentType && ['claims', 'quotes', 'memes'].includes(contentType)) {
+        console.log(`Pre-fetching content for: ${slug}`)
 
-      // Prefetch the actual content data
-      const slugParts = pathParts.slice(2)
-      const fullPath = `/${contentType}/${slugParts.join("/")}`
+        // Prefetch the actual content data
+        const slugParts = pathParts.slice(2)
+        const fullPath = `/${contentType}/${slugParts.join('/')}`
 
-      // Fetch the specific content item
-      await fetch(`/api/content/item?path=${encodeURIComponent(fullPath)}`, {
-        method: "GET",
-        headers: {
-          "X-Purpose": "prefetch",
-        },
-      })
+        // Fetch the specific content item
+        await fetch(`/api/content/item?path=${encodeURIComponent(fullPath)}`, {
+          method: 'GET',
+          headers: {
+            'X-Purpose': 'prefetch',
+          },
+        })
 
-      console.log(`Pre-fetched content for: ${slug}`)
+        console.log(`Pre-fetched content for: ${slug}`)
+      }
+    } catch (error) {
+      console.error(`Error pre-fetching content for ${slug}:`, error)
     }
-  } catch (error) {
-    console.error(`Error pre-fetching content for ${slug}:`, error)
-  }
-}
-
-// Pre-fetch content when component mounts
-onMounted(() => {
-  if (props.prevSlug) prefetchContent(props.prevSlug)
-  if (props.nextSlug) prefetchContent(props.nextSlug)
-})
-
-// Watch for changes in navigation props to prefetch new content
-watch(
-  () => props.prevSlug,
-  (newSlug) => {
-    if (newSlug) prefetchContent(newSlug)
-  }
-)
-
-watch(
-  () => props.nextSlug,
-  (newSlug) => {
-    if (newSlug) prefetchContent(newSlug)
-  }
-)
-
-// Navigation functions with debounce to prevent double-click issues
-let isNavigating = false
-
-const goHome = () => {
-  if (isNavigating) return
-  isNavigating = true
-
-  router.push("/")
-
-  // Reset after a short delay
-  setTimeout(() => {
-    isNavigating = false
-  }, 300)
-}
-
-const goToPrev = () => {
-  if (isNavigating || !props.prevSlug) return
-  isNavigating = true
-
-  // Store navigation direction in localStorage
-  if (typeof window !== "undefined") {
-    localStorage.setItem("navDirection", "prev")
   }
 
-  router.push(props.prevSlug)
+  // Pre-fetch content when component mounts
+  onMounted(() => {
+    if (props.prevSlug) prefetchContent(props.prevSlug)
+    if (props.nextSlug) prefetchContent(props.nextSlug)
+  })
 
-  // Reset after a short delay
-  setTimeout(() => {
-    isNavigating = false
-  }, 300)
-}
+  // Watch for changes in navigation props to prefetch new content
+  watch(
+    () => props.prevSlug,
+    (newSlug) => {
+      if (newSlug) prefetchContent(newSlug)
+    }
+  )
 
-const goToNext = () => {
-  if (isNavigating || !props.nextSlug) return
-  isNavigating = true
+  watch(
+    () => props.nextSlug,
+    (newSlug) => {
+      if (newSlug) prefetchContent(newSlug)
+    }
+  )
 
-  // Store navigation direction in localStorage
-  if (typeof window !== "undefined") {
-    localStorage.setItem("navDirection", "next")
+  // Navigation functions with debounce to prevent double-click issues
+  let isNavigating = false
+
+  const goHome = () => {
+    if (isNavigating) return
+    isNavigating = true
+
+    router.push('/')
+
+    // Reset after a short delay
+    setTimeout(() => {
+      isNavigating = false
+    }, 300)
   }
 
-  router.push(props.nextSlug)
+  const goToPrev = () => {
+    if (isNavigating || !props.prevSlug) return
+    isNavigating = true
 
-  // Reset after a short delay
-  setTimeout(() => {
-    isNavigating = false
-  }, 300)
-}
+    // Store navigation direction in localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('navDirection', 'prev')
+    }
+
+    router.push(props.prevSlug)
+
+    // Reset after a short delay
+    setTimeout(() => {
+      isNavigating = false
+    }, 300)
+  }
+
+  const goToNext = () => {
+    if (isNavigating || !props.nextSlug) return
+    isNavigating = true
+
+    // Store navigation direction in localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('navDirection', 'next')
+    }
+
+    router.push(props.nextSlug)
+
+    // Reset after a short delay
+    setTimeout(() => {
+      isNavigating = false
+    }, 300)
+  }
 </script>

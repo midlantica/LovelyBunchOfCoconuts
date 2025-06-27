@@ -1,5 +1,5 @@
 ---
-title: "What is not just is not law"
+title: 'What is not just is not law'
 ---
 
 ## "What is not just is not law."

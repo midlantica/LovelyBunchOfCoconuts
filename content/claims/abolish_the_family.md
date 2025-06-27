@@ -1,7 +1,7 @@
 ---
-title: "Abolish the Family"
-claim: "Abolish the Family"
-translation: "Turn kinship into bureaucracy."
+title: 'Abolish the Family'
+claim: 'Abolish the Family'
+translation: 'Turn kinship into bureaucracy.'
 ---
 
 ## "Abolish the Family"

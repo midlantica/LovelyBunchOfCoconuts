@@ -1,5 +1,5 @@
 ---
-title: "europe-will-never-be-like-america-europe"
+title: 'europe-will-never-be-like-america-europe'
 ---
 
 ![europe-will-never-be-like-america-europe](/memes/margaret-thatcher/europe-will-never-be-like-america-europe.png)

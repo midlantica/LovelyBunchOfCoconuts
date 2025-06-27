@@ -1,7 +1,7 @@
 ---
-title: "Feminist Foreign Policy"
-claim: "Feminist Foreign Policy"
-translation: "Feelings first, defense later."
+title: 'Feminist Foreign Policy'
+claim: 'Feminist Foreign Policy'
+translation: 'Feelings first, defense later.'
 ---
 
 ## "Feminist Foreign Policy"

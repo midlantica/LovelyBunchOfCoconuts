@@ -1,7 +1,7 @@
 ---
-title: "Ban SUVs"
-claim: "Ban SUVs"
-translation: "No freedom without permission."
+title: 'Ban SUVs'
+claim: 'Ban SUVs'
+translation: 'No freedom without permission.'
 ---
 
 ## "Ban SUVs"

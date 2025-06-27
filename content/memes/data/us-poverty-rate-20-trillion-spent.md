@@ -1,5 +1,5 @@
 ---
-title: "us-poverty-rate-20-trillion-spent"
+title: 'us-poverty-rate-20-trillion-spent'
 ---
 
 ![us-poverty-rate-20-trillion-spent](/memes/data/us-poverty-rate-20-trillion-spent.png)

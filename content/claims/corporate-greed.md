@@ -1,7 +1,7 @@
 ---
-title: "Corporate Greed"
-claim: "Corporate Greed"
-translation: "Mind your business tyrant."
+title: 'Corporate Greed'
+claim: 'Corporate Greed'
+translation: 'Mind your business tyrant.'
 ---
 
 ## "Corporate Greed"

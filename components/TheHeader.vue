@@ -10,7 +10,10 @@
         class="order-1 ml-auto w-12 sm:w-16 md:w-20 object-contain"
       />
 
-      <a href="/" class="order-3 md:order-2 col-span-2 md:col-span-1 mt-3 no-underline">
+      <a
+        href="/"
+        class="order-3 md:order-2 col-span-2 md:col-span-1 mt-3 no-underline"
+      >
         <div class="place-items-center gap-1 grid auto-rows-auto text-center">
           <img
             src="@/assets/icons/WakeUpNPC.svg"

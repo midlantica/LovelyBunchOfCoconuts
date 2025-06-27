@@ -1,5 +1,5 @@
 ---
-title: "elizabeth-warrens-dog-1-1024th-wolf"
+title: 'elizabeth-warrens-dog-1-1024th-wolf'
 ---
 
 ![elizabeth-warrens-dog-1-1024th-wolf](/memes/politics/elizabeth-warrens-dog-1-1024th-wolf.png)

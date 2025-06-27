@@ -1,5 +1,5 @@
 ---
-title: "if-they-attack-you-personally-it-means-t"
+title: 'if-they-attack-you-personally-it-means-t'
 ---
 
 ![if-they-attack-you-personally-it-means-t](/memes/margaret-thatcher/if-they-attack-you-personally-it-means-t.png)

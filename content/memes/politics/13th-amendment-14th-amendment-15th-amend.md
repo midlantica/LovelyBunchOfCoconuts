@@ -1,5 +1,5 @@
 ---
-title: "13th-amendment-14th-amendment-15th-amend"
+title: '13th-amendment-14th-amendment-15th-amend'
 ---
 
 ![13th-amendment-14th-amendment-15th-amend](/memes/politics/13th-amendment-14th-amendment-15th-amend.png)

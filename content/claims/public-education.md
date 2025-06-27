@@ -1,7 +1,7 @@
 ---
-title: "Public Education"
-claim: "Public Education"
-translation: "Left wing Indoctrination."
+title: 'Public Education'
+claim: 'Public Education'
+translation: 'Left wing Indoctrination.'
 ---
 
 ## "Public Education"

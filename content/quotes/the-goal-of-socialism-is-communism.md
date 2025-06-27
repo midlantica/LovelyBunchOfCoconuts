@@ -1,5 +1,5 @@
 ---
-title: "The goal of socialism is communism"
+title: 'The goal of socialism is communism'
 ---
 
 ## "The goal of socialism is communism."

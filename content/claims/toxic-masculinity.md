@@ -1,7 +1,7 @@
 ---
-title: "Toxic Masculinity"
-claim: "Toxic Masculinity"
-translation: "Men being men."
+title: 'Toxic Masculinity'
+claim: 'Toxic Masculinity'
+translation: 'Men being men.'
 ---
 
 ## "Toxic Masculinity"

@@ -1,5 +1,5 @@
 ---
-title: "regimes-endorsed-by-noam-chomsky"
+title: 'regimes-endorsed-by-noam-chomsky'
 ---
 
 ![regimes-endorsed-by-noam-chomsky](/memes/capitalism/regimes-endorsed-by-noam-chomsky.png)

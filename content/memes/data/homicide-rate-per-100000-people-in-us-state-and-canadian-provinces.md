@@ -1,5 +1,5 @@
 ---
-title: "homicide-rate-per-100000-people-in-us-state-and-canadian-provinces"
+title: 'homicide-rate-per-100000-people-in-us-state-and-canadian-provinces'
 ---
 
 ![homicide-rate-per-100000-people-in-us-state-and-canadian-provinces](/memes/data/homicide-rate-per-100000-people-in-us-state-and-canadian-provinces.png)

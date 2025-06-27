@@ -1,5 +1,5 @@
 ---
-title: "in-this-house-we-believe-the-news-is-pro"
+title: 'in-this-house-we-believe-the-news-is-pro'
 ---
 
 ![in-this-house-we-believe-the-news-is-pro](/memes/politics/in-this-house-we-believe-the-news-is-pro.png)

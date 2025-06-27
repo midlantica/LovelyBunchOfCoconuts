@@ -1,5 +1,5 @@
 ---
-title: "That government is best which governs least"
+title: 'That government is best which governs least'
 ---
 
 ## "That government is best which governs least."

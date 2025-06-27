@@ -1,5 +1,5 @@
 ---
-title: "There is no liberty without independence of mind"
+title: 'There is no liberty without independence of mind'
 ---
 
 ## "There is no liberty without independence of mind."

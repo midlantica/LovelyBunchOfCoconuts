@@ -1,7 +1,7 @@
 ---
-title: "Gender Affirming Care"
-claim: "Gender Affirming Care"
-translation: "Medical malpractice with a smile."
+title: 'Gender Affirming Care'
+claim: 'Gender Affirming Care'
+translation: 'Medical malpractice with a smile.'
 ---
 
 ## "Gender Affirming Care"

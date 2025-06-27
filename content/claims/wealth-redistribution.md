@@ -1,7 +1,7 @@
 ---
-title: "Wealth Redistribution"
-claim: "Wealth Redistribution"
-translation: "Stealing with a smile."
+title: 'Wealth Redistribution'
+claim: 'Wealth Redistribution'
+translation: 'Stealing with a smile.'
 ---
 
 ## "Wealth Redistribution"

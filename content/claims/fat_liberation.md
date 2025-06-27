@@ -1,7 +1,7 @@
 ---
-title: "Fat Liberation"
-claim: "Fat Liberation"
-translation: "Demand health without effort."
+title: 'Fat Liberation'
+claim: 'Fat Liberation'
+translation: 'Demand health without effort.'
 ---
 
 ## "Fat Liberation"

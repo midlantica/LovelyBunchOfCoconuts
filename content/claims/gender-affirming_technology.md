@@ -1,7 +1,7 @@
 ---
-title: "Gender-Affirming Technology"
-claim: "Gender-Affirming Technology"
-translation: "Devices with pronoun fields."
+title: 'Gender-Affirming Technology'
+claim: 'Gender-Affirming Technology'
+translation: 'Devices with pronoun fields.'
 ---
 
 ## "Gender-Affirming Technology"

@@ -1,5 +1,5 @@
 ---
-title: "All great change in America begins at the dinner table"
+title: 'All great change in America begins at the dinner table'
 ---
 
 ## "All great change in America begins at the dinner table."

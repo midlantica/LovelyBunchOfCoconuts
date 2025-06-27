@@ -1,5 +1,5 @@
 ---
-title: "land-of-liars-elizabeth-fauxcahontas"
+title: 'land-of-liars-elizabeth-fauxcahontas'
 ---
 
 ![land-of-liars-elizabeth-fauxcahontas](/memes/politics/land-of-liars-elizabeth-fauxcahontas.png)

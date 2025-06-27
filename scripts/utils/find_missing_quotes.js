@@ -1,8 +1,8 @@
-const fs = require("fs")
-const path = require("path")
+const fs = require('fs')
+const path = require('path')
 
 // Path to quotes directory
-const quotesDir = path.join(__dirname, "../content/quotes")
+const quotesDir = path.join(__dirname, '../content/quotes')
 
 // Helper function to get all files in a directory recursively
 function getFilesRecursively(dir) {
@@ -20,11 +20,11 @@ function getFilesRecursively(dir) {
 
 // Find malformed quote markdown files
 function findMalformedQuoteFiles(dir) {
-  const files = getFilesRecursively(dir).filter((file) => file.endsWith(".md"))
+  const files = getFilesRecursively(dir).filter((file) => file.endsWith('.md'))
   const malformedFiles = files.filter((file) => {
-    const content = fs.readFileSync(file, "utf-8")
-    const hasQuoteText = content.includes("quoteText:")
-    const hasAttribution = content.includes("attribution:")
+    const content = fs.readFileSync(file, 'utf-8')
+    const hasQuoteText = content.includes('quoteText:')
+    const hasAttribution = content.includes('attribution:')
     return !hasQuoteText || !hasAttribution
   })
   return malformedFiles
@@ -39,10 +39,10 @@ function generateReport() {
   }
 
   fs.writeFileSync(
-    path.join(__dirname, "missing_quotes_report.json"),
+    path.join(__dirname, 'missing_quotes_report.json'),
     JSON.stringify(report, null, 2)
   )
-  console.log("Missing Quotes Report generated:", report)
+  console.log('Missing Quotes Report generated:', report)
 }
 
 // Run the script

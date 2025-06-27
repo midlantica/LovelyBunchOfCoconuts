@@ -1,7 +1,7 @@
 ---
-title: "Queer Ecologies"
-claim: "Queer Ecologies"
-translation: "Nature comes out."
+title: 'Queer Ecologies'
+claim: 'Queer Ecologies'
+translation: 'Nature comes out.'
 ---
 
 ## "Queer Ecologies"

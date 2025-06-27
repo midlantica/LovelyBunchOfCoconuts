@@ -1,5 +1,5 @@
 ---
-title: "one-way-to-destroy-capitalism"
+title: 'one-way-to-destroy-capitalism'
 ---
 
 ![one-way-to-destroy-capitalism](/memes/margaret-thatcher/one-way-to-destroy-capitalism.png)

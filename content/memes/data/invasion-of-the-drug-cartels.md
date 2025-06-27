@@ -1,5 +1,5 @@
 ---
-title: "invasion-of-the-drug-cartels"
+title: 'invasion-of-the-drug-cartels'
 ---
 
 ![invasion-of-the-drug-cartels](/memes/data/invasion-of-the-drug-cartels.png)

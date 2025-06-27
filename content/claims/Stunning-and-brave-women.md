@@ -1,7 +1,7 @@
 ---
-title: "Stunning and brave women"
-claim: "Stunning and brave women"
-translation: "AWFL"
+title: 'Stunning and brave women'
+claim: 'Stunning and brave women'
+translation: 'AWFL'
 ---
 
 ## "Stunning and brave women"

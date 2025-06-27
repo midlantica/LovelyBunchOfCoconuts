@@ -1,5 +1,5 @@
 ---
-title: "Meme Title"
+title: 'Meme Title'
 ---
 
 ![Meme Alt tag](/memes/*/*.png)

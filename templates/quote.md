@@ -1,5 +1,5 @@
 ---
-title: "Quote Title"
+title: 'Quote Title'
 ---
 
 ## The full text of the quote goes here.

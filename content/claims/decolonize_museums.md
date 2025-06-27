@@ -1,7 +1,7 @@
 ---
-title: "Decolonize Museums"
-claim: "Decolonize Museums"
-translation: "History must now apologize."
+title: 'Decolonize Museums'
+claim: 'Decolonize Museums'
+translation: 'History must now apologize.'
 ---
 
 ## "Decolonize Museums"

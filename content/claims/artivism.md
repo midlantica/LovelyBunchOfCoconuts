@@ -1,7 +1,7 @@
 ---
-title: "Artivism"
-claim: "Artivism"
-translation: "Activism with glitter."
+title: 'Artivism'
+claim: 'Artivism'
+translation: 'Activism with glitter.'
 ---
 
 ## "Artivism"

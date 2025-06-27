@@ -1,5 +1,5 @@
 ---
-title: "To be controlled in our economic pursuits"
+title: 'To be controlled in our economic pursuits'
 ---
 
 ## "To be controlled in our economic pursuits means to be controlled in everything."

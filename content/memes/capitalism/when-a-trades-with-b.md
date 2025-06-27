@@ -1,5 +1,5 @@
 ---
-title: "when-a-trades-with-b"
+title: 'when-a-trades-with-b'
 ---
 
 ![when-a-trades-with-b](/memes/capitalism/when-a-trades-with-b.png)

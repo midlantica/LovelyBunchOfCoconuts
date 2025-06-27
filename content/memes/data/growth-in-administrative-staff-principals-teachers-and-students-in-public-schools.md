@@ -1,5 +1,5 @@
 ---
-title: "growth-in-administrative-staff-principals-teachers-and-students-in-public-schools"
+title: 'growth-in-administrative-staff-principals-teachers-and-students-in-public-schools'
 ---
 
 ![growth-in-administrative-staff-principals-teachers-and-students-in-public-schools](/memes/data/growth-in-administrative-staff-principals-teachers-and-students-in-public-schools.png)

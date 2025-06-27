@@ -1,7 +1,7 @@
 ---
-title: "Normalize Polyamory"
-claim: "Normalize Polyamory"
-translation: "Stability is oppressive."
+title: 'Normalize Polyamory'
+claim: 'Normalize Polyamory'
+translation: 'Stability is oppressive.'
 ---
 
 ## "Normalize Polyamory"

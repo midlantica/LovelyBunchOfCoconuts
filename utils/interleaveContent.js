@@ -26,28 +26,28 @@ export function interleaveContent(claims, quotes, memes) {
   const claimPairs = []
   while (claimIndex + 1 < claims.length) {
     claimPairs.push([
-      { type: "claim", data: claims[claimIndex] },
-      { type: "claim", data: claims[claimIndex + 1] },
+      { type: 'claim', data: claims[claimIndex] },
+      { type: 'claim', data: claims[claimIndex + 1] },
     ])
     claimIndex += 2
   }
   // If odd number, you can choose to skip the last or show a single (not paired)
   if (claimIndex < claims.length) {
     // Optionally, add a single claim as a pair with only one item
-    claimPairs.push([{ type: "claim", data: claims[claimIndex] }])
+    claimPairs.push([{ type: 'claim', data: claims[claimIndex] }])
   }
 
   // Precompute valid meme pairs
   const memePairs = []
   while (memeIndex + 1 < memes.length) {
     memePairs.push([
-      { type: "meme", data: memes[memeIndex] },
-      { type: "meme", data: memes[memeIndex + 1] },
+      { type: 'meme', data: memes[memeIndex] },
+      { type: 'meme', data: memes[memeIndex + 1] },
     ])
     memeIndex += 2
   }
   if (memeIndex < memes.length) {
-    memePairs.push([{ type: "meme", data: memes[memeIndex] }])
+    memePairs.push([{ type: 'meme', data: memes[memeIndex] }])
   }
 
   // Interleave: claimPair, quote, memePair, quote, repeat
@@ -61,19 +61,19 @@ export function interleaveContent(claims, quotes, memes) {
   ) {
     // Add claim pair if available
     if (pairIndex < claimPairs.length) {
-      output.push({ type: "claimPair", data: claimPairs[pairIndex++] })
+      output.push({ type: 'claimPair', data: claimPairs[pairIndex++] })
     }
     // Add quote if available
     if (quoteIdx < quotes.length) {
-      output.push({ type: "quote", data: quotes[quoteIdx++] })
+      output.push({ type: 'quote', data: quotes[quoteIdx++] })
     }
     // Add meme pair if available
     if (memePairIdx < memePairs.length) {
-      output.push({ type: "memeRow", data: memePairs[memePairIdx++] })
+      output.push({ type: 'memeRow', data: memePairs[memePairIdx++] })
     }
     // Add quote if available
     if (quoteIdx < quotes.length) {
-      output.push({ type: "quote", data: quotes[quoteIdx++] })
+      output.push({ type: 'quote', data: quotes[quoteIdx++] })
     }
   }
 

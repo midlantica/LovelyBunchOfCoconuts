@@ -1,5 +1,5 @@
 ---
-title: "immigration-laws-are-the-only-laws"
+title: 'immigration-laws-are-the-only-laws'
 ---
 
 ![immigration-laws-are-the-only-laws](/memes/thomas-sowell/immigration-laws-are-the-only-laws.png)

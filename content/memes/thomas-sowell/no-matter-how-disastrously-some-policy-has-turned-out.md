@@ -1,5 +1,5 @@
 ---
-title: "no-matter-how-disastrously-some-policy-has-turned-out"
+title: 'no-matter-how-disastrously-some-policy-has-turned-out'
 ---
 
 ![no-matter-how-disastrously-some-policy-has-turned-out](/memes/thomas-sowell/no-matter-how-disastrously-some-policy-has-turned-out.png)

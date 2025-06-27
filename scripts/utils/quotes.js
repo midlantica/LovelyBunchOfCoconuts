@@ -1180,7 +1180,7 @@ const quotes = [
       'To educate a man in mind and not in morals is to educate a menace to society.',
     author: 'Theodore Roosevelt',
   },
-];
+]
 
 // Current count: 195 unique quotes
-module.exports = quotes;
+module.exports = quotes

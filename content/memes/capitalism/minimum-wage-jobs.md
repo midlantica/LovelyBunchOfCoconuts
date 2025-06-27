@@ -1,5 +1,5 @@
 ---
-title: "minimum-wage-jobs"
+title: 'minimum-wage-jobs'
 ---
 
 ![minimum-wage-jobs](/memes/capitalism/minimum-wage-jobs.png)

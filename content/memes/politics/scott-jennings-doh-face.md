@@ -1,5 +1,5 @@
 ---
-title: "scott-jennings-doh-face"
+title: 'scott-jennings-doh-face'
 ---
 
 ![scott-jennings-doh-face](/memes/politics/scott-jennings-doh-face.png)

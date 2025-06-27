@@ -1,5 +1,5 @@
 ---
-title: "average-consumption-per-person-in-oecd-nations-2010"
+title: 'average-consumption-per-person-in-oecd-nations-2010'
 ---
 
 ![average-consumption-per-person-in-oecd-nations-2010](/memes/data/average-consumption-per-person-in-oecd-nations-2010.png)

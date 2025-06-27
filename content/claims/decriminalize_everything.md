@@ -1,7 +1,7 @@
 ---
-title: "Decriminalize Everything"
-claim: "Decriminalize Everything"
-translation: "Lawlessness is liberation."
+title: 'Decriminalize Everything'
+claim: 'Decriminalize Everything'
+translation: 'Lawlessness is liberation.'
 ---
 
 ## "Decriminalize Everything"

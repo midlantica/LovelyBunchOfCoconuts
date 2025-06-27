@@ -1,5 +1,5 @@
 ---
-title: "democrat-voters-democrat-politicians"
+title: 'democrat-voters-democrat-politicians'
 ---
 
 ![democrat-voters-democrat-politicians](/memes/politics/democrat-voters-democrat-politicians.png)

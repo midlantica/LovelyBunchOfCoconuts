@@ -1,7 +1,7 @@
 ---
-title: "Safe Injection Sites"
-claim: "Safe Injection Sites"
-translation: "Enable addiction to feel compassionate."
+title: 'Safe Injection Sites'
+claim: 'Safe Injection Sites'
+translation: 'Enable addiction to feel compassionate.'
 ---
 
 ## "Safe Injection Sites"

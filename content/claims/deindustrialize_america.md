@@ -1,7 +1,7 @@
 ---
-title: "Deindustrialize America"
-claim: "Deindustrialize America"
-translation: "Rust as a virtue."
+title: 'Deindustrialize America'
+claim: 'Deindustrialize America'
+translation: 'Rust as a virtue.'
 ---
 
 ## "Deindustrialize America"

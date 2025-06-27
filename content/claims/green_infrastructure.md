@@ -1,7 +1,7 @@
 ---
-title: "Green Infrastructure"
-claim: "Green Infrastructure"
-translation: "Bureaucracy with solar panels."
+title: 'Green Infrastructure'
+claim: 'Green Infrastructure'
+translation: 'Bureaucracy with solar panels.'
 ---
 
 ## "Green Infrastructure"

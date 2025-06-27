@@ -1,7 +1,7 @@
 ---
-title: "Universal Creative Income"
-claim: "Universal Creative Income"
-translation: "Art stipends for activists."
+title: 'Universal Creative Income'
+claim: 'Universal Creative Income'
+translation: 'Art stipends for activists.'
 ---
 
 ## "Universal Creative Income"

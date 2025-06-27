@@ -1,7 +1,7 @@
 ---
-title: "Reclaim Crafting"
-claim: "Reclaim Crafting"
-translation: "Knitting as revolution."
+title: 'Reclaim Crafting'
+claim: 'Reclaim Crafting'
+translation: 'Knitting as revolution.'
 ---
 
 ## "Reclaim Crafting"

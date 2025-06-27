@@ -1,7 +1,7 @@
 ---
-title: "Redistribution"
-claim: "Redistribution"
-translation: "Social Engineering, Increased Poverty."
+title: 'Redistribution'
+claim: 'Redistribution'
+translation: 'Social Engineering, Increased Poverty.'
 ---
 
 ## "Redistribution"

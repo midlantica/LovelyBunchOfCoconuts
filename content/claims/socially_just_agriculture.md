@@ -1,7 +1,7 @@
 ---
-title: "Socially Just Agriculture"
-claim: "Socially Just Agriculture"
-translation: "Farm equity, not food."
+title: 'Socially Just Agriculture'
+claim: 'Socially Just Agriculture'
+translation: 'Farm equity, not food.'
 ---
 
 ## "Socially Just Agriculture"

@@ -40,25 +40,25 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
-import MemeDetailModal from "./MemeDetailModal.vue"
+  import { ref, computed } from 'vue'
+  import MemeDetailModal from './MemeDetailModal.vue'
 
-const props = defineProps({
-  meme: Object,
-  slug: String,
-})
+  const props = defineProps({
+    meme: Object,
+    slug: String,
+  })
 
-const showModal = ref(false)
-const openModal = () => (showModal.value = true)
-const closeModal = () => (showModal.value = false)
+  const showModal = ref(false)
+  const openModal = () => (showModal.value = true)
+  const closeModal = () => (showModal.value = false)
 
-// Extract the slug from the path, handling nested paths
-const getSlug = (path) => {
-  if (!path) return ""
-  // Remove the leading '/memes/' prefix to get the relative path
-  if (path.startsWith("/memes/")) {
-    return path.substring("/memes/".length)
+  // Extract the slug from the path, handling nested paths
+  const getSlug = (path) => {
+    if (!path) return ''
+    // Remove the leading '/memes/' prefix to get the relative path
+    if (path.startsWith('/memes/')) {
+      return path.substring('/memes/'.length)
+    }
+    return path
   }
-  return path
-}
 </script>

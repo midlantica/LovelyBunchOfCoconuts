@@ -1,5 +1,5 @@
 ---
-title: "i-pity-you-americans-us-defense-funding"
+title: 'i-pity-you-americans-us-defense-funding'
 ---
 
 ![i-pity-you-americans-us-defense-funding](/memes/politics/i-pity-you-americans-us-defense-funding.png)

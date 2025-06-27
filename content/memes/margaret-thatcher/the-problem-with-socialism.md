@@ -1,5 +1,5 @@
 ---
-title: "the-problem-with-socialism"
+title: 'the-problem-with-socialism'
 ---
 
 ![the-problem-with-socialism](/memes/margaret-thatcher/the-problem-with-socialism.png)

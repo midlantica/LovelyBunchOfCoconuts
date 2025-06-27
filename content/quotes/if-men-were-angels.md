@@ -1,5 +1,5 @@
 ---
-title: "If men were angels"
+title: 'If men were angels'
 ---
 
 ## "If men were angels, no government would be necessary."

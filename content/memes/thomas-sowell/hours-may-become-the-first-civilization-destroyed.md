@@ -1,5 +1,5 @@
 ---
-title: "hours-may-become-the-first-civilization-destroyed"
+title: 'hours-may-become-the-first-civilization-destroyed'
 ---
 
 ![hours-may-become-the-first-civilization-destroyed](/memes/thomas-sowell/hours-may-become-the-first-civilization-destroyed.png)

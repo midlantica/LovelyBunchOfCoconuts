@@ -1,7 +1,7 @@
 ---
-title: "Ban Offensive Statues"
-claim: "Ban Offensive Statues"
-translation: "Erase history to heal."
+title: 'Ban Offensive Statues'
+claim: 'Ban Offensive Statues'
+translation: 'Erase history to heal.'
 ---
 
 ## "Ban Offensive Statues"

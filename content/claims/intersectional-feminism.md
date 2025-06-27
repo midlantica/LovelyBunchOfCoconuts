@@ -1,7 +1,7 @@
 ---
-title: "Intersectional Feminism"
-claim: "Intersectional Feminism"
-translation: "Grievance stacking for clout."
+title: 'Intersectional Feminism'
+claim: 'Intersectional Feminism'
+translation: 'Grievance stacking for clout.'
 ---
 
 ## "Intersectional Feminism"

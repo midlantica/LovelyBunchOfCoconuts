@@ -1,5 +1,5 @@
 ---
-title: "When the people fear the government"
+title: 'When the people fear the government'
 ---
 
 ## "When the people fear the government, there is tyranny; when the government fears the people, there is liberty."

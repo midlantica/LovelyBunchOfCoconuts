@@ -1,7 +1,7 @@
 ---
-title: "Tax the Rich"
-claim: "Tax the Rich"
-translation: "Punish success to fund inefficiency."
+title: 'Tax the Rich'
+claim: 'Tax the Rich'
+translation: 'Punish success to fund inefficiency.'
 ---
 
 ## "Tax the Rich"

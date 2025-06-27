@@ -1,5 +1,5 @@
 ---
-title: "it-is-not-enough-for-us-to-discover-belatedly-that-we-have-been-lied-to"
+title: 'it-is-not-enough-for-us-to-discover-belatedly-that-we-have-been-lied-to'
 ---
 
 ![it-is-not-enough-for-us-to-discover-belatedly-that-we-have-been-lied-to](/memes/thomas-sowell/it-is-not-enough-for-us-to-discover-belatedly-that-we-have-been-lied-to.png)

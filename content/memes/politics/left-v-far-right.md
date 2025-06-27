@@ -1,5 +1,5 @@
 ---
-title: "left-v-far-right"
+title: 'left-v-far-right'
 ---
 
 ![left-v-far-right](/memes/politics/left-v-far-right.png)

@@ -1,7 +1,7 @@
 ---
-title: "Menstrual Equity"
-claim: "Menstrual Equity"
-translation: "Subsidized hygiene for social justice."
+title: 'Menstrual Equity'
+claim: 'Menstrual Equity'
+translation: 'Subsidized hygiene for social justice.'
 ---
 
 ## "Menstrual Equity"

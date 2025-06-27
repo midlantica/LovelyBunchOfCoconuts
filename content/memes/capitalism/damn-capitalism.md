@@ -1,5 +1,5 @@
 ---
-title: "damn-capitalism"
+title: 'damn-capitalism'
 ---
 
 ![damn-capitalism](/memes/capitalism/damn-capitalism.png)

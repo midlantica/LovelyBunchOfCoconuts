@@ -1,7 +1,7 @@
 ---
-title: "Publicly owned"
-claim: "Publicly owned"
-translation: "Levelling down"
+title: 'Publicly owned'
+claim: 'Publicly owned'
+translation: 'Levelling down'
 ---
 
 ## "Publicly owned"

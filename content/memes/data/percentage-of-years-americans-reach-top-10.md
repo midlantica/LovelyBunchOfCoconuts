@@ -1,5 +1,5 @@
 ---
-title: "percentage-of-years-americans-reach-top-10"
+title: 'percentage-of-years-americans-reach-top-10'
 ---
 
 ![percentage-of-years-americans-reach-top-10](/memes/data/percentage-of-years-americans-reach-top-10.png)

@@ -1,5 +1,5 @@
 ---
-title: "when-i-was-growing-up-we-were-taught"
+title: 'when-i-was-growing-up-we-were-taught'
 ---
 
 ![when-i-was-growing-up-we-were-taught](/memes/thomas-sowell/when-i-was-growing-up-we-were-taught.png)

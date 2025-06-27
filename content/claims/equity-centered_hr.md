@@ -1,7 +1,7 @@
 ---
-title: "Equity-Centered HR"
-claim: "Equity-Centered HR"
-translation: "Promotions for the most offended."
+title: 'Equity-Centered HR'
+claim: 'Equity-Centered HR'
+translation: 'Promotions for the most offended.'
 ---
 
 ## "Equity-Centered HR"

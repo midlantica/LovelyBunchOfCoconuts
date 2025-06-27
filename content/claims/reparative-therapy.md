@@ -1,7 +1,7 @@
 ---
-title: "Reparative Therapy"
-claim: "Reparative Therapy"
-translation: "Guilt trips for historical sins."
+title: 'Reparative Therapy'
+claim: 'Reparative Therapy'
+translation: 'Guilt trips for historical sins.'
 ---
 
 ## "Reparative Therapy"

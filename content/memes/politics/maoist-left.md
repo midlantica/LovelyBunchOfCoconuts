@@ -1,5 +1,5 @@
 ---
-title: "maoist-left"
+title: 'maoist-left'
 ---
 
 ![maoist-left](/memes/politics/maoist-left.png)

@@ -1,5 +1,5 @@
 ---
-title: "25-of-liberals-are-on-medication-for-men"
+title: '25-of-liberals-are-on-medication-for-men'
 ---
 
 ![25-of-liberals-are-on-medication-for-men](/memes/politics/25-of-liberals-are-on-medication-for-men.png)

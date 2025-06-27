@@ -1,5 +1,5 @@
 ---
-title: "cnn-npc-woke-dystopia"
+title: 'cnn-npc-woke-dystopia'
 ---
 
 ![Meme](/memes/media/cnn-npc-woke-dystopia.png)

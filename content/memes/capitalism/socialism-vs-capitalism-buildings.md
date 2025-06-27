@@ -1,5 +1,5 @@
 ---
-title: "socialism-vs-capitalism-buildings"
+title: 'socialism-vs-capitalism-buildings'
 ---
 
 ![socialism-vs-capitalism-buildings](/memes/capitalism/socialism-vs-capitalism-buildings.png)

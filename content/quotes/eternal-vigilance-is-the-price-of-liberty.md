@@ -1,5 +1,5 @@
 ---
-title: "Eternal vigilance is the price of liberty"
+title: 'Eternal vigilance is the price of liberty'
 ---
 
 ## "Eternal vigilance is the price of liberty."
