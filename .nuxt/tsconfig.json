@@ -95,22 +95,22 @@
         "../.pnpm-store/nuxt@3.17.5_@parcel+watcher@2.5.1_@types+node@24.0.4_better-sqlite3@12.1.1_db0@0.3.2_be_8a0cca195336401e66eaa2569f61a0cc/node_modules/nuxt/dist/app/compat/vue-demi"
       ],
       "#content/components": [
-        "./content/components"
+        "./content/components.ts"
       ],
       "#content/manifest": [
-        "./content/manifest"
+        "./content/manifest.ts"
       ],
       "#mdc-configs": [
-        "./mdc-configs"
+        "./mdc-configs.mjs"
       ],
       "#mdc-highlighter": [
-        "./mdc-highlighter"
+        "./mdc-highlighter.mjs"
       ],
       "#mdc-imports": [
-        "./mdc-imports"
+        "./mdc-imports.mjs"
       ],
       "#icon-collections": [
-        "./icon-collections"
+        "./icon-collections.mjs"
       ],
       "#vue-router": [
         "../.pnpm-store/vue-router@4.5.1_vue@3.5.17_typescript@5.8.3_/node_modules/vue-router"
@@ -122,7 +122,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/dev"
+        "./manifest/meta/dev.json"
       ],
       "#components": [
         "./components"
