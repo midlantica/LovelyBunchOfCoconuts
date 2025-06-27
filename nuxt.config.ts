@@ -6,9 +6,7 @@ export default defineNuxtConfig({
   modules: ["@nuxt/content", "nuxt-icon", "@nuxtjs/tailwindcss"],
   css: ["~/assets/css/main.css", "~/assets/css/transitions.css"],
   ssr: true,
-  content: {
-    navigation: true,
-  },
+  content: {},
   build: {
     transpile: ["~/composables"], // 👈 This is the fix
   },

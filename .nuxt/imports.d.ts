@@ -29,14 +29,14 @@ export { withCtx, withDirectives, withKeys, withMemo, withModifiers, withScopeId
 export { requestIdleCallback, cancelIdleCallback } from '#app/compat/idle-callback';
 export { setInterval } from '#app/compat/interval';
 export { useContentCache } from '../composables/useContentCache';
-export { useContentFeed } from '../composables/useContentFeed_Orig';
+export { useContentFeed } from '../composables/useContentFeed';
 export { useContentNavigation } from '../composables/useContentNavigation';
 export { useModalLogic } from '../composables/useModalLogic';
 export { useModalSizing } from '../composables/useModalSizing';
 export { useNavigation } from '../composables/useNavigation';
 export { interleaveContent } from '../utils/interleaveContent';
-export { queryCollection, queryCollectionSearchSections, queryCollectionNavigation, queryCollectionItemSurroundings } from '../node_modules/.pnpm/@nuxt+content@3.6.1_better-sqlite3@12.1.1_magicast@0.3.5/node_modules/@nuxt/content/dist/runtime/app';
+export { queryCollection, queryCollectionSearchSections, queryCollectionNavigation, queryCollectionItemSurroundings } from '../node_modules/.pnpm/@nuxt+content@3.6.1_better-sqlite3@11.10.0_magicast@0.3.5/node_modules/@nuxt/content/dist/runtime/app';
 export { flatUnwrap as unwrapSlot } from '../node_modules/.pnpm/@nuxtjs+mdc@0.17.0_magicast@0.3.5/node_modules/@nuxtjs/mdc/dist/runtime/utils/node';
 export { parseMarkdown } from '../node_modules/.pnpm/@nuxtjs+mdc@0.17.0_magicast@0.3.5/node_modules/@nuxtjs/mdc/dist/runtime/parser';
 export { stringifyMarkdown } from '../node_modules/.pnpm/@nuxtjs+mdc@0.17.0_magicast@0.3.5/node_modules/@nuxtjs/mdc/dist/runtime/stringify';
-export { definePageMeta } from '../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.5.1_@types+node@24.0.4_better-sqlite3@12.1.1_db0@0.3.2_be_8a0cca195336401e66eaa2569f61a0cc/node_modules/nuxt/dist/pages/runtime/composables';
+export { definePageMeta } from '../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.5.1_@types+node@24.0.4_better-sqlite3@11.10.0_db0@0.3.2_b_e408a2ae4039be07caa12de8d97a91be/node_modules/nuxt/dist/pages/runtime/composables';
