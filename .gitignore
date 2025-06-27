@@ -3,7 +3,6 @@
 .data
 .cache
 .nitro
-# .nuxt
 # dist/
 build/
 
