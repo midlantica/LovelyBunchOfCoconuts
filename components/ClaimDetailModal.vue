@@ -1,4 +1,4 @@
-<!-- Claim de component. -->
+<!-- components/ClaimDetailModal.vue -->
 <template>
   <ModalFrame :show="show" @close="close">
     <div class="flex flex-col w-full overflow-y-auto">

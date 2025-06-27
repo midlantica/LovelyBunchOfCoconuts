@@ -1,8 +1,6 @@
 // composables/useContentFeed.js
 import { ref, watch, onMounted } from 'vue'
 import { debounce } from 'lodash-es'
-import { useRuntimeConfig } from '#app'
-import { useAsyncData } from '#app'
 import { interleaveContent } from '~/utils/interleaveContent'
 
 export function useContentFeed(
@@ -13,62 +11,21 @@ export function useContentFeed(
   const searchTerm = providedSearchTerm
   const contentFilters = providedContentFilters
   const displayedItems = ref([])
-  const allItems = ref([])
-  const loading = ref(false)
-  const hasMore = ref(true)
-  const error = ref(null)
-
-  // Pagination
-  const page = ref(1)
-  const limit = ref(10)
-
-  // Content collections
   const contentCollections = {
     claims: ref([]),
     quotes: ref([]),
     memes: ref([]),
   }
 
-  // Track initialization
-  const isInitialized = ref(false)
-  // Expose counts for UI and logging
-  const claimCount = ref(0)
-  const quoteCount = ref(0)
-  const memeCount = ref(0)
-
-  // Defensive: always ensure contentFilters.value is a valid object with all keys
-  function ensureFilterKeys(obj) {
-    obj = obj && typeof obj === 'object' ? obj : {}
-    return {
-      claims: typeof obj.claims === 'boolean' ? obj.claims : true,
-      quotes: typeof obj.quotes === 'boolean' ? obj.quotes : true,
-      memes: typeof obj.memes === 'boolean' ? obj.memes : true,
-    }
-  }
-
   // Initialize data - fetch content directly using Nuxt Content v3
   const initialize = async () => {
-    loading.value = true
     try {
       console.log('Starting content initialization')
 
-      // Use fetch API to get content directly from the server API
-      const fetchClaims = fetch('/content-claims.json')
-        .then((res) => res.json())
-        .then((data) => (Array.isArray(data) ? data : []))
-      const fetchQuotes = fetch('/content-quotes.json')
-        .then((res) => res.json())
-        .then((data) => (Array.isArray(data) ? data : []))
-      const fetchMemes = fetch('/content-memes.json')
-        .then((res) => res.json())
-        .then((data) => (Array.isArray(data) ? data : []))
-
-      // Execute all fetchs in parallel
-      const [claims, quotes, memes] = await Promise.all([
-        fetchClaims,
-        fetchQuotes,
-        fetchMemes,
-      ])
+      // Use queryCollection API to fetch content
+      const claims = await queryCollection('claims').find()
+      const quotes = await queryCollection('quotes').find()
+      const memes = await queryCollection('memes').find()
 
       // Filter out README.md files and files with "__" in their name
       const filterSpecialFiles = (items) => {
@@ -83,40 +40,10 @@ export function useContentFeed(
       contentCollections.quotes.value = filterSpecialFiles(quotes || [])
       contentCollections.memes.value = filterSpecialFiles(memes || [])
 
-      // Update counts for UI and logging
-      claimCount.value = contentCollections.claims.value.length
-      quoteCount.value = contentCollections.quotes.value.length
-      memeCount.value = contentCollections.memes.value.length
-
-      // Always log the counts in the dev terminal
-      if (process.client && typeof window !== 'undefined') {
-        // Browser log
-        console.log(
-          `%cClaims: %c${claimCount.value}  %cQuotes: %c${quoteCount.value}  %cMemes: %c${memeCount.value}`,
-          'color: #888; font-weight: bold;',
-          'color: #2d8cf0; font-weight: bold;',
-          'color: #888; font-weight: bold;',
-          'color: #19be6b; font-weight: bold;',
-          'color: #888; font-weight: bold;',
-          'color: #ff9900; font-weight: bold;'
-        )
-      } else {
-        // Node/terminal log
-        // eslint-disable-next-line no-console
-        console.log(
-          `Claims: ${claimCount.value}  Quotes: ${quoteCount.value}  Memes: ${memeCount.value}`
-        )
-      }
-
-      isInitialized.value = true
-
       // Create the interleaved wall
       createContentWall()
     } catch (err) {
       console.error('Error loading content:', err)
-      error.value = err
-    } finally {
-      loading.value = false
     }
   }
 
@@ -124,32 +51,19 @@ export function useContentFeed(
   const createContentWall = () => {
     // Get only the content types that are enabled by filters
     const filteredCollections = {
-      claims: ensureFilterKeys(contentFilters.value).claims
+      claims: contentFilters.value.claims
         ? contentCollections.claims.value.slice()
         : [],
-      quotes: ensureFilterKeys(contentFilters.value).quotes
+      quotes: contentFilters.value.quotes
         ? contentCollections.quotes.value.slice()
         : [],
-      memes: ensureFilterKeys(contentFilters.value).memes
+      memes: contentFilters.value.memes
         ? contentCollections.memes.value.slice()
         : [],
     }
 
-    // Deduplicate items by path
-    const uniqueItems = {
-      claims: [...new Set(filteredCollections.claims.map((c) => c._path))].map(
-        (path) => filteredCollections.claims.find((c) => c._path === path)
-      ),
-      quotes: [...new Set(filteredCollections.quotes.map((q) => q._path))].map(
-        (path) => filteredCollections.quotes.find((q) => q._path === path)
-      ),
-      memes: [...new Set(filteredCollections.memes.map((m) => m._path))].map(
-        (path) => filteredCollections.memes.find((m) => m._path === path)
-      ),
-    }
-
     // Only show the enabled types
-    const enabledTypes = Object.entries(ensureFilterKeys(contentFilters.value))
+    const enabledTypes = Object.entries(contentFilters.value)
       .filter(([k, v]) => v)
       .map(([k]) => k)
 
@@ -159,26 +73,26 @@ export function useContentFeed(
       const type = enabledTypes[0]
       if (type === 'claims') {
         // Group claims into pairs for wall
-        for (let i = 0; i < uniqueItems.claims.length; i += 2) {
+        for (let i = 0; i < filteredCollections.claims.length; i += 2) {
           const pair = [
-            { type: 'claim', data: uniqueItems.claims[i] },
-            uniqueItems.claims[i + 1]
-              ? { type: 'claim', data: uniqueItems.claims[i + 1] }
+            { type: 'claim', data: filteredCollections.claims[i] },
+            filteredCollections.claims[i + 1]
+              ? { type: 'claim', data: filteredCollections.claims[i + 1] }
               : null,
           ].filter(Boolean)
           wall.push({ type: 'claimPair', data: pair })
         }
       } else if (type === 'quotes') {
-        wall = uniqueItems.quotes.map((q) => ({
+        wall = filteredCollections.quotes.map((q) => ({
           type: 'quote',
           data: q,
         }))
       } else if (type === 'memes') {
-        for (let i = 0; i < uniqueItems.memes.length; i += 2) {
+        for (let i = 0; i < filteredCollections.memes.length; i += 2) {
           const pair = [
-            { type: 'meme', data: uniqueItems.memes[i] },
-            uniqueItems.memes[i + 1]
-              ? { type: 'meme', data: uniqueItems.memes[i + 1] }
+            { type: 'meme', data: filteredCollections.memes[i] },
+            filteredCollections.memes[i + 1]
+              ? { type: 'meme', data: filteredCollections.memes[i + 1] }
               : null,
           ].filter(Boolean)
           wall.push({ type: 'memeRow', data: pair })
@@ -190,22 +104,22 @@ export function useContentFeed(
         // Only quotes + memes
         // Interleave quotes and memes as pairs
         const maxLen = Math.max(
-          uniqueItems.quotes.length,
-          uniqueItems.memes.length
+          filteredCollections.quotes.length,
+          filteredCollections.memes.length
         )
         for (let i = 0; i < maxLen; i++) {
-          if (uniqueItems.quotes[i])
+          if (filteredCollections.quotes[i])
             wall.push({
               type: 'quote',
-              data: uniqueItems.quotes[i],
+              data: filteredCollections.quotes[i],
             })
-          if (uniqueItems.memes[i]) {
+          if (filteredCollections.memes[i]) {
             const pair = [
-              { type: 'meme', data: uniqueItems.memes[i] },
-              uniqueItems.memes[i + 1]
+              { type: 'meme', data: filteredCollections.memes[i] },
+              filteredCollections.memes[i + 1]
                 ? {
                     type: 'meme',
-                    data: uniqueItems.memes[i + 1],
+                    data: filteredCollections.memes[i + 1],
                   }
                 : null,
             ].filter(Boolean)
@@ -216,29 +130,29 @@ export function useContentFeed(
       } else if (!contentFilters.value.quotes) {
         // Only claims + memes
         const maxLen = Math.max(
-          Math.ceil(uniqueItems.claims.length / 2),
-          Math.ceil(uniqueItems.memes.length / 2)
+          Math.ceil(filteredCollections.claims.length / 2),
+          Math.ceil(filteredCollections.memes.length / 2)
         )
         for (let i = 0, ci = 0, mi = 0; i < maxLen; i++) {
-          if (ci < uniqueItems.claims.length) {
+          if (ci < filteredCollections.claims.length) {
             const pair = [
-              { type: 'claim', data: uniqueItems.claims[ci++] },
-              ci < uniqueItems.claims.length
+              { type: 'claim', data: filteredCollections.claims[ci++] },
+              ci < filteredCollections.claims.length
                 ? {
                     type: 'claim',
-                    data: uniqueItems.claims[ci++],
+                    data: filteredCollections.claims[ci++],
                   }
                 : null,
             ].filter(Boolean)
             wall.push({ type: 'claimPair', data: pair })
           }
-          if (mi < uniqueItems.memes.length) {
+          if (mi < filteredCollections.memes.length) {
             const pair = [
-              { type: 'meme', data: uniqueItems.memes[mi++] },
-              mi < uniqueItems.memes.length
+              { type: 'meme', data: filteredCollections.memes[mi++] },
+              mi < filteredCollections.memes.length
                 ? {
                     type: 'meme',
-                    data: uniqueItems.memes[mi++],
+                    data: filteredCollections.memes[mi++],
                   }
                 : null,
             ].filter(Boolean)
@@ -250,11 +164,11 @@ export function useContentFeed(
         // Use original interleave logic for claims and quotes only
         // Group claims into pairs
         const claimPairs = []
-        for (let i = 0; i < uniqueItems.claims.length; i += 2) {
+        for (let i = 0; i < filteredCollections.claims.length; i += 2) {
           const pair = [
-            { type: 'claim', data: uniqueItems.claims[i] },
-            uniqueItems.claims[i + 1]
-              ? { type: 'claim', data: uniqueItems.claims[i + 1] }
+            { type: 'claim', data: filteredCollections.claims[i] },
+            filteredCollections.claims[i + 1]
+              ? { type: 'claim', data: filteredCollections.claims[i + 1] }
               : null,
           ].filter(Boolean)
           claimPairs.push({ type: 'claimPair', data: pair })
@@ -266,72 +180,46 @@ export function useContentFeed(
           wall.push(claimPairs[i])
           if (
             (i + 1) % pairsPerQuote === 0 &&
-            quoteIndex < uniqueItems.quotes.length
+            quoteIndex < filteredCollections.quotes.length
           ) {
             wall.push({
               type: 'quote',
-              data: uniqueItems.quotes[quoteIndex++],
+              data: filteredCollections.quotes[quoteIndex++],
             })
           }
         }
-        while (quoteIndex < uniqueItems.quotes.length) {
+        while (quoteIndex < filteredCollections.quotes.length) {
           wall.push({
             type: 'quote',
-            data: uniqueItems.quotes[quoteIndex++],
+            data: filteredCollections.quotes[quoteIndex++],
           })
         }
       }
     } else {
       // All three pills on: use full interleave
       wall = interleaveContent(
-        uniqueItems.claims,
-        uniqueItems.quotes,
-        uniqueItems.memes
+        filteredCollections.claims,
+        filteredCollections.quotes,
+        filteredCollections.memes
       )
     }
 
     // Update state
-    allItems.value = wall
-    displayedItems.value = wall.slice(0, limit.value)
-    hasMore.value = wall.length > limit.value
-    page.value = 2
+    displayedItems.value = wall
   }
 
-  // Load more content (for infinite scroll)
-  const loadMoreContent = () => {
-    if (!hasMore.value || loading.value) return
-
-    loading.value = true
-    const start = (page.value - 1) * limit.value
-    const end = start + limit.value
-
-    // Add next chunk of items
-    const newItems = allItems.value.slice(start, end)
-    displayedItems.value = [...displayedItems.value, ...newItems]
-
-    // Update pagination state
-    hasMore.value = end < allItems.value.length
-    page.value++
-    loading.value = false
-  }
-
-  // Search implementation using fetch API
+  // Search implementation using queryCollectionSearchSections API
   const performSearch = async (query) => {
-    loading.value = true
     displayedItems.value = []
-    page.value = 1
 
     try {
       if (query) {
-        // Build search URL with query parameter
-        const searchParams = new URLSearchParams({ query })
-        const searchUrl = `/api/content/search?${searchParams.toString()}`
+        console.log(
+          `Searching for: "${query}" using queryCollectionSearchSections`
+        )
 
-        console.log(`Searching for: "${query}" using ${searchUrl}`)
-
-        // Fetch search results from dedicated search endpoint
-        const response = await fetch(searchUrl)
-        const searchResults = await response.json()
+        // Use queryCollectionSearchSections API for full-text search
+        const searchResults = await queryCollectionSearchSections({ query })
 
         console.log(`Search returned ${searchResults.length} total results`)
 
@@ -366,7 +254,6 @@ export function useContentFeed(
         contentCollections.quotes.value = quotesResults
         contentCollections.memes.value = memesResults
       } else {
-        // If search is cleared, reinitialize to get all content
         console.log('Search cleared, restoring all content')
 
         // Reset to original content collections
@@ -378,9 +265,6 @@ export function useContentFeed(
       createContentWall()
     } catch (err) {
       console.error('Search error:', err)
-      error.value = err
-    } finally {
-      loading.value = false
     }
   }
 
@@ -423,14 +307,7 @@ export function useContentFeed(
   return {
     searchTerm,
     contentFilters,
-    loadMoreContent,
     displayedItems,
-    loading,
-    hasMore,
-    error,
     contentCollections, // <-- expose contentCollections for global counts
-    claimCount,
-    quoteCount,
-    memeCount,
   }
 }

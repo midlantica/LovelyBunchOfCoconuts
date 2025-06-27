@@ -6,10 +6,6 @@ export default defineNuxtConfig({
   modules: ['@nuxt/content', 'nuxt-icon', '@nuxtjs/tailwindcss'],
   css: ['~/assets/css/main.css', '~/assets/css/transitions.css'],
   ssr: true,
-  content: {},
-  build: {
-    transpile: ['~/composables'], // 👈 This is the fix
-  },
   app: {
     head: {
       title: 'WakeUpNPC2',
@@ -94,10 +90,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: 'netlify',
-    compatibilityDate: '2025-06-26',
-    experimental: {
-      openAPI: true,
-    },
+    compatibilityDate: '2025-06-27',
     prerender: {
       crawlLinks: false,
       routes: ['/'],

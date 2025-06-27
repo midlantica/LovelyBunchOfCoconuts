@@ -1,8 +1,6 @@
 <!-- pages/index.vue -->
 <script setup>
   import { onMounted, onUnmounted, ref, inject, computed } from 'vue'
-  // Use Nuxt's auto-imported composables instead
-  import { queryContent } from '#content'
 
   definePageMeta({
     layout: 'home',
@@ -71,17 +69,17 @@
       const search = searchTerm.value
 
       const claims = filters.claims
-        ? (await queryContent('claims')
+        ? (await queryCollection('claims')
             .where({ title: { $contains: search } })
             .find()) || []
         : []
       const quotes = filters.quotes
-        ? (await queryContent('quotes')
+        ? (await queryCollection('quotes')
             .where({ text: { $contains: search } })
             .find()) || []
         : []
       const memes = filters.memes
-        ? (await queryContent('memes')
+        ? (await queryCollection('memes')
             .where({ description: { $contains: search } })
             .find()) || []
         : []
@@ -126,7 +124,15 @@
     if (observer) observer.disconnect()
   })
 
-  console.log(queryContent)
+  // Replace legacy fetch logic with Nuxt Content composables
+  const loadContent = async () => {
+    const content = await queryContent().find()
+    displayedItems.value = content
+  }
+
+  onMounted(() => {
+    loadContent()
+  })
 </script>
 
 <template>
