@@ -18,6 +18,7 @@
     "@nuxt/eslint": "1.4.1",
     "@nuxt/icon": "1.14.0",
     "@nuxtjs/mdc": "0.17.0",
+    "better-sqlite3": "11.10.0",
     "gray-matter": "^4.0.3",
     "markdown-it": "^14.1.0",
     "nuxt": "^3.17.5",
