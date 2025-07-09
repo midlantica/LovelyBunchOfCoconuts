@@ -1,45 +1,45 @@
 import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { tmpdir } from 'node:os';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, getRequestURL, getResponseHeader, getResponseStatus, createError, getQuery as getQuery$1, readBody, getRouterParam, setHeader, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatusText } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/h3@1.15.3/node_modules/h3/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, getRequestURL, getResponseHeader, getResponseStatus, createError, getQuery as getQuery$1, readBody, getRouterParam, setHeader, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatusText } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/h3@1.15.3/node_modules/h3/dist/index.mjs';
 import { Server } from 'node:http';
 import path, { resolve, dirname, join } from 'node:path';
 import nodeCrypto from 'node:crypto';
 import { parentPort, threadId } from 'node:worker_threads';
-import { escapeHtml } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/@vue+shared@3.5.17/node_modules/@vue/shared/dist/shared.cjs.js';
+import { escapeHtml } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/@vue+shared@3.5.17/node_modules/@vue/shared/dist/shared.cjs.js';
 import { promises } from 'node:fs';
-import matter$1 from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/gray-matter@4.0.3/node_modules/gray-matter/index.js';
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/vue-bundle-renderer@2.1.1/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, joinRelativeURL } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/ufo@1.6.1/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/vue@3.5.17_typescript@5.8.3/node_modules/vue/server-renderer/index.mjs';
-import destr, { destr as destr$1 } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/destr@2.0.5/node_modules/destr/dist/index.mjs';
-import { createHooks } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
-import { createFetch, Headers as Headers$1 } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/ofetch@1.4.1/node_modules/ofetch/dist/node.mjs';
-import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/node-mock-http@1.0.1/node_modules/node-mock-http/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/unstorage@1.16.0_db0@0.3.2_ioredis@5.6.1/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/unstorage@1.16.0_db0@0.3.2_ioredis@5.6.1/node_modules/unstorage/drivers/fs.mjs';
-import { digest, hash as hash$1 } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/ohash@2.0.11/node_modules/ohash/dist/index.mjs';
-import { klona } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
-import defu, { defuFn } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/defu@6.1.4/node_modules/defu/dist/defu.mjs';
-import { snakeCase } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
-import { getContext } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/unctx@2.4.1/node_modules/unctx/dist/index.mjs';
-import { toRouteMatcher, createRouter } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
+import matter$1 from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/gray-matter@4.0.3/node_modules/gray-matter/index.js';
+import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/vue-bundle-renderer@2.1.1/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, joinRelativeURL } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/ufo@1.6.1/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/vue@3.5.17_typescript@5.8.3/node_modules/vue/server-renderer/index.mjs';
+import destr, { destr as destr$1 } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/destr@2.0.5/node_modules/destr/dist/index.mjs';
+import { createHooks } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
+import { createFetch, Headers as Headers$1 } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/ofetch@1.4.1/node_modules/ofetch/dist/node.mjs';
+import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/node-mock-http@1.0.1/node_modules/node-mock-http/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/unstorage@1.16.0_db0@0.3.2_ioredis@5.6.1/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/unstorage@1.16.0_db0@0.3.2_ioredis@5.6.1/node_modules/unstorage/drivers/fs.mjs';
+import { digest, hash as hash$1 } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/ohash@2.0.11/node_modules/ohash/dist/index.mjs';
+import { klona } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
+import defu, { defuFn } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/defu@6.1.4/node_modules/defu/dist/defu.mjs';
+import { snakeCase } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
+import { getContext } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/unctx@2.4.1/node_modules/unctx/dist/index.mjs';
+import { toRouteMatcher, createRouter } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
 import { readFile } from 'node:fs/promises';
-import consola, { consola as consola$1 } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/consola@3.4.2/node_modules/consola/dist/index.mjs';
-import { ErrorParser } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/youch-core@0.3.2/node_modules/youch-core/build/index.js';
-import { Youch } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/youch@4.1.0-beta.8/node_modules/youch/build/index.js';
-import { SourceMapConsumer } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/source-map@0.7.4/node_modules/source-map/source-map.js';
+import consola, { consola as consola$1 } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/consola@3.4.2/node_modules/consola/dist/index.mjs';
+import { ErrorParser } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/youch-core@0.3.2/node_modules/youch-core/build/index.js';
+import { Youch } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/youch@4.1.0-beta.8/node_modules/youch/build/index.js';
+import { SourceMapConsumer } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/source-map@0.7.4/node_modules/source-map/source-map.js';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { stringify, uneval } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/devalue@5.1.1/node_modules/devalue/index.js';
-import { captureRawStackTrace, parseRawStackTrace } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/errx@0.1.0/node_modules/errx/dist/index.js';
-import { isVNode, toValue, isRef } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/vue@3.5.17_typescript@5.8.3/node_modules/vue/index.mjs';
-import { basename, isAbsolute } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/pathe@2.0.3/node_modules/pathe/dist/index.mjs';
-import { getIcons } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/@iconify+utils@2.3.0/node_modules/@iconify/utils/lib/index.mjs';
-import { collections } from 'file:///Users/drew/Documents/_work/wake-up-npc/.nuxt/nuxt-icon-server-bundle.mjs';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/unhead@2.0.11/node_modules/unhead/dist/server.mjs';
-import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/unhead@2.0.11/node_modules/unhead/dist/plugins.mjs';
-import { walkResolver } from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/unhead@2.0.11/node_modules/unhead/dist/utils.mjs';
-import localAdapter from 'file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/db0@0.3.2/node_modules/db0/dist/connectors/better-sqlite3.mjs';
+import { stringify, uneval } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/devalue@5.1.1/node_modules/devalue/index.js';
+import { captureRawStackTrace, parseRawStackTrace } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/errx@0.1.0/node_modules/errx/dist/index.js';
+import { isVNode, toValue, isRef } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/vue@3.5.17_typescript@5.8.3/node_modules/vue/index.mjs';
+import { basename, isAbsolute } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/pathe@2.0.3/node_modules/pathe/dist/index.mjs';
+import { getIcons } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/@iconify+utils@2.3.0/node_modules/@iconify/utils/lib/index.mjs';
+import { collections } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/.nuxt/nuxt-icon-server-bundle.mjs';
+import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/unhead@2.0.11/node_modules/unhead/dist/server.mjs';
+import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/unhead@2.0.11/node_modules/unhead/dist/plugins.mjs';
+import { walkResolver } from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/unhead@2.0.11/node_modules/unhead/dist/utils.mjs';
+import localAdapter from 'file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/db0@0.3.2/node_modules/db0/dist/connectors/better-sqlite3.mjs';
 
-const serverAssets = [{"baseName":"server","dir":"/Users/drew/Documents/_work/wake-up-npc/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"/Users/drew/Documents/_work/WakeUpNPC2/server/assets"}];
 
 const assets = createStorage();
 
@@ -51,11 +51,11 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/drew/Documents/_work/wake-up-npc","watchOptions":{"ignored":[null]}}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/drew/Documents/_work/wake-up-npc/server","watchOptions":{"ignored":[null]}}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/drew/Documents/_work/wake-up-npc/.nuxt"}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/drew/Documents/_work/wake-up-npc/.nuxt/cache"}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/drew/Documents/_work/wake-up-npc/.data/kv"}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/drew/Documents/_work/WakeUpNPC2","watchOptions":{"ignored":[null]}}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/drew/Documents/_work/WakeUpNPC2/server","watchOptions":{"ignored":[null]}}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/drew/Documents/_work/WakeUpNPC2/.nuxt"}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/drew/Documents/_work/WakeUpNPC2/.nuxt/cache"}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/drew/Documents/_work/WakeUpNPC2/.data/kv"}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -886,7 +886,7 @@ const _inlineRuntimeConfig = {
     },
     "localDatabase": {
       "type": "sqlite",
-      "filename": "/Users/drew/Documents/_work/wake-up-npc/.data/content/contents.sqlite"
+      "filename": "/Users/drew/Documents/_work/WakeUpNPC2/.data/content/contents.sqlite"
     },
     "integrityCheck": true
   },
@@ -1263,13 +1263,13 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _bwdGC7pLMzj1ZO3CFomQVAI3rIWCU3iw_GCflSfHvgo = (function(nitro) {
+const _GumBRqJQQj3RWpEo88zCpexZKMcLvp74DrvLtXP2aE = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
-const rootDir = "/Users/drew/Documents/_work/wake-up-npc";
+const rootDir = "/Users/drew/Documents/_work/WakeUpNPC2";
 
 const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"},{"name":"description","content":"A wall of claims, quotes, and memes"},{"name":"theme-color","content":"#68D2FF"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"},{"rel":"icon","type":"image/png","sizes":"32x32","href":"/favicon/favicon-32x32.png"},{"rel":"icon","type":"image/png","sizes":"36x36","href":"/favicon/favicon-36x36.png"},{"rel":"icon","type":"image/png","sizes":"48x48","href":"/favicon/favicon-48x48.png"},{"rel":"icon","type":"image/png","sizes":"57x57","href":"/favicon/favicon-57x57.png"},{"rel":"icon","type":"image/png","sizes":"60x60","href":"/favicon/favicon-60x60.png"},{"rel":"icon","type":"image/png","sizes":"72x72","href":"/favicon/favicon-72x72.png"},{"rel":"icon","type":"image/png","sizes":"96x96","href":"/favicon/favicon-96x96.png"},{"rel":"icon","type":"image/png","sizes":"120x120","href":"/favicon/favicon-120x120.png"},{"rel":"icon","type":"image/png","sizes":"144x144","href":"/favicon/favicon-144x144.png"},{"rel":"icon","type":"image/png","sizes":"192x192","href":"/favicon/favicon-192x192.png"},{"rel":"icon","type":"image/png","sizes":"512x512","href":"/favicon/favicon-512x512.png"},{"rel":"apple-touch-icon","href":"/apple-touch-icon.png"}],"style":[],"script":[],"noscript":[],"title":"wake-up-npc"};
 
@@ -1288,7 +1288,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _816IDz5wKNQRwWS7wnSKRU8aLiG5xF8MKUW52YjjWBI = (nitroApp) => {
+const _yjDKrvgjQu2bT2FqUSwMumXmYHOjyznHcWPCw4TEak = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -1361,7 +1361,7 @@ function defineNitroPlugin(def) {
   return def;
 }
 
-const _l_3nJIj7V7I0AzliMVVP5s9VuzYREULDWQHCiqzIog = defineNitroPlugin((nitroApp) => {
+const _kZIIM0Ct6P5TClNhxiZaICGHO7hHQWuU8SwC7dYiOdw = defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hook("content:file:beforeParse", (file) => {
     if (!file || !file.path) {
       console.log("Skipping file processing: file or file.path is undefined");
@@ -1381,12 +1381,12 @@ const _l_3nJIj7V7I0AzliMVVP5s9VuzYREULDWQHCiqzIog = defineNitroPlugin((nitroApp)
 });
 
 const plugins = [
-  _bwdGC7pLMzj1ZO3CFomQVAI3rIWCU3iw_GCflSfHvgo,
-_816IDz5wKNQRwWS7wnSKRU8aLiG5xF8MKUW52YjjWBI,
-_l_3nJIj7V7I0AzliMVVP5s9VuzYREULDWQHCiqzIog
+  _GumBRqJQQj3RWpEo88zCpexZKMcLvp74DrvLtXP2aE,
+_yjDKrvgjQu2bT2FqUSwMumXmYHOjyznHcWPCw4TEak,
+_kZIIM0Ct6P5TClNhxiZaICGHO7hHQWuU8SwC7dYiOdw
 ];
 
-const _AODCjJ = defineEventHandler((event) => {
+const _je3fDt = defineEventHandler((event) => {
   console.log("Incoming request:", event.node.req.url);
 });
 
@@ -1560,7 +1560,7 @@ async function fetchDatabase(event, collection) {
 
 const warnOnceSet = /* @__PURE__ */ new Set();
 const DEFAULT_ENDPOINT = "https://api.iconify.design";
-const _wWaxK5 = defineCachedEventHandler(async (event) => {
+const _1AWVhw = defineCachedEventHandler(async (event) => {
   const url = getRequestURL(event);
   if (!url)
     return createError({ status: 400, message: "Invalid icon request" });
@@ -1677,8 +1677,8 @@ function setSSRError(ssrContext, error) {
 
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;
 const APP_ROOT_CLOSE_TAG = `</${appRootTag}>`;
-const getServerEntry = () => import('file:///Users/drew/Documents/_work/wake-up-npc/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
-const getClientManifest = () => import('file:///Users/drew/Documents/_work/wake-up-npc/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getServerEntry = () => import('file:///Users/drew/Documents/_work/WakeUpNPC2/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
+const getClientManifest = () => import('file:///Users/drew/Documents/_work/WakeUpNPC2/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
 const getSSRRenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();
   if (!manifest) {
@@ -1924,7 +1924,7 @@ async function getIslandContext(event) {
   return ctx;
 }
 
-const _NwjBZr = eventHandler(async (event) => {
+const _texTMO = eventHandler(async (event) => {
   const collection = getRouterParam(event, "collection");
   setHeader(event, "Content-Type", "text/plain");
   const data = await useStorage().getItem(`build:content:database.compressed.mjs`) || "";
@@ -1935,7 +1935,7 @@ const _NwjBZr = eventHandler(async (event) => {
       return content.substring(lineStart.length, content.length - 1);
     }
   }
-  return await import('file:///Users/drew/Documents/_work/wake-up-npc/.nuxt/content/database.compressed.mjs').then((m) => m[collection]);
+  return await import('file:///Users/drew/Documents/_work/WakeUpNPC2/.nuxt/content/database.compressed.mjs').then((m) => m[collection]);
 });
 
 async function decompressSQLDump(base64Str, compressionType = "gzip") {
@@ -2206,7 +2206,7 @@ function cleanupQuery(query, options = { removeString: false }) {
   return result;
 }
 
-const _KCNdKS = eventHandler(async (event) => {
+const _kqBzdk = eventHandler(async (event) => {
   const { sql } = await readBody(event);
   const collection = getRouterParam(event, "collection");
   assertSafeQuery(sql, collection);
@@ -2217,32 +2217,32 @@ const _KCNdKS = eventHandler(async (event) => {
   return loadDatabaseAdapter(conf).all(sql);
 });
 
-const _lazy_rtuvjy = () => Promise.resolve().then(function () { return contentItem$1; });
-const _lazy_KbZaFz = () => Promise.resolve().then(function () { return content$1; });
-const _lazy_qX7LfC = () => Promise.resolve().then(function () { return debug; });
-const _lazy_jAfcGy = () => Promise.resolve().then(function () { return item_get$1; });
-const _lazy_BmSVYJ = () => Promise.resolve().then(function () { return search$3; });
-const _lazy_StmBOj = () => Promise.resolve().then(function () { return search$1; });
-const _lazy_b8Ov34 = () => Promise.resolve().then(function () { return com_chrome_devtools_json$1; });
-const _lazy_rtioIE = () => Promise.resolve().then(function () { return wellKnown$1; });
-const _lazy_pjAZa7 = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_UITgJD = () => Promise.resolve().then(function () { return contentItem$1; });
+const _lazy_VkkVdw = () => Promise.resolve().then(function () { return content$1; });
+const _lazy_862YuX = () => Promise.resolve().then(function () { return debug; });
+const _lazy_DApUBP = () => Promise.resolve().then(function () { return item_get$1; });
+const _lazy_Id3UyK = () => Promise.resolve().then(function () { return search$3; });
+const _lazy_0n3a19 = () => Promise.resolve().then(function () { return search$1; });
+const _lazy_vudxzG = () => Promise.resolve().then(function () { return com_chrome_devtools_json$1; });
+const _lazy_XoLYtK = () => Promise.resolve().then(function () { return wellKnown$1; });
+const _lazy_fXlDx8 = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '', handler: _AODCjJ, lazy: false, middleware: true, method: undefined },
-  { route: '/api/content-item', handler: _lazy_rtuvjy, lazy: true, middleware: false, method: undefined },
-  { route: '/api/content', handler: _lazy_KbZaFz, lazy: true, middleware: false, method: undefined },
-  { route: '/api/content/debug', handler: _lazy_qX7LfC, lazy: true, middleware: false, method: undefined },
-  { route: '/api/content/item', handler: _lazy_jAfcGy, lazy: true, middleware: false, method: "get" },
-  { route: '/api/content/search', handler: _lazy_BmSVYJ, lazy: true, middleware: false, method: undefined },
-  { route: '/api/search', handler: _lazy_StmBOj, lazy: true, middleware: false, method: undefined },
-  { route: '/.well-known/appspecific/com.chrome.devtools.json', handler: _lazy_b8Ov34, lazy: true, middleware: false, method: undefined },
-  { route: '/well-known', handler: _lazy_rtioIE, lazy: true, middleware: false, method: undefined },
-  { route: '/__nuxt_error', handler: _lazy_pjAZa7, lazy: true, middleware: false, method: undefined },
-  { route: '/api/_nuxt_icon/:collection', handler: _wWaxK5, lazy: false, middleware: false, method: undefined },
+  { route: '', handler: _je3fDt, lazy: false, middleware: true, method: undefined },
+  { route: '/api/content-item', handler: _lazy_UITgJD, lazy: true, middleware: false, method: undefined },
+  { route: '/api/content', handler: _lazy_VkkVdw, lazy: true, middleware: false, method: undefined },
+  { route: '/api/content/debug', handler: _lazy_862YuX, lazy: true, middleware: false, method: undefined },
+  { route: '/api/content/item', handler: _lazy_DApUBP, lazy: true, middleware: false, method: "get" },
+  { route: '/api/content/search', handler: _lazy_Id3UyK, lazy: true, middleware: false, method: undefined },
+  { route: '/api/search', handler: _lazy_0n3a19, lazy: true, middleware: false, method: undefined },
+  { route: '/.well-known/appspecific/com.chrome.devtools.json', handler: _lazy_vudxzG, lazy: true, middleware: false, method: undefined },
+  { route: '/well-known', handler: _lazy_XoLYtK, lazy: true, middleware: false, method: undefined },
+  { route: '/__nuxt_error', handler: _lazy_fXlDx8, lazy: true, middleware: false, method: undefined },
+  { route: '/api/_nuxt_icon/:collection', handler: _1AWVhw, lazy: false, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: _SxA8c9, lazy: false, middleware: false, method: undefined },
-  { route: '/__nuxt_content/:collection/sql_dump.txt', handler: _NwjBZr, lazy: false, middleware: false, method: undefined },
-  { route: '/__nuxt_content/:collection/query', handler: _KCNdKS, lazy: false, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_pjAZa7, lazy: true, middleware: false, method: undefined }
+  { route: '/__nuxt_content/:collection/sql_dump.txt', handler: _texTMO, lazy: false, middleware: false, method: undefined },
+  { route: '/__nuxt_content/:collection/query', handler: _kqBzdk, lazy: false, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_fXlDx8, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {

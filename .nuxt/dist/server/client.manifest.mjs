@@ -1,1 +1,1 @@
-export { default } from "file:///Users/drew/Documents/_work/wake-up-npc/node_modules/.pnpm/@nuxt+vite-builder@3.17.5_@types+node@24.0.6_eslint@9.30.0_jiti@2.4.2__lightningcss@1.3_34d55f06e1fb24580885f182c2f1c0bd/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
+export { default } from "file:///Users/drew/Documents/_work/WakeUpNPC2/node_modules/.pnpm/@nuxt+vite-builder@3.17.5_@types+node@24.0.6_eslint@9.30.0_jiti@2.4.2__lightningcss@1.3_34d55f06e1fb24580885f182c2f1c0bd/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
