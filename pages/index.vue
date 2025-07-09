@@ -1,137 +1,121 @@
 <!-- pages/index.vue -->
 <script setup>
-  import { onMounted, onUnmounted, ref, inject, computed } from 'vue'
+  import { onMounted, onUnmounted, ref, inject, watch } from 'vue'
+  import { useInfiniteScroll } from '~/composables/useInfiniteScroll'
 
   definePageMeta({
     layout: 'home',
   })
 
-  // Get search term and content filters from parent component/layout
+  // Get values from the layout
+  const displayedItems = inject('displayedItems', ref([]))
+  const loadMoreFromLayout = inject('loadMoreContent')
+  const error = inject('error', ref(null))
   const searchTerm = inject('searchTerm', ref(''))
   const contentFilters = inject(
     'contentFilters',
     ref({ claims: true, quotes: true, memes: true })
   )
 
-  // Replace useContentFeed with direct Nuxt Content queries
-  const loading = ref(false)
+  // Infinite scroll states
+  const isLoading = ref(false)
   const hasMore = ref(true)
-  const error = ref(null)
+  const lastItemCount = ref(0)
+  const newItemsStartIndex = ref(0)
 
-  // Ensure proper initialization of displayedItems
-  const displayedItems = ref([])
-
-  // Add logic to interleave content types dynamically
-  const interleavedContent = computed(() => {
-    const claims = displayedItems.value.filter(
-      (item) => item.type === 'claimPair'
-    )
-    const quotes = displayedItems.value.filter((item) => item.type === 'quote')
-    const memes = displayedItems.value.filter((item) => item.type === 'memeRow')
-
-    const interleaved = []
-    const maxLength = Math.max(claims.length, quotes.length, memes.length)
-
-    for (let i = 0; i < maxLength; i++) {
-      if (claims[i]) interleaved.push(claims[i])
-      if (quotes[i]) interleaved.push(quotes[i])
-      if (memes[i]) interleaved.push(memes[i])
-    }
-
-    return interleaved
-  })
-
-  // --- Add result counts for claims, quotes, memes ---
-  const claimCount = computed(() => {
-    return displayedItems.value
-      .flatMap((item) => (item.type === 'claimPair' ? item.data : []))
-      .filter((item) => item.type === 'claim').length
-  })
-  const quoteCount = computed(() => {
-    return displayedItems.value.filter((item) => item.type === 'quote').length
-  })
-  const memeCount = computed(() => {
-    return displayedItems.value
-      .flatMap((item) => (item.type === 'memeRow' ? item.data : []))
-      .filter((item) => item.type === 'meme').length
-  })
-  const totalCount = computed(
-    () => claimCount.value + quoteCount.value + memeCount.value
+  // Reset hasMore when search/filters change
+  watch(
+    [searchTerm, contentFilters],
+    () => {
+      hasMore.value = true
+      lastItemCount.value = 0
+      newItemsStartIndex.value = 0
+    },
+    { deep: true }
   )
 
-  // Add fallback logic in loadMoreContent
-  const loadMoreContent = async () => {
-    if (loading.value || !hasMore.value) return
+  // Watch for new items to apply fade-in animation
+  watch(
+    displayedItems,
+    (newItems, oldItems) => {
+      const oldLength = oldItems?.length || 0
+      const newLength = newItems.length
 
-    loading.value = true
-    try {
-      const filters = contentFilters.value
-      const search = searchTerm.value
+      if (newLength > oldLength) {
+        // New items were added - track where the new items start
+        newItemsStartIndex.value = oldLength
 
-      const claims = filters.claims
-        ? (await queryCollection('claims')
-            .where({ title: { $contains: search } })
-            .find()) || []
-        : []
-      const quotes = filters.quotes
-        ? (await queryCollection('quotes')
-            .where({ text: { $contains: search } })
-            .find()) || []
-        : []
-      const memes = filters.memes
-        ? (await queryCollection('memes')
-            .where({ description: { $contains: search } })
-            .find()) || []
-        : []
-
-      const newItems = [...claims, ...quotes, ...memes]
-
-      if (newItems.length === 0) {
-        hasMore.value = false
-      } else {
-        displayedItems.value.push(...newItems)
+        // Update lastItemCount after a brief delay to ensure animation works
+        setTimeout(() => {
+          lastItemCount.value = newLength
+        }, 100)
       }
-    } catch (err) {
-      error.value = err
-    } finally {
-      loading.value = false
+    },
+    { deep: true }
+  )
+
+  // Watch displayedItems to see what's happening
+  watch(
+    displayedItems,
+    (newItems) => {
+      // Remove debug logs
+    },
+    { deep: true }
+  )
+
+  // Load more content function - properly implement infinite scroll
+  const loadMoreContent = async () => {
+    if (!hasMore.value) {
+      return
+    }
+
+    if (!loadMoreFromLayout) {
+      return
+    }
+
+    try {
+      const result = await loadMoreFromLayout(20) // Load 20 more items
+
+      if (
+        result &&
+        typeof result === 'object' &&
+        result.claims === 0 &&
+        result.quotes === 0 &&
+        result.memes === 0
+      ) {
+        hasMore.value = false
+      }
+    } catch (error) {
+      console.error('❌ Error loading more content:', error)
+      hasMore.value = false
     }
   }
 
-  // Set up infinite scrolling
-  const loadMoreTrigger = ref(null)
-  let observer = null
+  // Use infinite scroll composable
+  const infiniteScrollCallback = async () => {
+    return await loadMoreContent()
+  }
+
+  const scrollDebug = useInfiniteScroll(infiniteScrollCallback, {
+    isLoading,
+    hasMore,
+  })
+
+  // Add escape key handler for clearing search
+  const handleEscape = (e) => {
+    if (e.key === 'Escape') {
+      searchTerm.value = ''
+    }
+  }
 
   onMounted(() => {
-    loadMoreContent()
-
-    // Create intersection observer for infinite scrolling
-    observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && hasMore.value && !loading.value) {
-          loadMoreContent()
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    // Start observing the trigger element
-    if (loadMoreTrigger.value) observer.observe(loadMoreTrigger.value)
+    // Add escape key listener
+    document.addEventListener('keydown', handleEscape)
   })
 
   onUnmounted(() => {
-    // Clean up observer when component is destroyed
-    if (observer) observer.disconnect()
-  })
-
-  // Replace legacy fetch logic with Nuxt Content composables
-  const loadContent = async () => {
-    const content = await queryContent().find()
-    displayedItems.value = content
-  }
-
-  onMounted(() => {
-    loadContent()
+    // Remove escape key listener
+    document.removeEventListener('keydown', handleEscape)
   })
 </script>
 
@@ -145,82 +129,94 @@
     </div>
 
     <!-- Content wall -->
-    <section
-      v-if="displayedItems.length"
-      class="gap-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 auto-rows-min"
-    >
+    <section v-if="displayedItems.length" class="flex flex-col gap-3">
       <div
         v-for="(item, index) in displayedItems"
         :key="index"
-        class="col-span-1 sm:col-span-2 lg:col-span-2"
+        class="content-item"
+        :class="{ 'fade-in-item': index >= newItemsStartIndex }"
       >
-        <!-- Claim translations (displayed in pairs) -->
+        <!-- Quotes (full width) -->
+        <QuotePanel
+          v-if="item.type === 'quote'"
+          :quote="item.data"
+          :slug="item.data?.path || item.data?._path || ''"
+        />
+
+        <!-- Claim pairs (2 columns on md+, stacked on smaller) -->
         <div
-          v-if="item.type === 'claimPair'"
-          class="gap-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
+          v-else-if="item.type === 'claimPair'"
+          class="gap-3 grid grid-cols-1 md:grid-cols-2"
         >
           <ClaimTranslationPanel
             v-for="(claimItem, idx) in item.data"
             :key="idx"
-            :claim="claimItem.data"
-            :slug="claimItem.data?._path || ''"
+            :claim="claimItem"
+            :slug="claimItem?.path || claimItem?._path || ''"
           />
         </div>
 
-        <!-- Quotes -->
-        <QuotePanel
-          v-else-if="item.type === 'quote'"
-          :quote="item.data"
-          :slug="item.data?._path || ''"
-        />
-
-        <!-- Memes (displayed in pairs) -->
+        <!-- Meme pairs (2 columns on md+, stacked on smaller) -->
         <div
           v-else-if="item.type === 'memeRow'"
-          class="gap-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
+          class="gap-3 grid grid-cols-1 md:grid-cols-2"
         >
           <MemePanel
             v-for="(memeItem, idx) in item.data"
             :key="idx"
-            :meme="memeItem.data"
-            :slug="memeItem.data?._path || ''"
+            :meme="memeItem"
+            :slug="memeItem?.path || memeItem?._path || ''"
           />
         </div>
       </div>
     </section>
 
-    <!-- Initial loading state -->
-    <div
-      v-else-if="loading"
-      class="flex flex-col justify-center justify-self-center content-center place-content-center self-center place-items-center gap-4 py-4 text-white text-center align-center"
-    >
-      <Icon name="svg-spinners:90-ring-with-bg" size="1.75rem" />
+    <!-- Infinite scroll loading indicator -->
+    <div v-if="isLoading" class="flex justify-center items-center py-8">
+      <div class="text-white text-lg">Loading more content...</div>
     </div>
 
     <!-- No content message -->
-    <div v-else class="flex flex-col justify-center items-center min-h-[60vh]">
+    <div
+      v-else-if="!displayedItems.length"
+      class="flex flex-col justify-center items-center min-h-[60vh]"
+    >
       <h1 class="font-light text-white text-2xl text-center">
         {{
           searchTerm
             ? 'No results found.'
             : !contentFilters.claims &&
-                !contentFilters.quotes &&
-                !contentFilters.memes
-              ? 'No content found. Select a category above.'
-              : 'No content found.'
+              !contentFilters.quotes &&
+              !contentFilters.memes
+            ? 'No content found. Select a category above.'
+            : 'Loading content...'
         }}
       </h1>
     </div>
-
-    <!-- Loading more indicator -->
-    <div
-      v-if="loading && displayedItems.length"
-      class="flex flex-col justify-center justify-self-center content-center place-content-center self-center place-items-center gap-4 py-4 text-white text-center align-center"
-    >
-      <Icon name="svg-spinners:90-ring-with-bg" size="1.75rem" />
-    </div>
-
-    <!-- Infinite scroll trigger -->
-    <div ref="loadMoreTrigger" class="h-10"></div>
   </div>
 </template>
+
+<style scoped>
+  .content-item {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .fade-in-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s ease-in-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

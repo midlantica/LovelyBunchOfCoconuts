@@ -1,26 +1,28 @@
 <!-- layouts/home.vue -->
 <template>
   <div
-    class="gap-4 grid grid-rows-[auto_1fr_auto] h-screen overflow-hidden baser"
+    class="gap-4 grid if (currentCount >= totalCount) { return { claims: 0, quotes: 0, memes: 0 } // No more content }s-[auto_1fr_auto] h-screen overflow-hidden"
   >
     <TheHeader class="top-0 left-0 z-10 sticky w-full" />
-    <div class="gap-3 grid grid-rows-[auto_1fr] px-4 overflow-hidden">
-      <SearchBar
-        v-model:search="searchTerm"
-        v-model:filters="contentFilters"
-        :claim-count="searchClaimCount"
-        :quote-count="searchQuoteCount"
-        :meme-count="searchMemeCount"
-        :total-count="totalCount"
-        :total-claim-count="totalClaimCount"
-        :total-quote-count="totalQuoteCount"
-        :total-meme-count="totalMemeCount"
-        :total-item-count="totalItemCount"
-        class="top-0 z-10 sticky justify-self-center max-w-screen-md"
-      />
-      <div class="overflow-y-auto">
-        <div class="mx-auto w-full max-w-screen-md">
-          <main class="grid grid-rows-[auto]">
+    <div class="gap-3 grid grid-rows-[auto_1fr] overflow-hidden">
+      <div class="px-4">
+        <SearchBar
+          v-model:search="searchTerm"
+          v-model:filters="contentFilters"
+          :claim-count="searchClaimCount"
+          :quote-count="searchQuoteCount"
+          :meme-count="searchMemeCount"
+          :total-count="totalCount"
+          :total-claim-count="totalClaimCount"
+          :total-quote-count="totalQuoteCount"
+          :total-meme-count="totalMemeCount"
+          :total-item-count="totalItemCount"
+          class="top-0 z-10 sticky justify-self-center max-w-screen-md"
+        />
+      </div>
+      <div class="h-full min-h-0 overflow-y-auto" ref="scrollContainer">
+        <div class="mx-auto px-4 md:px-0 w-full max-w-screen-md">
+          <main class="grid grid-rows-[auto] pb-8">
             <slot />
           </main>
         </div>
@@ -31,8 +33,11 @@
 </template>
 
 <script setup>
-  import { computed, ref, provide, watch } from 'vue'
-  import { useContentFeed } from '~/composables/useContentFeed'
+  import { computed, ref, provide, watch, onMounted } from 'vue'
+  import { useContentCache } from '~/composables/useContentCache'
+
+  // Scroll container ref
+  const scrollContainer = ref(null)
 
   const searchTerm = ref('')
   const contentFilters = ref({
@@ -44,68 +49,211 @@
   provide('searchTerm', searchTerm)
   provide('contentFilters', contentFilters)
 
-  // --- Add result counts for claims, quotes, memes ---
-  const { displayedItems, contentCollections } = useContentFeed(
-    searchTerm,
-    contentFilters
-  )
+  // Move content management to layout level
+  const { cache, loadAllContent, getFilteredContent } = useContentCache()
+  const allFilteredItems = ref([])
+  const displayedItems = ref([])
+  const isLoaded = ref(false)
+  const error = ref(null)
+  const itemsToShow = ref(60) // Start with 60 items to ensure scrolling
 
-  // --- Compute pill counts from ALL content, never filtered by search or pills ---
-  const pillClaimCount = computed(() => contentCollections.claims.value.length)
-  const pillQuoteCount = computed(() => contentCollections.quotes.value.length)
-  const pillMemeCount = computed(() => contentCollections.memes.value.length)
-  const pillTotalCount = computed(
-    () => pillClaimCount.value + pillQuoteCount.value + pillMemeCount.value
-  )
+  // Load more content function for infinite scroll
+  const loadMoreContent = async (batchSize = 20) => {
+    const currentCount = displayedItems.value.length
+    const totalCount = allFilteredItems.value.length
 
-  // --- Compute wall counts from displayedItems (filtered by search and pills) ---
+    console.log(
+      `� Before loading: ${currentCount} items displayed out of ${totalCount} total available`
+    )
+
+    if (currentCount >= totalCount) {
+      console.log('❌ No more content to load - already showing all items')
+      return { claims: 0, quotes: 0, memes: 0 } // No more content
+    }
+
+    // Calculate how many new items to add
+    const newItemsToShow = Math.min(currentCount + batchSize, totalCount)
+    const newItemsAdded = newItemsToShow - currentCount
+
+    // Get the new items to add
+    const newItems = allFilteredItems.value.slice(currentCount, newItemsToShow)
+
+    // Append new items to the existing array
+    displayedItems.value = [...displayedItems.value, ...newItems]
+
+    console.log(`Scroll down! ${newItemsAdded} items loaded`)
+    console.log(`Total: ${displayedItems.value.length} items.`)
+
+    return {
+      claims: newItemsAdded,
+      quotes: newItemsAdded,
+      memes: newItemsAdded,
+    }
+  }
+
+  // Computed counts based on displayed (filtered) items (for infinite scroll)
   const claimCount = computed(() => {
-    return displayedItems.value
-      .flatMap((item) => (item.type === 'claimPair' ? item.data : []))
-      .filter((item) => item.type === 'claim').length
+    return displayedItems.value.flatMap((item) =>
+      item.type === 'claimPair' ? item.data : []
+    ).length
   })
   const quoteCount = computed(() => {
     return displayedItems.value.filter((item) => item.type === 'quote').length
   })
   const memeCount = computed(() => {
-    return displayedItems.value
-      .flatMap((item) => (item.type === 'memeRow' ? item.data : []))
-      .filter((item) => item.type === 'meme').length
+    return displayedItems.value.flatMap((item) =>
+      item.type === 'memeRow' ? item.data : []
+    ).length
   })
   const totalCount = computed(
     () => claimCount.value + quoteCount.value + memeCount.value
   )
 
-  // --- Global totals (all content, not search filtered) ---
-  const totalClaimCount = computed(() => contentCollections.claims.value.length)
-  const totalQuoteCount = computed(() => contentCollections.quotes.value.length)
-  const totalMemeCount = computed(() => contentCollections.memes.value.length)
-  const totalItemCount = computed(
+  // Computed counts based on total available content (never changes)
+  const totalClaimCount = computed(() => cache.claims.length)
+  const totalQuoteCount = computed(() => cache.quotes.length)
+  const totalMemeCount = computed(() => cache.memes.length)
+  const totalAvailableCount = computed(
     () => totalClaimCount.value + totalQuoteCount.value + totalMemeCount.value
   )
 
-  // --- Compute pill counts from search results, NOT filtered by pill toggles ---
-  // These are the counts for each type in the current search result, regardless of which pills are toggled
-  const { contentCollections: searchCollections } = useContentFeed(
-    searchTerm,
-    ref({ claims: true, quotes: true, memes: true })
+  // Computed counts based on all filtered content (changes with search)
+  const filteredClaimCount = computed(() => {
+    return allFilteredItems.value.flatMap((item) =>
+      item.type === 'claimPair' ? item.data : []
+    ).length
+  })
+  const filteredQuoteCount = computed(() => {
+    return allFilteredItems.value.filter((item) => item.type === 'quote').length
+  })
+  const filteredMemeCount = computed(() => {
+    return allFilteredItems.value.flatMap((item) =>
+      item.type === 'memeRow' ? item.data : []
+    ).length
+  })
+  const filteredTotalCount = computed(
+    () =>
+      filteredClaimCount.value +
+      filteredQuoteCount.value +
+      filteredMemeCount.value
   )
-  const searchClaimCount = computed(() => searchCollections.claims.value.length)
-  const searchQuoteCount = computed(() => searchCollections.quotes.value.length)
-  const searchMemeCount = computed(() => searchCollections.memes.value.length)
 
-  // Pass the pill counts (unfiltered search results) to SearchBar
-  // Pass the wall counts (filtered by pills) to the wall
+  // Load content and watch for changes
+  const loadContent = async () => {
+    try {
+      if (!isLoaded.value) {
+        await loadAllContent()
+        isLoaded.value = true
+      }
+
+      // Get all filtered content
+      allFilteredItems.value = getFilteredContent(
+        searchTerm.value,
+        contentFilters.value
+      )
+
+      // Show initial batch of items
+      displayedItems.value = allFilteredItems.value.slice(0, itemsToShow.value)
+
+      console.log(`${displayedItems.value.length} items loaded on refresh.`)
+
+      error.value = null
+    } catch (err) {
+      console.error('Error loading content:', err)
+      error.value = err
+    }
+  }
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    if (scrollContainer.value) {
+      scrollContainer.value.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
+  // Watch for search/filter changes
   watch(
-    contentFilters,
-    (newVal) => {
-      // This ensures pills in SearchBar stay in sync with the content wall
-      // and that the correct filters are passed as props
+    [searchTerm, contentFilters],
+    () => {
+      if (isLoaded.value) {
+        // Scroll to top when search/filter changes
+        scrollToTop()
+
+        // Get all filtered content
+        allFilteredItems.value = getFilteredContent(
+          searchTerm.value,
+          contentFilters.value
+        )
+
+        // Reset to initial batch when search/filter changes
+        itemsToShow.value = 60
+        displayedItems.value = allFilteredItems.value.slice(
+          0,
+          itemsToShow.value
+        )
+      }
     },
     { deep: true }
   )
 
-  console.log('SearchBar rendered', contentFilters.value)
+  // Load content on mount
+  onMounted(() => {
+    loadContent()
+  })
+
+  // Console logging for totals
+  const logContentCounts = () => {
+    const totalItems =
+      cache.claims.length + cache.quotes.length + cache.memes.length
+    console.log(`Total items: ${totalItems}.`)
+    console.log(
+      `Claims: ${cache.claims.length}; Quotes: ${cache.quotes.length}; Memes: ${cache.memes.length}`
+    )
+  }
+
+  // Watch for cache changes and log
+  watch(
+    () => [cache.claims.length, cache.quotes.length, cache.memes.length],
+    () => {
+      if (
+        cache.claims.length > 0 ||
+        cache.quotes.length > 0 ||
+        cache.memes.length > 0
+      ) {
+        logContentCounts()
+      }
+    },
+    { immediate: true }
+  )
+
+  // Provide the filtered content and counts to children
+  provide('displayedItems', displayedItems)
+  provide('loadMoreContent', loadMoreContent)
+  provide('error', error)
+  provide('claimCount', claimCount)
+  provide('quoteCount', quoteCount)
+  provide('memeCount', memeCount)
+  provide('totalCount', totalCount)
+
+  // Badge counts: show total when no search, filtered when searching
+  const searchClaimCount = computed(() => {
+    return searchTerm.value ? filteredClaimCount.value : totalClaimCount.value
+  })
+  const searchQuoteCount = computed(() => {
+    return searchTerm.value ? filteredQuoteCount.value : totalQuoteCount.value
+  })
+  const searchMemeCount = computed(() => {
+    return searchTerm.value ? filteredMemeCount.value : totalMemeCount.value
+  })
+
+  // Total count display: show total when no search, filtered when searching
+  const totalItemCount = computed(() => {
+    return searchTerm.value
+      ? filteredTotalCount.value
+      : totalAvailableCount.value
+  })
+
+  provide('loadMoreContent', loadMoreContent)
 </script>
 
 <style scoped></style>

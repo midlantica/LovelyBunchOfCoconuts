@@ -1,14 +1,32 @@
-// Import vite-tsconfig-paths plugin
-import tsconfigPaths from 'vite-tsconfig-paths'
-
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  compatibilityDate: '2025-06-27',
   devtools: { enabled: true },
-  modules: ['@nuxt/content', 'nuxt-icon', '@nuxtjs/tailwindcss'],
+  modules: [
+    '@nuxt/content',
+    '@nuxt/eslint',
+    '@nuxt/icon',
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/mdc',
+  ],
   css: ['~/assets/css/main.css', '~/assets/css/transitions.css'],
   ssr: true,
+  nitro: {
+    prerender: {
+      routes: ['/'],
+      crawlLinks: true,
+    },
+  },
+  content: {
+    build: {
+      markdown: {
+        contentHeading: true,
+      },
+    },
+  },
   app: {
     head: {
-      title: 'WakeUpNPC2',
+      title: 'wake-up-npc',
       meta: [
         {
           name: 'description',
@@ -87,16 +105,5 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
     },
-  },
-  nitro: {
-    preset: 'netlify',
-    compatibilityDate: '2025-06-27',
-    prerender: {
-      crawlLinks: false,
-      routes: ['/'],
-    },
-  },
-  vite: {
-    plugins: [tsconfigPaths()],
   },
 })

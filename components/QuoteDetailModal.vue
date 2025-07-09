@@ -51,11 +51,9 @@
 </template>
 
 <script setup>
-  import { ref, watch } from 'vue'
-  import { useContentCache } from '~/composables/useContentCache'
+  import { ref, watch, inject } from 'vue'
   import MarkdownIt from 'markdown-it'
   import ModalFrame from './ModalFrame.vue'
-  import CloseButton from './CloseButton.vue'
 
   const props = defineProps({
     slug: { type: String, required: true },
@@ -69,7 +67,9 @@
   const markdownContent = ref('')
   const quoteBodyHtml = ref('')
 
-  const { getContentItem } = useContentCache()
+  // Get the content from the global context
+  const displayedItems = inject('displayedItems', ref([]))
+
   // Configure MarkdownIt to allow HTML tags (like <wbr>)
   const md = new MarkdownIt({
     html: true, // Allow HTML tags in source
@@ -85,43 +85,123 @@
     quote.value = null
     markdownContent.value = ''
     quoteBodyHtml.value = ''
+
     try {
-      // Robustly ensure slug is just the filename, not a path
-      const cleanSlug = props.slug
-        .replace(/^\/*quotes\//, '')
-        .replace(/^\/*/, '')
-      const found = await getContentItem('quotes', cleanSlug)
-      if (found && !found.error) {
-        quote.value = found
-        if (found.body) {
-          let content = found.body.replace(/^---[\s\S]*?---/, '').trim()
-          // Extract attribution: last non-heading, non-empty line
-          const lines = content
-            .split('\n')
-            .map((l) => l.trim())
-            .filter(Boolean)
-          let attribution = ''
-          let lastHeadingIdx = -1
-          for (let i = lines.length - 1; i >= 0; i--) {
-            if (!lines[i].startsWith('##')) {
-              attribution = lines[i]
-              lastHeadingIdx = i - 1
-              break
-            }
+      console.log('=== LOADING QUOTE MODAL ===')
+      console.log('Slug:', props.slug)
+
+      // Find the quote in the already-loaded displayed items
+      let found = null
+
+      // Search through all displayed items for quotes
+      for (const item of displayedItems.value) {
+        if (item.type === 'quote') {
+          const quotePath = item.data?.path || item.data?._path || ''
+          const quoteId = item.data?.id || ''
+          const quoteTitle = item.data?.title || ''
+
+          console.log(`Checking quote: "${quoteTitle}" (path: ${quotePath})`)
+
+          // Try multiple matching strategies
+          if (
+            quotePath === props.slug ||
+            quotePath.includes(props.slug) ||
+            props.slug.includes(quotePath) ||
+            quoteId === props.slug ||
+            quoteId.includes(props.slug.split('/').pop()) ||
+            quotePath.endsWith(props.slug)
+          ) {
+            found = item.data
+            console.log('✅ Found quote match!')
+            break
           }
-          // Only use lines up to lastHeadingIdx for the quote body
-          const quoteLines = lines.slice(0, lastHeadingIdx + 1)
-          const quoteBody = quoteLines.join('\n')
-          quoteBodyHtml.value = md.render(quoteBody)
-          quote.value.attribution = attribution
+        }
+      }
+
+      console.log('Found quote:', found ? 'YES' : 'NO')
+
+      if (found) {
+        quote.value = found
+
+        if (found.body) {
+          // Handle both string body (markdown) and AST body (Nuxt Content v3)
+          let content = ''
+          let extractedQuote = ''
+          let extractedAttribution = ''
+
+          if (typeof found.body === 'string') {
+            content = found.body.replace(/^---[\s\S]*?---/, '').trim()
+            // Extract attribution: last non-heading, non-empty line
+            const lines = content
+              .split('\n')
+              .map((l) => l.trim())
+              .filter(Boolean)
+            let attribution = ''
+            let lastHeadingIdx = -1
+            for (let i = lines.length - 1; i >= 0; i--) {
+              if (!lines[i].startsWith('##')) {
+                attribution = lines[i]
+                lastHeadingIdx = i - 1
+                break
+              }
+            }
+            // Only use lines up to lastHeadingIdx for the quote body
+            const quoteLines = lines.slice(0, lastHeadingIdx + 1)
+            const quoteBody = quoteLines.join('\n')
+            quoteBodyHtml.value = md.render(quoteBody)
+            quote.value.attribution = attribution
+            extractedQuote = quoteBody
+            extractedAttribution = attribution
+          } else if (found.body.value && Array.isArray(found.body.value)) {
+            // Extract quote and attribution from AST
+            const headings = found.body.value
+              .filter((element) => element[0] === 'h2' || element[0] === 'h1')
+              .map((element) => element[2] || '')
+              .filter(Boolean)
+
+            const paragraphs = found.body.value
+              .filter((element) => element[0] === 'p')
+              .map((element) => element[2] || '')
+              .filter(Boolean)
+
+            extractedQuote = headings[0] || ''
+            extractedAttribution = paragraphs[0] || ''
+
+            // Set the quote data
+            quote.value.headings = headings
+            quote.value.attribution = extractedAttribution
+            quoteBodyHtml.value = md.render(`## ${extractedQuote}`)
+
+            // Convert AST back to markdown-like text for rendering
+            content = found.body.value
+              .map((element) => {
+                if (Array.isArray(element)) {
+                  if (element[0] === 'p' && typeof element[2] === 'string') {
+                    return element[2]
+                  }
+                  if (element[0] === 'h1' || element[0] === 'h2') {
+                    return `${element[0] === 'h1' ? '#' : '##'} ${
+                      element[2] || ''
+                    }`
+                  }
+                }
+                return ''
+              })
+              .filter(Boolean)
+              .join('\n\n')
+          }
+
           // Render the full markdown for the rest of the modal (if needed)
           markdownContent.value = md.render(content)
         }
       } else {
-        error.value = found?.message || '🚨 Quote not found!'
+        const filename = `${props.slug || 'unknown-file'}.md`
+        console.error('🚨 Broken quote:', filename)
+        error.value = `🚨 Quote not found!\n${filename}`
       }
     } catch (err) {
       error.value = err.message
+      console.log('Quote loading error:', err)
     } finally {
       loading.value = false
     }

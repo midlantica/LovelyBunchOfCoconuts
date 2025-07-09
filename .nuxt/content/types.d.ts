@@ -17,7 +17,7 @@ declare module '@nuxt/content' {
    * and run json-schema-to-typescript to regenerate this file.
    */
   
-  interface QuotesCollectionItem extends PageCollectionItemBase {}
+  interface MemesCollectionItem extends PageCollectionItemBase {}
   
    /* eslint-disable */
   /**
@@ -26,18 +26,18 @@ declare module '@nuxt/content' {
    * and run json-schema-to-typescript to regenerate this file.
    */
   
-  interface MemesCollectionItem extends PageCollectionItemBase {}
+  interface QuotesCollectionItem extends PageCollectionItemBase {}
   
 
   interface PageCollections {
     claims: ClaimsCollectionItem
-    quotes: QuotesCollectionItem
     memes: MemesCollectionItem
+    quotes: QuotesCollectionItem
   }
 
   interface Collections {
     claims: ClaimsCollectionItem
-    quotes: QuotesCollectionItem
     memes: MemesCollectionItem
+    quotes: QuotesCollectionItem
   }
 }

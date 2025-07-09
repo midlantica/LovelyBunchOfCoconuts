@@ -1,7 +1,6 @@
 // server/api/content/search.js
 import { promises as fs } from 'fs'
 import path from 'path'
-import matter from 'gray-matter'
 
 // Helper to read directory recursively
 async function readDir(dir) {

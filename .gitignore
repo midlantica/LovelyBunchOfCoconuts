@@ -1,38 +1,24 @@
-# Nuxt/Vite build outputs
+# Nuxt dev/build outputs
 .output
-.data
-.cache
+# .data
+# .nuxt
 .nitro
-# dist/
-build/
+.cache
+# dist
 
-# Dependencies
-# node_modules/
-.pnpm-store/
-pnpm-lock.yaml
-package-lock.json
-yarn.lock
+# Node dependencies
+node_modules
 
 # Logs
-logs/
+logs
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
 
-# IDE files
+# Misc
 .DS_Store
-.idea/
-.fleet/
-.vscode/*
-!.vscode/settings.json
+.fleet
+.idea
 
-# Environment files
+# Local env files
 .env
 .env.*
 !.env.example
-
-# Deployment/Hosting
-.netlify/
-.vercel/

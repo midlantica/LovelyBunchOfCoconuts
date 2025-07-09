@@ -1,7 +1,6 @@
 // server/api/content-item.js
 import { promises as fs } from 'fs'
 import path from 'path'
-import matter from 'gray-matter'
 
 export default defineEventHandler(async (event) => {
   const { type, slug } = getQuery(event)

@@ -10,13 +10,13 @@ export function useNavigation(items, currentSlug, basePath = '') {
 
     // Ensure currentSlug is a string
     const normalizedSlug = String(
-      currentSlug.value || currentSlug
+      currentSlug?.value || currentSlug || ''
     ).toLowerCase()
     // console.log("🔍 Normalized Current Slug:", normalizedSlug);
 
     // ✅ Find index properly
     const index = items.value.findIndex((item) => {
-      const formattedPath = item.path.toLowerCase()
+      const formattedPath = (item.path || item._path || '').toLowerCase()
       // console.log("🟡 Checking Path:", formattedPath);
       return formattedPath === `${basePath}/${normalizedSlug}`
     })

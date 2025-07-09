@@ -1,19 +1,20 @@
-// content.config.ts
-import { defineContentConfig, defineCollection } from '@nuxt/content'
+import { defineCollection, defineContentConfig } from '@nuxt/content'
 
 export default defineContentConfig({
   collections: {
     claims: defineCollection({
+      source: 'claims/**',
       type: 'page',
-      source: 'claims/*.md',
-    }),
-    quotes: defineCollection({
-      type: 'page',
-      source: 'quotes/*.md',
     }),
     memes: defineCollection({
+      source: 'memes/**',
       type: 'page',
-      source: 'memes/*.md',
+    }),
+    quotes: defineCollection({
+      source: 'quotes/**',
+      type: 'page',
     }),
   },
 })
+
+console.log('Content config loaded successfully with empty schemas')

@@ -62,6 +62,12 @@
   })
 
   const showModal = ref(false)
-  const openModal = () => (showModal.value = true)
-  const closeModal = () => (showModal.value = false)
+  const openModal = () => {
+    console.log('Opening claim modal for slug:', props.slug)
+    showModal.value = true
+  }
+  const closeModal = () => {
+    console.log('Closing claim modal')
+    showModal.value = false
+  }
 </script>

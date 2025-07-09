@@ -1,6 +1,6 @@
 {
-  "name": "WakeUpNPC2",
-  "short_name": "WakeUpNPC2",
+  "name": "wake-up-npc",
+  "short_name": "wake-up-npc",
   "icons": [
     {
       "src": "/favicon/favicon-16x16.png",

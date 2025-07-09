@@ -1,28 +1,8 @@
-# WakeUpNPC2
+# Nuxt Minimal Starter
 
-A Nuxt 3 application that displays a balanced wall of content including claims & claim translations, quotes, and memes.
+Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## For Content Contributors
-
-If you're here to add or edit content (quotes, claims, or memes), please read our [Contributing Guide](.github/CONTRIBUTING.md) for step-by-step instructions.
-
-## Content Structure
-
-- **Claims**: Translations of claims, stored in `content/claims/`
-- **Quotes**: Notable quotes, stored in `content/quotes/`
-- **Memes**: Images with captions, stored in `public/memes/` with metadata in `content/memes/`
-
-## Templates
-
-For convenience, we provide templates for each content type in the `templates/` directory:
-
-- [Quote Template](templates/quote.md)
-- [Claim Template](templates/claim.md)
-- [Meme Template](templates/meme.md)
-
-## For Developers
-
-### Setup
+## Setup
 
 Make sure to install dependencies:
 
@@ -35,9 +15,12 @@ pnpm install
 
 # yarn
 yarn install
+
+# bun
+bun install
 ```
 
-### Development Server
+## Development Server
 
 Start the development server on `http://localhost:3000`:
 
@@ -50,9 +33,12 @@ pnpm dev
 
 # yarn
 yarn dev
+
+# bun
+bun run dev
 ```
 
-### Production
+## Production
 
 Build the application for production:
 
@@ -65,9 +51,25 @@ pnpm build
 
 # yarn
 yarn build
+
+# bun
+bun run build
 ```
 
-### Deployment
+Locally preview production build:
 
-This site is designed to be deployed on Netlify or Vercel, which will automatically rebuild the site when new content is merged into the main branch.
-Test
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

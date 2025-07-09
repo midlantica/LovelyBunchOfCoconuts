@@ -1,10 +1,27 @@
 <template>
   <div class="scroll-container">
-    <div class="scroll-content">
+    <div class="scroll-content" ref="scrollContent">
       <slot />
     </div>
   </div>
 </template>
+
+<script setup>
+  import { ref } from 'vue'
+
+  const scrollContent = ref(null)
+
+  const scrollToTop = () => {
+    if (scrollContent.value) {
+      scrollContent.value.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
+  // Expose the scrollToTop method so parent components can call it
+  defineExpose({
+    scrollToTop,
+  })
+</script>
 
 <style scoped>
   .scroll-container {

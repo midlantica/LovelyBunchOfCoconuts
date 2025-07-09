@@ -1,6 +1,11 @@
 @layer base {
+  * {
+    font-weight: 100;
+  }
+
   body {
     @apply bg-slate-950 font-Barlow;
+    font-weight: 100;
   }
 
   h1,
@@ -9,7 +14,8 @@
   h4,
   h5,
   h6 {
-    @apply first:mt-0 last:mb-0 font-[100] font-Barlow text-balance text-pretty leading-normal tracking-wider;
+    @apply first:mt-0 last:mb-0 font-Barlow text-pretty leading-normal tracking-wider;
+    font-weight: 100 !important;
   }
   h1 {
     @apply text-2xl;
@@ -34,7 +40,8 @@
   ul,
   li,
   ol {
-    @apply mt-0 mb-0 last:mb-0 font-thin text-xl leading-normal tracking-wider;
+    @apply mt-0 mb-0 last:mb-0 text-xl leading-normal tracking-wider;
+    font-weight: 100 !important;
   }
 
   h2 + p {
@@ -43,16 +50,33 @@
 
   /* Global prose overrides for all markdown content */
   .prose h1 {
-    @apply font-light text-3xl;
+    @apply text-3xl;
+    font-weight: 100 !important;
   }
   .prose h2 {
-    @apply mt-2 mb-2 font-light text-2xl;
+    @apply mt-2 mb-2 text-2xl;
+    font-weight: 100 !important;
   }
   .prose h2 + h2 {
-    @apply mb-4;
+    @apply mb-0;
   }
   .prose h2 + h2 + hr {
     @apply mb-3;
+  }
+
+  /* Ensure ALL text elements use font-weight 100 */
+  .prose *,
+  .prose-invert *,
+  .prose-lg *,
+  .prose-sm *,
+  .prose-base *,
+  span,
+  div,
+  button,
+  input,
+  textarea,
+  label {
+    font-weight: 100 !important;
   }
   .prose img,
   .prose-invert img {

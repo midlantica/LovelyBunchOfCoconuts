@@ -56,8 +56,14 @@
   })
 
   const showModal = ref(false)
-  const openModal = () => (showModal.value = true)
-  const closeModal = () => (showModal.value = false)
+  const openModal = () => {
+    console.log('Opening quote modal for slug:', props.slug)
+    showModal.value = true
+  }
+  const closeModal = () => {
+    console.log('Closing quote modal')
+    showModal.value = false
+  }
 
   function formatQuote(text) {
     // Replace &lt;wbr&gt; or <wbr> with real <wbr> tags (for browsers that support it)

@@ -13,14 +13,13 @@ export function useContentNavigation(collectionName) {
     try {
       console.log(`Fetching content for navigation: ${collectionName}`)
 
-      // Use direct fetch to get content
-      const result = await $fetch('/api/_content/query', {
-        method: 'GET',
-        params: { path: `/${collectionName}` },
-      }).catch((err) => {
-        console.error(`Error fetching ${collectionName}:`, err)
-        return []
-      })
+      // Use Nuxt Content v3 queryCollection method
+      const result = await queryCollection(collectionName)
+        .all()
+        .catch((err) => {
+          console.error(`Error fetching ${collectionName}:`, err)
+          return []
+        })
 
       items.value = result || []
       console.log(`Found ${items.value.length} items for ${collectionName}`)

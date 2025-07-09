@@ -38,7 +38,7 @@ Renames image files to be server-friendly (lowercase, hyphens instead of spaces,
 node scripts/rename-meme-images.js
 
 # Process images in a specific directory
-node scripts/rename-meme-images.js /Users/drewtwo/Documents/_work/WakeUpNPC2/public/memes/thomas-sowell
+node scripts/rename-meme-images.js /Users/drewtwo/Documents/_work/wake-up-npc/public/memes/thomas-sowell
 
 # Force processing even for files that already have markdown files
 node scripts/rename-meme-images.js /path/to/directory --force
@@ -53,7 +53,7 @@ Creates markdown files in content/memes/ for image files:
 node scripts/create-matching-markdown.js
 
 # Create markdown files for images in a specific directory
-node scripts/create-matching-markdown.js /Users/drewtwo/Documents/_work/WakeUpNPC2/public/memes/thomas-sowell
+node scripts/create-matching-markdown.js /Users/drewtwo/Documents/_work/wake-up-npc/public/memes/thomas-sowell
 
 # Force update of existing markdown files
 node scripts/create-matching-markdown.js /path/to/directory --force

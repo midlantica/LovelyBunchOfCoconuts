@@ -1,5 +1,7 @@
+ignoredBuiltDependencies:
+  - '@tailwindcss/oxide'
+
 onlyBuiltDependencies:
   - '@parcel/watcher'
-  - better-sqlite3
   - esbuild
   - unrs-resolver

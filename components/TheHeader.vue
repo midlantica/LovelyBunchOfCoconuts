@@ -17,7 +17,7 @@
         <div class="place-items-center gap-1 grid auto-rows-auto text-center">
           <img
             src="@/assets/icons/WakeUpNPC.svg"
-            alt="WakeUpNPC"
+            alt="Wake up NPC"
             class="place-items-center px-4 w-full max-w-xs sm:max-w-sm object-contain"
           />
 

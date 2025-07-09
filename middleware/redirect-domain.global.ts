@@ -2,7 +2,7 @@
 export default defineNuxtRouteMiddleware((to, from) => {
   if (process.server) return // Only run on client
 
-  const domainName = 'wakeupnpc.com'
+  const domainName = 'wake-up-npc.com'
   const allowedHosts = [
     window.location.host, // Always allow the current host (dev or prod)
     `www.${domainName}`,

@@ -8,13 +8,23 @@
         class="top-[.4rem] left-[.75rem] absolute text-slate-200/60"
       />
       <input
-        type="search"
+        type="text"
         v-model="searchTerm"
-        class="bg-transparent focus:bg-transparent ps-12 pt-[.3rem] pr-3 pb-[.5rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400/50 rounded-lg outline-none w-full text-[1.5rem] text-slate-200 placeholder:text-seagull-200/50 leading-tight tracking-wide"
+        class="bg-transparent focus:bg-transparent ps-12 pt-[.3rem] pr-12 pb-[.5rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400/50 rounded-lg outline-none w-full text-[1.5rem] text-slate-200 placeholder:text-seagull-200/50 leading-tight tracking-wide"
         placeholder="Search..."
-        @keydown.esc="clearSearch"
+        @keydown.esc="handleInputEscape"
         ref="searchInputRef"
       />
+      <!-- Custom clear button -->
+      <button
+        v-if="searchTerm"
+        @click="clearSearch"
+        class="top-[.4rem] right-[.75rem] absolute flex justify-center items-center bg-transparent hover:bg-slate-700/20 rounded-full w-8 h-8 text-slate-100 hover:text-white transition-colors cursor-pointer"
+        type="button"
+        aria-label="Clear search"
+      >
+        <Icon name="mdi:close" size="1.5rem" />
+      </button>
     </div>
     <div class="flex flex-row items-center gap-3 px-0 w-full">
       <div class="flex flex-row gap-2">
@@ -71,11 +81,13 @@
   const searchTerm = ref(props.search || '')
   const searchInputRef = ref(null)
 
-  const debouncedEmitSearch = debounce((val) => emit('update:search', val), 300)
+  const debouncedEmitSearch = debounce((val) => {
+    emit('update:search', val)
+  }, 300)
 
-  const pillClaimCount = computed(() => props.claimCount ?? 0)
-  const pillQuoteCount = computed(() => props.quoteCount ?? 0)
-  const pillMemeCount = computed(() => props.memeCount ?? 0)
+  const pillClaimCount = computed(() => props.totalClaimCount ?? 0)
+  const pillQuoteCount = computed(() => props.totalQuoteCount ?? 0)
+  const pillMemeCount = computed(() => props.totalMemeCount ?? 0)
 
   const pills = [
     { key: 'claims', label: 'CLAIMS', count: pillClaimCount },
@@ -116,14 +128,38 @@
   }
 
   function clearSearch() {
+    console.log('🔍 SearchBar clearSearch called')
     searchTerm.value = ''
     resetFilters()
+    // Immediately emit the search change instead of waiting for debounce
+    console.log('🔍 SearchBar emitting clear search')
+    emit('update:search', '')
     // nextTick(() => searchInputRef.value?.focus()) // optional
+  }
+
+  function handleInputEscape() {
+    // When escape is pressed within the input, always clear if there's text
+    if (searchTerm.value.trim() !== '') {
+      console.log('🔍 Input escape pressed - clearing search')
+      clearSearch()
+    } else {
+      console.log(
+        '🔍 Input escape pressed - no search to clear, blurring input'
+      )
+      // If no text, just blur the input
+      searchInputRef.value?.blur()
+    }
   }
 
   function onGlobalKeydown(e) {
     if (e.key === 'Escape') {
-      clearSearch()
+      // Only clear search if there's actually something in the search input
+      if (searchTerm.value.trim() !== '') {
+        console.log('🔍 Escape key pressed - clearing search')
+        clearSearch()
+      } else {
+        console.log('🔍 Escape key pressed - no search to clear')
+      }
     }
   }
 
@@ -135,6 +171,7 @@
   })
 
   watch(searchTerm, (newValue) => {
+    console.log('🔍 SearchBar internal searchTerm changed:', newValue)
     debouncedEmitSearch(newValue)
     if (newValue === '') resetFilters()
   })
@@ -143,3 +180,10 @@
     (newValue) => (searchTerm.value = newValue)
   )
 </script>
+
+<style scoped>
+  /* Hide the default search input clear button since we have a custom one */
+  input[type='text']::-webkit-search-cancel-button {
+    display: none;
+  }
+</style>

@@ -29,10 +29,13 @@
       class="block bg-slate-800 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 rounded-lg w-full h-full overflow-hidden"
     >
       <p class="text-white text-center">🚨 Meme image not found!</p>
+      <p class="mt-1 text-red-400 text-xs text-center">
+        {{ getFileName(meme) }}
+      </p>
     </div>
     <MemeDetailModal
       v-if="showModal"
-      :slug="getSlug(meme._path)"
+      :slug="slug || getSlug(meme?._path)"
       :show="showModal"
       @close="closeModal"
     />
@@ -49,16 +52,44 @@
   })
 
   const showModal = ref(false)
-  const openModal = () => (showModal.value = true)
-  const closeModal = () => (showModal.value = false)
+  const openModal = () => {
+    console.log('Opening meme modal for slug:', props.slug)
+    showModal.value = true
+  }
+  const closeModal = () => {
+    console.log('Closing meme modal')
+    showModal.value = false
+  }
 
   // Extract the slug from the path, handling nested paths
   const getSlug = (path) => {
-    if (!path) return ''
-    // Remove the leading '/memes/' prefix to get the relative path
-    if (path.startsWith('/memes/')) {
-      return path.substring('/memes/'.length)
+    if (!path || typeof path !== 'string') {
+      console.warn('⚠️ Invalid path in getSlug:', path)
+      return ''
     }
-    return path
+    // Remove leading slash and memes prefix
+    let cleanPath = path.replace(/^\/+/, '').replace(/^memes\/+/, '')
+    return cleanPath
+  }
+
+  // Get the filename for error display
+  const getFileName = (meme) => {
+    if (!meme) {
+      console.error('🚨 Broken meme: unknown-file')
+      return 'unknown-file'
+    }
+
+    // Try different path properties
+    const path = meme._path || meme.path || props.slug || 'unknown'
+
+    // Extract just the filename from the path
+    const parts = path.split('/')
+    const filename = parts[parts.length - 1]
+
+    // Add .md extension if not present
+    const finalFilename = filename.endsWith('.md') ? filename : `${filename}.md`
+
+    console.error('🚨 Broken meme:', finalFilename)
+    return finalFilename
   }
 </script>
