@@ -95,19 +95,19 @@
         "../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.5.1_@types+node@24.0.6_db0@0.3.2_eslint@9.30.0_jiti@2.4.2_2bce930963d9b959dad5200fe2e5fcbc/node_modules/nuxt/dist/app/compat/vue-demi"
       ],
       "#content/components": [
-        "./content/components.ts"
+        "./content/components"
       ],
       "#content/manifest": [
-        "./content/manifest.ts"
+        "./content/manifest"
       ],
       "#mdc-configs": [
-        "./mdc-configs.mjs"
+        "./mdc-configs"
       ],
       "#mdc-highlighter": [
-        "./mdc-highlighter.mjs"
+        "./mdc-highlighter"
       ],
       "#mdc-imports": [
-        "./mdc-imports.mjs"
+        "./mdc-imports"
       ],
       "#vue-router": [
         "../node_modules/.pnpm/vue-router@4.5.1_vue@3.5.17_typescript@5.8.3_/node_modules/vue-router"

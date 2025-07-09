@@ -10,5 +10,5 @@ PNPM_FLAGS = "--shamefully-hoist"
 
 [[redirects]]
 from = "/*"
-to = "/index.html"
+to = "/"
 status = 200
