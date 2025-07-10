@@ -1,4 +1,4 @@
-/* Custom Scrollbar */
+/* Custom Scrollbar - Responsive Alignment Fix */
 
 :root {
   --dark: #181818;
@@ -6,45 +6,62 @@
   --accent: hsl(198, 55%, 50%);
 }
 
-::-webkit-scrollbar {
-  width: 12px; /* Adjust scrollbar width */
+/* Desktop scrollbar - force stable */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 12px;
+    display: block;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--light);
+  }
+
+  .scroll-container-stable {
+    scrollbar-gutter: stable both-edges;
+    overflow-y: scroll; /* Force scrollbar always visible on desktop */
+  }
 }
 
-::-webkit-scrollbar-track {
-  background: var(--dark); /* Dark track */
+/* Mobile scrollbar - use overlay to prevent layout issues */
+@media (max-width: 767px) {
+  ::-webkit-scrollbar {
+    width: 0px; /* Hide scrollbar on mobile */
+    display: none;
+  }
+
+  .scroll-container-stable {
+    overflow-y: auto; /* Normal auto scrolling on mobile */
+    scrollbar-width: none; /* Hide Firefox scrollbar on mobile */
+    -ms-overflow-style: none; /* Hide IE scrollbar on mobile */
+  }
+
+  .scroll-container-stable::-webkit-scrollbar {
+    display: none; /* Ensure webkit scrollbar is hidden on mobile */
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--accent); /* Light blue scrollbar handle */
-  border-radius: 6px; /* Rounded scrollbar */
+/* Firefox - responsive behavior */
+@media (min-width: 768px) {
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: var(--accent) transparent;
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent); /* Slightly darker blue on hover */
-}
-
-/* Firefox Scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent) var(--dark);
-}
-
-/* Specific styling for scroll containers */
-.scroll-container::-webkit-scrollbar {
-  width: 12px;
-}
-
-.scroll-container::-webkit-scrollbar-track {
-  background: var(--dark);
-}
-
-.scroll-container::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 6px;
-}
-
-/* Firefox specific styling */
-.scroll-container {
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent) var(--dark);
+@media (max-width: 767px) {
+  * {
+    scrollbar-width: none;
+  }
 }

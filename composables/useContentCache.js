@@ -31,6 +31,127 @@ export function useContentCache() {
     error: null,
   })
 
+  // Helper function to filter out special files
+  const filterSpecialFiles = (items) => {
+    return (items || []).filter((item) => {
+      const path = item.path?.toLowerCase() || item._path?.toLowerCase() || ''
+      const id = item.id?.toLowerCase() || ''
+      const pathParts = path.split('/')
+      const hasUnderscoreFolder = pathParts.some((part) => part.startsWith('_'))
+      const shouldFilter =
+        path.includes('readme') ||
+        path.includes('__') ||
+        id.includes('readme') ||
+        hasUnderscoreFolder
+      return !shouldFilter
+    })
+  }
+
+  // Helper function to transform content for component compatibility
+  const transformContentForComponents = (items, type) => {
+    return items.map((item) => {
+      const transformed = { ...item }
+
+      // For claims: frontmatter properties are stored under item.meta
+      if (type === 'claims') {
+        transformed.claim = item.meta?.claim || item.title
+        transformed.translation = item.meta?.translation
+      }
+
+      // For quotes: need to extract from body content structure
+      if (type === 'quotes') {
+        // Extract headings from body value array (Nuxt Content v3 minimark format)
+        if (item.body && item.body.value) {
+          const headings = item.body.value
+            .filter((element) => element[0] === 'h2' || element[0] === 'h1')
+            .map((element) => element[2] || '') // The text is in the 3rd position
+            .filter(Boolean)
+
+          transformed.headings = headings
+
+          // Extract attribution from p tags
+          const paragraphs = item.body.value
+            .filter((element) => element[0] === 'p')
+            .map((element) => element[2] || '')
+            .filter(Boolean)
+
+          transformed.attribution = paragraphs[0] || ''
+
+          // Set quoteText from the first heading if available
+          if (headings.length > 0) {
+            transformed.quoteText = headings[0]
+          }
+        }
+      }
+
+      // For memes: extract image from body content structure
+      if (type === 'memes') {
+        // Extract image from body value array (Nuxt Content v3 minimark format)
+        if (item.body && item.body.value) {
+          // Look for image in different ways
+          for (const element of item.body.value) {
+            if (Array.isArray(element)) {
+              // Check if this is an image element
+              if (element[0] === 'img' && element[1]?.src) {
+                transformed.image = element[1].src
+                break
+              }
+              // Check if it's a paragraph containing an image
+              if (element[0] === 'p' && Array.isArray(element[2])) {
+                // The element[2] IS the img element directly: ["img", {src: "..."}]
+                if (element[2][0] === 'img' && element[2][1]?.src) {
+                  transformed.image = element[2][1].src
+                  break
+                }
+
+                // OR look through the paragraph content for images (if it's an array of elements)
+                for (const child of element[2]) {
+                  if (
+                    Array.isArray(child) &&
+                    child[0] === 'img' &&
+                    child[1]?.src
+                  ) {
+                    transformed.image = child[1].src
+                    break
+                  }
+                }
+                if (transformed.image) break
+              }
+              // Check if it's a paragraph with an image markdown string
+              if (
+                element[0] === 'p' &&
+                typeof element[2] === 'string' &&
+                element[2].includes('![')
+              ) {
+                // Extract image from markdown syntax like ![alt](/path/to/image.png)
+                const imageMatch = element[2].match(/!\[.*?\]\(([^)]+)\)/)
+                if (imageMatch) {
+                  transformed.image = imageMatch[1]
+                  break
+                }
+              }
+            }
+          }
+        }
+
+        // If we still didn't find an image, set a placeholder or leave empty
+        if (!transformed.image) {
+          transformed.image = '' // This will be handled by the component
+        }
+
+        // Set description from title if available
+        if (item.title) {
+          transformed.description = item.title
+        }
+      }
+
+      // Add searchable text field for search functionality
+      transformed.searchableText = extractSearchableText(item.body)
+
+      return transformed
+    })
+  }
+
   const getContentItem = async (contentType, slug) => {
     try {
       // Handle undefined slug
@@ -190,137 +311,18 @@ export function useContentCache() {
         queryCollection('memes').all(),
       ])
 
-      // Filter out README.md files, files with "__" in their name, and content from folders starting with "_"
-      const filterSpecialFiles = (items) => {
-        return (items || []).filter((item) => {
-          const path =
-            item.path?.toLowerCase() || item._path?.toLowerCase() || ''
-          const id = item.id?.toLowerCase() || ''
-
-          // Check if any part of the path contains a folder starting with underscore
-          const pathParts = path.split('/')
-          const hasUnderscoreFolder = pathParts.some((part) =>
-            part.startsWith('_')
-          )
-
-          const shouldFilter =
-            path.includes('readme') ||
-            path.includes('__') ||
-            id.includes('readme') ||
-            hasUnderscoreFolder
-          return !shouldFilter
-        })
-      }
-
-      // Transform content to flatten meta properties for component compatibility
-      const transformContentForComponents = (items, type) => {
-        return items.map((item) => {
-          const transformed = { ...item }
-
-          // For claims: frontmatter properties are stored under item.meta
-          if (type === 'claims') {
-            transformed.claim = item.meta?.claim || item.title
-            transformed.translation = item.meta?.translation
-          }
-
-          // For quotes: need to extract from body content structure
-          if (type === 'quotes') {
-            // Extract headings from body value array (Nuxt Content v3 minimark format)
-            if (item.body && item.body.value) {
-              const headings = item.body.value
-                .filter((element) => element[0] === 'h2' || element[0] === 'h1')
-                .map((element) => element[2] || '') // The text is in the 3rd position
-                .filter(Boolean)
-
-              transformed.headings = headings
-
-              // Extract attribution from p tags
-              const paragraphs = item.body.value
-                .filter((element) => element[0] === 'p')
-                .map((element) => element[2] || '')
-                .filter(Boolean)
-
-              transformed.attribution = paragraphs[0] || ''
-
-              // Set quoteText from the first heading if available
-              if (headings.length > 0) {
-                transformed.quoteText = headings[0]
-              }
-            }
-          }
-
-          // For memes: extract image from body content structure
-          if (type === 'memes') {
-            // Extract image from body value array (Nuxt Content v3 minimark format)
-            if (item.body && item.body.value) {
-              // Look for image in different ways
-              for (const element of item.body.value) {
-                if (Array.isArray(element)) {
-                  // Check if this is an image element
-                  if (element[0] === 'img' && element[1]?.src) {
-                    transformed.image = element[1].src
-                    break
-                  }
-                  // Check if it's a paragraph containing an image
-                  if (element[0] === 'p' && Array.isArray(element[2])) {
-                    // The element[2] IS the img element directly: ["img", {src: "..."}]
-                    if (element[2][0] === 'img' && element[2][1]?.src) {
-                      transformed.image = element[2][1].src
-                      break
-                    }
-
-                    // OR look through the paragraph content for images (if it's an array of elements)
-                    for (const child of element[2]) {
-                      if (
-                        Array.isArray(child) &&
-                        child[0] === 'img' &&
-                        child[1]?.src
-                      ) {
-                        transformed.image = child[1].src
-                        break
-                      }
-                    }
-                    if (transformed.image) break
-                  }
-                  // Check if it's a paragraph with an image markdown string
-                  if (
-                    element[0] === 'p' &&
-                    typeof element[2] === 'string' &&
-                    element[2].includes('![')
-                  ) {
-                    // Extract image from markdown syntax like ![alt](/path/to/image.png)
-                    const imageMatch = element[2].match(/!\[.*?\]\(([^)]+)\)/)
-                    if (imageMatch) {
-                      transformed.image = imageMatch[1]
-                      break
-                    }
-                  }
-                }
-              }
-            }
-
-            // Set description from title if available
-            if (item.title) {
-              transformed.description = item.title
-            }
-          }
-
-          // Add searchable text field for search functionality
-          transformed.searchableText = extractSearchableText(item.body)
-
-          return transformed
-        })
-      }
-
-      // Apply filtering and transformation
+      // Apply filtering and transformation using top-level helper functions
       const filteredClaims = filterSpecialFiles(claimsData)
       const filteredQuotes = filterSpecialFiles(quotesData)
       const filteredMemes = filterSpecialFiles(memesData)
 
-      // Store transformed content in cache
       cache.claims = transformContentForComponents(filteredClaims, 'claims')
       cache.quotes = transformContentForComponents(filteredQuotes, 'quotes')
       cache.memes = transformContentForComponents(filteredMemes, 'memes')
+
+      console.log(
+        `Content loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+      )
     } catch (error) {
       console.error('Error loading content:', error)
       cache.error = error
@@ -587,11 +589,122 @@ export function useContentCache() {
     return result
   }
 
+  // Progressive loading: Load small batch first for instant display
+  const loadInitialContent = async (limit = 20) => {
+    if (cache.isLoading) return
+
+    cache.isLoading = true
+    cache.error = null
+
+    try {
+      // Load just a small batch from each type for immediate display
+      const [claimsData, quotesData, memesData] = await Promise.all([
+        queryCollection('claims').limit(limit).all(),
+        queryCollection('quotes').limit(limit).all(),
+        queryCollection('memes').limit(limit).all(),
+      ])
+
+      // Apply same filtering as loadAllContent
+      const filterSpecialFiles = (items) => {
+        return (items || []).filter((item) => {
+          const path =
+            item.path?.toLowerCase() || item._path?.toLowerCase() || ''
+          const id = item.id?.toLowerCase() || ''
+          const pathParts = path.split('/')
+          const hasUnderscoreFolder = pathParts.some((part) =>
+            part.startsWith('_')
+          )
+          const shouldFilter =
+            path.includes('readme') ||
+            path.includes('__') ||
+            id.includes('readme') ||
+            hasUnderscoreFolder
+          return !shouldFilter
+        })
+      }
+
+      cache.claims = transformContentForComponents(
+        filterSpecialFiles(claimsData),
+        'claims'
+      )
+      cache.quotes = transformContentForComponents(
+        filterSpecialFiles(quotesData),
+        'quotes'
+      )
+      cache.memes = transformContentForComponents(
+        filterSpecialFiles(memesData),
+        'memes'
+      )
+
+      console.log(
+        `✅ Initial batch loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+      )
+    } catch (error) {
+      console.error('Error loading initial content:', error)
+      cache.error = error
+    } finally {
+      cache.isLoading = false
+    }
+  }
+
+  // Load remaining content in background after initial display
+  const loadRemainingContent = async () => {
+    try {
+      // Load ALL content (this is the slow part, done in background)
+      const [claimsData, quotesData, memesData] = await Promise.all([
+        queryCollection('claims').all(),
+        queryCollection('quotes').all(),
+        queryCollection('memes').all(),
+      ])
+
+      // Apply same filtering and transformation as loadAllContent
+      const filterSpecialFiles = (items) => {
+        return (items || []).filter((item) => {
+          const path =
+            item.path?.toLowerCase() || item._path?.toLowerCase() || ''
+          const id = item.id?.toLowerCase() || ''
+          const pathParts = path.split('/')
+          const hasUnderscoreFolder = pathParts.some((part) =>
+            part.startsWith('_')
+          )
+          const shouldFilter =
+            path.includes('readme') ||
+            path.includes('__') ||
+            id.includes('readme') ||
+            hasUnderscoreFolder
+          return !shouldFilter
+        })
+      }
+
+      cache.claims = transformContentForComponents(
+        filterSpecialFiles(claimsData),
+        'claims'
+      )
+      cache.quotes = transformContentForComponents(
+        filterSpecialFiles(quotesData),
+        'quotes'
+      )
+      cache.memes = transformContentForComponents(
+        filterSpecialFiles(memesData),
+        'memes'
+      )
+
+      console.log(
+        `🎉 Full content loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+      )
+    } catch (error) {
+      console.error('Error loading remaining content:', error)
+      cache.error = error
+    }
+  }
+
   return {
     cache,
     getContentItem,
     getAllContent,
     loadAllContent,
+    loadInitialContent, // NEW
+    loadRemainingContent, // NEW
     loadMoreContent,
     getInterleavedContent,
     getFilteredContent,

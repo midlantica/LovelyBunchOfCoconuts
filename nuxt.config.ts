@@ -1,7 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-06-27',
-  devtools: { enabled: true },
+  devtools: {
+    enabled: true,
+
+    timeline: {
+      enabled: true,
+    },
+  },
   modules: [
     '@nuxt/content',
     '@nuxt/eslint',
@@ -26,13 +32,52 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'wake-up-npc',
+      title: 'WakeUpNPC - Political Claims, Quotes & Memes',
       meta: [
         {
           name: 'description',
-          content: 'A wall of claims, quotes, and memes',
+          content:
+            'A curated wall of political claims, insightful quotes, and thought-provoking memes. Explore diverse perspectives and challenge your thinking.',
         },
         { name: 'theme-color', content: '#68D2FF' },
+
+        // Open Graph / Facebook
+        { property: 'og:type', content: 'website' },
+        {
+          property: 'og:title',
+          content: 'WakeUpNPC - Political Claims, Quotes & Memes',
+        },
+        {
+          property: 'og:description',
+          content:
+            'A curated wall of political claims, insightful quotes, and thought-provoking memes. Explore diverse perspectives and challenge your thinking.',
+        },
+        { property: 'og:url', content: 'https://www.wakeupnpc.com' },
+        { property: 'og:site_name', content: 'WakeUpNPC' },
+
+        // Twitter
+        { name: 'twitter:card', content: 'summary_large_image' },
+        {
+          name: 'twitter:title',
+          content: 'WakeUpNPC - Political Claims, Quotes & Memes',
+        },
+        {
+          name: 'twitter:description',
+          content:
+            'A curated wall of political claims, insightful quotes, and thought-provoking memes.',
+        },
+
+        // Additional SEO
+        {
+          name: 'keywords',
+          content:
+            'politics, quotes, memes, claims, political discourse, critical thinking',
+        },
+        { name: 'author', content: 'WakeUpNPC' },
+        { name: 'robots', content: 'index, follow' },
+
+        // Mobile optimization
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

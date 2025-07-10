@@ -9,13 +9,13 @@
         The page you're looking for doesn't exist or has been moved.
       </p>
 
-      <!-- <NuxtLink 
-        to="/" 
-        class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg text-white transition-colors"
+      <NuxtLink
+        to="/"
+        class="bg-seagull-600 hover:bg-seagull-700 px-6 py-3 rounded-lg font-light text-white transition-colors"
         @click="handleError"
       >
         Return to Home
-      </NuxtLink> -->
+      </NuxtLink>
     </div>
   </div>
 </template>

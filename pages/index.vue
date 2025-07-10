@@ -101,21 +101,40 @@
     hasMore,
   })
 
-  // Add escape key handler for clearing search
-  const handleEscape = (e) => {
+  // Add keyboard shortcuts
+  const handleKeyboard = (e) => {
+    // Escape to clear search
     if (e.key === 'Escape') {
       searchTerm.value = ''
+    }
+
+    // Ctrl/Cmd + K to focus search (when implemented)
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault()
+      // Emit event to focus search bar
+      document.dispatchEvent(new CustomEvent('focusSearch'))
+    }
+
+    // Number keys to toggle filters
+    if (e.key === '1') {
+      contentFilters.value.claims = !contentFilters.value.claims
+    }
+    if (e.key === '2') {
+      contentFilters.value.quotes = !contentFilters.value.quotes
+    }
+    if (e.key === '3') {
+      contentFilters.value.memes = !contentFilters.value.memes
     }
   }
 
   onMounted(() => {
-    // Add escape key listener
-    document.addEventListener('keydown', handleEscape)
+    // Add keyboard listeners
+    document.addEventListener('keydown', handleKeyboard)
   })
 
   onUnmounted(() => {
-    // Remove escape key listener
-    document.removeEventListener('keydown', handleEscape)
+    // Remove keyboard listeners
+    document.removeEventListener('keydown', handleKeyboard)
   })
 </script>
 
@@ -173,21 +192,64 @@
 
     <!-- Infinite scroll loading indicator -->
     <div v-if="isLoading" class="flex justify-center items-center py-8">
-      <div class="text-white text-lg">Loading more content...</div>
+      <div class="flex flex-col items-center gap-3">
+        <Icon
+          name="svg-spinners:ring-resize"
+          size="1.5rem"
+          class="text-white"
+        />
+        <div class="text-white text-sm">Loading more content...</div>
+      </div>
     </div>
 
     <!-- No content message -->
     <div
       v-else-if="!displayedItems.length"
-      class="flex flex-col justify-center items-center min-h-[60vh]"
+      class="flex flex-col justify-center items-center gap-4 min-h-[60vh]"
     >
-      <h1 class="font-light text-white text-2xl text-center">
+      <!-- Loading spinner when no search term and all filters are enabled -->
+      <div
+        v-if="
+          !searchTerm &&
+          contentFilters.claims &&
+          contentFilters.quotes &&
+          contentFilters.memes
+        "
+        class="flex flex-col items-center gap-4"
+      >
+        <Icon name="svg-spinners:ring-resize" size="2rem" class="text-white" />
+        <h1 class="font-light text-white text-xl text-center">
+          Loading content...
+        </h1>
+      </div>
+
+      <!-- Other states -->
+      <div v-else-if="searchTerm" class="flex flex-col items-center gap-4">
+        <Icon
+          name="heroicons:magnifying-glass"
+          size="3rem"
+          class="text-slate-500"
+        />
+        <h1 class="font-light text-white text-2xl text-center">
+          No results found.
+        </h1>
+        <p class="max-w-md text-slate-400 text-center">
+          Try adjusting your search terms or check different content types
+          above.
+        </p>
+        <button
+          @click="searchTerm = ''"
+          class="bg-seagull-600 hover:bg-seagull-700 px-4 py-2 rounded-lg font-light text-white transition-colors"
+        >
+          Clear Search
+        </button>
+      </div>
+
+      <h1 v-else class="font-light text-white text-2xl text-center">
         {{
-          searchTerm
-            ? 'No results found.'
-            : !contentFilters.claims &&
-              !contentFilters.quotes &&
-              !contentFilters.memes
+          !contentFilters.claims &&
+          !contentFilters.quotes &&
+          !contentFilters.memes
             ? 'No content found. Select a category above.'
             : 'Loading content...'
         }}
@@ -200,7 +262,9 @@
   .content-item {
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition:
+      opacity 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
   }
 
   .fade-in-item {

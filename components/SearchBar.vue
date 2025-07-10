@@ -1,6 +1,6 @@
 <!-- components/SearchBar.vue -->
 <template>
-  <div class="flex flex-col items-start gap-2 w-full h-auto text-seagull-950">
+  <div class="flex flex-col items-center gap-2 w-full h-auto text-seagull-950">
     <div class="relative flex flex-row gap-0 w-full">
       <Icon
         name="mdi:magnify"

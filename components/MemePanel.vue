@@ -7,8 +7,9 @@
       @click="openModal"
     >
       <img
-        :src="meme.image"
-        alt="Meme"
+        ref="lazyImg"
+        :data-src="meme.image"
+        :alt="imageAlt"
         class="bg-black/40 rounded-lg w-full h-full object-contain aspect-square"
         style="max-width: 100%; max-height: 100%; min-width: 0; min-height: 0"
       />
@@ -18,8 +19,9 @@
       class="block bg-slate-800 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 rounded-lg w-full h-full overflow-hidden"
     >
       <img
-        :src="meme.image"
-        alt="Meme"
+        ref="lazyImg"
+        :data-src="meme.image"
+        :alt="imageAlt"
         class="bg-black/40 rounded-lg w-full h-full object-contain aspect-square"
         style="max-width: 100%; max-height: 100%; min-width: 0; min-height: 0"
       />
@@ -43,7 +45,8 @@
 </template>
 
 <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, onMounted, computed } from 'vue'
+  import { useLazyImages } from '~/composables/useLazyImages'
   import MemeDetailModal from './MemeDetailModal.vue'
 
   const props = defineProps({
@@ -51,7 +54,37 @@
     slug: String,
   })
 
+  const { registerLazyImage } = useLazyImages()
+  const lazyImg = ref(null)
   const showModal = ref(false)
+
+  // Get the image filename for alt text
+  const imageAlt = computed(() => {
+    if (!props.meme?.image) return 'Meme'
+
+    // Extract filename from image path
+    const imagePath = props.meme.image
+    const parts = imagePath.split('/')
+    const filename = parts[parts.length - 1]
+
+    // Remove file extension and clean up the name
+    const nameWithoutExt = filename.replace(/\.[^/.]+$/, '')
+
+    // Convert underscores/hyphens to spaces and capitalize words
+    const cleanName = nameWithoutExt
+      .replace(/[-_]/g, ' ')
+      .replace(/\b\w/g, (l) => l.toUpperCase())
+
+    return `${cleanName}`
+  })
+
+  // Register lazy loading when component mounts
+  onMounted(() => {
+    if (lazyImg.value && props.meme?.image) {
+      registerLazyImage(lazyImg.value)
+    }
+  })
+
   const openModal = () => {
     console.log('Opening meme modal for slug:', props.slug)
     showModal.value = true

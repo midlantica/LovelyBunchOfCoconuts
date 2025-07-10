@@ -1,28 +1,31 @@
 <!-- layouts/home.vue -->
 <template>
-  <div
-    class="gap-4 grid if (currentCount >= totalCount) { return { claims: 0, quotes: 0, memes: 0 } // No more content }s-[auto_1fr_auto] h-screen overflow-hidden"
-  >
+  <div class="gap-4 grid grid-rows-[auto_1fr_auto] h-screen overflow-hidden">
     <TheHeader class="top-0 left-0 z-10 sticky w-full" />
     <div class="gap-3 grid grid-rows-[auto_1fr] overflow-hidden">
-      <div class="px-4">
-        <SearchBar
-          v-model:search="searchTerm"
-          v-model:filters="contentFilters"
-          :claim-count="searchClaimCount"
-          :quote-count="searchQuoteCount"
-          :meme-count="searchMemeCount"
-          :total-count="totalCount"
-          :total-claim-count="totalClaimCount"
-          :total-quote-count="totalQuoteCount"
-          :total-meme-count="totalMemeCount"
-          :total-item-count="totalItemCount"
-          class="top-0 z-10 sticky justify-self-center max-w-screen-md"
-        />
-      </div>
-      <div class="h-full min-h-0 overflow-y-auto" ref="scrollContainer">
+      <div class="flex justify-center">
         <div class="mx-auto px-4 md:px-0 w-full max-w-screen-md">
-          <main class="grid grid-rows-[auto] pb-8">
+          <SearchBar
+            v-model:search="searchTerm"
+            v-model:filters="contentFilters"
+            :claim-count="searchClaimCount"
+            :quote-count="searchQuoteCount"
+            :meme-count="searchMemeCount"
+            :total-count="totalCount"
+            :total-claim-count="totalClaimCount"
+            :total-quote-count="totalQuoteCount"
+            :total-meme-count="totalMemeCount"
+            :total-item-count="totalItemCount"
+            class="top-0 z-10 sticky w-full"
+          />
+        </div>
+      </div>
+      <div
+        class="rounded-xl h-full min-h-0 scroll-container-stable"
+        ref="scrollContainer"
+      >
+        <div class="mx-auto px-4 md:px-0 w-full max-w-screen-md">
+          <main class="pb-8">
             <slot />
           </main>
         </div>
@@ -35,6 +38,7 @@
 <script setup>
   import { computed, ref, provide, watch, onMounted } from 'vue'
   import { useContentCache } from '~/composables/useContentCache'
+  import { useLazyImages } from '~/composables/useLazyImages'
 
   // Scroll container ref
   const scrollContainer = ref(null)
@@ -46,11 +50,20 @@
     memes: true,
   })
 
+  // Smart image preloading
+  const { preloadImages } = useLazyImages()
+
   provide('searchTerm', searchTerm)
   provide('contentFilters', contentFilters)
 
   // Move content management to layout level
-  const { cache, loadAllContent, getFilteredContent } = useContentCache()
+  const {
+    cache,
+    loadAllContent,
+    loadInitialContent,
+    loadRemainingContent,
+    getFilteredContent,
+  } = useContentCache()
   const allFilteredItems = ref([])
   const displayedItems = ref([])
   const isLoaded = ref(false)
@@ -80,6 +93,20 @@
 
     // Append new items to the existing array
     displayedItems.value = [...displayedItems.value, ...newItems]
+
+    // Preload images for the next batch during infinite scroll
+    const nextBatch = allFilteredItems.value.slice(
+      newItemsToShow,
+      newItemsToShow + 20
+    )
+    const imagesToPreload = nextBatch
+      .filter((item) => item.type === 'memeRow')
+      .flatMap((item) => item.data.map((meme) => meme.image))
+      .filter(Boolean)
+
+    if (imagesToPreload.length > 0) {
+      preloadImages(imagesToPreload)
+    }
 
     console.log(`Scroll down! ${newItemsAdded} items loaded`)
     console.log(`Total: ${displayedItems.value.length} items.`)
@@ -138,24 +165,57 @@
       filteredMemeCount.value
   )
 
-  // Load content and watch for changes
+  // Progressive loading: Load small batch first, then rest in background
   const loadContent = async () => {
+    console.log('🔥 loadContent called - checking isLoaded:', isLoaded.value)
     try {
       if (!isLoaded.value) {
-        await loadAllContent()
+        // STEP 1: Load just 20 items immediately (fast!)
+        console.log('🚀 Loading initial 20 items...')
+        await loadInitialContent(20)
+
+        // Show initial batch immediately
+        allFilteredItems.value = getFilteredContent(
+          searchTerm.value,
+          contentFilters.value
+        )
+        displayedItems.value = allFilteredItems.value.slice(
+          0,
+          itemsToShow.value
+        )
+
+        console.log(`✅ ${displayedItems.value.length} items loaded FAST!`)
+
+        // STEP 2: Load remaining content in background (non-blocking)
+        setTimeout(async () => {
+          console.log('🔄 Loading remaining content in background...')
+          await loadRemainingContent()
+
+          // Refresh filtered content with all data
+          allFilteredItems.value = getFilteredContent(
+            searchTerm.value,
+            contentFilters.value
+          )
+
+          console.log('🎉 All content loaded!')
+        }, 100)
+
         isLoaded.value = true
+      } else {
+        // Get all filtered content (if already loaded)
+        allFilteredItems.value = getFilteredContent(
+          searchTerm.value,
+          contentFilters.value
+        )
+
+        // Show initial batch of items
+        displayedItems.value = allFilteredItems.value.slice(
+          0,
+          itemsToShow.value
+        )
+
+        console.log(`${displayedItems.value.length} items loaded on refresh.`)
       }
-
-      // Get all filtered content
-      allFilteredItems.value = getFilteredContent(
-        searchTerm.value,
-        contentFilters.value
-      )
-
-      // Show initial batch of items
-      displayedItems.value = allFilteredItems.value.slice(0, itemsToShow.value)
-
-      console.log(`${displayedItems.value.length} items loaded on refresh.`)
 
       error.value = null
     } catch (err) {
@@ -191,6 +251,22 @@
           0,
           itemsToShow.value
         )
+
+        // Smart preload next batch of images when search changes
+        if (searchTerm.value) {
+          const nextBatch = allFilteredItems.value.slice(
+            itemsToShow.value,
+            itemsToShow.value + 40
+          )
+          const imagesToPreload = nextBatch
+            .filter((item) => item.type === 'memeRow')
+            .flatMap((item) => item.data.map((meme) => meme.image))
+            .filter(Boolean)
+
+          if (imagesToPreload.length > 0) {
+            preloadImages(imagesToPreload)
+          }
+        }
       }
     },
     { deep: true }
@@ -199,6 +275,21 @@
   // Load content on mount
   onMounted(() => {
     loadContent()
+
+    // Add scrollbar auto-hide behavior
+    const container = scrollContainer.value
+    if (container) {
+      let scrollTimeout
+
+      container.addEventListener('scroll', () => {
+        container.classList.add('is-scrolling')
+
+        clearTimeout(scrollTimeout)
+        scrollTimeout = setTimeout(() => {
+          container.classList.remove('is-scrolling')
+        }, 2000) // Hide after 2 seconds of no scrolling
+      })
+    }
   })
 
   // Console logging for totals
