@@ -15,47 +15,48 @@ const args = process.argv.slice(2)
  */
 async function processAllSubdirectories() {
   const baseMemeDir = path.join(__dirname, '..', 'public', 'memes')
-  
+
   try {
     const entries = await fs.readdir(baseMemeDir, { withFileTypes: true })
     const subdirs = entries
-      .filter(entry => entry.isDirectory())
-      .map(entry => entry.name)
-    
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+
     console.log(`🔍 Found ${subdirs.length} subdirectories to process`)
-    
+
     let totalProcessed = 0
     let totalExisting = 0
     const allNewFiles = []
-    
+
     // Process each subdirectory
     for (const subdir of subdirs) {
       const subdirPath = path.join(baseMemeDir, subdir)
       console.log(`\n📂 Processing subdirectory: ${subdir}`)
-      
+
       const result = await processImages(subdirPath)
       if (result) {
         totalProcessed += result.processedCount || 0
         totalExisting += result.existingCount || 0
         if (result.newFiles) {
-          allNewFiles.push(...result.newFiles.map(file => `${subdir}/${file}`))
+          allNewFiles.push(
+            ...result.newFiles.map((file) => `${subdir}/${file}`)
+          )
         }
       }
     }
-    
+
     // Final summary
     console.log(`\n🎯 GLOBAL SUMMARY:`)
     console.log(`Total Memes Existing: ${totalExisting}`)
     console.log(`Total New Files Created: ${totalProcessed}`)
-    
+
     if (allNewFiles.length > 0) {
       console.log(`\nAll new image & markdown files created:`)
-      allNewFiles.forEach(file => {
+      allNewFiles.forEach((file) => {
         const mdFile = file.replace(/\.(png|jpg|jpeg|gif|webp)$/i, '.md')
         console.log(`🆕 ${file} & ${mdFile}`)
       })
     }
-    
   } catch (error) {
     console.error(`Error processing subdirectories: ${error.message}`)
     process.exit(1)
