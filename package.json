@@ -8,9 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "rename-memes": "node scripts/rename-meme-images.js",
-    "create-markdown": "node scripts/create-matching-markdown.js",
-    "process-subdir": "node scripts/process-meme-subdirectory.js",
+    "process-images": "node scripts/run-image-processing.js",
     "format": "prettier --write \"**/*.{vue,js,ts,html,css,scss,md}\""
   },
   "dependencies": {

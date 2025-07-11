@@ -1,25 +1,30 @@
 #!/usr/bin/env node
 
-const fs = require('fs')
-const path = require('path')
-const { promisify } = require('util')
-const exifr = require('exifr')
+import fs from 'fs'
+import path from 'path'
+import { promisify } from 'util'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const readdir = promisify(fs.readdir)
 const stat = promisify(fs.stat)
 const writeFile = promisify(fs.writeFile)
+const appendFile = promisify(fs.appendFile)
 const access = promisify(fs.access)
 const mkdir = promisify(fs.mkdir)
 
 // Parse command line arguments
 const args = process.argv.slice(2)
-let targetDir = path.join(__dirname, '..', 'public', 'memes') // Default directory
+let targetDir = path.join(__dirname, '..', '..', 'public', 'memes') // Default directory
 let forceUpdate = false // Default to not overwrite existing markdown files
 
 // Check for custom directory argument
 if (args.length > 0) {
-  // First arg is the directory path
-  targetDir = path.resolve(args[0])
+  // First arg is the subdirectory name within public/memes/
+  const subdirName = args[0]
+  targetDir = path.join(__dirname, '..', '..', 'public', 'memes', subdirName)
 
   // Check if second arg is --force flag
   if (args.length > 1 && args[1] === '--force') {
@@ -28,23 +33,13 @@ if (args.length > 0) {
 }
 
 // Configuration
-const BASE_CONTENT_DIR = path.join(__dirname, '..', 'content', 'memes')
-const BASE_PUBLIC_DIR = path.join(__dirname, '..', 'public', 'memes')
+const BASE_CONTENT_DIR = path.join(__dirname, '..', '..', 'content', 'memes')
+const BASE_PUBLIC_DIR = path.join(__dirname, '..', '..', 'public', 'memes')
 const LOG_FILE = path.join(__dirname, 'markdown-creation-log.txt')
 
-// Initialize log file
-fs.writeFileSync(
-  LOG_FILE,
-  `Starting markdown file creation at ${new Date().toISOString()}\n`
-)
-console.log(`Target directory: ${targetDir}`)
-console.log(
-  `Force update existing markdown files: ${forceUpdate ? 'Yes' : 'No'}`
-)
-
 // Helper function to log messages
-function log(message) {
-  fs.appendFileSync(LOG_FILE, message + '\n')
+async function log(message) {
+  await appendFile(LOG_FILE, message + '\n')
   console.log(message)
 }
 
@@ -81,12 +76,24 @@ function getRelativePath(fullPath) {
 
 // Main function
 async function createMarkdownFiles() {
+  // Initialize log file
+  await writeFile(
+    LOG_FILE,
+    `Starting markdown file creation at ${new Date().toISOString()}\n`
+  )
+  console.log(`Target directory: ${targetDir}`)
+  console.log(
+    `Force update existing markdown files: ${forceUpdate ? 'Yes' : 'No'}`
+  )
+
   try {
     // Check if directory exists
     try {
       await stat(targetDir)
     } catch (err) {
-      log(`Error: Directory ${targetDir} does not exist or is not accessible`)
+      await log(
+        `Error: Directory ${targetDir} does not exist or is not accessible`
+      )
       process.exit(1)
     }
 
@@ -99,7 +106,7 @@ async function createMarkdownFiles() {
       contentDir = path.join(BASE_CONTENT_DIR, relativePath)
       // Create the directory structure if it doesn't exist
       await mkdir(contentDir, { recursive: true })
-      log(`Using/creating content directory: ${contentDir}`)
+      await log(`Using/creating content directory: ${contentDir}`)
     }
 
     // Construct the image path prefix for markdown files
@@ -125,48 +132,46 @@ async function createMarkdownFiles() {
     for (const file of imageFiles) {
       // Skip files that start with double underscore
       if (file.startsWith('__')) {
-        log(`Skipping ${file} (starts with __)`)
+        await log(`Skipping ${file} (starts with __)`)
         skippedCount++
         continue
       }
 
       // Get base name without extension
       const basename = path.basename(file, path.extname(file))
-      let markdownBase = basename
-      let markdownPath = path.join(contentDir, `${markdownBase}.md`)
-      let suffix = 1
-      // If file exists, increment suffix until unique filename is found
-      while ((await fileExists(markdownPath)) && !forceUpdate) {
-        markdownBase = `${basename}-${suffix}`
-        markdownPath = path.join(contentDir, `${markdownBase}.md`)
-        suffix++
-      }
-      if ((await fileExists(markdownPath)) && !forceUpdate && suffix === 1) {
-        log(`Markdown file already exists for ${file}`)
+      const markdownPath = path.join(contentDir, `${basename}.md`)
+
+      // If markdown file already exists and we're not forcing update, skip it
+      if ((await fileExists(markdownPath)) && !forceUpdate) {
+        await log(`Markdown file already exists for ${file}`)
         skippedCount++
         continue
       }
 
       // Create a title from the filename
-      const title = createTitle(markdownBase)
+      const title = createTitle(basename)
 
       // Create image path for markdown
       const imagePathFull = `${imagePath}${file}`
 
       // Create markdown content: only title in frontmatter, then image and caption in body
-      const markdown = `---\ntitle: "${markdownBase}"\n---\n\n![${markdownBase}](${imagePathFull})\n\n${title}\n`
+      const markdown = `---\ntitle: "${basename}"\n---\n\n![${basename}](${imagePathFull})\n\n${title}\n`
 
       // Write markdown file
       await writeFile(markdownPath, markdown)
-      log(`Created markdown file for ${file} at ${markdownPath}`)
+      await log(`Created markdown file for ${file} at ${markdownPath}`)
       createdCount++
     }
 
-    log(`\nMarkdown file creation complete at ${new Date().toISOString()}`)
-    log(`${createdCount} markdown files created, ${skippedCount} files skipped`)
-    log(`Created markdown files are logged in ${LOG_FILE}`)
+    await log(
+      `\nMarkdown file creation complete at ${new Date().toISOString()}`
+    )
+    await log(
+      `${createdCount} markdown files created, ${skippedCount} files skipped`
+    )
+    await log(`Created markdown files are logged in ${LOG_FILE}`)
   } catch (error) {
-    log(`Error: ${error.message}`)
+    await log(`Error: ${error.message}`)
     process.exit(1)
   }
 }

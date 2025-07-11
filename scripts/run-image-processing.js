@@ -1,12 +1,21 @@
 #!/usr/bin/env node
 
-const path = require('path')
-const { processImages } = require('./utils/imageProcessing.js')
+import path from 'path'
+import { fileURLToPath } from 'url'
+import { processImages } from './utils/imageProcessing.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const args = process.argv.slice(2)
-const targetDir = args[0]
-  ? path.resolve(args[0])
+
+const subdirName = args[0]
+const targetDir = subdirName
+  ? path.join(__dirname, '..', 'public', 'memes', subdirName)
   : path.join(__dirname, '..', 'public', 'memes')
+
+const displayPath = subdirName ? `public/memes/${subdirName}` : 'public/memes'
+console.log(`Processing images in: ${displayPath}`)
 
 processImages(targetDir)
   .then(() => {
