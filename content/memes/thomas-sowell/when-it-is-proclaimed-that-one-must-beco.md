@@ -1,0 +1,7 @@
+---
+title: "when-it-is-proclaimed-that-one-must-beco"
+---
+
+![when-it-is-proclaimed-that-one-must-beco](/memes/thomas-sowell/when-it-is-proclaimed-that-one-must-beco.png)
+
+When It Is Proclaimed That One Must Beco

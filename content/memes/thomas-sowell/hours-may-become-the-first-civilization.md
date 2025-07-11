@@ -1,0 +1,7 @@
+---
+title: "hours-may-become-the-first-civilization"
+---
+
+![hours-may-become-the-first-civilization](/memes/thomas-sowell/hours-may-become-the-first-civilization.png)
+
+Hours May Become The First Civilization

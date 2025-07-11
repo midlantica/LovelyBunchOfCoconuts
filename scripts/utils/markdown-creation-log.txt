@@ -1,78 +1,8 @@
-Starting markdown file creation at 2025-07-11T03:29:42.313Z
-Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism
-Created markdown file for a-free-market-economy-is-a-giant-compute.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/a-free-market-economy-is-a-giant-compute.md
-Markdown file already exists for a-free-market-free-exchange-economy-is-a.png
-Markdown file already exists for at-least-im-not-a-capitalist-capitalism.png
-Markdown file already exists for biz-vs-govt.png
-Markdown file already exists for but-that-wasnt-redi-communism.png
-Markdown file already exists for capitalism-fishing.png
-Markdown file already exists for capitalism-im-relatively-tame.png
-Markdown file already exists for capitalism-vs-socialism-for-dummies.png
-Markdown file already exists for capitalists-will-always-pay-their-worker.png
-Markdown file already exists for characters-whose-plans-always-fail-miser.png
-Markdown file already exists for collectivism-100-million-people-murdered.png
-Markdown file already exists for commiepoly-1.png
-Markdown file already exists for corporatism-is-not-capitalism.png
-Markdown file already exists for could-the-problem-be-marxism.png
-Markdown file already exists for damn-capitalism.png
-Markdown file already exists for fictional-country-socialists.png
-Markdown file already exists for gdp-per-person-1990-international-dollar.png
-Markdown file already exists for how-to-do-communism.png
-Markdown file already exists for imaginary-socialism-socialists-living-in.png
-Created markdown file for imaginary-socialism-vs-reality.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/imaginary-socialism-vs-reality.md
-Markdown file already exists for individualism-versus-collectivism.png
-Markdown file already exists for keynesian-economics.png
-Markdown file already exists for less-marx-more-milei.png
-Markdown file already exists for lets-divide-a-country-into-half-capitali.png
-Markdown file already exists for lets-see-if-ive-got-this-correct.png
-Created markdown file for margaret-thatcher-rich-poorer-if-poor-po.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/margaret-thatcher-rich-poorer-if-poor-po.md
-Markdown file already exists for marxism-is-an-anti-human-cult.png
-Markdown file already exists for minimum-wage-jobs.png
-Markdown file already exists for modern-feudalism-socialism.png
-Markdown file already exists for my-dog-when-hes-eating.png
-Markdown file already exists for my-labor-is-exploited-by-capitalists.png
-Markdown file already exists for nazi-democrat.png
-Markdown file already exists for nazis-and-communists-and-antifa-the-same.png
-Markdown file already exists for planned-economy-or-planned-destruction-1.png
-Markdown file already exists for prior-to-capitalism-the-way-people-amass.png
-Markdown file already exists for real-socialism-has-never-been-tried-in-t.png
-Markdown file already exists for real-socialism-hasnt-been-done-yet.png
-Markdown file already exists for regimes-endorsed-by-noam-chomsky.png
-Markdown file already exists for robin-hood-corrected.png
-Markdown file already exists for robin-hood-didnt-rob-from-the-rich.png
-Markdown file already exists for six-charts-showing-capitalism-last-200-y.png
-Markdown file already exists for small-business-vs-unions.png
-Markdown file already exists for socialism-free-prison-soap.png
-Markdown file already exists for socialism-in-theory-vs-practice.png
-Created markdown file for socialism-is-an-alternative-to-capitalis.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/capitalism/socialism-is-an-alternative-to-capitalis.md
-Markdown file already exists for socialism-is-better-than-capitalism.png
-Markdown file already exists for socialism-making-everyone-equally-poor-s.png
-Markdown file already exists for socialism-not-even-germans-could-make-it.png
-Markdown file already exists for socialism-people-wait-for-bread.png
-Markdown file already exists for socialism-revolutions.png
-Markdown file already exists for socialism-stick-a-fork-in-it.png
-Markdown file already exists for socialism-vs-capitalism-buildings.png
-Markdown file already exists for socialism-vs-capitalism-diving-board.png
-Markdown file already exists for socialists-living-in-capitalism.png
-Markdown file already exists for socialists-you-guys-always-act-like-your.png
-Markdown file already exists for south-korea-capitalism-vs-north-korea-so.png
-Markdown file already exists for the-american-dream-is-more-apt-to-be-rea.png
-Markdown file already exists for the-birth-of-free-market-economics.png
-Markdown file already exists for the-free-market-has-failed.png
-Markdown file already exists for the-left-would-rather-the-poor-were-poor.png
-Markdown file already exists for the-problem-with-socialism-is.png
-Markdown file already exists for the-problems-the-left-assigns-to-capital.png
-Markdown file already exists for the-socialist-dream-vs-reality.png
-Markdown file already exists for the-state-more-laws-and-regulations-fire.png
-Markdown file already exists for trust-in-government-knowledge-of-history.png
-Markdown file already exists for useful-idiots-hugo-chavez-socialism.png
-Markdown file already exists for venezuela-before-after-socialism.png
-Markdown file already exists for when-a-trades-with-b.png
-Markdown file already exists for when-government-attempts-to-regulate-the.png
-Markdown file already exists for without-ownership-there-is-no-exchange-m.png
-Markdown file already exists for you-vs-government.png
-Markdown file already exists for your-government-at-work.png
+Starting markdown file creation at 2025-07-11T04:58:00.086Z
+Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/woke-insanity
+Created markdown file for democrat-savior-complex.png at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/woke-insanity/democrat-savior-complex.md
+Markdown file already exists for man-pregnant.png
 
-Markdown file creation complete at 2025-07-11T03:29:42.327Z
-4 markdown files created, 68 files skipped
+Markdown file creation complete at 2025-07-11T04:58:00.091Z
+1 markdown files created, 1 files skipped
 Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/utils/markdown-creation-log.txt

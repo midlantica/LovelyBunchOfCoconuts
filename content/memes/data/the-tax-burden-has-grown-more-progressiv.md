@@ -1,0 +1,7 @@
+---
+title: "the-tax-burden-has-grown-more-progressiv"
+---
+
+![the-tax-burden-has-grown-more-progressiv](/memes/data/the-tax-burden-has-grown-more-progressiv.png)
+
+The Tax Burden Has Grown More Progressiv
