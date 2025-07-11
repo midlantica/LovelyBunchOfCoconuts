@@ -9,6 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "process-images": "node scripts/run-image-processing.js",
+    "check-links": "node scripts/check-markdown-links.js",
+    "fix-links": "node scripts/check-markdown-links.js --fix",
     "format": "prettier --write \"**/*.{vue,js,ts,html,css,scss,md}\""
   },
   "dependencies": {

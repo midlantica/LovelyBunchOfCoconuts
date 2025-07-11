@@ -1,7 +1,7 @@
 ---
-title: "dei-blm-crt-esg-end-woke-insanity"
+title: 'Dei Blm Crt Esg End Woke Insanity'
 ---
 
-![dei-blm-crt-esg-end-woke-insanity](/memes/cartoons/dei-blm-crt-esg-end-woke-insanity.png)
+![Dei Blm Crt Esg End Woke Insanity](/memes/cartoons/dei-blm-crt-esg-end-woke-insanity.png)
 
 Dei Blm Crt Esg End Woke Insanity

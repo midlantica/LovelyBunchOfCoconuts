@@ -1,7 +1,7 @@
 ---
-title: "seneca-quote-religion"
+title: 'Seneca Quote Religion'
 ---
 
-![seneca-quote-religion](/memes/quotes/seneca-quote-religion.png)
+![Seneca Quote Religion](/memes/quotes/seneca-quote-religion.png)
 
 Seneca Quote Religion

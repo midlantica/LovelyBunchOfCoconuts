@@ -1,7 +1,7 @@
 ---
-title: "democrat-savior-complex"
+title: 'Democrat Savior Complex'
 ---
 
-![democrat-savior-complex](/memes/woke-insanity/democrat-savior-complex.png)
+![Democrat Savior Complex](/memes/woke-insanity/democrat-savior-complex.png)
 
 Democrat Savior Complex

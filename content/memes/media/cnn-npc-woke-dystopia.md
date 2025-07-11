@@ -1,7 +1,7 @@
 ---
-title: "cnn-npc-woke-dystopia"
+title: 'Cnn Npc Woke Dystopia'
 ---
 
-![cnn-npc-woke-dystopia](/memes/media/cnn-npc-woke-dystopia.png)
+![Cnn Npc Woke Dystopia](/memes/media/cnn-npc-woke-dystopia.png)
 
 Cnn Npc Woke Dystopia

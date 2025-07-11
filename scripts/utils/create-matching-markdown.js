@@ -151,7 +151,7 @@ async function createMarkdownFiles() {
       // Create a title from the filename
       const title = createTitle(basename)
 
-      // Create image path for markdown
+      // Create image path for markdown - USE THE ACTUAL IMAGE FILENAME, NOT THE MARKDOWN BASENAME
       const imagePathFull = `${imagePath}${file}`
 
       // Create markdown content: only title in frontmatter, then image and caption in body

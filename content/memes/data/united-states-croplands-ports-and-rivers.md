@@ -1,7 +1,7 @@
 ---
-title: 'united-states-croplands-ports-and-rivers'
+title: 'United States Croplands Ports And Rivers'
 ---
 
-![united-states-croplands-ports-and-rivers](/memes/data/united-states-croplands-ports-and-rivers.png)
+![United States Croplands Ports And Rivers](/memes/data/united-states-croplands-ports-and-rivers.png)
 
 United States Croplands Ports And Rivers
