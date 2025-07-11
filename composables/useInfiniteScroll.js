@@ -12,9 +12,11 @@ export function useInfiniteScroll(loadMoreCallback, options = {}) {
       return
     }
 
-    // Find the scrollable container (the one with overflow-y-auto)
+    // Find the scrollable container (look for our custom scroll container first)
     const scrollContainer =
-      document.querySelector('.overflow-y-auto') || document.documentElement
+      document.querySelector('.scroll-container-stable') ||
+      document.querySelector('.overflow-y-auto') ||
+      document.documentElement
     const scrollTop = scrollContainer.scrollTop
     const scrollHeight = scrollContainer.scrollHeight
     const clientHeight = scrollContainer.clientHeight
@@ -35,7 +37,9 @@ export function useInfiniteScroll(loadMoreCallback, options = {}) {
 
   onMounted(() => {
     // Listen to scroll events on the scrollable container
-    const scrollContainer = document.querySelector('.overflow-y-auto')
+    const scrollContainer =
+      document.querySelector('.scroll-container-stable') ||
+      document.querySelector('.overflow-y-auto')
     if (scrollContainer) {
       scrollContainer.addEventListener('scroll', scrollHandler)
     } else {
@@ -44,7 +48,9 @@ export function useInfiniteScroll(loadMoreCallback, options = {}) {
   })
 
   onUnmounted(() => {
-    const scrollContainer = document.querySelector('.overflow-y-auto')
+    const scrollContainer =
+      document.querySelector('.scroll-container-stable') ||
+      document.querySelector('.overflow-y-auto')
     if (scrollContainer) {
       scrollContainer.removeEventListener('scroll', scrollHandler)
     } else {
