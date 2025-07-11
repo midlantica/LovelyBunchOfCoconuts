@@ -5,7 +5,6 @@
   "scripts": {
     "build": "nuxt generate",
     "dev": "nuxt dev",
-    "predev": "node scripts/clean-ds-store.js",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",

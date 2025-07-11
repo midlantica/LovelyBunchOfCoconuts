@@ -1,7 +1,7 @@
 // composables/useContentFeed.js
 import { ref, watch, onMounted } from 'vue'
 import { debounce } from 'lodash-es'
-import { interleaveContent } from '~/utils/interleaveContent'
+import { interleaveContent } from '~/composables/interleaveContent'
 
 export function useContentFeed(
   providedSearchTerm = ref(''),
@@ -203,150 +203,13 @@ export function useContentFeed(
         : [],
     }
 
-    // Only show the enabled types
-    const enabledTypes = Object.entries(contentFilters.value)
-      .filter(([k, v]) => v)
-      .map(([k]) => k)
-
-    let wall = []
-    if (enabledTypes.length === 1) {
-      // Only one pill on: show only that type
-      const type = enabledTypes[0]
-      if (type === 'claims') {
-        // Group claims into pairs for wall
-        for (let i = 0; i < filteredCollections.claims.length; i += 2) {
-          const pair = [
-            { type: 'claim', data: filteredCollections.claims[i] },
-            filteredCollections.claims[i + 1]
-              ? { type: 'claim', data: filteredCollections.claims[i + 1] }
-              : null,
-          ].filter(Boolean)
-          wall.push({ type: 'claimPair', data: pair })
-        }
-      } else if (type === 'quotes') {
-        wall = filteredCollections.quotes.map((q) => ({
-          type: 'quote',
-          data: q,
-        }))
-      } else if (type === 'memes') {
-        for (let i = 0; i < filteredCollections.memes.length; i += 2) {
-          const pair = [
-            { type: 'meme', data: filteredCollections.memes[i] },
-            filteredCollections.memes[i + 1]
-              ? { type: 'meme', data: filteredCollections.memes[i + 1] }
-              : null,
-          ].filter(Boolean)
-          wall.push({ type: 'memeRow', data: pair })
-        }
-      }
-    } else if (enabledTypes.length === 2) {
-      // Two pills on: interleave only those two types
-      if (!contentFilters.value.claims) {
-        // Only quotes + memes
-        // Interleave quotes and memes as pairs
-        const maxLen = Math.max(
-          filteredCollections.quotes.length,
-          filteredCollections.memes.length
-        )
-        for (let i = 0; i < maxLen; i++) {
-          if (filteredCollections.quotes[i])
-            wall.push({
-              type: 'quote',
-              data: filteredCollections.quotes[i],
-            })
-          if (filteredCollections.memes[i]) {
-            const pair = [
-              { type: 'meme', data: filteredCollections.memes[i] },
-              filteredCollections.memes[i + 1]
-                ? {
-                    type: 'meme',
-                    data: filteredCollections.memes[i + 1],
-                  }
-                : null,
-            ].filter(Boolean)
-            wall.push({ type: 'memeRow', data: pair })
-            i++
-          }
-        }
-      } else if (!contentFilters.value.quotes) {
-        // Only claims + memes
-        const maxLen = Math.max(
-          Math.ceil(filteredCollections.claims.length / 2),
-          Math.ceil(filteredCollections.memes.length / 2)
-        )
-        for (let i = 0, ci = 0, mi = 0; i < maxLen; i++) {
-          if (ci < filteredCollections.claims.length) {
-            const pair = [
-              { type: 'claim', data: filteredCollections.claims[ci++] },
-              ci < filteredCollections.claims.length
-                ? {
-                    type: 'claim',
-                    data: filteredCollections.claims[ci++],
-                  }
-                : null,
-            ].filter(Boolean)
-            wall.push({ type: 'claimPair', data: pair })
-          }
-          if (mi < filteredCollections.memes.length) {
-            const pair = [
-              { type: 'meme', data: filteredCollections.memes[mi++] },
-              mi < filteredCollections.memes.length
-                ? {
-                    type: 'meme',
-                    data: filteredCollections.memes[mi++],
-                  }
-                : null,
-            ].filter(Boolean)
-            wall.push({ type: 'memeRow', data: pair })
-          }
-        }
-      } else if (!contentFilters.value.memes) {
-        // Only claims + quotes
-        // Use original interleave logic for claims and quotes only
-        // Group claims into pairs
-        const claimPairs = []
-        for (let i = 0; i < filteredCollections.claims.length; i += 2) {
-          const pair = [
-            { type: 'claim', data: filteredCollections.claims[i] },
-            filteredCollections.claims[i + 1]
-              ? { type: 'claim', data: filteredCollections.claims[i + 1] }
-              : null,
-          ].filter(Boolean)
-          claimPairs.push({ type: 'claimPair', data: pair })
-        }
-        // Interleave claims and quotes
-        let quoteIndex = 0
-        const pairsPerQuote = 2
-        for (let i = 0; i < claimPairs.length; i++) {
-          wall.push(claimPairs[i])
-          if (
-            (i + 1) % pairsPerQuote === 0 &&
-            quoteIndex < filteredCollections.quotes.length
-          ) {
-            wall.push({
-              type: 'quote',
-              data: filteredCollections.quotes[quoteIndex++],
-            })
-          }
-        }
-        while (quoteIndex < filteredCollections.quotes.length) {
-          wall.push({
-            type: 'quote',
-            data: filteredCollections.quotes[quoteIndex++],
-          })
-        }
-      }
-    } else {
-      // All three pills on: use full interleave
-      wall = interleaveContent(
-        filteredCollections.claims,
-        filteredCollections.quotes,
-        filteredCollections.memes
-      )
-    }
-
-    // Update state
-    displayedItems.value = wall
+    // Ensure strict interleaving pattern enforcement
+    displayedItems.value = interleaveContent(
+      filteredCollections.claims,
+      filteredCollections.quotes,
+      filteredCollections.memes,
+      { strictPattern: true } // Pass strict pattern option
+    )
   }
 
   // Search implementation using Nuxt Content v3 queryCollection
@@ -410,9 +273,8 @@ export function useContentFeed(
           searchPromises.push(Promise.resolve([]))
         }
 
-        const [claimsResult, quotesResult, memesResult] = await Promise.all(
-          searchPromises
-        )
+        const [claimsResult, quotesResult, memesResult] =
+          await Promise.all(searchPromises)
 
         console.log(`Search results:`, {
           claims: claimsResult?.length || 0,
