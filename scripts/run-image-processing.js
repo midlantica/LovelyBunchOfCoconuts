@@ -22,7 +22,7 @@ async function processAllSubdirectories() {
       .filter((entry) => entry.isDirectory())
       .map((entry) => entry.name)
 
-    console.log(`🔍 Found ${subdirs.length} subdirectories to process`)
+    console.log(`🔍 Found ${subdirs.length} subdirectories to process\n`)
 
     let totalProcessed = 0
     let totalExisting = 0
@@ -31,9 +31,8 @@ async function processAllSubdirectories() {
     // Process each subdirectory
     for (const subdir of subdirs) {
       const subdirPath = path.join(baseMemeDir, subdir)
-      console.log(`\n📂 Processing subdirectory: ${subdir}`)
 
-      const result = await processImages(subdirPath)
+      const result = await processImages(subdirPath, subdir) // Pass subdir name for reporting
       if (result) {
         totalProcessed += result.processedCount || 0
         totalExisting += result.existingCount || 0
@@ -48,10 +47,10 @@ async function processAllSubdirectories() {
     // Final summary
     console.log(`\n🎯 GLOBAL SUMMARY:`)
     console.log(`Total Memes Existing: ${totalExisting}`)
-    console.log(`Total New Files Created: ${totalProcessed}`)
+    console.log(`Total Memes Created: ${totalProcessed}`)
 
     if (allNewFiles.length > 0) {
-      console.log(`\nAll new image & markdown files created:`)
+      console.log(`\nAll new memes created:`)
       allNewFiles.forEach((file) => {
         const mdFile = file.replace(/\.(png|jpg|jpeg|gif|webp)$/i, '.md')
         console.log(`🆕 ${file} & ${mdFile}`)
