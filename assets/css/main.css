@@ -3,6 +3,7 @@
 @import 'styles.css';
 @import 'scrollbar.css';
 @import 'modal.css';
+@import 'transitions.css';
 
 /* Lazy loading image styles */
 .lazy-loading {

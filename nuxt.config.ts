@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/mdc',
   ],
-  css: ['~/assets/css/main.css', '~/assets/css/transitions.css'],
+  css: ['~/assets/css/main.css'],
   ssr: true,
   nitro: {
     prerender: {

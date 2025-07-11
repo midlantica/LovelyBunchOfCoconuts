@@ -5,12 +5,14 @@
   "scripts": {
     "build": "nuxt generate",
     "dev": "nuxt dev",
+    "predev": "node scripts/clean-ds-store.js",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "process-images": "node scripts/run-image-processing.js",
     "check-links": "node scripts/check-markdown-links.js",
     "fix-links": "node scripts/check-markdown-links.js --fix",
+    "clean": "node scripts/clean-ds-store.js",
     "format": "prettier --write \"**/*.{vue,js,ts,html,css,scss,md}\""
   },
   "dependencies": {
