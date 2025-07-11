@@ -1,7 +1,7 @@
 ---
-title: 'creen-is-the-new-red'
+title: 'Green-is-the-new-red'
 ---
 
-![creen-is-the-new-red](/memes/politics/creen-is-the-new-red.png)
+![Green-is-the-new-red](/memes/politics/Green-is-the-new-red.png)
 
-Creen Is The New Red
+Green Is The New Red
