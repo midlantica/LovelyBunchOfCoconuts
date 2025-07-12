@@ -1,326 +1,240 @@
-<!-- pages/index.vue -->
-<script setup>
-  import { onMounted, onUnmounted, ref, inject, watch } from 'vue'
-  import { useInfiniteScroll } from '~/composables/useInfiniteScroll'
-
-  definePageMeta({
-    layout: 'home',
-  })
-
-  // Get values from the layout
-  const displayedItems = inject('displayedItems', ref([]))
-  const loadMoreFromLayout = inject('loadMoreContent')
-  const error = inject('error', ref(null))
-  const searchTerm = inject('searchTerm', ref(''))
-  const contentFilters = inject(
-    'contentFilters',
-    ref({ claims: true, quotes: true, memes: true })
-  )
-
-  // Debug injected values
-  console.log(
-    '🔥 INDEX: displayedItems from inject:',
-    displayedItems.value.length
-  )
-  console.log('🔥 INDEX: loadMoreFromLayout from inject:', !!loadMoreFromLayout)
-  console.log('🔥 INDEX: error from inject:', error.value)
-
-  // Watch for changes to displayedItems
-  watch(
-    displayedItems,
-    (newValue) => {
-      console.log(
-        '🔥 INDEX: displayedItems changed to:',
-        newValue.length,
-        'items'
-      )
-    },
-    { immediate: true }
-  )
-
-  // Infinite scroll states
-  const isLoading = ref(false)
-  const hasMore = ref(true)
-  const lastItemCount = ref(0)
-  const newItemsStartIndex = ref(0)
-
-  // Reset hasMore when search/filters change
-  watch(
-    [searchTerm, contentFilters],
-    () => {
-      hasMore.value = true
-      lastItemCount.value = 0
-      newItemsStartIndex.value = 0
-    },
-    { deep: true }
-  )
-
-  // Watch for new items to apply fade-in animation
-  watch(
-    displayedItems,
-    (newItems, oldItems) => {
-      const oldLength = oldItems?.length || 0
-      const newLength = newItems.length
-
-      if (newLength > oldLength) {
-        // New items were added - track where the new items start
-        newItemsStartIndex.value = oldLength
-
-        // Update lastItemCount after a brief delay to ensure animation works
-        setTimeout(() => {
-          lastItemCount.value = newLength
-        }, 100)
-      }
-    },
-    { deep: true }
-  )
-
-  // Watch displayedItems to see what's happening
-  watch(
-    displayedItems,
-    (newItems) => {
-      // Remove debug logs
-    },
-    { deep: true }
-  )
-
-  // Load more content function - properly implement infinite scroll
-  const loadMoreContent = async () => {
-    if (!hasMore.value) {
-      return
-    }
-
-    if (!loadMoreFromLayout) {
-      return
-    }
-
-    try {
-      const result = await loadMoreFromLayout(20) // Load 20 more items
-
-      if (
-        result &&
-        typeof result === 'object' &&
-        result.claims === 0 &&
-        result.quotes === 0 &&
-        result.memes === 0
-      ) {
-        hasMore.value = false
-      }
-    } catch (error) {
-      console.error('❌ Error loading more content:', error)
-      hasMore.value = false
-    }
-  }
-
-  // Use infinite scroll composable
-  const infiniteScrollCallback = async () => {
-    return await loadMoreContent()
-  }
-
-  const scrollDebug = useInfiniteScroll(infiniteScrollCallback, {
-    isLoading,
-    hasMore,
-  })
-
-  // Add keyboard shortcuts
-  const handleKeyboard = (e) => {
-    // Escape to clear search
-    if (e.key === 'Escape') {
-      searchTerm.value = ''
-    }
-
-    // Ctrl/Cmd + K to focus search (when implemented)
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-      e.preventDefault()
-      // Emit event to focus search bar
-      document.dispatchEvent(new CustomEvent('focusSearch'))
-    }
-
-    // Number keys to toggle filters
-    if (e.key === '1') {
-      contentFilters.value.claims = !contentFilters.value.claims
-    }
-    if (e.key === '2') {
-      contentFilters.value.quotes = !contentFilters.value.quotes
-    }
-    if (e.key === '3') {
-      contentFilters.value.memes = !contentFilters.value.memes
-    }
-  }
-
-  onMounted(() => {
-    // Add keyboard listeners
-    document.addEventListener('keydown', handleKeyboard)
-  })
-
-  onUnmounted(() => {
-    // Remove keyboard listeners
-    document.removeEventListener('keydown', handleKeyboard)
-  })
-
-  // Watch displayedItems for template debugging
-  watch(
-    displayedItems,
-    (newItems) => {
-      if (newItems.length > 0) {
-        console.log('🎯 TEMPLATE RENDER: displayedItems:', newItems.length)
-        console.log(
-          '� TEMPLATE STRUCTURE: First 3 items:',
-          newItems.slice(0, 3).map((item) => ({
-            type: item.type,
-            hasData: !!item.data,
-          }))
-        )
-      }
-    },
-    { immediate: true }
-  )
-</script>
-
+<!-- pages/index.vue - Content Wall Page -->
 <template>
-  <div class="grid grid-cols-1 w-full">
-    <div id="modal-root"></div>
-
-    <!-- Error message -->
-    <div v-if="error" class="text-red-500">
-      Error loading content: {{ error.message }}
+  <!-- Search Bar -->
+  <div class="flex justify-center">
+    <div class="mx-auto px-4 md:px-0 w-full max-w-screen-md">
+      <SearchBar
+        v-model:search="searchTerm"
+        v-model:filters="contentFilters"
+        :claim-count="claimCount"
+        :quote-count="quoteCount"
+        :meme-count="memeCount"
+        :total-count="totalCount"
+        :total-claim-count="totalClaimCount"
+        :total-quote-count="totalQuoteCount"
+        :total-meme-count="totalMemeCount"
+        :total-item-count="totalItemCount"
+        class="top-0 z-10 sticky w-full"
+      />
     </div>
+  </div>
 
-    <!-- Content wall -->
-    <section v-if="displayedItems.length" class="flex flex-col gap-3">
-      <!-- DEBUG: Show first 12 items pattern -->
-      {{ console.log('🎯 WALL PATTERN (first 12):') }}
-      {{
-        displayedItems
-          .slice(0, 12)
-          .forEach((item, i) => console.log(`  ${i}: ${item.type}`))
-      }}
-
-      <div
-        v-for="(item, index) in displayedItems"
-        :key="index"
-        class="content-item"
-        :class="{ 'fade-in-item': index >= newItemsStartIndex }"
-      >
-        <!-- Quotes (full width) -->
-        <QuotePanel
-          v-if="item.type === 'quote'"
-          :quote="item.data"
-          :slug="item.data?.path || item.data?._path || ''"
-        />
-
-        <!-- Claim pairs (2 columns on md+, stacked on smaller) -->
-        <div
-          v-else-if="item.type === 'claimPair'"
-          class="gap-3 grid grid-cols-1 md:grid-cols-2"
-        >
-          <ClaimTranslationPanel
-            v-for="(claimItem, idx) in item.data"
-            :key="idx"
-            :claim="claimItem"
-            :slug="claimItem?.path || claimItem?._path || ''"
-          />
+  <!-- Content Wall -->
+  <div
+    ref="scrollContainer"
+    class="rounded-xl h-full min-h-0 overflow-y-auto scroll-container-stable"
+  >
+    <div class="mx-auto px-4 md:px-0 w-full max-w-screen-md">
+      <main class="pb-8">
+        <!-- Error State -->
+        <div v-if="error" class="py-8 text-red-500 text-center">
+          {{ error }}
         </div>
 
-        <!-- Meme pairs (2 columns on md+, stacked on smaller) -->
-        <div
-          v-else-if="item.type === 'memeRow'"
-          class="gap-3 grid grid-cols-1 md:grid-cols-2"
-        >
-          <MemePanel
-            v-for="(memeItem, idx) in item.data"
-            :key="idx"
-            :meme="memeItem"
-            :slug="memeItem?.path || memeItem?._path || ''"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- Infinite scroll loading indicator -->
-    <div v-if="isLoading" class="flex justify-center items-center py-8">
-      <div class="flex flex-col items-center gap-3">
-        <Icon
-          name="svg-spinners:ring-resize"
-          size="1.5rem"
-          class="text-white"
-        />
-        <div class="text-white text-sm">Loading more content...</div>
-      </div>
-    </div>
-
-    <!-- No content message -->
-    <div
-      v-else-if="!displayedItems.length"
-      class="flex flex-col justify-center items-center gap-4 min-h-[60vh]"
-    >
-      <!-- Loading spinner when no search term and all filters are enabled -->
-      <div
-        v-if="
-          !searchTerm &&
-          contentFilters.claims &&
-          contentFilters.quotes &&
-          contentFilters.memes
-        "
-        class="flex flex-col items-center gap-4"
-      >
-        <Icon name="svg-spinners:ring-resize" size="2rem" class="text-white" />
-        <h1 class="font-light text-white text-xl text-center">
+        <!-- Loading State -->
+        <div v-else-if="!isLoaded" class="py-8 text-center">
           Loading content...
-        </h1>
-      </div>
+        </div>
 
-      <!-- Other states -->
-      <div v-else-if="searchTerm" class="flex flex-col items-center gap-4">
-        <Icon
-          name="heroicons:magnifying-glass"
-          size="3rem"
-          class="text-slate-500"
-        />
-        <h1 class="font-light text-white text-2xl text-center">
-          No results found.
-        </h1>
-        <p class="max-w-md text-slate-400 text-center">
-          Try adjusting your search terms or check different content types
-          above.
-        </p>
-        <button
-          @click="searchTerm = ''"
-          class="bg-seagull-600 hover:bg-seagull-700 px-4 py-2 rounded-lg font-light text-white transition-colors"
-        >
-          Clear Search
-        </button>
-      </div>
+        <!-- Content Grid -->
+        <div v-else class="space-y-6">
+          <template
+            v-for="(item, index) in displayedItems"
+            :key="item.id || index"
+          >
+            <!-- Claim Pair -->
+            <ClaimTranslationPanel
+              v-if="item.type === 'claimPair'"
+              :claims="item.items"
+              :class="getItemClasses(index)"
+            />
 
-      <h1 v-else class="font-light text-white text-2xl text-center">
-        {{
-          !contentFilters.claims &&
-          !contentFilters.quotes &&
-          !contentFilters.memes
-            ? 'No content found. Select a category above.'
-            : 'Loading content...'
-        }}
-      </h1>
+            <!-- Quote -->
+            <QuotePanel
+              v-else-if="item.type === 'quote'"
+              :quote="item.quote"
+              :attribution="item.attribution"
+              :class="getItemClasses(index)"
+            />
+
+            <!-- Meme Row -->
+            <MemePanel
+              v-else-if="item.type === 'memeRow'"
+              :memes="item.items"
+              :class="getItemClasses(index)"
+            />
+          </template>
+
+          <!-- Load More Trigger -->
+          <div ref="loadMoreTrigger" class="h-10"></div>
+        </div>
+      </main>
     </div>
   </div>
 </template>
 
+<script setup>
+  import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
+  import { useContentCache } from '~/composables/useContentCache'
+  import { useContentFilters } from '~/composables/useContentFilters'
+  import { useContentWall } from '~/composables/useContentWall'
+  import { useInfiniteScroll } from '~/composables/useInfiniteScroll'
+  import { useLazyImages } from '~/composables/useLazyImages'
+
+  // Set layout
+  // Remove the definePageMeta block entirely—Nuxt 3 now uses <script> or <script setup> with export default for page meta and layout.
+  // If you want to specify a layout, use:
+  // Set layout using definePageMeta in <script setup>
+  definePageMeta({
+    layout: 'home',
+  })
+
+  // Composables
+  const {
+    searchTerm,
+    contentFilters,
+    filterContent,
+    activeFilters,
+    hasActiveFilters,
+  } = useContentFilters()
+
+  const {
+    displayedItems,
+    allFilteredItems,
+    isLoaded,
+    error,
+    claimCount,
+    quoteCount,
+    memeCount,
+    totalCount,
+    loadMoreContent,
+    updateDisplayedItems,
+    resetDisplayState,
+  } = useContentWall()
+
+  const {
+    loadInitialContent,
+    loadRemainingContent,
+    getCachedContent,
+    totalClaimCount,
+    totalQuoteCount,
+    totalMemeCount,
+    totalItemCount,
+  } = useContentCache()
+
+  const { preloadImages } = useLazyImages()
+
+  // Refs
+  const scrollContainer = ref(null)
+  const loadMoreTrigger = ref(null)
+
+  // Initialize content
+  onMounted(async () => {
+    console.log('🎯 INDEX: Starting content initialization')
+
+    try {
+      // Load initial content
+      await loadInitialContent(20)
+
+      // Get all cached content and apply initial filters
+      const allContent = getCachedContent()
+      const filteredContent = filterContent(allContent)
+      updateDisplayedItems(filteredContent)
+
+      // Load remaining content in background
+      await loadRemainingContent()
+
+      // Re-apply filters with complete dataset
+      const completeContent = getCachedContent()
+      const completeFilteredContent = filterContent(completeContent)
+      updateDisplayedItems(completeFilteredContent)
+
+      console.log('✅ INDEX: Content initialization complete')
+
+      // Preload initial images
+      await nextTick()
+      preloadImages()
+    } catch (err) {
+      console.error('❌ INDEX: Content initialization failed:', err)
+      error.value = err.message
+    }
+  })
+
+  // Watch for search/filter changes
+  watch(
+    [searchTerm, contentFilters],
+    async () => {
+      console.log('🔍 INDEX: Search/filters changed, refiltering content')
+
+      const allContent = getCachedContent()
+      const filteredContent = filterContent(allContent)
+      updateDisplayedItems(filteredContent)
+
+      // Reset scroll position
+      if (scrollContainer.value) {
+        scrollContainer.value.scrollTop = 0
+      }
+
+      await nextTick()
+      preloadImages()
+    },
+    { deep: true }
+  )
+
+  // Infinite scroll setup
+  const { setupInfiniteScroll, cleanupInfiniteScroll } = useInfiniteScroll({
+    scrollContainer,
+    loadMoreTrigger,
+    loadMoreCallback: loadMoreContent,
+    threshold: 200,
+  })
+
+  onMounted(() => {
+    setupInfiniteScroll()
+  })
+
+  onUnmounted(() => {
+    cleanupInfiniteScroll()
+  })
+
+  // Item animation classes
+  const getItemClasses = (index) => {
+    return [
+      'transition-all duration-500 ease-out',
+      index >= displayedItems.value.length - 20 ? 'animate-fade-in' : '',
+    ]
+  }
+
+  // Keyboard shortcuts
+  onMounted(() => {
+    const handleKeydown = (event) => {
+      // Slash to focus search
+      if (event.key === '/' && !event.ctrlKey && !event.metaKey) {
+        event.preventDefault()
+        const searchInput = document.querySelector('input[type="text"]')
+        if (searchInput) {
+          searchInput.focus()
+        }
+      }
+
+      // Escape to clear search
+      if (event.key === 'Escape') {
+        searchTerm.value = ''
+      }
+    }
+
+    document.addEventListener('keydown', handleKeydown)
+
+    onUnmounted(() => {
+      document.removeEventListener('keydown', handleKeydown)
+    })
+  })
+
+  console.log('🎯 INDEX: Page setup complete')
+</script>
+
 <style scoped>
-  .content-item {
-    opacity: 1;
-    transform: translateY(0);
-    transition:
-      opacity 0.3s ease-in-out,
-      transform 0.3s ease-in-out;
-  }
-
-  .fade-in-item {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.6s ease-in-out forwards;
-  }
-
-  @keyframes fadeIn {
+  @keyframes fade-in {
     from {
       opacity: 0;
       transform: translateY(20px);
@@ -329,5 +243,13 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+  }
+
+  .scroll-container-stable {
+    scroll-behavior: smooth;
   }
 </style>

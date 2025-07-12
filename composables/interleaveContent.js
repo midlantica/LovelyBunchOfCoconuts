@@ -12,6 +12,22 @@ export function interleaveContent(claims, quotes, memes) {
   const quotesCopy = [...quotes]
   const memesCopy = [...memes]
 
+  // Shuffle arrays for different content on each reload
+  // Fisher-Yates shuffle for true randomness
+  const shuffle = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[array[i], array[j]] = [array[j], array[i]]
+    }
+    return array
+  }
+
+  shuffle(claimsCopy)
+  shuffle(quotesCopy)
+  shuffle(memesCopy)
+
+  console.log('🎲 Content shuffled for fresh experience on reload')
+
   const output = []
   let patternIndex = 0 // Track position in pattern cycle
 
