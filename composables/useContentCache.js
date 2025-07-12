@@ -1,4 +1,5 @@
 import { ref, reactive } from 'vue'
+import { interleaveContent } from '~/composables/interleaveContent'
 
 // Helper function to extract searchable text from AST body
 const extractSearchableText = (body) => {
@@ -331,175 +332,18 @@ export function useContentCache() {
     }
   }
 
-  // Smart interleaving function with visual variety constraints
-  const smartInterleave = (claimPairs, quotes, memePairs) => {
-    const allContent = []
-
-    // Create pools of content
-    const claimPool = [...claimPairs]
-    const quotePool = [...quotes]
-    const memePool = [...memePairs]
-
-    // Check if only one type of content is available
-    const availablePoolCount = [
-      claimPool.length > 0,
-      quotePool.length > 0,
-      memePool.length > 0,
-    ].filter(Boolean).length
-
-    // If only one type is available, just return all of that type
-    if (availablePoolCount === 1) {
-      if (quotePool.length > 0) {
-        return quotePool
-      }
-      if (claimPool.length > 0) {
-        return claimPool
-      }
-      if (memePool.length > 0) {
-        return memePool
-      }
-    }
-
-    let lastType = null
-    let consecutiveQuotes = 0
-    let consecutiveTextElements = 0 // Track claims and quotes together
-
-    // Continue until all pools are empty
-    while (
-      claimPool.length > 0 ||
-      quotePool.length > 0 ||
-      memePool.length > 0
-    ) {
-      const availableTypes = []
-
-      // Determine what types are available and valid
-      // Never more than 2 quotes in a row (but only if other types are available)
-      if (
-        quotePool.length > 0 &&
-        (consecutiveQuotes < 2 ||
-          (claimPool.length === 0 && memePool.length === 0))
-      ) {
-        // Also check if we need a meme break for visual variety (but only if memes exist)
-        if (consecutiveTextElements < 2 || memePool.length === 0) {
-          availableTypes.push('quote')
-        }
-      }
-
-      // Never consecutive claim pairs (but allow if no other types available)
-      if (
-        claimPool.length > 0 &&
-        (lastType !== 'claimPair' ||
-          (quotePool.length === 0 && memePool.length === 0))
-      ) {
-        // Also check if we need a meme break for visual variety (but only if memes exist)
-        if (consecutiveTextElements < 2 || memePool.length === 0) {
-          availableTypes.push('claimPair')
-        }
-      }
-
-      // Never consecutive meme pairs (but allow if no other types available)
-      if (
-        memePool.length > 0 &&
-        (lastType !== 'memeRow' ||
-          (claimPool.length === 0 && quotePool.length === 0))
-      ) {
-        availableTypes.push('memeRow')
-      }
-
-      // Force meme pairs when we have too many text elements in a row (but only if memes available)
-      if (consecutiveTextElements >= 2 && memePool.length > 0) {
-        availableTypes.length = 0 // Clear other options
-        availableTypes.push('memeRow')
-      }
-
-      // If no valid types, force a break in patterns
-      if (availableTypes.length === 0) {
-        // Prioritize memes for visual break if available
-        if (memePool.length > 0) {
-          availableTypes.push('memeRow')
-        }
-        // If we have too many consecutive quotes, prioritize pairs
-        else if (consecutiveQuotes >= 2) {
-          if (claimPool.length > 0) {
-            availableTypes.push('claimPair')
-          }
-        }
-        // Allow remaining content types
-        else if (quotePool.length > 0) {
-          availableTypes.push('quote')
-        } else if (claimPool.length > 0) {
-          availableTypes.push('claimPair')
-        }
-      }
-
-      // Randomly select from available types
-      if (availableTypes.length > 0) {
-        const selectedType =
-          availableTypes[Math.floor(Math.random() * availableTypes.length)]
-
-        switch (selectedType) {
-          case 'quote':
-            allContent.push(quotePool.shift())
-            lastType = 'quote'
-            consecutiveQuotes++
-            consecutiveTextElements++ // Quotes are text elements
-            break
-          case 'claimPair':
-            allContent.push(claimPool.shift())
-            lastType = 'claimPair'
-            consecutiveQuotes = 0 // Reset quote counter
-            consecutiveTextElements++ // Claims are text elements
-            break
-          case 'memeRow':
-            allContent.push(memePool.shift())
-            lastType = 'memeRow'
-            consecutiveQuotes = 0 // Reset quote counter
-            consecutiveTextElements = 0 // Reset text element counter - memes break the text
-            break
-        }
-      } else {
-        // Fallback - should not happen, but just in case
-        break
-      }
-    }
-
-    return allContent
-  }
-
   const getInterleavedContent = () => {
-    // Shuffle arrays for random order each time
-    const shuffleClaims = [...cache.claims].sort(() => Math.random() - 0.5)
-    const shuffleQuotes = [...cache.quotes].sort(() => Math.random() - 0.5)
-    const shuffleMemes = [...cache.memes].sort(() => Math.random() - 0.5)
+    // NO SHUFFLING - use content in order to maintain strict pattern
+    // Use the correct interleaving function from composables/interleaveContent.js
 
-    // Group claims into pairs
-    const claimPairs = []
-    for (let i = 0; i < shuffleClaims.length; i += 2) {
-      const pair = shuffleClaims.slice(i, i + 2)
-      claimPairs.push({
-        type: 'claimPair',
-        data: pair,
-      })
-    }
+    console.log('🎯 getInterleavedContent using interleaveContent with:', {
+      claims: cache.claims.length,
+      quotes: cache.quotes.length,
+      memes: cache.memes.length,
+    })
 
-    // Group memes into pairs
-    const memePairs = []
-    for (let i = 0; i < shuffleMemes.length; i += 2) {
-      const pair = shuffleMemes.slice(i, i + 2)
-      memePairs.push({
-        type: 'memeRow',
-        data: pair,
-      })
-    }
-
-    // Individual quotes (full width)
-    const quotes = shuffleQuotes.map((item) => ({
-      type: 'quote',
-      data: item,
-    }))
-
-    // Smart interleaving to prevent consecutive claim pairs or meme pairs
-    return smartInterleave(claimPairs, quotes, memePairs)
+    const result = interleaveContent(cache.claims, cache.quotes, cache.memes)
+    return result
   }
 
   const getFilteredContent = (
@@ -545,7 +389,18 @@ export function useContentCache() {
           (item.description &&
             item.description.toLowerCase().includes(searchLower)) ||
           (item.searchableText &&
-            item.searchableText.toLowerCase().includes(searchLower))
+            item.searchableText.toLowerCase().includes(searchLower)) ||
+          // Also search in the title with spaces/dashes converted
+          (item.title &&
+            item.title
+              .toLowerCase()
+              .replace(/[-_]/g, ' ')
+              .includes(searchLower)) ||
+          (item.description &&
+            item.description
+              .toLowerCase()
+              .replace(/[-_]/g, ' ')
+              .includes(searchLower))
       )
 
       console.log('🔍 Search results:', {
@@ -555,37 +410,20 @@ export function useContentCache() {
       })
     }
 
-    // Shuffle the filtered results
-    filteredClaims = filteredClaims.sort(() => Math.random() - 0.5)
-    filteredQuotes = filteredQuotes.sort(() => Math.random() - 0.5)
-    filteredMemes = filteredMemes.sort(() => Math.random() - 0.5)
+    // NO SHUFFLING - use content in order to maintain strict pattern
+    // Use the correct interleaving function from composables/interleaveContent.js
 
-    // Group filtered results same as getInterleavedContent
-    const claimPairs = []
-    for (let i = 0; i < filteredClaims.length; i += 2) {
-      const pair = filteredClaims.slice(i, i + 2)
-      claimPairs.push({
-        type: 'claimPair',
-        data: pair,
-      })
-    }
+    console.log('🎯 getFilteredContent using interleaveContent with:', {
+      claims: filteredClaims.length,
+      quotes: filteredQuotes.length,
+      memes: filteredMemes.length,
+    })
 
-    const memePairs = []
-    for (let i = 0; i < filteredMemes.length; i += 2) {
-      const pair = filteredMemes.slice(i, i + 2)
-      memePairs.push({
-        type: 'memeRow',
-        data: pair,
-      })
-    }
-
-    const quotes = filteredQuotes.map((item) => ({
-      type: 'quote',
-      data: item,
-    }))
-
-    // Smart interleaving to prevent consecutive claim pairs or meme pairs
-    const result = smartInterleave(claimPairs, quotes, memePairs)
+    const result = interleaveContent(
+      filteredClaims,
+      filteredQuotes,
+      filteredMemes
+    )
     return result
   }
 

@@ -1,80 +1,146 @@
-// Fisher-Yates shuffle for true randomness
-function shuffle(array) {
-  let m = array.length,
-    t,
-    i
-  while (m) {
-    i = Math.floor(Math.random() * m--)
-    t = array[m]
-    array[m] = array[i]
-    array[i] = t
-  }
-  return array
-}
+// composables/interleaveContent.js
 
 export function interleaveContent(claims, quotes, memes) {
-  // Shuffle all arrays for randomness
-  claims = shuffle([...claims])
-  quotes = shuffle([...quotes])
-  memes = shuffle([...memes])
+  console.log('📊 INPUT COUNTS:', {
+    claims: claims.length,
+    quotes: quotes.length,
+    memes: memes.length,
+  })
+
+  // Create copies to avoid mutating original arrays
+  const claimsCopy = [...claims]
+  const quotesCopy = [...quotes]
+  const memesCopy = [...memes]
 
   const output = []
+  let patternIndex = 0 // Track position in pattern cycle
 
-  // Helper function to create rows
-  const createRow = (type, items) => {
-    if (type === 'claimPair') {
-      return {
-        type: 'claimPair',
-        data: items.map((item) => ({ type: 'claim', data: item })),
+  // Pattern: [ claim | claim ] → [ ---quote--- ] → [ meme | meme ] → [ ---quote--- ] (repeating)
+  const pattern = ['claimPair', 'quote', 'memeRow', 'quote']
+
+  // Simple counting logic: continue pattern until we can't make complete pattern items
+  while (true) {
+    const currentPatternType = pattern[patternIndex % pattern.length]
+    let patternItemCreated = false
+
+    // Check if we can create the current pattern item
+    if (currentPatternType === 'claimPair') {
+      if (claimsCopy.length >= 2) {
+        output.push({
+          type: 'claimPair',
+          data: claimsCopy.splice(0, 2),
+        })
+        console.log(`✅ Created claimPair (${output.length})`)
+        patternItemCreated = true
+      } else {
+        console.log(
+          `❌ Cannot create claimPair - only ${claimsCopy.length} claims left`
+        )
       }
-    } else if (type === 'quote') {
-      return { type: 'quote', data: items[0] }
-    } else if (type === 'memeRow') {
-      return {
-        type: 'memeRow',
-        data: items.map((item) => ({ type: 'meme', data: item })),
+    } else if (currentPatternType === 'quote') {
+      if (quotesCopy.length >= 1) {
+        output.push({
+          type: 'quote',
+          data: quotesCopy.splice(0, 1)[0],
+        })
+        console.log(`✅ Created quote (${output.length})`)
+        patternItemCreated = true
+      } else {
+        console.log(`❌ Cannot create quote - no quotes left`)
+      }
+    } else if (currentPatternType === 'memeRow') {
+      if (memesCopy.length >= 2) {
+        output.push({
+          type: 'memeRow',
+          data: memesCopy.splice(0, 2),
+        })
+        console.log(`✅ Created memeRow (${output.length})`)
+        patternItemCreated = true
+      } else {
+        console.log(
+          `❌ Cannot create memeRow - only ${memesCopy.length} memes left`
+        )
       }
     }
-  }
 
-  // Generate rows in the strict pattern
-  while (claims.length >= 2 && quotes.length >= 2 && memes.length >= 2) {
-    output.push(createRow('claimPair', claims.splice(0, 2)))
-    output.push(createRow('quote', quotes.splice(0, 1)))
-    output.push(createRow('memeRow', memes.splice(0, 2)))
-    output.push(createRow('quote', quotes.splice(0, 1)))
-  }
+    // If we couldn't create the expected pattern item, try alternatives
+    if (!patternItemCreated) {
+      let alternativeCreated = false
 
-  // Handle remaining items to avoid consecutive rows of the same type
-  const remainingItems = []
+      // Try to create any available pattern item as a fallback
+      if (claimsCopy.length >= 2) {
+        output.push({
+          type: 'claimPair',
+          data: claimsCopy.splice(0, 2),
+        })
+        console.log(
+          `🔄 Fallback: Created claimPair instead of ${currentPatternType}`
+        )
+        alternativeCreated = true
+      } else if (memesCopy.length >= 2) {
+        output.push({
+          type: 'memeRow',
+          data: memesCopy.splice(0, 2),
+        })
+        console.log(
+          `🔄 Fallback: Created memeRow instead of ${currentPatternType}`
+        )
+        alternativeCreated = true
+      } else if (quotesCopy.length >= 1) {
+        output.push({
+          type: 'quote',
+          data: quotesCopy.splice(0, 1)[0],
+        })
+        console.log(
+          `🔄 Fallback: Created quote instead of ${currentPatternType}`
+        )
+        alternativeCreated = true
+      } else if (claimsCopy.length >= 1) {
+        // Create a single-item claimPair for template compatibility
+        output.push({
+          type: 'claimPair',
+          data: claimsCopy.splice(0, 1),
+        })
+        console.log(
+          `🔄 Fallback: Created single-item claimPair instead of ${currentPatternType}`
+        )
+        alternativeCreated = true
+      } else if (memesCopy.length >= 1) {
+        // Create a single-item memeRow for template compatibility
+        output.push({
+          type: 'memeRow',
+          data: memesCopy.splice(0, 1),
+        })
+        console.log(
+          `🔄 Fallback: Created single-item memeRow instead of ${currentPatternType}`
+        )
+        alternativeCreated = true
+      }
 
-  claims.forEach((claim) => remainingItems.push({ type: 'claim', data: claim }))
-  quotes.forEach((quote) => remainingItems.push({ type: 'quote', data: quote }))
-  memes.forEach((meme) => remainingItems.push({ type: 'meme', data: meme }))
-
-  shuffle(remainingItems)
-
-  let lastType = output.length > 0 ? output[output.length - 1].type : null
-
-  while (remainingItems.length > 0) {
-    const nextItemIndex = remainingItems.findIndex(
-      (item) => item.type !== lastType
-    )
-    if (nextItemIndex !== -1) {
-      const [nextItem] = remainingItems.splice(nextItemIndex, 1)
-      output.push(nextItem)
-      lastType = nextItem.type
-    } else {
-      // If no different type is found, append the remaining items as is
-      remainingItems.forEach((item) => {
-        if (item.type !== lastType) {
-          output.push(item)
-          lastType = item.type
-        }
-      })
-      break
+      // If no alternatives possible, we're truly done
+      if (!alternativeCreated) {
+        console.log(`🏁 No more pattern items or alternatives possible`)
+        break
+      }
     }
+
+    patternIndex++
   }
+
+  console.log('🏁 PATTERN COMPLETE. Remaining items:', {
+    claims: claimsCopy.length,
+    quotes: quotesCopy.length,
+    memes: memesCopy.length,
+  })
+
+  console.log(
+    `📊 PATTERN CREATED ${output.length} items, ALL content processed through pattern system`
+  )
+
+  console.log(
+    '🎯 FINAL OUTPUT PATTERN:',
+    output.map((item, i) => `${i}: ${item.type}`).slice(0, 20)
+  )
 
   return output
 }

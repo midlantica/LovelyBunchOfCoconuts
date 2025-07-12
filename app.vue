@@ -3,6 +3,8 @@
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
+  <!-- Modal root for teleport -->
+  <div id="modal-root"></div>
 </template>
 
 <script setup>

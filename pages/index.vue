@@ -17,6 +17,27 @@
     ref({ claims: true, quotes: true, memes: true })
   )
 
+  // Debug injected values
+  console.log(
+    '🔥 INDEX: displayedItems from inject:',
+    displayedItems.value.length
+  )
+  console.log('🔥 INDEX: loadMoreFromLayout from inject:', !!loadMoreFromLayout)
+  console.log('🔥 INDEX: error from inject:', error.value)
+
+  // Watch for changes to displayedItems
+  watch(
+    displayedItems,
+    (newValue) => {
+      console.log(
+        '🔥 INDEX: displayedItems changed to:',
+        newValue.length,
+        'items'
+      )
+    },
+    { immediate: true }
+  )
+
   // Infinite scroll states
   const isLoading = ref(false)
   const hasMore = ref(true)
@@ -136,6 +157,24 @@
     // Remove keyboard listeners
     document.removeEventListener('keydown', handleKeyboard)
   })
+
+  // Watch displayedItems for template debugging
+  watch(
+    displayedItems,
+    (newItems) => {
+      if (newItems.length > 0) {
+        console.log('🎯 TEMPLATE RENDER: displayedItems:', newItems.length)
+        console.log(
+          '� TEMPLATE STRUCTURE: First 3 items:',
+          newItems.slice(0, 3).map((item) => ({
+            type: item.type,
+            hasData: !!item.data,
+          }))
+        )
+      }
+    },
+    { immediate: true }
+  )
 </script>
 
 <template>
@@ -149,6 +188,14 @@
 
     <!-- Content wall -->
     <section v-if="displayedItems.length" class="flex flex-col gap-3">
+      <!-- DEBUG: Show first 12 items pattern -->
+      {{ console.log('🎯 WALL PATTERN (first 12):') }}
+      {{
+        displayedItems
+          .slice(0, 12)
+          .forEach((item, i) => console.log(`  ${i}: ${item.type}`))
+      }}
+
       <div
         v-for="(item, index) in displayedItems"
         :key="index"

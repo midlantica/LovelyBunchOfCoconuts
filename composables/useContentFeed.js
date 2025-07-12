@@ -181,8 +181,10 @@ export function useContentFeed(
         'memes'
       )
 
+      console.time('createContentWall timing')
       // Create the interleaved wall
       createContentWall()
+      console.timeEnd('createContentWall timing')
     } catch (err) {
       console.error('Error loading content:', err)
     }
@@ -209,6 +211,14 @@ export function useContentFeed(
       filteredCollections.quotes,
       filteredCollections.memes,
       { strictPattern: true } // Pass strict pattern option
+    )
+
+    console.log('createContentWall executed')
+    console.log('Filtered collections:', filteredCollections)
+    console.log('Interleaved content:', displayedItems.value)
+    console.log(
+      'Displayed items after interleaving:',
+      JSON.stringify(displayedItems.value, null, 2)
     )
   }
 
