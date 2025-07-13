@@ -5,12 +5,12 @@
       <Icon
         name="mdi:magnify"
         size="2rem"
-        class="top-[.4rem] left-[.75rem] absolute text-slate-200/60"
+        class="top-[.3rem] left-[.65rem] absolute text-slate-200/60"
       />
       <input
         type="text"
         v-model="searchTerm"
-        class="bg-transparent focus:bg-transparent ps-12 pt-[.3rem] pr-12 pb-[.5rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400/50 rounded-lg outline-none w-full text-[1.5rem] text-slate-200 placeholder:text-seagull-200/50 leading-tight tracking-wide"
+        class="bg-transparent focus:bg-transparent ps-12 pt-[.3rem] pr-12 pb-[.5rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400/50 rounded-lg outline-none w-full text-[1.5rem] text-slate-200 sm:text-[1.275rem] placeholder:text-seagull-200/50 leading-tight tracking-wide"
         placeholder="Search..."
         @keydown.esc="handleInputEscape"
         ref="searchInputRef"
@@ -19,13 +19,13 @@
       <button
         v-if="searchTerm"
         @click="clearSearch"
-        class="top-[.1rem] right-[.75rem] absolute flex justify-center items-center gap-1 bg-transparent pl-4 rounded-full w-auto h-10 text-slate-100 transition-colors cursor-pointer"
+        class="top-[.5rem] right-[.75rem] absolute flex justify-center items-center gap-1 bg-transparent pl-4 rounded-full w-auto transition-colors cursor-pointer"
         type="button"
         aria-label="Clear search"
       >
         <Icon
           name="mdi:keyboard-esc"
-          class="hidden md:block text-white/50 hover:text-white"
+          class="hidden sm:block text-white/50 hover:text-white"
           style="font-size: 1.5rem"
         />
         <Icon

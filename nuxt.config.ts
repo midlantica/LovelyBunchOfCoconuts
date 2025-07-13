@@ -76,8 +76,12 @@ export default defineNuxtConfig({
         { name: 'author', content: 'WakeUpNPC' },
         { name: 'robots', content: 'index, follow' },
 
-        // Mobile optimization
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        // Mobile optimization - Updated
+        {
+          name: 'viewport',
+          content:
+            'width=375, initial-scale=1, maximum-scale=1, user-scalable=no',
+        },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
