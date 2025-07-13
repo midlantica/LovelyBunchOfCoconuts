@@ -43,7 +43,7 @@
     watch,
     onMounted,
     nextTick,
-    watchEffect,
+    onServerPrefetch,
   } from 'vue'
   import { useContentCache } from '~/composables/useContentCache'
   import { useLazyImages } from '~/composables/useLazyImages'
@@ -89,36 +89,12 @@
   const error = ref(null)
   const itemsToShow = ref(60) // Start with 60 items to ensure scrolling
 
-  // CRITICAL: Add debugging to track when displayedItems changes
-  console.log('🎬 INITIAL SETUP: displayedItems initialized as empty array')
-
-  // Add a custom setter to track all changes to displayedItems
-  const originalDisplayedItems = displayedItems
-  let displayedItemsChangeCounter = 0
-
-  const logDisplayedItemsChange = (newValue, context) => {
-    displayedItemsChangeCounter++
-    console.log(
-      `🔄 displayedItems CHANGE #${displayedItemsChangeCounter} [${context}]:`,
-      {
-        length: newValue.length,
-        firstFew: newValue.slice(0, 3),
-        context,
-      }
-    )
-  }
-
   // Load more content function for infinite scroll
   const loadMoreContent = async (batchSize = 20) => {
     const currentCount = displayedItems.value.length
     const totalCount = allFilteredItems.value.length
 
-    console.log(
-      `� Before loading: ${currentCount} items displayed out of ${totalCount} total available`
-    )
-
     if (currentCount >= totalCount) {
-      console.log('❌ No more content to load - already showing all items')
       return { claims: 0, quotes: 0, memes: 0 } // No more content
     }
 
@@ -131,10 +107,6 @@
 
     // Append new items to the existing array
     const newDisplayedItems = [...displayedItems.value, ...newItems]
-    logDisplayedItemsChange(
-      newDisplayedItems,
-      'loadMoreContent - appending items'
-    )
     displayedItems.value = newDisplayedItems
 
     // Update counts after adding new items
@@ -154,9 +126,6 @@
       preloadImages(imagesToPreload)
     }
 
-    console.log(`Scroll down! ${newItemsAdded} items loaded`)
-    console.log(`Total: ${displayedItems.value.length} items.`)
-
     return {
       claims: newItemsAdded,
       quotes: newItemsAdded,
@@ -165,6 +134,7 @@
   }
 
   // Reactive counts based on displayed (filtered) items (for infinite scroll)
+  // Use useState for SSR hydration safety
   const claimCount = useState('claimCount', () => 0)
   const quoteCount = useState('quoteCount', () => 0)
   const memeCount = useState('memeCount', () => 0)
@@ -212,52 +182,37 @@
       filteredClaimCount.value +
       filteredQuoteCount.value +
       filteredMemeCount.value
-  ) // Progressive loading: Load small batch first, then rest in background
-  const loadContent = async () => {
-    console.log('🔥 loadContent called - checking isLoaded:', isLoaded.value)
-    console.log('🔥 Cache state:', cache)
-    console.log('🔥 Current displayedItems:', displayedItems.value.length)
+  )
 
+  // Progressive loading: Load small batch first, then rest in background
+  const loadContent = async () => {
     // Don't reload if we already have content from SSR
     if (displayedItems.value.length > 0) {
-      console.log('✅ Already have content, skipping load')
       return
     }
 
     try {
       if (!isLoaded.value) {
         // STEP 1: Load just 20 items immediately (fast!)
-        console.log('🚀 Loading initial 20 items...')
         await loadInitialContent(20)
-        console.log('🚀 After loadInitialContent, cache:', cache)
 
         // Show initial batch immediately
         allFilteredItems.value = getFilteredContent(
           searchTerm.value,
           contentFilters.value
         )
-        console.log('🚀 Filtered items:', allFilteredItems.value.length)
 
         const newDisplayedItems = allFilteredItems.value.slice(
           0,
           itemsToShow.value
         )
-        logDisplayedItemsChange(
-          newDisplayedItems,
-          'loadContent - initial batch'
-        )
         displayedItems.value = newDisplayedItems
 
         // Update counts after setting displayed items
         updateCounts()
-        console.log('🚀 DisplayedItems set:', displayedItems.value.length)
-        console.log('🚀 First few items:', displayedItems.value.slice(0, 3))
-
-        console.log(`✅ ${displayedItems.value.length} items loaded FAST!`)
 
         // STEP 2: Load remaining content in background (non-blocking)
         setTimeout(async () => {
-          console.log('🔄 Loading remaining content in background...')
           await loadRemainingContent()
 
           // Refresh filtered content with all data
@@ -265,8 +220,6 @@
             searchTerm.value,
             contentFilters.value
           )
-
-          console.log('🎉 All content loaded!')
         }, 100)
 
         isLoaded.value = true
@@ -282,16 +235,10 @@
           0,
           itemsToShow.value
         )
-        logDisplayedItemsChange(
-          newDisplayedItems,
-          'loadContent - refresh batch'
-        )
         displayedItems.value = newDisplayedItems
 
         // Update counts after setting displayed items
         updateCounts()
-
-        console.log(`${displayedItems.value.length} items loaded on refresh.`)
       }
 
       error.value = null
@@ -328,10 +275,6 @@
           0,
           itemsToShow.value
         )
-        logDisplayedItemsChange(
-          newDisplayedItems,
-          'watch - search/filter change'
-        )
         displayedItems.value = newDisplayedItems
 
         // Update counts after setting displayed items
@@ -361,34 +304,19 @@
   watch(
     displayedItems,
     (newValue, oldValue) => {
-      console.log('🔍 displayedItems WATCH triggered:', {
-        newLength: newValue.length,
-        oldLength: oldValue?.length || 0,
-        newValue: newValue,
-        oldValue: oldValue,
-      })
       updateCounts() // Update counts whenever displayedItems changes
-      if (newValue.length > 0) {
-        console.log('✅ displayedItems is populated:', newValue.length, 'items')
-      } else {
-        console.log(
-          '❌ displayedItems is empty - this should not happen after SSR!'
-        )
 
-        // DEFENSIVE: If displayedItems gets reset incorrectly, try to restore from allFilteredItems
-        if (
-          oldValue &&
-          oldValue.length > 0 &&
-          allFilteredItems.value.length > 0
-        ) {
-          console.log(
-            '🔧 DEFENSIVE RESTORE: Attempting to restore displayedItems from allFilteredItems'
-          )
-          displayedItems.value = allFilteredItems.value.slice(
-            0,
-            itemsToShow.value
-          )
-        }
+      // DEFENSIVE: If displayedItems gets reset incorrectly, try to restore from allFilteredItems
+      if (
+        newValue.length === 0 &&
+        oldValue &&
+        oldValue.length > 0 &&
+        allFilteredItems.value.length > 0
+      ) {
+        displayedItems.value = allFilteredItems.value.slice(
+          0,
+          itemsToShow.value
+        )
       }
     },
     { deep: true }
@@ -396,27 +324,12 @@
 
   // Load content on mount
   onMounted(async () => {
-    console.log('🔥🔥🔥 HOME LAYOUT onMounted called!')
-    console.log(
-      '🔥 Initial displayedItems length:',
-      displayedItems.value.length
-    )
-    console.log('🔥 Initial cache:', cache)
-
     // CRITICAL: Check if we have SSR data AND if we're in a client-side context
     // The client reinitializes empty arrays, so we need to restore from cache
     if (displayedItems.value.length > 0) {
-      console.log(
-        '✅ SSR data exists, skipping reload. Items:',
-        displayedItems.value.length
-      )
-
       // CRITICAL FIX: We have SSR displayedItems but need to load the full content set
       // for search, filtering, and infinite scroll to work
       if (cache.claims.length === 0) {
-        console.log(
-          '🔧 SSR CONTENT FIX: Loading full content set for search/filtering...'
-        )
         await loadAllContent()
 
         // Populate allFilteredItems with the full content set
@@ -424,19 +337,9 @@
           searchTerm.value,
           contentFilters.value
         )
-
-        console.log(
-          '🔧 FIXED: allFilteredItems now has',
-          allFilteredItems.value.length,
-          'total items'
-        )
       }
     } else if (isLoaded.value && cache.claims.length > 0) {
       // CRITICAL FIX: Restore content from cache if we lost SSR data during hydration
-      console.log(
-        '🔧 HYDRATION FIX: Restoring content from cache after client initialization'
-      )
-
       allFilteredItems.value = getFilteredContent(
         searchTerm.value,
         contentFilters.value
@@ -446,25 +349,11 @@
         0,
         itemsToShow.value
       )
-      logDisplayedItemsChange(
-        newDisplayedItems,
-        'onMounted - hydration restoration'
-      )
       displayedItems.value = newDisplayedItems
-
-      console.log(
-        '🔧 RESTORED displayedItems:',
-        displayedItems.value.length,
-        'items'
-      )
     } else {
       // No SSR data and not loaded - need to load content
-      console.log('🚀 No SSR data found, loading content...')
       await loadContent()
     }
-
-    // Always update counts to ensure consistency
-    updateCounts()
 
     // Set up scroll and images
     await nextTick()
@@ -472,8 +361,6 @@
     // Ensure scrolling functionality
     const scrollContainerElement = scrollContainer.value
     if (scrollContainerElement) {
-      console.log('✅ Scroll container found, setting up infinite scroll')
-
       let scrollTimeout
 
       scrollContainerElement.addEventListener('scroll', () => {
@@ -484,26 +371,20 @@
           scrollContainerElement.classList.remove('is-scrolling')
         }, 2000) // Hide after 2 seconds of no scrolling
       })
-    } else {
-      console.error('❌ Scroll container not found')
     }
 
-    // Debug meme image rendering
+    // Preload meme images
     const memeImagePaths = displayedItems.value
       .filter((item) => item.type === 'memeRow')
       .flatMap((item) => item.data.map((meme) => meme.image))
       .filter(Boolean)
 
     if (memeImagePaths.length > 0) {
-      console.log('🖼️ Meme images to render:', memeImagePaths)
       await preloadImages(memeImagePaths)
-    } else {
-      console.warn('⚠️ No meme images found to render')
     }
   })
 
   onServerPrefetch(async () => {
-    console.log('🌐 onServerPrefetch triggered')
     try {
       await loadInitialContent(20)
       allFilteredItems.value = getFilteredContent(
@@ -514,10 +395,6 @@
         0,
         itemsToShow.value
       )
-      logDisplayedItemsChange(
-        newDisplayedItems,
-        'onServerPrefetch - SSR population'
-      )
       displayedItems.value = newDisplayedItems
 
       // Update counts for SSR - CRITICAL for hydration
@@ -525,17 +402,6 @@
 
       // Mark as loaded to prevent reloading on client
       isLoaded.value = true
-
-      console.log(
-        '✅ SSR: displayedItems populated:',
-        displayedItems.value.length,
-        'items'
-      )
-      console.log('✅ SSR: Counts set:', {
-        claims: claimCount.value,
-        quotes: quoteCount.value,
-        memes: memeCount.value,
-      })
     } catch (err) {
       console.error('Error during onServerPrefetch:', err)
     }
@@ -545,9 +411,8 @@
   const logContentCounts = () => {
     const totalItems =
       cache.claims.length + cache.quotes.length + cache.memes.length
-    console.log(`Total items: ${totalItems}.`)
     console.log(
-      `Claims: ${cache.claims.length}; Quotes: ${cache.quotes.length}; Memes: ${cache.memes.length}`
+      `Total items: ${totalItems} (Claims: ${cache.claims.length}, Quotes: ${cache.quotes.length}, Memes: ${cache.memes.length})`
     )
   }
 
@@ -576,6 +441,7 @@
   provide('totalCount', totalCount)
 
   // Badge counts: show total when no search, filtered when searching
+  // Use computed values that work correctly with SSR hydration
   const searchClaimCount = computed(() => {
     return searchTerm.value ? filteredClaimCount.value : totalClaimCount.value
   })
@@ -585,8 +451,6 @@
   const searchMemeCount = computed(() => {
     return searchTerm.value ? filteredMemeCount.value : totalMemeCount.value
   })
-
-  // Total count display: show total when no search, filtered when searching
   const totalItemCount = computed(() => {
     return searchTerm.value
       ? filteredTotalCount.value
@@ -594,28 +458,6 @@
   })
 
   provide('loadMoreContent', loadMoreContent)
-
-  // CRITICAL DEBUG: Log the current state right before rendering
-  watchEffect(() => {
-    console.log('🚨 RENDER STATE CHECK:', {
-      displayedItemsLength: displayedItems.value.length,
-      claimCount: claimCount.value,
-      quoteCount: quoteCount.value,
-      memeCount: memeCount.value,
-      totalCount: totalCount.value,
-      isClient: process.client,
-      isSSR: process.server,
-    })
-  })
-
-  console.log(
-    '🎬 LAYOUT SETUP: Rendering displayedItems length:',
-    displayedItems.value.length
-  )
-  console.log(
-    '🎬 LAYOUT SETUP: Running on:',
-    process.client ? 'CLIENT' : 'SERVER'
-  )
 </script>
 
 <style scoped></style>

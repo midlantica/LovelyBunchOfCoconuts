@@ -1,7 +1,7 @@
 <!-- components/SearchBar.vue -->
 <template>
   <div class="flex flex-col items-center gap-2 w-full h-auto text-seagull-950">
-    <div class="relative flex flex-row gap-0 w-full">
+    <div class="relative flex flex-row gap-2 w-full">
       <Icon
         name="mdi:magnify"
         size="2rem"
@@ -19,11 +19,20 @@
       <button
         v-if="searchTerm"
         @click="clearSearch"
-        class="top-[.4rem] right-[.75rem] absolute flex justify-center items-center bg-transparent hover:bg-slate-700/20 rounded-full w-8 h-8 text-slate-100 hover:text-white transition-colors cursor-pointer"
+        class="top-[.1rem] right-[.75rem] absolute flex justify-center items-center gap-1 bg-transparent pl-4 rounded-full w-auto h-10 text-slate-100 transition-colors cursor-pointer"
         type="button"
         aria-label="Clear search"
       >
-        <Icon name="mdi:close" size="1.5rem" />
+        <Icon
+          name="mdi:keyboard-esc"
+          class="hidden md:block text-white/50 hover:text-white"
+          style="font-size: 1.5rem"
+        />
+        <Icon
+          name="mdi:close"
+          class="block text-white/80 hover:text-white"
+          style="font-size: 1.5rem"
+        />
       </button>
     </div>
     <div class="flex flex-row items-center gap-3 px-0 w-full">
@@ -47,10 +56,9 @@
     <div
       v-if="searchTerm && props.totalCount === 0"
       class="flex flex-col flex-1 justify-center items-center w-full min-h-[60vh]"
-      style="margin-top: 3.5rem"
     >
       <h1 class="m-auto mt-16 font-light text-white text-2xl text-center">
-        No results found.
+        No results found, Pinko! 🤣 😜
       </h1>
     </div>
   </div>
@@ -85,9 +93,9 @@
     emit('update:search', val)
   }, 300)
 
-  const pillClaimCount = computed(() => props.totalClaimCount ?? 0)
-  const pillQuoteCount = computed(() => props.totalQuoteCount ?? 0)
-  const pillMemeCount = computed(() => props.totalMemeCount ?? 0)
+  const pillClaimCount = computed(() => props.claimCount ?? 0)
+  const pillQuoteCount = computed(() => props.quoteCount ?? 0)
+  const pillMemeCount = computed(() => props.memeCount ?? 0)
 
   const pills = [
     { key: 'claims', label: 'CLAIMS', count: pillClaimCount },

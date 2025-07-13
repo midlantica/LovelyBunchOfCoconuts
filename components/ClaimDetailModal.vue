@@ -58,9 +58,6 @@
     markdownContent.value = ''
 
     try {
-      console.log('=== LOADING CLAIM MODAL ===')
-      console.log('Slug:', props.slug)
-
       // Find the claim in the already-loaded displayed items
       let found = null
 
@@ -72,8 +69,6 @@
             const claimId = claimItem?.id || ''
             const claimTitle = claimItem?.title || ''
 
-            console.log(`Checking claim: "${claimTitle}" (path: ${claimPath})`)
-
             // Try multiple matching strategies
             if (
               claimPath === props.slug ||
@@ -84,15 +79,12 @@
               claimPath.endsWith(props.slug)
             ) {
               found = claimItem
-              console.log('✅ Found claim match!')
               break
             }
           }
           if (found) break
         }
       }
-
-      console.log('Found claim:', found ? 'YES' : 'NO')
 
       if (found) {
         claim.value = found
@@ -160,7 +152,6 @@
       }
     } catch (err) {
       error.value = err.message
-      console.log('Claim loading error:', err)
     } finally {
       loading.value = false
     }

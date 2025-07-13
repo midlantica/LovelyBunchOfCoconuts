@@ -86,11 +86,9 @@
   })
 
   const openModal = () => {
-    console.log('Opening meme modal for slug:', props.slug)
     showModal.value = true
   }
   const closeModal = () => {
-    console.log('Closing meme modal')
     showModal.value = false
   }
 
