@@ -1,5 +1,24 @@
 <!-- pages/index.vue -->
 <script setup>
+  // import MemeModal from '~/components/MemeModal.vue'
+
+  // Modal state
+  const selectedMeme = ref(null)
+
+  // Always find the meme in the current pattern, not the full cache
+  function openMemeModal(memePath) {
+    for (const item of displayedItems.value) {
+      if (item.type === 'memeRow') {
+        const found = item.data.find(
+          (m) => m._path === memePath || m.path === memePath
+        )
+        if (found) {
+          selectedMeme.value = found
+          break
+        }
+      }
+    }
+  }
   import { onMounted, onUnmounted, ref, inject, watch } from 'vue'
   import { useInfiniteScroll } from '~/composables/useInfiniteScroll'
 
@@ -166,7 +185,10 @@
     </div>
 
     <!-- Content wall -->
-    <section v-if="displayedItems.length" class="flex flex-col gap-3">
+    <section
+      v-if="displayedItems.length"
+      class="flex flex-col gap-3 xs:px-2 sm:px-2 md:px-0"
+    >
       <!-- DEBUG: Show first 12 items pattern -->
       <!-- Clean pattern display -->
 
@@ -203,11 +225,18 @@
         >
           <MemePanel
             v-for="(memeItem, idx) in item.data"
-            :key="idx"
+            :key="memeItem._path || memeItem.path || idx"
             :meme="memeItem"
             :slug="memeItem?.path || memeItem?._path || ''"
+            @click="openMemeModal(memeItem._path || memeItem.path)"
           />
         </div>
+        <!-- Meme Modal -->
+        <MemeModal
+          v-if="selectedMeme"
+          :meme="selectedMeme"
+          @close="selectedMeme = null"
+        />
       </div>
     </section>
 
