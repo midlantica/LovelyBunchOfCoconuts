@@ -43,16 +43,6 @@
       e.preventDefault()
       document.dispatchEvent(new CustomEvent('focusSearch'))
     }
-    // Number keys to toggle filters
-    if (e.key === '1') {
-      contentFilters.value.claims = !contentFilters.value.claims
-    }
-    if (e.key === '2') {
-      contentFilters.value.quotes = !contentFilters.value.quotes
-    }
-    if (e.key === '3') {
-      contentFilters.value.memes = !contentFilters.value.memes
-    }
   }
 
   onMounted(() => {

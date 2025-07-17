@@ -120,11 +120,14 @@
     const onCount = keys.filter((k) => filters[k]).length
 
     if (onCount === keys.length) {
+      // All selected: select only this pill
       keys.forEach((k) => (filters[k] = false))
       filters[key] = true
     } else if (onCount === 1 && filters[key]) {
+      // Only this pill is selected: re-select all
       keys.forEach((k) => (filters[k] = true))
     } else {
+      // Toggle this pill, but never allow all off
       filters[key] = !filters[key]
       if (Object.values(filters).every((v) => !v)) {
         filters[key] = true
