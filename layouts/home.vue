@@ -16,10 +16,12 @@
             :total-quote-count="totalQuoteCount"
             :total-meme-count="totalMemeCount"
             :total-item-count="totalItemCount"
+            :pills-loading="!isCountsReady"
             class="top-0 z-10 sticky w-full"
           />
         </div>
       </div>
+
       <div
         class="rounded-xl h-full min-h-0 overflow-y-auto scroll-container-stable"
         ref="scrollContainer"
@@ -399,6 +401,15 @@
     totalQuoteCount,
     totalMemeCount,
     totalAvailableCount,
+  })
+
+  // SSR-safe: isCountsReady is true when all content is loaded
+  const isCountsReady = computed(() => {
+    return (
+      cache.claims.length > 0 &&
+      cache.quotes.length > 0 &&
+      cache.memes.length > 0
+    )
   })
 
   provide('loadMoreContent', loadMoreContent)

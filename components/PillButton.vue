@@ -6,7 +6,9 @@
     type="button"
   >
     <span class="pill-label">{{ label }}</span>
-    <span class="pill-count">{{ count }}</span>
+    <client-only>
+      <span class="pill-count">{{ count }}</span>
+    </client-only>
   </button>
 </template>
 

@@ -46,12 +46,14 @@
           @click="toggleFilter(pill.key)"
         />
       </div>
-      <span
-        class="font-light text-slate-400 uppercase tracking-wider"
-        style="font-size: 1.155rem"
-      >
-        {{ props.totalItemCount }}
-      </span>
+      <client-only>
+        <span
+          class="font-light text-slate-400 uppercase tracking-wider"
+          style="font-size: 1.155rem"
+        >
+          {{ props.totalItemCount }}
+        </span>
+      </client-only>
     </div>
     <div
       v-if="searchTerm && props.totalCount === 0"
