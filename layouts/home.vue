@@ -29,6 +29,20 @@
             <slot />
           </main>
         </div>
+        <!-- Scroll to top button -->
+        <Button
+          v-if="displayedItems.length > 20"
+          class="group right-3 bottom-3 z-50 fixed bg-slate-800 hover:bg-slate-900 shadow-xl hover:border hover:border-seagull-200/20 rounded-md text-slate-950 hover:text-white"
+          aria-label="scroll to the top"
+          :on="false"
+          @click="scrollToTop()"
+        >
+          <Icon
+            name="heroicons:arrow-small-up-solid"
+            size="2rem"
+            class="text-slate-950 group-hover:text-white/50 transition-colors"
+          />
+        </Button>
       </div>
     </div>
     <TheFooter class="w-full" />
@@ -36,33 +50,20 @@
 </template>
 
 <script setup>
-  import {
-    computed,
-    ref,
-    provide,
-    watch,
-    onMounted,
-    nextTick,
-    onServerPrefetch,
-  } from 'vue'
   import { useContentCache } from '~/composables/useContentCache'
   import { useLazyImages } from '~/composables/useLazyImages'
-  import { useSearchAndFilters } from '~/composables/useSearchAndFilters'
 
-  // Scroll container ref
-  const scrollContainer = ref(null)
+  // DRY: Use composable for scroll-to-top and scroll event
+  import { useScrollToTop } from '~/composables/useScrollToTop'
+  const { scrollContainer, scrollToTop } = useScrollToTop()
 
-  // Extract search and filter logic to composable
-  const {
-    searchTerm,
-    contentFilters,
-    activeFilterCount,
-    hasActiveFilters,
-    activeFilterTypes,
-    clearSearch,
-    resetFilters,
-    clearAll,
-  } = useSearchAndFilters()
+  // SSR-safe search/filter state
+  const searchTerm = useState('searchTerm', () => '')
+  const contentFilters = useState('contentFilters', () => ({
+    claims: true,
+    quotes: true,
+    memes: true,
+  }))
 
   // Smart image preloading
   const { preloadImages } = useLazyImages()
@@ -84,38 +85,31 @@
   const ssrIsLoaded = useState('isLoaded', () => false)
 
   const allFilteredItems = ref([])
+  const searchOnlyFilteredItems = ref([]) // NEW: filtered by search only, all types enabled
   const displayedItems = ssrDisplayedItems // Use the SSR-safe state
   const isLoaded = ssrIsLoaded // Use the SSR-safe state
   const error = ref(null)
   const itemsToShow = ref(60) // Start with 60 items to ensure scrolling
 
   // Load more content function for infinite scroll
-  const loadMoreContent = async (batchSize = 20) => {
+  const loadMoreContent = async (batchSize = 40) => {
     const currentCount = displayedItems.value.length
     const totalCount = allFilteredItems.value.length
 
     if (currentCount >= totalCount) {
-      return { claims: 0, quotes: 0, memes: 0 } // No more content
+      // Already loaded all items
+      return { claims: 0, quotes: 0, memes: 0 }
     }
 
-    // Calculate how many new items to add
+    // Always load up to the next batch, or all remaining
     const newItemsToShow = Math.min(currentCount + batchSize, totalCount)
-    const newItemsAdded = newItemsToShow - currentCount
-
-    // Get the new items to add
     const newItems = allFilteredItems.value.slice(currentCount, newItemsToShow)
-
-    // Append new items to the existing array
-    const newDisplayedItems = [...displayedItems.value, ...newItems]
-    displayedItems.value = newDisplayedItems
-
-    // Update counts after adding new items
-    updateCounts()
+    displayedItems.value = [...displayedItems.value, ...newItems]
 
     // Preload images for the next batch during infinite scroll
     const nextBatch = allFilteredItems.value.slice(
       newItemsToShow,
-      newItemsToShow + 20
+      newItemsToShow + 40
     )
     const imagesToPreload = nextBatch
       .filter((item) => item.type === 'memeRow')
@@ -127,62 +121,34 @@
     }
 
     return {
-      claims: newItemsAdded,
-      quotes: newItemsAdded,
-      memes: newItemsAdded,
+      claims: newItems.length,
+      quotes: newItems.length,
+      memes: newItems.length,
     }
   }
 
-  // Reactive counts based on displayed (filtered) items (for infinite scroll)
-  // Use useState for SSR hydration safety
-  const claimCount = useState('claimCount', () => 0)
-  const quoteCount = useState('quoteCount', () => 0)
-  const memeCount = useState('memeCount', () => 0)
-  const totalCount = computed(
-    () => claimCount.value + quoteCount.value + memeCount.value
-  )
-
-  // Function to update counts
-  const updateCounts = () => {
-    claimCount.value = displayedItems.value.flatMap((item) =>
-      item.type === 'claimPair' ? item.data : []
-    ).length
-    quoteCount.value = displayedItems.value.filter(
-      (item) => item.type === 'quote'
-    ).length
-    memeCount.value = displayedItems.value.flatMap((item) =>
-      item.type === 'memeRow' ? item.data : []
-    ).length
-  }
-
-  // Computed counts based on total available content (never changes)
-  const totalClaimCount = computed(() => cache.claims.length)
-  const totalQuoteCount = computed(() => cache.quotes.length)
-  const totalMemeCount = computed(() => cache.memes.length)
-  const totalAvailableCount = computed(
-    () => totalClaimCount.value + totalQuoteCount.value + totalMemeCount.value
-  )
-
-  // Computed counts based on all filtered content (changes with search)
-  const filteredClaimCount = computed(() => {
-    return allFilteredItems.value.flatMap((item) =>
-      item.type === 'claimPair' ? item.data : []
-    ).length
+  // DRY: Use composable for all content counts (SSR-safe)
+  import { useContentCounts } from '~/composables/useContentCounts'
+  const {
+    claimCount,
+    quoteCount,
+    memeCount,
+    totalCount,
+    totalClaimCount,
+    totalQuoteCount,
+    totalMemeCount,
+    totalAvailableCount,
+    filteredClaimCount,
+    filteredQuoteCount,
+    filteredMemeCount,
+    filteredTotalCount,
+  } = useContentCounts({
+    displayedItems,
+    cache,
+    allFilteredItems,
+    searchTerm,
+    contentFilters,
   })
-  const filteredQuoteCount = computed(() => {
-    return allFilteredItems.value.filter((item) => item.type === 'quote').length
-  })
-  const filteredMemeCount = computed(() => {
-    return allFilteredItems.value.flatMap((item) =>
-      item.type === 'memeRow' ? item.data : []
-    ).length
-  })
-  const filteredTotalCount = computed(
-    () =>
-      filteredClaimCount.value +
-      filteredQuoteCount.value +
-      filteredMemeCount.value
-  )
 
   // Progressive loading: Load small batch first, then rest in background
   const loadContent = async () => {
@@ -207,9 +173,6 @@
           itemsToShow.value
         )
         displayedItems.value = newDisplayedItems
-
-        // Update counts after setting displayed items
-        updateCounts()
 
         // STEP 2: Load remaining content in background (non-blocking)
         setTimeout(async () => {
@@ -236,9 +199,6 @@
           itemsToShow.value
         )
         displayedItems.value = newDisplayedItems
-
-        // Update counts after setting displayed items
-        updateCounts()
       }
 
       error.value = null
@@ -248,64 +208,50 @@
     }
   }
 
-  // Scroll to top function
-  const scrollToTop = () => {
-    if (scrollContainer.value) {
-      scrollContainer.value.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-  }
+  // (Scroll-to-top and scroll event logic now handled by useScrollToTop)
 
-  // Watch for search/filter changes
+  // Watch for search/filter changes and update filtered/displayed items reactively
   watch(
     [searchTerm, contentFilters],
     () => {
-      if (isLoaded.value) {
-        // Scroll to top when search/filter changes
-        scrollToTop()
-
-        // Get all filtered content
-        allFilteredItems.value = getFilteredContent(
-          searchTerm.value,
-          contentFilters.value
+      if (!isLoaded.value) return
+      scrollToTop()
+      // Update filtered items for wall (search + type filters)
+      allFilteredItems.value = getFilteredContent(
+        searchTerm.value,
+        contentFilters.value
+      )
+      // Update search-only filtered items (search only, all types enabled)
+      searchOnlyFilteredItems.value = getFilteredContent(searchTerm.value, {
+        claims: true,
+        quotes: true,
+        memes: true,
+      })
+      // Reset to initial batch
+      itemsToShow.value = 60
+      displayedItems.value = allFilteredItems.value.slice(0, itemsToShow.value)
+      // Smart preload next batch of images when search changes
+      if (searchTerm.value) {
+        const nextBatch = allFilteredItems.value.slice(
+          itemsToShow.value,
+          itemsToShow.value + 40
         )
-
-        // Reset to initial batch when search/filter changes
-        itemsToShow.value = 60
-        const newDisplayedItems = allFilteredItems.value.slice(
-          0,
-          itemsToShow.value
-        )
-        displayedItems.value = newDisplayedItems
-
-        // Update counts after setting displayed items
-        updateCounts()
-
-        // Smart preload next batch of images when search changes
-        if (searchTerm.value) {
-          const nextBatch = allFilteredItems.value.slice(
-            itemsToShow.value,
-            itemsToShow.value + 40
-          )
-          const imagesToPreload = nextBatch
-            .filter((item) => item.type === 'memeRow')
-            .flatMap((item) => item.data.map((meme) => meme.image))
-            .filter(Boolean)
-
-          if (imagesToPreload.length > 0) {
-            preloadImages(imagesToPreload)
-          }
+        const imagesToPreload = nextBatch
+          .filter((item) => item.type === 'memeRow')
+          .flatMap((item) => item.data.map((meme) => meme.image))
+          .filter(Boolean)
+        if (imagesToPreload.length > 0) {
+          preloadImages(imagesToPreload)
         }
       }
     },
     { deep: true }
   )
 
-  // Watch for displayedItems changes
+  // Watch for displayedItems changes (defensive restore only)
   watch(
     displayedItems,
     (newValue, oldValue) => {
-      updateCounts() // Update counts whenever displayedItems changes
-
       // DEFENSIVE: If displayedItems gets reset incorrectly, try to restore from allFilteredItems
       if (
         newValue.length === 0 &&
@@ -397,9 +343,6 @@
       )
       displayedItems.value = newDisplayedItems
 
-      // Update counts for SSR - CRITICAL for hydration
-      updateCounts()
-
       // Mark as loaded to prevent reloading on client
       isLoaded.value = true
     } catch (err) {
@@ -440,21 +383,22 @@
   provide('memeCount', memeCount)
   provide('totalCount', totalCount)
 
-  // Badge counts: show total when no search, filtered when searching
-  // Use computed values that work correctly with SSR hydration
-  const searchClaimCount = computed(() => {
-    return searchTerm.value ? filteredClaimCount.value : totalClaimCount.value
-  })
-  const searchQuoteCount = computed(() => {
-    return searchTerm.value ? filteredQuoteCount.value : totalQuoteCount.value
-  })
-  const searchMemeCount = computed(() => {
-    return searchTerm.value ? filteredMemeCount.value : totalMemeCount.value
-  })
-  const totalItemCount = computed(() => {
-    return searchTerm.value
-      ? filteredTotalCount.value
-      : totalAvailableCount.value
+  // DRY: Use composable for badge counts
+  import { useBadgeCounts } from '~/composables/useBadgeCounts'
+  const {
+    searchClaimCount,
+    searchQuoteCount,
+    searchMemeCount,
+    totalItemCount,
+  } = useBadgeCounts({
+    searchTerm,
+    allFilteredItems: searchOnlyFilteredItems, // Use search-only filtered items for pill counts
+    cache,
+    contentFilters,
+    totalClaimCount,
+    totalQuoteCount,
+    totalMemeCount,
+    totalAvailableCount,
   })
 
   provide('loadMoreContent', loadMoreContent)

@@ -2,7 +2,7 @@
 <template>
   <NuxtLink
     :to="resolveRoute(to)"
-    class="flex gap-1 mt-3 text-lg font-light tracking-widest text-slate-400 hover:text-white"
+    class="flex gap-1 mt-3 p-2 font-light text-slate-400 hover:text-white text-lg tracking-widest"
   >
     <!-- Left icon slot -->
     <slot name="icon-left">

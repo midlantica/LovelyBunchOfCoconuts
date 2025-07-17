@@ -1,130 +1,33 @@
 <!-- pages/index.vue -->
 <script setup>
-  // import MemeModal from '~/components/MemeModal.vue'
-
-  // Modal state
-  const selectedMeme = ref(null)
-
-  // Always find the meme in the current pattern, not the full cache
-  function openMemeModal(memePath) {
-    for (const item of displayedItems.value) {
-      if (item.type === 'memeRow') {
-        const found = item.data.find(
-          (m) => m._path === memePath || m.path === memePath
-        )
-        if (found) {
-          selectedMeme.value = found
-          break
-        }
-      }
-    }
-  }
-  import { onMounted, onUnmounted, ref, inject, watch } from 'vue'
+  import { useInfiniteWall } from '~/composables/useInfiniteWall'
   import { useInfiniteScroll } from '~/composables/useInfiniteScroll'
+  import MemeDetailModal from '~/components/MemeDetailModal.vue'
 
   definePageMeta({
     layout: 'home',
   })
 
-  // Get values from the layout
-  const displayedItems = inject('displayedItems', ref([]))
-  const loadMoreFromLayout = inject('loadMoreContent')
-  const error = inject('error', ref(null))
-  const searchTerm = inject('searchTerm', ref(''))
-  const contentFilters = inject(
-    'contentFilters',
-    ref({ claims: true, quotes: true, memes: true })
-  )
-
-  // Watch for changes to displayedItems
-  watch(
+  // Use composable for all wall, modal, and infinite scroll logic
+  const {
     displayedItems,
-    (newValue) => {
-      // Track displayed items count without debug spam
-    },
-    { immediate: true }
-  )
-
-  // Infinite scroll states
-  const isLoading = ref(false)
-  const hasMore = ref(true)
-  const lastItemCount = ref(0)
-  const newItemsStartIndex = ref(0)
-
-  // Reset hasMore when search/filters change
-  watch(
-    [searchTerm, contentFilters],
-    () => {
-      hasMore.value = true
-      lastItemCount.value = 0
-      newItemsStartIndex.value = 0
-    },
-    { deep: true }
-  )
-
-  // Watch for new items to apply fade-in animation
-  watch(
-    displayedItems,
-    (newItems, oldItems) => {
-      const oldLength = oldItems?.length || 0
-      const newLength = newItems.length
-
-      if (newLength > oldLength) {
-        // New items were added - track where the new items start
-        newItemsStartIndex.value = oldLength
-
-        // Update lastItemCount after a brief delay to ensure animation works
-        setTimeout(() => {
-          lastItemCount.value = newLength
-        }, 100)
-      }
-    },
-    { deep: true }
-  )
-
-  // Watch displayedItems to see what's happening
-  watch(
-    displayedItems,
-    (newItems) => {
-      // Remove debug logs
-    },
-    { deep: true }
-  )
-
-  // Load more content function - properly implement infinite scroll
-  const loadMoreContent = async () => {
-    if (!hasMore.value) {
-      return
-    }
-
-    if (!loadMoreFromLayout) {
-      return
-    }
-
-    try {
-      const result = await loadMoreFromLayout(20) // Load 20 more items
-
-      if (
-        result &&
-        typeof result === 'object' &&
-        result.claims === 0 &&
-        result.quotes === 0 &&
-        result.memes === 0
-      ) {
-        hasMore.value = false
-      }
-    } catch (error) {
-      console.error('❌ Error loading more content:', error)
-      hasMore.value = false
-    }
-  }
+    loadMoreContent,
+    error,
+    searchTerm,
+    contentFilters,
+    selectedMeme,
+    openMemeModal,
+    isLoading,
+    hasMore,
+    lastItemCount,
+    newItemsStartIndex,
+  } = useInfiniteWall()
 
   // Use infinite scroll composable
   const infiniteScrollCallback = async () => {
     return await loadMoreContent()
   }
-
-  const scrollDebug = useInfiniteScroll(infiniteScrollCallback, {
+  useInfiniteScroll(infiniteScrollCallback, {
     isLoading,
     hasMore,
   })
@@ -135,14 +38,11 @@
     if (e.key === 'Escape') {
       searchTerm.value = ''
     }
-
     // Ctrl/Cmd + K to focus search (when implemented)
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault()
-      // Emit event to focus search bar
       document.dispatchEvent(new CustomEvent('focusSearch'))
     }
-
     // Number keys to toggle filters
     if (e.key === '1') {
       contentFilters.value.claims = !contentFilters.value.claims
@@ -156,23 +56,11 @@
   }
 
   onMounted(() => {
-    // Add keyboard listeners
     document.addEventListener('keydown', handleKeyboard)
   })
-
   onUnmounted(() => {
-    // Remove keyboard listeners
     document.removeEventListener('keydown', handleKeyboard)
   })
-
-  // Watch displayedItems for template updates
-  watch(
-    displayedItems,
-    (newItems) => {
-      // Track template updates without debug spam
-    },
-    { immediate: true }
-  )
 </script>
 
 <template>
@@ -231,13 +119,15 @@
             @click="openMemeModal(memeItem._path || memeItem.path)"
           />
         </div>
-        <!-- Meme Modal -->
-        <MemeModal
-          v-if="selectedMeme"
-          :meme="selectedMeme"
-          @close="selectedMeme = null"
-        />
       </div>
+
+      <!-- Meme Modal (single instance, outside v-for) -->
+      <MemeDetailModal
+        v-if="selectedMeme"
+        :slug="selectedMeme._path || selectedMeme.path"
+        :show="!!selectedMeme"
+        @close="selectedMeme = null"
+      />
     </section>
 
     <!-- Infinite scroll loading indicator -->
@@ -283,16 +173,6 @@
         <h1 class="font-light text-white text-2xl text-center">
           No results found.
         </h1>
-        <p class="max-w-md text-slate-400 text-center">
-          Try adjusting your search terms or check different content types
-          above.
-        </p>
-        <button
-          @click="searchTerm = ''"
-          class="bg-seagull-600 hover:bg-seagull-700 px-4 py-2 rounded-lg font-light text-white transition-colors"
-        >
-          Clear Search
-        </button>
       </div>
 
       <h1 v-else class="font-light text-white text-2xl text-center">

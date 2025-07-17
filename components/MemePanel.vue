@@ -35,12 +35,7 @@
         {{ getFileName(meme) }}
       </p>
     </div>
-    <MemeDetailModal
-      v-if="showModal"
-      :slug="slug || getSlug(meme?._path)"
-      :show="showModal"
-      @close="closeModal"
-    />
+    <!-- Modal removed: now handled as singleton in pages/index.vue -->
   </div>
 </template>
 
