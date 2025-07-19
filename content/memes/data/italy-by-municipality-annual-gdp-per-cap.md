@@ -1,5 +1,5 @@
 ---
-title: "italy-by-municipality-annual-gdp-per-cap"
+title: 'italy-by-municipality-annual-gdp-per-cap'
 ---
 
 ![italy-by-municipality-annual-gdp-per-cap](/memes/data/italy-by-municipality-annual-gdp-per-cap.png)

@@ -1,5 +1,5 @@
 ---
-title: "toxic-leftist-media-mass-formation-psych"
+title: 'toxic-leftist-media-mass-formation-psych'
 ---
 
 ![toxic-leftist-media-mass-formation-psych](/memes/cartoons/toxic-leftist-media-mass-formation-psych.png)

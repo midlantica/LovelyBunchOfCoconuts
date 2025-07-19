@@ -1,5 +1,5 @@
 ---
-title: "the-black-family-survived-centuries-of-s"
+title: 'the-black-family-survived-centuries-of-s'
 ---
 
 ![the-black-family-survived-centuries-of-s](/memes/thomas-sowell/the-black-family-survived-centuries-of-s.png)

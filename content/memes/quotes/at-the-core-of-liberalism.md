@@ -1,5 +1,5 @@
 ---
-title: "at-the-core-of-liberalism"
+title: 'at-the-core-of-liberalism'
 ---
 
 ![at-the-core-of-liberalism](/memes/quotes/at-the-core-of-liberalism.png)

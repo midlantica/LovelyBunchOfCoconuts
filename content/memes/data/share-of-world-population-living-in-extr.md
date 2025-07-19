@@ -1,5 +1,5 @@
 ---
-title: "share-of-world-population-living-in-extr"
+title: 'share-of-world-population-living-in-extr'
 ---
 
 ![share-of-world-population-living-in-extr](/memes/data/share-of-world-population-living-in-extr.png)

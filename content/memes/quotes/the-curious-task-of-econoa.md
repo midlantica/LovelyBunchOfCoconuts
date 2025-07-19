@@ -1,5 +1,5 @@
 ---
-title: "the-curious-task-of-econoa"
+title: 'the-curious-task-of-econoa'
 ---
 
 ![the-curious-task-of-econoa](/memes/quotes/the-curious-task-of-econoa.png)

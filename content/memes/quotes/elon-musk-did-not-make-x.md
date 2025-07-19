@@ -1,5 +1,5 @@
 ---
-title: "elon-musk-did-not-make-x"
+title: 'elon-musk-did-not-make-x'
 ---
 
 ![elon-musk-did-not-make-x](/memes/quotes/elon-musk-did-not-make-x.png)

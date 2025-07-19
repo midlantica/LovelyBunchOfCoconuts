@@ -1,5 +1,5 @@
 ---
-title: "most-common-self-identified-ancestry-of"
+title: 'most-common-self-identified-ancestry-of'
 ---
 
 ![most-common-self-identified-ancestry-of](/memes/data/most-common-self-identified-ancestry-of.png)

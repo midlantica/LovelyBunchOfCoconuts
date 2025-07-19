@@ -1,5 +1,5 @@
 ---
-title: "top-10-most-dangerous-us-occupations-and"
+title: 'top-10-most-dangerous-us-occupations-and'
 ---
 
 ![top-10-most-dangerous-us-occupations-and](/memes/data/top-10-most-dangerous-us-occupations-and.png)

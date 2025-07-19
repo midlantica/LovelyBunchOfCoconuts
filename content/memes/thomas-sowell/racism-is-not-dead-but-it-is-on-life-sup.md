@@ -1,5 +1,5 @@
 ---
-title: "racism-is-not-dead-but-it-is-on-life-sup"
+title: 'racism-is-not-dead-but-it-is-on-life-sup'
 ---
 
 ![racism-is-not-dead-but-it-is-on-life-sup](/memes/thomas-sowell/racism-is-not-dead-but-it-is-on-life-sup.png)

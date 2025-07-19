@@ -1,5 +1,5 @@
 ---
-title: "the-tax-burden-has-grown-more-progressiv"
+title: 'the-tax-burden-has-grown-more-progressiv'
 ---
 
 ![the-tax-burden-has-grown-more-progressiv](/memes/data/the-tax-burden-has-grown-more-progressiv.png)

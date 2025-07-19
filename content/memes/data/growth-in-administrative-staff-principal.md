@@ -1,5 +1,5 @@
 ---
-title: "growth-in-administrative-staff-principal"
+title: 'growth-in-administrative-staff-principal'
 ---
 
 ![growth-in-administrative-staff-principal](/memes/data/growth-in-administrative-staff-principal.png)

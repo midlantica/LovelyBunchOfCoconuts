@@ -1,5 +1,5 @@
 ---
-title: "it-is-not-the-truth-of-ma"
+title: 'it-is-not-the-truth-of-ma'
 ---
 
 ![it-is-not-the-truth-of-ma](/memes/quotes/it-is-not-the-truth-of-ma.png)

@@ -1,5 +1,5 @@
 ---
-title: "the-middle-east-bernard_l"
+title: 'the-middle-east-bernard_l'
 ---
 
 ![the-middle-east-bernard_l](/memes/quotes/the-middle-east-bernard_l.png)

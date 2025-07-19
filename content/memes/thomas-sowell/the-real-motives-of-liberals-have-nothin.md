@@ -1,5 +1,5 @@
 ---
-title: "the-real-motives-of-liberals-have-nothin"
+title: 'the-real-motives-of-liberals-have-nothin'
 ---
 
 ![the-real-motives-of-liberals-have-nothin](/memes/thomas-sowell/the-real-motives-of-liberals-have-nothin.png)

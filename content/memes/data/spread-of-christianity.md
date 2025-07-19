@@ -1,5 +1,5 @@
 ---
-title: "spread-of-christianity"
+title: 'spread-of-christianity'
 ---
 
 ![spread-of-christianity](/memes/data/spread-of-christianity.png)

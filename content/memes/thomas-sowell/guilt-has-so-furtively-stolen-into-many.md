@@ -1,5 +1,5 @@
 ---
-title: "guilt-has-so-furtively-stolen-into-many"
+title: 'guilt-has-so-furtively-stolen-into-many'
 ---
 
 ![guilt-has-so-furtively-stolen-into-many](/memes/thomas-sowell/guilt-has-so-furtively-stolen-into-many.png)

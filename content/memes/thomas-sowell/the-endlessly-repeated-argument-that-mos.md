@@ -1,5 +1,5 @@
 ---
-title: "the-endlessly-repeated-argument-that-mos"
+title: 'the-endlessly-repeated-argument-that-mos'
 ---
 
 ![the-endlessly-repeated-argument-that-mos](/memes/thomas-sowell/the-endlessly-repeated-argument-that-mos.png)

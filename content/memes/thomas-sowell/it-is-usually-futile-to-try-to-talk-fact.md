@@ -1,5 +1,5 @@
 ---
-title: "it-is-usually-futile-to-try-to-talk-fact"
+title: 'it-is-usually-futile-to-try-to-talk-fact'
 ---
 
 ![it-is-usually-futile-to-try-to-talk-fact](/memes/thomas-sowell/it-is-usually-futile-to-try-to-talk-fact.png)

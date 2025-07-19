@@ -1,5 +1,5 @@
 ---
-title: "total-means-tested-welfare-spending-and"
+title: 'total-means-tested-welfare-spending-and'
 ---
 
 ![total-means-tested-welfare-spending-and](/memes/data/total-means-tested-welfare-spending-and.png)

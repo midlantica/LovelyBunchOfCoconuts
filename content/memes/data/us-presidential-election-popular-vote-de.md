@@ -1,5 +1,5 @@
 ---
-title: "us-presidential-election-popular-vote-de"
+title: 'us-presidential-election-popular-vote-de'
 ---
 
 ![us-presidential-election-popular-vote-de](/memes/data/us-presidential-election-popular-vote-de.png)

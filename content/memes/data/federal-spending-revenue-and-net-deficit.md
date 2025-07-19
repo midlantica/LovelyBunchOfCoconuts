@@ -1,5 +1,5 @@
 ---
-title: "federal-spending-revenue-and-net-deficit"
+title: 'federal-spending-revenue-and-net-deficit'
 ---
 
 ![federal-spending-revenue-and-net-deficit](/memes/data/federal-spending-revenue-and-net-deficit.png)

@@ -1,5 +1,5 @@
 ---
-title: "humiliating-to-human-prid"
+title: 'humiliating-to-human-prid'
 ---
 
 ![humiliating-to-human-prid](/memes/quotes/humiliating-to-human-prid.png)

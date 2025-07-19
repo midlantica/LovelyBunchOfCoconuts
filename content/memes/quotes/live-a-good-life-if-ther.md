@@ -1,5 +1,5 @@
 ---
-title: "live-a-good-life-if-ther"
+title: 'live-a-good-life-if-ther'
 ---
 
 ![live-a-good-life-if-ther](/memes/quotes/live-a-good-life-if-ther.png)

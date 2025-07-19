@@ -1,5 +1,5 @@
 ---
-title: "gdp-ppp-international-dollars-2018-billi"
+title: 'gdp-ppp-international-dollars-2018-billi'
 ---
 
 ![gdp-ppp-international-dollars-2018-billi](/memes/data/gdp-ppp-international-dollars-2018-billi.png)

@@ -1,5 +1,5 @@
 ---
-title: "56-of-liberal-women-aged-18-29-have-been"
+title: '56-of-liberal-women-aged-18-29-have-been'
 ---
 
 ![56-of-liberal-women-aged-18-29-have-been](/memes/data/56-of-liberal-women-aged-18-29-have-been.png)

@@ -1,5 +1,5 @@
 ---
-title: "world-population-living-in-extreme-pover"
+title: 'world-population-living-in-extreme-pover'
 ---
 
 ![world-population-living-in-extreme-pover](/memes/data/world-population-living-in-extreme-pover.png)

@@ -1,5 +1,5 @@
 ---
-title: "the-people-will-believe-w"
+title: 'the-people-will-believe-w'
 ---
 
 ![the-people-will-believe-w](/memes/quotes/the-people-will-believe-w.png)

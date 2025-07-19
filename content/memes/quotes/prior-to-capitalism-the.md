@@ -1,5 +1,5 @@
 ---
-title: "prior-to-capitalism-the"
+title: 'prior-to-capitalism-the'
 ---
 
 ![prior-to-capitalism-the](/memes/quotes/prior-to-capitalism-the.png)

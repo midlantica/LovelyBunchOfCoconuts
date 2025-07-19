@@ -1,5 +1,5 @@
 ---
-title: "people-who-are-very-aware-that-they-have"
+title: 'people-who-are-very-aware-that-they-have'
 ---
 
 ![people-who-are-very-aware-that-they-have](/memes/thomas-sowell/people-who-are-very-aware-that-they-have.png)

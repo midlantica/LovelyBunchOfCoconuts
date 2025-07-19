@@ -1,5 +1,5 @@
 ---
-title: "yearly-mentions-of-prejudice-in-popular"
+title: 'yearly-mentions-of-prejudice-in-popular'
 ---
 
 ![yearly-mentions-of-prejudice-in-popular](/memes/data/yearly-mentions-of-prejudice-in-popular.png)

@@ -1,5 +1,5 @@
 ---
-title: "we-are-a-nation-of-immigrants-we-are-con"
+title: 'we-are-a-nation-of-immigrants-we-are-con'
 ---
 
 ![we-are-a-nation-of-immigrants-we-are-con](/memes/thomas-sowell/we-are-a-nation-of-immigrants-we-are-con.png)

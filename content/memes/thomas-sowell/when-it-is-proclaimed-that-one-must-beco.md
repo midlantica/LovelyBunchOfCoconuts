@@ -1,5 +1,5 @@
 ---
-title: "when-it-is-proclaimed-that-one-must-beco"
+title: 'when-it-is-proclaimed-that-one-must-beco'
 ---
 
 ![when-it-is-proclaimed-that-one-must-beco](/memes/thomas-sowell/when-it-is-proclaimed-that-one-must-beco.png)

@@ -1,5 +1,5 @@
 ---
-title: "global-deaths-in-conflicts-since-the-yea"
+title: 'global-deaths-in-conflicts-since-the-yea'
 ---
 
 ![global-deaths-in-conflicts-since-the-yea](/memes/data/global-deaths-in-conflicts-since-the-yea.png)

@@ -1,5 +1,5 @@
 ---
-title: "much-of-the-social-history-of-the-wester"
+title: 'much-of-the-social-history-of-the-wester'
 ---
 
 ![much-of-the-social-history-of-the-wester](/memes/thomas-sowell/much-of-the-social-history-of-the-wester.png)

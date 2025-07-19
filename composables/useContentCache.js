@@ -23,14 +23,18 @@ const extractSearchableText = (body) => {
   return text.trim()
 }
 
+// Global cache instance - shared across all components
+const globalCache = reactive({
+  claims: [],
+  quotes: [],
+  memes: [],
+  isLoading: false,
+  error: null,
+})
+
 export function useContentCache() {
-  const cache = reactive({
-    claims: [],
-    quotes: [],
-    memes: [],
-    isLoading: false,
-    error: null,
-  })
+  // Return the shared global cache instead of creating a new one
+  const cache = globalCache
 
   // Helper function to filter out special files
   const filterSpecialFiles = (items) => {

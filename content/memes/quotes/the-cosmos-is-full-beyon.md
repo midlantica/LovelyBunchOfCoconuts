@@ -1,5 +1,5 @@
 ---
-title: "the-cosmos-is-full-beyon"
+title: 'the-cosmos-is-full-beyon'
 ---
 
 ![the-cosmos-is-full-beyon](/memes/quotes/the-cosmos-is-full-beyon.png)

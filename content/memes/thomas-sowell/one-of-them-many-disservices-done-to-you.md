@@ -1,5 +1,5 @@
 ---
-title: "one-of-them-many-disservices-done-to-you"
+title: 'one-of-them-many-disservices-done-to-you'
 ---
 
 ![one-of-them-many-disservices-done-to-you](/memes/thomas-sowell/one-of-them-many-disservices-done-to-you.png)

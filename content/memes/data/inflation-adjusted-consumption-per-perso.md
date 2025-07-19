@@ -1,5 +1,5 @@
 ---
-title: "inflation-adjusted-consumption-per-perso"
+title: 'inflation-adjusted-consumption-per-perso'
 ---
 
 ![inflation-adjusted-consumption-per-perso](/memes/data/inflation-adjusted-consumption-per-perso.png)

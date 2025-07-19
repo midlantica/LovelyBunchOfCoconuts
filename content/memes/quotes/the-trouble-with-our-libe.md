@@ -1,5 +1,5 @@
 ---
-title: "the-trouble-with-our-libe"
+title: 'the-trouble-with-our-libe'
 ---
 
 ![the-trouble-with-our-libe](/memes/quotes/the-trouble-with-our-libe.png)

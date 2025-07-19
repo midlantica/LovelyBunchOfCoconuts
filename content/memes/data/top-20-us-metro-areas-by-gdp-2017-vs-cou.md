@@ -1,5 +1,5 @@
 ---
-title: "top-20-us-metro-areas-by-gdp-2017-vs-cou"
+title: 'top-20-us-metro-areas-by-gdp-2017-vs-cou'
 ---
 
 ![top-20-us-metro-areas-by-gdp-2017-vs-cou](/memes/data/top-20-us-metro-areas-by-gdp-2017-vs-cou.png)

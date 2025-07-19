@@ -1,5 +1,5 @@
 ---
-title: "interracial-violent-crime-incidents-2018"
+title: 'interracial-violent-crime-incidents-2018'
 ---
 
 ![interracial-violent-crime-incidents-2018](/memes/data/interracial-violent-crime-incidents-2018.png)

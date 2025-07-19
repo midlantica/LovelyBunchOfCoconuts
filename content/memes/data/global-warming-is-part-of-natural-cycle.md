@@ -1,5 +1,5 @@
 ---
-title: "global-warming-is-part-of-natural-cycle"
+title: 'global-warming-is-part-of-natural-cycle'
 ---
 
 ![global-warming-is-part-of-natural-cycle](/memes/data/global-warming-is-part-of-natural-cycle.png)

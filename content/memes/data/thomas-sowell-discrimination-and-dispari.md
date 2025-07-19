@@ -1,5 +1,5 @@
 ---
-title: "thomas-sowell-discrimination-and-dispari"
+title: 'thomas-sowell-discrimination-and-dispari'
 ---
 
 ![thomas-sowell-discrimination-and-dispari](/memes/data/thomas-sowell-discrimination-and-dispari.png)

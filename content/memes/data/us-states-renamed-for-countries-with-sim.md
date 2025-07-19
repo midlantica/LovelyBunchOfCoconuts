@@ -1,5 +1,5 @@
 ---
-title: "us-states-renamed-for-countries-with-sim"
+title: 'us-states-renamed-for-countries-with-sim'
 ---
 
 ![us-states-renamed-for-countries-with-sim](/memes/data/us-states-renamed-for-countries-with-sim.png)

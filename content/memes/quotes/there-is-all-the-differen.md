@@ -1,5 +1,5 @@
 ---
-title: "there-is-all-the-differen"
+title: 'there-is-all-the-differen'
 ---
 
 ![there-is-all-the-differen](/memes/quotes/there-is-all-the-differen.png)

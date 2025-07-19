@@ -1,5 +1,5 @@
 ---
-title: "median-us-household-income-by-selected-e"
+title: 'median-us-household-income-by-selected-e'
 ---
 
 ![median-us-household-income-by-selected-e](/memes/data/median-us-household-income-by-selected-e.png)

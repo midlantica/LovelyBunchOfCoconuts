@@ -1,5 +1,5 @@
 ---
-title: "both-free-speech-rights-and-property-rig"
+title: 'both-free-speech-rights-and-property-rig'
 ---
 
 ![both-free-speech-rights-and-property-rig](/memes/thomas-sowell/both-free-speech-rights-and-property-rig.png)

@@ -1,5 +1,5 @@
 ---
-title: "despite-a-voluminous-and-often-fervent-l"
+title: 'despite-a-voluminous-and-often-fervent-l'
 ---
 
 ![despite-a-voluminous-and-often-fervent-l](/memes/thomas-sowell/despite-a-voluminous-and-often-fervent-l.png)

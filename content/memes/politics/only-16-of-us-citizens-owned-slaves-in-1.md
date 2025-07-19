@@ -1,5 +1,5 @@
 ---
-title: "only-16-of-us-citizens-owned-slaves-in-1"
+title: 'only-16-of-us-citizens-owned-slaves-in-1'
 ---
 
 ![only-16-of-us-citizens-owned-slaves-in-1](/memes/politics/only-16-of-us-citizens-owned-slaves-in-1.png)

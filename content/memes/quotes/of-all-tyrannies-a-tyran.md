@@ -1,5 +1,5 @@
 ---
-title: "of-all-tyrannies-a-tyran"
+title: 'of-all-tyrannies-a-tyran'
 ---
 
 ![of-all-tyrannies-a-tyran](/memes/quotes/of-all-tyrannies-a-tyran.png)

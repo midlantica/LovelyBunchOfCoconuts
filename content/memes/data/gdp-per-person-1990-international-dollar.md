@@ -1,5 +1,5 @@
 ---
-title: "gdp-per-person-1990-international-dollar"
+title: 'gdp-per-person-1990-international-dollar'
 ---
 
 ![gdp-per-person-1990-international-dollar](/memes/data/gdp-per-person-1990-international-dollar.png)

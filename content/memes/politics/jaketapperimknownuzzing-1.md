@@ -1,5 +1,5 @@
 ---
-title: "jaketapperimknownuzzing-1"
+title: 'jaketapperimknownuzzing-1'
 ---
 
 ![jaketapperimknownuzzing-1](/memes/politics/jaketapperimknownuzzing-1.png)

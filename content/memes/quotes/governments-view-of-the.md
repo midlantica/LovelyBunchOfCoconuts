@@ -1,5 +1,5 @@
 ---
-title: "governments-view-of-the"
+title: 'governments-view-of-the'
 ---
 
 ![governments-view-of-the](/memes/quotes/governments-view-of-the.png)

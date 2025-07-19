@@ -1,5 +1,5 @@
 ---
-title: "percent-shares-of-us-households-by-total"
+title: 'percent-shares-of-us-households-by-total'
 ---
 
 ![percent-shares-of-us-households-by-total](/memes/data/percent-shares-of-us-households-by-total.png)

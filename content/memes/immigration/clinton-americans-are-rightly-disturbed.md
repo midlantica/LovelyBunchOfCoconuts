@@ -1,5 +1,5 @@
 ---
-title: "clinton-americans-are-rightly-disturbed"
+title: 'clinton-americans-are-rightly-disturbed'
 ---
 
 ![clinton-americans-are-rightly-disturbed](/memes/immigration/clinton-americans-are-rightly-disturbed.png)

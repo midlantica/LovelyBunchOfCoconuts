@@ -1,5 +1,5 @@
 ---
-title: "human-beings-are-born-wit"
+title: 'human-beings-are-born-wit'
 ---
 
 ![human-beings-are-born-wit](/memes/quotes/human-beings-are-born-wit.png)

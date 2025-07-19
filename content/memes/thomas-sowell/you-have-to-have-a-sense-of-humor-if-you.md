@@ -1,5 +1,5 @@
 ---
-title: "you-have-to-have-a-sense-of-humor-if-you"
+title: 'you-have-to-have-a-sense-of-humor-if-you'
 ---
 
 ![you-have-to-have-a-sense-of-humor-if-you](/memes/thomas-sowell/you-have-to-have-a-sense-of-humor-if-you.png)

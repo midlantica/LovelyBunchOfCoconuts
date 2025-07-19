@@ -1,5 +1,5 @@
 ---
-title: "swimming-records-boys-15-18-world-junior"
+title: 'swimming-records-boys-15-18-world-junior'
 ---
 
 ![swimming-records-boys-15-18-world-junior](/memes/data/swimming-records-boys-15-18-world-junior.png)

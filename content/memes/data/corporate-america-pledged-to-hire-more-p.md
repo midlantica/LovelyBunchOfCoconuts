@@ -1,5 +1,5 @@
 ---
-title: "corporate-america-pledged-to-hire-more-p"
+title: 'corporate-america-pledged-to-hire-more-p'
 ---
 
 ![corporate-america-pledged-to-hire-more-p](/memes/data/corporate-america-pledged-to-hire-more-p.png)

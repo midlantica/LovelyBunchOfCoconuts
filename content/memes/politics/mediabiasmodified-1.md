@@ -1,5 +1,5 @@
 ---
-title: "mediabiasmodified-1"
+title: 'mediabiasmodified-1'
 ---
 
 ![mediabiasmodified-1](/memes/politics/mediabiasmodified-1.png)

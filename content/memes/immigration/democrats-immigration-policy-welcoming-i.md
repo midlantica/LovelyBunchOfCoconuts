@@ -1,5 +1,5 @@
 ---
-title: "democrats-immigration-policy-welcoming-i"
+title: 'democrats-immigration-policy-welcoming-i'
 ---
 
 ![democrats-immigration-policy-welcoming-i](/memes/immigration/democrats-immigration-policy-welcoming-i.png)

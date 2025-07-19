@@ -1,5 +1,5 @@
 ---
-title: "socialism-in-general-has-a-record-of-fai"
+title: 'socialism-in-general-has-a-record-of-fai'
 ---
 
 ![socialism-in-general-has-a-record-of-fai](/memes/thomas-sowell/socialism-in-general-has-a-record-of-fai.png)

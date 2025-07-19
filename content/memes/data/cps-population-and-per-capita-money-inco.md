@@ -1,5 +1,5 @@
 ---
-title: "cps-population-and-per-capita-money-inco"
+title: 'cps-population-and-per-capita-money-inco'
 ---
 
 ![cps-population-and-per-capita-money-inco](/memes/data/cps-population-and-per-capita-money-inco.png)

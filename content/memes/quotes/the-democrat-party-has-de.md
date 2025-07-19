@@ -1,5 +1,5 @@
 ---
-title: "the-democrat-party-has-de"
+title: 'the-democrat-party-has-de'
 ---
 
 ![the-democrat-party-has-de](/memes/quotes/the-democrat-party-has-de.png)

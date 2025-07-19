@@ -1,5 +1,5 @@
 ---
-title: "we-must-reject-the-idea-t"
+title: 'we-must-reject-the-idea-t'
 ---
 
 ![we-must-reject-the-idea-t](/memes/quotes/we-must-reject-the-idea-t.png)

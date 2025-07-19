@@ -1,5 +1,5 @@
 ---
-title: "white-liberals-are-the-mo"
+title: 'white-liberals-are-the-mo'
 ---
 
 ![white-liberals-are-the-mo](/memes/quotes/white-liberals-are-the-mo.png)

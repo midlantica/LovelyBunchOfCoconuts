@@ -58,6 +58,7 @@ Any additional context or notes about the claim can go here.
 #### Adding a Meme
 
 1. First, upload your image:
+
    - Navigate to the `public/memes/` folder
    - Click "Add file" > "Upload files"
    - Select your image file (PNG or JPG recommended)

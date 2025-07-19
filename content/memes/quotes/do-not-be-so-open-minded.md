@@ -1,5 +1,5 @@
 ---
-title: "do-not-be-so-open-minded"
+title: 'do-not-be-so-open-minded'
 ---
 
 ![do-not-be-so-open-minded](/memes/quotes/do-not-be-so-open-minded.png)

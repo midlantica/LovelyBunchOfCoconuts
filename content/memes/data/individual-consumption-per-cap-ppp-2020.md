@@ -1,5 +1,5 @@
 ---
-title: "individual-consumption-per-cap-ppp-2020"
+title: 'individual-consumption-per-cap-ppp-2020'
 ---
 
 ![individual-consumption-per-cap-ppp-2020](/memes/data/individual-consumption-per-cap-ppp-2020.png)

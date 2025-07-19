@@ -1,5 +1,5 @@
 ---
-title: "activism-is-a-way-for-useless-people-to"
+title: 'activism-is-a-way-for-useless-people-to'
 ---
 
 ![activism-is-a-way-for-useless-people-to](/memes/thomas-sowell/activism-is-a-way-for-useless-people-to.png)

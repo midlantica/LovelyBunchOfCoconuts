@@ -1,5 +1,5 @@
 ---
-title: "ourworldindatawars-long-run-military-civ"
+title: 'ourworldindatawars-long-run-military-civ'
 ---
 
 ![ourworldindatawars-long-run-military-civ](/memes/data/ourworldindatawars-long-run-military-civ.png)

@@ -1,5 +1,5 @@
 ---
-title: "can-a-people-tax-themselv"
+title: 'can-a-people-tax-themselv'
 ---
 
 ![can-a-people-tax-themselv](/memes/quotes/can-a-people-tax-themselv.png)

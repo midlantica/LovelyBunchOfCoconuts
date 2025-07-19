@@ -1,5 +1,5 @@
 ---
-title: "new-york-times-word-usage-frequency-1970"
+title: 'new-york-times-word-usage-frequency-1970'
 ---
 
 ![new-york-times-word-usage-frequency-1970](/memes/data/new-york-times-word-usage-frequency-1970.png)

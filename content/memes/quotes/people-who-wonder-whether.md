@@ -1,5 +1,5 @@
 ---
-title: "people-who-wonder-whether"
+title: 'people-who-wonder-whether'
 ---
 
 ![people-who-wonder-whether](/memes/quotes/people-who-wonder-whether.png)

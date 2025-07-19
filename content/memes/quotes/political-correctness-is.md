@@ -1,5 +1,5 @@
 ---
-title: "political-correctness-is"
+title: 'political-correctness-is'
 ---
 
 ![political-correctness-is](/memes/quotes/political-correctness-is.png)

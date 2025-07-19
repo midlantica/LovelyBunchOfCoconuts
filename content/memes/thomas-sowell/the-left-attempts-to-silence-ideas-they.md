@@ -1,5 +1,5 @@
 ---
-title: "the-left-attempts-to-silence-ideas-they"
+title: 'the-left-attempts-to-silence-ideas-they'
 ---
 
 ![the-left-attempts-to-silence-ideas-they](/memes/thomas-sowell/the-left-attempts-to-silence-ideas-they.png)
