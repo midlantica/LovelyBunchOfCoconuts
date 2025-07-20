@@ -101,10 +101,48 @@
   const isLoaded = ref(false)
   const error = ref(null)
 
+  // Emit counts for search bar
+  const emit = defineEmits(['counts', 'modal', 'content-updated'])
+
   // Computed content arrays from cache
   const allClaims = computed(() => cache.claims || [])
   const allQuotes = computed(() => cache.quotes || [])
   const allMemes = computed(() => cache.memes || [])
+
+  // Search-only filtered content (for pill counts)
+  const searchFilteredContent = computed(() => {
+    // Early return if cache isn't ready yet
+    if (!cache.claims && !cache.quotes && !cache.memes) {
+      return { claims: [], quotes: [], memes: [] }
+    }
+
+    let searchClaims = allClaims.value
+    let searchQuotes = allQuotes.value
+    let searchMemes = allMemes.value
+
+    // Apply search filter using searchableText from useContentCache
+    if (props.search?.trim()) {
+      const searchLower = props.search.toLowerCase()
+
+      searchClaims = searchClaims.filter((item) =>
+        item.searchableText?.toLowerCase().includes(searchLower)
+      )
+
+      searchQuotes = searchQuotes.filter((item) =>
+        item.searchableText?.toLowerCase().includes(searchLower)
+      )
+
+      searchMemes = searchMemes.filter((item) =>
+        item.searchableText?.toLowerCase().includes(searchLower)
+      )
+    }
+
+    return {
+      claims: searchClaims,
+      quotes: searchQuotes,
+      memes: searchMemes,
+    }
+  })
 
   // Simple content filtering
   const filteredContent = computed(() => {
@@ -159,12 +197,14 @@
     interleavedContent,
     (newContent) => {
       console.log('Content updated:', newContent?.length || 0, 'items')
+      // Emit that content has been updated (for scroll-to-top)
+      emit('content-updated', { 
+        hasContent: newContent?.length > 0,
+        isSearchResult: !!props.search?.trim() 
+      })
     },
     { immediate: true }
   )
-
-  // Emit counts for search bar
-  const emit = defineEmits(['counts', 'modal'])
 
   // Modal handler
   const openModal = (data, type) => {
@@ -178,13 +218,13 @@
     (content) => {
       emit('counts', {
         wallCounts: {
-          claims: content.claims.length,
-          quotes: content.quotes.length,
-          memes: content.memes.length,
+          claims: searchFilteredContent.value.claims.length,
+          quotes: searchFilteredContent.value.quotes.length,
+          memes: searchFilteredContent.value.memes.length,
           total:
-            content.claims.length +
-            content.quotes.length +
-            content.memes.length,
+            (props.filters.claims ? searchFilteredContent.value.claims.length : 0) +
+            (props.filters.quotes ? searchFilteredContent.value.quotes.length : 0) +
+            (props.filters.memes ? searchFilteredContent.value.memes.length : 0),
         },
         totalCounts: {
           claims: allClaims.value.length,

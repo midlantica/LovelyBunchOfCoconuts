@@ -26,12 +26,13 @@
     >
       <div class="mx-auto md:px-0 pr-3 pl-2 w-full max-w-screen-md">
         <main class="pb-8">
-          <TheWall
-            :search="searchTerm"
-            :filters="contentFilters"
-            @modal="handleModal"
-            @counts="handleCounts"
-          />
+                  <TheWall
+          :search="searchTerm"
+          :filters="contentFilters"
+          @counts="handleCounts"
+          @modal="handleModal"
+          @content-updated="handleContentUpdated"
+        />
         </main>
       </div>
     </div>
@@ -57,6 +58,38 @@
 
   // Get modal handlers from layout
   const handleModal = inject('openModal')
+
+  // Handle content updates and scroll to top for search results
+  function handleContentUpdated({ hasContent, isSearchResult }) {
+    if (isSearchResult && hasContent) {
+      console.log('🔍 Search results loaded via content-updated event, scrolling to top')
+      nextTick(() => {
+        // Find the scroll container and scroll it to top
+        const scrollContainer = document.querySelector('.scroll-container-stable')
+        if (scrollContainer) {
+          scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+      })
+    }
+  }
+
+  // Also watch search term directly for immediate scroll (backup)
+  watch(searchTerm, (newTerm, oldTerm) => {
+    if (newTerm && newTerm.trim() !== '' && newTerm !== oldTerm) {
+      console.log('🔍 Search term changed to:', newTerm, '- scrolling to top immediately')
+      // Small delay to let the search start processing
+      setTimeout(() => {
+        const scrollContainer = document.querySelector('.scroll-container-stable')
+        if (scrollContainer) {
+          scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+      }, 100)
+    }
+  })
 
   // Count handlers
   function handleCounts({ wallCounts: wc, totalCounts: tc }) {

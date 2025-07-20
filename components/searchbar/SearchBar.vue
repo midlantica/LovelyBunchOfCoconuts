@@ -13,6 +13,7 @@
         class="bg-transparent focus:bg-transparent ps-12 pt-[.3rem] pr-12 pb-[.5rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400/50 rounded-lg outline-none w-full text-[1.5rem] text-slate-200 sm:text-[1.275rem] placeholder:text-seagull-200/50 leading-tight tracking-wide"
         placeholder="Search..."
         @keydown.esc="handleInputEscape"
+        @input="handleSearchInput"
         ref="searchInputRef"
       />
       <!-- Custom clear button -->
@@ -51,7 +52,7 @@
           class="font-light text-slate-400 uppercase tracking-wider"
           style="font-size: 1.155rem"
         >
-          {{ props.totalItemCount }}
+          {{ props.totalCount }}
         </span>
       </client-only>
     </div>
@@ -69,6 +70,7 @@
 <script setup>
   import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
   import { debounce } from 'lodash-es'
+  import PillButton from './PillButton.vue'
 
   const props = defineProps({
     search: String,
@@ -147,6 +149,17 @@
     console.log('🔍 SearchBar emitting clear search')
     emit('update:search', '')
     // nextTick(() => searchInputRef.value?.focus()) // optional
+  }
+
+  function handleSearchInput() {
+    console.log('🔍 SearchBar immediate input change - scrolling to top')
+    // Immediately scroll to top on any input change
+    const scrollContainer = document.querySelector('.scroll-container-stable')
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 
   function handleInputEscape() {
