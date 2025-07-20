@@ -69,7 +69,6 @@
 <script setup>
   import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
   import { debounce } from 'lodash-es'
-  import PillButton from '~/components/PillButton.vue'
 
   const props = defineProps({
     search: String,

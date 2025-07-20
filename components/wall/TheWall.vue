@@ -81,6 +81,9 @@
   import { ref, computed, onMounted, watch, nextTick } from 'vue'
   import { interleaveContent } from '~/composables/interleaveContent'
   import { useContentCache } from '~/composables/useContentCache'
+  import ClaimPanel from './ClaimPanel.vue'
+  import QuotePanel from './QuotePanel.vue'
+  import MemePanel from './MemePanel.vue'
 
   // Use the proven content cache system instead of direct queryContent
   const { cache, loadAllContent } = useContentCache()

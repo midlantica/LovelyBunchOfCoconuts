@@ -1,8 +1,10 @@
 <!-- app.vue -->
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <div>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
   <!-- Modal root for teleport -->
   <div id="modal-root"></div>
 </template>
