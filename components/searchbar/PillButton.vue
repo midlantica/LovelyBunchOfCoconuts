@@ -24,6 +24,13 @@
   .pill-btn {
     @apply flex justify-between items-center gap-1 bg-slate-800 px-3 pt-[.2rem] pb-[0.3rem] rounded-md w-[100px] font-light text-slate-200 text-sm uppercase tracking-wider transition;
     font-size: 1rem;
+    outline: none;
+  }
+  .pill-btn:focus {
+    outline: none;
+  }
+  .pill-btn:focus-visible {
+    outline: none;
   }
   .pill-label {
     @apply ml-auto;

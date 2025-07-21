@@ -10,7 +10,8 @@
       <input
         type="text"
         v-model="searchTerm"
-        class="bg-transparent focus:bg-transparent ps-12 pt-[.4rem] pr-12 pb-[.6rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400/50 rounded-lg outline-none w-full text-[1.5rem] text-slate-200 sm:text-[1.275rem] placeholder:text-seagull-200/50 leading-tight tracking-wide"
+        class="bg-transparent focus:bg-transparent ps-12 pt-[.4rem] pr-12 pb-[.6rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400 rounded-lg outline-none w-full font-normal text-slate-200 sm:text-[1.275rem] placeholder:text-seagull-200/50 leading-tight tracking-wider"
+        style="font-weight: 300 !important; font-size: 1.4rem !important"
         placeholder="Search..."
         @keydown.esc="handleInputEscape"
         @input="handleSearchInput"
@@ -148,7 +149,8 @@
     // Immediately emit the search change instead of waiting for debounce
     console.log('🔍 SearchBar emitting clear search')
     emit('update:search', '')
-    // nextTick(() => searchInputRef.value?.focus()) // optional
+    // Ensure focus stays on search input to prevent pill focus ring
+    nextTick(() => searchInputRef.value?.focus())
   }
 
   function handleSearchInput() {
