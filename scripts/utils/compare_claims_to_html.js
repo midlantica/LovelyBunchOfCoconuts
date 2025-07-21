@@ -1,10 +1,10 @@
-const fs = require("fs")
-const path = require("path")
-const cheerio = require("cheerio")
+const fs = require('fs')
+const path = require('path')
+const cheerio = require('cheerio')
 
 // Paths
-const claimsDir = path.join(__dirname, "../content/claims")
-const htmlFilePath = path.join(__dirname, "claims.html")
+const claimsDir = path.join(__dirname, '../content/claims')
+const htmlFilePath = path.join(__dirname, 'claims.html')
 
 // Helper function to get all files in a directory recursively
 function getFilesRecursively(dir) {
@@ -22,11 +22,11 @@ function getFilesRecursively(dir) {
 
 // Extract claim titles from HTML
 function extractClaimsFromHTML(htmlFilePath) {
-  const htmlContent = fs.readFileSync(htmlFilePath, "utf-8")
+  const htmlContent = fs.readFileSync(htmlFilePath, 'utf-8')
   const $ = cheerio.load(htmlContent)
 
   const claims = []
-  $("h2").each((_, element) => {
+  $('h2').each((_, element) => {
     const text = $(element).text().trim()
     if (text && !claims.includes(text)) {
       claims.push(text)
@@ -38,10 +38,12 @@ function extractClaimsFromHTML(htmlFilePath) {
 
 // Extract claim titles from markdown files
 function extractMarkdownClaims(markdownDir) {
-  const markdownFiles = getFilesRecursively(markdownDir).filter((file) => file.endsWith(".md"))
+  const markdownFiles = getFilesRecursively(markdownDir).filter((file) =>
+    file.endsWith('.md')
+  )
   const markdownTitles = markdownFiles
     .map((file) => {
-      const content = fs.readFileSync(file, "utf-8")
+      const content = fs.readFileSync(file, 'utf-8')
       const match = content.match(/claim:\s*"(.*?)"/i)
       return match ? match[1].trim() : null
     })
@@ -53,7 +55,9 @@ function extractMarkdownClaims(markdownDir) {
 // Compare claims in HTML to markdown files
 function compareClaims(htmlClaims, markdownTitles) {
   // Identify claims in markdown that are not in HTML
-  const missingClaims = markdownTitles.filter((title) => !htmlClaims.includes(title))
+  const missingClaims = markdownTitles.filter(
+    (title) => !htmlClaims.includes(title)
+  )
   return missingClaims
 }
 
@@ -64,15 +68,15 @@ function generateReport() {
   const missingClaims = compareClaims(htmlClaims, markdownTitles)
 
   // Output only the missing claims
-  const report = {Corporate Greed
+  const report = {
     missingClaims,
   }
 
   fs.writeFileSync(
-    path.join(__dirname, "missing_claims_from_html_report.json"),
+    path.join(__dirname, 'missing_claims_from_html_report.json'),
     JSON.stringify(report, null, 2)
   )
-  console.log("Missing Claims Report generated:", report)
+  console.log('Missing Claims Report generated:', report)
 }
 
 // Run the script

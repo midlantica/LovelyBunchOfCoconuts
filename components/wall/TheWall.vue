@@ -198,9 +198,9 @@
     (newContent) => {
       console.log('Content updated:', newContent?.length || 0, 'items')
       // Emit that content has been updated (for scroll-to-top)
-      emit('content-updated', { 
+      emit('content-updated', {
         hasContent: newContent?.length > 0,
-        isSearchResult: !!props.search?.trim() 
+        isSearchResult: !!props.search?.trim(),
       })
     },
     { immediate: true }
@@ -222,9 +222,15 @@
           quotes: searchFilteredContent.value.quotes.length,
           memes: searchFilteredContent.value.memes.length,
           total:
-            (props.filters.claims ? searchFilteredContent.value.claims.length : 0) +
-            (props.filters.quotes ? searchFilteredContent.value.quotes.length : 0) +
-            (props.filters.memes ? searchFilteredContent.value.memes.length : 0),
+            (props.filters.claims
+              ? searchFilteredContent.value.claims.length
+              : 0) +
+            (props.filters.quotes
+              ? searchFilteredContent.value.quotes.length
+              : 0) +
+            (props.filters.memes
+              ? searchFilteredContent.value.memes.length
+              : 0),
         },
         totalCounts: {
           claims: allClaims.value.length,

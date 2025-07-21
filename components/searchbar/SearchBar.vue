@@ -5,12 +5,12 @@
       <Icon
         name="mdi:magnify"
         size="2rem"
-        class="top-[.3rem] left-[.65rem] absolute text-slate-200/60"
+        class="top-1/2 left-[.65rem] absolute text-slate-200/60 -translate-y-1/2"
       />
       <input
         type="text"
         v-model="searchTerm"
-        class="bg-transparent focus:bg-transparent ps-12 pt-[.3rem] pr-12 pb-[.5rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400/50 rounded-lg outline-none w-full text-[1.5rem] text-slate-200 sm:text-[1.275rem] placeholder:text-seagull-200/50 leading-tight tracking-wide"
+        class="bg-transparent focus:bg-transparent ps-12 pt-[.4rem] pr-12 pb-[.6rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400/50 rounded-lg outline-none w-full text-[1.5rem] text-slate-200 sm:text-[1.275rem] placeholder:text-seagull-200/50 leading-tight tracking-wide"
         placeholder="Search..."
         @keydown.esc="handleInputEscape"
         @input="handleSearchInput"
@@ -20,7 +20,7 @@
       <button
         v-if="searchTerm"
         @click="clearSearch"
-        class="top-[.5rem] right-[.75rem] absolute flex justify-center items-center gap-1 bg-transparent pl-4 rounded-full w-auto transition-colors cursor-pointer"
+        class="top-1/2 right-[.75rem] absolute flex justify-center items-center gap-1 bg-transparent pl-4 rounded-full w-auto transition-colors -translate-y-1/2 cursor-pointer"
         type="button"
         aria-label="Clear search"
       >
