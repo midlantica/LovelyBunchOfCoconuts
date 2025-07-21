@@ -16,13 +16,25 @@ export default defineNuxtConfig({
     '@nuxtjs/mdc',
   ],
   css: ['~/assets/css/main.css'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   ssr: true,
   nitro: {
     prerender: {
       routes: ['/'],
       crawlLinks: true,
     },
+    ignore: [
+      // Ignore all files and directories starting with one or more underscores
+      '**/_*', // Files/directories starting with single underscore
+      '**/__*', // Files/directories starting with double underscore or more
+    ],
   },
+
   content: {
     build: {
       markdown: {

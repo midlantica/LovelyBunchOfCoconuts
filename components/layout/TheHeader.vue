@@ -1,6 +1,6 @@
 <!-- components/TheHeader.vue -->
 <template>
-  <header class="bg-slate-900 pt-4 pb-1">
+  <header class="bg-slate-900 pt-4 pb-2">
     <div class="flex flex-col gap-[0.5vw] px-2">
       <!-- Top row: Icons and logo -->
       <div

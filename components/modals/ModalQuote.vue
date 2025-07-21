@@ -2,9 +2,9 @@
 <template>
   <client-only>
     <ModalFrame v-if="modalData" :show="show" @close="emit('close')">
-      <div class="flex flex-col">
+      <div class="flex flex-col p-4 sm:p-0">
         <div class="mb-2">
-          <h1 class="mb-2 font-bold text-white text-2xl">
+          <h1 class="mb-2 font-bold text-white text-2xl leading-9">
             {{
               modalData?.quoteText ||
               (modalData?.headings && modalData.headings[0]) ||

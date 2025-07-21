@@ -6,13 +6,12 @@
       @mousedown.self="onClose"
     >
       <div
-        class="relative flex flex-col bg-slate-800 shadow-lg mx-6 rounded-lg modal-frame"
-        :class="modalStyle ? '' : 'min-w-[60vw] max-w-[500px]'"
-        :style="
-          modalStyle
-            ? modalStyle
-            : { maxHeight: '90vh', padding: '1rem 1.5rem' }
-        "
+        class="relative flex flex-col bg-slate-800 shadow-lg mx-0 sm:mx-6 rounded-none sm:rounded-lg modal-frame"
+        :style="modalStyle ? modalStyle : { maxHeight: '90vh' }"
+        :class="[
+          modalStyle ? '' : 'w-full sm:min-w-[60vw] sm:max-w-[500px]',
+          'p-0 pb-4 sm:p-6',
+        ]"
         @mousedown.stop
       >
         <CloseButton @click="onClose" />
@@ -26,10 +25,13 @@
 
 <script setup>
   import { onMounted, onBeforeUnmount } from 'vue'
+  import CloseButton from '../ui/CloseButton.vue'
+
   const props = defineProps({
     show: { type: Boolean, default: false },
     modalStyle: { type: Object, default: null },
   })
+
   const emit = defineEmits(['close'])
   const onClose = () => emit('close')
 
@@ -39,9 +41,11 @@
       onClose()
     }
   }
+
   onMounted(() => {
     window.addEventListener('keydown', handleEscape, true)
   })
+
   onBeforeUnmount(() => {
     window.removeEventListener('keydown', handleEscape, true)
   })

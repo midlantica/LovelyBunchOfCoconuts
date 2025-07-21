@@ -4,7 +4,7 @@
     <ModalFrame v-if="modalData" :show="show" @close="emit('close')">
       <!-- Container with no padding -->
       <div
-        class="flex flex-col w-full max-w-[min(1000px,calc(100vw-4rem))] h-full max-h-[calc(100vh-8rem)]"
+        class="flex flex-col w-full max-w-full sm:max-w-[min(1000px,calc(100vw-4rem))] h-full max-h-[calc(100vh-8rem)]"
       >
         <!-- Image container -->
         <div class="flex flex-1 justify-center items-center min-h-0">
@@ -12,7 +12,7 @@
             v-if="modalData?.image"
             :src="modalData?.image"
             :alt="modalData?.title"
-            class="w-auto max-w-full h-auto max-h-[calc(100vh-16rem)] object-scale-down"
+            class="w-full sm:w-auto max-w-full h-auto max-h-[calc(100vh-16rem)] object-contain"
           />
         </div>
         <!-- Text line with consistent bottom spacing -->

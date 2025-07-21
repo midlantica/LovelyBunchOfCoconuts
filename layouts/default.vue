@@ -30,14 +30,7 @@
     />
 
     <!-- Scroll to Top Button -->
-    <button
-      class="z-50 fixed flex justify-center items-center bg-slate-800 hover:bg-slate-800 rounded-md text-slate-400 hover:text-white transition-colors duration-200"
-      style="bottom: 12px; right: 12px; width: 42px; height: 42px"
-      @click="scrollToTop"
-      title="Scroll to top"
-    >
-      <Icon name="tabler:arrow-bar-to-up" style="width: 22px; height: 22px" />
-    </button>
+    <ScrollToTopButton />
   </div>
 </template>
 
@@ -48,6 +41,7 @@
   import ModalMeme from '~/components/modals/ModalMeme.vue'
   import ModalClaim from '~/components/modals/ModalClaim.vue'
   import ModalQuote from '~/components/modals/ModalQuote.vue'
+  import ScrollToTopButton from '~/components/ui/ScrollToTopButton.vue'
 
   // Global modal state
   const showModal = ref(false)
@@ -70,16 +64,4 @@
   // Provide modal handlers globally
   provide('openModal', handleModal)
   provide('closeModal', closeModal)
-
-  // Scroll to top function
-  function scrollToTop() {
-    // Target the main scroll container first
-    const scrollContainer = document.querySelector('.scroll-container-stable')
-    if (scrollContainer) {
-      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
-    } else {
-      // Fallback to window scroll
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-  }
 </script>

@@ -2,7 +2,7 @@
 <template>
   <client-only>
     <ModalFrame v-if="modalData" :show="show" @close="emit('close')">
-      <div class="flex flex-col">
+      <div class="flex flex-col p-4 sm:p-0">
         <div class="mb-2">
           <h1 class="mb-4 font-bold text-white text-2xl">
             {{ modalData?.claim || modalData?.title }}

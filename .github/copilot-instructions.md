@@ -16,7 +16,7 @@ WakeUpNPC2 is a Nuxt 3 content wall displaying political claims, quotes, and mem
 
 ```javascript
 // Example: Template can only render these types
-item.type === 'claimPair' // → 2-column ClaimTranslationPanel grid
+item.type === 'claimPair' // → 2-column ClaimPanel grid
 item.type === 'quote' // → full-width QuotePanel
 item.type === 'memeRow' // → 2-column MemePanel grid
 ```
@@ -26,6 +26,12 @@ item.type === 'memeRow' // → 2-column MemePanel grid
 - **Progressive Loading**: `loadInitialContent(20)` → `loadRemainingContent()` → infinite scroll
 - **Content Cache**: `useContentCache.js` - reactive cache with transformation pipeline
 - **Search Enhancement**: Converts dashes/underscores to spaces for filename matching
+
+### Content Ignore Configuration
+
+- **File Exclusion**: Files/directories starting with underscores are automatically ignored
+- **Nitro Configuration**: Uses `nitro.ignore` patterns for content exclusion
+- **Pattern Matching**: `**/_*` and `**/__*` exclude single and multiple underscore prefixes
 
 ### Nuxt Content v3 Integration
 
@@ -57,11 +63,17 @@ pnpm format                 # Prettier formatting
 composables/
 ├── interleaveContent.js    # Core pattern logic (NEVER create multiple versions)
 ├── useContentCache.js      # Content loading/transformation
-└── useContentFeed.js       # Layout state management
+├── useContentWall.js       # Wall state management
+├── useInfiniteScroll.js    # Infinite scroll functionality
+├── useModalLogic.js        # Modal state management
+├── useSearchAndFilters.js  # Search and filtering logic
+└── useBadgeCounts.js       # Content count tracking
 
-layouts/home.vue            # Main layout with SearchBar, infinite scroll
-pages/index.vue             # Content wall rendering
-components/                 # ClaimTranslationPanel, QuotePanel, MemePanel
+layouts/default.vue         # Main layout with modals, header, footer
+pages/index.vue             # Content wall rendering with SearchBar
+components/wall/            # ClaimPanel, QuotePanel, MemePanel, TheWall
+components/modals/          # ModalClaim, ModalQuote, ModalMeme, ModalFrame
+components/ui/              # ScrollToTopButton, CloseButton, Button
 ```
 
 ### Content Type Transformations

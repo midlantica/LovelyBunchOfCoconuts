@@ -9,13 +9,23 @@
   background: rgba(0, 0, 0, 0.8);
 }
 #modal-root .modal-frame {
-  border-radius: 0.5rem;
   position: relative;
   max-height: 90vh;
-  max-width: 600px;
   display: flex;
   flex-direction: column;
-  padding: 0.5rem 0.5rem;
+  /* Mobile: no border radius, no max-width, no padding */
+  border-radius: 0;
+  max-width: none;
+  padding: 0 0 1rem 0;
+}
+
+/* Desktop styles */
+@media (min-width: 640px) {
+  #modal-root .modal-frame {
+    border-radius: 0.5rem;
+    max-width: 600px;
+    padding: 1.5rem;
+  }
 }
 
 /* Special image sizing for meme modal in column mode (≤ 762px) */
