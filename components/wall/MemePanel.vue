@@ -3,32 +3,32 @@
   <div>
     <div
       v-if="meme && meme.image && slug"
-      class="block bg-slate-800 hover:bg-slate-900 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 border hover:border hover:border-seagull-400 border-transparent rounded-lg w-full h-full overflow-hidden cursor-pointer"
+      class="block bg-slate-800 hover:bg-slate-900 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 border hover:border hover:border-seagull-400 border-transparent rounded-md w-full h-full overflow-hidden cursor-pointer"
       @click="openModal"
     >
       <img
         ref="lazyImg"
         :data-src="meme.image"
         :alt="imageAlt"
-        class="bg-black/40 rounded-lg w-full h-full object-contain aspect-square"
+        class="bg-black/40 rounded-md w-full h-full object-contain aspect-square"
         style="max-width: 100%; max-height: 100%; min-width: 0; min-height: 0"
       />
     </div>
     <div
       v-else-if="meme && meme.image"
-      class="block bg-slate-800 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 rounded-lg w-full h-full overflow-hidden"
+      class="block bg-slate-800 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 rounded-md w-full h-full overflow-hidden"
     >
       <img
         ref="lazyImg"
         :data-src="meme.image"
         :alt="imageAlt"
-        class="bg-black/40 rounded-lg w-full h-full object-contain aspect-square"
+        class="bg-black/40 rounded-md w-full h-full object-contain aspect-square"
         style="max-width: 100%; max-height: 100%; min-width: 0; min-height: 0"
       />
     </div>
     <div
       v-else
-      class="block bg-slate-800 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 rounded-lg w-full h-full overflow-hidden"
+      class="block bg-slate-800 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 rounded-md w-full h-full overflow-hidden"
     >
       <p class="text-white text-center">🚨 Meme image not found!</p>
       <p class="mt-1 text-red-400 text-xs text-center">

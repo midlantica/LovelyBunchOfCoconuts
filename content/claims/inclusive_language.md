@@ -6,4 +6,4 @@ translation: 'Say what we say—or else.'
 
 ## "Inclusive Language"
 
-## Say what we say—or else.
+## Say what we say — or else.

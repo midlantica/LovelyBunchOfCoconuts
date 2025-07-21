@@ -11,7 +11,7 @@
         :style="
           modalStyle
             ? modalStyle
-            : { maxHeight: '90vh', padding: '1rem 1.1rem' }
+            : { maxHeight: '90vh', padding: '1rem 1.5rem' }
         "
         @mousedown.stop
       >

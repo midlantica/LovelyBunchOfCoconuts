@@ -10,7 +10,7 @@
         v-html="formatQuote(quote.headings[0])"
       ></h1>
       <p
-        class="inline-block font-light text-seagull-200 text-lg align-baseline tracking-wide"
+        class="inline-block font-light text-seagull-200 text-xl align-baseline tracking-wide"
         v-if="quote.attribution"
       >
         — {{ quote.attribution }}
@@ -30,7 +30,7 @@
         }}
       </h2>
       <p
-        class="inline-block font-light text-seagull-200 text-lg align-baseline"
+        class="inline-block font-light text-seagull-200 text-xl align-baseline"
         v-if="quote && quote.attribution"
       >
         — {{ quote.attribution }}

@@ -5,13 +5,13 @@
       <div class="flex flex-col">
         <div class="mb-2">
           <h1 class="mb-2 font-bold text-white text-2xl">
-            "{{
+            {{
               modalData?.quoteText ||
               (modalData?.headings && modalData.headings[0]) ||
               modalData?.title
-            }}"
+            }}
           </h1>
-          <p class="mb-2 text-slate-400 text-lg">
+          <p class="mb-2 text-seagull-300 text-xl">
             — {{ modalData?.attribution }}
           </p>
         </div>
