@@ -31,12 +31,12 @@
 
     <!-- Scroll to Top Button -->
     <button
-      class="fixed bg-slate-800 hover:bg-slate-800 text-slate-400 hover:text-white rounded-md flex items-center justify-center transition-colors duration-200 z-50"
-      style="bottom: 12px; right: 12px; width: 42px; height: 42px;"
+      class="z-50 fixed flex justify-center items-center bg-slate-800 hover:bg-slate-800 rounded-md text-slate-400 hover:text-white transition-colors duration-200"
+      style="bottom: 12px; right: 12px; width: 42px; height: 42px"
       @click="scrollToTop"
       title="Scroll to top"
     >
-      <Icon name="tabler:arrow-bar-to-up" style="width: 22px; height: 22px;" />
+      <Icon name="tabler:arrow-bar-to-up" style="width: 22px; height: 22px" />
     </button>
   </div>
 </template>
