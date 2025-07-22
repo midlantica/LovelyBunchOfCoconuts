@@ -1,4 +1,4 @@
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import { interleaveContent } from '~/composables/interleaveContent'
 
 // Helper function to extract searchable text from AST body
@@ -33,8 +33,65 @@ const globalCache = reactive({
 })
 
 export function useContentCache() {
-  // Return the shared global cache instead of creating a new one
+  // Return reactive refs to the shared global cache
+  const claims = ref(globalCache.claims)
+  const quotes = ref(globalCache.quotes)
+  const memes = ref(globalCache.memes)
+  const isLoading = ref(globalCache.isLoading)
+  const error = ref(globalCache.error)
+
+  // Keep refs in sync with global cache
+  watch(
+    () => globalCache.claims,
+    (newClaims) => {
+      claims.value = newClaims
+    },
+    { immediate: true }
+  )
+  watch(
+    () => globalCache.quotes,
+    (newQuotes) => {
+      quotes.value = newQuotes
+    },
+    { immediate: true }
+  )
+  watch(
+    () => globalCache.memes,
+    (newMemes) => {
+      memes.value = newMemes
+    },
+    { immediate: true }
+  )
+  watch(
+    () => globalCache.isLoading,
+    (newLoading) => {
+      isLoading.value = newLoading
+    },
+    { immediate: true }
+  )
+  watch(
+    () => globalCache.error,
+    (newError) => {
+      error.value = newError
+    },
+    { immediate: true }
+  )
+
+  // Return the shared global cache instance for direct modification
   const cache = globalCache
+
+  // Auto-load content if not already loaded (for dynamic routes)
+  const ensureContentLoaded = async () => {
+    if (
+      globalCache.claims.length === 0 &&
+      globalCache.quotes.length === 0 &&
+      globalCache.memes.length === 0 &&
+      !globalCache.isLoading
+    ) {
+      console.log('🚀 Auto-loading content for dynamic route...')
+      await loadAllContent()
+    }
+  }
 
   // Helper function to filter out special files
   const filterSpecialFiles = (items) => {
@@ -542,6 +599,12 @@ export function useContentCache() {
 
   return {
     cache,
+    claims,
+    quotes,
+    memes,
+    isLoading,
+    error,
+    ensureContentLoaded,
     getContentItem,
     getAllContent,
     loadAllContent,

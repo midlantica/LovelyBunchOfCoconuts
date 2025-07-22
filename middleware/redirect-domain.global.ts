@@ -22,8 +22,9 @@ export default defineNuxtRouteMiddleware((to, from) => {
     return
   }
 
+  // DISABLED: Allow dynamic routes for content sharing
   // If on dev or prod, but not at root path, redirect to root
-  if (window.location.pathname !== '/') {
-    window.location.replace(window.location.origin + '/')
-  }
+  // if (window.location.pathname !== '/') {
+  //   window.location.replace(window.location.origin + '/')
+  // }
 })

@@ -15,6 +15,7 @@
     "format": "prettier --write \"**/*.{vue,js,ts,html,css,scss,md}\""
   },
   "dependencies": {
+    "@napi-rs/canvas": "^0.1.74",
     "@nuxt/content": "3.6.3",
     "@nuxt/eslint": "1.5.2",
     "@nuxt/icon": "1.15.0",

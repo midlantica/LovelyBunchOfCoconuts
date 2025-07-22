@@ -27,6 +27,7 @@
           :text="`Check out this meme: ${modalData?.title || modalData?.description}`"
           :url="shareUrl"
           :generated-image-blob="shareImageBlob"
+          content-type="meme"
         />
       </div>
     </ModalFrame>
@@ -37,6 +38,7 @@
   import { watch, computed, ref } from 'vue'
   import ModalFrame from './ModalFrame.vue'
   import ShareButton from '../ui/ShareButton.vue'
+  import { useContentUrls } from '~/composables/useContentUrls'
 
   const props = defineProps({
     show: { type: Boolean, default: false },
@@ -44,37 +46,28 @@
   })
 
   const emit = defineEmits(['close'])
+  const { generateContentUrl } = useContentUrls()
 
   const shareImageBlob = ref(null)
 
   // Create shareable URL
   const shareUrl = computed(() => {
-    if (props.modalData?._path) {
-      return `${window.location.origin}${props.modalData._path}`
-    }
-
-    // Fallback: create a meaningful URL based on content
-    if (props.modalData?.title || props.modalData?.description) {
-      const text = props.modalData.title || props.modalData.description
-      const slug = text
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, '')
-        .replace(/\s+/g, '-')
-        .substring(0, 50)
-      return `${window.location.origin}/memes/${slug}`
-    }
-
-    return window.location.href
+    if (!props.modalData) return window.location.href
+    return generateContentUrl(props.modalData, 'meme')
   })
 
   // Generate share image when modal data changes
   watch(
     () => props.modalData,
     async (data) => {
+      // Only generate images on client-side
+      if (import.meta.server) return
+
       if (data && data.image) {
-        const { generateMemeShareImage } = await import(
+        const { useShareImageGenerator } = await import(
           '~/composables/useShareImageGenerator'
         )
+        const { generateMemeShareImage } = useShareImageGenerator()
         shareImageBlob.value = await generateMemeShareImage(
           data.image,
           data.title || data.description
@@ -82,9 +75,7 @@
       }
     },
     { immediate: true }
-  )
-
-  // Debug the modal data
+  ) // Debug the modal data
   watch(
     () => props.modalData,
     (data) => {

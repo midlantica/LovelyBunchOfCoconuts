@@ -59,6 +59,168 @@
   // Get modal handlers from layout
   const handleModal = inject('openModal')
 
+  // Handle hash URLs for backward compatibility (Twitter shares, bookmarks, etc.)
+  onMounted(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash
+      console.log('🔗 Hash changed:', hash)
+      if (hash) {
+        // Parse hash like #meme-socialism-revolutions
+        const match = hash.match(/^#(claim|quote|meme)-(.+)$/)
+        console.log('🔍 Hash match result:', match)
+        if (match) {
+          const [, contentType, slug] = match
+          console.log('🎯 Opening content:', contentType, slug)
+
+          // Clear the hash to prevent router scroll warnings
+          window.history.replaceState(
+            {},
+            '',
+            window.location.pathname + window.location.search
+          )
+
+          openContentFromSlug(contentType, slug)
+        }
+      }
+    }
+
+    // Handle initial hash and hash changes
+    handleHashChange()
+    window.addEventListener('hashchange', handleHashChange)
+
+    onUnmounted(() => {
+      window.removeEventListener('hashchange', handleHashChange)
+    })
+  })
+
+  const openContentFromSlug = async (contentType, slug) => {
+    console.log('🔍 Looking for content:', { contentType, slug })
+
+    try {
+      // Import content cache to find the item
+      const { useContentCache } = await import('~/composables/useContentCache')
+      const { claims, quotes, memes, loadAllContent } = useContentCache()
+
+      // Wait for content to load if it's not ready yet
+      await nextTick()
+
+      console.log('📊 Raw content state:', {
+        claimsExists: !!claims,
+        quotesExists: !!quotes,
+        memesExists: !!memes,
+        claimsValue: claims?.value,
+        quotesValue: quotes?.value,
+        memesValue: memes?.value,
+      })
+
+      // Check if content is still loading and wait longer
+      if (
+        !claims?.value ||
+        !quotes?.value ||
+        !memes?.value ||
+        claims.value.length === 0 ||
+        quotes.value.length === 0 ||
+        memes.value.length === 0
+      ) {
+        console.log('⏳ Content still loading, forcing load...')
+
+        // Force load all content if not loaded
+        await loadAllContent()
+
+        // Wait another moment for reactivity to update
+        await nextTick()
+
+        // If still no content after forced load, retry in a moment
+        if (
+          !claims?.value ||
+          !quotes?.value ||
+          !memes?.value ||
+          claims.value.length === 0 ||
+          quotes.value.length === 0 ||
+          memes.value.length === 0
+        ) {
+          console.log('⏳ Still loading after forced load, retrying in 1s...')
+          setTimeout(() => openContentFromSlug(contentType, slug), 1000)
+          return
+        }
+      }
+
+      console.log('📊 Content counts:', {
+        claims: claims.value?.length || 0,
+        quotes: quotes.value?.length || 0,
+        memes: memes.value?.length || 0,
+      })
+
+      let item = null
+
+      if (contentType === 'claim') {
+        item = claims.value.find((claim) => {
+          const claimSlug = (claim.claim || claim.title || '')
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '')
+            .substring(0, 50)
+          return claimSlug === slug
+        })
+      } else if (contentType === 'quote') {
+        item = quotes.value.find((quote) => {
+          const author = (quote.attribution || 'unknown')
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+          const quoteStart = (quote.quoteText || quote.title || '')
+            .split(' ')
+            .slice(0, 3)
+            .join(' ')
+          const quoteSlug = quoteStart
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '')
+          const fullSlug = `${author}-${quoteSlug}`.substring(0, 50)
+          return fullSlug === slug
+        })
+      } else if (contentType === 'meme') {
+        item = memes.value.find((meme) => {
+          const memeSlug = (meme.title || meme.description || '')
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '')
+            .substring(0, 50)
+          console.log('🧪 Testing meme slug:', {
+            title: meme.title,
+            generated: memeSlug,
+            target: slug,
+            matches: memeSlug === slug,
+          })
+          return memeSlug === slug
+        })
+      }
+
+      console.log(
+        '🎯 Found item:',
+        !!item,
+        item?.title || item?.claim || item?.quoteText
+      )
+
+      if (item && handleModal) {
+        console.log('✅ Opening modal for:', contentType)
+        handleModal(contentType, item)
+      } else {
+        console.log('❌ Could not open modal:', {
+          hasItem: !!item,
+          hasHandler: !!handleModal,
+        })
+      }
+    } catch (error) {
+      console.error('💥 Error in openContentFromSlug:', error)
+    }
+  }
+
   // Handle content updates and scroll to top for search results
   function handleContentUpdated({ hasContent, isSearchResult }) {
     if (isSearchResult && hasContent) {

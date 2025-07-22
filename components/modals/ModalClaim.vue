@@ -31,6 +31,7 @@
           :text="`${modalData?.claim || modalData?.title} - ${modalData?.translation}`"
           :url="shareUrl"
           :generated-image-blob="shareImageBlob"
+          content-type="claim"
         />
       </div>
     </ModalFrame>
@@ -41,6 +42,7 @@
   import { watch, computed, ref } from 'vue'
   import ModalFrame from './ModalFrame.vue'
   import ShareButton from '../ui/ShareButton.vue'
+  import { useContentUrls } from '~/composables/useContentUrls'
 
   const props = defineProps({
     show: { type: Boolean, default: false },
@@ -48,32 +50,23 @@
   })
 
   const emit = defineEmits(['close'])
+  const { generateContentUrl } = useContentUrls()
 
   const shareImageBlob = ref(null)
 
   // Create shareable URL
   const shareUrl = computed(() => {
-    if (props.modalData?._path) {
-      return `${window.location.origin}${props.modalData._path}`
-    }
-
-    // Fallback: create a meaningful URL based on content
-    if (props.modalData?.claim) {
-      const slug = props.modalData.claim
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, '')
-        .replace(/\s+/g, '-')
-        .substring(0, 50)
-      return `${window.location.origin}/claims/${slug}`
-    }
-
-    return window.location.href
+    if (!props.modalData) return window.location.href
+    return generateContentUrl(props.modalData, 'claim')
   })
 
   // Generate share image when modal data changes
   watch(
     () => props.modalData,
     async (data) => {
+      // Only generate images on client-side
+      if (import.meta.server) return
+
       if (data && data.claim && data.translation) {
         const { generateClaimImage } = await import(
           '~/composables/useShareImageGenerator'
@@ -85,9 +78,7 @@
       }
     },
     { immediate: true }
-  )
-
-  // Debug the modal data
+  ) // Debug the modal data
   watch(
     () => props.modalData,
     (data) => {
