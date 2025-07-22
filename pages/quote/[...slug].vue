@@ -167,17 +167,17 @@
       const fullSlug3 = `${author}-${quoteSlug3}`.substring(0, 80)
       const fullSlug8 = `${author}-${quoteSlug8}`.substring(0, 80)
 
-      // Try matching against different slug variations
+      // Try matching against different slug variations - be more precise
       const match2 =
         fullSlug3 === currentSlug ||
         fullSlug8 === currentSlug ||
-        currentSlug.includes(fullSlug3) ||
-        fullSlug3.includes(currentSlug) ||
-        currentSlug.includes(fullSlug8) ||
-        fullSlug8.includes(currentSlug) ||
-        currentSlug.includes(author) ||
-        currentSlug.includes(quoteSlug3) ||
-        currentSlug.includes(quoteSlug8)
+        currentSlug === fullSlug3 ||
+        currentSlug === fullSlug8 ||
+        // Only allow partial matches if they're substantial (more than just author name)
+        (currentSlug.length > author.length + 5 && currentSlug.includes(fullSlug3)) ||
+        (fullSlug3.length > author.length + 5 && fullSlug3.includes(currentSlug)) ||
+        (currentSlug.length > author.length + 5 && currentSlug.includes(fullSlug8)) ||
+        (fullSlug8.length > author.length + 5 && fullSlug8.includes(currentSlug))
 
       if (match2) {
         console.log('✅ Found quote via generated slug:', {
