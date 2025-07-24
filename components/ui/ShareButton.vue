@@ -11,10 +11,10 @@
 
       <!-- Twitter share feedback -->
       <transition
-        enter-active-class="transition ease-out duration-200"
+        enter-active-class="transition duration-200 ease-out"
         enter-from-class="opacity-0 translate-x-2"
         enter-to-class="opacity-100 translate-x-0"
-        leave-active-class="transition ease-in duration-150"
+        leave-active-class="transition duration-150 ease-in"
         leave-from-class="opacity-100 translate-x-0"
         leave-to-class="opacity-0 translate-x-2"
       >
@@ -38,10 +38,10 @@
 
       <!-- Facebook share feedback -->
       <transition
-        enter-active-class="transition ease-out duration-200"
+        enter-active-class="transition duration-200 ease-out"
         enter-from-class="opacity-0 translate-x-2"
         enter-to-class="opacity-100 translate-x-0"
-        leave-active-class="transition ease-in duration-150"
+        leave-active-class="transition duration-150 ease-in"
         leave-from-class="opacity-100 translate-x-0"
         leave-to-class="opacity-0 translate-x-2"
       >
@@ -71,10 +71,10 @@
 
       <!-- Toast message that appears next to the copy button -->
       <transition
-        enter-active-class="transition ease-out duration-200"
+        enter-active-class="transition duration-200 ease-out"
         enter-from-class="opacity-0 translate-x-2"
         enter-to-class="opacity-100 translate-x-0"
-        leave-active-class="transition ease-in duration-150"
+        leave-active-class="transition duration-150 ease-in"
         leave-from-class="opacity-100 translate-x-0"
         leave-to-class="opacity-0 translate-x-2"
       >
