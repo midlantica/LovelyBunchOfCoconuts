@@ -66,6 +66,13 @@ export default defineNuxtConfig({
         },
         { property: 'og:url', content: 'https://www.wakeupnpc.com' },
         { property: 'og:site_name', content: 'WakeUpNPC' },
+        {
+          property: 'og:image',
+          content: 'https://www.wakeupnpc.com/text-bg-1200x630.png',
+        },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:type', content: 'image/png' },
 
         // Twitter
         { name: 'twitter:card', content: 'summary_large_image' },
@@ -77,6 +84,10 @@ export default defineNuxtConfig({
           name: 'twitter:description',
           content:
             'A curated wall of political claims, insightful quotes, and thought-provoking memes.',
+        },
+        {
+          name: 'twitter:image',
+          content: 'https://www.wakeupnpc.com/text-bg-1200x630.png',
         },
 
         // Additional SEO

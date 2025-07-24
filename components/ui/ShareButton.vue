@@ -168,8 +168,18 @@
     shared.value = 'facebook'
 
     try {
+      let shareUrl = props.url.trim()
+
+      // For development, convert localhost to production domain but keep the path
+      if (shareUrl.includes('localhost')) {
+        shareUrl = shareUrl.replace(
+          'http://localhost:3000',
+          'https://wakeupnpc.com'
+        )
+      }
+
       // Simple text + URL copy for Facebook
-      const shareText = `${formattedText.value}\n\n${props.url.trim()}`
+      const shareText = `${formattedText.value}\n\n${shareUrl}`
       await navigator.clipboard.writeText(shareText)
 
       shared.value = 'facebook-copied'
