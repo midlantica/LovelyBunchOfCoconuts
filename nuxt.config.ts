@@ -68,10 +68,10 @@ export default defineNuxtConfig({
         { property: 'og:site_name', content: 'WakeUpNPC' },
         {
           property: 'og:image',
-          content: 'https://www.wakeupnpc.com/text-bg-1200x260.png',
+          content: 'https://www.wakeupnpc.com/text-bg-1200x520.png',
         },
         { property: 'og:image:width', content: '1200' },
-        { property: 'og:image:height', content: '260' },
+        { property: 'og:image:height', content: '520' },
         { property: 'og:image:type', content: 'image/png' },
 
         // Twitter
@@ -87,7 +87,7 @@ export default defineNuxtConfig({
         },
         {
           name: 'twitter:image',
-          content: 'https://www.wakeupnpc.com/text-bg-1200x260.png',
+          content: 'https://www.wakeupnpc.com/text-bg-1200x520.png',
         },
 
         // Additional SEO
