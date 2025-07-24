@@ -174,10 +174,14 @@
         currentSlug === fullSlug3 ||
         currentSlug === fullSlug8 ||
         // Only allow partial matches if they're substantial (more than just author name)
-        (currentSlug.length > author.length + 5 && currentSlug.includes(fullSlug3)) ||
-        (fullSlug3.length > author.length + 5 && fullSlug3.includes(currentSlug)) ||
-        (currentSlug.length > author.length + 5 && currentSlug.includes(fullSlug8)) ||
-        (fullSlug8.length > author.length + 5 && fullSlug8.includes(currentSlug))
+        (currentSlug.length > author.length + 5 &&
+          currentSlug.includes(fullSlug3)) ||
+        (fullSlug3.length > author.length + 5 &&
+          fullSlug3.includes(currentSlug)) ||
+        (currentSlug.length > author.length + 5 &&
+          currentSlug.includes(fullSlug8)) ||
+        (fullSlug8.length > author.length + 5 &&
+          fullSlug8.includes(currentSlug))
 
       if (match2) {
         console.log('✅ Found quote via generated slug:', {
@@ -282,7 +286,7 @@
     const quoteText = quote.value.quoteText || quote.value.title
     const attribution = quote.value.attribution
     const currentUrl = `https://wakeupnpc.com${route.path}`
-    
+
     // Use a simple branded image for Open Graph (much more reliable than dynamic generation)
     const ogImageUrl = `https://wakeupnpc.com/grainy-background-aqua.jpg`
 
@@ -298,42 +302,42 @@
           property: 'og:title',
           content: `"${quoteText}"`,
         },
-        { 
-          property: 'og:description', 
-          content: `— ${attribution}` 
+        {
+          property: 'og:description',
+          content: `— ${attribution}`,
         },
-        { 
-          property: 'og:type', 
-          content: 'article' 
+        {
+          property: 'og:type',
+          content: 'article',
         },
-        { 
-          property: 'og:url', 
-          content: currentUrl 
+        {
+          property: 'og:url',
+          content: currentUrl,
         },
         {
           property: 'og:image',
-          content: ogImageUrl
+          content: ogImageUrl,
         },
         {
           property: 'og:image:width',
-          content: '1200'
+          content: '1200',
         },
         {
           property: 'og:image:height',
-          content: '630'
+          content: '630',
         },
         {
           property: 'og:site_name',
-          content: 'WakeUpNPC'
+          content: 'WakeUpNPC',
         },
         // Twitter Card tags
-        { 
-          property: 'twitter:card', 
-          content: 'summary_large_image' 
+        {
+          property: 'twitter:card',
+          content: 'summary_large_image',
         },
         {
           property: 'twitter:site',
-          content: '@WakeUpNPC'
+          content: '@WakeUpNPC',
         },
         {
           property: 'twitter:title',
@@ -345,7 +349,7 @@
         },
         {
           property: 'twitter:image',
-          content: ogImageUrl
+          content: ogImageUrl,
         },
       ],
     }

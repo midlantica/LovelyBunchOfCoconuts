@@ -14,6 +14,7 @@ export default {
     extend: {
       fontFamily: {
         Barlow: ["'Barlow Condensed', sans-serif"], // Custom font with fallback
+        helvetica: ['Helvetica, Arial, sans-serif'], // Helvetica font stack
         sans: ["'Barlow Condensed', serif, Arial, Helvetica"],
         serif: ["'Barlow Condensed', serif, Georgia"],
         mono: ['"Fira Code"', 'ui-monospace', 'SFMono-Regular'],

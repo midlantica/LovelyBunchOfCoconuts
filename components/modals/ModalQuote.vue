@@ -30,7 +30,7 @@
         <ShareButton
           v-if="modalData"
           :title="modalData?.quoteText || modalData?.title"
-          :text="`&quot;${modalData?.quoteText || modalData?.title}&quot; — ${modalData?.attribution}`"
+          :text="`${modalData?.quoteText || modalData?.title} — ${modalData?.attribution}`"
           :url="shareUrl"
           :generated-image-blob="shareImageBlob"
           content-type="quote"

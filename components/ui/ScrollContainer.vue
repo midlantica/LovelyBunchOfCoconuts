@@ -25,16 +25,11 @@
 
 <style scoped>
   .scroll-container {
-    position: relative;
-    height: 100%;
-    overflow: hidden;
+    @apply relative h-full overflow-hidden;
   }
 
   .scroll-content {
-    height: 100%;
-    overflow-y: auto;
-    padding-right: 1.5rem; /* Extra padding to ensure content doesn't go under scrollbar */
-    margin-right: -1rem; /* Pull the scrollbar 1rem to the right */
+    @apply -mr-4 pr-6 h-full overflow-y-auto;
     box-sizing: content-box; /* Ensures padding doesn't affect width calculation */
   }
 </style>

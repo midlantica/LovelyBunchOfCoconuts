@@ -1,6 +1,6 @@
 <!-- pages/index.vue -->
 <template>
-  <div class="gap-3 grid grid-rows-[auto_1fr] h-full overflow-hidden">
+  <div class="gap-3 grid grid-rows-[auto_1fr] px-4 h-full overflow-hidden">
     <!-- Search Bar -->
     <div class="flex justify-center">
       <div class="mx-auto px-4 md:px-0 w-full max-w-screen-md">

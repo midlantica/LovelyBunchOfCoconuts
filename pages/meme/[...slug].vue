@@ -118,9 +118,9 @@
     const title = meme.value.title
     const imageUrl = meme.value.images?.[0] || ''
     const currentUrl = `https://wakeupnpc.com${route.path}`
-    
+
     // For memes, use the actual meme image if available, otherwise use branded image
-    const ogImageUrl = imageUrl 
+    const ogImageUrl = imageUrl
       ? `https://wakeupnpc.com${imageUrl}`
       : `https://wakeupnpc.com/grainy-background-aqua.jpg`
 
@@ -136,42 +136,42 @@
           property: 'og:title',
           content: title,
         },
-        { 
-          property: 'og:description', 
-          content: `Check out this political meme: ${title}` 
+        {
+          property: 'og:description',
+          content: `Check out this political meme: ${title}`,
         },
-        { 
-          property: 'og:type', 
-          content: 'article' 
+        {
+          property: 'og:type',
+          content: 'article',
         },
-        { 
-          property: 'og:url', 
-          content: currentUrl 
+        {
+          property: 'og:url',
+          content: currentUrl,
         },
         {
           property: 'og:image',
-          content: ogImageUrl
+          content: ogImageUrl,
         },
         {
           property: 'og:image:width',
-          content: '1200'
+          content: '1200',
         },
         {
           property: 'og:image:height',
-          content: '630'
+          content: '630',
         },
         {
           property: 'og:site_name',
-          content: 'WakeUpNPC'
+          content: 'WakeUpNPC',
         },
         // Twitter Card tags
-        { 
-          property: 'twitter:card', 
-          content: 'summary_large_image' 
+        {
+          property: 'twitter:card',
+          content: 'summary_large_image',
         },
         {
           property: 'twitter:site',
-          content: '@WakeUpNPC'
+          content: '@WakeUpNPC',
         },
         {
           property: 'twitter:title',
@@ -183,7 +183,7 @@
         },
         {
           property: 'twitter:image',
-          content: ogImageUrl
+          content: ogImageUrl,
         },
       ],
     }

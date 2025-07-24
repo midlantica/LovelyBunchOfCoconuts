@@ -10,8 +10,7 @@
         ref="lazyImg"
         :data-src="meme.image"
         :alt="imageAlt"
-        class="bg-black/40 rounded-md w-full h-full object-contain aspect-square"
-        style="max-width: 100%; max-height: 100%; min-width: 0; min-height: 0"
+        class="bg-black/40 rounded-md w-full min-w-0 max-w-full h-full min-h-0 max-h-full object-contain aspect-square"
       />
     </div>
     <div
@@ -22,8 +21,7 @@
         ref="lazyImg"
         :data-src="meme.image"
         :alt="imageAlt"
-        class="bg-black/40 rounded-md w-full h-full object-contain aspect-square"
-        style="max-width: 100%; max-height: 100%; min-width: 0; min-height: 0"
+        class="bg-black/40 rounded-md w-full min-w-0 max-w-full h-full min-h-0 max-h-full object-contain aspect-square"
       />
     </div>
     <div

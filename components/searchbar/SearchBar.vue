@@ -10,8 +10,7 @@
       <input
         type="text"
         v-model="searchTerm"
-        class="bg-transparent focus:bg-transparent ps-12 pt-[.4rem] pr-12 pb-[.6rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400 rounded-lg outline-none w-full font-normal text-slate-200 sm:text-[1.275rem] placeholder:text-seagull-200/50 leading-tight tracking-wider"
-        style="font-weight: 300 !important; font-size: 1.4rem !important"
+        class="bg-transparent focus:bg-transparent ps-12 pt-[.4rem] pr-12 pb-[.6rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400 rounded-lg outline-none w-full font-light text-[1.4rem] text-slate-200 sm:text-[1.275rem] placeholder:text-seagull-200/50 leading-tight tracking-wider"
         placeholder="Search..."
         @keydown.esc="handleInputEscape"
         @input="handleSearchInput"
@@ -27,13 +26,11 @@
       >
         <Icon
           name="mdi:keyboard-esc"
-          class="hidden sm:block text-white/50 hover:text-white"
-          style="font-size: 1.5rem"
+          class="hidden sm:block text-white/50 hover:text-white text-2xl"
         />
         <Icon
           name="mdi:close"
-          class="block text-white/80 hover:text-white"
-          style="font-size: 1.5rem"
+          class="block text-white/80 hover:text-white text-2xl"
         />
       </button>
     </div>
@@ -50,8 +47,7 @@
       </div>
       <client-only>
         <span
-          class="font-light text-slate-400 uppercase tracking-wider"
-          style="font-size: 1.155rem"
+          class="font-light text-[1.155rem] text-slate-400 uppercase tracking-wider"
         >
           {{ props.totalCount }}
         </span>

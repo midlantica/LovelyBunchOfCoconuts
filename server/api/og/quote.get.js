@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
     // Import canvas library for server-side image generation
     // Using @napi-rs/canvas which works in Node.js environments
     const { createCanvas } = await import('@napi-rs/canvas')
-    
+
     const canvas = createCanvas(1200, 630)
     const ctx = canvas.getContext('2d')
 
@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
         const testLine = line + words[n] + ' '
         const metrics = context.measureText(testLine)
         const testWidth = metrics.width
-        
+
         if (testWidth > maxWidth && n > 0) {
           context.fillText(line, x, currentY)
           line = words[n] + ' '
@@ -69,10 +69,9 @@ export default defineEventHandler(async (event) => {
     // Convert canvas to PNG buffer and return
     const buffer = canvas.toBuffer('image/png')
     return buffer
-
   } catch (error) {
     console.error('Error generating OG image:', error)
-    
+
     // Fallback to redirect to a static image
     setResponseStatus(event, 302)
     setHeader(event, 'Location', 'https://wakeupnpc.com/og-fallback-quote.png')
