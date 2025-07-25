@@ -6,12 +6,9 @@
       @mousedown.self="onClose"
     >
       <div
-        class="relative flex flex-col bg-slate-800 shadow-lg mx-0 sm:mx-6 rounded-none sm:rounded-lg modal-frame"
+        class="relative flex flex-col shadow-lg mx-0 sm:mx-6 rounded-none sm:rounded-lg modal-frame"
         :style="modalStyle ? modalStyle : { maxHeight: '90vh' }"
-        :class="[
-          modalStyle ? '' : 'w-full sm:min-w-[60vw] sm:max-w-[500px]',
-          'p-0 pb-4 sm:p-6',
-        ]"
+        :class="[modalStyle ? '' : 'w-full sm:min-w-[60vw] sm:max-w-[500px]']"
         @mousedown.stop
       >
         <CloseButton @click="onClose" />

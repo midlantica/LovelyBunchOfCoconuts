@@ -1,3 +1,7 @@
+// composables/useContentCache.js
+// Reactive content cache with transformation pipeline: loads, transforms, and caches all content types
+// Provides progressive loading (initial batch + remaining) with search enhancement and SSR compatibility
+
 import { ref, reactive, watch } from 'vue'
 import { interleaveContent } from '~/composables/interleaveContent'
 

@@ -1,4 +1,7 @@
 // composables/useModalLogic.js
+// Modal interaction utilities: focus trapping, escape key handling, and scroll locking
+// Provides accessible modal behavior with keyboard navigation and backdrop control
+
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 export function useModalLogic({ show, onClose }) {

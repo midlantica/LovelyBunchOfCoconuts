@@ -1,4 +1,7 @@
 // composables/useBadgeCounts.js
+// Content count tracking for search badges: calculates filtered vs total counts by content type
+// Provides real-time count updates for search bar display with reactive filtering
+
 import { computed } from 'vue'
 
 export function useBadgeCounts({

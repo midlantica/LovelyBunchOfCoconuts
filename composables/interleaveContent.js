@@ -1,4 +1,6 @@
 // composables/interleaveContent.js
+// Core pattern engine: Creates visual layout pattern [ claim | claim ] → [ quote ] → [ meme | meme ] → [ quote ]
+// Maintains strict visual rhythm while handling unbalanced content via graceful fallbacks
 
 export function interleaveContent(claims, quotes, memes) {
   // Create copies to avoid mutating original arrays

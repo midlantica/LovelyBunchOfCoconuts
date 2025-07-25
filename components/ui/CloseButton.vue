@@ -1,7 +1,7 @@
 <template>
   <button
     @click="$emit('click')"
-    class="hidden top-1 right-1 z-10 absolute sm:flex justify-center items-center bg-slate-800 hover:bg-slate-700 rounded-full focus:outline-none focus:ring-2 focus:ring-white w-10 h-10 -translate-y-1/2 translate-x-1/2"
+    class="hidden z-[9999] absolute sm:flex justify-center items-center bg-slate-800 hover:bg-slate-700 rounded-full focus:outline-none focus:ring-2 focus:ring-white w-10 h-10 close-button"
     aria-label="Close"
     type="button"
   >
@@ -14,7 +14,11 @@
 </script>
 
 <style scoped>
-  button {
-    /* Ensures the button overlays the corner and does not affect layout */
+  .close-button {
+    /* Position the button in the top-right corner with proper offset */
+    top: 26px;
+    right: 26px;
+    /* Transform to center the button on the corner */
+    transform: translate(50%, -50%);
   }
 </style>

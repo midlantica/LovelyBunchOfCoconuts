@@ -2,39 +2,47 @@
 <template>
   <client-only>
     <ModalFrame v-if="modalData" :show="show" @close="emit('close')">
-      <div class="flex flex-col p-4 sm:p-0">
-        <div class="mb-2">
-          <h1 class="mb-2 font-bold text-white text-2xl leading-9">
-            {{
-              modalData?.quoteText ||
-              (modalData?.headings && modalData.headings[0]) ||
-              modalData?.title
-            }}
-          </h1>
-          <p class="mb-2 text-seagull-300 text-xl">
-            — {{ modalData?.attribution }}
-          </p>
-        </div>
+      <!-- Share Panel Container -->
+      <div class="bg-slate-900 rounded-lg">
+        <!-- Main Content Panel (nested inside) -->
         <div
-          v-if="
-            modalData?.body &&
-            modalData.body.value &&
-            modalData.body.value.length > 0
-          "
-          class="prose-invert max-w-none prose"
+          class="flex flex-col bg-slate-800 shadow-lg p-4 sm:p-6 rounded-lg sm:rounded-lg main-content-panel"
         >
-          <div v-html="modalData?.bodyHtml"></div>
+          <div class="mb-2">
+            <h1 class="mb-2 font-bold text-white text-2xl leading-9">
+              {{
+                modalData?.quoteText ||
+                (modalData?.headings && modalData.headings[0]) ||
+                modalData?.title
+              }}
+            </h1>
+            <p class="mb-2 text-seagull-300 text-xl">
+              — {{ modalData?.attribution }}
+            </p>
+          </div>
+          <div
+            v-if="
+              modalData?.body &&
+              modalData.body.value &&
+              modalData.body.value.length > 0
+            "
+            class="prose-invert max-w-none prose"
+          >
+            <div v-html="modalData?.bodyHtml"></div>
+          </div>
         </div>
 
-        <!-- Share buttons -->
-        <ShareButton
-          v-if="modalData"
-          :title="modalData?.quoteText || modalData?.title"
-          :text="`${modalData?.quoteText || modalData?.title} — ${modalData?.attribution}`"
-          :url="shareUrl"
-          :generated-image-blob="shareImageBlob"
-          content-type="quote"
-        />
+        <!-- Share Buttons Shelf -->
+        <div class="px-2 sm:px-6 py-2 rounded-b-lg sm:rounded-b-lg">
+          <ShareButton
+            v-if="modalData"
+            :title="modalData?.quoteText || modalData?.title"
+            :text="`${modalData?.quoteText || modalData?.title} — ${modalData?.attribution}`"
+            :url="shareUrl"
+            :generated-image-blob="shareImageBlob"
+            content-type="quote"
+          />
+        </div>
       </div>
     </ModalFrame>
   </client-only>
@@ -93,3 +101,9 @@
     { immediate: true }
   )
 </script>
+
+<style scoped>
+  .main-content-panel {
+    border-radius: 0.5rem !important;
+  }
+</style>

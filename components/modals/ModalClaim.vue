@@ -2,37 +2,45 @@
 <template>
   <client-only>
     <ModalFrame v-if="modalData" :show="show" @close="emit('close')">
-      <div class="flex flex-col p-4 sm:p-0">
-        <div class="mb-2">
-          <h1 class="mb-4 font-bold text-white text-2xl">
-            {{ modalData?.claim || modalData?.title }}
-          </h1>
-          <hr class="my-2 border-white/10 border-t" />
-          <h1 class="mb-2 font-bold text-white text-2xl">
-            {{ modalData?.translation }}
-          </h1>
-        </div>
-        <!-- Only show body content if it exists and has actual content -->
+      <!-- Share Panel Container -->
+      <div class="bg-slate-900 rounded-lg">
+        <!-- Main Content Panel (nested inside) -->
         <div
-          v-if="
-            modalData?.body &&
-            modalData.body.value &&
-            modalData.body.value.length > 0
-          "
-          class="prose-invert max-w-none prose"
+          class="flex flex-col bg-slate-800 shadow-lg p-4 sm:p-6 rounded-lg sm:rounded-lg"
         >
-          <div v-html="modalData?.bodyHtml"></div>
+          <div class="mb-2">
+            <h1 class="mb-4 font-bold text-white text-2xl">
+              {{ modalData?.claim || modalData?.title }}
+            </h1>
+            <hr class="my-2 border-white/10 border-t" />
+            <h1 class="mb-2 font-bold text-white text-2xl">
+              {{ modalData?.translation }}
+            </h1>
+          </div>
+          <!-- Only show body content if it exists and has actual content -->
+          <div
+            v-if="
+              modalData?.body &&
+              modalData.body.value &&
+              modalData.body.value.length > 0
+            "
+            class="prose-invert max-w-none prose"
+          >
+            <div v-html="modalData?.bodyHtml"></div>
+          </div>
         </div>
 
-        <!-- Share buttons -->
-        <ShareButton
-          v-if="modalData"
-          :title="modalData?.claim || modalData?.title"
-          :text="`${modalData?.claim || modalData?.title} - ${modalData?.translation}`"
-          :url="shareUrl"
-          :generated-image-blob="shareImageBlob"
-          content-type="claim"
-        />
+        <!-- Share Buttons Shelf -->
+        <div class="px-2 sm:px-6 py-2 rounded-b-lg sm:rounded-b-lg">
+          <ShareButton
+            v-if="modalData"
+            :title="modalData?.claim || modalData?.title"
+            :text="`${modalData?.claim || modalData?.title} - ${modalData?.translation}`"
+            :url="shareUrl"
+            :generated-image-blob="shareImageBlob"
+            content-type="claim"
+          />
+        </div>
       </div>
     </ModalFrame>
   </client-only>
