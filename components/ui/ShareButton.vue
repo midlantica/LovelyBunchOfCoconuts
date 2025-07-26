@@ -1,6 +1,6 @@
 <template>
   <transition
-    enter-active-class="duration-400 transition-all ease-in-out"
+    enter-active-class="duration-300 transition-all ease-out"
     enter-from-class="transform opacity-0 scale-y-0 origin-top"
     enter-to-class="transform opacity-100 scale-y-100 origin-top"
     leave-active-class="transition-all duration-200 ease-in"
@@ -41,14 +41,6 @@
             @toast-show="onToastShow"
           />
         </div>
-
-        <div class="z-30 relative">
-          <CopyLinkButton
-            ref="copyButton"
-            :url="url"
-            @toast-show="onToastShow"
-          />
-        </div>
       </div>
     </div>
   </transition>
@@ -58,7 +50,6 @@
   import { ref } from 'vue'
   import TwitterShareButton from './TwitterShareButton.vue'
   import FacebookShareButton from './FacebookShareButton.vue'
-  import CopyLinkButton from './CopyLinkButton.vue'
 
   const props = defineProps({
     title: { type: String, required: true },
@@ -74,12 +65,10 @@
   // Button refs for coordination
   const twitterButton = ref(null)
   const facebookButton = ref(null)
-  const copyButton = ref(null)
 
   // Handle toast coordination - clear others when one shows
   const onToastShow = (buttonType) => {
     if (buttonType !== 'twitter') twitterButton.value?.clearToast()
     if (buttonType !== 'facebook') facebookButton.value?.clearToast()
-    if (buttonType !== 'copy') copyButton.value?.clearToast()
   }
 </script>
