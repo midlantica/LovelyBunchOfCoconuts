@@ -1,7 +1,7 @@
 ---
-title: 'Damn Capitalism'
+title: 'Free Market. Govt action, Damn Capitalism'
 ---
 
 ![damn-capitalism](/memes/capitalism/damn-capitalism.png)
 
-Damn capitalism.
+Free Market. Govt action, Damn Capitalism.

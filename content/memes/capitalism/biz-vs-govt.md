@@ -4,4 +4,4 @@ title: 'Biz Vs Govt'
 
 ![biz-vs-govt](/memes/capitalism/biz-vs-govt.png)
 
-Biz vs government.
+Biz vs government cartoon.

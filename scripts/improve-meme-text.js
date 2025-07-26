@@ -222,20 +222,18 @@ function applyImprovements(filePath, originalText, improvedText) {
     const beforeText = lines.slice(0, frontmatterEnd + 1 + textStartIndex)
     const textLines = bodyLines.slice(textStartIndex)
     const currentText = textLines.join('\n').trim()
-    
+
     // Only replace if we find the exact original text
     if (currentText === originalText) {
-      const afterText = lines.slice(frontmatterEnd + 1 + textStartIndex + textLines.length)
-      const newContent = [
-        ...beforeText,
-        improvedText,
-        ...afterText
-      ].join('\n')
-      
+      const afterText = lines.slice(
+        frontmatterEnd + 1 + textStartIndex + textLines.length
+      )
+      const newContent = [...beforeText, improvedText, ...afterText].join('\n')
+
       fs.writeFileSync(filePath, newContent, 'utf8')
       return true
     }
-    
+
     return false
   } catch (error) {
     console.error(`❌ Error updating ${filePath}:`, error.message)
@@ -355,19 +353,25 @@ async function main() {
   console.log('\n' + '='.repeat(80))
   console.log(`📁 Total memes: ${memeFiles.length}`)
   console.log(`✨ Memes that need updates: ${changesCount}`)
-  
+
   // Actually apply the changes
   console.log('\n🔧 Applying changes...')
   let appliedCount = 0
-  
+
   for (const change of changes) {
     if (!change.hasChanges) continue
-    
-    if (applyImprovements(change.filePath, change.originalText, change.improvedText)) {
+
+    if (
+      applyImprovements(
+        change.filePath,
+        change.originalText,
+        change.improvedText
+      )
+    ) {
       appliedCount++
     }
   }
-  
+
   console.log(`\n✅ Successfully updated ${appliedCount} meme files!`)
 }
 

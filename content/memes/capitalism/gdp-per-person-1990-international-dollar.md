@@ -1,7 +1,7 @@
 ---
-title: 'Gdp Per Person 1990 International Dollar'
+title: 'GDP per person, 1800 - 2000.'
 ---
 
 ![gdp-per-person-1990-international-dollar](/memes/capitalism/gdp-per-person-1990-international-dollar.png)
 
-Gdp per person 1990 international dollar.
+GDP per person, 1800 - 2000.

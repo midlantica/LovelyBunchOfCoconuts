@@ -4,4 +4,4 @@ title: 'Nazis And Communists And Antifa The Same'
 
 ![nazis-and-communists-and-antifa-the-same](/memes/capitalism/nazis-and-communists-and-antifa-the-same.png)
 
-Nazis and communists and antifa the same.
+Nazis and Communists and Antifa the same.

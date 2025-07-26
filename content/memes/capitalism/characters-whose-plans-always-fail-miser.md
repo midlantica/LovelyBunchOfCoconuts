@@ -1,7 +1,7 @@
 ---
-title: 'Characters Whose Plans Always Fail Miser'
+title: 'Characters whose plans always fail miserably.'
 ---
 
 ![characters-whose-plans-always-fail-miser](/memes/capitalism/characters-whose-plans-always-fail-miser.png)
 
-Characters whose plans always fail miser.
+Characters whose plans always fail miserably. Marx.

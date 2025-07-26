@@ -1,7 +1,8 @@
 ---
-title: 'Could The Problem Be Marxism'
+title: 'Could the problem be Marxism?'
 ---
 
 ![could-the-problem-be-marxism](/memes/capitalism/could-the-problem-be-marxism.png)
 
-Could the problem be marxism.
+Could the problem be Marxism?
+No, it's Liberalism that's at fault.
