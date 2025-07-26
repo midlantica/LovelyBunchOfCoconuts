@@ -4,4 +4,4 @@ title: 'Humiliating To Human Prid'
 
 ![humiliating-to-human-prid](/memes/quotes/humiliating-to-human-prid.png)
 
-Humiliating To Human Prid
+Humiliating to human prid.

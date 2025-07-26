@@ -4,4 +4,4 @@ title: 'More whites were brought as slaves to North Africa than blacks brought a
 
 ![More whites were brought as slaves to North Africa than](/memes/thomas-sowell/more-whites-were-brought-as-slaves-to-no.png)
 
-Sowell On Slavery
+Sowell on slavery.

@@ -4,4 +4,4 @@ title: 'Seneca Quote Religion'
 
 ![Seneca Quote Religion](/memes/quotes/seneca-quote-religion.png)
 
-Seneca Quote Religion
+Seneca quote religion.

@@ -4,4 +4,4 @@ title: 'Global Poverty Rate'
 
 ![global-poverty-rate](/memes/data/global-poverty-rate.png)
 
-Global Poverty Rate
+Global poverty rate.

@@ -209,6 +209,32 @@ export function useContentCache() {
         if (item.title) {
           transformed.description = item.title
         }
+
+        // Extract text content from body (excluding the image)
+        if (item.body && item.body.value) {
+          const textParts = []
+          for (const element of item.body.value) {
+            if (Array.isArray(element)) {
+              // Skip image elements, collect text elements
+              if (element[0] === 'p' && typeof element[2] === 'string') {
+                // Skip paragraphs that contain image markdown
+                if (!element[2].includes('![')) {
+                  textParts.push(element[2])
+                }
+              }
+              // Handle other text elements like headings
+              if (
+                (element[0] === 'h1' ||
+                  element[0] === 'h2' ||
+                  element[0] === 'h3') &&
+                typeof element[2] === 'string'
+              ) {
+                textParts.push(element[2])
+              }
+            }
+          }
+          transformed.bodyText = textParts.join('\n\n').trim()
+        }
       }
 
       // Add searchable text field for search functionality

@@ -4,4 +4,4 @@ title: 'Us Political Spectrum'
 
 ![us-political-spectrum](/memes/data/us-political-spectrum.png)
 
-Us Political Spectrum
+Us political spectrum.

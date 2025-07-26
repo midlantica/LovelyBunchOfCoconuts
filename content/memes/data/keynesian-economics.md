@@ -4,4 +4,4 @@ title: 'Keynesian Economics'
 
 ![keynesian-economics](/memes/data/keynesian-economics.png)
 
-Keynesian Economics
+Keynesian economics.

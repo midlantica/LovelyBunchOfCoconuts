@@ -4,4 +4,4 @@ title: 'How Real Racism Works White Liberals'
 
 ![how-real-racism-works-white-liberals](/memes/politics/how-real-racism-works-white-liberals.png)
 
-How Real Racism Works White Liberals
+How real racism works white liberals.

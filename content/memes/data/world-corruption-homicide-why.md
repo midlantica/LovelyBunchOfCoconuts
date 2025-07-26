@@ -4,4 +4,4 @@ title: 'World Corruption Homicide Why'
 
 ![world-corruption-homicide-why](/memes/data/world-corruption-homicide-why.png)
 
-World Corruption Homicide Why
+World corruption homicide why.

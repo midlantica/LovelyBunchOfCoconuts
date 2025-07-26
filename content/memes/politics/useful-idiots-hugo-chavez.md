@@ -4,4 +4,4 @@ title: 'Useful Idiots Hugo Chavez'
 
 ![useful-idiots-hugo-chavez](/memes/politics/useful-idiots-hugo-chavez.png)
 
-Useful Idiots Hugo Chavez
+Useful idiots hugo chavez.

@@ -4,4 +4,4 @@ title: 'No Difference Between The Nazis And The'
 
 ![no-difference-between-the-nazis-and-the](/memes/politics/no-difference-between-the-nazis-and-the.png)
 
-No Difference Between The Nazis And The
+No difference between the nazis and the.

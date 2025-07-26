@@ -4,4 +4,4 @@ title: 'Democrat Party Cribbing From Communists'
 
 ![democrat-party-cribbing-from-communists](/memes/politics/democrat-party-cribbing-from-communists.png)
 
-Democrat Party Cribbing From Communists
+Democrat party cribbing from communists.

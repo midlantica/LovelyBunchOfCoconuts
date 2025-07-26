@@ -4,4 +4,4 @@ title: 'What Have The Left Ever Done For Us'
 
 ![what-have-the-left-ever-done-for-us](/memes/cartoons/what-have-the-left-ever-done-for-us.png)
 
-What Have The Left Ever Done For Us
+What have the left ever done? For Us.

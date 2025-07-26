@@ -4,4 +4,4 @@ title: 'The Middle East Bernard_l'
 
 ![the-middle-east-bernard_l](/memes/quotes/the-middle-east-bernard_l.png)
 
-The Middle East Bernard_l
+The middle east bernard_l.

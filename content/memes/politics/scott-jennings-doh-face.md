@@ -4,4 +4,4 @@ title: 'Scott Jennings Doh Face'
 
 ![scott-jennings-doh-face](/memes/politics/scott-jennings-doh-face.png)
 
-Scott Jennings Doh Face
+Scott Jennings doh face.

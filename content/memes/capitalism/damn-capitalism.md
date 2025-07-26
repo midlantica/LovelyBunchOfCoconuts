@@ -4,4 +4,4 @@ title: 'Damn Capitalism'
 
 ![damn-capitalism](/memes/capitalism/damn-capitalism.png)
 
-Damn Capitalism
+Damn capitalism.

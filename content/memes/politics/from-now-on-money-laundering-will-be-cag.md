@@ -4,4 +4,4 @@ title: 'From Now On Money Laundering Will Be Cag'
 
 ![from-now-on-money-laundering-will-be-cag](/memes/politics/from-now-on-money-laundering-will-be-cag.png)
 
-From Now On Money Laundering Will Be Cag
+From now on money laundering will be cag.

@@ -4,4 +4,4 @@ title: 'Since Wealth Is The Only Thing That Can'
 
 ![since-wealth-is-the-only-thing-that-can](/memes/thomas-sowell/since-wealth-is-the-only-thing-that-can.png)
 
-Since Wealth Is The Only Thing That Can
+Since wealth is the only thing that can.

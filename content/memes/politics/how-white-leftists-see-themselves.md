@@ -4,4 +4,4 @@ title: 'How White Leftists See Themselves'
 
 ![how-white-leftists-see-themselves](/memes/politics/how-white-leftists-see-themselves.png)
 
-How White Leftists See Themselves
+How white leftists see themselves.

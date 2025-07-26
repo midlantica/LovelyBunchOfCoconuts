@@ -4,4 +4,4 @@ title: 'Many On The Political Left Are So Entranced By The Beauty Of Their Visio
 
 ![Many On The Political Left Are So Entranced By The Beauty Of Their Vision](/memes/thomas-sowell/many-on-the-political-left-are-so-entran.png)
 
-Many On The Political Left Are So Entranced By The Beauty Of Their Vision
+Many on the political left are so entranced by the beauty of their vision.

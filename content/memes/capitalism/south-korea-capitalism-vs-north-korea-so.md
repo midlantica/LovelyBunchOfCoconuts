@@ -4,4 +4,4 @@ title: 'South Korea Capitalism Vs North Korea So'
 
 ![south-korea-capitalism-vs-north-korea-so](/memes/capitalism/south-korea-capitalism-vs-north-korea-so.png)
 
-South Korea Capitalism Vs North Korea So
+South korea capitalism vs north korea so.

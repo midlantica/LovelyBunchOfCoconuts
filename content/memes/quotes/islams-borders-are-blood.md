@@ -4,4 +4,4 @@ title: 'Islams Borders Are Blood'
 
 ![islams-borders-are-blood](/memes/quotes/islams-borders-are-blood.png)
 
-Islams Borders Are Blood
+Islams borders are blood.

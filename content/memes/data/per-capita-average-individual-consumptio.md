@@ -4,4 +4,4 @@ title: 'Per Capita Average Individual Consumptio'
 
 ![per-capita-average-individual-consumptio](/memes/data/per-capita-average-individual-consumptio.png)
 
-Per Capita Average Individual Consumptio
+Per capita average individual consumptio.

@@ -4,4 +4,4 @@ title: 'Donkey Pox The Disease Destroying'
 
 ![donkey-pox-the-disease-destroying](/memes/politics/donkey-pox-the-disease-destroying.png)
 
-Donkey Pox The Disease Destroying
+Donkey pox the disease destroying.

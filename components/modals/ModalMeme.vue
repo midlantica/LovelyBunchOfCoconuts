@@ -5,25 +5,28 @@
       <template #mainPanel>
         <!-- Main Content Panel -->
         <div
-          class="z-10 relative bg-slate-800 shadow-[0_4px_20px_-10px_black] rounded-lg w-full max-w-full sm:max-w-[min(1000px,calc(100vw-4rem))] h-full max-h-[calc(100vh-8rem)]"
+          class="z-10 relative flex flex-col bg-slate-800 shadow-[0_4px_20px_-10px_black] rounded-lg w-full max-w-full sm:max-w-[min(1000px,calc(100vw-4rem))] h-full max-h-[calc(100vh-8rem)]"
         >
-          <!-- Image container -->
+          <!-- Image container (fixed, no scroll) -->
           <div
-            class="flex flex-col flex-1 justify-center items-center p-4 sm:p-6 min-h-0"
+            class="flex flex-col justify-center items-center p-4 sm:p-6 pb-2 h-full min-h-0"
           >
             <img
               v-if="modalData?.image"
               :src="modalData?.image"
               :alt="modalData?.title"
-              class="mb-2 w-full sm:w-auto max-w-full h-auto max-h-[calc(100vh-20rem)] object-contain"
+              class="w-full sm:w-auto max-w-full h-auto max-h-[calc(50vh)] object-contain"
             />
-            <p
-              class="px-4 sm:px-6 pb-0 font-bold text-white text-lg text-center"
+            <!-- Text container (scrollable only) -->
+            <div
+              v-if="modalData?.bodyText"
+              class="flex-1 mt-2 min-h-0 overflow-y-auto text-gray-300 text-lg text-center leading-relaxed"
             >
-              {{ modalData?.title || modalData?.description }}
-            </p>
+              <div class="whitespace-pre-line">
+                {{ modalData.bodyText }}
+              </div>
+            </div>
           </div>
-          <!-- Text line -->
         </div>
       </template>
 

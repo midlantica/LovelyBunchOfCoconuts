@@ -4,4 +4,4 @@ title: 'Obama Economy 6 Charts'
 
 ![obama-economy-6-charts](/memes/data/obama-economy-6-charts.png)
 
-Obama Economy 6 Charts
+Obama economy 6 charts.
