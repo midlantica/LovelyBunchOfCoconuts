@@ -1,5 +1,5 @@
 ---
-title: 'margaret-thatcher-stunning-and-brave'
+title: 'Margaret Thatcher Stunning And Brave'
 ---
 
 ![margaret-thatcher-stunning-and-brave](/memes/margaret-thatcher/margaret-thatcher-stunning-and-brave.png)

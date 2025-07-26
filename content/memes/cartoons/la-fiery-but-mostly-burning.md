@@ -1,5 +1,5 @@
 ---
-title: 'la-fiery-but-mostly-burning'
+title: 'La Fiery But Mostly Burning'
 ---
 
 ![LA fiery but mostly burning](/memes/politics/la-fiery-but-mostly-burning.png)

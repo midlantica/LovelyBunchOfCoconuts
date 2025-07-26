@@ -1,5 +1,5 @@
 ---
-title: 'the-reason-so-many-people-misunderstand'
+title: 'The Reason So Many People Misunderstand'
 ---
 
 ![the-reason-so-many-people-misunderstand](/memes/thomas-sowell/the-reason-so-many-people-misunderstand.png)

@@ -1,5 +1,5 @@
 ---
-title: 'when-young-people-want-to'
+title: 'When Young People Want To'
 ---
 
 ![when-young-people-want-to](/memes/quotes/when-young-people-want-to.png)

@@ -1,5 +1,5 @@
 ---
-title: 'birth-of-liberalism-and-capitalism-perio'
+title: 'Birth Of Liberalism And Capitalism Perio'
 ---
 
 ![birth-of-liberalism-and-capitalism-perio](/memes/politics/birth-of-liberalism-and-capitalism-perio.png)

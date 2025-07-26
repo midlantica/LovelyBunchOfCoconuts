@@ -1,5 +1,5 @@
 ---
-title: 'schmucky-imperative-to-enforce-and-stren'
+title: 'Schmucky Imperative To Enforce And Stren'
 ---
 
 ![schmucky-imperative-to-enforce-and-stren](/memes/immigration/schmucky-imperative-to-enforce-and-stren.png)

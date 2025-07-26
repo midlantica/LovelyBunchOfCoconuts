@@ -1,5 +1,5 @@
 ---
-title: 'wokezilla-hollywood'
+title: 'Wokezilla Hollywood'
 ---
 
 ![wokezilla-hollywood](/memes/cartoons/wokezilla-hollywood.png)

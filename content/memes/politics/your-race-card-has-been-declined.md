@@ -1,5 +1,5 @@
 ---
-title: 'your-race-card-has-been-declined'
+title: 'Your Race Card Has Been Declined'
 ---
 
 ![your-race-card-has-been-declined](/memes/politics/your-race-card-has-been-declined.png)

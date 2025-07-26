@@ -1,5 +1,5 @@
 ---
-title: 'you-vs-government'
+title: 'You Vs Government'
 ---
 
 ![you-vs-government](/memes/capitalism/you-vs-government.png)

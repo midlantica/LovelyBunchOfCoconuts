@@ -1,5 +1,5 @@
 ---
-title: 'capitalists-will-always-pay-their-worker'
+title: 'Capitalists Will Always Pay Their Worker'
 ---
 
 ![capitalists-will-always-pay-their-worker](/memes/capitalism/capitalists-will-always-pay-their-worker.png)

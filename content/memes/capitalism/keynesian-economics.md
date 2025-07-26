@@ -1,5 +1,5 @@
 ---
-title: 'keynesian-economics'
+title: 'Keynesian Economics'
 ---
 
 ![keynesian-economics](/memes/capitalism/keynesian-economics.png)

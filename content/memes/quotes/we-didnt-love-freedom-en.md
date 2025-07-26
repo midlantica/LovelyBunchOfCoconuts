@@ -1,5 +1,5 @@
 ---
-title: 'we-didnt-love-freedom-en'
+title: 'We Didnt Love Freedom En'
 ---
 
 ![we-didnt-love-freedom-en](/memes/quotes/we-didnt-love-freedom-en.png)

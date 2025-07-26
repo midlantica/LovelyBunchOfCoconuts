@@ -1,5 +1,5 @@
 ---
-title: 'being-powerful-is-like-being-a-lady-if-y'
+title: 'Being Powerful Is Like Being A Lady If Y'
 ---
 
 ![being-powerful-is-like-being-a-lady-if-y](/memes/margaret-thatcher/being-powerful-is-like-being-a-lady-if-y.png)

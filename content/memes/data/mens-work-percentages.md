@@ -1,5 +1,5 @@
 ---
-title: 'mens-work-percentages'
+title: 'Mens Work Percentages'
 ---
 
 ![mens-work-percentages](/memes/data/mens-work-percentages.png)

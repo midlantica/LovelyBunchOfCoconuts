@@ -1,5 +1,5 @@
 ---
-title: 'college-indoctrination-of-children'
+title: 'College Indoctrination Of Children'
 ---
 
 ![college-indoctrination-of-children](/memes/politics/college-indoctrination-of-children.png)

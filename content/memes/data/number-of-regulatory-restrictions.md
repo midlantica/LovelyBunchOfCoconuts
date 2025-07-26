@@ -1,5 +1,5 @@
 ---
-title: 'number-of-regulatory-restrictions'
+title: 'Number Of Regulatory Restrictions'
 ---
 
 ![number-of-regulatory-restrictions](/memes/data/number-of-regulatory-restrictions.png)

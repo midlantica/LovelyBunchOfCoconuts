@@ -1,5 +1,5 @@
 ---
-title: 'governments-first-duty-i'
+title: 'Governments First Duty I'
 ---
 
 ![governments-first-duty-i](/memes/quotes/governments-first-duty-i.png)

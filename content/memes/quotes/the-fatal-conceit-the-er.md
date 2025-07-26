@@ -1,5 +1,5 @@
 ---
-title: 'the-fatal-conceit-the-er'
+title: 'The Fatal Conceit The Er'
 ---
 
 ![the-fatal-conceit-the-er](/memes/quotes/the-fatal-conceit-the-er.png)

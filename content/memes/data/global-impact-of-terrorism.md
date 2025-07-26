@@ -1,5 +1,5 @@
 ---
-title: 'global-impact-of-terrorism'
+title: 'Global Impact Of Terrorism'
 ---
 
 ![global-impact-of-terrorism](/memes/data/global-impact-of-terrorism.png)

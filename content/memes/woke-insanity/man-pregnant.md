@@ -1,5 +1,5 @@
 ---
-title: 'man-pregnant'
+title: 'Man Pregnant'
 ---
 
 ![Meme](/memes/woke-insanity/man-pregnant.png)

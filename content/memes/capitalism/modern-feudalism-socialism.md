@@ -1,5 +1,5 @@
 ---
-title: 'modern-feudalism-socialism'
+title: 'Modern Feudalism Socialism'
 ---
 
 ![modern-feudalism-socialism](/memes/capitalism/modern-feudalism-socialism.png)

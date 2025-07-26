@@ -1,5 +1,5 @@
 ---
-title: 'external-contentduckduckgo'
+title: 'External Contentduckduckgo'
 ---
 
 ![external-contentduckduckgo](/memes/politics/external-contentduckduckgo.png)

@@ -1,5 +1,5 @@
 ---
-title: 'watermelons-green-outside-red-within'
+title: 'Watermelons Green Outside Red Within'
 ---
 
 ![watermelons-green-outside-red-within](/memes/politics/watermelons-green-outside-red-within.png)

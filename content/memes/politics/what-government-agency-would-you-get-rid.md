@@ -1,5 +1,5 @@
 ---
-title: 'what-government-agency-would-you-get-rid'
+title: 'What Government Agency Would You Get Rid'
 ---
 
 ![what-government-agency-would-you-get-rid](/memes/politics/what-government-agency-would-you-get-rid.png)

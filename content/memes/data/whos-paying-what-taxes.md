@@ -1,5 +1,5 @@
 ---
-title: 'whos-paying-what-taxes'
+title: 'Whos Paying What Taxes'
 ---
 
 ![whos-paying-what-taxes](/memes/data/whos-paying-what-taxes.png)

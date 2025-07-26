@@ -1,5 +1,5 @@
 ---
-title: 'nazis-and-communists-and-antifa-the-same'
+title: 'Nazis And Communists And Antifa The Same'
 ---
 
 ![nazis-and-communists-and-antifa-the-same](/memes/capitalism/nazis-and-communists-and-antifa-the-same.png)

@@ -1,5 +1,5 @@
 ---
-title: 'fictional-country-socialists'
+title: 'Fictional Country Socialists'
 ---
 
 ![fictional-country-socialists](/memes/capitalism/fictional-country-socialists.png)

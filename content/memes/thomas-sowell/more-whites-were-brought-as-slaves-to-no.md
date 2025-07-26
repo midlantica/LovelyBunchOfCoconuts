@@ -1,5 +1,5 @@
 ---
-title: 'more-whites-were-brought-as-slaves-to-no'
+title: 'More Whites Were Brought As Slaves To No'
 ---
 
 ![more-whites-were-brought-as-slaves-to-no](/memes/thomas-sowell/more-whites-were-brought-as-slaves-to-no.png)

@@ -1,5 +1,5 @@
 ---
-title: 'that-men-do-not-learn-ver'
+title: 'That Men Do Not Learn Ver'
 ---
 
 ![that-men-do-not-learn-ver](/memes/quotes/that-men-do-not-learn-ver.png)

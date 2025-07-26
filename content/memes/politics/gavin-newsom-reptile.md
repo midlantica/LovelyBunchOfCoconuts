@@ -1,5 +1,5 @@
 ---
-title: 'gavin-newsom-reptile'
+title: 'Gavin Newsom Reptile'
 ---
 
 ![gavin-newsom-reptile](/memes/politics/gavin-newsom-reptile.png)

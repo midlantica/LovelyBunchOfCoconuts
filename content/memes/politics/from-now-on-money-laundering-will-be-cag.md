@@ -1,5 +1,5 @@
 ---
-title: 'from-now-on-money-laundering-will-be-cag'
+title: 'From Now On Money Laundering Will Be Cag'
 ---
 
 ![from-now-on-money-laundering-will-be-cag](/memes/politics/from-now-on-money-laundering-will-be-cag.png)

@@ -1,5 +1,5 @@
 ---
-title: 'at-least-im-not-a-capitalist-capitalism'
+title: 'At Least Im Not A Capitalist Capitalism'
 ---
 
 ![at-least-im-not-a-capitalist-capitalism](/memes/capitalism/at-least-im-not-a-capitalist-capitalism.png)

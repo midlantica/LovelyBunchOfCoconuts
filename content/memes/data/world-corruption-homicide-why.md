@@ -1,5 +1,5 @@
 ---
-title: 'world-corruption-homicide-why'
+title: 'World Corruption Homicide Why'
 ---
 
 ![world-corruption-homicide-why](/memes/data/world-corruption-homicide-why.png)

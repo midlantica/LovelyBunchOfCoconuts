@@ -1,5 +1,5 @@
 ---
-title: 'growth-of-physicians-and-administrators'
+title: 'Growth Of Physicians And Administrators'
 ---
 
 ![growth-of-physicians-and-administrators](/memes/data/growth-of-physicians-and-administrators.png)

@@ -1,5 +1,5 @@
 ---
-title: 'basic-political-spectrum'
+title: 'Basic Political Spectrum'
 ---
 
 ![basic-political-spectrum](/memes/politics/basic-political-spectrum.png)

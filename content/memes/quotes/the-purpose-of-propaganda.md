@@ -1,5 +1,5 @@
 ---
-title: 'the-purpose-of-propaganda'
+title: 'The Purpose Of Propaganda'
 ---
 
 ![the-purpose-of-propaganda](/memes/quotes/the-purpose-of-propaganda.png)

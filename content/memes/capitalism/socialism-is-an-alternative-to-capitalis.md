@@ -1,5 +1,5 @@
 ---
-title: 'socialism-is-an-alternative-to-capitalis'
+title: 'Socialism Is An Alternative To Capitalis'
 ---
 
 ![socialism-is-an-alternative-to-capitalis](/memes/capitalism/socialism-is-an-alternative-to-capitalis.png)

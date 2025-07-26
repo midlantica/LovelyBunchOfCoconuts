@@ -1,5 +1,5 @@
 ---
-title: 'fascism-mirror-democrats'
+title: 'Fascism Mirror Democrats'
 ---
 
 ![fascism-mirror-democrats](/memes/politics/fascism-mirror-democrats.png)

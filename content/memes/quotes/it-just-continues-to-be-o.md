@@ -1,5 +1,5 @@
 ---
-title: 'it-just-continues-to-be-o'
+title: 'It Just Continues To Be O'
 ---
 
 ![it-just-continues-to-be-o](/memes/quotes/it-just-continues-to-be-o.png)

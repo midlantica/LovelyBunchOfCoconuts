@@ -1,5 +1,5 @@
 ---
-title: 'theres-a-word-for-people'
+title: 'Theres A Word For People'
 ---
 
 ![theres-a-word-for-people](/memes/quotes/theres-a-word-for-people.png)

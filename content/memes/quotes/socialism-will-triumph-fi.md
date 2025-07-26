@@ -1,5 +1,5 @@
 ---
-title: 'socialism-will-triumph-fi'
+title: 'Socialism Will Triumph Fi'
 ---
 
 ![socialism-will-triumph-fi](/memes/quotes/socialism-will-triumph-fi.png)

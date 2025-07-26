@@ -1,5 +1,5 @@
 ---
-title: 'muslims-in-the-eu-norway-and-switzerland'
+title: 'Muslims In The Eu Norway And Switzerland'
 ---
 
 ![muslims-in-the-eu-norway-and-switzerland](/memes/data/muslims-in-the-eu-norway-and-switzerland.png)

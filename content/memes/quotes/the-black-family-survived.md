@@ -1,5 +1,5 @@
 ---
-title: 'the-black-family-survived'
+title: 'The Black Family Survived'
 ---
 
 ![the-black-family-survived](/memes/quotes/the-black-family-survived.png)

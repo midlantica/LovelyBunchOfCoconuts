@@ -1,5 +1,5 @@
 ---
-title: 'it-constantly-amazes-me-t'
+title: 'It Constantly Amazes Me T'
 ---
 
 ![it-constantly-amazes-me-t](/memes/quotes/it-constantly-amazes-me-t.png)

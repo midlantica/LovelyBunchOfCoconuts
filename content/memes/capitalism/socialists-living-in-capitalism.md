@@ -1,5 +1,5 @@
 ---
-title: 'socialists-living-in-capitalism'
+title: 'Socialists Living In Capitalism'
 ---
 
 ![socialists-living-in-capitalism](/memes/capitalism/socialists-living-in-capitalism.png)

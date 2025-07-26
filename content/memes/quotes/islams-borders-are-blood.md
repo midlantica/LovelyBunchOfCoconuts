@@ -1,5 +1,5 @@
 ---
-title: 'islams-borders-are-blood'
+title: 'Islams Borders Are Blood'
 ---
 
 ![islams-borders-are-blood](/memes/quotes/islams-borders-are-blood.png)

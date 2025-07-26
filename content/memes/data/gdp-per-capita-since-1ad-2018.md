@@ -1,5 +1,5 @@
 ---
-title: 'gdp-per-capita-since-1ad-2018'
+title: 'Gdp Per Capita Since 1ad 2018'
 ---
 
 ![gdp-per-capita-since-1ad-2018](/memes/data/gdp-per-capita-since-1ad-2018.png)

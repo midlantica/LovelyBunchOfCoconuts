@@ -1,5 +1,5 @@
 ---
-title: 'there-is-no-swifter-route'
+title: 'There Is No Swifter Route'
 ---
 
 ![there-is-no-swifter-route](/memes/quotes/there-is-no-swifter-route.png)

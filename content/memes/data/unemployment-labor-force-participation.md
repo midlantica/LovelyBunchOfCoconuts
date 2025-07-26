@@ -1,5 +1,5 @@
 ---
-title: 'unemployment-labor-force-participation'
+title: 'Unemployment Labor Force Participation'
 ---
 
 ![unemployment-labor-force-participation](/memes/data/unemployment-labor-force-participation.png)

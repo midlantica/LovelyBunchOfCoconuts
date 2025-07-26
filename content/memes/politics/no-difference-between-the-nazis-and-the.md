@@ -1,5 +1,5 @@
 ---
-title: 'no-difference-between-the-nazis-and-the'
+title: 'No Difference Between The Nazis And The'
 ---
 
 ![no-difference-between-the-nazis-and-the](/memes/politics/no-difference-between-the-nazis-and-the.png)

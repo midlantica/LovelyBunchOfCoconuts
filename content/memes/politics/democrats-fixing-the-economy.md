@@ -1,5 +1,5 @@
 ---
-title: 'democrats-fixing-the-economy'
+title: 'Democrats Fixing The Economy'
 ---
 
 ![democrats-fixing-the-economy](/memes/politics/democrats-fixing-the-economy.png)

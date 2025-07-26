@@ -1,5 +1,5 @@
 ---
-title: 'that-wasnt-real-socialism'
+title: 'That Wasnt Real Socialism'
 ---
 
 ![that-wasnt-real-socialism](/memes/politics/that-wasnt-real-socialism.png)

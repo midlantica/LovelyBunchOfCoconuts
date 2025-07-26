@@ -1,5 +1,5 @@
 ---
-title: "we're-way-past-swamp-britain"
+title: 'We'
 ---
 
 ![Meme](/memes/cartoons/were-way-past-swamp-britain.png)

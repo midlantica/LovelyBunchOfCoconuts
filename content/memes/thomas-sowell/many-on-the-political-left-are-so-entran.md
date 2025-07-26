@@ -1,5 +1,5 @@
 ---
-title: 'many-on-the-political-left-are-so-entran'
+title: 'Many On The Political Left Are So Entran'
 ---
 
 ![many-on-the-political-left-are-so-entran](/memes/thomas-sowell/many-on-the-political-left-are-so-entran.png)

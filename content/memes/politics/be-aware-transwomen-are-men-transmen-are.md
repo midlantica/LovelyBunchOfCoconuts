@@ -1,5 +1,5 @@
 ---
-title: 'be-aware-transwomen-are-men-transmen-are'
+title: 'Be Aware Transwomen Are Men Transmen Are'
 ---
 
 ![be-aware-transwomen-are-men-transmen-are](/memes/politics/be-aware-transwomen-are-men-transmen-are.png)

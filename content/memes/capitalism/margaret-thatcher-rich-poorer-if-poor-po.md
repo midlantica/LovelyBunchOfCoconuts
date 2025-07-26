@@ -1,5 +1,5 @@
 ---
-title: 'margaret-thatcher-rich-poorer-if-poor-po'
+title: 'Margaret Thatcher Rich Poorer If Poor Po'
 ---
 
 ![margaret-thatcher-rich-poorer-if-poor-po](/memes/capitalism/margaret-thatcher-rich-poorer-if-poor-po.png)

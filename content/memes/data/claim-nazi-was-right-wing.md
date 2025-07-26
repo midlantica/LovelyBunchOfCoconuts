@@ -1,5 +1,5 @@
 ---
-title: 'claim-nazi-was-right-wing'
+title: 'Claim Nazi Was Right Wing'
 ---
 
 ![claim-nazi-was-right-wing](/memes/data/claim-nazi-was-right-wing.png)

@@ -1,5 +1,5 @@
 ---
-title: 'you-cant-make-people-good'
+title: 'You Cant Make People Good'
 ---
 
 ![you-cant-make-people-good](/memes/margaret-thatcher/you-cant-make-people-good.png)

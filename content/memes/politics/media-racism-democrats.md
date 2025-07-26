@@ -1,5 +1,5 @@
 ---
-title: 'media-racism-democrats'
+title: 'Media Racism Democrats'
 ---
 
 ![media-racism-democrats](/memes/politics/media-racism-democrats.png)

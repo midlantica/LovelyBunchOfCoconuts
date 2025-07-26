@@ -1,5 +1,5 @@
 ---
-title: 'share-of-federal-income-taxes-paid-top-1'
+title: 'Share Of Federal Income Taxes Paid Top 1'
 ---
 
 ![share-of-federal-income-taxes-paid-top-1](/memes/data/share-of-federal-income-taxes-paid-top-1.png)

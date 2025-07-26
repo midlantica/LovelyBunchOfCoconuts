@@ -1,5 +1,5 @@
 ---
-title: 'wrong-enemy-correct-enemy'
+title: 'Wrong Enemy Correct Enemy'
 ---
 
 ![wrong-enemy-correct-enemy](/memes/data/wrong-enemy-correct-enemy.png)

@@ -1,5 +1,5 @@
 ---
-title: 'useful-idiots-hugo-chavez-socialism'
+title: 'Useful Idiots Hugo Chavez Socialism'
 ---
 
 ![useful-idiots-hugo-chavez-socialism](/memes/capitalism/useful-idiots-hugo-chavez-socialism.png)

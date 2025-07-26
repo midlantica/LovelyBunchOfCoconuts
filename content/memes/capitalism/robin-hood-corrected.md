@@ -1,5 +1,5 @@
 ---
-title: 'robin-hood-corrected'
+title: 'Robin Hood Corrected'
 ---
 
 ![robin-hood-corrected](/memes/capitalism/robin-hood-corrected.png)

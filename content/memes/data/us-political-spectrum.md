@@ -1,5 +1,5 @@
 ---
-title: 'us-political-spectrum'
+title: 'Us Political Spectrum'
 ---
 
 ![us-political-spectrum](/memes/data/us-political-spectrum.png)

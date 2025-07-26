@@ -1,5 +1,5 @@
 ---
-title: 'us-deaths-in-wars'
+title: 'Us Deaths In Wars'
 ---
 
 ![us-deaths-in-wars](/memes/data/us-deaths-in-wars.png)

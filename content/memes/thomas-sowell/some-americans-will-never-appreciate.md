@@ -1,5 +1,5 @@
 ---
-title: 'some-americans-will-never-appreciate'
+title: 'Some Americans Will Never Appreciate'
 ---
 
 ![some-americans-will-never-appreciate](/memes/thomas-sowell/some-americans-will-never-appreciate.png)
