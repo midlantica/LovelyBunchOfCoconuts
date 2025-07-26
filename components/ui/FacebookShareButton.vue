@@ -1,8 +1,8 @@
 <template>
-  <div class="relative" ref="buttonRef">
+  <div class="z-10 relative" ref="buttonRef">
     <button
       @click="handleClick"
-      class="flex justify-center items-center bg-transparent hover:bg-gray-500 p-2.5 rounded-lg text-gray-400 hover:text-white transition-colors"
+      class="z-10 relative flex justify-center items-center bg-transparent hover:brightness-150 p-2.5 rounded-lg text-gray-400 hover:text-white transition-all duration-200"
       aria-label="Copy text for Facebook"
     >
       <Icon name="mdi:content-copy" size="1.3rem" />
@@ -28,12 +28,22 @@
           transform: 'translateX(-50%)',
           zIndex: 9999,
         }"
-        class="bg-seagull-950 shadow-lg px-5 py-2 rounded-lg text-white text-lg whitespace-nowrap"
+        class="bg-black shadow-lg px-5 py-2 border border-white/50 rounded-lg text-white text-lg whitespace-nowrap"
       >
         {{ currentToastMessage }}
-        <!-- Arrow pointing up -->
+        <!-- Arrow pointing up with white border -->
+        <!-- White border arrow (slightly larger, positioned behind) -->
         <div
-          class="absolute border-transparent border-r-8 border-b-8 border-b-seagull-950 border-l-8 w-0 h-0"
+          class="absolute border-transparent border-r-[9px] border-b-[9px] border-b-white/50 border-l-[9px] w-0 h-0"
+          :style="{
+            top: '-8px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+          }"
+        ></div>
+        <!-- Black arrow (on top) -->
+        <div
+          class="absolute border-transparent border-r-8 border-b-8 border-b-black border-l-8 w-0 h-0"
           :style="{
             top: '-7px',
             left: '50%',

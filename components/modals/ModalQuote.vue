@@ -2,11 +2,10 @@
 <template>
   <client-only>
     <ModalFrame v-if="modalData" :show="show" @close="emit('close')">
-      <!-- Share Panel Container -->
-      <div class="bg-slate-900 rounded-lg">
-        <!-- Main Content Panel (nested inside) -->
+      <template #mainPanel>
+        <!-- Main Content Panel -->
         <div
-          class="flex flex-col bg-slate-800 shadow-lg p-4 sm:p-6 rounded-lg sm:rounded-lg main-content-panel"
+          class="z-10 relative bg-slate-800 shadow-[0_4px_20px_-10px_black] p-4 sm:p-6 rounded-lg"
         >
           <div class="mb-2">
             <h1 class="mb-2 font-bold text-white text-2xl leading-9">
@@ -31,25 +30,26 @@
             <div v-html="modalData?.bodyHtml"></div>
           </div>
         </div>
+      </template>
 
+      <template #sharePanel>
         <!-- Share Buttons Shelf -->
-        <div class="px-2 sm:px-6 py-2 rounded-b-lg sm:rounded-b-lg">
-          <ShareButton
-            v-if="modalData"
-            :title="modalData?.quoteText || modalData?.title"
-            :text="`${modalData?.quoteText || modalData?.title} — ${modalData?.attribution}`"
-            :url="shareUrl"
-            :generated-image-blob="shareImageBlob"
-            content-type="quote"
-          />
-        </div>
-      </div>
+        <ShareButton
+          v-if="modalData"
+          :title="modalData?.quoteText || modalData?.title"
+          :text="`${modalData?.quoteText || modalData?.title} — ${modalData?.attribution}`"
+          :url="shareUrl"
+          :generated-image-blob="shareImageBlob"
+          :show="showShareShelf"
+          content-type="quote"
+        />
+      </template>
     </ModalFrame>
   </client-only>
 </template>
 
 <script setup>
-  import { watch, computed, ref } from 'vue'
+  import { watch, computed, ref, nextTick } from 'vue'
   import ModalFrame from './ModalFrame.vue'
   import ShareButton from '../ui/ShareButton.vue'
   import { useContentUrls } from '~/composables/useContentUrls'
@@ -63,6 +63,7 @@
   const { generateContentUrl } = useContentUrls()
 
   const shareImageBlob = ref(null)
+  const showShareShelf = ref(false)
 
   // Create shareable URL
   const shareUrl = computed(() => {
@@ -70,7 +71,23 @@
     return generateContentUrl(props.modalData, 'quote')
   })
 
-  // Generate share image when modal data changes
+  // Handle share shelf animation timing
+  watch(
+    () => props.show,
+    (isVisible) => {
+      if (isVisible) {
+        // Reset shelf state first
+        showShareShelf.value = false
+        // Wait 0.5 seconds before showing the share panel
+        setTimeout(() => {
+          showShareShelf.value = true
+        }, 500)
+      } else {
+        showShareShelf.value = false
+      }
+    },
+    { immediate: true }
+  ) // Generate share image when modal data changes
   watch(
     () => props.modalData,
     async (data) => {

@@ -1,7 +1,7 @@
 <template>
   <ShareButtonBase
     ref="buttonBase"
-    icon-name="mdi:link"
+    icon-name="heroicons:link"
     aria-label="Copy link"
     toast-message="Link copied"
     @click="copyLink"

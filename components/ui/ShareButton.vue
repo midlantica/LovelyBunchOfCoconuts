@@ -1,27 +1,57 @@
 <template>
-  <div class="px-4 sm:px-6 rounded-b-lg sm:rounded-b-lg">
-    <div class="flex justify-center gap-2">
-      <TwitterShareButton
-        ref="twitterButton"
-        :title="title"
-        :text="text"
-        :url="url"
-        :content-type="contentType"
-        @toast-show="onToastShow"
-      />
+  <transition
+    enter-active-class="duration-400 transition-all ease-in-out"
+    enter-from-class="transform opacity-0 scale-y-0 origin-top"
+    enter-to-class="transform opacity-100 scale-y-100 origin-top"
+    leave-active-class="transition-all duration-200 ease-in"
+    leave-from-class="transform opacity-100 scale-y-100 origin-top"
+    leave-to-class="transform opacity-0 scale-y-0 origin-top"
+  >
+    <div
+      v-if="show"
+      class="bg-slate-900 shadow-lg px-4 sm:px-6 rounded-b-lg"
+      style="
+        position: absolute;
+        left: 0.667px;
+        top: calc(100% - 0.7rem);
+        z-index: 0;
+        padding: 1rem 0px 0.5rem;
+        width: calc(100% - 1.334px);
+      "
+    >
+      <div class="flex justify-center gap-2">
+        <div class="z-30 relative">
+          <TwitterShareButton
+            ref="twitterButton"
+            :title="title"
+            :text="text"
+            :url="url"
+            :content-type="contentType"
+            @toast-show="onToastShow"
+          />
+        </div>
 
-      <FacebookShareButton
-        ref="facebookButton"
-        :title="title"
-        :text="text"
-        :url="url"
-        :content-type="contentType"
-        @toast-show="onToastShow"
-      />
+        <div class="z-30 relative">
+          <FacebookShareButton
+            ref="facebookButton"
+            :title="title"
+            :text="text"
+            :url="url"
+            :content-type="contentType"
+            @toast-show="onToastShow"
+          />
+        </div>
 
-      <CopyLinkButton ref="copyButton" :url="url" @toast-show="onToastShow" />
+        <div class="z-30 relative">
+          <CopyLinkButton
+            ref="copyButton"
+            :url="url"
+            @toast-show="onToastShow"
+          />
+        </div>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script setup>
@@ -37,7 +67,8 @@
     imageUrl: { type: String, default: null },
     imageFile: { type: File, default: null },
     generatedImageBlob: { type: Blob, default: null },
-    contentType: { type: String, default: 'general' }, // 'claim', 'quote', 'meme', 'general'
+    contentType: { type: String, default: 'general' },
+    show: { type: Boolean, default: true },
   })
 
   // Button refs for coordination

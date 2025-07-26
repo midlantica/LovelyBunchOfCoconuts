@@ -2,20 +2,33 @@
 <template>
   <client-only>
     <ModalFrame v-if="modalData" :show="show" @close="emit('close')">
-      <!-- Share Panel Container -->
-      <div class="bg-slate-900 rounded-lg">
-        <!-- Main Content Panel (nested inside) -->
+      <template #mainPanel>
+        <!-- Main Content Panel - completely independent -->
         <div
-          class="flex flex-col bg-slate-800 shadow-lg p-4 sm:p-6 rounded-lg sm:rounded-lg"
+          class="z-10 relative bg-slate-800 shadow-[0_4px_20px_-10px_black] p-4 sm:p-6 rounded-lg"
         >
-          <div class="mb-2">
-            <h1 class="mb-4 font-bold text-white text-2xl">
-              {{ modalData?.claim || modalData?.title }}
-            </h1>
-            <hr class="my-2 border-white/10 border-t" />
-            <h1 class="mb-2 font-bold text-white text-2xl">
-              {{ modalData?.translation }}
-            </h1>
+          <div class="mb-0">
+            <div class="flex gap-3">
+              <img
+                src="~/assets/icons/npc_icon.svg"
+                alt="NPC"
+                class="self-start w-8"
+              />
+              <h1 class="mb-4 font-bold text-white text-2xl">
+                {{ modalData?.claim || modalData?.title }}
+              </h1>
+            </div>
+            <hr class="my-4 border-white/10 border-t" />
+            <div class="flex gap-3">
+              <img
+                src="~/assets/icons/player_icon.svg"
+                alt="Player"
+                class="self-start w-8"
+              />
+              <h1 class="mb-2 font-bold text-white text-2xl">
+                {{ modalData?.translation }}
+              </h1>
+            </div>
           </div>
           <!-- Only show body content if it exists and has actual content -->
           <div
@@ -29,28 +42,30 @@
             <div v-html="modalData?.bodyHtml"></div>
           </div>
         </div>
+      </template>
 
-        <!-- Share Buttons Shelf -->
-        <div class="px-2 sm:px-6 py-2 rounded-b-lg sm:rounded-b-lg">
-          <ShareButton
-            v-if="modalData"
-            :title="modalData?.claim || modalData?.title"
-            :text="`${modalData?.claim || modalData?.title} - ${modalData?.translation}`"
-            :url="shareUrl"
-            :generated-image-blob="shareImageBlob"
-            content-type="claim"
-          />
-        </div>
-      </div>
+      <template #sharePanel>
+        <!-- Share Buttons Shelf - positioned relative to this panel -->
+        <ShareButton
+          v-if="modalData"
+          :title="modalData?.claim || modalData?.title"
+          :text="`${modalData?.claim || modalData?.title} - ${modalData?.translation}`"
+          :url="shareUrl"
+          :generated-image-blob="shareImageBlob"
+          :show="showShareShelf"
+          content-type="claim"
+        />
+      </template>
     </ModalFrame>
   </client-only>
 </template>
 
 <script setup>
-  import { watch, computed, ref } from 'vue'
+  import { watch, computed, ref, nextTick } from 'vue'
   import ModalFrame from './ModalFrame.vue'
   import ShareButton from '../ui/ShareButton.vue'
   import { useContentUrls } from '~/composables/useContentUrls'
+  import { useShareImageGenerator } from '~/composables/useShareImageGenerator'
 
   const props = defineProps({
     show: { type: Boolean, default: false },
@@ -61,6 +76,7 @@
   const { generateContentUrl } = useContentUrls()
 
   const shareImageBlob = ref(null)
+  const showShareShelf = ref(false)
 
   // Create shareable URL
   const shareUrl = computed(() => {
@@ -68,7 +84,23 @@
     return generateContentUrl(props.modalData, 'claim')
   })
 
-  // Generate share image when modal data changes
+  // Handle share shelf animation timing
+  watch(
+    () => props.show,
+    (isVisible) => {
+      if (isVisible) {
+        // Reset shelf state first
+        showShareShelf.value = false
+        // Wait 0.5 seconds before showing the share panel
+        setTimeout(() => {
+          showShareShelf.value = true
+        }, 500)
+      } else {
+        showShareShelf.value = false
+      }
+    },
+    { immediate: true }
+  ) // Generate share image when modal data changes
   watch(
     () => props.modalData,
     async (data) => {
@@ -76,9 +108,7 @@
       if (import.meta.server) return
 
       if (data && data.claim && data.translation) {
-        const { generateClaimImage } = await import(
-          '~/composables/useShareImageGenerator'
-        )
+        const { generateClaimImage } = useShareImageGenerator()
         shareImageBlob.value = await generateClaimImage(
           data.claim,
           data.translation

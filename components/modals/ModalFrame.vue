@@ -7,13 +7,18 @@
     >
       <div
         class="relative flex flex-col shadow-lg mx-0 sm:mx-6 rounded-none sm:rounded-lg modal-frame"
-        :style="modalStyle ? modalStyle : { maxHeight: '90vh' }"
+        :style="
+          modalStyle
+            ? { ...modalStyle, isolation: 'isolate' }
+            : { maxHeight: '90vh', isolation: 'isolate' }
+        "
         :class="[modalStyle ? '' : 'w-full sm:min-w-[60vw] sm:max-w-[500px]']"
         @mousedown.stop
       >
         <CloseButton @click="onClose" />
-        <div class="w-full overflow-y-auto">
-          <slot />
+        <div class="relative w-full overflow-x-visible overflow-y-visible">
+          <slot name="mainPanel" />
+          <slot name="sharePanel" />
         </div>
       </div>
     </div>
