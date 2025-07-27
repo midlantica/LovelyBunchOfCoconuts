@@ -1,7 +1,7 @@
 ---
-title: 'When Government Attempts To Regulate The'
+title: 'When government attempts to regulate the free market'
 ---
 
-![when-government-attempts-to-regulate-the](/memes/capitalism/when-government-attempts-to-regulate-the.png)
+![When government attempts to regulate the free market](/memes/capitalism/when-government-attempts-to-regulate-the.png)
 
-When government attempts to regulate the.
+When government attempts to regulate the free market

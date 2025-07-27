@@ -53,7 +53,9 @@ async function processAllSubdirectories() {
       console.log(`\nAll new memes created:`)
       allNewFiles.forEach((file) => {
         const mdFile = file.replace(/\.(png|jpg|jpeg|gif|webp)$/i, '.md')
-        console.log(`🆕 ${file} & ${mdFile}`)
+        console.log(`${file}`)
+        console.log(`${mdFile}`)
+        console.log('')
       })
     }
   } catch (error) {

@@ -4,4 +4,5 @@ title: 'Venezuela Before After Socialism'
 
 ![venezuela-before-after-socialism](/memes/capitalism/venezuela-before-after-socialism.png)
 
-Venezuela before after socialism.
+Venezuela, Before after Socialism
+This only took one generation.

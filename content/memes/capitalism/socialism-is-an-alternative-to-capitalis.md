@@ -1,7 +1,8 @@
 ---
-title: 'Socialism Is An Alternative To Capitalis'
+title: 'Socialism Is An Alternative To Capitalism'
 ---
 
 ![socialism-is-an-alternative-to-capitalis](/memes/capitalism/socialism-is-an-alternative-to-capitalis.png)
 
-Socialism is an alternative to capitalis.
+"Socialism is an alternative to Capitalism as potassium cyanide is an alternative to
+water."

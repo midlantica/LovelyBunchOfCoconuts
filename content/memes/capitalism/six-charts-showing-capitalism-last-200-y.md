@@ -1,7 +1,7 @@
 ---
-title: 'Six Charts Showing Capitalism Last 200 Y'
+title: 'Six Charts Showing Capitalism Last 200 Years'
 ---
 
-![six-charts-showing-capitalism-last-200-y](/memes/capitalism/six-charts-showing-capitalism-last-200-y.png)
+![Six Charts Showing Capitalism Last 200 Years](/memes/capitalism/six-charts-showing-capitalism-last-200-y.png)
 
-Six charts showing capitalism last 200 y.
+Six Charts Showing Capitalism Last 200 Years

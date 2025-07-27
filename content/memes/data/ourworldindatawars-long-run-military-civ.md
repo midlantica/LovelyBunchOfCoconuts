@@ -1,7 +1,7 @@
 ---
-title: 'Ourworldindatawars Long Run Military Civ'
+title: 'Global deaths in conflicts since the year 1400'
 ---
 
 ![ourworldindatawars-long-run-military-civ](/memes/data/ourworldindatawars-long-run-military-civ.png)
 
-Our world in data wars long run military civ.
+Global deaths in conflicts since the year 1400
