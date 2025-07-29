@@ -1,7 +1,7 @@
 ---
-title: 'Democratic Party Voter Registration For'
+title: 'Democratic Party Voter Registration path to Citizenship'
 ---
 
-![democratic-party-voter-registration-for](/memes/immigration/democratic-party-voter-registration-for.png)
+![Democratic Party Voter Registration path to Citizenship](/memes/immigration/democratic-party-voter-registration-for.jpg)
 
-Democratic party voter registration for.
+Democratic Party Voter Registration path to Citizenship.

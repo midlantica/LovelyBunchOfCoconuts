@@ -1,7 +1,8 @@
 ---
-title: 'The Two Totalitarian Systems Which We In'
+title: 'The two totalitarian systems which we in Britain had to fight - Nazism and Communism'
 ---
 
-![the-two-totalitarian-systems-which-we-in](/memes/margaret-thatcher/the-two-totalitarian-systems-which-we-in.png)
+![The two totalitarian systems which we in Britain had to fight - Nazism and Communism](/memes/margaret-thatcher/the-two-totalitarian-systems-which-we-in.jpg)
 
-The two totalitarian systems which we in.
+"The two totalitarian systems which we in Britain had to fight - Nazism and Communism - two socialist tyrannies, let's remember - represented one single model.
+The other was represented by our Anglo-American liberal political culture - our parliamentary institutions, our law, our notions of human rights and our free enterprise system based on private property." - Margaret Thatcher

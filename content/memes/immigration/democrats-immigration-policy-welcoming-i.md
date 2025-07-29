@@ -1,7 +1,7 @@
 ---
-title: 'Democrats Immigration Policy Welcoming I'
+title: 'Democratic Party Voter Registration path to Citizenship II'
 ---
 
-![democrats-immigration-policy-welcoming-i](/memes/immigration/democrats-immigration-policy-welcoming-i.png)
+![Democratic Party Voter Registration path to Citizenship II](/memes/immigration/democrats-immigration-policy-welcoming-i.jpg)
 
-Democrats immigration policy welcoming i.
+Democratic Party Voter Registration path to Citizenship II.

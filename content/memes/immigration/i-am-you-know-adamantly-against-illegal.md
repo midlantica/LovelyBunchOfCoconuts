@@ -1,7 +1,7 @@
 ---
-title: 'I Am You Know Adamantly Against Illegal'
+title: 'I am you know adamantly against illegal immigration'
 ---
 
-![i-am-you-know-adamantly-against-illegal](/memes/immigration/i-am-you-know-adamantly-against-illegal.png)
+![I am you know adamantly against illegal immigration](/memes/immigration/i-am-you-know-adamantly-against-illegal.jpg)
 
-I am you know adamantly against illegal.
+"I am, you know, adamantly against illegal immigration." - Hillary Clinton

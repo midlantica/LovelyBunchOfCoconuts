@@ -1,7 +1,7 @@
 ---
-title: 'The Problem With Socialism Is'
+title: "The problem with Socialism is you eventually run out of other people's money"
 ---
 
-![the-problem-with-socialism-is](/memes/margaret-thatcher/the-problem-with-socialism-is.png)
+![The problem with Socialism is you eventually run out of other people's money](/memes/margaret-thatcher/the-problem-with-socialism-is.jpg)
 
-The problem with socialism is.
+"The problem with Socialism is you eventually run out of other people's money." - Margaret Thatcher

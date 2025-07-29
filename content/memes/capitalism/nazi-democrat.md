@@ -2,6 +2,6 @@
 title: 'Nazis & Democrats'
 ---
 
-![nazi-democrat](/memes/capitalism/nazi-democrat.png)
+![nazi-democrat](/memes/capitalism/nazi-democrat.jpg)
 
 Nazis & Democrats.

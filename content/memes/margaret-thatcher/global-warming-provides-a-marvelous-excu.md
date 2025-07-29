@@ -1,7 +1,7 @@
 ---
-title: 'Global Warming Provides A Marvelous Excu'
+title: 'Global warming provides a marvelous excuse for global Socialism'
 ---
 
-![global-warming-provides-a-marvelous-excu](/memes/margaret-thatcher/global-warming-provides-a-marvelous-excu.png)
+![Global warming provides a marvelous excuse for global Socialism](/memes/margaret-thatcher/global-warming-provides-a-marvelous-excu.jpg)
 
-Global warming provides a marvelous excu.
+"Global warming provides a marvelous excuse for global Socialism" - Margaret Thatcher

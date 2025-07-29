@@ -2,6 +2,6 @@
 title: 'Marxism Is The Most Destr'
 ---
 
-![marxism-is-the-most-destr](/memes/quotes/marxism-is-the-most-destr.png)
+![marxism-is-the-most-destr](/memes/quotes/marxism-is-the-most-destr.jpg)
 
 Marxism is the most destr.

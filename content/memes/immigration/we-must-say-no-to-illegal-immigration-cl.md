@@ -1,7 +1,7 @@
 ---
-title: 'We Must Say No To Illegal Immigration Cl'
+title: 'We must say no to illegal immigration Bill Clinton'
 ---
 
-![we-must-say-no-to-illegal-immigration-cl](/memes/immigration/we-must-say-no-to-illegal-immigration-cl.png)
+![We must say no to illegal immigration Bill Clinton](/memes/immigration/we-must-say-no-to-illegal-immigration-cl.jpg)
 
-We must say no to illegal immigration cl.
+"We must say no to illegal immigration so we can continue to say yes to legal immigration." — Bill Clinton

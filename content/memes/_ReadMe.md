@@ -14,7 +14,7 @@ This folder contains markdown files for memes displayed on the site.
 title: "Short Meme Title"
 ---
 
-![alt text](/memes/subfolder/your-meme.png)
+![alt text](/memes/subfolder/your-meme.jpg)
 
 Optional caption or description.
 ```

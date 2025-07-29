@@ -1,8 +1,8 @@
 ---
-title: 'What Have The Left Ever Done For Us?'
+title: 'What have the left ever done for us?'
 ---
 
-![What Have The Left Ever Done For Us?](/memes/cartoons/what-have-the-left-ever-done-for-us.png)
+![What have the left ever done for us?](/memes/cartoons/what-have-the-left-ever-done-for-us.jpg)
 
-What Have The Left Ever Done For Us?
+What have the left ever done for us
 Monty Python's Life of Brian

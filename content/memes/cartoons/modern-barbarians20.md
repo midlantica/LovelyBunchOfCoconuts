@@ -2,7 +2,7 @@
 title: 'Modern Woke Barbarians'
 ---
 
-![Modern Woke Barbarians](/memes/cartoons/modern-barbarians20.png)
+![Modern Woke Barbarians](/memes/cartoons/modern-barbarians20.jpg)
 
 Modern Woke Barbarians
 

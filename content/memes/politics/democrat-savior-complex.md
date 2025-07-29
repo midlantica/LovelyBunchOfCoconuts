@@ -2,5 +2,5 @@
 title: 'Democrat Savior Complex'
 ---
 
-![Meme](/memes/woke-insanity/democrat-savior-complex.png)
+![Meme](/memes/woke-insanity/democrat-savior-complex.jpg)
 Democrat savior complex.

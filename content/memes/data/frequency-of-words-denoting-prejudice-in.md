@@ -2,6 +2,6 @@
 title: 'Frequency Of Words Denoting Prejudice In'
 ---
 
-![frequency-of-words-denoting-prejudice-in](/memes/data/frequency-of-words-denoting-prejudice-in.png)
+![frequency-of-words-denoting-prejudice-in](/memes/data/frequency-of-words-denoting-prejudice-in.jpg)
 
 Frequency of words denoting prejudice in.

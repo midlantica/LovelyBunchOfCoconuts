@@ -2,6 +2,6 @@
 title: 'Toppoliticaldonors'
 ---
 
-![toppoliticaldonors](/memes/data/toppoliticaldonors.png)
+![toppoliticaldonors](/memes/data/toppoliticaldonors.jpg)
 
 Toppoliticaldonors.

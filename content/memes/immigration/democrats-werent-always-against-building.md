@@ -1,7 +1,7 @@
 ---
-title: 'Democrats Werent Always Against Building'
+title: "Democrats weren't always against building a Wall"
 ---
 
-![democrats-werent-always-against-building](/memes/immigration/democrats-werent-always-against-building.png)
+![Democrats weren't always against building a Wall](/memes/immigration/democrats-werent-always-against-building.jpg)
 
-Democrats weren't always against building.
+Democrats weren't always against building a Wall and securing the border.

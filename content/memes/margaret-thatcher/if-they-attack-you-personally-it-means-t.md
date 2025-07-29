@@ -1,7 +1,7 @@
 ---
-title: 'If They Attack You Personally It Means T'
+title: 'If they attack one personally, it means they have not a single political argument left'
 ---
 
-![if-they-attack-you-personally-it-means-t](/memes/margaret-thatcher/if-they-attack-you-personally-it-means-t.png)
+![If they attack one personally, it means they have not a single political argument left](/memes/margaret-thatcher/if-they-attack-you-personally-it-means-t.jpg)
 
-If they attack you personally it means t.
+"I always cheer up immensely if an attack is particularly wounding because I think, well, if they attack one personally, it means they have not a single political argument left." - Margaret Thatcher

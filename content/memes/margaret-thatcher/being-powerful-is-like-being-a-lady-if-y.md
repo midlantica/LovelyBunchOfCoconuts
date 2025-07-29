@@ -1,7 +1,7 @@
 ---
-title: 'Being Powerful Is Like Being A Lady If Y'
+title: 'Being powerful is like being a lady'
 ---
 
-![being-powerful-is-like-being-a-lady-if-y](/memes/margaret-thatcher/being-powerful-is-like-being-a-lady-if-y.png)
+![Being powerful is like being a lady](/memes/margaret-thatcher/being-powerful-is-like-being-a-lady-if-y.jpg)
 
-Being powerful is like being a lady if y.
+"Being powerful is like being a lady if you have to tell people you are, you aren't." - Margaret Thatcher

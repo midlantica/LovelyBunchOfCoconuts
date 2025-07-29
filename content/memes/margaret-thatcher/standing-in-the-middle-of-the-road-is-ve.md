@@ -1,7 +1,7 @@
 ---
-title: 'Standing In The Middle Of The Road Is Ve'
+title: 'Standing in the middle of the road is very dangerous'
 ---
 
-![standing-in-the-middle-of-the-road-is-ve](/memes/margaret-thatcher/standing-in-the-middle-of-the-road-is-ve.png)
+![Standing in the middle of the road is very dangerous](/memes/margaret-thatcher/standing-in-the-middle-of-the-road-is-ve.jpg)
 
-Standing in the middle of the road is ve.
+"Standing in the middle of the road is very dangerous; you get knocked down by the traffic from both sides." - Margaret Thatcher

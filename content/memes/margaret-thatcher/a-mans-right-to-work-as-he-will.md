@@ -1,7 +1,7 @@
 ---
-title: 'A Mans Right To Work As He Will'
+title: "A man's right to work as he will"
 ---
 
-![a-mans-right-to-work-as-he-will](/memes/margaret-thatcher/a-mans-right-to-work-as-he-will.png)
+![A man's right to work as he will](/memes/margaret-thatcher/a-mans-right-to-work-as-he-will.jpg)
 
-A mans right to work as he will.
+"A man's right to work as he will, to spend what he earns, to own property, to have the state as servant and not as master, they are the essence of a free economy, and on that freedom all our other freedoms depend." - Margaret Thatcher

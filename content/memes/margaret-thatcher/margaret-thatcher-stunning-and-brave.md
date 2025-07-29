@@ -1,7 +1,7 @@
 ---
-title: 'Margaret Thatcher Stunning And Brave'
+title: 'Margaret Thatcher - Stunning and Brave'
 ---
 
-![margaret-thatcher-stunning-and-brave](/memes/margaret-thatcher/margaret-thatcher-stunning-and-brave.png)
+![Margaret Thatcher - Stunning and Brave](/memes/margaret-thatcher/margaret-thatcher-stunning-and-brave.jpg)
 
-Margaret thatcher stunning and brave.
+Margaret Thatcher - Stunning and Brave.

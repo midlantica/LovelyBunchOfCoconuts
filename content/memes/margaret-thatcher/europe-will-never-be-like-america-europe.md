@@ -1,7 +1,7 @@
 ---
-title: 'Europe Will Never Be Like America Europe'
+title: 'Europe will never be like America. Europe is a product of history'
 ---
 
-![europe-will-never-be-like-america-europe](/memes/margaret-thatcher/europe-will-never-be-like-america-europe.png)
+![Europe will never be like America. Europe is a product of history](/memes/margaret-thatcher/europe-will-never-be-like-america-europe.jpg)
 
-Europe will never be like america europe.
+"Europe will never be like America. Europe is a product of history. America is a product of philosophy." - Margaret Thatcher

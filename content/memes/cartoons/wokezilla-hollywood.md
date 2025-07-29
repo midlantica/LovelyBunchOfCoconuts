@@ -2,7 +2,7 @@
 title: 'Wokezilla Hollywood'
 ---
 
-![Wokezilla Hollywood](/memes/cartoons/wokezilla-hollywood.png)
+![Wokezilla Hollywood](/memes/cartoons/wokezilla-hollywood.jpg)
 
 Wokezilla Hollywood.
 

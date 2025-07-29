@@ -1,7 +1,7 @@
 ---
-title: 'You Cant Make People Good'
+title: "You can't make people good, kind, generous, thoughtful or dutiful by compulsion."
 ---
 
-![you-cant-make-people-good](/memes/margaret-thatcher/you-cant-make-people-good.png)
+![You can't make people good, kind, generous, thoughtful or dutiful by compulsion](/memes/margaret-thatcher/you-cant-make-people-good.jpg)
 
-You can't make people good.
+"You can't make people good, kind, generous, thoughtful or dutiful by compulsion." - Margaret Thatcher

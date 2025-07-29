@@ -2,6 +2,6 @@
 title: 'Maoist Left'
 ---
 
-![maoist-left](/memes/politics/maoist-left.png)
+![maoist-left](/memes/politics/maoist-left.jpg)
 
 Maoist left.
