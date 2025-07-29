@@ -2,6 +2,8 @@
 title: 'Wokezilla Hollywood'
 ---
 
-![wokezilla-hollywood](/memes/cartoons/wokezilla-hollywood.png)
+![Wokezilla Hollywood](/memes/cartoons/wokezilla-hollywood.png)
 
-Wokezilla hollywood.
+Wokezilla Hollywood.
+
+DEI, CRT, ESG, LGBTABC...

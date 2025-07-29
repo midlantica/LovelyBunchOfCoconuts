@@ -1,6 +1,7 @@
 ---
-title: 'We'
+title: "We're way past Swamp: UK Edition"
 ---
 
-![Meme](/memes/cartoons/were-way-past-swamp-britain.png)
-We're way past swamp britain.
+![We're way past Swamp: UK Edition](/memes/cartoons/were-way-past-swamp-britain.png)
+
+We're way past Swamp: UK Edition.

@@ -1,7 +1,12 @@
 ---
-title: 'Toxic Leftist Media Mass Formation Psych'
+title: 'Toxic Leftist Media Mass Formation Psychosis'
 ---
 
-![toxic-leftist-media-mass-formation-psych](/memes/cartoons/toxic-leftist-media-mass-formation-psych.png)
+![Toxic Leftist Media Mass Formation Psychosis](/memes/cartoons/toxic-leftist-media-mass-formation-psych.png)
 
-Toxic leftist media mass formation psych.
+Toxic Leftist Media Mass Formation Psychosis.
+
+Tell them they're evil.
+What could go wrong?
+
+Mass Formation Psychosis

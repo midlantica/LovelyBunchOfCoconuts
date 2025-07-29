@@ -1,7 +1,7 @@
 ---
-title: 'Democratic Party Looks Illegal Aliens Am'
+title: 'Democratic Party Looks Illegal Aliens'
 ---
 
-![democratic-party-looks-illegal-aliens-am](/memes/immigration/democratic-party-looks-illegal-aliens-am.png)
+![Democratic Party Looks Illegal Aliens](/memes/immigration/democratic-party-looks-illegal-aliens-am.png)
 
-Democratic party looks illegal aliens am.
+Democratic Party Looks Illegal Aliens

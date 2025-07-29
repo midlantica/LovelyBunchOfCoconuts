@@ -33,6 +33,9 @@ export default defineNuxtConfig({
       '**/_*', // Files/directories starting with single underscore
       '**/__*', // Files/directories starting with double underscore or more
     ],
+    experimental: {
+      openAPI: true,
+    },
   },
 
   content: {

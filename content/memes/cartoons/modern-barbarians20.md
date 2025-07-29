@@ -1,7 +1,9 @@
 ---
-title: 'Modern Barbarians20'
+title: 'Modern Woke Barbarians'
 ---
 
-![modern-barbarians20](/memes/cartoons/modern-barbarians20.png)
+![Modern Woke Barbarians](/memes/cartoons/modern-barbarians20.png)
 
-Modern barbarians20
+Modern Woke Barbarians
+
+Greeks, Romans, Celts, Germanics, Huns, Slavs, Christians, Renaissance, Enlightenment, Industrial Revolution, Modernity, Woke Barbarians. Dark Ages.

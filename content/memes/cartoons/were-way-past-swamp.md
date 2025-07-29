@@ -1,7 +1,7 @@
 ---
-title: 'Were Way Past Swamp'
+title: 'We're way past Swamp: US Edition'
 ---
 
-![were-way-past-swamp](/memes/cartoons/were-way-past-swamp.png)
+![We're way past Swamp: US Edition](/memes/cartoons/were-way-past-swamp.png)
 
-Were way past swamp.
+We're way past Swamp: US Edition.
