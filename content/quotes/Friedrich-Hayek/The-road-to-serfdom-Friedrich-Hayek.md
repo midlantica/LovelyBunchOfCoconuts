@@ -1,5 +1,5 @@
 ---
-title: 'The road to serfdom'
+title: 'The road to serfdom is paved with good intentions'
 ---
 
 ## "The road to serfdom is paved with good intentions."

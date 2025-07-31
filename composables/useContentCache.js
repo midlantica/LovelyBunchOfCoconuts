@@ -5,8 +5,8 @@
 import { ref, reactive, watch } from 'vue'
 import { interleaveContent } from '~/composables/interleaveContent'
 
-// Helper function to extract searchable text from AST body
-const extractSearchableText = (body) => {
+// Helper function to extract searchable text from AST body and path
+const extractSearchableText = (body, itemPath = '') => {
   if (!body || !body.value) return ''
 
   let text = ''
@@ -24,6 +24,21 @@ const extractSearchableText = (body) => {
   }
 
   body.value.forEach(extractFromElement)
+
+  // Add path information as searchable content (lower priority)
+  if (itemPath) {
+    // Extract folder names from path and add them as searchable terms
+    const pathParts = itemPath.split('/').filter(Boolean)
+    const folderNames = pathParts
+      .filter((part) => !part.endsWith('.md')) // Exclude filename
+      .map((part) => part.replace(/[-_]/g, ' ')) // Convert dashes/underscores to spaces
+      .join(' ')
+
+    if (folderNames) {
+      text += ' ' + folderNames
+    }
+  }
+
   return text.trim()
 }
 
@@ -238,7 +253,10 @@ export function useContentCache() {
       }
 
       // Add searchable text field for search functionality
-      transformed.searchableText = extractSearchableText(item.body)
+      transformed.searchableText = extractSearchableText(
+        item.body,
+        item._path || item.path
+      )
 
       return transformed
     })
