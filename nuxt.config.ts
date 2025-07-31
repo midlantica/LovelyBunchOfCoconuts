@@ -32,6 +32,10 @@ export default defineNuxtConfig({
       // Ignore all files and directories starting with one or more underscores
       '**/_*', // Files/directories starting with single underscore
       '**/__*', // Files/directories starting with double underscore or more
+      // Ignore macOS and Windows system files
+      '**/.DS_Store',
+      '**/._*',
+      '**/Thumbs.db',
     ],
     experimental: {
       openAPI: true,
@@ -44,6 +48,14 @@ export default defineNuxtConfig({
         contentHeading: true,
       },
     },
+    ignores: [
+      '**/.DS_Store', // Ignore .DS_Store files anywhere
+      '**/._*', // Ignore any ._* resource fork files anywhere
+      '**/Thumbs.db', // Also ignore Windows thumbnail files anywhere
+      '\\.DS_Store$', // Regex pattern as backup
+      '\\._.*', // Regex pattern as backup
+      'Thumbs\\.db$', // Regex pattern as backup
+    ],
   },
   app: {
     head: {

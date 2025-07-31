@@ -5,11 +5,11 @@
       <template #mainPanel>
         <!-- Main Content Panel -->
         <div
-          class="z-10 relative flex flex-col bg-slate-800 shadow-[0_4px_20px_-10px_black] rounded-lg w-full max-w-full sm:max-w-[min(1000px,calc(100vw-4rem))] h-full max-h-[calc(100vh-8rem)]"
+          class="z-10 relative flex flex-col bg-slate-800 shadow-[0_4px_20px_-10px_black] rounded-none sm:rounded-lg w-full max-w-full sm:max-w-[min(1000px,calc(100vw-4rem))] h-full max-h-[calc(100vh-8rem)]"
         >
           <!-- Image container (fixed, no scroll) -->
           <div
-            class="flex flex-col justify-center items-center p-4 sm:p-6 pb-2 h-full min-h-0"
+            class="flex flex-col justify-center items-center p-0 sm:p-6 pb-2 h-full min-h-0"
           >
             <img
               v-if="modalData?.image"
@@ -20,7 +20,7 @@
             <!-- Text container (scrollable only) -->
             <div
               v-if="modalData?.bodyText"
-              class="flex-1 mt-2 min-h-0 overflow-y-auto text-gray-300 text-lg text-center leading-relaxed"
+              class="flex-1 mt-2 min-h-0 overflow-y-auto text-gray-300 text-lg text-center leading-relaxed px-4 sm:px-0"
             >
               <div class="whitespace-pre-line">
                 {{ modalData.bodyText }}

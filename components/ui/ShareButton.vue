@@ -9,7 +9,7 @@
   >
     <div
       v-if="show"
-      class="bg-slate-900 shadow-lg px-4 sm:px-6 rounded-b-lg"
+      class="bg-slate-900 shadow-lg px-4 sm:px-6 rounded-none sm:rounded-b-lg"
       style="
         position: absolute;
         left: 0.667px;

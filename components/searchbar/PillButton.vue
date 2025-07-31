@@ -22,7 +22,7 @@
 
 <style scoped>
   .pill-btn {
-    @apply flex justify-between items-center gap-1 bg-slate-800 px-3 pt-[.2rem] pb-[0.3rem] rounded-md w-[100px] font-light text-slate-200 text-base uppercase tracking-wider transition;
+    @apply flex justify-between items-center gap-1 bg-slate-800 px-3 pt-[.2rem] pb-[0.3rem] rounded-md font-light text-slate-200 text-base uppercase tracking-wider transition;
     outline: none;
   }
   .pill-btn:focus {
