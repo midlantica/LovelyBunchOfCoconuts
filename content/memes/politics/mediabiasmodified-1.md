@@ -2,6 +2,6 @@
 title: 'Mediabiasmodified 1'
 ---
 
-![mediabiasmodified-1](/memes/politics/mediabiasmodified-1.jpg)
+![Media bias modified-1](/memes/politics/media-bias-modified.jpg)
 
-Mediabiasmodified 1
+Media bias modified

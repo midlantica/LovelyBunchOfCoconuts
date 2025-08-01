@@ -9,9 +9,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "process-images": "node scripts/run-image-processing.js",
-    "check-links": "node scripts/check-markdown-links.js",
-    "fix-links": "node scripts/check-markdown-links.js --fix",
-    "clean": "node scripts/clean-ds-store.js",
+    "rename-content-files": "node scripts/rename-content-files.js",
     "format": "prettier --write \"**/*.{vue,js,ts,html,css,scss,md}\""
   },
   "dependencies": {
@@ -20,7 +18,7 @@
     "@nuxt/eslint": "1.5.2",
     "@nuxt/icon": "1.15.0",
     "@nuxtjs/mdc": "0.17.0",
-    "better-sqlite3": "12.2.0",
+    "better-sqlite3": "^12.2.0",
     "gray-matter": "^4.0.3",
     "lodash-es": "^4.17.21",
     "markdown-it": "^14.1.0",

@@ -1,0 +1,7 @@
+---
+title: 'To act on the belief that we possess'
+---
+
+## "To act on the belief that we possess the knowledge and the power which enable us to shape the processes of society entirely to our liking, knowledge which in fact we do not possess, is likely to make us do much harm."
+
+Fredrich Hayek

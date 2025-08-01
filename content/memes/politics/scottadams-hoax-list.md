@@ -1,7 +1,7 @@
 ---
-title: 'Scottadams Hoax List'
+title: 'Scott Adams Hoax List'
 ---
 
-![scottadams-hoax-list](/memes/politics/scottadams-hoax-list.jpg)
+![Scott Adams Hoax List](/memes/politics/scott-adams-hoax-list.jpg)
 
-Scottadams hoax list.
+Scott Adams Hoax List.

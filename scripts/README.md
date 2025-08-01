@@ -1,96 +1,119 @@
-# Meme Processing Scripts
+# Scripts Directory
 
-This directory contains scripts to help manage meme images and their markdown files.
+This directory contains utility scripts for managing content and images in the WakeUpNPC2 project.
 
-## Quick Start
+## Image Processing Scripts
 
-To process a subdirectory of memes (e.g., thomas-sowell):
+### Main Image Processing System
+
+The primary image processing is handled by two main scripts:
+
+#### `imageProcessing.js`
+
+Core image processing library that handles:
+
+- **JPEG Conversion**: Converts PNG/other formats to progressive JPEG with 85% quality
+- **Image Optimization**: Resizes images (upscales small images to 600px, downscales large images to max 1080px)
+- **File Naming**: Sanitizes filenames to be URL-friendly
+- **Markdown Integration**: Only processes images that don't already have markdown pairs
+- **Quality Control**: Uses ImageMagick for professional-grade image processing
+
+#### `run-image-processing.js`
+
+Command-line interface for the image processing system:
 
 ```bash
-pnpm run process-subdir thomas-sowell
-```
+# Process all meme subdirectories
+node scripts/run-image-processing.js
 
-This will:
-
-1. Rename all image files in public/memes/thomas-sowell/ to be server-friendly
-2. Create matching markdown files in content/memes/ for each image
-
-## Available Scripts
-
-### 1. Process Subdirectory (`process-meme-subdirectory.js`)
-
-Process all images in a subdirectory of public/memes/:
-
-```bash
 # Process a specific subdirectory
-node scripts/process-meme-subdirectory.js thomas-sowell
-
-# Force processing even for files that already have markdown files
-node scripts/process-meme-subdirectory.js thomas-sowell --force
+node scripts/run-image-processing.js capitalism
 ```
 
-### 2. Rename Meme Images (`rename-meme-images.js`)
+**Features:**
 
-Renames image files to be server-friendly (lowercase, hyphens instead of spaces, no special characters):
+- Automatically converts images to optimized progressive JPEGs
+- Maintains aspect ratios while ensuring consistent sizing
+- Creates markdown files for newly processed images
+- Tracks processing with extended attributes (macOS)
+- Provides detailed processing summaries
+
+## Content Organization Scripts
+
+### File Naming Standardization
+
+#### `rename-content-files.js`
+
+Standardizes all content filenames to use consistent dash-separated naming:
+
+- **Converts underscores to dashes**: `file_name.md` → `file-name.md`
+- **Ensures lowercase**: `File_Name.md` → `file-name.md`
+- **Removes special characters**: Keeps only letters, numbers, and dashes
+- **Updates paired images**: Renames corresponding image files automatically
+- **Prevents conflicts**: Adds counters if filename conflicts exist
 
 ```bash
-# Process images in the default directory (public/memes)
-node scripts/rename-meme-images.js
-
-# Process images in a specific directory
-node scripts/rename-meme-images.js /Users/drewtwo/Documents/_work/wake-up-npc/public/memes/thomas-sowell
-
-# Force processing even for files that already have markdown files
-node scripts/rename-meme-images.js /path/to/directory --force
+# Rename all content files to use dash format
+pnpm run rename-content-files
 ```
 
-### 3. Create Matching Markdown Files (`create-matching-markdown.js`)
+**Features:**
 
-Creates markdown files in content/memes/ for image files:
+- Recursively processes all content directories
+- Maintains markdown-image file relationships
+- Shows preview before making changes
+- Provides detailed progress reporting
+- Safe conflict resolution with numbered suffixes
+
+### Quote Organization
+
+#### `organize_quotes.js`
+
+Organizes quote files into thematic categories:
+
+- **Categories**: liberty, economics, government, socialism, tyranny, constitution, wisdom
+- **Smart Classification**: Uses keyword matching on content and filenames
+- **Auto-categorization**: Moves quotes into appropriate subdirectories
 
 ```bash
-# Create markdown files for images in the default directory (public/memes)
-node scripts/create-matching-markdown.js
-
-# Create markdown files for images in a specific directory
-node scripts/create-matching-markdown.js /Users/drewtwo/Documents/_work/wake-up-npc/public/memes/thomas-sowell
-
-# Force update of existing markdown files
-node scripts/create-matching-markdown.js /path/to/directory --force
+node scripts/organize_quotes.js
 ```
 
-## PNPM Commands
+#### `organize_quotes_by_author.js`
 
-You can also use these pnpm commands:
+Organizes quotes by specific authors:
+
+- **Target Authors**: Thomas Sowell, Milton Friedman, Margaret Thatcher, Ronald Reagan, Friedrich Hayek
+- **Author Detection**: Extracts author names from quote content
+- **Folder Structure**: Creates author-specific directories
 
 ```bash
-# Rename meme images
-pnpm run rename-memes
-
-# Create matching markdown files
-pnpm run create-markdown
-
-# Process a subdirectory (both rename and create markdown files)
-pnpm run process-subdir thomas-sowell
+node scripts/organize_quotes_by_author.js
 ```
 
-To pass arguments with pnpm commands, use the -- separator:
+## Utilities Directory
 
-```bash
-pnpm run rename-memes -- /path/to/your/folder --force
-pnpm run create-markdown -- /path/to/your/folder --force
-pnpm run process-subdir -- thomas-sowell --force
-```
+The `utils/` subdirectory contains helper modules used by the main scripts.
 
-## How It Works
+## How the Image Processing Works
 
-1. **Tracking**: The scripts check for existing markdown files to avoid reprocessing images
-2. **Naming**: Files are renamed to be lowercase with hyphens instead of spaces
-3. **Markdown**: Each image gets a corresponding .md file with title, alt text, and tags
-4. **Logging**: Each script creates a detailed log file in the scripts directory
+1. **Detection**: Scans for images without corresponding markdown files
+2. **Optimization**:
+   - Small images (< 400px): Upscaled to 600px using Lanczos filter
+   - Large images (> 1080px): Downscaled to max 1080px
+   - Medium images: Quality optimized without resizing
+3. **Conversion**: All images converted to progressive JPEG format (85% quality)
+4. **Markdown Creation**: Generates corresponding .md files for new images
+5. **Tracking**: Uses macOS extended attributes to prevent reprocessing
 
 ## Notes
 
-- Files starting with "\_\_" are skipped
-- The scripts won't overwrite existing markdown files unless --force is used
-- Image paths in markdown files are correctly set based on the subdirectory structure
+- **JPEG Conversion**: The old separate JPEG conversion scripts have been consolidated into the main image processing system
+- **Progressive JPEGs**: All images are converted to progressive JPEG format for better web performance
+- **Markdown Pairing**: Images with existing markdown files are automatically skipped
+- **Quality Preservation**: Uses professional ImageMagick filters for high-quality results
+- **Batch Processing**: Can process entire directory trees efficiently
+
+## Legacy
+
+Previous individual scripts for JPEG conversion, compression testing, and title fixing have been consolidated into the unified image processing system for better maintainability and consistency.
