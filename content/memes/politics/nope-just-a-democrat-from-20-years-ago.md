@@ -1,7 +1,7 @@
 ---
-title: 'Nope Just A Democrat From 20 Years Ago'
+title: 'Nope just a Democrat from 20 years ago'
 ---
 
-![nope-just-a-democrat-from-20-years-ago](/memes/politics/nope-just-a-democrat-from-20-years-ago.jpg)
+![Nope just a Democrat from 20 years ago](/memes/politics/nope-just-a-democrat-from-20-years-ago.jpg)
 
-Nope just a democrat from 20 years ago.
+Nope just a Democrat from 20 years ago.

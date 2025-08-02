@@ -2,6 +2,6 @@
 title: 'Virtue Signalling'
 ---
 
-![virtue-signalling](/memes/politics/virtue-signalling.jpg)
+![Virtue signalling](/memes/politics/virtue-signalling.jpg)
 
 Virtue signalling.

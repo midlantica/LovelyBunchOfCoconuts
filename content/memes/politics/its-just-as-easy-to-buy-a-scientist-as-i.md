@@ -1,7 +1,7 @@
 ---
-title: 'Its Just As Easy To Buy A Scientist As I'
+title: "It's just as easy to buy a scientist as it is a politician"
 ---
 
-![its-just-as-easy-to-buy-a-scientist-as-i](/memes/politics/its-just-as-easy-to-buy-a-scientist-as-i.jpg)
+![It's just as easy to buy a scientist as it is a politician](/memes/politics/its-just-as-easy-to-buy-a-scientist-as-i.jpg)
 
-Its just as easy to buy a scientist as i.
+It's just as easy to buy a scientist as it is a politician.

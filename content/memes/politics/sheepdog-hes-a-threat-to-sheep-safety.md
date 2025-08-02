@@ -1,7 +1,7 @@
 ---
-title: 'Sheepdog Hes A Threat To Sheep Safety'
+title: "Sheepdog he's a threat to sheep safety"
 ---
 
-![sheepdog-hes-a-threat-to-sheep-safety](/memes/politics/sheepdog-hes-a-threat-to-sheep-safety.jpg)
+![Sheepdog he's a threat to sheep safety](/memes/politics/sheepdog-hes-a-threat-to-sheep-safety.jpg)
 
-Sheepdog hes a threat to sheep safety.
+Sheepdog he's a threat to sheep safety.

@@ -1,7 +1,7 @@
 ---
-title: 'Should The Government Nope'
+title: 'Should the government nope'
 ---
 
-![should-the-government-nope](/memes/politics/should-the-government-nope.jpg)
+![Should the government nope](/memes/politics/should-the-government-nope.jpg)
 
 Should the government nope.

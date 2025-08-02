@@ -1,7 +1,7 @@
 ---
-title: 'Remember Communism Killed 100 Million Pe'
+title: 'Remember: Communism killed 100 million people'
 ---
 
-![remember-communism-killed-100-million-pe](/memes/politics/remember-communism-killed-100-million-pe.jpg)
+![Remember: Communism killed 100 million people](/memes/politics/remember-communism-killed-100-million-people.jpg)
 
-Remember communism killed 100 million pe.
+Remember: Communism killed 100 million people.

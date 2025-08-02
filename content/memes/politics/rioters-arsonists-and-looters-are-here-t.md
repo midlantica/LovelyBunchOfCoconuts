@@ -1,7 +1,7 @@
 ---
-title: 'Rioters Arsonists And Looters Are Here T'
+title: 'Look son! Rioters, arsonists, and looters'
 ---
 
-![rioters-arsonists-and-looters-are-here-t](/memes/politics/rioters-arsonists-and-looters-are-here-t.jpg)
+![Look son! Rioters, arsonists, and looters](/memes/politics/rioters-arsonists-and-looters-are-here-t.jpg)
 
-Rioters arsonists and looters are here t.
+Look son! Rioters, arsonists, and looters are here to teach us about peace and equality.

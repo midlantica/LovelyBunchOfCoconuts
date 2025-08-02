@@ -1,7 +1,7 @@
 ---
-title: 'Quick History Who Did It Democrats'
+title: 'Quick history who did it Democrats'
 ---
 
-![quick-history-who-did-it-democrats](/memes/politics/quick-history-who-did-it-democrats.jpg)
+![Quick history who did it Democrats](/memes/politics/quick-history-who-did-it-democrats.jpg)
 
-Quick history who did it democrats.
+Quick history who did it Democrats.

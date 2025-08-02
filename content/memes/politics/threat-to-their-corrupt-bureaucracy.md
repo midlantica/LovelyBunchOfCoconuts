@@ -1,7 +1,7 @@
 ---
-title: 'Threat To Their Corrupt Bureaucracy'
+title: 'When a Democrat says "threat to Democracy"'
 ---
 
-![threat-to-their-corrupt-bureaucracy](/memes/politics/threat-to-their-corrupt-bureaucracy.jpg)
+![When a Democrat says "threat to Democracy"](/memes/politics/threat-to-their-corrupt-bureaucracy.jpg)
 
-Threat to their corrupt bureaucracy.
+When a Democrat says "threat to Democracy", they really mean threat to their corrupt bureaucracy.

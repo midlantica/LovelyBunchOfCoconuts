@@ -1,7 +1,7 @@
 ---
-title: 'Theres No Such Thing As Government Funde'
+title: 'Theres no such thing as government funded'
 ---
 
-![theres-no-such-thing-as-government-funde](/memes/politics/theres-no-such-thing-as-government-funde.jpg)
+![Theres No Such Thing As Government Funded](/memes/politics/theres-no-such-thing-as-government-funde.jpg)
 
-Theres no such thing as government funde.
+Theres no such thing as government funded, it's all taxpayer funded.

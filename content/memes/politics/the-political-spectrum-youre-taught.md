@@ -1,7 +1,7 @@
 ---
-title: 'The Political Spectrum Youre Taught'
+title: 'The political spectrum you are taught vs reality'
 ---
 
-![the-political-spectrum-youre-taught](/memes/politics/the-political-spectrum-youre-taught.jpg)
+![The political spectrum you are taught vs reality](/memes/politics/the-political-spectrum-youre-taught.jpg)
 
-The political spectrum youre taught.
+The political spectrum you are taught vs reality

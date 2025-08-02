@@ -1,7 +1,7 @@
 ---
-title: 'The Lefts Ideology Is Regarded By The Co'
+title: "The Left's ideology is regarded by the common people as 'good'"
 ---
 
-![the-lefts-ideology-is-regarded-by-the-co](/memes/politics/the-lefts-ideology-is-regarded-by-the-co.jpg)
+![The Left's ideology is regarded by the common people as 'good'](/memes/politics/the-lefts-ideology-is-regarded-by-the-co.jpg)
 
-The lefts ideology is regarded by the co.
+The Left's ideology is regarded by the common people as 'good'.

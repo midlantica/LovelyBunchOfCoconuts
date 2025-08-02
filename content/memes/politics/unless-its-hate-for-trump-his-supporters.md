@@ -1,7 +1,7 @@
 ---
-title: 'Unless Its Hate For Trump His Supporters'
+title: "Unless it's hate for Trump his supporters"
 ---
 
-![unless-its-hate-for-trump-his-supporters](/memes/politics/unless-its-hate-for-trump-his-supporters.jpg)
+![Unless it's hate for Trump his supporters](/memes/politics/unless-its-hate-for-trump-his-supporters.jpg)
 
 Unless its hate for Trump his supporters.

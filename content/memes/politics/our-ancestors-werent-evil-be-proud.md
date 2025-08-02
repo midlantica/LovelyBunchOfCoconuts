@@ -1,7 +1,7 @@
 ---
-title: 'Our Ancestors Werent Evil Be Proud'
+title: 'Our ancestors weren't evil. Be proud and give thanks'
 ---
 
-![our-ancestors-werent-evil-be-proud](/memes/politics/our-ancestors-werent-evil-be-proud.jpg)
+![Our ancestors weren't evil. Be proud and give thanks](/memes/politics/our-ancestors-werent-evil-be-proud.jpg)
 
-Our ancestors weren't evil be proud.
+Our ancestors weren't evil. Be proud and give thanks.

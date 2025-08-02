@@ -1,7 +1,7 @@
 ---
-title: 'Madness Madness Madness'
+title: 'Madness... madness! madness'
 ---
 
-![madness-madness-madness](/memes/politics/madness-madness-madness.jpg)
+![Madness... madness! madness](/memes/politics/madness-madness-madness.jpg)
 
-Madness... madenss! madness.
+Madness... madness! madness.

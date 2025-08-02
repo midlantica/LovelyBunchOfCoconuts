@@ -1,7 +1,7 @@
 ---
-title: 'The Government We Have Now Massive Book'
+title: 'The Government We Have Now The Government We Really Need'
 ---
 
-![the-government-we-have-now-massive-book](/memes/politics/the-government-we-have-now-massive-book.jpg)
+![The government we have now The government we really need](/memes/politics/the-government-we-have-now-massive-book.jpg)
 
-The government we have now massive book.
+The government we have now; The government we really need.

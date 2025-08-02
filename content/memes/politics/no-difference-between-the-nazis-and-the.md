@@ -1,7 +1,7 @@
 ---
-title: 'No Difference Between The Nazis And The'
+title: 'No difference between the Nazis and the Democrat Socialists'
 ---
 
-![no-difference-between-the-nazis-and-the](/memes/politics/no-difference-between-the-nazis-and-the.jpg)
+![No difference between the Nazis and the Democrat Socialists](/memes/politics/no-difference-between-the-nazis-and-the.jpg)
 
-No difference between the nazis and the.
+No difference between the Nazis and the Democrat Socialists.

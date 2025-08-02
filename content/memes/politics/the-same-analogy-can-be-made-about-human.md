@@ -1,7 +1,7 @@
 ---
-title: 'The Same Analogy Can Be Made About Human'
+title: 'The same analogy can be made about humans and government dependency'
 ---
 
-![the-same-analogy-can-be-made-about-human](/memes/politics/the-same-analogy-can-be-made-about-human.jpg)
+![The same analogy can be made about humans and government dependency](/memes/politics/the-same-analogy-can-be-made-about-human.jpg)
 
-The same analogy can be made about human.
+The same analogy can be made about humans and government dependency.

@@ -1,7 +1,7 @@
 ---
-title: 'Theyre Not After You Theyre After Me You'
+title: "In reality they're not after you"
 ---
 
-![theyre-not-after-you-theyre-after-me-you](/memes/politics/theyre-not-after-you-theyre-after-me-you.jpg)
+![In reality they're not after you](/memes/politics/theyre-not-after-you-theyre-after-me-you.jpg)
 
-Theyre not after you theyre after me you.
+In reality they're not after you, they're after me. You need to be in the way.

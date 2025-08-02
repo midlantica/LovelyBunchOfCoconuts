@@ -2,7 +2,7 @@
 title: 'Socialism Revolutions'
 ---
 
-![socialism-revolutions](/memes/capitalism/socialism-revolutions.jpg)
+![Socialism revolutions](/memes/capitalism/socialism-revolutions.jpg)
 
 Socialism System collapses.
 But that wasn't 'real Socialism'.

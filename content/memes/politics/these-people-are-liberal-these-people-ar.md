@@ -1,7 +1,7 @@
 ---
-title: 'These People Are Liberal These People Ar'
+title: 'These people are liberal these people are not'
 ---
 
-![these-people-are-liberal-these-people-ar](/memes/politics/these-people-are-liberal-these-people-ar.jpg)
+![These people are liberal these people are not](/memes/politics/these-people-are-liberal-these-people-ar.jpg)
 
-These people are liberal these people ar.
+These people are liberal, these people are not, we'd like our word back, please.

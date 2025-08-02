@@ -1,7 +1,7 @@
 ---
-title: 'The Reason You Dont Know Youve Been Lied'
+title: "The reason you don't know you've been lied to"
 ---
 
-![the-reason-you-dont-know-youve-been-lied](/memes/politics/the-reason-you-dont-know-youve-been-lied.jpg)
+![The reason you don't know you've been lied to](/memes/politics/the-reason-you-dont-know-youve-been-lied.jpg)
 
-The reason you don't know youve been lied.
+The reason you don't know you've been lied to, conditioned and brainwashed is because you've been lied to, conditioned and brainwashed.

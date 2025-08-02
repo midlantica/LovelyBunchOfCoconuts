@@ -1,7 +1,7 @@
 ---
-title: 'Nazis Were Left Wing'
+title: 'Nazis were Left Wing'
 ---
 
-![nazis-were-left-wing](/memes/politics/nazis-were-left-wing.jpg)
+![Nazis were Left Wing](/memes/politics/nazis-were-left-wing.jpg)
 
-Nazis were left wing.
+Nazis were Left Wing.

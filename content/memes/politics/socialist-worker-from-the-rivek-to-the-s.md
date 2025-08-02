@@ -1,7 +1,7 @@
 ---
-title: 'Socialist Worker From The River To The Sea Palestine Will Be Free'
+title: 'Socialist Worker: From the river to the sea, Palestine will be free'
 ---
 
-![socialist-worker-from-the-rivek-to-the-s](/memes/politics/socialist-worker-from-the-rivek-to-the-s.jpg)
+![Socialist Worker: From the river to the sea, Palestine will be free](/memes/politics/socialist-worker-from-the-rivek-to-the-s.jpg)
 
-Socialist Worker From The River To The Sea, Palestine Will Be Free
+Socialist Worker: From the river to the sea, Palestine will be free

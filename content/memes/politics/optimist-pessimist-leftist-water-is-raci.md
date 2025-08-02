@@ -1,7 +1,7 @@
 ---
-title: 'Optimist Pessimist Leftist Water Is Raci'
+title: 'Optimist: Glass is full; Pessimist: Glass is half empty; Leftist: Water is Racist'
 ---
 
-![optimist-pessimist-leftist-water-is-raci](/memes/politics/optimist-pessimist-leftist-water-is-raci.jpg)
+![Optimist: Glass is full; Pessimist: Glass is half empty; Leftist: Water is Racist](/memes/politics/optimist-pessimist-leftist-water-is-raci.jpg)
 
-Optimist pessimist leftist water is raci.
+Optimist: Glass is full; Pessimist: Glass is half empty; Leftist: Water is Racist.

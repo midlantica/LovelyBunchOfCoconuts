@@ -2,6 +2,6 @@
 title: 'Our Founders Political Spectrum'
 ---
 
-![our-founders-political-spectrum](/memes/politics/our-founders-political-spectrum.jpg)
+![Our Founders Political Spectrum](/memes/politics/our-founders-political-spectrum.jpg)
 
-Our founders political spectrum.
+Our Founders political spectrum.

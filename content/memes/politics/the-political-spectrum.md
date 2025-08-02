@@ -1,7 +1,7 @@
 ---
-title: 'The Political Spectrum'
+title: 'The Political Spectrum Left vs Right'
 ---
 
-![the-political-spectrum](/memes/politics/the-political-spectrum.jpg)
+![The Political Spectrum Left vs Right](/memes/politics/the-political-spectrum.jpg)
 
-The political spectrum.
+The Political Spectrum Left vs Right

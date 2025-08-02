@@ -1,7 +1,7 @@
 ---
-title: 'Uk Down Planet Of The Apes'
+title: 'UK Down Planet of the Apes'
 ---
 
-![uk-down-planet-of-the-apes](/memes/politics/uk-down-planet-of-the-apes.jpg)
+![UK Down Planet of the Apes](/memes/politics/uk-down-planet-of-the-apes.jpg)
 
-Uk down planet of the apes.
+UK down; Planet of the Apes.

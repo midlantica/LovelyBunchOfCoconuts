@@ -1,7 +1,7 @@
 ---
-title: 'Soviet Slave State Gulags'
+title: 'Soviet slave state gulags'
 ---
 
-![soviet-slave-state-gulags](/memes/politics/soviet-slave-state-gulags.jpg)
+![Soviet slave state gulags](/memes/politics/soviet-slave-state-gulags.jpg)
 
 Soviet slave state gulags.
