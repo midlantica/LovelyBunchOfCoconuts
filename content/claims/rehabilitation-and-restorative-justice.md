@@ -1,9 +1,0 @@
----
-title: 'Restorative Justice'
-claim: 'Restorative Justice'
-translation: 'Injustice.'
----
-
-## "Restorative Justice"
-
-## Injustice

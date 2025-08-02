@@ -1,7 +1,0 @@
----
-title: 'Liberty is the right to tell people what they do not want to hear'
----
-
-## "Liberty is the right to tell people what they do not want to hear."
-
-George Orwell

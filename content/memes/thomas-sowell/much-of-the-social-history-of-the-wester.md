@@ -1,7 +1,0 @@
----
-title: 'Much Of The Social History Of The Wester'
----
-
-![much-of-the-social-history-of-the-wester](/memes/thomas-sowell/much-of-the-social-history-of-the-wester.jpg)
-
-Much of the social history of the wester.
