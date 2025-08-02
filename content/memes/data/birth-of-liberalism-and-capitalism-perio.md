@@ -1,7 +1,7 @@
 ---
-title: 'Birth Of Liberalism And Capitalism Perio'
+title: 'Birth of Liberalism And Capitalism'
 ---
 
-![birth-of-liberalism-and-capitalism-perio](/memes/data/birth-of-liberalism-and-capitalism-perio.jpg)
+![Birth of Liberalism And Capitalism](/memes/data/birth-of-liberalism-and-capitalism-perio.jpg)
 
-Birth of liberalism and capitalism perio.
+Birth of Liberalism And Capitalism
