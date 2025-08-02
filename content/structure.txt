@@ -1,0 +1,6 @@
+./
+├── ./claims/  [413 entries exceeds filelimit, not opening dir]
+├── ./memes/  [10 entries exceeds filelimit, not opening dir]
+├── ./quotes/  [266 entries exceeds filelimit, not opening dir]
+├── ./_README.md
+└── ./structure.txt
