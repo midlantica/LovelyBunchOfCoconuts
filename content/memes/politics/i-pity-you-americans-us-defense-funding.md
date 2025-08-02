@@ -1,7 +1,7 @@
 ---
-title: 'I Pity You Americans Us Defense Funding'
+title: 'I pity you Americans - US Defense funding umbrella.'
 ---
 
-![i-pity-you-americans-us-defense-funding](/memes/politics/i-pity-you-americans-us-defense-funding.jpg)
+![I pity you Americans - US Defense funding umbrella](/memes/politics/i-pity-you-americans-us-defense-funding.jpg)
 
-I pity you americans us defense funding.
+I pity you Americans - US Defense funding umbrella.

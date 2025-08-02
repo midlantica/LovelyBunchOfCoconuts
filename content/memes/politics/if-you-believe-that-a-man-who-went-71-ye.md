@@ -1,7 +1,7 @@
 ---
-title: 'If You Believe That A Man Who Went 71 Ye'
+title: 'If you believe that a man who went 77 years without a felony'
 ---
 
-![if-you-believe-that-a-man-who-went-71-ye](/memes/politics/if-you-believe-that-a-man-who-went-71-ye.jpg)
+![If you believe that a man who went 77 years without a felony](/memes/politics/if-you-believe-that-a-man-who-went-71-ye.jpg)
 
-If you believe that a man who went 71 ye.
+"If you believe that a man who went 77 years without a felony suddenly turned around and committed 91 felonies, you're brainwashed"

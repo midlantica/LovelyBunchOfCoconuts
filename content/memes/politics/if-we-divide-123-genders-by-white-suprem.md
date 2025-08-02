@@ -1,7 +1,7 @@
 ---
-title: 'If We Divide 123 Genders By White Suprem'
+title: 'If we divide 123 genders by White Supremacy'
 ---
 
-![if-we-divide-123-genders-by-white-suprem](/memes/politics/if-we-divide-123-genders-by-white-suprem.jpg)
+![If we divide 123 genders by White Supremacy](/memes/politics/if-we-divide-123-genders-by-white-supremacy.jpg)
 
-If we divide 123 genders by white suprem.
+If we divide 123 genders by White Supremacy how much climate change do we get?

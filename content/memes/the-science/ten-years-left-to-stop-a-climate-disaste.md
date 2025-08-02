@@ -1,7 +1,7 @@
 ---
-title: 'ten-years-left-to-stop-a-climate-disaster'
+title: "Ten years left to stop a climate disaster that'll wreck the world"
 ---
 
-![ten-years-left-to-stop-a-climate-disaster](/memes/the-science/ten-years-left-to-stop-a-climate-disaste.jpg)
+![Ten years left to stop a climate disaster](/memes/the-science/ten-years-left-to-stop-a-climate-disaste.jpg)
 
-Ten Years Left To Stop A Climate Disaster
+Ten years left to stop a climate disaster that'll wreck the world

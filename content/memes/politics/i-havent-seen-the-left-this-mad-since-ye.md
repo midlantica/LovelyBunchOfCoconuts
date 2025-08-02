@@ -1,7 +1,7 @@
 ---
-title: 'I Havent Seen The Left This Mad Since Ye'
+title: "I haven't seen the left this mad since yesterday."
 ---
 
-![i-havent-seen-the-left-this-mad-since-ye](/memes/politics/i-havent-seen-the-left-this-mad-since-ye.jpg)
+![I haven't seen the left this mad since yesterday](/memes/politics/i-havent-seen-the-left-this-mad-since-ye.jpg)
 
-I haven't seen the left this mad since ye.
+I haven't seen the left this mad since yesterday.

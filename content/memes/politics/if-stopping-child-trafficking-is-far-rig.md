@@ -1,7 +1,7 @@
 ---
-title: 'If Stopping Child Trafficking Is Far Rig'
+title: 'If stopping child trafficking is far right'
 ---
 
-![if-stopping-child-trafficking-is-far-rig](/memes/politics/if-stopping-child-trafficking-is-far-rig.jpg)
+![If stopping child trafficking is far right](/memes/politics/if-stopping-child-trafficking-is-far-rig.jpg)
 
-If stopping child trafficking is far rig.
+If stopping child trafficking is far right then what is far left?

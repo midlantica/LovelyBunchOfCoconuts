@@ -1,7 +1,7 @@
 ---
-title: 'I Refuse To Be Lectured About Racism By'
+title: 'I refuse to be lectured about racism'
 ---
 
-![i-refuse-to-be-lectured-about-racism-by](/memes/politics/i-refuse-to-be-lectured-about-racism-by.jpg)
+![I refuse to be lectured about racism](/memes/politics/i-refuse-to-be-lectured-about-racism-by.jpg)
 
-I refuse to be lectured about racism by.
+I refuse to be lectured about racism... by someone who hates white people.
