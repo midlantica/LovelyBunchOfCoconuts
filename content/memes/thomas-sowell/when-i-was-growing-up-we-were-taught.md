@@ -1,7 +1,7 @@
 ---
-title: 'When I Was Growing Up We Were Taught'
+title: "When i was growing up we were taught"
 ---
 
-![when-i-was-growing-up-we-were-taught](/memes/thomas-sowell/when-i-was-growing-up-we-were-taught.jpg)
+![When i was growing up we were taught](/memes/thomas-sowell/when-i-was-growing-up-we-were-taught.jpg)
 
-When i was growing up we were taught.
+When i was growing up we were taught

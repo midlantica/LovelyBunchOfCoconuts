@@ -1,7 +1,7 @@
 ---
-title: 'Liberals Became Hyper Left Wing'
+title: 'Liberals became hyper Left wing.'
 ---
 
-![liberals-became-hyper-left-wing](/memes/politics/liberals-became-hyper-left-wing.jpg)
+![Liberals Became Hyper Left Wing](/memes/politics/liberals-became-hyper-left-wing.jpg)
 
-Liberals became hyper left wing.
+Liberals became hyper Left wing.

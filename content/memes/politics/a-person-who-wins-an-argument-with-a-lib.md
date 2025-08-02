@@ -1,8 +1,8 @@
 ---
-title: 'A Person Who Wins An Argument With A Liberal'
+title: 'A person who wins an argument with a liberal'
 ---
 
-![A Person Who Wins An Argument With A Liberal](/memes/politics/a-person-who-wins-an-argument-with-a-lib.jpg)
+![A person who wins an argument with a liberal](/memes/politics/a-person-who-wins-an-argument-with-a-lib.jpg)
 
-Things a person who wins an argument with a Liberal may get called:
+Things A person who wins an argument with a liberal may get called:
 Racist, Homophobe, Bigot, Fascist, Islamophobe, Nazi, Misogynist, Hitler... Sexist, Xenophobe.

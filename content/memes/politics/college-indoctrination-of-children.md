@@ -1,7 +1,7 @@
 ---
-title: 'College Indoctrination Of Children'
+title: 'Normal kids turn into College-indoctrinated zombies'
 ---
 
-![college-indoctrination-of-children](/memes/politics/college-indoctrination-of-children.jpg)
+![Normal kids turn into College-indoctrinated zombies](/memes/politics/college-indoctrination-of-children.jpg)
 
-College indoctrination of children.
+Normal kids turn into College-indoctrinated zombies.

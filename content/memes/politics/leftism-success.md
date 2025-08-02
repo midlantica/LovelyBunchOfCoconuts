@@ -1,7 +1,7 @@
 ---
-title: 'Leftism Success'
+title: 'Leftism success'
 ---
 
-![leftism-success](/memes/politics/leftism-success.jpg)
+![Leftism success](/memes/politics/leftism-success.jpg)
 
 Leftism success.

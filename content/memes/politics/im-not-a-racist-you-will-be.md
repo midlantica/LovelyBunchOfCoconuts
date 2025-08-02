@@ -1,7 +1,7 @@
 ---
-title: 'Im Not A Racist You Will Be'
+title: "I'm not a racist. You will be"
 ---
 
-![im-not-a-racist-you-will-be](/memes/politics/im-not-a-racist-you-will-be.jpg)
+![I'm not a racist. You will be](/memes/politics/im-not-a-racist-you-will-be.jpg)
 
-Im not a racist you will be.
+I'm not a racist. You will be

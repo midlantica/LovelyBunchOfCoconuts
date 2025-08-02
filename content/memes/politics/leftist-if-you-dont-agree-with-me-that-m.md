@@ -1,7 +1,7 @@
 ---
-title: 'Leftist If You Dont Agree With Me That M'
+title: 'I am a tolerant Leftie'
 ---
 
-![leftist-if-you-dont-agree-with-me-that-m](/memes/politics/leftist-if-you-dont-agree-with-me-that-m.jpg)
+![I am a tolerant Leftie](/memes/politics/leftist-if-you-dont-agree-with-me-that-m.jpg)
 
-Leftist if you don't agree with me that m.
+I am a tolerant Leftie. If you don't agree with me that makes you a racist sexist homophobic islamophobic xenophobic unbred bible-thumping bigoted violence loving worthless shithead.

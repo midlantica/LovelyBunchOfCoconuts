@@ -1,7 +1,7 @@
 ---
-title: 'One Of The Many Services Done To Young P'
+title: "One of the many services done to young p"
 ---
 
-![one-of-the-many-services-done-to-young-p](/memes/thomas-sowell/one-of-the-many-services-done-to-young-p.jpg)
+![One of the many services done to young p](/memes/thomas-sowell/one-of-the-many-services-done-to-young-p.jpg)
 
-One of the many services done to young p.
+One of the many services done to young p

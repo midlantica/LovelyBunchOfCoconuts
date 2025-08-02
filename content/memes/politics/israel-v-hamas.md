@@ -1,7 +1,7 @@
 ---
-title: 'Israel V Hamas'
+title: 'Israel v Hamas'
 ---
 
-![israel-v-hamas](/memes/politics/israel-v-hamas.jpg)
+![Israel v Hamas](/memes/politics/israel-v-hamas.jpg)
 
-Israel v hamas.
+Israel v Hamas.

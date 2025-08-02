@@ -1,7 +1,7 @@
 ---
-title: "it-was-thomas-edison-who-brought-us-elct"
+title: "It was thomas edison who brought us elct"
 ---
 
-![it-was-thomas-edison-who-brought-us-elct](/memes/thomas-sowell/it-was-thomas-edison-who-brought-us-elct.jpg)
+![It was thomas edison who brought us elct](/memes/thomas-sowell/it-was-thomas-edison-who-brought-us-elct.jpg)
 
-It Was Thomas Edison Who Brought Us Elct
+It was thomas edison who brought us elct

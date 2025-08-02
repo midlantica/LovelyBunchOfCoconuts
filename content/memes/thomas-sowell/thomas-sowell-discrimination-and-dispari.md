@@ -1,7 +1,7 @@
 ---
-title: 'Thomas Sowell Discrimination And Dispari'
+title: "Thomas sowell discrimination and dispari"
 ---
 
-![thomas-sowell-discrimination-and-dispari](/memes/thomas-sowell/thomas-sowell-discrimination-and-dispari.jpg)
+![Thomas sowell discrimination and dispari](/memes/thomas-sowell/thomas-sowell-discrimination-and-dispari.jpg)
 
-Thomas Sowell discrimination and dispari.
+Thomas sowell discrimination and dispari

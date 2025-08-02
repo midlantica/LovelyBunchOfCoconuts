@@ -1,7 +1,7 @@
 ---
-title: 'Thomas Sowell Quote Freedom Unlikely To'
+title: "Thomas sowell quote freedom unlikely to"
 ---
 
-![thomas-sowell-quote-freedom-unlikely-to](/memes/thomas-sowell/thomas-sowell-quote-freedom-unlikely-to.jpg)
+![Thomas sowell quote freedom unlikely to](/memes/thomas-sowell/thomas-sowell-quote-freedom-unlikely-to.jpg)
 
-Thomas Sowell quote freedom unlikely to.
+Thomas sowell quote freedom unlikely to

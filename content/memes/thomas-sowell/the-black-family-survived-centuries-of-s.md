@@ -1,7 +1,7 @@
 ---
-title: 'The Black Family Survived Centuries Of S'
+title: "The black family survived centuries of s"
 ---
 
-![the-black-family-survived-centuries-of-s](/memes/thomas-sowell/the-black-family-survived-centuries-of-s.jpg)
+![The black family survived centuries of s](/memes/thomas-sowell/the-black-family-survived-centuries-of-s.jpg)
 
-The black family survived centuries of s.
+The black family survived centuries of s

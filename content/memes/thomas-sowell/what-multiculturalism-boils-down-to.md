@@ -1,7 +1,7 @@
 ---
-title: 'What Multiculturalism Boils Down To'
+title: "What multiculturalism boils down to"
 ---
 
-![what-multiculturalism-boils-down-to](/memes/thomas-sowell/what-multiculturalism-boils-down-to.jpg)
+![What multiculturalism boils down to](/memes/thomas-sowell/what-multiculturalism-boils-down-to.jpg)
 
-What multiculturalism boils? Down To.
+What multiculturalism boils down to

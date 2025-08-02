@@ -1,7 +1,7 @@
 ---
-title: 'Much Of What Are Called Social Problems'
+title: "Much of what are called social problems"
 ---
 
-![much-of-what-are-called-social-problems](/memes/thomas-sowell/much-of-what-are-called-social-problems.jpg)
+![Much of what are called social problems](/memes/thomas-sowell/much-of-what-are-called-social-problems.jpg)
 
-Much of what are called social problems.
+Much of what are called social problems

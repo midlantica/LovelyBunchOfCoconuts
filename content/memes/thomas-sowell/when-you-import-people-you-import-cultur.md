@@ -1,7 +1,7 @@
 ---
-title: "when-you-import-people-you-import-cultur"
+title: "When you import people you import cultur"
 ---
 
-![when-you-import-people-you-import-cultur](/memes/thomas-sowell/when-you-import-people-you-import-cultur.jpg)
+![When you import people you import cultur](/memes/thomas-sowell/when-you-import-people-you-import-cultur.jpg)
 
-When You Import People You Import Cultur
+When you import people you import cultur

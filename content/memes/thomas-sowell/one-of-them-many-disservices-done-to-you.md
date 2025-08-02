@@ -1,7 +1,7 @@
 ---
-title: 'One Of Them Many Disservices Done To You'
+title: "One of them many disservices done to you"
 ---
 
-![one-of-them-many-disservices-done-to-you](/memes/thomas-sowell/one-of-them-many-disservices-done-to-you.jpg)
+![One of them many disservices done to you](/memes/thomas-sowell/one-of-them-many-disservices-done-to-you.jpg)
 
-One of them many disservices done to you.
+One of them many disservices done to you

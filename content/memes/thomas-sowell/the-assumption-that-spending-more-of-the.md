@@ -1,7 +1,7 @@
 ---
-title: 'The Assumption That Spending More Of The'
+title: "The assumption that spending more of the"
 ---
 
-![the-assumption-that-spending-more-of-the](/memes/thomas-sowell/the-assumption-that-spending-more-of-the.jpg)
+![The assumption that spending more of the](/memes/thomas-sowell/the-assumption-that-spending-more-of-the.jpg)
 
-The assumption that spending more of the.
+The assumption that spending more of the

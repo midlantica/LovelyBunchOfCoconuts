@@ -1,7 +1,7 @@
 ---
-title: 'Imagine How Much Propaganda It Took To C'
+title: 'Imagine how much propaganda it took to convince an entire generation of women this is oppressive'
 ---
 
-![imagine-how-much-propaganda-it-took-to-c](/memes/politics/imagine-how-much-propaganda-it-took-to-c.jpg)
+![Imagine how much propaganda it took](/memes/politics/imagine-how-much-propaganda-it-took-to-c.jpg)
 
-Imagine how much propaganda it took to c.
+Imagine how much propaganda it took to convince an entire generation of women this is oppressive.

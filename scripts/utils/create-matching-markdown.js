@@ -48,11 +48,12 @@ function createTitle(filename) {
   // Remove extension and replace hyphens with spaces
   const base = path.basename(filename, path.extname(filename))
 
-  // Replace hyphens with spaces and capitalize words
-  return base
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+  // Replace hyphens with spaces and use sentence case (only first letter capitalized)
+  const words = base.split('-').map((word) => word.toLowerCase())
+  if (words.length > 0) {
+    words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1)
+  }
+  return words.join(' ')
 }
 
 // Helper function to check if a file exists
@@ -155,7 +156,7 @@ async function createMarkdownFiles() {
       const imagePathFull = `${imagePath}${file}`
 
       // Create markdown content: only title in frontmatter, then image and caption in body
-      const markdown = `---\ntitle: "${basename}"\n---\n\n![${basename}](${imagePathFull})\n\n${title}\n`
+      const markdown = `---\ntitle: "${title}"\n---\n\n![${title}](${imagePathFull})\n\n${title}\n`
 
       // Write markdown file
       await writeFile(markdownPath, markdown)

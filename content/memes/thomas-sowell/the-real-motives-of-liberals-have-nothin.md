@@ -1,7 +1,7 @@
 ---
-title: 'The Real Motives Of Liberals Have Nothin'
+title: "The real motives of liberals have nothin"
 ---
 
-![the-real-motives-of-liberals-have-nothin](/memes/thomas-sowell/the-real-motives-of-liberals-have-nothin.jpg)
+![The real motives of liberals have nothin](/memes/thomas-sowell/the-real-motives-of-liberals-have-nothin.jpg)
 
-The real motives of liberals have nothin.
+The real motives of liberals have nothin

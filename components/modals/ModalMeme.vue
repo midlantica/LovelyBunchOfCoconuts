@@ -20,7 +20,7 @@
             <!-- Text container (scrollable only) -->
             <div
               v-if="modalData?.bodyText"
-              class="flex-1 mt-2 min-h-0 overflow-y-auto text-gray-300 text-lg text-center leading-relaxed px-4 sm:px-0"
+              class="flex-1 mt-2 px-4 sm:px-0 w-full min-h-0 overflow-y-auto text-gray-300 text-lg text-center leading-relaxed"
             >
               <div class="whitespace-pre-line">
                 {{ modalData.bodyText }}

@@ -1,7 +1,7 @@
 ---
-title: 'In This House We Believe The News Is Pro'
+title: 'In this house we believe the news is propaganda.'
 ---
 
-![in-this-house-we-believe-the-news-is-pro](/memes/politics/in-this-house-we-believe-the-news-is-pro.jpg)
+![In this house we believe the news is propaganda](/memes/politics/in-this-house-we-believe-the-news-is-pro.jpg)
 
-In this house we believe the news is pro.
+In this house we believe the news is propaganda.

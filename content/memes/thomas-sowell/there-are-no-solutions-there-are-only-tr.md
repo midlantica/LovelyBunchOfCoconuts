@@ -1,7 +1,7 @@
 ---
-title: 'There Are No Solutions There Are Only Tr'
+title: "There are no solutions there are only tr"
 ---
 
-![there-are-no-solutions-there-are-only-tr](/memes/thomas-sowell/there-are-no-solutions-there-are-only-tr.jpg)
+![There are no solutions there are only tr](/memes/thomas-sowell/there-are-no-solutions-there-are-only-tr.jpg)
 
-There are no solutions there are only tr.
+There are no solutions there are only tr

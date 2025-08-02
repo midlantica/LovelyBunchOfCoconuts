@@ -1,7 +1,7 @@
 ---
-title: 'We Seem To Be Closer And Closer To A Sit'
+title: "We seem to be closer and closer to a sit"
 ---
 
-![we-seem-to-be-closer-and-closer-to-a-sit](/memes/thomas-sowell/we-seem-to-be-closer-and-closer-to-a-sit.jpg)
+![We seem to be closer and closer to a sit](/memes/thomas-sowell/we-seem-to-be-closer-and-closer-to-a-sit.jpg)
 
-We seem to be closer and closer to a sit.
+We seem to be closer and closer to a sit

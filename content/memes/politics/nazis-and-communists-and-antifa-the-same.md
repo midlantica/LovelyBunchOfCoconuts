@@ -1,7 +1,7 @@
 ---
-title: 'Nazis And Communists And Antifa The Same'
+title: 'Nazis and Communists and Antifa the same.'
 ---
 
-![nazis-and-communists-and-antifa-the-same](/memes/politics/nazis-and-communists-and-antifa-the-same.jpg)
+![Nazis And Communists And Antifa The Same](/memes/politics/nazis-and-communists-and-antifa-the-same.jpg)
 
-Nazis and communists and antifa the same.
+Nazis and Communists and Antifa the same.
