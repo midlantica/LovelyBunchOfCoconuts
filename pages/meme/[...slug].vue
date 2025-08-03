@@ -2,7 +2,7 @@
 <template>
   <div :key="`meme-${route.path}`">
     <!-- If we have a matching meme, show it in modal -->
-    <ModalMeme
+    <ModalsModalMeme
       v-if="meme"
       :show="true"
       :modal-data="meme"
@@ -34,8 +34,6 @@
 
 <script setup>
   import { onMounted, watch, nextTick } from 'vue'
-  import { useContentCache } from '~/composables/useContentCache'
-  import ModalMeme from '~/components/modals/ModalMeme.vue'
 
   const route = useRoute()
   const router = useRouter()

@@ -2,7 +2,7 @@
 <template>
   <div :key="`claim-${route.path}`">
     <!-- If we have a matching claim, show it in modal -->
-    <ModalClaim
+    <ModalsModalClaim
       v-if="claim"
       :show="true"
       :modal-data="claim"
@@ -31,8 +31,6 @@
 
 <script setup>
   import { onMounted, watch, nextTick } from 'vue'
-  import { useContentCache } from '~/composables/useContentCache'
-  import ModalClaim from '~/components/modals/ModalClaim.vue'
 
   const route = useRoute()
   const router = useRouter()

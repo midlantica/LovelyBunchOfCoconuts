@@ -4,7 +4,7 @@
     <!-- Search Bar -->
     <div class="flex justify-center">
       <div class="mx-auto px-4 md:px-0 w-full max-w-screen-md">
-        <SearchBar
+        <SearchbarSearchBar
           v-model:search="searchTerm"
           v-model:filters="contentFilters"
           :claim-count="wallCounts.claims"
@@ -26,7 +26,7 @@
     >
       <div class="mx-auto md:px-0 pr-3 pl-2 w-full max-w-screen-md">
         <main class="pb-8">
-          <TheWall
+          <WallTheWall
             :search="searchTerm"
             :filters="contentFilters"
             @counts="handleCounts"
@@ -40,10 +40,6 @@
 </template>
 
 <script setup>
-  // Explicit imports to ensure components resolve
-  import SearchBar from '~/components/searchbar/SearchBar.vue'
-  import TheWall from '~/components/wall/TheWall.vue'
-
   // Simple SSR-safe search/filter state
   const searchTerm = useState('searchTerm', () => '')
   const contentFilters = useState('contentFilters', () => ({

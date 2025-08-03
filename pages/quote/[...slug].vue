@@ -2,7 +2,7 @@
 <template>
   <div :key="`quote-${route.path}`">
     <!-- If we have a matching quote, show it in modal -->
-    <ModalQuote
+    <ModalsModalQuote
       v-if="quote"
       :show="true"
       :modal-data="quote"
@@ -34,8 +34,6 @@
 
 <script setup>
   import { onMounted, watch, nextTick } from 'vue'
-  import { useContentCache } from '~/composables/useContentCache'
-  import ModalQuote from '~/components/modals/ModalQuote.vue'
 
   const route = useRoute()
   const router = useRouter()

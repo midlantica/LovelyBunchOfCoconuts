@@ -1,7 +1,7 @@
 ---
-title: 'I Always Think Its A Sig'
+title: "I always think it's a sign of victory when they move onto the ad hominem."
 ---
 
-![I always think its a sig](/memes/quotes/i-always-think-its-a-sig.jpg)
+![I always think it's a sign of victory when they move onto the ad hominem.](/memes/quotes/i-always-think-its-a-sig.jpg)
 
-I always think its a sig.
+I always think it's a sign of victory when they move onto the ad hominem. - Christopher Hitchens
