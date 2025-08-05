@@ -1,7 +1,7 @@
 ---
-title: 'Doctoral Degrees By Field And Gender 202'
+title: 'Doctoral Degrees By Field and Gender 2022'
 ---
 
-![Doctoral degrees by field and gender 202](/memes/data/doctoral-degrees-by-field-and-gender-202.jpg)
+![Doctoral Degrees By Field and Gender 2022](/memes/data/doctoral-degrees-by-field-and-gender-202.jpg)
 
-Doctoral degrees by field and gender 202
+Doctoral Degrees By Field and Gender 2022

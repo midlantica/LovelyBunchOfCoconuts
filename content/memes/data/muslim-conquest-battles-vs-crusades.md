@@ -2,6 +2,6 @@
 title: 'Muslim Conquest Battles Vs Crusades'
 ---
 
-![Muslim conquest battles vs crusades](/memes/data/muslim-conquest-battles-vs-crusades.jpg)
+![Muslim Conquest Battles Vs Crusades](/memes/data/muslim-conquest-battles-vs-crusades.jpg)
 
-Muslim conquest battles vs crusades.
+Muslim Conquest Battles Vs Crusades.

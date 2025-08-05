@@ -1,7 +1,7 @@
 ---
-title: 'Income Inequality In 4 Charts'
+title: "Income Inequality on Capitalism vs 'Equality' on Socialism - 4 steps"
 ---
 
-![Income inequality in 4 charts](/memes/data/income-inequality-in-4-charts.jpg)
+![Income Inequality on Capitalism vs 'Equality' on Socialism - 4 steps](/memes/data/income-inequality-in-4-charts.jpg)
 
-Income inequality in 4 charts.
+Income Inequality on Capitalism vs 'Equality' on Socialism - 4 steps, Freedom vs Tyranny.

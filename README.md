@@ -1,75 +1,81 @@
-# Nuxt Minimal Starter
+# WakeUpNPC
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A visually-strict, content-driven Nuxt 3 wall for claims, quotes, and memes.
 
-## Setup
+## 🚀 Overview
 
-Make sure to install dependencies:
+WakeUpNPC2 is a Nuxt 3-powered content wall that curates political claims, quotes, and memes in a strict, repeating visual pattern. It’s designed for maximum visual consistency, even with unbalanced or randomized content. The project leverages Nuxt Content v3, progressive loading, and a robust transformation pipeline.
 
-```bash
-# npm
-npm install
+## ✨ Features
 
-# pnpm
-pnpm install
+Strict Content Wall Pattern:
+[ claim | claim ] → [ ---quote--- ] → [ meme | meme ] → [ ---quote--- ] (repeats)
+Pattern never breaks, even if content is unbalanced
+Progressive Loading:
+Fast initial load, infinite scroll, and SSR hydration
+Content Types:
+Claims, Quotes, Memes (with YouTube video support)
+Smart Fallbacks:
+Graceful substitution if a content type runs out
+Search & Filtering:
+Real-time, dash/underscore-insensitive search
+Image & Markdown Automation:
+Scripts for image optimization and markdown generation
+Modern UI:
+Responsive, accessible, and visually consistent
 
-# yarn
-yarn install
+## 🏗️ Architecture
 
-# bun
-bun install
-```
+Nuxt 3 + Nuxt Content v3
+Pattern Engine: interleaveContent.js (single source of layout truth)
+Content Cache: useContentCache.js (reactive, SSR-friendly)
+Wall Components:
+ClaimPanel, QuotePanel, MemePanel, TheWall
+Infinite Scroll:
+useInfiniteScroll.js
+Image Processing:
+Scripts in scripts for batch optimization and markdown creation
+🛠️ Getting Started
 
-## Development Server
+1. Install dependencies
+2. Run the development server
+   Visit http://localhost:3000 to view the app.
 
-Start the development server on `http://localhost:3000`:
+3. Process Images & Markdown (optional)
+   🧩 Content Structure
+   claims — Markdown files for claims
+   quotes — Markdown files for quotes
+   memes — Markdown files for memes (images or YouTube videos)
+   memes — Meme images (auto-processed)
 
-```bash
-# npm
-npm run dev
+## 🧑‍💻 Development
 
-# pnpm
-pnpm dev
+Format code:
+Lint & fix:
+Custom scripts: See README.md for details
 
-# yarn
-yarn dev
+## 📦 Build & Deploy
 
-# bun
-bun run dev
-```
+Build for production:
+Preview production build:
+Deploy:
+See Nuxt deployment docs
 
-## Production
+## 📝 Project Conventions
 
-Build the application for production:
+Single pattern engine: Only use interleaveContent.js for wall layout
+No individual claim/meme types: Only claimPair, quote, memeRow in the pattern
+Ignore files/folders starting with \_
+SSR state via useState()
+Content loaded once, cached reactively
 
-```bash
-# npm
-npm run build
+## 🤝 Contributing
 
-# pnpm
-pnpm build
+PRs and suggestions are welcome! Please follow the project’s conventions and check the scripts/README for automation tips.
 
-# yarn
-yarn build
+## 📚 More Info
 
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Nuxt Documentation
+Nuxt Content
+Tailwind CSS
+© WakeUpNPC2, 2025

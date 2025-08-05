@@ -1,7 +1,7 @@
 ---
-title: 'Growth In Administrative Staff Principal'
+title: 'Growth In Administrative Staff, Principals, Teachers, and Students in Public Schools'
 ---
 
-![Growth in administrative staff principal](/memes/data/growth-in-administrative-staff-principal.jpg)
+![Growth in Administrative Staff, Principals, Teachers, and Students in Public Schools](/memes/data/growth-in-administrative-staff-principal.jpg)
 
-Growth in administrative staff principal.
+Growth in Administrative Staff, Principals, Teachers, and Students in Public Schools

@@ -1,7 +1,7 @@
 ---
-title: 'Gdp Per Capita Ppp 2017'
+title: 'GDP Per Capita PPP 2017 Scandy vs Europe vs US'
 ---
 
-![Gdp per capita ppp 2017](/memes/data/gdp-per-capita-ppp-2017.jpg)
+![GDP per capita PPP 2017 Scandy Europe vs US](/memes/data/gdp-per-capita-ppp-2017.jpg)
 
-Gdp per capita ppp 2017
+GDP per capita PPP 2017 Scandy vs Europe vs US

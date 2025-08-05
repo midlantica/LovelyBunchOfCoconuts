@@ -1,7 +1,7 @@
 ---
-title: 'Gdp Per Capita Since 1ad 2018'
+title: 'GDP Per Capita Since 1 AD - 2018 AD'
 ---
 
-![Gdp per capita since 1ad 2018](/memes/data/gdp-per-capita-since-1ad-2018.jpg)
+![GDP per capita since 1 AD 2018 AD](/memes/data/gdp-per-capita-since-1ad-2018.jpg)
 
-Gdp per capita since 1ad 2018
+GDP per capita since 1 AD - 2018 AD

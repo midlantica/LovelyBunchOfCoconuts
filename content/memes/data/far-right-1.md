@@ -1,7 +1,7 @@
 ---
-title: 'Far Right 1'
+title: 'Left v Far Right'
 ---
 
-![Far right 1](/memes/data/far-right-1.jpg)
+![Left v Far Right](/memes/data/far-right-1.jpg)
 
-Far right 1
+Left v Far Right

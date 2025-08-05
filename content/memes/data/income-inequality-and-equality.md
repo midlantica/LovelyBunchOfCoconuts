@@ -1,7 +1,7 @@
 ---
-title: 'Income Inequality And Equality'
+title: "Income Inequality on Capitalism vs 'Equality' on Socialism"
 ---
 
-![Income inequality and equality](/memes/data/income-inequality-and-equality.jpg)
+![Income Inequality on Capitalism vs 'Equality' on Socialism](/memes/data/income-inequality-and-equality.jpg)
 
-Income inequality and equality.
+Income Inequality on Capitalism vs 'Equality' on Socialism

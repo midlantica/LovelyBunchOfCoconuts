@@ -1,7 +1,7 @@
 ---
-title: 'German Ancestory'
+title: 'German ancestry in the US'
 ---
 
-![German ancestory](/memes/data/german-ancestory.jpg)
+![German ancestry in the US](/memes/data/german-ancestry-in-us.jpg)
 
-German ancestory.
+German ancestry in the US.

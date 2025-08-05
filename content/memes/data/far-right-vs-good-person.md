@@ -1,7 +1,7 @@
 ---
-title: 'Far Right Vs Good Person'
+title: 'Far Right vs Good Person'
 ---
 
-![Far right vs good person](/memes/data/far-right-vs-good-person.jpg)
+![Far Right vs Good Person](/memes/data/far-right-vs-good-person.jpg)
 
-Far right vs good person.
+Far Right vs Good Person.

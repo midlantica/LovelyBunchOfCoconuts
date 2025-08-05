@@ -1,7 +1,7 @@
 ---
-title: 'Homicide Rate Per 100000 People In Us St'
+title: 'Homicide rate per 100,000 people in U.S. States and Canadian Provinces'
 ---
 
-![Homicide rate per 100000 people in us st](/memes/data/homicide-rate-per-100000-people-in-us-st.jpg)
+![Homicide rate per 100,000 people in U.S. States and Canadian Provinces](/memes/data/homicide-rate-per-100000-people-in-us-st.jpg)
 
-Homicide rate per 100000 people in us st.
+Homicide rate per 100,000 people in U.S. States and Canadian Provinces

@@ -1,7 +1,7 @@
 ---
-title: 'Most Common Self Identified Ancestry Of'
+title: 'Most common self-identified ancestry of the United States'
 ---
 
-![Most common self identified ancestry of](/memes/data/most-common-self-identified-ancestry-of.jpg)
+![Most common self-identified ancestry of the United States](/memes/data/most-common-self-identified-ancestry-of.jpg)
 
-Most common self identified ancestry of.
+Most common self-identified ancestry of the United States.

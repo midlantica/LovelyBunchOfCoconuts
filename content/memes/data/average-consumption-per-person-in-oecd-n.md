@@ -1,7 +1,7 @@
 ---
-title: 'Average Consumption Per Person In Oecd N'
+title: 'Average Consumption Per Person in OECD Nations, 2010'
 ---
 
-![Average consumption per person in oecd n](/memes/data/average-consumption-per-person-in-oecd-n.jpg)
+![Average Consumption Per Person in OECD Nations, 2010](/memes/data/average-consumption-per-person-in-oecd-n.jpg)
 
-Average consumption per person in oecd and.
+Average Consumption Per Person in OECD Nations, 2010

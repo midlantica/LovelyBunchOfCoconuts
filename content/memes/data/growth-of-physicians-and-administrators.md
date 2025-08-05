@@ -1,7 +1,7 @@
 ---
-title: 'Growth Of Physicians And Administrators'
+title: 'Growth of Physicians and Administrators 1970-2009'
 ---
 
-![Growth of physicians and administrators](/memes/data/growth-of-physicians-and-administrators.jpg)
+![Growth of Physicians and Administrators 1970-2009](/memes/data/growth-of-physicians-and-administrators.jpg)
 
-Growth of physicians and administrators.
+Growth of Physicians and Administrators 1970-2009

@@ -1,7 +1,7 @@
 ---
-title: 'Capitalism Has Failed'
+title: 'Despite 60 years of growth Capitalism has Failed'
 ---
 
-![Capitalism has failed](/memes/data/capitalism-has-failed.jpg)
+![Despite 60 years of growth Capitalism has Failed](/memes/data/capitalism-has-failed.jpg)
 
-Capitalism has failed.
+Despite 60 years of growth Capitalism has Failed

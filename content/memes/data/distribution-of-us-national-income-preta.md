@@ -1,7 +1,7 @@
 ---
-title: 'Distribution Of Us National Income Preta'
+title: 'Distribution of u s national income pretax'
 ---
 
-![Distribution of us national income preta](/memes/data/distribution-of-us-national-income-preta.jpg)
+![Distribution of u s national income pretax](/memes/data/distribution-of-us-national-income-pretax.jpg)
 
-Distribution of us national income preta.
+Distribution of u s national income pretax

@@ -1,7 +1,7 @@
 ---
-title: 'Gdp Ppp International Dollars 2018 Billi'
+title: 'GDP PPP international dollars 2018 billions'
 ---
 
-![Gdp ppp international dollars 2018 billi](/memes/data/gdp-ppp-international-dollars-2018-billi.jpg)
+![GDP PPP international dollars 2018 billions](/memes/data/gdp-ppp-international-dollars-2018-billi.jpg)
 
-Gdp ppp international dollars 2018 billi.
+GDP PPP international dollars 2018 billions.

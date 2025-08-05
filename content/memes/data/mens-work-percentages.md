@@ -1,7 +1,7 @@
 ---
-title: 'Mens Work Percentages'
+title: 'Mens Work Percentages on Hard Jobs'
 ---
 
-![Mens work percentages](/memes/data/mens-work-percentages.jpg)
+![Mens Work Percentages on Hard Jobs](/memes/data/mens-work-percentages.jpg)
 
-Mens work percentages.
+Mens Work Percentages on Hard Jobs.

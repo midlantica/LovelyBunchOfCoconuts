@@ -1,7 +1,7 @@
 ---
-title: 'Global Impact Of Terrorism'
+title: 'Global Impact Of Terrorism visualized 2013'
 ---
 
-![Global impact of terrorism](/memes/data/global-impact-of-terrorism.jpg)
+![Global Impact Of Terrorism visualized 2013](/memes/data/global-impact-of-terrorism.jpg)
 
-Global impact of terrorism.
+Global Impact Of Terrorism visualized 2013

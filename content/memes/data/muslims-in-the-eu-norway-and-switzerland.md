@@ -2,6 +2,6 @@
 title: 'Muslims In The Eu Norway And Switzerland'
 ---
 
-![Muslims in the eu norway and switzerland](/memes/data/muslims-in-the-eu-norway-and-switzerland.jpg)
+![Muslims in the EU, Norway, and Switzerland](/memes/data/muslims-in-the-eu-norway-and-switzerland.jpg)
 
-Muslims in the eu norway and switzerland.
+Muslims in the EU, Norway, and Switzerland. Projected % of Muslims among total population in each country.

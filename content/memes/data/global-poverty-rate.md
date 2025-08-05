@@ -1,7 +1,7 @@
 ---
-title: 'Global Poverty Rate'
+title: 'Hooray! Global poverty rate way down!'
 ---
 
-![Global poverty rate](/memes/data/global-poverty-rate.jpg)
+![Hooray! Global poverty rate way down!](/memes/data/global-poverty-rate.jpg)
 
-Global poverty rate.
+Hooray! Global poverty rate way down!

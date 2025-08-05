@@ -1,7 +1,11 @@
 ---
-title: 'We Know They Are Lying T'
+title: 'We know they are lying, they know they are lying'
 ---
 
-![We know they are lying t](/memes/quotes/we-know-they-are-lying-t.jpg)
+![We know they are lying](/memes/quotes/we-know-they-are-lying-t.jpg)
 
-We know they are lying t.
+We know they are lying. They know they are lying.
+They know that we know they are lying.
+We know that they know that we know they are lying.
+And still they continue to lie.
+—Alexander Solzhenitsyn

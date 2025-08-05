@@ -1,7 +1,7 @@
 ---
-title: 'Fertility Rate 2024'
+title: 'Fertility rate, replacement is 2.1+'
 ---
 
-![Fertility rate 2024](/memes/data/fertility-rate-2024.jpg)
+![Fertility rate, replacement is 2.1+](/memes/data/fertility-rate-2024.jpg)
 
-Fertility rate 2024
+Fertility rate, replacement is 2.1+

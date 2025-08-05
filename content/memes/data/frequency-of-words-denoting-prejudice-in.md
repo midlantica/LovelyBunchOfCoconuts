@@ -1,7 +1,7 @@
 ---
-title: 'Frequency Of Words Denoting Prejudice In'
+title: 'Frequency of Words Denoting Prejudice in The NY Times and The Washington Post'
 ---
 
-![Frequency of words denoting prejudice in](/memes/data/frequency-of-words-denoting-prejudice-in.jpg)
+![Frequency of Words Denoting Prejudice in The NY Times and The Washington Post](/memes/data/frequency-of-words-denoting-prejudice-in.jpg)
 
-Frequency of words denoting prejudice in.
+Frequency of Words Denoting Prejudice in The NY Times and The Washington Post.

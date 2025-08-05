@@ -1,7 +1,7 @@
 ---
-title: 'Chance Of Surviving Covid 19 By Age And'
+title: 'Chance of Surviving Covid-19 By Age and Sex'
 ---
 
-![Chance of surviving covid 19 by age and](/memes/data/chance-of-surviving-covid-19-by-age-and.jpg)
+![Chance of Surviving Covid-19 By Age and Sex](/memes/data/chance-of-surviving-covid-19-by-age-and.jpg)
 
-Chance of surviving covid 19 by age and.
+Chance of Surviving Covid-19 By Age and Sex.

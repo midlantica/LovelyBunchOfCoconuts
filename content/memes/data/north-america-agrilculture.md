@@ -1,7 +1,7 @@
 ---
-title: 'North America Agrilculture'
+title: 'North American Agriculture (and the competition)'
 ---
 
-![North america agrilculture](/memes/data/north-america-agrilculture.jpg)
+![North American Agriculture (and the competition)](/memes/data/north-america-agrilculture.jpg)
 
-North america agrilculture.
+North American Agriculture (and the competition)

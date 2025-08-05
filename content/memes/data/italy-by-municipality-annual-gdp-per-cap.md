@@ -1,7 +1,7 @@
 ---
-title: 'Italy By Municipality Annual Gdp Per Cap'
+title: 'Italy Gdp Per Capita by Municipality Annual'
 ---
 
-![Italy by municipality annual gdp per cap](/memes/data/italy-by-municipality-annual-gdp-per-cap.jpg)
+![Italy GDP per capita by municipality annual](/memes/data/italy-by-municipality-annual-gdp-per-cap.jpg)
 
-Italy by municipality annual gdp per cap.
+Italy GDP per capita by municipality annual.
