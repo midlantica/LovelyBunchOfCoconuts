@@ -1,7 +1,7 @@
 ---
-title: 'Share Of World Population Living In Extr'
+title: 'Share of World Population Living in Extreme Poverty, 1820-2015'
 ---
 
-![Share of world population living in extr](/memes/data/share-of-world-population-living-in-extr.jpg)
+![Share of World Population Living in Extreme Poverty, 1820-2015](/memes/data/share-of-world-population-living-in-extr.jpg)
 
-Share of world population living in extr.
+Share of World Population Living in Extreme Poverty, 1820-2015

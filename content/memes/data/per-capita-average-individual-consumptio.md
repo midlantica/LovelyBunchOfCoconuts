@@ -1,7 +1,7 @@
 ---
-title: 'Per Capita Average Individual Consumptio'
+title: 'Living standards in the United States are far higher than in other developed nations Per Capita Average Individual Consumption'
 ---
 
-![Per capita average individual consumptio](/memes/data/per-capita-average-individual-consumptio.jpg)
+![Living standards in the United States are far higher than in other developed nations Per Capita Average Individual Consumption](/memes/data/per-capita-average-individual-consumptio.jpg)
 
-Per capita average individual consumptio.
+Living standards in the United States are far higher than in other developed nations Per Capita Average Individual Consumption

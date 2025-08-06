@@ -1,7 +1,7 @@
 ---
-title: 'Socialism Crony Capitalism Free Markets'
+title: 'Socialism, Crony Capitalism, Free Markets'
 ---
 
-![Socialism crony capitalism free markets](/memes/data/socialism-crony-capitalism-free-markets.jpg)
+![Socialism, Crony Capitalism, Free Markets](/memes/data/socialism-crony-capitalism-free-markets.jpg)
 
-Socialism crony capitalism free markets.
+Socialism, Crony Capitalism, Free Markets.

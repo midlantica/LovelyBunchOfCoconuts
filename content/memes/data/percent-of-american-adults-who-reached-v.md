@@ -1,7 +1,7 @@
 ---
-title: 'Percent Of American Adults Who Reached V'
+title: 'Percent of American adults who reached various income'
 ---
 
-![Percent of american adults who reached v](/memes/data/percent-of-american-adults-who-reached-v.jpg)
+![Percent of American adults who reached various income](/memes/data/percent-of-american-adults-who-reached-v.jpg)
 
-Percent of american adults who reached v.
+Percent of American adults who reached various income distribution levels over a 44 year period

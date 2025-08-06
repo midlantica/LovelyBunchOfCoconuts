@@ -1,7 +1,7 @@
 ---
-title: 'Percentage Of Years Americans Reach Top'
+title: 'More than 53% of Americans will be in the top 10% by income'
 ---
 
-![Percentage of years americans reach top](/memes/data/percentage-of-years-americans-reach-top.jpg)
+![More than 53% of Americans will be in the top 10% by income](/memes/data/percentage-of-years-americans-reach-top.jpg)
 
-Percentage of years americans reach top.
+More than 53% of Americans will be in the top 10% by income for at least one year, but fewer than 8% will be there for 10 consecutive years or more.
