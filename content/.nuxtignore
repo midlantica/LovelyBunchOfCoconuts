@@ -4,3 +4,5 @@ Thumbs.db
 *.temp
 **/.DS_Store
 **/Thumbs.db
+_*
+**/_*

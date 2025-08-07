@@ -9,7 +9,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "process-images": "node scripts/run-image-processing.js",
-    "rename-content-files": "node scripts/rename-content-files.js",
+    "cleanup-orphaned": "node scripts/cleanup-orphaned-markdown.js",
     "format": "prettier --write \"**/*.{vue,js,ts,html,css,scss,md}\""
   },
   "dependencies": {

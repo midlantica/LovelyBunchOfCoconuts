@@ -232,21 +232,153 @@ async function renameImageFile(directory, filename) {
 }
 
 /**
+ * Find and move orphaned markdown files to _orphaned folder
+ * @param {string} imageDirectory - Directory containing images
+ * @param {string[]} imageFiles - Array of image filenames
+ * @returns {Promise<string[]>} Array of orphaned markdown filenames that were moved
+ */
+async function findAndMoveOrphanedMarkdownFiles(imageDirectory, imageFiles) {
+  try {
+    // Get the corresponding content directory
+    const imageDir = imageDirectory
+    const pathParts = imageDir.split(path.sep)
+    const memesIndex = pathParts.findIndex((part) => part === 'memes')
+
+    if (memesIndex === -1) {
+      return [] // Invalid path structure
+    }
+
+    // Get subdirectory path after 'memes' (e.g., 'thomas-sowell')
+    const subdirParts = pathParts.slice(memesIndex + 1)
+
+    // Construct content directory path
+    const contentDir =
+      subdirParts.length > 0
+        ? path.join(__dirname, '..', 'content', 'memes', ...subdirParts)
+        : path.join(__dirname, '..', 'content', 'memes')
+
+    // Check if content directory exists
+    try {
+      await fs.access(contentDir)
+    } catch {
+      return [] // Content directory doesn't exist, no orphaned files
+    }
+
+    // Get all markdown files in the content directory (excluding _orphaned folder)
+    const contentFiles = await fs.readdir(contentDir)
+    const markdownFiles = contentFiles.filter((file) => file.endsWith('.md'))
+
+    // Create a set of existing image filenames for quick lookup
+    const imageFilenameSet = new Set(imageFiles)
+
+    // Check each markdown file to see if its referenced image exists
+    const orphanedFiles = []
+
+    for (const mdFile of markdownFiles) {
+      try {
+        const mdPath = path.join(contentDir, mdFile)
+        const content = await fs.readFile(mdPath, 'utf-8')
+
+        // Extract image path from markdown content using regex
+        // Look for ![alt text](/memes/subdirectory/image.jpg) pattern
+        const imageMatch = content.match(/!\[.*?\]\(\/memes\/[^)]+\)/)
+
+        if (imageMatch) {
+          // Extract the image filename from the path
+          const imagePath = imageMatch[0].match(/\/memes\/[^)]+/)[0]
+          const imageFilename = path.basename(imagePath)
+
+          // Check if this image file exists in our directory
+          if (!imageFilenameSet.has(imageFilename)) {
+            orphanedFiles.push({
+              filename: mdFile,
+              path: mdPath,
+              referencedImage: imageFilename,
+            })
+          }
+        } else {
+          // No image reference found in markdown - this is definitely orphaned
+          orphanedFiles.push({
+            filename: mdFile,
+            path: mdPath,
+            referencedImage: 'No image reference found',
+          })
+        }
+      } catch (error) {
+        // If we can't read the markdown file, consider it potentially orphaned
+        console.warn(`Could not read markdown file ${mdFile}: ${error.message}`)
+        orphanedFiles.push({
+          filename: mdFile,
+          path: path.join(contentDir, mdFile),
+          referencedImage: 'Could not read file',
+        })
+      }
+    }
+
+    // If orphaned files found, move them to _orphaned folder
+    if (orphanedFiles.length > 0) {
+      const orphanedDir = path.join(contentDir, '_orphaned')
+
+      // Create _orphaned directory if it doesn't exist
+      try {
+        await fs.access(orphanedDir)
+      } catch {
+        await fs.mkdir(orphanedDir, { recursive: true })
+      }
+
+      // Move orphaned files
+      const movedFiles = []
+      for (const file of orphanedFiles) {
+        try {
+          const destinationPath = path.join(orphanedDir, file.filename)
+          await fs.rename(file.path, destinationPath)
+          movedFiles.push(file.filename)
+        } catch (error) {
+          console.error(`Failed to move ${file.filename}: ${error.message}`)
+        }
+      }
+
+      return movedFiles
+    }
+
+    return []
+  } catch (error) {
+    console.error(
+      `Error checking for orphaned markdown files: ${error.message}`
+    )
+    return []
+  }
+}
+
+/**
  * Check if a markdown file exists for the given image
  * @param {string} imagePath - Full path to the image file
  * @returns {Promise<boolean>} True if paired markdown exists
  */
 async function hasMarkdownPair(imagePath) {
   try {
-    // Extract relative path from public/memes/
-    const baseMemeDir = path.join(__dirname, '..', '..', 'public', 'memes')
-    const relativePath = path.relative(baseMemeDir, path.dirname(imagePath))
+    // Get the directory structure from the image path
+    // imagePath is like: /Users/drew/Documents/_work/WakeUpNPC2/public/memes/thomas-sowell/image.jpg
+    const imageDir = path.dirname(imagePath)
     const imageBaseName = path.basename(imagePath, path.extname(imagePath))
 
+    // Extract the subdirectory name from the path
+    // Split the path and find the part after 'memes'
+    const pathParts = imageDir.split(path.sep)
+    const memesIndex = pathParts.findIndex((part) => part === 'memes')
+
+    if (memesIndex === -1) {
+      return false // Invalid path structure
+    }
+
+    // Get subdirectory path after 'memes' (e.g., 'thomas-sowell')
+    const subdirParts = pathParts.slice(memesIndex + 1)
+
     // Construct expected markdown path
-    const contentDir = relativePath
-      ? path.join(__dirname, '..', '..', 'content', 'memes', relativePath)
-      : path.join(__dirname, '..', '..', 'content', 'memes')
+    const contentDir =
+      subdirParts.length > 0
+        ? path.join(__dirname, '..', 'content', 'memes', ...subdirParts)
+        : path.join(__dirname, '..', 'content', 'memes')
 
     const markdownPath = path.join(contentDir, `${imageBaseName}.md`)
 
@@ -262,7 +394,7 @@ async function hasMarkdownPair(imagePath) {
  * Main function to process all images in a directory
  * @param {string} directory - Directory containing images
  * @param {string} subdirName - Name of subdirectory for reporting
- * @returns {Promise<void>}
+ * @returns {Promise<Object>} Processing results with detailed stats
  */
 async function processImages(directory, subdirName = '') {
   const imageExtensions = [
@@ -278,24 +410,73 @@ async function processImages(directory, subdirName = '') {
   try {
     const files = await fs.readdir(directory)
 
-    // Process each image file
-    for (const filename of files) {
+    // Get all image files
+    const imageFiles = files.filter((filename) => {
+      const ext = path.extname(filename).toLowerCase()
+      return imageExtensions.includes(ext)
+    })
+
+    // Count total image files
+    const totalFiles = imageFiles.length
+
+    // Check which images already have markdown files
+    const imagesWithMarkdown = []
+    const imagesWithoutMarkdown = []
+
+    for (const filename of imageFiles) {
+      const imagePath = path.join(directory, filename)
+      if (await hasMarkdownPair(imagePath)) {
+        imagesWithMarkdown.push(filename)
+      } else {
+        imagesWithoutMarkdown.push(filename)
+      }
+    }
+
+    // Check for orphaned markdown files and automatically move them to _orphaned folder
+    const movedOrphanedFiles = await findAndMoveOrphanedMarkdownFiles(
+      directory,
+      imageFiles
+    )
+
+    console.log(`\n📊 Directory Analysis:`)
+    console.log(`Total image files: ${totalFiles}`)
+    console.log(`Images with existing markdown: ${imagesWithMarkdown.length}`)
+    console.log(`Images missing markdown: ${imagesWithoutMarkdown.length}`)
+    console.log(`Orphaned markdown files moved: ${movedOrphanedFiles.length}`)
+
+    if (imagesWithoutMarkdown.length > 0) {
+      console.log(`\n🔍 Images missing markdown files:`)
+      imagesWithoutMarkdown.forEach((file) => {
+        console.log(`  📷 ${file}`)
+      })
+    }
+
+    if (movedOrphanedFiles.length > 0) {
+      console.log(`\n🗑️ Orphaned markdown files moved to _orphaned/:`)
+      movedOrphanedFiles.forEach((file) => {
+        console.log(`  📄 ${file}`)
+      })
+    }
+
+    // Process each image file (rename if needed)
+    for (const filename of imageFiles) {
       const ext = path.extname(filename).toLowerCase()
       if (imageExtensions.includes(ext)) {
         await renameImageFile(directory, filename)
       }
     }
 
-    // Optimize all images after renaming
+    // Optimize images that need it
     const optimizationResult = await optimizeImages(directory, subdirName)
 
-    // ONLY create markdown files for newly processed images
-    if (
-      optimizationResult &&
-      optimizationResult.newFiles &&
-      optimizationResult.newFiles.length > 0
-    ) {
-      console.log('📝 Creating markdown files for new images...')
+    // ALWAYS create markdown files for images that don't have them
+    let newMarkdownCount = 0
+    let newMarkdownFiles = []
+
+    if (imagesWithoutMarkdown.length > 0) {
+      console.log(
+        `\n📝 Creating markdown files for ${imagesWithoutMarkdown.length} images...`
+      )
       try {
         const createMarkdownScript = path.join(
           __dirname,
@@ -303,25 +484,40 @@ async function processImages(directory, subdirName = '') {
           'create-matching-markdown.js'
         )
 
-        // Extract subdirectory name from the directory path
-        const baseMemeDir = path.join(__dirname, '..', '..', 'public', 'memes')
-        const subdirName = path.relative(baseMemeDir, directory)
-
-        // If subdirName is empty, we're processing the root memes directory
+        // Use the subdirName parameter that was passed in, which is already correct
         const command = subdirName
           ? `node "${createMarkdownScript}" "${subdirName}"`
           : `node "${createMarkdownScript}"`
 
         await execPromise(command)
-        console.log('✅ Markdown files created')
+
+        // Count how many markdown files were actually created
+        newMarkdownCount = imagesWithoutMarkdown.length
+        newMarkdownFiles = imagesWithoutMarkdown.map((filename) => {
+          const basename = path.basename(filename, path.extname(filename))
+          return `${basename}.md`
+        })
+
+        console.log(`✅ ${newMarkdownCount} markdown files created`)
       } catch (error) {
         console.error(`❌ Error creating markdown files: ${error.message}`)
       }
     }
 
-    return optimizationResult
+    // Return comprehensive results
+    return {
+      totalFiles,
+      existingMarkdown: imagesWithMarkdown.length,
+      processedCount: optimizationResult?.processedCount || 0,
+      newMarkdownCount,
+      newMarkdownFiles,
+      missingMarkdownFiles: imagesWithoutMarkdown,
+      orphanedMarkdownFiles: movedOrphanedFiles,
+      ...optimizationResult,
+    }
   } catch (error) {
     console.error(`Error processing images: ${error.message}`)
+    return null
   }
 }
 

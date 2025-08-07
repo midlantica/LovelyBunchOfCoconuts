@@ -83,9 +83,53 @@ if (!subdirName) {
   const displayPath = `public/memes/${subdirName}`
   console.log(`Processing images in: ${displayPath}`)
 
-  processImages(targetDir)
-    .then(() => {
-      console.log('Image processing complete.')
+  processImages(targetDir, subdirName)
+    .then((result) => {
+      console.log('\nImage processing complete.')
+
+      // Display summary for single directory processing
+      if (result) {
+        console.log(`\n📊 SUMMARY for ${displayPath}:`)
+        console.log(`Total image files: ${result.totalFiles}`)
+        console.log(`Images with existing markdown: ${result.existingMarkdown}`)
+        console.log(`Images needing optimization: ${result.processedCount}`)
+        console.log(`New markdown files created: ${result.newMarkdownCount}`)
+        console.log(
+          `Orphaned markdown files: ${result.orphanedMarkdownFiles?.length || 0}`
+        )
+
+        if (result.newMarkdownFiles && result.newMarkdownFiles.length > 0) {
+          console.log(`\n📝 New markdown files created:`)
+          result.newMarkdownFiles.forEach((file) => {
+            console.log(`  ✅ ${file}`)
+          })
+        }
+
+        if (
+          result.missingMarkdownFiles &&
+          result.missingMarkdownFiles.length > 0
+        ) {
+          console.log(`\n🆕 Images that got new markdown files:`)
+          result.missingMarkdownFiles.forEach((file) => {
+            console.log(`  📷 ${file}`)
+          })
+        }
+
+        if (
+          result.orphanedMarkdownFiles &&
+          result.orphanedMarkdownFiles.length > 0
+        ) {
+          console.log(`\n🗑️ Orphaned markdown files found:`)
+          result.orphanedMarkdownFiles.forEach((file) => {
+            console.log(`  📄 ${file}`)
+          })
+        }
+
+        // Victory message when everything is in sync
+        if (result.newMarkdownCount === 0 && result.processedCount === 0) {
+          console.log(`\n🎉 All images in sync with markdown, Yay! 🏆✨`)
+        }
+      }
     })
     .catch((err) => {
       console.error('Image processing failed:', err)
