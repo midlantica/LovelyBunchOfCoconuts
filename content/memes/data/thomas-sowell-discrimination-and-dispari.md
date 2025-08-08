@@ -1,7 +1,7 @@
 ---
-title: 'Thomas Sowell Discrimination And Dispari'
+title: 'Over three-quarters of the population will find themselves in the top 20%'
 ---
 
-![Thomas sowell discrimination and dispari](/memes/data/thomas-sowell-discrimination-and-dispari.jpg)
+![Over three-quarters of the population will find themselves in the top 20%](/memes/data/thomas-sowell-discrimination-and-dispari.jpg)
 
-Thomas Sowell discrimination and dispari.
+Over three-quarters of the population will find themselves in the top 20% of the income distribution. - Thomas Sowell

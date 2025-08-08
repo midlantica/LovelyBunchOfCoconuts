@@ -1,7 +1,7 @@
 ---
-title: 'Top 10 Most Dangerous Us Occupations And'
+title: 'Top 10 Most Dangerous US Occupations and Percent Male, 2021'
 ---
 
-![Top 10 most dangerous us occupations and](/memes/data/top-10-most-dangerous-us-occupations-and.jpg)
+![Top 10 Most Dangerous US Occupations and Percent Male, 2021](/memes/data/top-10-most-dangerous-us-occupations-and.jpg)
 
-Top 10 most dangerous us occupations and.
+Top 10 Most Dangerous US Occupations and Percent Male, 2021

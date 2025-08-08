@@ -1,7 +1,7 @@
 ---
-title: 'The Us Middle Class Is Shrinking Because'
+title: 'Yes, the US middle class is shrinking'
 ---
 
-![The us middle class is shrinking because](/memes/data/the-us-middle-class-is-shrinking-because.jpg)
+![Yes, the US middle class is shrinking](/memes/data/the-us-middle-class-is-shrinking-because.jpg)
 
-The us middle class is shrinking because.
+Yes, the US middle class is shrinking... because Americans are moving up.

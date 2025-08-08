@@ -1,7 +1,7 @@
 ---
-title: 'Us Political Spectrum'
+title: 'US Political Spectrum'
 ---
 
-![Us political spectrum](/memes/data/us-political-spectrum.jpg)
+![US political spectrum](/memes/data/us-political-spectrum.jpg)
 
-Us political spectrum.
+US political spectrum.

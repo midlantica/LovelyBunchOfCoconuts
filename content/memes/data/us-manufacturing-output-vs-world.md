@@ -1,7 +1,7 @@
 ---
-title: 'Us Manufacturing Output Vs World'
+title: 'Manufacturing Output - US Vs World'
 ---
 
-![Us manufacturing output vs world](/memes/data/us-manufacturing-output-vs-world.jpg)
+![manufacturing output - US vs world](/memes/data/us-manufacturing-output-vs-world.jpg)
 
-Us manufacturing output vs world.
+manufacturing output - US vs world.

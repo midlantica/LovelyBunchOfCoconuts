@@ -1,8 +1,0 @@
----
-title: 'LA Fiery But Mostly Burning'
----
-
-![LA fiery but mostly burning](/memes/politics/la-fiery-but-mostly-burning.jpg)
-
-LA fiery but mostly burning.
-Fiery but mostly peaceful burning of Teslas

@@ -1,7 +1,7 @@
 ---
-title: 'Top 20 Us Metro Areas By Economic Activi'
+title: 'Top 20 US Metro Areas by Economic Activity'
 ---
 
-![Top 20 us metro areas by economic activi](/memes/data/top-20-us-metro-areas-by-economic-activi.jpg)
+![Top 20 US Metro Areas by Economic Activity](/memes/data/top-20-us-metro-areas-by-economic-activi.jpg)
 
-Top 20 us metro areas by economic activi.
+Top 20 US Metro Areas by Economic Activity, Renamed for Countries with Similar GDPs (2015)

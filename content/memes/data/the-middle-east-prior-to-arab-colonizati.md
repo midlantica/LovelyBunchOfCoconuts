@@ -1,7 +1,7 @@
 ---
-title: 'The Middle East Prior To Arab Colonizati'
+title: 'The Middle East prior to Arab Colonization'
 ---
 
-![The middle east prior to arab colonizati](/memes/data/the-middle-east-prior-to-arab-colonizati.jpg)
+![The Middle East prior to Arab Colonization](/memes/data/the-middle-east-prior-to-arab-colonizati.jpg)
 
-The middle east prior to arab colonizati.
+The Middle East prior to Arab Colonization.

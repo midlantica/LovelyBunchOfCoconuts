@@ -1,7 +1,7 @@
 ---
-title: 'Us Carbon Dioxide Emissions Per Capita 1'
+title: 'US Carbon Dioxide Emissions per Capita 1973 to 2017'
 ---
 
-![Us carbon dioxide emissions per capita 1](/memes/data/us-carbon-dioxide-emissions-per-capita-1.jpg)
+![US Carbon Dioxide Emissions per Capita 1973 to 2017](/memes/data/us-carbon-dioxide-emissions-per-capita-1.jpg)
 
-Us carbon dioxide emissions per capita 1
+US Carbon Dioxide Emissions per Capita 1973 to 2017

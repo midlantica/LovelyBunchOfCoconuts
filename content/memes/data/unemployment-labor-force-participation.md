@@ -1,7 +1,7 @@
 ---
-title: 'Unemployment Labor Force Participation'
+title: 'Unemployment and Labour Force participation 2015'
 ---
 
-![Unemployment labor force participation](/memes/data/unemployment-labor-force-participation.jpg)
+![Unemployment and Labour Force participation 2015](/memes/data/unemployment-labor-force-participation.jpg)
 
-Unemployment labor force participation.
+Unemployment and Labour Force participation 2015

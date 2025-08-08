@@ -1,7 +1,7 @@
 ---
-title: 'The Worlds Population Concentrated'
+title: "The World's Population Concentrated"
 ---
 
-![The worlds population concentrated](/memes/data/the-worlds-population-concentrated.jpg)
+![The World's Population Concentrated](/memes/data/the-worlds-population-concentrated.jpg)
 
-The worlds population concentrated.
+The World's Population Concentrated

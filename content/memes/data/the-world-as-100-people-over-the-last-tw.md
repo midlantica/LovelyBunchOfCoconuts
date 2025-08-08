@@ -1,7 +1,7 @@
 ---
-title: 'The World As 100 People Over The Last Tw'
+title: 'The World as 100 People over the last two centuries'
 ---
 
-![The world as 100 people over the last tw](/memes/data/the-world-as-100-people-over-the-last-tw.jpg)
+![The World as 100 People over the last two centuries](/memes/data/the-world-as-100-people-over-the-last-tw.jpg)
 
-The world as 100 people over the last tw.
+The World as 100 People over the last two centuries
