@@ -193,4 +193,14 @@ export default defineNuxtConfig({
       ],
     },
   },
+  hooks: {
+    'content:file:beforeParse': (file: any) => {
+      // Some versions expose file.id or file.path
+      const id = file?.id || file?._id || file?.path || ''
+      if (id.endsWith('.DS_Store')) {
+        // Neutralize the file so it is ignored without warning
+        file.raw = ''
+      }
+    },
+  },
 })

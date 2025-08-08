@@ -5,6 +5,7 @@ import { exec } from 'child_process'
 import { promisify } from 'util'
 import { fileURLToPath } from 'url'
 import { sanitizeFilename } from './utils/filename-sanitizer.js'
+import crypto from 'crypto'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -93,7 +94,11 @@ async function resizeImage(imagePath, resizeOption, isUpscale = false) {
  * @param {string} subdirName - Name of subdirectory for reporting
  * @returns {Promise<void>}
  */
-async function optimizeImages(directory, subdirName = '') {
+async function optimizeImages(
+  directory,
+  subdirName = '',
+  { manifest, dryRun, force } = {}
+) {
   const extensions = ['png', 'jpg', 'jpeg', 'gif', 'webp']
   const files = await fs.readdir(directory)
 
@@ -106,87 +111,93 @@ async function optimizeImages(directory, subdirName = '') {
   let skippedCount = 0
   const processedFiles = []
   const skippedFiles = []
-
+  const actions = []
   for (const file of files) {
     const ext = path.extname(file).toLowerCase().replace('.', '')
     if (!extensions.includes(ext)) continue
 
     const filePath = path.join(directory, file)
-    const displayPath = subdirName ? `${subdirName}/${file}` : file
+    const key = relImageKey(filePath)
+    const entry = manifest.images[key] || {}
 
-    // FIRST: Check if markdown pair already exists (most important check)
-    if (await hasMarkdownPair(filePath)) {
-      skippedFiles.push({ file, reason: 'has markdown pair' })
-      skippedCount++
+    // Check manifest optimized state unless forcing
+    if (!force && entry.optimized) {
+      skippedFiles.push({ file, reason: 'manifest: optimized' })
       continue
     }
-
-    // SECOND: Check if already optimized (fallback safety)
-    if (await isImageOptimized(filePath)) {
-      skippedFiles.push({ file, reason: 'already optimized' })
-      skippedCount++
+    // Existing logic: markdown pair check (still skip creation work but we may still want optimization). Keep precedence: if has pair AND already optimized, skip; if has pair but not optimized, still optimize.
+    const hasPair = await hasMarkdownPair(filePath)
+    if (hasPair && entry.optimized && !force) {
+      skippedFiles.push({ file, reason: 'has markdown pair' })
+      continue
+    }
+    // If dry-run just simulate dimension fetch etc.
+    let dimensions = null
+    if (!dryRun) {
+      dimensions = await getImageDimensions(filePath)
+    } else {
+      dimensions = { width: entry.width || 0, height: entry.height || 0 }
+    }
+    if (!dimensions) {
+      skippedFiles.push({ file, reason: 'no dimensions' })
       continue
     }
 
     // This file WILL be processed - show details for new files only
     console.log(`🆕 Processing: ${displayPath}`)
 
-    // Get current dimensions
-    const dimensions = await getImageDimensions(filePath)
-    if (!dimensions) {
-      console.log(`⚠️  Skipping ${displayPath} - couldn't read dimensions`)
-      skippedFiles.push({ file, reason: 'could not read dimensions' })
-      continue
-    }
-
     console.log(`📐 ${dimensions.width}×${dimensions.height}px`)
-
-    let needsProcessing = false
-    let action = ''
 
     // Handle small images (upscale)
     if (dimensions.width < MIN_WIDTH) {
-      action = `upscaled from ${dimensions.width}px to ${TARGET_UPSCALE}px`
+      action = `upscale→${TARGET_UPSCALE}`
       console.log(`📈 Upscaling to ${TARGET_UPSCALE}px width`)
-      await resizeImage(filePath, `${TARGET_UPSCALE}x`, true) // true = upscale with Lanczos
+      if (!dryRun) await resizeImage(filePath, `${TARGET_UPSCALE}x`, true) // true = upscale with Lanczos
       needsProcessing = true
     }
     // Handle large images (downscale)
     else if (dimensions.width > MAX_WIDTH) {
-      action = `downscaled from ${dimensions.width}px to max ${MAX_WIDTH}px`
+      action = `downscale→≤${MAX_WIDTH}`
       console.log(`📉 Downscaling to max ${MAX_WIDTH}px`)
-      await resizeImage(filePath, `${MAX_WIDTH}x${MAX_WIDTH}`, false) // false = downscale
+      if (!dryRun)
+        await resizeImage(filePath, `${MAX_WIDTH}x${MAX_WIDTH}`, false) // false = downscale
       needsProcessing = true
     }
     // Medium images - just optimize without resizing
     else {
-      action = `optimized (${dimensions.width}px width preserved)`
+      action = 'optimize-only'
       console.log(`✅ Optimizing quality (size is good)`)
       needsProcessing = true
     }
-
-    if (needsProcessing) {
+    if (!dryRun) {
       // Apply quality optimization and format conversion to progressive JPEG
       try {
         await execPromise(
           `mogrify +profile "*" -format jpg -quality 85 -interlace Plane "${filePath}"`
         )
         await markImageOptimized(filePath)
-        processedFiles.push({ file, action })
-        processedCount++
-        console.log(`✨ Completed: ${displayPath}`)
-      } catch (error) {
-        console.error(`❌ Error optimizing ${displayPath}: ${error.message}`)
-        skippedFiles.push({ file, reason: `error: ${error.message}` })
+      } catch (e) {
+        skippedFiles.push({ file, reason: `opt error: ${e.message}` })
+        continue
       }
     }
+    const fileHash = dryRun ? entry.hash || 'dry-run' : await hashFile(filePath)
+    manifest.images[key] = {
+      ...entry,
+      optimized: true,
+      hash: fileHash,
+      action,
+      updated: new Date().toISOString(),
+    }
+    processedFiles.push({ file, action })
+    actions.push({ file, action })
   }
-
-  // Return data for global summary (no per-folder reporting)
   return {
-    processedCount,
-    existingCount: skippedCount,
-    newFiles: processedFiles.map(({ file }) => file),
+    processedCount: processedFiles.length,
+    existingCount: skippedFiles.length,
+    newFiles: processedFiles.map((f) => f.file),
+    skippedFiles,
+    actions,
   }
 }
 
@@ -390,13 +401,62 @@ async function hasMarkdownPair(imagePath) {
   }
 }
 
+// Manifest helpers ----------------------------------------------------------
+const MEME_MANIFEST_PATH = path.join(
+  __dirname,
+  '..',
+  'public',
+  'memes',
+  '_meme-manifest.json'
+)
+
+async function loadManifest() {
+  try {
+    const raw = await fs.readFile(MEME_MANIFEST_PATH, 'utf-8')
+    return JSON.parse(raw)
+  } catch {
+    return { images: {} }
+  }
+}
+
+async function saveManifest(manifest, dryRun = false) {
+  if (dryRun) return
+  await fs.writeFile(
+    MEME_MANIFEST_PATH,
+    JSON.stringify(manifest, null, 2),
+    'utf-8'
+  )
+}
+
+function relImageKey(absImagePath) {
+  // key relative to public/memes
+  const parts = absImagePath.split(path.sep)
+  const idx = parts.lastIndexOf('memes')
+  return idx === -1
+    ? path.basename(absImagePath)
+    : parts.slice(idx + 1).join('/')
+}
+
+async function hashFile(filePath) {
+  try {
+    const buf = await fs.readFile(filePath)
+    return crypto.createHash('sha1').update(buf).digest('hex')
+  } catch {
+    return null
+  }
+}
+// ---------------------------------------------------------------------------
+
 /**
  * Main function to process all images in a directory
  * @param {string} directory - Directory containing images
  * @param {string} subdirName - Name of subdirectory for reporting
  * @returns {Promise<Object>} Processing results with detailed stats
  */
-async function processImages(directory, subdirName = '') {
+async function processImages(directory, subdirName = '', options = {}) {
+  const { dryRun = false, force = false } = options
+  const manifest = await loadManifest()
+
   const imageExtensions = [
     '.png',
     '.jpg',
@@ -458,53 +518,39 @@ async function processImages(directory, subdirName = '') {
       })
     }
 
-    // Process each image file (rename if needed)
-    for (const filename of imageFiles) {
-      const ext = path.extname(filename).toLowerCase()
-      if (imageExtensions.includes(ext)) {
-        await renameImageFile(directory, filename)
+    // rename loop respects dryRun
+    if (!dryRun) {
+      for (const filename of imageFiles) {
+        const ext = path.extname(filename).toLowerCase()
+        if (imageExtensions.includes(ext)) {
+          await renameImageFile(directory, filename)
+        }
       }
     }
-
-    // Optimize images that need it
-    const optimizationResult = await optimizeImages(directory, subdirName)
-
-    // ALWAYS create markdown files for images that don't have them
-    let newMarkdownCount = 0
-    let newMarkdownFiles = []
-
+    const optimizationResult = await optimizeImages(directory, subdirName, {
+      manifest,
+      dryRun,
+      force,
+    })
+    // ALWAYS create markdown for missing (simulate in dry-run)
     if (imagesWithoutMarkdown.length > 0) {
-      console.log(
-        `\n📝 Creating markdown files for ${imagesWithoutMarkdown.length} images...`
-      )
-      try {
-        const createMarkdownScript = path.join(
-          __dirname,
-          'utils',
-          'create-matching-markdown.js'
-        )
-
-        // Use the subdirName parameter that was passed in, which is already correct
-        const command = subdirName
-          ? `node "${createMarkdownScript}" "${subdirName}"`
-          : `node "${createMarkdownScript}"`
-
-        await execPromise(command)
-
-        // Count how many markdown files were actually created
-        newMarkdownCount = imagesWithoutMarkdown.length
-        newMarkdownFiles = imagesWithoutMarkdown.map((filename) => {
-          const basename = path.basename(filename, path.extname(filename))
-          return `${basename}.md`
-        })
-
-        console.log(`✅ ${newMarkdownCount} markdown files created`)
-      } catch (error) {
-        console.error(`❌ Error creating markdown files: ${error.message}`)
+      if (!dryRun) {
+        try {
+          const createMarkdownScript = path.join(
+            __dirname,
+            'utils',
+            'create-matching-markdown.js'
+          )
+          const command = subdirName
+            ? `node "${createMarkdownScript}" "${subdirName}"`
+            : `node "${createMarkdownScript}"`
+          await execPromise(command)
+        } catch (e) {
+          console.error(`❌ Error creating markdown files: ${e.message}`)
+        }
       }
     }
-
-    // Return comprehensive results
+    await saveManifest(manifest, dryRun)
     return {
       totalFiles,
       existingMarkdown: imagesWithMarkdown.length,
@@ -513,7 +559,11 @@ async function processImages(directory, subdirName = '') {
       newMarkdownFiles,
       missingMarkdownFiles: imagesWithoutMarkdown,
       orphanedMarkdownFiles: movedOrphanedFiles,
-      ...optimizationResult,
+      dryRun,
+      force,
+      manifestPath: MEME_MANIFEST_PATH,
+      skipped: optimizationResult.skippedFiles,
+      actions: optimizationResult.actions,
     }
   } catch (error) {
     console.error(`Error processing images: ${error.message}`)

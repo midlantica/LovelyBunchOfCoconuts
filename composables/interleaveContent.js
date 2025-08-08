@@ -1,112 +1,204 @@
 // composables/interleaveContent.js
 // Core pattern engine: Creates visual layout pattern [ claim | claim ] → [ quote ] → [ meme | meme ] → [ quote ]
-// Maintains strict visual rhythm while handling unbalanced content via graceful fallbacks
+// Improvements:
+// - Deterministic (seeded) optional shuffle for idempotence
+// - Non‑mutating (does not splice input arrays)
+// - Graceful fallback ordering remains stable & deterministic
+// - Optional ad placeholder injection every N pattern items (as quote with isAd flag)
+// - Never introduces new template types (still only: claimPair, quote, memeRow)
+// - Avoids partial singles except when content exhaustion leaves 1 item (last resort)
 
-export function interleaveContent(claims, quotes, memes) {
-  // Create copies to avoid mutating original arrays
-  const claimsCopy = [...claims]
-  const quotesCopy = [...quotes]
-  const memesCopy = [...memes]
-
-  // Shuffle arrays for different content on each reload
-  // Fisher-Yates shuffle for true randomness
-  const shuffle = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[array[i], array[j]] = [array[j], array[i]]
+function createSeededRng(seed) {
+  if (!seed) return Math.random // fallback
+  // xmur3 hash to seed mulberry32
+  function xmur3(str) {
+    let h = 1779033703 ^ str.length
+    for (let i = 0; i < str.length; i++) {
+      h = Math.imul(h ^ str.charCodeAt(i), 3432918353)
+      h = (h << 13) | (h >>> 19)
     }
-    return array
+    h = Math.imul(h ^ (h >>> 16), 2246822507)
+    h = Math.imul(h ^ (h >>> 13), 3266489909)
+    h ^= h >>> 16
+    return h >>> 0
   }
+  function mulberry32(a) {
+    return function () {
+      a |= 0
+      a = (a + 0x6d2b79f5) | 0
+      let t = Math.imul(a ^ (a >>> 15), 1 | a)
+      t ^= t + Math.imul(t ^ (t >>> 7), 61 | t)
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+    }
+  }
+  return mulberry32(xmur3(seed))
+}
 
-  shuffle(claimsCopy)
-  shuffle(quotesCopy)
-  shuffle(memesCopy)
+function seededShuffle(arr, rng) {
+  if (!rng || rng === Math.random) {
+    // keep original random behavior only if no seed provided
+    const a = [...arr]
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[a[i], a[j]] = [a[j], a[i]]
+    }
+    return a
+  }
+  const a = [...arr]
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1))
+    ;[a[i], a[j]] = [a[j], a[i]]
+  }
+  return a
+}
+
+/**
+ * Interleave claims, quotes, memes into strict visual pattern with stable fallbacks.
+ * @param {Array} claims
+ * @param {Array} quotes
+ * @param {Array} memes
+ * @param {Object} options
+ * @param {string} [options.seed] - Seed for deterministic shuffle
+ * @param {number} [options.adInterval=0] - Inject ad placeholder every N pattern items (0 = disabled)
+ * @param {Function} [options.adProvider] - () => { id, title, body } returns data for ad. If returns falsy, ad skipped.
+ * @param {boolean} [options.enableShuffle=true] - Disable to keep original order
+ * @returns {Array} pattern items (types: claimPair | quote | memeRow)
+ */
+export function interleaveContent(claims, quotes, memes, options = {}) {
+  const { seed, adInterval = 0, adProvider, enableShuffle = true } = options
+
+  const rng = seed ? createSeededRng(seed) : null
+
+  // Create non‑mutated working arrays (optionally shuffled)
+  const c = enableShuffle ? seededShuffle(claims, rng) : [...claims]
+  const q = enableShuffle ? seededShuffle(quotes, rng) : [...quotes]
+  const m = enableShuffle ? seededShuffle(memes, rng) : [...memes]
+
+  // Indices instead of splicing (preserves idempotence)
+  let ci = 0
+  let qi = 0
+  let mi = 0
 
   const output = []
-  let patternIndex = 0 // Track position in pattern cycle
-
-  // Pattern: [ claim | claim ] → [ ---quote--- ] → [ meme | meme ] → [ ---quote--- ] (repeating)
   const pattern = ['claimPair', 'quote', 'memeRow', 'quote']
+  let patternIndex = 0
+  let producedCoreItems = 0 // counts non‑ad items only
 
-  // Simple counting logic: continue pattern until we can't make complete pattern items
+  const haveClaims = () => ci < c.length
+  const haveMemes = () => mi < m.length
+  const haveQuotes = () => qi < q.length
+  const claimRemaining = () => c.length - ci
+  const memeRemaining = () => m.length - mi
+  const quoteRemaining = () => q.length - qi
+
+  const pushClaimPair = (count = 2) => {
+    const slice = c.slice(ci, ci + count)
+    ci += slice.length
+    output.push({ type: 'claimPair', data: slice })
+    producedCoreItems++
+  }
+  const pushMemeRow = (count = 2) => {
+    const slice = m.slice(mi, mi + count)
+    mi += slice.length
+    output.push({ type: 'memeRow', data: slice })
+    producedCoreItems++
+  }
+  const pushQuote = (quoteObj, isAd = false) => {
+    output.push({
+      type: 'quote',
+      data: isAd ? { ...quoteObj, isAd: true } : quoteObj,
+    })
+    if (!isAd) producedCoreItems++
+  }
+
+  // Main build loop
   while (true) {
-    const currentPatternType = pattern[patternIndex % pattern.length]
-    let patternItemCreated = false
+    const expected = pattern[patternIndex % pattern.length]
+    let created = false
 
-    // Check if we can create the current pattern item
-    if (currentPatternType === 'claimPair') {
-      if (claimsCopy.length >= 2) {
-        output.push({
-          type: 'claimPair',
-          data: claimsCopy.splice(0, 2),
-        })
-        patternItemCreated = true
+    if (expected === 'claimPair') {
+      if (claimRemaining() >= 2) {
+        pushClaimPair(2)
+        created = true
       }
-    } else if (currentPatternType === 'quote') {
-      if (quotesCopy.length >= 1) {
-        output.push({
-          type: 'quote',
-          data: quotesCopy.splice(0, 1)[0],
-        })
-        patternItemCreated = true
+    } else if (expected === 'memeRow') {
+      if (memeRemaining() >= 2) {
+        pushMemeRow(2)
+        created = true
       }
-    } else if (currentPatternType === 'memeRow') {
-      if (memesCopy.length >= 2) {
-        output.push({
-          type: 'memeRow',
-          data: memesCopy.splice(0, 2),
-        })
-        patternItemCreated = true
+    } else if (expected === 'quote') {
+      if (quoteRemaining() >= 1) {
+        pushQuote(q[qi])
+        qi += 1
+        created = true
       }
     }
 
-    // If we couldn't create the expected pattern item, try alternatives
-    if (!patternItemCreated) {
-      let alternativeCreated = false
-
-      // Try to create any available pattern item as a fallback
-      if (claimsCopy.length >= 2) {
-        output.push({
-          type: 'claimPair',
-          data: claimsCopy.splice(0, 2),
-        })
-        alternativeCreated = true
-      } else if (memesCopy.length >= 2) {
-        output.push({
-          type: 'memeRow',
-          data: memesCopy.splice(0, 2),
-        })
-        alternativeCreated = true
-      } else if (quotesCopy.length >= 1) {
-        output.push({
-          type: 'quote',
-          data: quotesCopy.splice(0, 1)[0],
-        })
-        alternativeCreated = true
-      } else if (claimsCopy.length >= 1) {
-        // Create a single-item claimPair for template compatibility
-        output.push({
-          type: 'claimPair',
-          data: claimsCopy.splice(0, 1),
-        })
-        alternativeCreated = true
-      } else if (memesCopy.length >= 1) {
-        // Create a single-item memeRow for template compatibility
-        output.push({
-          type: 'memeRow',
-          data: memesCopy.splice(0, 1),
-        })
-        alternativeCreated = true
+    // Fallbacks (stable priority): claimPair(2) → memeRow(2) → quote(1) → claim single → meme single
+    if (!created) {
+      if (claimRemaining() >= 2) {
+        pushClaimPair(2)
+        created = true
+      } else if (memeRemaining() >= 2) {
+        pushMemeRow(2)
+        created = true
+      } else if (quoteRemaining() >= 1) {
+        pushQuote(q[qi])
+        qi += 1
+        created = true
+      } else if (claimRemaining() === 1) {
+        pushClaimPair(1) // single wrapped as claimPair for template compatibility
+        created = true
+      } else if (memeRemaining() === 1) {
+        pushMemeRow(1)
+        created = true
       }
+    }
 
-      // If no alternatives possible, we're truly done
-      if (!alternativeCreated) {
-        break
+    if (!created) break // nothing left to place
+
+    // Optional ad injection (as quote placeholder) AFTER creating a core item
+    if (
+      adInterval > 0 &&
+      producedCoreItems > 0 &&
+      producedCoreItems % adInterval === 0 &&
+      adProvider
+    ) {
+      const adData = adProvider()
+      if (adData) {
+        pushQuote(
+          {
+            id: adData.id || `ad-${producedCoreItems}`,
+            title: adData.title || 'Sponsored',
+            body: adData.body || '',
+            isAd: true,
+          },
+          true
+        )
       }
     }
 
     patternIndex++
   }
+
+  // Attach meta (non-enumerable so existing renders over arrays stay safe)
+  Object.defineProperty(output, '_meta', {
+    value: {
+      seed: seed || null,
+      counts: {
+        claimsUsed: ci,
+        quotesUsed: qi,
+        memesUsed: mi,
+        total: output.length,
+      },
+      exhausted: {
+        claims: ci >= c.length,
+        quotes: qi >= q.length,
+        memes: mi >= m.length,
+      },
+    },
+    enumerable: false,
+  })
 
   return output
 }

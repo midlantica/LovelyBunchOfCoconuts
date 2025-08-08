@@ -8,7 +8,26 @@ import { processImages } from './imageProcessing.js'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const args = process.argv.slice(2)
+// Parse args & flags
+const rawArgs = process.argv.slice(2)
+const flags = new Set(rawArgs.filter((a) => a.startsWith('--')))
+const positional = rawArgs.filter((a) => !a.startsWith('--'))
+const subdirName = positional[0]
+const dryRun = flags.has('--dry-run')
+const force = flags.has('--force')
+
+if (flags.has('--help')) {
+  console.log(
+    `Usage: pnpm process-images [subdir] [--dry-run] [--force]\n\n` +
+      `Examples:\n  pnpm process-images\n  pnpm process-images thomas-sowell\n  pnpm process-images thomas-sowell --dry-run\n  pnpm process-images --force\n\nFlags:\n  --dry-run  Show what would happen without modifying files\n  --force    Reprocess even if marked optimized in manifest`
+  )
+  process.exit(0)
+}
+
+function printHeader(title) {
+  console.log(`\n${title}`)
+  console.log('-'.repeat(title.length))
+}
 
 /**
  * Process all subdirectories recursively
@@ -22,17 +41,17 @@ async function processAllSubdirectories() {
       .filter((entry) => entry.isDirectory())
       .map((entry) => entry.name)
 
-    console.log(`🔍 Found ${subdirs.length} subdirectories to process\n`)
+    console.log(`🔍 Found ${subdirs.length} subdirectories to process`)
+    console.log(`Options: dryRun=${dryRun} force=${force}`)
 
     let totalProcessed = 0
     let totalExisting = 0
     const allNewFiles = []
 
-    // Process each subdirectory
     for (const subdir of subdirs) {
       const subdirPath = path.join(baseMemeDir, subdir)
-
-      const result = await processImages(subdirPath, subdir) // Pass subdir name for reporting
+      printHeader(`Processing: ${subdir}`)
+      const result = await processImages(subdirPath, subdir, { dryRun, force })
       if (result) {
         totalProcessed += result.processedCount || 0
         totalExisting += result.existingCount || 0
@@ -44,30 +63,26 @@ async function processAllSubdirectories() {
       }
     }
 
-    // Final summary
-    console.log(`\n🎯 GLOBAL SUMMARY:`)
-    console.log(`Total Memes Existing: ${totalExisting}`)
-    console.log(`Total Memes Created: ${totalProcessed}`)
-
+    printHeader('GLOBAL SUMMARY')
+    console.log(`Processed (optimized) new images: ${totalProcessed}`)
+    console.log(`Skipped (existing/optimized): ${totalExisting}`)
     if (allNewFiles.length > 0) {
-      console.log(`\nAll new memes created:`)
+      console.log(`\nNew images:`)
       allNewFiles.forEach((file) => {
         const mdFile = file.replace(/\.(png|jpg|jpeg|gif|webp)$/i, '.md')
-        console.log(`${file}`)
-        console.log(`${mdFile}`)
-        console.log('')
+        console.log(`  ${file} -> ${mdFile}`)
       })
     }
+    console.log(
+      `\nMode: ${dryRun ? 'DRY-RUN (no changes written)' : force ? 'FORCE' : 'NORMAL'}`
+    )
   } catch (error) {
     console.error(`Error processing subdirectories: ${error.message}`)
     process.exit(1)
   }
 }
 
-const subdirName = args[0]
-
 if (!subdirName) {
-  // No argument = process ALL subdirectories recursively
   console.log(`Processing images in: ALL public/memes subdirectories`)
   processAllSubdirectories()
     .then(() => {
@@ -78,58 +93,52 @@ if (!subdirName) {
       process.exit(1)
     })
 } else {
-  // Specific subdirectory
   const targetDir = path.join(__dirname, '..', 'public', 'memes', subdirName)
   const displayPath = `public/memes/${subdirName}`
   console.log(`Processing images in: ${displayPath}`)
+  console.log(`Options: dryRun=${dryRun} force=${force}`)
 
-  processImages(targetDir, subdirName)
+  processImages(targetDir, subdirName, { dryRun, force })
     .then((result) => {
       console.log('\nImage processing complete.')
+      if (!result) return
 
-      // Display summary for single directory processing
-      if (result) {
-        console.log(`\n📊 SUMMARY for ${displayPath}:`)
-        console.log(`Total image files: ${result.totalFiles}`)
-        console.log(`Images with existing markdown: ${result.existingMarkdown}`)
-        console.log(`Images needing optimization: ${result.processedCount}`)
-        console.log(`New markdown files created: ${result.newMarkdownCount}`)
-        console.log(
-          `Orphaned markdown files: ${result.orphanedMarkdownFiles?.length || 0}`
+      printHeader(`SUMMARY: ${displayPath}`)
+      console.log(`Total image files: ${result.totalFiles}`)
+      console.log(`Images with existing markdown: ${result.existingMarkdown}`)
+      console.log(`Optimized this run: ${result.processedCount}`)
+      console.log(`New markdown files created: ${result.newMarkdownCount}`)
+      console.log(
+        `Orphaned markdown moved: ${result.orphanedMarkdownFiles?.length || 0}`
+      )
+      console.log(`Mode: ${dryRun ? 'DRY-RUN' : force ? 'FORCE' : 'NORMAL'}`)
+      if (result.actions && result.actions.length) {
+        console.log('\nActions:')
+        result.actions.forEach((a) =>
+          console.log(`  • ${a.file} -> ${a.action}`)
         )
-
-        if (result.newMarkdownFiles && result.newMarkdownFiles.length > 0) {
-          console.log(`\n📝 New markdown files created:`)
-          result.newMarkdownFiles.forEach((file) => {
-            console.log(`  ✅ ${file}`)
-          })
-        }
-
-        if (
-          result.missingMarkdownFiles &&
-          result.missingMarkdownFiles.length > 0
-        ) {
-          console.log(`\n🆕 Images that got new markdown files:`)
-          result.missingMarkdownFiles.forEach((file) => {
-            console.log(`  📷 ${file}`)
-          })
-        }
-
-        if (
-          result.orphanedMarkdownFiles &&
-          result.orphanedMarkdownFiles.length > 0
-        ) {
-          console.log(`\n🗑️ Orphaned markdown files found:`)
-          result.orphanedMarkdownFiles.forEach((file) => {
-            console.log(`  📄 ${file}`)
-          })
-        }
-
-        // Victory message when everything is in sync
-        if (result.newMarkdownCount === 0 && result.processedCount === 0) {
-          console.log(`\n🎉 All images in sync with markdown, Yay! 🏆✨`)
-        }
       }
+      if (result.skipped && result.skipped.length) {
+        console.log('\nSkipped:')
+        result.skipped.forEach((s) =>
+          console.log(`  • ${s.file} (${s.reason})`)
+        )
+      }
+      if (result.newMarkdownFiles && result.newMarkdownFiles.length > 0) {
+        console.log('\nNew markdown:')
+        result.newMarkdownFiles.forEach((f) => console.log(`  ✅ ${f}`))
+      }
+      if (
+        result.missingMarkdownFiles &&
+        result.missingMarkdownFiles.length > 0
+      ) {
+        console.log('\nImages that gained markdown this run:')
+        result.missingMarkdownFiles.forEach((f) => console.log(`  📷 ${f}`))
+      }
+      if (result.newMarkdownCount === 0 && result.processedCount === 0) {
+        console.log('\n🎉 All images in sync with markdown, Yay!')
+      }
+      console.log(`\nManifest: ${result.manifestPath}`)
     })
     .catch((err) => {
       console.error('Image processing failed:', err)
