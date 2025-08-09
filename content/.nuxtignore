@@ -1,8 +1,22 @@
+# System files
 .DS_Store
 Thumbs.db
 *.tmp
 *.temp
 **/.DS_Store
 **/Thumbs.db
+
+# Ignore underscore files/dirs anywhere
 _*
 **/_*
+**/__*
+
+# Ignore readme/test-ignore docs (any case variation)
+readme.md
+README.md
+**/readme.md
+**/README.md
+_test_ignore.md
+**/_test_ignore.md
+test-ignore.md
+**/test-ignore.md

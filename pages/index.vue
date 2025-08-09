@@ -1,4 +1,5 @@
 <!-- pages/index.vue -->
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="gap-3 grid grid-rows-[auto_1fr] px-0 h-full overflow-hidden">
     <!-- Search Bar -->
@@ -7,14 +8,7 @@
         <SearchbarSearchBar
           v-model:search="searchTerm"
           v-model:filters="contentFilters"
-          :claim-count="wallCounts.claims"
-          :quote-count="wallCounts.quotes"
-          :meme-count="wallCounts.memes"
-          :total-count="wallCounts.total"
-          :total-claim-count="totalCounts.claims"
-          :total-quote-count="totalCounts.quotes"
-          :total-meme-count="totalCounts.memes"
-          :total-item-count="totalCounts.total"
+          :counts="liveCounts"
           class="top-0 z-10 sticky w-full"
         />
       </div>
@@ -30,7 +24,7 @@
             :search="searchTerm"
             :filters="contentFilters"
             @counts="handleCounts"
-            @modal="handleModal"
+            @modal="handleModalEvent"
             @content-updated="handleContentUpdated"
           />
         </main>
@@ -47,36 +41,72 @@
     quotes: true,
     memes: true,
   }))
+  // Persist wall scroll position globally
+  const wallScrollTop = useState('wallScrollTop', () => 0)
+
+  const route = useRoute()
+  const router = useRouter()
+
+  // Get modal handlers from layout
+  const openModal = inject('openModal')
+  const isModalOpen = inject('isModalOpen', ref(false))
+
+  // If redirected from a not-found deep link, prefill search and clean URL
+  onMounted(() => {
+    const q = typeof route.query.q === 'string' ? route.query.q : ''
+    const nf = route.query.nf
+
+    if (q) {
+      // Normalize dashes/underscores to spaces for search
+      searchTerm.value = q.replace(/[-_]+/g, ' ').trim()
+    }
+    if (nf) {
+      // Remove nf from URL but keep q
+      const nextQuery = q ? { q } : {}
+      router.replace({ path: route.path, query: nextQuery })
+    }
+
+    // Attach scroll listener to persist position
+    const scrollContainer = document.querySelector('.scroll-container-stable')
+    if (scrollContainer) {
+      const onScroll = () => {
+        wallScrollTop.value = scrollContainer.scrollTop || 0
+      }
+      scrollContainer.addEventListener('scroll', onScroll, { passive: true })
+      // Restore if coming back without remount
+      if (wallScrollTop.value > 0) {
+        scrollContainer.scrollTo({ top: wallScrollTop.value })
+      }
+      onUnmounted(() => {
+        scrollContainer.removeEventListener('scroll', onScroll)
+      })
+    }
+  })
 
   // Count tracking
   const wallCounts = ref({ claims: 0, quotes: 0, memes: 0, total: 0 })
-  const totalCounts = ref({ claims: 0, quotes: 0, memes: 0, total: 0 })
-
-  // Get modal handlers from layout
-  const handleModal = inject('openModal')
+  const totalCounts = ref({ claims: 0, quotes: 0, memes: 0 })
+  const liveCounts = computed(() => ({
+    wall: wallCounts.value,
+    total: totalCounts.value,
+  }))
 
   // Handle hash URLs for backward compatibility (Twitter shares, bookmarks, etc.)
   onMounted(() => {
     const handleHashChange = () => {
       const hash = window.location.hash
-      console.log('🔗 Hash changed:', hash)
-      if (hash) {
-        // Parse hash like #meme-socialism-revolutions
-        const match = hash.match(/^#(claim|quote|meme)-(.+)$/)
-        console.log('🔍 Hash match result:', match)
-        if (match) {
-          const [, contentType, slug] = match
-          console.log('🎯 Opening content:', contentType, slug)
-
-          // Clear the hash to prevent router scroll warnings
-          window.history.replaceState(
-            {},
-            '',
-            window.location.pathname + window.location.search
-          )
-
-          openContentFromSlug(contentType, slug)
-        }
+      if (!hash || isModalOpen?.value) return
+      // Accept both #type-slug and #type/slug
+      const match = hash.match(/^(#)(claim|quote|meme)[\/-](.+)$/)
+      if (match) {
+        const [, , contentType, slug] = match
+        // Clear the hash to prevent router scroll warnings
+        window.history.replaceState(
+          {},
+          '',
+          window.location.pathname + window.location.search
+        )
+        openContentFromSlug(contentType, slug)
       }
     }
 
@@ -90,141 +120,46 @@
   })
 
   const openContentFromSlug = async (contentType, slug) => {
-    console.log('🔍 Looking for content:', { contentType, slug })
-
     try {
-      // Import content cache to find the item
       const { useContentCache } = await import('~/composables/useContentCache')
-      const { claims, quotes, memes, loadAllContent } = useContentCache()
+      const { claims, quotes, memes, loadAllContent, slugMaps } =
+        useContentCache()
 
-      // Wait for content to load if it's not ready yet
       await nextTick()
 
-      console.log('📊 Raw content state:', {
-        claimsExists: !!claims,
-        quotesExists: !!quotes,
-        memesExists: !!memes,
-        claimsValue: claims?.value,
-        quotesValue: quotes?.value,
-        memesValue: memes?.value,
-      })
-
-      // Check if content is still loading and wait longer
       if (
-        !claims?.value ||
-        !quotes?.value ||
-        !memes?.value ||
-        claims.value.length === 0 ||
-        quotes.value.length === 0 ||
-        memes.value.length === 0
+        !claims?.value?.length ||
+        !quotes?.value?.length ||
+        !memes?.value?.length
       ) {
-        console.log('⏳ Content still loading, forcing load...')
-
-        // Force load all content if not loaded
         await loadAllContent()
-
-        // Wait another moment for reactivity to update
         await nextTick()
-
-        // If still no content after forced load, retry in a moment
         if (
-          !claims?.value ||
-          !quotes?.value ||
-          !memes?.value ||
-          claims.value.length === 0 ||
-          quotes.value.length === 0 ||
-          memes.value.length === 0
+          !claims?.value?.length ||
+          !quotes?.value?.length ||
+          !memes?.value?.length
         ) {
-          console.log('⏳ Still loading after forced load, retrying in 1s...')
-          setTimeout(() => openContentFromSlug(contentType, slug), 1000)
+          setTimeout(() => openContentFromSlug(contentType, slug), 500)
           return
         }
       }
 
-      console.log('📊 Content counts:', {
-        claims: claims.value?.length || 0,
-        quotes: quotes.value?.length || 0,
-        memes: memes.value?.length || 0,
-      })
-
       let item = null
+      if (contentType === 'claim') item = slugMaps.claims.get(slug)
+      else if (contentType === 'quote') item = slugMaps.quotes.get(slug)
+      else if (contentType === 'meme') item = slugMaps.memes.get(slug)
 
-      if (contentType === 'claim') {
-        item = claims.value.find((claim) => {
-          const claimSlug = (claim.claim || claim.title || '')
-            .toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, '')
-            .replace(/\s+/g, '-')
-            .replace(/-+/g, '-')
-            .replace(/^-|-$/g, '')
-            .substring(0, 50)
-          return claimSlug === slug
-        })
-      } else if (contentType === 'quote') {
-        item = quotes.value.find((quote) => {
-          const author = (quote.attribution || 'unknown')
-            .toLowerCase()
-            .replace(/\s+/g, '-')
-          const quoteStart = (quote.quoteText || quote.title || '')
-            .split(' ')
-            .slice(0, 3)
-            .join(' ')
-          const quoteSlug = quoteStart
-            .toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, '')
-            .replace(/\s+/g, '-')
-            .replace(/-+/g, '-')
-            .replace(/^-|-$/g, '')
-          const fullSlug = `${author}-${quoteSlug}`.substring(0, 50)
-          return fullSlug === slug
-        })
-      } else if (contentType === 'meme') {
-        item = memes.value.find((meme) => {
-          const memeSlug = (meme.title || meme.description || '')
-            .toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, '')
-            .replace(/\s+/g, '-')
-            .replace(/-+/g, '-')
-            .replace(/^-|-$/g, '')
-            .substring(0, 50)
-          console.log('🧪 Testing meme slug:', {
-            title: meme.title,
-            generated: memeSlug,
-            target: slug,
-            matches: memeSlug === slug,
-          })
-          return memeSlug === slug
-        })
-      }
-
-      console.log(
-        '🎯 Found item:',
-        !!item,
-        item?.title || item?.claim || item?.quoteText
-      )
-
-      if (item && handleModal) {
-        console.log('✅ Opening modal for:', contentType)
-        handleModal(contentType, item)
-      } else {
-        console.log('❌ Could not open modal:', {
-          hasItem: !!item,
-          hasHandler: !!handleModal,
-        })
-      }
+      if (item && openModal) openModal({ type: contentType, data: item })
     } catch (error) {
       console.error('💥 Error in openContentFromSlug:', error)
     }
   }
 
-  // Handle content updates and scroll to top for search results
+  // Handle content updates and scroll to top for search results (but not during modal)
   function handleContentUpdated({ hasContent, isSearchResult }) {
+    if (isModalOpen?.value) return
     if (isSearchResult && hasContent) {
-      console.log(
-        '🔍 Search results loaded via content-updated event, scrolling to top'
-      )
       nextTick(() => {
-        // Find the scroll container and scroll it to top
         const scrollContainer = document.querySelector(
           '.scroll-container-stable'
         )
@@ -237,32 +172,14 @@
     }
   }
 
-  // Also watch search term directly for immediate scroll (backup)
-  watch(searchTerm, (newTerm, oldTerm) => {
-    if (newTerm && newTerm.trim() !== '' && newTerm !== oldTerm) {
-      console.log(
-        '🔍 Search term changed to:',
-        newTerm,
-        '- scrolling to top immediately'
-      )
-      // Small delay to let the search start processing
-      setTimeout(() => {
-        const scrollContainer = document.querySelector(
-          '.scroll-container-stable'
-        )
-        if (scrollContainer) {
-          scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' })
-        }
-      }, 100)
-    }
-  })
-
-  // Count handlers
   function handleCounts({ wallCounts: wc, totalCounts: tc }) {
     wallCounts.value = wc
     totalCounts.value = tc
+  }
+
+  // Expose handler to receive modal events from TheWall when it doesn't have injected modal
+  function handleModalEvent(payload) {
+    if (openModal) openModal(payload)
   }
 
   // Provide search state for child components

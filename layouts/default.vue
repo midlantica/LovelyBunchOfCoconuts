@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <!-- layouts/default.vue -->
 <template>
   <div class="gap-4 grid grid-rows-[auto_1fr_auto] h-screen overflow-hidden">
@@ -9,7 +10,7 @@
 
     <LayoutTheFooter class="w-full" />
 
-    <!-- Global Modals -->
+    <!-- Global Modals (used for hash-based opens or explicit openModal) -->
     <ModalsModalMeme
       v-if="modalType === 'meme'"
       :show="showModal"
@@ -29,19 +30,27 @@
       @close="closeModal"
     />
 
-    <!-- Scroll to Top Button -->
     <UiScrollToTopButton />
   </div>
 </template>
 
 <script setup>
-  // Global modal state
   const showModal = ref(false)
   const modalType = ref(null)
   const modalData = ref(null)
 
-  // Modal handlers
-  function handleModal({ type, data }) {
+  // Allow calling with either (type, data) or ({ type, data, slug })
+  function handleModal(arg1, arg2) {
+    let type, data
+    if (typeof arg1 === 'string') {
+      type = arg1
+      data = arg2
+    } else if (arg1 && typeof arg1 === 'object') {
+      type = arg1.type
+      data = arg1.data
+    }
+    if (!type || !data) return
+
     modalType.value = type
     modalData.value = data
     showModal.value = true
@@ -51,9 +60,22 @@
     showModal.value = false
     modalType.value = null
     modalData.value = null
+
+    // Restore the pre-modal URL without a navigation to keep scroll and wall intact
+    if (typeof window !== 'undefined') {
+      const preModalUrl = useState('preModalUrl', () => null)
+      if (preModalUrl.value) {
+        window.history.replaceState({}, '', preModalUrl.value)
+        preModalUrl.value = null
+      } else {
+        // Fallback: remove hash
+        const url = `${window.location.pathname}${window.location.search}`
+        window.history.replaceState({}, '', url)
+      }
+    }
   }
 
-  // Provide modal handlers globally
   provide('openModal', handleModal)
   provide('closeModal', closeModal)
+  provide('isModalOpen', showModal)
 </script>

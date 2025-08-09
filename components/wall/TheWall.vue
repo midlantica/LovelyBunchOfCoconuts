@@ -24,29 +24,45 @@
     <section v-else class="flex flex-col gap-3 xs:px-2 sm:px-2 md:px-0">
       <div
         v-for="(item, index) in interleavedContent"
-        :key="index"
+        :key="itemKey(item, index)"
         class="content-item"
       >
         <!-- Quotes (full width) -->
-        <QuotePanel
+        <div
           v-if="item.type === 'quote'"
-          :quote="item.data"
-          :slug="item.data?.path || item.data?._path || ''"
-          @click="openModal(item.data, 'quote')"
-        />
+          class="cursor-pointer"
+          role="button"
+          tabindex="0"
+          @click.capture="openModal(item.data, 'quote')"
+          @keydown.enter.prevent="openModal(item.data, 'quote')"
+          @keydown.space.prevent="openModal(item.data, 'quote')"
+        >
+          <QuotePanel
+            :quote="item.data"
+            :slug="item.data?.path || item.data?._path || ''"
+          />
+        </div>
 
         <!-- Claim pairs (2 columns on md+, stacked on smaller) -->
         <div
           v-else-if="item.type === 'claimPair'"
           class="gap-3 grid grid-cols-1 md:grid-cols-2"
         >
-          <ClaimPanel
+          <div
             v-for="(claimItem, idx) in item.data"
-            :key="idx"
-            :claim="claimItem"
-            :slug="claimItem?.path || claimItem?._path || ''"
-            @click="openModal(claimItem, 'claim')"
-          />
+            :key="claimItem?._path || claimItem?.path || claimItem?.id || idx"
+            class="cursor-pointer"
+            role="button"
+            tabindex="0"
+            @click.capture="openModal(claimItem, 'claim')"
+            @keydown.enter.prevent="openModal(claimItem, 'claim')"
+            @keydown.space.prevent="openModal(claimItem, 'claim')"
+          >
+            <ClaimPanel
+              :claim="claimItem"
+              :slug="claimItem?.path || claimItem?._path || ''"
+            />
+          </div>
         </div>
 
         <!-- Meme pairs (2 columns on md+, stacked on smaller) -->
@@ -54,13 +70,21 @@
           v-else-if="item.type === 'memeRow'"
           class="gap-3 grid grid-cols-1 md:grid-cols-2"
         >
-          <MemePanel
+          <div
             v-for="(memeItem, idx) in item.data"
-            :key="memeItem._path || memeItem.path || idx"
-            :meme="memeItem"
-            :slug="memeItem?.path || memeItem?._path || ''"
-            @click="openModal(memeItem, 'meme')"
-          />
+            :key="memeItem._path || memeItem.path || memeItem.id || idx"
+            class="cursor-pointer"
+            role="button"
+            tabindex="0"
+            @click.capture="openModal(memeItem, 'meme')"
+            @keydown.enter.prevent="openModal(memeItem, 'meme')"
+            @keydown.space.prevent="openModal(memeItem, 'meme')"
+          >
+            <MemePanel
+              :meme="memeItem"
+              :slug="memeItem?.path || memeItem?._path || ''"
+            />
+          </div>
         </div>
       </div>
 
@@ -78,12 +102,18 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted, watch, nextTick } from 'vue'
+  import { ref, computed, onMounted, watch, nextTick, inject } from 'vue'
   import { interleaveContent } from '~/composables/interleaveContent'
   import { useContentCache } from '~/composables/useContentCache'
   import ClaimPanel from './ClaimPanel.vue'
   import QuotePanel from './QuotePanel.vue'
   import MemePanel from './MemePanel.vue'
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter()
+
+  // Global guard to avoid click-through reopen after closing a modal
+  const modalGuardUntil = useState('modalGuardUntil', () => 0)
 
   // Use the proven content cache system instead of direct queryContent
   const { cache, loadAllContent } = useContentCache()
@@ -95,6 +125,38 @@
       type: Object,
       default: () => ({ claims: true, quotes: true, memes: true }),
     },
+  })
+
+  // Inject global state (provided by index.vue) and fallback to useState so it persists across routes
+  const injectedSearch = inject('searchTerm', null)
+  const injectedFilters = inject('contentFilters', null)
+  const globalSearch = useState('searchTerm', () => '')
+  const globalFilters = useState('contentFilters', () => ({
+    claims: true,
+    quotes: true,
+    memes: true,
+  }))
+
+  // Also get global modal opener so we can emit in a stable way through parent
+  const openGlobalModal = inject('openModal', null)
+
+  // Effective values: prefer injected (shared) state; fallback to global; finally props
+  const effectiveSearch = computed(
+    () =>
+      (injectedSearch ? injectedSearch.value : globalSearch.value) ??
+      props.search
+  )
+  const effectiveFilters = computed(() => {
+    const base = injectedFilters ? injectedFilters.value : globalFilters.value
+    // Ensure keys exist
+    return {
+      claims:
+        typeof base?.claims === 'boolean' ? base.claims : props.filters.claims,
+      quotes:
+        typeof base?.quotes === 'boolean' ? base.quotes : props.filters.quotes,
+      memes:
+        typeof base?.memes === 'boolean' ? base.memes : props.filters.memes,
+    }
   })
 
   // State
@@ -121,8 +183,8 @@
     let searchMemes = allMemes.value
 
     // Apply search filter using searchableText from useContentCache
-    if (props.search?.trim()) {
-      const searchLower = props.search.toLowerCase()
+    if (effectiveSearch.value?.trim()) {
+      const searchLower = effectiveSearch.value.toLowerCase()
 
       searchClaims = searchClaims.filter((item) =>
         item.searchableText?.toLowerCase().includes(searchLower)
@@ -151,13 +213,13 @@
       return { claims: [], quotes: [], memes: [] }
     }
 
-    let filteredClaims = props.filters.claims ? allClaims.value : []
-    let filteredQuotes = props.filters.quotes ? allQuotes.value : []
-    let filteredMemes = props.filters.memes ? allMemes.value : []
+    let filteredClaims = effectiveFilters.value.claims ? allClaims.value : []
+    let filteredQuotes = effectiveFilters.value.quotes ? allQuotes.value : []
+    let filteredMemes = effectiveFilters.value.memes ? allMemes.value : []
 
     // Apply search filter using searchableText from useContentCache
-    if (props.search?.trim()) {
-      const searchLower = props.search.toLowerCase()
+    if (effectiveSearch.value?.trim()) {
+      const searchLower = effectiveSearch.value.toLowerCase()
 
       filteredClaims = filteredClaims.filter((item) =>
         item.searchableText?.toLowerCase().includes(searchLower)
@@ -179,16 +241,31 @@
     }
   })
 
-  // Simple interleaving using the established pattern
+  // Stable key generator for top-level pattern items
+  function itemKey(item, idx) {
+    if (!item) return idx
+    if (item.type === 'quote') {
+      const q = item.data || {}
+      return `q-${q._path || q.path || q.id || idx}`
+    }
+    const joinIds = (arr = []) =>
+      (arr || [])
+        .map((d) => d?._path || d?.path || d?.id || '')
+        .filter(Boolean)
+        .join('|') || idx
+
+    if (item.type === 'claimPair') return `cp-${joinIds(item.data)}`
+    if (item.type === 'memeRow') return `mr-${joinIds(item.data)}`
+    return idx
+  }
+
+  // Simple interleaving using stable ordering (no shuffle) to prevent layout shifts
   const interleavedContent = computed(() => {
     const { claims, quotes, memes } = filteredContent.value
-    console.log('Interleaving content:', {
-      claims: claims.length,
-      quotes: quotes.length,
-      memes: memes.length,
+    // Disable shuffle for absolute stability across pages
+    const result = interleaveContent(claims, quotes, memes, {
+      enableShuffle: false,
     })
-    const result = interleaveContent(claims, quotes, memes)
-    console.log('Interleaved result:', result.length, 'items')
     return result
   })
 
@@ -200,17 +277,57 @@
       // Emit that content has been updated (for scroll-to-top)
       emit('content-updated', {
         hasContent: newContent?.length > 0,
-        isSearchResult: !!props.search?.trim(),
+        isSearchResult: !!effectiveSearch.value?.trim(),
       })
     },
     { immediate: true }
   )
 
-  // Modal handler
+  // Modal handler: emit event instead of navigating so URL can be managed without re-rendering the wall
   const openModal = (data, type) => {
-    console.log('Opening modal:', { type, data })
-    console.log('Modal slug would be:', data?.slug || data?._path || data?.path)
-    emit('modal', { type, data })
+    if (Date.now() < modalGuardUntil.value) return
+
+    const fileBase = () => {
+      const id = data?.id || data?._id || ''
+      if (id) return id.split('/').pop()?.replace(/\.md$/, '') || ''
+      const p = data?._path || data?.path || ''
+      if (p) return p.split('/').pop()?.replace(/\.md$/, '') || ''
+      return ''
+    }
+    const slugify = (s = '') =>
+      s
+        .toString()
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-_]/g, '')
+        .trim()
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .substring(0, 80)
+
+    let slug = fileBase()
+    if (!slug) {
+      if (type === 'claim') slug = slugify(data?.claim || data?.title || '')
+      else if (type === 'quote')
+        slug = slugify(data?.title || data?.quoteText || '')
+      else if (type === 'meme')
+        slug = slugify(data?.title || data?.description || '')
+    }
+
+    const payload = { type, data, slug }
+
+    // Update URL path to /type/slug without navigating, and remember previous URL
+    if (typeof window !== 'undefined' && slug) {
+      const preModalUrl = useState('preModalUrl', () => null)
+      if (!preModalUrl.value) {
+        preModalUrl.value = `${window.location.pathname}${window.location.search}${window.location.hash}`
+      }
+      // Use replaceState so we don't add a history entry; omit query to keep the path clean
+      window.history.replaceState({}, '', `/${type}/${slug}`)
+    }
+
+    // Prefer injected global modal if available; otherwise emit to parent
+    if (openGlobalModal) openGlobalModal(payload)
+    else emit('modal', payload)
   }
 
   watch(
@@ -222,13 +339,13 @@
           quotes: searchFilteredContent.value.quotes.length,
           memes: searchFilteredContent.value.memes.length,
           total:
-            (props.filters.claims
+            (effectiveFilters.value.claims
               ? searchFilteredContent.value.claims.length
               : 0) +
-            (props.filters.quotes
+            (effectiveFilters.value.quotes
               ? searchFilteredContent.value.quotes.length
               : 0) +
-            (props.filters.memes
+            (effectiveFilters.value.memes
               ? searchFilteredContent.value.memes.length
               : 0),
         },

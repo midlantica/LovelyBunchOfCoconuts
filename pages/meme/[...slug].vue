@@ -1,76 +1,73 @@
 <!-- Dynamic route for individual memes -->
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div :key="`meme-${route.path}`">
-    <!-- If we have a matching meme, show it in modal -->
+    <!-- Background Wall -->
+    <section
+      class="gap-3 grid grid-rows-[auto_1fr] px-0 h-full overflow-hidden"
+    >
+      <div
+        class="rounded-xl h-full min-h-0 overflow-y-auto scroll-container-stable"
+      >
+        <div class="mx-auto md:px-0 pr-3 pl-2 w-full max-w-screen-md">
+          <main class="pb-8">
+            <WallTheWall />
+          </main>
+        </div>
+      </div>
+    </section>
+
+    <!-- Local modal overlay -->
     <ModalsModalMeme
       v-if="meme"
-      :show="true"
+      :show="modalVisible"
       :modal-data="meme"
       @close="navigateHome"
     />
-
-    <!-- Otherwise show error -->
-    <div v-else>
-      <div class="flex justify-center items-center min-h-screen">
-        <div class="text-center">
-          <h1 class="mb-4 font-bold text-white text-2xl">Meme Not Found</h1>
-          <p class="mb-4 text-gray-400">
-            The meme you're looking for doesn't exist.
-          </p>
-          <p class="mb-4 text-gray-500 text-sm">
-            Slug: {{ route.params.slug }}
-          </p>
-          <button
-            @click="navigateHome"
-            class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-white transition-colors"
-          >
-            Go Home
-          </button>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script setup>
-  import { onMounted, watch, nextTick } from 'vue'
+  import { onMounted, watch, ref, computed } from 'vue'
 
   const route = useRoute()
   const router = useRouter()
 
   const { memes, ensureContentLoaded, cache } = useContentCache()
+  const runtimeConfig = useRuntimeConfig()
+  const siteUrl = runtimeConfig.public.siteUrl || 'https://wakeupnpc.com'
+
+  const contentReady = ref(false)
+
+  // Local modal visibility
+  const modalVisible = ref(true)
+
+  // Persisted wall scroll position
+  const wallScrollTop = useState('wallScrollTop', () => 0)
 
   // Ensure content is loaded immediately for SSR and client-side
   await ensureContentLoaded()
+  contentReady.value = true
 
-  // Also ensure content is loaded on mount as fallback
   onMounted(async () => {
     await ensureContentLoaded()
+    contentReady.value = true
+    // Restore background wall scroll position
+    const scroller = document.querySelector('.scroll-container-stable')
+    if (scroller && wallScrollTop.value > 0) {
+      scroller.scrollTop = wallScrollTop.value
+    }
   })
 
-  // Watch route changes and re-ensure content is available
-  watch(
-    () => route.params.slug,
-    async (newSlug, oldSlug) => {
-      console.log('🔄 MEME ROUTE: Route slug changed:', {
-        from: oldSlug,
-        to: newSlug,
-        path: route.path,
-        timestamp: new Date().toISOString(),
-      })
-      await ensureContentLoaded()
-      await nextTick()
-    },
-    { immediate: false }
+  const routeSlug = computed(() =>
+    Array.isArray(route.params.slug)
+      ? route.params.slug.join('/')
+      : route.params.slug
   )
 
   // Find the meme that matches this path - make it reactive to route changes
   const meme = computed(() => {
-    const currentSlug = Array.isArray(route.params.slug)
-      ? route.params.slug.join('/')
-      : route.params.slug
-
-    console.log('🔍 MEME ROUTE: Computing meme for slug:', currentSlug)
+    const currentSlug = routeSlug.value
 
     const memesArray = memes.value?.length > 0 ? memes.value : cache.memes
 
@@ -95,11 +92,35 @@
     return foundMeme
   })
 
+  // Redirect to home with prefilled search if not found
+  watch(
+    meme,
+    (val) => {
+      if (!contentReady.value) return
+      if (!val && routeSlug.value) {
+        const q = routeSlug.value
+        navigateTo({ path: '/', query: { nf: '1', q } })
+      }
+    },
+    { immediate: true }
+  )
+
+  const slugify = (str = '') =>
+    str
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .substring(0, 80)
+
   const navigateHome = () => {
-    router.push('/')
+    const modalGuardUntil = useState('modalGuardUntil', () => 0)
+    modalGuardUntil.value = Date.now() + 450
+    modalVisible.value = false
+    requestAnimationFrame(() => router.push('/'))
   }
 
-  // Set page meta for social sharing
   useHead(() => {
     if (!meme.value) {
       return {
@@ -113,77 +134,28 @@
       }
     }
 
-    const title = meme.value.title
-    const imageUrl = meme.value.images?.[0] || ''
-    const currentUrl = `https://wakeupnpc.com${route.path}`
-
-    // For memes, use the actual meme image if available, otherwise use branded image
-    const ogImageUrl = imageUrl
-      ? `https://wakeupnpc.com${imageUrl}`
-      : `https://wakeupnpc.com/grainy-background-aqua.jpg`
+    const title = meme.value.title || meme.value.description || 'Meme'
+    const currentUrl = `${siteUrl}${route.path}`
+    const ogImageUrl = `${siteUrl}/api/share/meme/${slugify(title)}.png`
 
     return {
       title: `${title} | WakeUpNPC`,
       meta: [
-        {
-          name: 'description',
-          content: title,
-        },
-        // Open Graph tags for Facebook
-        {
-          property: 'og:title',
-          content: title,
-        },
-        {
-          property: 'og:description',
-          content: `Check out this political meme: ${title}`,
-        },
-        {
-          property: 'og:type',
-          content: 'article',
-        },
-        {
-          property: 'og:url',
-          content: currentUrl,
-        },
-        {
-          property: 'og:image',
-          content: ogImageUrl,
-        },
-        {
-          property: 'og:image:width',
-          content: '1200',
-        },
-        {
-          property: 'og:image:height',
-          content: '630',
-        },
-        {
-          property: 'og:site_name',
-          content: 'WakeUpNPC',
-        },
-        // Twitter Card tags
-        {
-          property: 'twitter:card',
-          content: 'summary_large_image',
-        },
-        {
-          property: 'twitter:site',
-          content: '@WakeUpNPC',
-        },
-        {
-          property: 'twitter:title',
-          content: title,
-        },
-        {
-          property: 'twitter:description',
-          content: `Check out this political meme: ${title}`,
-        },
-        {
-          property: 'twitter:image',
-          content: ogImageUrl,
-        },
+        { name: 'description', content: title },
+        { property: 'og:title', content: title },
+        { property: 'og:description', content: title },
+        { property: 'og:type', content: 'article' },
+        { property: 'og:url', content: currentUrl },
+        { property: 'og:image', content: ogImageUrl },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:site_name', content: 'WakeUpNPC' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: title },
+        { name: 'twitter:description', content: title },
+        { name: 'twitter:image', content: ogImageUrl },
       ],
+      link: [{ rel: 'canonical', href: currentUrl }],
     }
   })
 </script>

@@ -1,73 +1,89 @@
 <!-- Dynamic route for individual claims -->
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div :key="`claim-${route.path}`">
-    <!-- If we have a matching claim, show it in modal -->
+    <!-- Background Wall (keeps index experience visible) -->
+    <section
+      class="gap-3 grid grid-rows-[auto_1fr] px-0 h-full overflow-hidden"
+    >
+      <div
+        class="rounded-xl h-full min-h-0 overflow-y-auto scroll-container-stable"
+      >
+        <div class="mx-auto md:px-0 pr-3 pl-2 w-full max-w-screen-md">
+          <main class="pb-8">
+            <WallTheWall />
+          </main>
+        </div>
+      </div>
+    </section>
+
+    <!-- Local modal overlay so URL remains /claim/... -->
     <ModalsModalClaim
       v-if="claim"
-      :show="true"
+      :show="modalVisible"
       :modal-data="claim"
       @close="navigateHome"
     />
-
-    <!-- Otherwise show the main wall with this claim highlighted -->
-    <div v-else>
-      <div class="flex justify-center items-center min-h-screen">
-        <div class="text-center">
-          <h1 class="mb-4 font-bold text-white text-2xl">Claim Not Found</h1>
-          <p class="mb-4 text-gray-400">
-            The claim you're looking for doesn't exist.
-          </p>
-          <button
-            @click="navigateHome"
-            class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-white transition-colors"
-          >
-            Go Home
-          </button>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script setup>
-  import { onMounted, watch, nextTick } from 'vue'
+  import { onMounted, watch, nextTick, ref, computed } from 'vue'
 
   const route = useRoute()
   const router = useRouter()
 
   const { claims, ensureContentLoaded, cache } = useContentCache()
+  const shareImage = ref(null)
+  const runtimeConfig = useRuntimeConfig()
+  const siteUrl = runtimeConfig.public.siteUrl || 'https://wakeupnpc.com'
+
+  const contentReady = ref(false)
+
+  // Modal local visibility for instant close
+  const modalVisible = ref(true)
+
+  // Persisted wall scroll position
+  const wallScrollTop = useState('wallScrollTop', () => 0)
+
+  // Global modal reopen guard shared with TheWall
+  const modalGuardUntil = useState('modalGuardUntil', () => 0)
 
   // Ensure content is loaded immediately for SSR and client-side
   await ensureContentLoaded()
+  contentReady.value = true
 
-  // Also ensure content is loaded on mount as fallback
+  // Also ensure content is loaded on mount as fallback and sync scroll position
   onMounted(async () => {
     await ensureContentLoaded()
+    contentReady.value = true
+    // Restore background wall scroll position
+    const scroller = document.querySelector('.scroll-container-stable')
+    if (scroller && wallScrollTop.value > 0) {
+      scroller.scrollTop = wallScrollTop.value
+    }
   })
 
   // Watch route changes and re-ensure content is available
   watch(
     () => route.params.slug,
-    async (newSlug, oldSlug) => {
-      console.log('🔄 CLAIM ROUTE: Route slug changed:', {
-        from: oldSlug,
-        to: newSlug,
-        path: route.path,
-        timestamp: new Date().toISOString(),
-      })
+    async () => {
       await ensureContentLoaded()
       await nextTick()
+      modalVisible.value = true
     },
     { immediate: false }
   )
 
-  // Find the claim that matches this path - make it reactive to route changes
-  const claim = computed(() => {
-    const currentSlug = Array.isArray(route.params.slug)
+  const routeSlug = computed(() =>
+    Array.isArray(route.params.slug)
       ? route.params.slug.join('/')
       : route.params.slug
+  )
 
-    console.log('🔍 CLAIM ROUTE: Computing claim for slug:', currentSlug)
+  // Find the claim that matches this path - make it reactive to route changes
+  const claim = computed(() => {
+    const currentSlug = routeSlug.value
 
     const claimsArray = claims.value?.length > 0 ? claims.value : cache.claims
 
@@ -92,11 +108,53 @@
     return foundClaim
   })
 
+  // Redirect to home with prefilled search if not found
+  watch(
+    claim,
+    (val) => {
+      if (!contentReady.value) return
+      if (!val && routeSlug.value) {
+        const q = routeSlug.value
+        navigateTo({ path: '/', query: { nf: '1', q } })
+      }
+    },
+    { immediate: true }
+  )
+
+  // Helper to slugify claim text for API endpoint
+  const slugify = (str = '') =>
+    str
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .substring(0, 80)
+
+  // Remove head override with data URLs; keep optional generation for UI use only
+  watch(claim, async (val) => {
+    if (!process.client || !val) return
+    try {
+      const { generateClaimShareAsset } = useShareImageGenerator()
+      const { dataUrl } = await generateClaimShareAsset(
+        val.claim || val.title,
+        val.translation || ''
+      )
+      shareImage.value = dataUrl
+      // Do not override SSR share tags here to preserve crawler-friendly URLs
+    } catch (e) {
+      console.warn('Share image generation failed:', e)
+    }
+  })
+
   const navigateHome = () => {
-    router.push('/')
+    modalGuardUntil.value = Date.now() + 450
+    modalVisible.value = false
+    // Navigate after the frame to ensure UI hides immediately
+    requestAnimationFrame(() => router.push('/'))
   }
 
-  // Set page meta for social sharing
+  // Set page meta for social sharing (use server share endpoint)
   useHead(() => {
     if (!claim.value) {
       return {
@@ -112,73 +170,27 @@
 
     const claimText = claim.value.claim || claim.value.title
     const translation = claim.value.translation || ''
-    const currentUrl = `https://wakeupnpc.com${route.path}`
-
-    // Use a simple branded image for Open Graph (much more reliable than dynamic generation)
-    const ogImageUrl = `https://wakeupnpc.com/grainy-background-aqua.jpg`
+    const currentUrl = `${siteUrl}${route.path}`
+    const ogImageUrl = `${siteUrl}/api/share/claim/${slugify(claimText)}.png`
 
     return {
       title: `${claimText} | WakeUpNPC`,
       meta: [
-        {
-          name: 'description',
-          content: translation || claimText,
-        },
-        // Open Graph tags for Facebook
-        {
-          property: 'og:title',
-          content: claimText,
-        },
-        {
-          property: 'og:description',
-          content: translation || claimText,
-        },
-        {
-          property: 'og:type',
-          content: 'article',
-        },
-        {
-          property: 'og:url',
-          content: currentUrl,
-        },
-        {
-          property: 'og:image',
-          content: ogImageUrl,
-        },
-        {
-          property: 'og:image:width',
-          content: '1200',
-        },
-        {
-          property: 'og:image:height',
-          content: '630',
-        },
-        {
-          property: 'og:site_name',
-          content: 'WakeUpNPC',
-        },
-        // Twitter Card tags
-        {
-          property: 'twitter:card',
-          content: 'summary_large_image',
-        },
-        {
-          property: 'twitter:site',
-          content: '@WakeUpNPC',
-        },
-        {
-          property: 'twitter:title',
-          content: claimText,
-        },
-        {
-          property: 'twitter:description',
-          content: translation || claimText,
-        },
-        {
-          property: 'twitter:image',
-          content: ogImageUrl,
-        },
+        { name: 'description', content: translation || claimText },
+        { property: 'og:title', content: claimText },
+        { property: 'og:description', content: translation || claimText },
+        { property: 'og:type', content: 'article' },
+        { property: 'og:url', content: currentUrl },
+        { property: 'og:image', content: ogImageUrl },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:site_name', content: 'WakeUpNPC' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: claimText },
+        { name: 'twitter:description', content: translation || claimText },
+        { name: 'twitter:image', content: ogImageUrl },
       ],
+      link: [{ rel: 'canonical', href: currentUrl }],
     }
   })
 </script>

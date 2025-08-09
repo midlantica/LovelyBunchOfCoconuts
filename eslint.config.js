@@ -9,6 +9,12 @@ export default defineConfig([
   {
     files: ['**/*.{js,mjs,cjs,vue}'],
     languageOptions: { globals: globals.browser },
+    rules: {
+      'vue/multi-word-component-names': [
+        'error',
+        { ignores: ['index', '[...slug]'] }, // allow root & catch-all pages
+      ],
+    },
   },
   pluginVue.configs['flat/essential'],
   { files: ['**/*.json'], plugins: { json }, language: 'json/json' },

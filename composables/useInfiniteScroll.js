@@ -11,12 +11,11 @@ export function useInfiniteScroll(loadMoreCallback, options = {}) {
     hasMore = ref(true),
   } = options
 
-  const scrollHandler = async () => {
-    if (isLoading.value || !hasMore.value) {
-      return
-    }
+  let ticking = false
 
-    // Find the scrollable container (look for our custom scroll container first)
+  const checkPosition = async () => {
+    ticking = false
+    if (isLoading.value || !hasMore.value) return
     const scrollContainer =
       document.querySelector('.scroll-container-stable') ||
       document.querySelector('.overflow-y-auto') ||
@@ -24,11 +23,8 @@ export function useInfiniteScroll(loadMoreCallback, options = {}) {
     const scrollTop = scrollContainer.scrollTop
     const scrollHeight = scrollContainer.scrollHeight
     const clientHeight = scrollContainer.clientHeight
-    const distanceFromBottom = scrollHeight - scrollTop - clientHeight
-
-    if (distanceFromBottom <= threshold) {
+    if (scrollHeight - scrollTop - clientHeight <= threshold) {
       isLoading.value = true
-
       try {
         await loadMoreCallback()
       } catch (error) {
@@ -39,26 +35,26 @@ export function useInfiniteScroll(loadMoreCallback, options = {}) {
     }
   }
 
-  onMounted(() => {
-    // Listen to scroll events on the scrollable container
-    const scrollContainer =
-      document.querySelector('.scroll-container-stable') ||
-      document.querySelector('.overflow-y-auto')
-    if (scrollContainer) {
-      scrollContainer.addEventListener('scroll', scrollHandler)
-    } else {
-      window.addEventListener('scroll', scrollHandler)
+  const scrollHandler = () => {
+    if (!ticking) {
+      ticking = true
+      requestAnimationFrame(checkPosition)
     }
+  }
+
+  let activeTarget = null
+
+  onMounted(() => {
+    activeTarget =
+      document.querySelector('.scroll-container-stable') ||
+      document.querySelector('.overflow-y-auto') ||
+      window
+    activeTarget.addEventListener('scroll', scrollHandler, { passive: true })
   })
 
   onUnmounted(() => {
-    const scrollContainer =
-      document.querySelector('.scroll-container-stable') ||
-      document.querySelector('.overflow-y-auto')
-    if (scrollContainer) {
-      scrollContainer.removeEventListener('scroll', scrollHandler)
-    } else {
-      window.removeEventListener('scroll', scrollHandler)
+    if (activeTarget) {
+      activeTarget.removeEventListener('scroll', scrollHandler)
     }
   })
 

@@ -190,9 +190,49 @@ export const useShareImageGenerator = () => {
     })
   }
 
+  const blobToDataUrl = (blob) =>
+    new Promise((resolve) => {
+      const r = new FileReader()
+      r.onload = () => resolve(r.result)
+      r.readAsDataURL(blob)
+    })
+
+  const slugPart = (t = '') =>
+    t
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .substring(0, 60)
+
+  const generateClaimShareAsset = async (claim, translation) => {
+    const blob = await generateClaimImage(claim, translation)
+    const dataUrl = await blobToDataUrl(blob)
+    const filename = `claim-${slugPart(claim)}.png`
+    return { dataUrl, filename }
+  }
+  const generateQuoteShareAsset = async (quote, attribution) => {
+    const blob = await generateQuoteImage(quote, attribution)
+    const dataUrl = await blobToDataUrl(blob)
+    const filename =
+      `quote-${slugPart(attribution)}-${slugPart(quote)}`.substring(0, 80) +
+      '.png'
+    return { dataUrl, filename }
+  }
+  const generateMemeShareAsset = async (img, title) => {
+    const blob = await generateMemeShareImage(img, title)
+    const dataUrl = await blobToDataUrl(blob)
+    const filename = `meme-${slugPart(title)}.png`
+    return { dataUrl, filename }
+  }
+
   return {
     generateClaimImage,
     generateQuoteImage,
     generateMemeShareImage,
+    generateClaimShareAsset,
+    generateQuoteShareAsset,
+    generateMemeShareAsset,
   }
 }

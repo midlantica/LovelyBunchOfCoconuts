@@ -1,24 +1,11 @@
 import { defineCollection, defineContentConfig } from '@nuxt/content'
 
 export default defineContentConfig({
-  ignores: [
-    '\\.DS_Store$', // Ignore .DS_Store files
-    '\\._.*', // Ignore any ._* resource fork files
-    'Thumbs\\.db$', // Also ignore Windows thumbnail files
-  ],
+  // NOTE: Ignore patterns moved to nuxt.config.ts (content.ignores) because defineContentConfig schema doesn't expose `ignores`.
   collections: {
-    claims: defineCollection({
-      source: 'claims/**',
-      type: 'page',
-    }),
-    memes: defineCollection({
-      source: 'memes/**',
-      type: 'page',
-    }),
-    quotes: defineCollection({
-      source: 'quotes/**',
-      type: 'page',
-    }),
+    claims: defineCollection({ source: 'claims/**', type: 'page' }),
+    memes: defineCollection({ source: 'memes/**', type: 'page' }),
+    quotes: defineCollection({ source: 'quotes/**', type: 'page' }),
   },
 })
 

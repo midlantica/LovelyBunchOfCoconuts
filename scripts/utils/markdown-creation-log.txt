@@ -1,4 +1,4 @@
-Starting markdown file creation at 2025-08-07T05:38:11.439Z
+Starting markdown file creation at 2025-08-08T05:51:15.971Z
 Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes
 Markdown file already exists for a-government-which-lays-t.jpg
 Markdown file already exists for a-man-who-knows-the-orig.jpg
@@ -36,9 +36,9 @@ Markdown file already exists for people-who-wonder-whether.jpg
 Markdown file already exists for political-correctness-is.jpg
 Markdown file already exists for prior-to-capitalism-the.jpg
 Markdown file already exists for real-socialism-has-neve.jpg
-Created markdown file for religion-is-regarded-by-t.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/religion-is-regarded-by-t.md
+Markdown file already exists for religion-is-regarded-by-t.jpg
 Markdown file already exists for seneca-quote-religion.jpg
-Created markdown file for socialism-irons-out-the-b.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/socialism-irons-out-the-b.md
+Markdown file already exists for socialism-irons-out-the-b.jpg
 Markdown file already exists for socialism-irons-out-the-boom-bust-cycle.jpg
 Markdown file already exists for socialism-will-triumph-fi.jpg
 Markdown file already exists for some-ideas-are-so-stupid.jpg
@@ -56,8 +56,8 @@ Markdown file already exists for the-democrat-party-has-de.jpg
 Markdown file already exists for the-fatal-conceit-the-er.jpg
 Markdown file already exists for the-greatest-enemy-of-the.jpg
 Markdown file already exists for the-limits-of-tyrants-are.jpg
-Created markdown file for the-middle-east-bernard-l-1.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/the-middle-east-bernard-l-1.md
-Markdown file already exists for the-middle-east-bernard-l.jpg
+Markdown file already exists for the-middle-east-bernard-l-1.jpg
+Created markdown file for the-middle-east-bernard-l.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/the-middle-east-bernard-l.md
 Markdown file already exists for the-people-will-believe-w.jpg
 Markdown file already exists for the-purpose-of-propaganda.jpg
 Markdown file already exists for the-reason-you-dont-know.jpg
@@ -74,6 +74,6 @@ Markdown file already exists for when-young-people-want-to.jpg
 Markdown file already exists for white-liberals-are-the-mo.jpg
 Markdown file already exists for young-people-are-told-at.jpg
 
-Markdown file creation complete at 2025-08-07T05:38:11.460Z
-3 markdown files created, 70 files skipped
+Markdown file creation complete at 2025-08-08T05:51:15.991Z
+1 markdown files created, 72 files skipped
 Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/utils/markdown-creation-log.txt

@@ -27,28 +27,23 @@
           top: buttonRect.bottom + 8 + 'px',
           transform: 'translateX(-50%)',
           zIndex: 9999,
+          pointerEvents: 'none',
         }"
-        class="bg-black shadow-lg px-5 py-2 border border-white/50 rounded-lg text-white text-lg whitespace-nowrap"
+        class="bg-black shadow-md px-2.5 py-1 border border-white/30 rounded-md text-white text-sm uppercase tracking-wider whitespace-nowrap"
+        role="status"
+        aria-live="polite"
       >
         {{ toastMessage }}
         <!-- Arrow pointing up with white border -->
         <!-- White border arrow (slightly larger, positioned behind) -->
         <div
-          class="absolute border-transparent border-r-[9px] border-b-[9px] border-b-white/50 border-l-[9px] w-0 h-0"
-          :style="{
-            top: '-8px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-          }"
+          class="absolute border-transparent border-r-[6px] border-b-[6px] border-b-white/30 border-l-[6px] w-0 h-0"
+          :style="{ top: '-6px', left: '50%', transform: 'translateX(-50%)' }"
         ></div>
         <!-- Black arrow (on top) -->
         <div
-          class="absolute border-transparent border-r-8 border-b-8 border-b-black border-l-8 w-0 h-0"
-          :style="{
-            top: '-7px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-          }"
+          class="absolute border-transparent border-r-[5px] border-b-[5px] border-b-black border-l-[5px] w-0 h-0"
+          :style="{ top: '-5px', left: '50%', transform: 'translateX(-50%)' }"
         ></div>
       </div>
     </transition>
@@ -56,7 +51,7 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, onUnmounted } from 'vue'
 
   const props = defineProps({
     iconName: { type: String, required: true },
@@ -100,6 +95,22 @@
     setTimeout(() => {
       clearToast()
     }, props.toastDuration)
+  }
+
+  // Reposition toast on scroll/resize
+  if (import.meta.client) {
+    const updatePosition = () => {
+      if (!showToast.value) return
+      buttonRect.value = getButtonPosition()
+    }
+    onMounted(() => {
+      window.addEventListener('scroll', updatePosition, { passive: true })
+      window.addEventListener('resize', updatePosition)
+    })
+    onUnmounted(() => {
+      window.removeEventListener('scroll', updatePosition)
+      window.removeEventListener('resize', updatePosition)
+    })
   }
 
   // Expose method to clear toast (for parent coordination)

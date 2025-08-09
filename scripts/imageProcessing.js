@@ -103,36 +103,38 @@ async function optimizeImages(
   const files = await fs.readdir(directory)
 
   // Configuration for target sizes
-  const MIN_WIDTH = 400 // Minimum acceptable width
-  const MAX_WIDTH = 1080 // Maximum width before downscaling
-  const TARGET_UPSCALE = 600 // Target width for small images
+  const MIN_WIDTH = 400
+  const MAX_WIDTH = 1080
+  const TARGET_UPSCALE = 600
 
   let processedCount = 0
   let skippedCount = 0
   const processedFiles = []
   const skippedFiles = []
   const actions = []
+
   for (const file of files) {
     const ext = path.extname(file).toLowerCase().replace('.', '')
     if (!extensions.includes(ext)) continue
 
     const filePath = path.join(directory, file)
+    const displayPath = subdirName ? `${subdirName}/${file}` : file
     const key = relImageKey(filePath)
     const entry = manifest.images[key] || {}
 
-    // Check manifest optimized state unless forcing
+    // Manifest optimized check (unless forcing)
     if (!force && entry.optimized) {
       skippedFiles.push({ file, reason: 'manifest: optimized' })
       continue
     }
-    // Existing logic: markdown pair check (still skip creation work but we may still want optimization). Keep precedence: if has pair AND already optimized, skip; if has pair but not optimized, still optimize.
+
     const hasPair = await hasMarkdownPair(filePath)
     if (hasPair && entry.optimized && !force) {
       skippedFiles.push({ file, reason: 'has markdown pair' })
       continue
     }
-    // If dry-run just simulate dimension fetch etc.
-    let dimensions = null
+
+    let dimensions
     if (!dryRun) {
       dimensions = await getImageDimensions(filePath)
     } else {
@@ -143,34 +145,30 @@ async function optimizeImages(
       continue
     }
 
-    // This file WILL be processed - show details for new files only
     console.log(`🆕 Processing: ${displayPath}`)
-
     console.log(`📐 ${dimensions.width}×${dimensions.height}px`)
 
-    // Handle small images (upscale)
+    let action = ''
+    let needsProcessing = false
+
     if (dimensions.width < MIN_WIDTH) {
       action = `upscale→${TARGET_UPSCALE}`
       console.log(`📈 Upscaling to ${TARGET_UPSCALE}px width`)
-      if (!dryRun) await resizeImage(filePath, `${TARGET_UPSCALE}x`, true) // true = upscale with Lanczos
+      if (!dryRun) await resizeImage(filePath, `${TARGET_UPSCALE}x`, true)
       needsProcessing = true
-    }
-    // Handle large images (downscale)
-    else if (dimensions.width > MAX_WIDTH) {
+    } else if (dimensions.width > MAX_WIDTH) {
       action = `downscale→≤${MAX_WIDTH}`
       console.log(`📉 Downscaling to max ${MAX_WIDTH}px`)
       if (!dryRun)
-        await resizeImage(filePath, `${MAX_WIDTH}x${MAX_WIDTH}`, false) // false = downscale
+        await resizeImage(filePath, `${MAX_WIDTH}x${MAX_WIDTH}`, false)
       needsProcessing = true
-    }
-    // Medium images - just optimize without resizing
-    else {
+    } else {
       action = 'optimize-only'
       console.log(`✅ Optimizing quality (size is good)`)
       needsProcessing = true
     }
-    if (!dryRun) {
-      // Apply quality optimization and format conversion to progressive JPEG
+
+    if (needsProcessing && !dryRun) {
       try {
         await execPromise(
           `mogrify +profile "*" -format jpg -quality 85 -interlace Plane "${filePath}"`
@@ -181,6 +179,7 @@ async function optimizeImages(
         continue
       }
     }
+
     const fileHash = dryRun ? entry.hash || 'dry-run' : await hashFile(filePath)
     manifest.images[key] = {
       ...entry,
@@ -188,13 +187,17 @@ async function optimizeImages(
       hash: fileHash,
       action,
       updated: new Date().toISOString(),
+      width: dimensions.width,
+      height: dimensions.height,
     }
     processedFiles.push({ file, action })
     actions.push({ file, action })
+    processedCount++
   }
+
   return {
-    processedCount: processedFiles.length,
-    existingCount: skippedFiles.length,
+    processedCount,
+    existingCount: skippedCount + skippedFiles.length,
     newFiles: processedFiles.map((f) => f.file),
     skippedFiles,
     actions,
@@ -498,26 +501,6 @@ async function processImages(directory, subdirName = '', options = {}) {
       imageFiles
     )
 
-    console.log(`\n📊 Directory Analysis:`)
-    console.log(`Total image files: ${totalFiles}`)
-    console.log(`Images with existing markdown: ${imagesWithMarkdown.length}`)
-    console.log(`Images missing markdown: ${imagesWithoutMarkdown.length}`)
-    console.log(`Orphaned markdown files moved: ${movedOrphanedFiles.length}`)
-
-    if (imagesWithoutMarkdown.length > 0) {
-      console.log(`\n🔍 Images missing markdown files:`)
-      imagesWithoutMarkdown.forEach((file) => {
-        console.log(`  📷 ${file}`)
-      })
-    }
-
-    if (movedOrphanedFiles.length > 0) {
-      console.log(`\n🗑️ Orphaned markdown files moved to _orphaned/:`)
-      movedOrphanedFiles.forEach((file) => {
-        console.log(`  📄 ${file}`)
-      })
-    }
-
     // rename loop respects dryRun
     if (!dryRun) {
       for (const filename of imageFiles) {
@@ -533,6 +516,8 @@ async function processImages(directory, subdirName = '', options = {}) {
       force,
     })
     // ALWAYS create markdown for missing (simulate in dry-run)
+    let newMarkdownCount = 0
+    let newMarkdownFiles = []
     if (imagesWithoutMarkdown.length > 0) {
       if (!dryRun) {
         try {
@@ -545,12 +530,52 @@ async function processImages(directory, subdirName = '', options = {}) {
             ? `node "${createMarkdownScript}" "${subdirName}"`
             : `node "${createMarkdownScript}"`
           await execPromise(command)
+          newMarkdownCount = imagesWithoutMarkdown.length
+          newMarkdownFiles = imagesWithoutMarkdown.map((filename) => {
+            const basename = path.basename(filename, path.extname(filename))
+            return `${basename}.md`
+          })
         } catch (e) {
           console.error(`❌ Error creating markdown files: ${e.message}`)
         }
+      } else {
+        newMarkdownCount = imagesWithoutMarkdown.length
+        newMarkdownFiles = imagesWithoutMarkdown.map((filename) => {
+          const basename = path.basename(filename, path.extname(filename))
+          return `${basename}.md`
+        })
       }
     }
     await saveManifest(manifest, dryRun)
+
+    const changed =
+      (optimizationResult?.processedCount || 0) > 0 ||
+      newMarkdownCount > 0 ||
+      movedOrphanedFiles.length > 0
+
+    if (changed) {
+      console.log(
+        `\n📊 Summary (${subdirName || 'root'}): optimized ${optimizationResult?.processedCount || 0}, markdown +${newMarkdownCount}, orphaned moved ${movedOrphanedFiles.length}`
+      )
+      if (optimizationResult?.actions?.length) {
+        optimizationResult.actions.forEach((a) =>
+          console.log(`  • ${a.file} -> ${a.action}`)
+        )
+      }
+      if (newMarkdownFiles.length) {
+        console.log('  • markdown created:')
+        newMarkdownFiles.forEach((f) => console.log(`    - ${f}`))
+      }
+      if (movedOrphanedFiles.length) {
+        console.log('  • orphaned moved:')
+        movedOrphanedFiles.forEach((f) => console.log(`    - ${f}`))
+      }
+    } else if (dryRun) {
+      console.log(
+        `\n📊 Summary (${subdirName || 'root'}): no changes (dry-run)`
+      )
+    }
+
     return {
       totalFiles,
       existingMarkdown: imagesWithMarkdown.length,

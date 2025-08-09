@@ -17,6 +17,7 @@
               :alt="modalData.title || 'Meme image'"
               class="w-full sm:w-auto max-w-full h-auto max-h-[calc(50vh)] object-contain"
               loading="lazy"
+              decoding="async"
             />
 
             <!-- Text container (scrollable only) -->

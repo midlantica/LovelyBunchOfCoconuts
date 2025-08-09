@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/mdc',
+    '@nuxtjs/sitemap',
   ],
   css: ['~/assets/css/main.css'],
   postcss: {
@@ -40,23 +41,21 @@ export default defineNuxtConfig({
     experimental: {
       openAPI: true,
     },
+    externals: {
+      inline: ['@nuxt/content'],
+    },
+    // Enable lossless compression for built public assets (gz/br)
+    compressPublicAssets: true,
   },
 
   content: {
-    build: {
-      markdown: {
-        contentHeading: true,
-      },
-    },
-    ignores: [
-      '**/.DS_Store', // Ignore .DS_Store files anywhere
-      '**/._*', // Ignore any ._* resource fork files anywhere
-      '**/Thumbs.db', // Also ignore Windows thumbnail files anywhere
-      '\\.DS_Store$', // Regex pattern as backup
-      '\\._.*', // Regex pattern as backup
-      'Thumbs\\.db$', // Regex pattern as backup
-    ],
+    build: { markdown: { contentHeading: true } },
+    // NOTE: File ignore patterns handled via content/.nuxtignore and transformation filters (useContentCache).
   },
+
+  // Basic sitemap config
+  sitemap: { siteUrl: 'https://wakeupnpc.com', autoI18n: false } as any,
+
   app: {
     head: {
       title: 'WakeUpNPC - Political Claims, Quotes & Memes',
@@ -79,11 +78,11 @@ export default defineNuxtConfig({
           content:
             'A curated wall of political claims, insightful quotes, and thought-provoking memes. Explore diverse perspectives and challenge your thinking.',
         },
-        { property: 'og:url', content: 'https://www.wakeupnpc.com' },
+        { property: 'og:url', content: 'https://wakeupnpc.com' },
         { property: 'og:site_name', content: 'WakeUpNPC' },
         {
           property: 'og:image',
-          content: 'https://www.wakeupnpc.com/text-bg-1200x630.png?v=2',
+          content: 'https://wakeupnpc.com/text-bg-1200x630.png?v=2',
         },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
@@ -102,7 +101,7 @@ export default defineNuxtConfig({
         },
         {
           name: 'twitter:image',
-          content: 'https://www.wakeupnpc.com/text-bg-1200x630.png?v=2',
+          content: 'https://wakeupnpc.com/text-bg-1200x630.png?v=2',
         },
 
         // Additional SEO
@@ -114,15 +113,14 @@ export default defineNuxtConfig({
         { name: 'author', content: 'WakeUpNPC' },
         { name: 'robots', content: 'index, follow' },
 
-        // Mobile optimization - Updated
-        {
-          name: 'viewport',
-          content:
-            'width=375, initial-scale=1, maximum-scale=1, user-scalable=no',
-        },
+        // Mobile optimization (fix a11y):
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        // Canonical home URL
+        { rel: 'canonical', href: 'https://wakeupnpc.com/' },
+        // Preload key background images used above the fold
         {
           rel: 'icon',
           type: 'image/png',
@@ -201,6 +199,11 @@ export default defineNuxtConfig({
         // Neutralize the file so it is ignored without warning
         file.raw = ''
       }
+    },
+  },
+  runtimeConfig: {
+    public: {
+      siteUrl: 'https://wakeupnpc.com',
     },
   },
 })

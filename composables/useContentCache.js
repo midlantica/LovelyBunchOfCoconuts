@@ -2,7 +2,7 @@
 // Reactive content cache with transformation pipeline: loads, transforms, and caches all content types
 // Provides progressive loading (initial batch + remaining) with search enhancement and SSR compatibility
 
-import { ref, reactive, watch } from 'vue'
+import { ref, reactive, watch, toRefs } from 'vue'
 import { interleaveContent } from '~/composables/interleaveContent'
 
 // Helper function to extract searchable text from AST body and path
@@ -51,68 +51,49 @@ const globalCache = reactive({
   error: null,
 })
 
+// Slug helpers & maps must be declared before use
+const slugify = (str = '') =>
+  str
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+    .substring(0, 80)
+
+const slugMaps = reactive({
+  claims: new Map(),
+  quotes: new Map(),
+  memes: new Map(),
+})
+
+// Helper to register multiple keys for the same item
+const registerSlugKeys = (map, keys, value) => {
+  ;(Array.isArray(keys) ? keys : [keys])
+    .filter(Boolean)
+    .forEach((k) => map.set(k, value))
+}
+
 export function useContentCache() {
-  // Return reactive refs to the shared global cache
-  const claims = ref(globalCache.claims)
-  const quotes = ref(globalCache.quotes)
-  const memes = ref(globalCache.memes)
-  const isLoading = ref(globalCache.isLoading)
-  const error = ref(globalCache.error)
-
-  // Keep refs in sync with global cache
-  watch(
-    () => globalCache.claims,
-    (newClaims) => {
-      claims.value = newClaims
-    },
-    { immediate: true }
-  )
-  watch(
-    () => globalCache.quotes,
-    (newQuotes) => {
-      quotes.value = newQuotes
-    },
-    { immediate: true }
-  )
-  watch(
-    () => globalCache.memes,
-    (newMemes) => {
-      memes.value = newMemes
-    },
-    { immediate: true }
-  )
-  watch(
-    () => globalCache.isLoading,
-    (newLoading) => {
-      isLoading.value = newLoading
-    },
-    { immediate: true }
-  )
-  watch(
-    () => globalCache.error,
-    (newError) => {
-      error.value = newError
-    },
-    { immediate: true }
-  )
-
-  // Return the shared global cache instance for direct modification
+  // Instead of mirroring with individual refs + watchers, expose reactive toRefs directly
   const cache = globalCache
+  const { claims, quotes, memes, isLoading, error } = toRefs(cache)
 
   // Auto-load content if not already loaded (for dynamic routes)
   const ensureContentLoaded = async () => {
     if (
-      globalCache.claims.length === 0 &&
-      globalCache.quotes.length === 0 &&
-      globalCache.memes.length === 0 &&
-      !globalCache.isLoading
+      cache.claims.length === 0 &&
+      cache.quotes.length === 0 &&
+      cache.memes.length === 0 &&
+      !cache.isLoading
     ) {
-      console.log('🚀 Auto-loading content for dynamic route...')
+      if (import.meta.dev)
+        console.log('🚀 Auto-loading content for dynamic route...')
       await loadAllContent()
     }
   }
 
-  // Helper function to filter out special files
+  // Helper function to filter out special files (centralized so we don't redeclare inside funcs)
   const filterSpecialFiles = (items) => {
     return (items || []).filter((item) => {
       const path = item.path?.toLowerCase() || item._path?.toLowerCase() || ''
@@ -121,8 +102,10 @@ export function useContentCache() {
       const hasUnderscoreFolder = pathParts.some((part) => part.startsWith('_'))
       const shouldFilter =
         path.includes('readme') ||
+        path.includes('test-ignore') ||
         path.includes('__') ||
         id.includes('readme') ||
+        id.includes('test-ignore') ||
         hasUnderscoreFolder
       return !shouldFilter
     })
@@ -252,17 +235,81 @@ export function useContentCache() {
         }
       }
 
-      // Add searchable text field for search functionality
-      transformed.searchableText = extractSearchableText(
+      // Add searchable text field for search functionality (precompute consolidated lowercase string)
+      const rawSearch = extractSearchableText(
         item.body,
         item._path || item.path
       )
+      transformed.searchableText = rawSearch
+      transformed._search = (
+        [
+          transformed.claim,
+          transformed.translation,
+          transformed.title,
+          transformed.quoteText,
+          transformed.attribution,
+          transformed.description,
+          rawSearch,
+        ]
+          .filter(Boolean)
+          .join(' ') +
+        ' ' +
+        (item._path || '')
+      )
+        .toLowerCase()
+        .replace(/[-_]/g, ' ')
 
+      // Build filename-based keys (supports underscores and dashes)
+      const fileBase = (item.id || item._path || '')
+        .toString()
+        .split('/')
+        .pop()
+        ?.replace(/\.md$/, '')
+        .toLowerCase()
+      const fileSlugDash = fileBase?.replace(/_/g, '-')
+      const fileSlugUnderscore = fileBase?.replace(/-/g, '_')
+
+      // Slug generation & map insertion
+      if (type === 'claims') {
+        const s = slugify(transformed.claim || transformed.title || '')
+        // Register content-based slug and filename variants
+        registerSlugKeys(
+          slugMaps.claims,
+          [s, fileSlugDash, fileSlugUnderscore, fileBase],
+          transformed
+        )
+      } else if (type === 'quotes') {
+        const author = slugify(transformed.attribution || 'unknown')
+        const qt = slugify(transformed.quoteText || transformed.title || '')
+        const s = `${author}-${qt}`.substring(0, 80)
+        registerSlugKeys(
+          slugMaps.quotes,
+          [s, fileSlugDash, fileSlugUnderscore, fileBase],
+          transformed
+        )
+      } else if (type === 'memes') {
+        const s = slugify(transformed.title || transformed.description || '')
+        registerSlugKeys(
+          slugMaps.memes,
+          [s, fileSlugDash, fileSlugUnderscore, fileBase],
+          transformed
+        )
+      }
       return transformed
     })
   }
 
   const getContentItem = async (contentType, slug) => {
+    // Fast path via slug maps
+    if (slug) {
+      if (contentType === 'claim' && slugMaps.claims.has(slug))
+        return slugMaps.claims.get(slug)
+      if (contentType === 'quote' && slugMaps.quotes.has(slug))
+        return slugMaps.quotes.get(slug)
+      if (contentType === 'meme' && slugMaps.memes.has(slug))
+        return slugMaps.memes.get(slug)
+    }
+
     try {
       // Handle undefined slug
       if (!slug) {
@@ -409,167 +456,14 @@ export function useContentCache() {
 
   const loadAllContent = async () => {
     if (cache.isLoading) return
-
     cache.isLoading = true
     cache.error = null
-
     try {
-      // Load all content at once since we need it for filtering and search
       const [claimsData, quotesData, memesData] = await Promise.all([
         queryCollection('claims').all(),
         queryCollection('quotes').all(),
         queryCollection('memes').all(),
       ])
-
-      // Apply filtering and transformation using top-level helper functions
-      const filteredClaims = filterSpecialFiles(claimsData)
-      const filteredQuotes = filterSpecialFiles(quotesData)
-      const filteredMemes = filterSpecialFiles(memesData)
-
-      cache.claims = transformContentForComponents(filteredClaims, 'claims')
-      cache.quotes = transformContentForComponents(filteredQuotes, 'quotes')
-      cache.memes = transformContentForComponents(filteredMemes, 'memes')
-
-      console.log(
-        `Content loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
-      )
-    } catch (error) {
-      console.error('Error loading content:', error)
-      cache.error = error
-    } finally {
-      cache.isLoading = false
-    }
-  }
-
-  const getInterleavedContent = () => {
-    // NO SHUFFLING - use content in order to maintain strict pattern
-    // Use the correct interleaving function from composables/interleaveContent.js
-
-    console.log('🎯 getInterleavedContent using interleaveContent with:', {
-      claims: cache.claims.length,
-      quotes: cache.quotes.length,
-      memes: cache.memes.length,
-    })
-
-    const result = interleaveContent(cache.claims, cache.quotes, cache.memes)
-    return result
-  }
-
-  const getFilteredContent = (
-    searchTerm = '',
-    contentFilters = { claims: true, quotes: true, memes: true }
-  ) => {
-    // First filter by content type
-    let filteredClaims = contentFilters.claims ? cache.claims : []
-    let filteredQuotes = contentFilters.quotes ? cache.quotes : []
-    let filteredMemes = contentFilters.memes ? cache.memes : []
-
-    // Then apply search if provided
-    if (searchTerm && searchTerm.trim()) {
-      const searchLower = searchTerm.toLowerCase().trim()
-      console.log('🔍 Searching for:', searchLower)
-
-      filteredClaims = filteredClaims.filter(
-        (item) =>
-          (item.claim && item.claim.toLowerCase().includes(searchLower)) ||
-          (item.translation &&
-            item.translation.toLowerCase().includes(searchLower)) ||
-          (item.title && item.title.toLowerCase().includes(searchLower)) ||
-          (item.searchableText &&
-            item.searchableText.toLowerCase().includes(searchLower))
-      )
-
-      filteredQuotes = filteredQuotes.filter(
-        (item) =>
-          (item.quoteText &&
-            item.quoteText.toLowerCase().includes(searchLower)) ||
-          (item.attribution &&
-            item.attribution.toLowerCase().includes(searchLower)) ||
-          (item.title && item.title.toLowerCase().includes(searchLower)) ||
-          (item.searchableText &&
-            item.searchableText.toLowerCase().includes(searchLower)) ||
-          (item.headings &&
-            item.headings.some((h) => h.toLowerCase().includes(searchLower)))
-      )
-
-      filteredMemes = filteredMemes.filter(
-        (item) =>
-          (item.title && item.title.toLowerCase().includes(searchLower)) ||
-          (item.description &&
-            item.description.toLowerCase().includes(searchLower)) ||
-          (item.searchableText &&
-            item.searchableText.toLowerCase().includes(searchLower)) ||
-          // Also search in the title with spaces/dashes converted
-          (item.title &&
-            item.title
-              .toLowerCase()
-              .replace(/[-_]/g, ' ')
-              .includes(searchLower)) ||
-          (item.description &&
-            item.description
-              .toLowerCase()
-              .replace(/[-_]/g, ' ')
-              .includes(searchLower))
-      )
-
-      console.log('🔍 Search results:', {
-        claims: filteredClaims.length,
-        quotes: filteredQuotes.length,
-        memes: filteredMemes.length,
-      })
-    }
-
-    // NO SHUFFLING - use content in order to maintain strict pattern
-    // Use the correct interleaving function from composables/interleaveContent.js
-
-    console.log('🎯 getFilteredContent using interleaveContent with:', {
-      claims: filteredClaims.length,
-      quotes: filteredQuotes.length,
-      memes: filteredMemes.length,
-    })
-
-    const result = interleaveContent(
-      filteredClaims,
-      filteredQuotes,
-      filteredMemes
-    )
-    return result
-  }
-
-  // Progressive loading: Load small batch first for instant display
-  const loadInitialContent = async (limit = 20) => {
-    if (cache.isLoading) return
-
-    cache.isLoading = true
-    cache.error = null
-
-    try {
-      // Load just a small batch from each type for immediate display
-      const [claimsData, quotesData, memesData] = await Promise.all([
-        queryCollection('claims').limit(limit).all(),
-        queryCollection('quotes').limit(limit).all(),
-        queryCollection('memes').limit(limit).all(),
-      ])
-
-      // Apply same filtering as loadAllContent
-      const filterSpecialFiles = (items) => {
-        return (items || []).filter((item) => {
-          const path =
-            item.path?.toLowerCase() || item._path?.toLowerCase() || ''
-          const id = item.id?.toLowerCase() || ''
-          const pathParts = path.split('/')
-          const hasUnderscoreFolder = pathParts.some((part) =>
-            part.startsWith('_')
-          )
-          const shouldFilter =
-            path.includes('readme') ||
-            path.includes('__') ||
-            id.includes('readme') ||
-            hasUnderscoreFolder
-          return !shouldFilter
-        })
-      }
-
       cache.claims = transformContentForComponents(
         filterSpecialFiles(claimsData),
         'claims'
@@ -582,10 +476,84 @@ export function useContentCache() {
         filterSpecialFiles(memesData),
         'memes'
       )
+      if (import.meta.dev)
+        console.log(
+          `Content loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+        )
+    } catch (error) {
+      console.error('Error loading content:', error)
+      cache.error = error
+    } finally {
+      cache.isLoading = false
+    }
+  }
 
-      console.log(
-        `✅ Initial batch loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+  const getInterleavedContent = () => {
+    if (import.meta.dev)
+      console.log('🎯 getInterleavedContent using interleaveContent with:', {
+        claims: cache.claims.length,
+        quotes: cache.quotes.length,
+        memes: cache.memes.length,
+      })
+    return interleaveContent(cache.claims, cache.quotes, cache.memes)
+  }
+
+  const getFilteredContent = (
+    searchTerm = '',
+    contentFilters = { claims: true, quotes: true, memes: true }
+  ) => {
+    let filteredClaims = contentFilters.claims ? cache.claims : []
+    let filteredQuotes = contentFilters.quotes ? cache.quotes : []
+    let filteredMemes = contentFilters.memes ? cache.memes : []
+    if (searchTerm && searchTerm.trim()) {
+      const s = searchTerm.toLowerCase().trim()
+      const match = (item) => item._search && item._search.includes(s)
+      filteredClaims = filteredClaims.filter(match)
+      filteredQuotes = filteredQuotes.filter(match)
+      filteredMemes = filteredMemes.filter(match)
+      if (import.meta.dev)
+        console.log('🔍 Search results:', {
+          claims: filteredClaims.length,
+          quotes: filteredQuotes.length,
+          memes: filteredMemes.length,
+        })
+    }
+    if (import.meta.dev)
+      console.log('🎯 getFilteredContent using interleaveContent with:', {
+        claims: filteredClaims.length,
+        quotes: filteredQuotes.length,
+        memes: filteredMemes.length,
+      })
+    return interleaveContent(filteredClaims, filteredQuotes, filteredMemes)
+  }
+
+  // Progressive loading: Load small batch first for instant display
+  const loadInitialContent = async (limit = 20) => {
+    if (cache.isLoading) return
+    cache.isLoading = true
+    cache.error = null
+    try {
+      const [claimsData, quotesData, memesData] = await Promise.all([
+        queryCollection('claims').limit(limit).all(),
+        queryCollection('quotes').limit(limit).all(),
+        queryCollection('memes').limit(limit).all(),
+      ])
+      cache.claims = transformContentForComponents(
+        filterSpecialFiles(claimsData),
+        'claims'
       )
+      cache.quotes = transformContentForComponents(
+        filterSpecialFiles(quotesData),
+        'quotes'
+      )
+      cache.memes = transformContentForComponents(
+        filterSpecialFiles(memesData),
+        'memes'
+      )
+      if (import.meta.dev)
+        console.log(
+          `✅ Initial batch loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+        )
     } catch (error) {
       console.error('Error loading initial content:', error)
       cache.error = error
@@ -597,32 +565,11 @@ export function useContentCache() {
   // Load remaining content in background after initial display
   const loadRemainingContent = async () => {
     try {
-      // Load ALL content (this is the slow part, done in background)
       const [claimsData, quotesData, memesData] = await Promise.all([
         queryCollection('claims').all(),
         queryCollection('quotes').all(),
         queryCollection('memes').all(),
       ])
-
-      // Apply same filtering and transformation as loadAllContent
-      const filterSpecialFiles = (items) => {
-        return (items || []).filter((item) => {
-          const path =
-            item.path?.toLowerCase() || item._path?.toLowerCase() || ''
-          const id = item.id?.toLowerCase() || ''
-          const pathParts = path.split('/')
-          const hasUnderscoreFolder = pathParts.some((part) =>
-            part.startsWith('_')
-          )
-          const shouldFilter =
-            path.includes('readme') ||
-            path.includes('__') ||
-            id.includes('readme') ||
-            hasUnderscoreFolder
-          return !shouldFilter
-        })
-      }
-
       cache.claims = transformContentForComponents(
         filterSpecialFiles(claimsData),
         'claims'
@@ -635,10 +582,10 @@ export function useContentCache() {
         filterSpecialFiles(memesData),
         'memes'
       )
-
-      console.log(
-        `🎉 Full content loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
-      )
+      if (import.meta.dev)
+        console.log(
+          `🎉 Full content loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+        )
     } catch (error) {
       console.error('Error loading remaining content:', error)
       cache.error = error
@@ -656,10 +603,11 @@ export function useContentCache() {
     getContentItem,
     getAllContent,
     loadAllContent,
-    loadInitialContent, // NEW
-    loadRemainingContent, // NEW
+    loadInitialContent,
+    loadRemainingContent,
     loadMoreContent,
     getInterleavedContent,
     getFilteredContent,
+    slugMaps,
   }
 }

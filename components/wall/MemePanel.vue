@@ -10,6 +10,8 @@
         ref="lazyImg"
         :data-src="meme.image"
         :alt="imageAlt"
+        decoding="async"
+        loading="lazy"
         class="bg-black/40 rounded-md w-full min-w-0 max-w-full h-full min-h-0 max-h-full object-contain aspect-square"
       />
     </div>
@@ -21,6 +23,8 @@
         ref="lazyImg"
         :data-src="meme.image"
         :alt="imageAlt"
+        decoding="async"
+        loading="lazy"
         class="bg-black/40 rounded-md w-full min-w-0 max-w-full h-full min-h-0 max-h-full object-contain aspect-square"
       />
     </div>

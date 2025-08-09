@@ -49,7 +49,7 @@
         <span
           class="font-light text-[1.155rem] text-slate-400 uppercase tracking-wider"
         >
-          {{ props.totalCount }}
+          {{ totalDisplay }}
         </span>
       </client-only>
     </div>
@@ -71,18 +71,18 @@
 
   const props = defineProps({
     search: String,
-    claimCount: { type: Number, default: 0 },
-    quoteCount: { type: Number, default: 0 },
-    memeCount: { type: Number, default: 0 },
-    totalCount: { type: Number, default: 0 },
+    counts: {
+      type: Object,
+      required: true,
+      default: () => ({
+        wall: { claims: 0, quotes: 0, memes: 0, total: 0 },
+        total: { claims: 0, quotes: 0, memes: 0, total: 0 },
+      }),
+    },
     filters: {
       type: Object,
       default: () => ({ claims: true, quotes: true, memes: true }),
     },
-    totalClaimCount: { type: Number, default: 0 },
-    totalQuoteCount: { type: Number, default: 0 },
-    totalMemeCount: { type: Number, default: 0 },
-    totalItemCount: { type: Number, default: 0 },
   })
   const emit = defineEmits(['update:search', 'update:filters'])
 
@@ -93,9 +93,10 @@
     emit('update:search', val)
   }, 300)
 
-  const pillClaimCount = computed(() => props.claimCount ?? 0)
-  const pillQuoteCount = computed(() => props.quoteCount ?? 0)
-  const pillMemeCount = computed(() => props.memeCount ?? 0)
+  const pillClaimCount = computed(() => props.counts.wall.claims || 0)
+  const pillQuoteCount = computed(() => props.counts.wall.quotes || 0)
+  const pillMemeCount = computed(() => props.counts.wall.memes || 0)
+  const totalDisplay = computed(() => props.counts.wall.total || 0)
 
   const pills = [
     { key: 'claims', label: 'CLAIMS', count: pillClaimCount },

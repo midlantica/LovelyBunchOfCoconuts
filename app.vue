@@ -2,7 +2,8 @@
 <template>
   <div>
     <NuxtLayout>
-      <NuxtPage />
+      <!-- Keep the index page alive to preserve wall state and scroll -->
+      <NuxtPage keepalive :keepalive-props="{ include: ['index'] }" />
     </NuxtLayout>
   </div>
   <!-- Modal root for teleport -->
