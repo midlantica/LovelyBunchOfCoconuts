@@ -1,7 +1,7 @@
 <template>
   <button
     @click="$emit('click')"
-    class="z-[9999] absolute flex justify-center items-center bg-slate-800 hover:bg-slate-700 rounded-full focus:outline-none focus:ring-2 focus:ring-white w-10 h-10 close-button"
+    class="top-[26px] right-[26px] z-[9999] absolute flex justify-center items-center bg-slate-800 hover:bg-slate-700 pt-[5px] rounded-full focus:outline-none focus:ring-2 focus:ring-white w-10 h-10 -translate-y-1/2 translate-x-1/2"
     aria-label="Close"
     type="button"
   >
@@ -12,14 +12,3 @@
 <script setup>
   // No script needed, emits click
 </script>
-
-<style scoped>
-  .close-button {
-    /* Position the button in the top-right corner with proper offset */
-    padding-top: 5px;
-    top: 26px;
-    right: 26px;
-    /* Transform to center the button on the corner */
-    transform: translate(50%, -50%);
-  }
-</style>
