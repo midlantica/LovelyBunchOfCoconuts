@@ -10,9 +10,9 @@
     "postinstall": "nuxt prepare",
     "process-images": "node scripts/run-image-processing.js",
     "cleanup-orphaned": "node scripts/cleanup-orphaned-markdown.js",
-  "format": "prettier --write \"**/*.{vue,js,ts,html,css,scss,md}\"",
-  "lint": "eslint .",
-  "lint:fix": "eslint . --fix"
+    "format": "prettier --write \"**/*.{vue,js,ts,html,css,scss,md}\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@napi-rs/canvas": "^0.1.77",

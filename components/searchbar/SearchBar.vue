@@ -10,7 +10,7 @@
       <input
         type="text"
         v-model="searchTerm"
-        class="bg-transparent focus:bg-transparent ps-12 pt-[.4rem] pr-12 pb-[.6rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400 rounded-lg outline-none w-full font-light text-[1.4rem] text-slate-200 sm:text-[1.275rem] placeholder:text-seagull-200/50 leading-tight tracking-wider"
+  class="bg-transparent focus:bg-transparent ps-12 pt-[.4rem] pr-12 pb-[.6rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400 rounded-lg outline-none w-full font-light text-[1.4rem] text-slate-200 sm:text-[1.275rem] placeholder:text-seagull-200/50 leading-tight tracking-wider"
         placeholder="Search..."
         @keydown.esc="handleInputEscape"
         @input="handleSearchInput"
