@@ -1,6 +1,9 @@
 <template>
-  <div class="scroll-container">
-    <div class="scroll-content" ref="scrollContent">
+  <div class="relative h-full overflow-hidden">
+    <div
+      class="box-content -mr-4 pr-6 h-full overflow-y-auto"
+      ref="scrollContent"
+    >
       <slot />
     </div>
   </div>
@@ -22,15 +25,3 @@
     scrollToTop,
   })
 </script>
-
-<style scoped>
-  @reference '../../assets/css/main.css';
-  .scroll-container {
-    @apply relative h-full overflow-hidden;
-  }
-
-  .scroll-content {
-    @apply -mr-4 pr-6 h-full overflow-y-auto;
-    box-sizing: content-box; /* Ensures padding doesn't affect width calculation */
-  }
-</style>

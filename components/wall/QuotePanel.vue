@@ -2,7 +2,7 @@
 <template>
   <div
     v-if="quote && quote.headings && quote.headings.length > 0 && slug"
-    class="flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 shadow-[inset_0_0_12px_0_#0f1e24] px-6 py-4 border hover:border hover:border-seagull-400 border-transparent rounded-lg text-white cursor-pointer quotePanel"
+    class="shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-6 py-4 border hover:border hover:border-seagull-400 border-transparent rounded-lg text-white cursor-pointer quotePanel"
   >
     <div class="flex flex-col flex-wrap gap-0.5 my-auto">
       <h1
@@ -19,7 +19,7 @@
   </div>
   <div
     v-else
-    class="flex flex-col gap-2 bg-slate-800 shadow-[inset_0_0_12px_0_#0f1e24] px-5 py-4 rounded-lg text-white quotePanel"
+    class="shadow-inset-card flex flex-col gap-2 bg-slate-800 px-5 py-4 rounded-lg text-white quotePanel"
   >
     <div class="my-auto">
       <h2 class="inline-block align-baseline">

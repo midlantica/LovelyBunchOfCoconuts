@@ -12,7 +12,7 @@
       <div
         v-for="(item, index) in interleavedContent"
         :key="itemKey(item, index)"
-        class="content-item"
+        class="opacity-100 transition translate-y-0 duration-300 ease-in-out"
       >
         <!-- Quotes (full width) -->
         <div
@@ -248,7 +248,8 @@
   watch(
     interleavedContent,
     (newContent) => {
-      console.log('Content updated:', newContent?.length || 0, 'items')
+      if (import.meta.dev)
+        console.log('Content updated:', newContent?.length || 0, 'items')
       // Emit that content has been updated (for scroll-to-top)
       emit('content-updated', {
         hasContent: newContent?.length > 0,
@@ -341,21 +342,23 @@
   onMounted(async () => {
     try {
       // Ensure cache is initialized first
-      console.log('TheWall mounting, cache state:', cache)
+      if (import.meta.dev) console.log('TheWall mounting, cache state:', cache)
 
       // Load content using the proven cache system
       await loadAllContent()
 
-      console.log('TheWall loaded with cache:', {
-        claims: cache.claims?.length,
-        quotes: cache.quotes?.length,
-        memes: cache.memes?.length,
-      })
-      console.log('Computed arrays:', {
-        allClaims: allClaims.value?.length,
-        allQuotes: allQuotes.value?.length,
-        allMemes: allMemes.value?.length,
-      })
+      if (import.meta.dev)
+        console.log('TheWall loaded with cache:', {
+          claims: cache.claims?.length,
+          quotes: cache.quotes?.length,
+          memes: cache.memes?.length,
+        })
+      if (import.meta.dev)
+        console.log('Computed arrays:', {
+          allClaims: allClaims.value?.length,
+          allQuotes: allQuotes.value?.length,
+          allMemes: allMemes.value?.length,
+        })
     } catch (err) {
       console.error('Error loading content:', err)
       error.value = err
@@ -364,13 +367,3 @@
     }
   })
 </script>
-
-<style scoped>
-  .content-item {
-    opacity: 1;
-    transform: translateY(0);
-    transition:
-      opacity 0.3s ease-in-out,
-      transform 0.3s ease-in-out;
-  }
-</style>

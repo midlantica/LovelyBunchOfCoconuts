@@ -10,7 +10,7 @@
       <input
         type="text"
         v-model="searchTerm"
-  class="bg-transparent focus:bg-transparent ps-12 pt-[.4rem] pr-12 pb-[.6rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400 rounded-lg outline-none w-full font-light text-[1.4rem] text-slate-200 sm:text-[1.275rem] placeholder:text-seagull-200/50 leading-tight tracking-wider"
+        class="[&::-webkit-search-cancel-button]:hidden bg-transparent focus:bg-transparent ps-12 pt-[.4rem] pr-12 pb-[.6rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400 rounded-lg outline-none w-full font-light text-[1.4rem] text-slate-200 sm:text-[1.275rem] placeholder:text-seagull-200/50 leading-tight tracking-wider"
         placeholder="Search..."
         @keydown.esc="handleInputEscape"
         @input="handleSearchInput"
@@ -138,18 +138,19 @@
   }
 
   function clearSearch() {
-    console.log('🔍 SearchBar clearSearch called')
+    if (import.meta.dev) console.log('🔍 SearchBar clearSearch called')
     searchTerm.value = ''
     resetFilters()
     // Immediately emit the search change instead of waiting for debounce
-    console.log('🔍 SearchBar emitting clear search')
+    if (import.meta.dev) console.log('🔍 SearchBar emitting clear search')
     emit('update:search', '')
     // Ensure focus stays on search input to prevent pill focus ring
     nextTick(() => searchInputRef.value?.focus())
   }
 
   function handleSearchInput() {
-    console.log('🔍 SearchBar immediate input change - scrolling to top')
+    if (import.meta.dev)
+      console.log('🔍 SearchBar immediate input change - scrolling to top')
     // Immediately scroll to top on any input change
     const scrollContainer = document.querySelector('.scroll-container-stable')
     if (scrollContainer) {
@@ -162,12 +163,14 @@
   function handleInputEscape() {
     // When escape is pressed within the input, always clear if there's text
     if (searchTerm.value.trim() !== '') {
-      console.log('🔍 Input escape pressed - clearing search')
+      if (import.meta.dev)
+        console.log('🔍 Input escape pressed - clearing search')
       clearSearch()
     } else {
-      console.log(
-        '🔍 Input escape pressed - no search to clear, blurring input'
-      )
+      if (import.meta.dev)
+        console.log(
+          '🔍 Input escape pressed - no search to clear, blurring input'
+        )
       // If no text, just blur the input
       searchInputRef.value?.blur()
     }
@@ -177,10 +180,12 @@
     if (e.key === 'Escape') {
       // Only clear search if there's actually something in the search input
       if (searchTerm.value.trim() !== '') {
-        console.log('🔍 Escape key pressed - clearing search')
+        if (import.meta.dev)
+          console.log('🔍 Escape key pressed - clearing search')
         clearSearch()
       } else {
-        console.log('🔍 Escape key pressed - no search to clear')
+        if (import.meta.dev)
+          console.log('🔍 Escape key pressed - no search to clear')
       }
     }
   }
@@ -193,7 +198,8 @@
   })
 
   watch(searchTerm, (newValue) => {
-    console.log('🔍 SearchBar internal searchTerm changed:', newValue)
+    if (import.meta.dev)
+      console.log('🔍 SearchBar internal searchTerm changed:', newValue)
     debouncedEmitSearch(newValue)
     if (newValue === '') resetFilters()
   })
@@ -202,10 +208,3 @@
     (newValue) => (searchTerm.value = newValue)
   )
 </script>
-
-<style scoped>
-  /* Hide the default search input clear button since we have a custom one */
-  input[type='text']::-webkit-search-cancel-button {
-    display: none;
-  }
-</style>

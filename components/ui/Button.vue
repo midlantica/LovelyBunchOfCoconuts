@@ -67,7 +67,3 @@
     return route
   }
 </script>
-
-<style scoped>
-  /* You can add additional styling here if needed */
-</style>

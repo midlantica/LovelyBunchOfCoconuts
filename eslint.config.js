@@ -46,9 +46,4 @@ export default defineConfig([
   { files: ['**/*.json'], plugins: { json }, language: 'json/json' },
   { files: ['**/*.jsonc'], plugins: { json }, language: 'json/jsonc' },
   { files: ['**/*.json5'], plugins: { json }, language: 'json/json5' },
-
-  // (Markdown intentionally ignored above)
-
-  // CSS (disabled for now due to parser limitations with PostCSS/Tailwind syntax)
-  // { files: ['assets/**/*.css'], plugins: { css }, language: 'css/css' },
 ])

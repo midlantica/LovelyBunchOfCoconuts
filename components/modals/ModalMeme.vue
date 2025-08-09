@@ -5,7 +5,7 @@
       <template #mainPanel>
         <!-- Main Content Panel -->
         <div
-          class="z-10 relative flex flex-col bg-slate-800 shadow-[0_4px_20px_-10px_black] rounded-none sm:rounded-lg w-full max-w-full sm:max-w-[min(1000px,calc(100vw-4rem))] h-full max-h-[calc(100vh-8rem)]"
+          class="z-10 relative flex flex-col bg-slate-800 shadow-modal rounded-none sm:rounded-lg w-full max-w-full sm:max-w-[min(1000px,calc(100vw-4rem))] h-full max-h-[calc(100vh-8rem)]"
         >
           <!-- Image container (fixed, no scroll) -->
           <div
@@ -134,7 +134,7 @@
     watch(
       () => props.modalData,
       (data) => {
-        if (data) {
+        if (data && import.meta.dev) {
           console.log('Meme modal data received:', data)
           console.log('Available properties:', Object.keys(data))
         }

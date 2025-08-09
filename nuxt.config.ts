@@ -21,6 +21,44 @@ export default defineNuxtConfig({
   // Use Tailwind v4 via official Vite plugin
   vite: {
     plugins: [tailwindcss()],
+    // Reduce Vite verbosity; set SILENT_VITE=1 to only show errors
+    logLevel: (process.env.SILENT_VITE === '1' ? 'error' : 'warn') as any,
+    build: {
+      rollupOptions: {
+        onwarn(warning, handler) {
+          const msg = String(warning?.message || '')
+          // Hide Tailwind Vite plugin sourcemap warning noise
+          if (/Sourcemap is likely to be incorrect/.test(msg)) return
+          handler(warning)
+        },
+      },
+    },
+    // Filter chatty plugin warnings in both dev and build
+    // Note: This keeps errors visible; set SILENT_VITE=1 to hide infos/warns entirely
+    customLogger: {
+      hasWarned: false,
+      info(msg: string) {
+        if (process.env.SILENT_VITE === '1') return
+        console.log(msg)
+      },
+      warn(msg: string) {
+        const str = String(msg || '')
+        if (
+          /Sourcemap is likely to be incorrect/.test(str) ||
+          /plugin @tailwindcss\/vite/.test(str)
+        ) {
+          return
+        }
+        if (process.env.SILENT_VITE === '1') return
+        console.warn(str)
+      },
+      error(msg: string) {
+        console.error(String(msg || ''))
+      },
+      clearScreen() {
+        // noop: keep logs visible when needed
+      },
+    } as any,
   },
   ssr: true,
   nitro: {
@@ -45,6 +83,27 @@ export default defineNuxtConfig({
     },
     // Enable lossless compression for built public assets (gz/br)
     compressPublicAssets: true,
+    // Silence harmless node-resolve warnings for virtual "#content/server" module
+    rollupConfig: {
+      onwarn(warning, handler) {
+        const msg = String(warning?.message || '')
+        // Silence unresolved virtual import warnings for Nuxt Content's server helper
+        if (
+          (warning as any)?.code === 'UNRESOLVED_IMPORT' &&
+          /#content\/server/.test(msg)
+        )
+          return
+        // Also silence node-resolve noise mentioning the same
+        if (
+          (warning as any)?.plugin === 'node-resolve' &&
+          /#content\/server/.test(msg)
+        )
+          return
+        // Hide circular dependency spam from third-party libs
+        if ((warning as any)?.code === 'CIRCULAR_DEPENDENCY') return
+        handler(warning)
+      },
+    },
   },
 
   content: {
@@ -198,6 +257,23 @@ export default defineNuxtConfig({
     },
   },
   hooks: {
+    // Optional build-time suppression of noisy plugin warnings
+    'build:before': () => {
+      if (process.env.QUIET_BUILD !== '1') return
+      const origWarn = console.warn
+      console.warn = (...args: any[]) => {
+        try {
+          const msg = args.map((a) => String(a)).join(' ')
+          if (
+            /Sourcemap is likely to be incorrect/.test(msg) ||
+            /plugin @tailwindcss\/vite/.test(msg)
+          ) {
+            return
+          }
+        } catch {}
+        origWarn(...args)
+      }
+    },
     'content:file:beforeParse': (file: any) => {
       // Some versions expose file.id or file.path
       const id = file?.id || file?._id || file?.path || ''

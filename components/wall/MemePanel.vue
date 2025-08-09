@@ -3,7 +3,7 @@
   <div>
     <div
       v-if="meme && meme.image && slug"
-      class="block bg-slate-800 hover:bg-slate-900 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 border hover:border hover:border-seagull-400 border-transparent rounded-md w-full h-full overflow-hidden cursor-pointer"
+      class="block shadow-inset-card bg-slate-800 hover:bg-slate-900 mx-auto p-3 border hover:border hover:border-seagull-400 border-transparent rounded-md w-full h-full overflow-hidden cursor-pointer"
       @click="openModal"
     >
       <img
@@ -17,7 +17,7 @@
     </div>
     <div
       v-else-if="meme && meme.image"
-      class="block bg-slate-800 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 rounded-md w-full h-full overflow-hidden"
+      class="block shadow-inset-card bg-slate-800 mx-auto p-3 rounded-md w-full h-full overflow-hidden"
     >
       <img
         ref="lazyImg"
@@ -30,7 +30,7 @@
     </div>
     <div
       v-else
-      class="block bg-slate-800 shadow-[inset_0_0_12px_0_#0f1e24] mx-auto p-3 rounded-md w-full h-full overflow-hidden"
+      class="block shadow-inset-card bg-slate-800 mx-auto p-3 rounded-md w-full h-full overflow-hidden"
     >
       <p class="text-white text-center">🚨 Meme image not found!</p>
       <p class="mt-1 text-red-400 text-xs text-center">
@@ -109,7 +109,3 @@
     return finalFilename
   }
 </script>
-
-<style scoped>
-  /* ...existing styles... */
-</style>

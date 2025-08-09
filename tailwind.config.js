@@ -12,6 +12,11 @@ export default {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        // Frequently used custom shadows
+        modal: '0 4px 20px -10px black',
+        'inset-card': 'inset 0 0 12px 0 #0f1e24',
+      },
       fontFamily: {
         Barlow: ["'Barlow Condensed', sans-serif"], // Custom font with fallback
         helvetica: ['Helvetica, Arial, sans-serif'], // Helvetica font stack

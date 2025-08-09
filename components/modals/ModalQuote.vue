@@ -5,7 +5,7 @@
       <template #mainPanel>
         <!-- Main Content Panel -->
         <div
-          class="z-10 relative bg-slate-800 shadow-[0_4px_20px_-10px_black] p-0 sm:p-6 rounded-none sm:rounded-lg"
+          class="z-10 relative bg-slate-800 shadow-modal p-0 sm:p-6 rounded-none sm:rounded-lg"
         >
           <div class="mb-2 p-4 sm:p-0">
             <h1 class="mb-2 font-bold text-white text-2xl leading-9">
@@ -109,7 +109,7 @@
   watch(
     () => props.modalData,
     (data) => {
-      if (data) {
+      if (data && import.meta.dev) {
         console.log('Quote modal data received:', data)
         console.log('Available properties:', Object.keys(data))
       }
@@ -117,9 +117,3 @@
     { immediate: true }
   )
 </script>
-
-<style scoped>
-  .main-content-panel {
-    border-radius: 0.5rem !important;
-  }
-</style>

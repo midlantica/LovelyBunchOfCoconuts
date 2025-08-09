@@ -5,7 +5,9 @@
   "scripts": {
     "build": "nuxt generate",
     "dev": "nuxt dev",
+    "dev:quiet": "SILENT_VITE=1 nuxt dev",
     "generate": "nuxt generate",
+    "build:quiet": "SILENT_VITE=1 QUIET_BUILD=1 nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "process-images": "node scripts/run-image-processing.js",
