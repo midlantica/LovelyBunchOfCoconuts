@@ -50,7 +50,7 @@
 </template>
 
 <script setup>
-  import { watch, computed, ref } from 'vue'
+  // Vue composables are auto-imported in Nuxt 3
 
   const props = defineProps({
     show: {

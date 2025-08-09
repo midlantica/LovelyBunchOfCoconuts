@@ -1,5 +1,5 @@
 <template>
-  <ShareButtonBase
+  <UiShareButtonBase
     ref="buttonBase"
     icon-name="simple-icons:x"
     aria-label="Share on Twitter"
@@ -10,9 +10,6 @@
 </template>
 
 <script setup>
-  import { computed, ref } from 'vue'
-  import ShareButtonBase from './ShareButtonBase.vue'
-
   const props = defineProps({
     title: { type: String, required: true },
     text: { type: String, required: true },
@@ -47,7 +44,7 @@
         const [, quoteText, attribution] = dashMatch
         return `"${quoteText.replace(/^"|"$/g, '').trim()}" ${attribution}`
       }
-      return `"${cleanText}"`
+      return `"${cleanText}` + '"'
     } else if (props.contentType === 'meme') {
       return props.title
     }

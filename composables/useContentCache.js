@@ -2,7 +2,6 @@
 // Reactive content cache with transformation pipeline: loads, transforms, and caches all content types
 // Provides progressive loading (initial batch + remaining) with search enhancement and SSR compatibility
 
-import { ref, reactive, watch, toRefs } from 'vue'
 import { interleaveContent } from '~/composables/interleaveContent'
 
 // Helper function to extract searchable text from AST body and path

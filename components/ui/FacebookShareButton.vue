@@ -1,5 +1,5 @@
 <template>
-  <ShareButtonBase
+  <UiShareButtonBase
     ref="buttonBase"
     icon-name="heroicons-outline:share"
     aria-label="Copy share text"
@@ -11,9 +11,6 @@
 </template>
 
 <script setup>
-  import { computed, ref } from 'vue'
-  import ShareButtonBase from './ShareButtonBase.vue'
-
   const props = defineProps({
     title: { type: String, required: true },
     text: { type: String, required: true },

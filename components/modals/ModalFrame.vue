@@ -17,7 +17,7 @@
         :class="[modalStyle ? '' : 'w-full sm:min-w-[60vw] sm:max-w-[500px]']"
         @click.stop
       >
-        <CloseButton @click="onCloseClick" />
+        <UiCloseButton @click="onCloseClick" />
         <div class="relative w-full overflow-x-visible overflow-y-visible">
           <slot name="mainPanel" />
           <slot name="sharePanel" />
@@ -28,9 +28,6 @@
 </template>
 
 <script setup>
-  import { onMounted, onBeforeUnmount } from 'vue'
-  import CloseButton from '../ui/CloseButton.vue'
-
   const props = defineProps({
     show: { type: Boolean, default: false },
     modalStyle: { type: Object, default: null },

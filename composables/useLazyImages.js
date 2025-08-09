@@ -1,5 +1,4 @@
 // composables/useLazyImages.js
-import { ref, onMounted, onUnmounted } from 'vue'
 
 export function useLazyImages() {
   const observer = ref(null)

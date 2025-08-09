@@ -51,8 +51,6 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, onUnmounted } from 'vue'
-
   const props = defineProps({
     iconName: { type: String, required: true },
     ariaLabel: { type: String, required: true },

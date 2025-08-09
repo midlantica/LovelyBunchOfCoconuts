@@ -36,7 +36,7 @@
     </div>
     <div class="flex flex-row items-center gap-3 px-0 w-full">
       <div class="flex flex-row gap-2">
-        <PillButton
+        <SearchbarPillButton
           v-for="pill in pills"
           :key="pill.key"
           :label="pill.label"
@@ -65,9 +65,7 @@
 </template>
 
 <script setup>
-  import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
   import { debounce } from 'lodash-es'
-  import PillButton from './PillButton.vue'
 
   const props = defineProps({
     search: String,

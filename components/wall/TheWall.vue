@@ -2,23 +2,10 @@
 <template>
   <div>
     <!-- Error state -->
-    <div v-if="error" class="py-8 text-red-500 text-center">
-      <strong>Error loading content:</strong>
-      <span>{{ error.message || error }}</span>
-    </div>
+    <WallErrorMessage v-if="error" :error="error" />
 
     <!-- Loading state -->
-    <div
-      v-else-if="!isLoaded"
-      class="flex flex-col justify-center items-center gap-4 min-h-[60vh]"
-    >
-      <div class="flex flex-col items-center gap-4">
-        <Icon name="svg-spinners:ring-resize" size="2rem" class="text-white" />
-        <h1 class="font-light text-white text-xl text-center">
-          Loading content...
-        </h1>
-      </div>
-    </div>
+    <WallLoadingMessage v-else-if="!isLoaded" />
 
     <!-- Content wall -->
     <section v-else class="flex flex-col gap-3 xs:px-2 sm:px-2 md:px-0">
@@ -37,7 +24,7 @@
           @keydown.enter.prevent="openModal(item.data, 'quote')"
           @keydown.space.prevent="openModal(item.data, 'quote')"
         >
-          <QuotePanel
+          <WallQuotePanel
             :quote="item.data"
             :slug="item.data?.path || item.data?._path || ''"
           />
@@ -58,7 +45,7 @@
             @keydown.enter.prevent="openModal(claimItem, 'claim')"
             @keydown.space.prevent="openModal(claimItem, 'claim')"
           >
-            <ClaimPanel
+            <WallClaimPanel
               :claim="claimItem"
               :slug="claimItem?.path || claimItem?._path || ''"
             />
@@ -80,7 +67,7 @@
             @keydown.enter.prevent="openModal(memeItem, 'meme')"
             @keydown.space.prevent="openModal(memeItem, 'meme')"
           >
-            <MemePanel
+            <WallMemePanel
               :meme="memeItem"
               :slug="memeItem?.path || memeItem?._path || ''"
             />
@@ -89,28 +76,16 @@
       </div>
 
       <!-- No content message -->
-      <div
+      <WallNoContent
         v-if="interleavedContent.length === 0"
-        class="flex flex-col justify-center items-center gap-4 min-h-[40vh]"
-      >
-        <h1 class="font-light text-white text-xl text-center">
-          No content available
-        </h1>
-      </div>
+        message="No content available"
+      />
     </section>
   </div>
 </template>
 
 <script setup>
-  import { ref, computed, onMounted, watch, nextTick, inject } from 'vue'
-  import { interleaveContent } from '~/composables/interleaveContent'
-  import { useContentCache } from '~/composables/useContentCache'
-  import ClaimPanel from './ClaimPanel.vue'
-  import QuotePanel from './QuotePanel.vue'
-  import MemePanel from './MemePanel.vue'
-  import { useRouter } from 'vue-router'
-
-  const router = useRouter()
+  // Auto-impoorts components/wall/...
 
   // Global guard to avoid click-through reopen after closing a modal
   const modalGuardUntil = useState('modalGuardUntil', () => 0)

@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+  // Vue ref is auto-imported in Nuxt 3
 
   const scrollContent = ref(null)
 

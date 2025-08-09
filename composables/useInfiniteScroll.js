@@ -2,8 +2,6 @@
 // Infinite scroll implementation: detects when user approaches bottom and triggers content loading
 // Configurable threshold distance with loading state management and cleanup
 
-import { ref, onMounted, onUnmounted } from 'vue'
-
 export function useInfiniteScroll(loadMoreCallback, options = {}) {
   const {
     threshold = 300, // Distance from the bottom to trigger load

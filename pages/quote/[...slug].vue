@@ -28,22 +28,24 @@
 </template>
 
 <script setup>
-  import { onMounted, watch, ref, computed } from 'vue'
+  // Nuxt auto-imports: onMounted, watch, ref, computed
 
   const route = useRoute()
   const router = useRouter()
-
-  const { quotes, ensureContentLoaded, cache } = useContentCache()
-  const runtimeConfig = useRuntimeConfig()
-  const siteUrl = runtimeConfig.public.siteUrl || 'https://wakeupnpc.com'
-
-  const contentReady = ref(false)
 
   // Local modal visibility
   const modalVisible = ref(true)
 
   // Persisted wall scroll position
   const wallScrollTop = useState('wallScrollTop', () => 0)
+
+  const { useContentCache } = await import('~/composables/useContentCache')
+  const { quotes, ensureContentLoaded, cache, loadAllContent, slugMaps } =
+    useContentCache()
+  const runtimeConfig = useRuntimeConfig()
+  const siteUrl = runtimeConfig.public.siteUrl || 'https://wakeupnpc.com'
+
+  const contentReady = ref(false)
 
   // Ensure content is loaded immediately for SSR and client-side
   await ensureContentLoaded()

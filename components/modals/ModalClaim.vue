@@ -1,7 +1,7 @@
 <!-- components/ModalClaim.vue -->
 <template>
   <client-only>
-    <ModalFrame v-if="modalData" :show="show" @close="emit('close')">
+    <ModalsModalFrame v-if="modalData" :show="show" @close="emit('close')">
       <template #mainPanel>
         <!-- Main Content Panel - completely independent -->
         <div
@@ -46,7 +46,7 @@
 
       <template #sharePanel>
         <!-- Share Buttons Shelf - positioned relative to this panel -->
-        <ShareButton
+        <UiShareButton
           v-if="modalData"
           :title="modalData?.claim || modalData?.title"
           :text="`${modalData?.claim || modalData?.title} - ${modalData?.translation}`"
@@ -56,17 +56,11 @@
           content-type="claim"
         />
       </template>
-    </ModalFrame>
+    </ModalsModalFrame>
   </client-only>
 </template>
 
 <script setup>
-  import { watch, computed, ref, nextTick } from 'vue'
-  import ModalFrame from './ModalFrame.vue'
-  import ShareButton from '../ui/ShareButton.vue'
-  import { useContentUrls } from '~/composables/useContentUrls'
-  import { useShareImageGenerator } from '~/composables/useShareImageGenerator'
-
   const props = defineProps({
     show: { type: Boolean, default: false },
     modalData: { type: Object, default: null },
@@ -100,7 +94,9 @@
       }
     },
     { immediate: true }
-  ) // Generate share image when modal data changes
+  )
+
+  // Generate share image when modal data changes
   watch(
     () => props.modalData,
     async (data) => {
@@ -108,6 +104,9 @@
       if (import.meta.server) return
 
       if (data && data.claim && data.translation) {
+        const { useShareImageGenerator } = await import(
+          '~/composables/useShareImageGenerator'
+        )
         const { generateClaimImage } = useShareImageGenerator()
         shareImageBlob.value = await generateClaimImage(
           data.claim,
@@ -116,7 +115,9 @@
       }
     },
     { immediate: true }
-  ) // Debug the modal data
+  )
+
+  // Debug the modal data
   watch(
     () => props.modalData,
     (data) => {

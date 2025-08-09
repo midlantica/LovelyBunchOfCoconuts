@@ -42,9 +42,6 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, computed } from 'vue'
-  import { useLazyImages } from '~/composables/useLazyImages'
-
   const props = defineProps({
     meme: Object,
     slug: String,
@@ -112,3 +109,7 @@
     return finalFilename
   }
 </script>
+
+<style scoped>
+  /* ...existing styles... */
+</style>

@@ -21,7 +21,7 @@
     >
       <div class="flex justify-center gap-2">
         <div class="z-30 relative">
-          <TwitterShareButton
+          <UiTwitterShareButton
             ref="twitterButton"
             :title="title"
             :text="text"
@@ -32,7 +32,7 @@
         </div>
 
         <div class="z-30 relative">
-          <FacebookShareButton
+          <UiFacebookShareButton
             ref="facebookButton"
             :title="title"
             :text="text"
@@ -47,10 +47,6 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
-  import TwitterShareButton from './TwitterShareButton.vue'
-  import FacebookShareButton from './FacebookShareButton.vue'
-
   const props = defineProps({
     title: { type: String, required: true },
     text: { type: String, required: true },

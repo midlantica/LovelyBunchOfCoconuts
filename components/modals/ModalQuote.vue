@@ -1,7 +1,7 @@
 <!-- components/ModalQuote.vue -->
 <template>
   <client-only>
-    <ModalFrame v-if="modalData" :show="show" @close="emit('close')">
+    <ModalsModalFrame v-if="modalData" :show="show" @close="emit('close')">
       <template #mainPanel>
         <!-- Main Content Panel -->
         <div
@@ -34,7 +34,7 @@
 
       <template #sharePanel>
         <!-- Share Buttons Shelf -->
-        <ShareButton
+        <UiShareButton
           v-if="modalData"
           :title="modalData?.quoteText || modalData?.title"
           :text="`${modalData?.quoteText || modalData?.title} — ${modalData?.attribution}`"
@@ -44,16 +44,11 @@
           content-type="quote"
         />
       </template>
-    </ModalFrame>
+    </ModalsModalFrame>
   </client-only>
 </template>
 
 <script setup>
-  import { watch, computed, ref, nextTick } from 'vue'
-  import ModalFrame from './ModalFrame.vue'
-  import ShareButton from '../ui/ShareButton.vue'
-  import { useContentUrls } from '~/composables/useContentUrls'
-
   const props = defineProps({
     show: { type: Boolean, default: false },
     modalData: { type: Object, default: null },
@@ -87,7 +82,9 @@
       }
     },
     { immediate: true }
-  ) // Generate share image when modal data changes
+  )
+
+  // Generate share image when modal data changes
   watch(
     () => props.modalData,
     async (data) => {
@@ -106,7 +103,9 @@
       }
     },
     { immediate: true }
-  ) // Debug the modal data
+  )
+
+  // Debug the modal data
   watch(
     () => props.modalData,
     (data) => {
