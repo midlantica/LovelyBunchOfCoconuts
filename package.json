@@ -34,6 +34,7 @@
     "@nuxt/kit": "^3.18.1",
     "@nuxtjs/sitemap": "^7.4.3",
     "@nuxtjs/tailwindcss": "6.14.0",
+    "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
     "@typescript-eslint/parser": "^8.39.0",
     "eslint": "^9.33.0",
