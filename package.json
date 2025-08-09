@@ -15,7 +15,7 @@
   "dependencies": {
     "@napi-rs/canvas": "^0.1.77",
     "@nuxt/content": "3.6.3",
-    "@nuxt/eslint": "1.5.2",
+    "@nuxt/eslint": "1.8.0",
     "@nuxt/icon": "1.15.0",
     "@nuxtjs/mdc": "0.17.2",
     "better-sqlite3": "^12.2.0",
@@ -30,8 +30,8 @@
   "devDependencies": {
     "@eslint/css": "^0.10.0",
     "@eslint/json": "^0.13.1",
-    "@eslint/markdown": "^6.6.0",
-    "@nuxt/kit": "^3.17.6",
+    "@eslint/markdown": "^7.1.0",
+    "@nuxt/kit": "^3.18.1",
     "@nuxtjs/sitemap": "^7.4.3",
     "@nuxtjs/tailwindcss": "6.14.0",
     "@tailwindcss/typography": "^0.5.16",
