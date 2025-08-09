@@ -24,6 +24,7 @@
 </script>
 
 <style scoped>
+  @reference '../../assets/css/main.css';
   .scroll-container {
     @apply relative h-full overflow-hidden;
   }

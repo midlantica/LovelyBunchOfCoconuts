@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from '@tailwindcss/vite'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-06-27',
   components: true,
@@ -12,16 +14,13 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/icon',
-    '@nuxtjs/tailwindcss',
     '@nuxtjs/mdc',
     '@nuxtjs/sitemap',
   ],
   css: ['~/assets/css/main.css'],
-  postcss: {
-    plugins: {
-  tailwindcss: {},
-  autoprefixer: {},
-    },
+  // Use Tailwind v4 via official Vite plugin
+  vite: {
+    plugins: [tailwindcss()],
   },
   ssr: true,
   nitro: {
