@@ -53,8 +53,15 @@ export default defineNuxtConfig({
     // NOTE: File ignore patterns handled via content/.nuxtignore and transformation filters (useContentCache).
   },
 
-  // Basic sitemap config
-  sitemap: { siteUrl: 'https://wakeupnpc.com', autoI18n: false } as any,
+  // Site + sitemap configuration
+  // Newer @nuxtjs/sitemap expects site.url to be present (or NUXT_PUBLIC_SITE_URL env)
+  site: {
+    url: 'https://wakeupnpc.com',
+  },
+  sitemap: {
+    autoI18n: false,
+    xsl: false, // disable XSL stylesheet to avoid prerendering /__sitemap__/style.xsl
+  } as any,
 
   app: {
     head: {
