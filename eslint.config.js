@@ -7,7 +7,17 @@ import { defineConfig } from 'eslint/config'
 
 export default defineConfig([
   // Ignore markdown and generated/build artifacts
-  { ignores: ['**/*.md', '.nuxt/**', 'node_modules/**', '.output/**', 'dist/**', 'public/**', 'tsconfig.json'] },
+  {
+    ignores: [
+      '**/*.md',
+      '.nuxt/**',
+      'node_modules/**',
+      '.output/**',
+      'dist/**',
+      'public/**',
+      'tsconfig.json',
+    ],
+  },
   // Base JS config (no vue-specific rules here)
   {
     files: ['**/*.{js,mjs,cjs,ts}'],
