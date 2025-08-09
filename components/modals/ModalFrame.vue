@@ -17,7 +17,7 @@
         :class="[modalStyle ? '' : 'w-full sm:min-w-[60vw] sm:max-w-[500px]']"
         @click.stop
       >
-        <UiCloseButton @click="onCloseClick" />
+        <UiCloseButton class="hidden sm:block" @click="onCloseClick" />
         <div class="relative w-full overflow-x-visible overflow-y-visible">
           <slot name="mainPanel" />
           <slot name="sharePanel" />

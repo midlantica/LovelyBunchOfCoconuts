@@ -11,20 +11,9 @@
     <LayoutTheFooter class="w-full" />
 
     <!-- Global Modals (used for hash-based opens or explicit openModal) -->
-    <ModalsModalMeme
-      v-if="modalType === 'meme'"
-      :show="showModal"
-      :modal-data="modalData"
-      @close="closeModal"
-    />
-    <ModalsModalClaim
-      v-if="modalType === 'claim'"
-      :show="showModal"
-      :modal-data="modalData"
-      @close="closeModal"
-    />
-    <ModalsModalQuote
-      v-if="modalType === 'quote'"
+    <component
+      v-if="showModal && modalType && modalMap[modalType]"
+      :is="modalMap[modalType]"
       :show="showModal"
       :modal-data="modalData"
       @close="closeModal"
@@ -38,6 +27,23 @@
   const showModal = ref(false)
   const modalType = ref(null)
   const modalData = ref(null)
+
+  // Map modal types to actual component objects (async) so :is can resolve them
+  const ModalsModalMeme = defineAsyncComponent(
+    () => import('~/components/modals/ModalMeme.vue')
+  )
+  const ModalsModalClaim = defineAsyncComponent(
+    () => import('~/components/modals/ModalClaim.vue')
+  )
+  const ModalsModalQuote = defineAsyncComponent(
+    () => import('~/components/modals/ModalQuote.vue')
+  )
+
+  const modalMap = {
+    meme: ModalsModalMeme,
+    claim: ModalsModalClaim,
+    quote: ModalsModalQuote,
+  }
 
   // Allow calling with either (type, data) or ({ type, data, slug })
   function handleModal(arg1, arg2) {

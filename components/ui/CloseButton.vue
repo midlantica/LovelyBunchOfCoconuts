@@ -16,6 +16,7 @@
 <style scoped>
   .close-button {
     /* Position the button in the top-right corner with proper offset */
+    padding-top: 5px;
     top: 26px;
     right: 26px;
     /* Transform to center the button on the corner */
