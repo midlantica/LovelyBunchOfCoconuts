@@ -14,9 +14,6 @@ node_modules
 logs
 *.log
 
-# Legacy root components folder (Nuxt 4 uses app/components)
-/components/
-
 # Workspace trash folders
 /.trash-*/
 
