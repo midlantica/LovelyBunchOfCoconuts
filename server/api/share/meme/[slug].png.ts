@@ -1,15 +1,6 @@
 import { createCanvas, loadImage } from '@napi-rs/canvas'
 import type { H3Event } from 'h3'
-
-function slugify(str: string = '') {
-  return str
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .substring(0, 80)
-}
+import { slugify } from '../../../utils/share'
 
 async function fetchMemes(event: H3Event) {
   // @ts-ignore dynamic import

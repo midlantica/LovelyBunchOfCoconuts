@@ -70,7 +70,7 @@
   const { generateContentUrl } = useContentUrls()
 
   const shareImageBlob = ref(null)
-  const showShareShelf = ref(false)
+  const { showShareShelf, onToggle } = useShareShelf(500)
 
   // Create shareable URL
   const shareUrl = computed(() => {
@@ -81,18 +81,7 @@
   // Handle share shelf animation timing
   watch(
     () => props.show,
-    (isVisible) => {
-      if (isVisible) {
-        // Reset shelf state first
-        showShareShelf.value = false
-        // Wait 0.5 seconds before showing the share panel
-        setTimeout(() => {
-          showShareShelf.value = true
-        }, 500)
-      } else {
-        showShareShelf.value = false
-      }
-    },
+    (isVisible) => onToggle(!!isVisible),
     { immediate: true }
   )
 

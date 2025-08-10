@@ -1,5 +1,6 @@
 # Nuxt dev/build outputs
-.output
+# Nuxt/Nitro outputs (sometimes duplicate folders can appear)
+.output*
 .data
 .nuxt
 .nitro

@@ -1,18 +1,9 @@
 import { createCanvas } from '@napi-rs/canvas'
 import type { H3Event } from 'h3'
+import { slugify, wrapText } from '../../../utils/share'
 
 const WIDTH = 1200
 const HEIGHT = 630
-
-function slugify(str: string = '') {
-  return str
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .substring(0, 80)
-}
 
 async function fetchClaims(event: H3Event) {
   // @ts-ignore dynamic import for Nuxt Content server helper
@@ -32,31 +23,7 @@ async function getClaim(event: H3Event, rawSlug: string) {
   )
 }
 
-function wrapText(
-  ctx: any,
-  text: string,
-  x: number,
-  y: number,
-  maxWidth: number,
-  lineHeight: number
-) {
-  const words = text.split(' ')
-  let line = ''
-  const lines: string[] = []
-  for (let n = 0; n < words.length; n++) {
-    const testLine = line + words[n] + ' '
-    const testWidth = ctx.measureText(testLine).width
-    if (testWidth > maxWidth && n > 0) {
-      lines.push(line)
-      line = words[n] + ' '
-    } else {
-      line = testLine
-    }
-  }
-  lines.push(line)
-  const startY = y - ((lines.length - 1) * lineHeight) / 2
-  lines.forEach((l, i) => ctx.fillText(l.trim(), x, startY + i * lineHeight))
-}
+// wrapText now imported from shared utils
 
 export default defineEventHandler(async (event: H3Event) => {
   const slug = getRouterParam(event, 'slug') || ''

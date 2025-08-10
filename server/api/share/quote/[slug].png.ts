@@ -1,18 +1,9 @@
 import { createCanvas } from '@napi-rs/canvas'
 import type { H3Event } from 'h3'
+import { slugify, wrapText } from '../../../utils/share'
 
 const W = 1200
 const H = 630
-
-function slugify(str: string = '') {
-  return str
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .substring(0, 80)
-}
 
 async function fetchQuotes(event: H3Event) {
   // @ts-ignore dynamic import
@@ -38,28 +29,7 @@ async function findQuote(event: H3Event, rawSlug: string) {
   )
 }
 
-function wrap(
-  ctx: any,
-  text: string,
-  x: number,
-  y: number,
-  mw: number,
-  lh: number
-) {
-  const words = text.split(' ')
-  let line = ''
-  const lines: string[] = []
-  for (let i = 0; i < words.length; i++) {
-    const tl = line + words[i] + ' '
-    if (ctx.measureText(tl).width > mw && i > 0) {
-      lines.push(line)
-      line = words[i] + ' '
-    } else line = tl
-  }
-  lines.push(line)
-  const sy = y - ((lines.length - 1) * lh) / 2
-  lines.forEach((l, idx) => ctx.fillText(l.trim(), x, sy + idx * lh))
-}
+// wrapText imported from shared utils
 
 export default defineEventHandler(async (event: H3Event) => {
   const slug = getRouterParam(event, 'slug') || ''
@@ -89,7 +59,7 @@ export default defineEventHandler(async (event: H3Event) => {
   ctx.fillText('”', W - 120, H - 180)
   ctx.fillStyle = '#ffffff'
   ctx.font = 'italic 48px system-ui, -apple-system, sans-serif'
-  wrap(ctx, quoteText, W / 2, H / 2 - 40, W - 220, 62)
+  wrapText(ctx, quoteText, W / 2, H / 2 - 40, W - 220, 62)
   ctx.fillStyle = '#68D2FF'
   ctx.font = '36px system-ui, -apple-system, sans-serif'
   ctx.fillText(`— ${attribution}`, W / 2, H / 2 + 160)

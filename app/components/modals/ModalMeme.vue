@@ -68,7 +68,7 @@
 
   // Reactive state
   const shareImageBlob = ref(null)
-  const showShareShelf = ref(false)
+  const { showShareShelf, onToggle } = useShareShelf(500)
 
   // Computed properties for share functionality
   const shareTitle = computed(
@@ -88,21 +88,10 @@
   }
 
   // Watchers
-  const SHARE_SHELF_DELAY = 500
-
   // Handle share shelf animation timing
   watch(
     () => props.show,
-    (isVisible) => {
-      if (isVisible) {
-        showShareShelf.value = false
-        setTimeout(() => {
-          showShareShelf.value = true
-        }, SHARE_SHELF_DELAY)
-      } else {
-        showShareShelf.value = false
-      }
-    },
+    (isVisible) => onToggle(!!isVisible),
     { immediate: true }
   )
 

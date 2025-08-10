@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     '@nuxtjs/mdc',
     '@nuxtjs/sitemap',
   ],
-  css: ['~/assets/css/main.css'],
+  css: ['./app/assets/css/main.css'],
   // Use Tailwind v4 via official Vite plugin
   vite: {
     plugins: [tailwindcss()],
