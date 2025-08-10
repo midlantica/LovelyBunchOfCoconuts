@@ -5,7 +5,7 @@
       <template #mainPanel>
         <!-- Main Content Panel - completely independent -->
         <div
-          class="z-10 relative bg-slate-800 shadow-modal p-0 sm:px-7 sm:py-6rounded-none sm:rounded-lg"
+          class="z-10 relative bg-slate-800 shadow-modal p-0 sm:px-7 sm:py-6 rounded-none sm:rounded-lg"
         >
           <div class="mb-0 p-4 sm:p-0">
             <div class="flex gap-3">
