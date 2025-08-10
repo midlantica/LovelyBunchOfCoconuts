@@ -4,8 +4,8 @@ This folder contains markdown files for memes displayed on the site.
 
 ## How to Add a Meme
 
-1. Place your image in `public/memes/` or a subfolder (PNG or JPG recommended).
-2. Create a `.md` file in this folder with the same name as your image (but with `.md` extension).
+1. Place your image in `public/memes/` or a subfolder (JPG recommended).
+2. Create a `.md` file in this folder, ie content/memes, with the same name as your image (but with `.md` extension).
 
 **Frontmatter and structure:**
 
