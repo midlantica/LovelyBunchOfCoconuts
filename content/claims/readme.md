@@ -1,11 +1,14 @@
-# Claims
+# Claims: Quick Guide
 
-This folder contains all claim translation markdown files for the site.
+Use this when adding or editing political claims.
 
-## How to Add a Claim
+## How to add a claim
 
-1. Create a new `.md` file in this folder.
-2. Use the following frontmatter and structure:
+1. Copy `../../templates/claim.md`.
+2. Save it here with a short filename: `lowercase-words.md`.
+3. Fill in frontmatter and the claim text.
+
+Frontmatter example:
 
 ```
 ---
@@ -13,18 +16,17 @@ title: "Claim Title"
 claim: "Claim Title"
 translation: "Short translation or summary."
 ---
-
-## "Claim Title"
-
-## Short translation or summary.
-
----
-
-Explanatory text can optionally go here.
-
 ```
 
-- The `title` and `claim` fields should match.
-- The `translation` is a short, punchy 'translation' of the real meaning of the Leftist Claim.
-- Add a "---" to separate the frontmatter from any Explanatory text you might wish to add.
-- Then the Explanatory text can optionally go here.
+## Tips
+
+- Keep the claim concise; the wall shows two claims side-by-side.
+- Optional `translation` is supported for alt text.
+- Use dashes or underscores; avoid spaces in filenames.
+- Anything starting with `_` is ignored by the app.
+
+## See also
+
+- Main guide: ../ReadMe.md
+- Quotes guide: ../quotes/ReadMe.md
+- Memes guide: ../memes/ReadMe.md

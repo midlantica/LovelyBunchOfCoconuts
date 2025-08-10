@@ -81,39 +81,4 @@ export function useLazyImages() {
   }
 }
 
-// CSS classes for styling lazy loading states
-export const lazyImageStyles = `
-  .lazy-loading {
-    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
-    background-size: 200% 100%;
-    animation: loading-shimmer 1.5s infinite;
-  }
-
-  .lazy-loaded {
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  .lazy-error {
-    background-color: #374151;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .lazy-error::after {
-    content: "Image failed to load";
-    color: #9ca3af;
-    font-size: 0.875rem;
-    text-align: center;
-  }
-
-  @keyframes loading-shimmer {
-    0% {
-      background-position: -200% 0;
-    }
-    100% {
-      background-position: 200% 0;
-    }
-  }
-`
+// Styles live in app/assets/css/main.css; no JS-injected CSS needed here.
