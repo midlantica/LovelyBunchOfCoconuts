@@ -1,7 +1,7 @@
 ---
-title: "It was thomas edison who brought us elct"
+title: 'It was Thomas Edison who brought us electricity not the Sierra Club'
 ---
 
-![It was thomas edison who brought us elct](/memes/thomas-sowell/it-was-thomas-edison-who-brought-us-elct.jpg)
+![It was Thomas Edison who brought us electricity not the Sierra Club](/memes/thomas-sowell/it-was-thomas-edison-who-brought-us-elct.jpg)
 
-It was thomas edison who brought us elct
+It was Thomas Edison who brought us electricity not the Sierra Club

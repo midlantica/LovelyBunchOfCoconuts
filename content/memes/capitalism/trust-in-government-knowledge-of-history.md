@@ -1,7 +1,7 @@
 ---
-title: 'Trust In Government Knowledge Of History'
+title: 'Trust in government vs Knowledge of History'
 ---
 
-![Trust in government knowledge of history](/memes/capitalism/trust-in-government-knowledge-of-history.jpg)
+![Trust in government vs Knowledge of History](/memes/capitalism/trust-in-government-knowledge-of-history.jpg)
 
-Trust in government knowledge of history.
+Trust in government vs Knowledge of History.

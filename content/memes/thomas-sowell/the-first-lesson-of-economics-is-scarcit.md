@@ -1,7 +1,7 @@
 ---
-title: "The first lesson of economics is scarcit"
+title: 'The first lesson of economics is scarcity'
 ---
 
-![The first lesson of economics is scarcit](/memes/thomas-sowell/the-first-lesson-of-economics-is-scarcit.jpg)
+![The first lesson of economics is scarcity](/memes/thomas-sowell/the-first-lesson-of-economics-is-scarcity.jpg)
 
-The first lesson of economics is scarcit
+"The first lesson of economics is scarcity: There is never enough of anything to fully satisfy all those who want it the first lesson of politics is to disregard the first lesson of economics" - Thomas Sowell

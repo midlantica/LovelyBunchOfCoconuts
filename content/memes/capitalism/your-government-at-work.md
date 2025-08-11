@@ -1,7 +1,7 @@
 ---
-title: 'Your Government At Work'
+title: 'Your Government at Work. Middle Management'
 ---
 
-![Your Government At Work](/memes/capitalism/your-government-at-work.jpg)
+![Your Government at Work. Middle Management](/memes/capitalism/your-government-at-work.jpg)
 
 Your government at work. Middle Management.

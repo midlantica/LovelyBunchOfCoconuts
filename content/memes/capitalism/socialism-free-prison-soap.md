@@ -1,7 +1,7 @@
 ---
-title: 'Socialism Free Prison Soap'
+title: 'How Socialism works: Free stuff : YOU : Government soap'
 ---
 
-![Socialism free prison soap](/memes/capitalism/socialism-free-prison-soap.jpg)
+![How Socialism works: Free stuff : YOU : Government soap](/memes/capitalism/socialism-free-prison-soap.jpg)
 
-How Socialism works.
+How Socialism works: Free stuff : YOU : Government.

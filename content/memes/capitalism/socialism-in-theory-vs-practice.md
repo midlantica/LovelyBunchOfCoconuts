@@ -1,7 +1,7 @@
 ---
-title: 'Socialism In Theory Vs Practice'
+title: 'Socialism in Theory vs Practice'
 ---
 
-![Socialism in theory vs practice](/memes/capitalism/socialism-in-theory-vs-practice.jpg)
+![Socialism in Theory vs Practice](/memes/capitalism/socialism-in-theory-vs-practice.jpg)
 
-Socialism in theory vs practice.
+Socialism in Theory vs Practice

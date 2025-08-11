@@ -1,8 +1,8 @@
 ---
-title: 'The Free Market Has Failed'
+title: 'The Free Market has failed'
 ---
 
-![The free market has failed](/memes/capitalism/the-free-market-has-failed.jpg)
+![The Free Market has failed](/memes/capitalism/the-free-market-has-failed.jpg)
 
 Pure capitalism is unstable.
 So we need regulations to fix it.

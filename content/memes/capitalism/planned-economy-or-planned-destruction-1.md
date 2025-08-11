@@ -1,7 +1,7 @@
 ---
-title: 'Planned Economy Or Planned Destruction'
+title: 'Planned Economy or Planned Destruction'
 ---
 
-![Planned economy or planned destruction 1](/memes/capitalism/planned-economy-or-planned-destruction-1.jpg)
+![Planned economy or planned destruction](/memes/capitalism/planned-economy-or-planned-destruction.jpg)
 
-Planned economy or planned destruction
+Planned economy or planned destruction.

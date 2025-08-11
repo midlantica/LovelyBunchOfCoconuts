@@ -1,5 +1,5 @@
 ---
-title: 'Real Socialism Hasnt Been Done Yet'
+title: "REAL socialism hasn't been done yet"
 ---
 
 ![Real socialism hasnt been done yet](/memes/capitalism/real-socialism-hasnt-been-done-yet.jpg)

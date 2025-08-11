@@ -1,8 +1,7 @@
 ---
-title: 'Venezuela Before After Socialism'
+title: 'Venezuela Before and After Socialism'
 ---
 
-![Venezuela before after socialism](/memes/capitalism/venezuela-before-after-socialism.jpg)
+![Venezuela, Before and after Socialism. This only took one generation](/memes/capitalism/venezuela-before-after-socialism.jpg)
 
-Venezuela, Before after Socialism
-This only took one generation.
+Venezuela, Before and after Socialism. This only took one generation.

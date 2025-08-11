@@ -1,7 +1,7 @@
 ---
-title: 'Small Business Vs Unions'
+title: 'Small Business vs Unions'
 ---
 
-![Small business vs unions](/memes/capitalism/small-business-vs-unions.jpg)
+![Small Business vs Unions](/memes/capitalism/small-business-vs-unions.jpg)
 
 Small Business vs Unions.

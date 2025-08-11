@@ -1,7 +1,7 @@
 ---
-title: 'Socialism not even Germans could make it work'
+title: 'Socialism: Not even Germans could make it work'
 ---
 
-![Socialism not even germans could make it](/memes/capitalism/socialism-not-even-germans-could-make-it.jpg)
+![Socialism: Not even Germans could make it work](/memes/capitalism/socialism-not-even-germans-could-make-it.jpg)
 
-Socialism not even Germans could make it work.
+Socialism: Not even Germans could make it work.

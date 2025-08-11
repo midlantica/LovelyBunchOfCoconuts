@@ -1,8 +1,8 @@
 ---
-title: 'The Birth Of Free Market Economics'
+title: 'The birth Of Free Market Economics'
 ---
 
-![The birth of free market economics](/memes/capitalism/the-birth-of-free-market-economics.jpg)
+![The birth Of Free Market Economics](/memes/capitalism/the-birth-of-free-market-economics.jpg)
 
-The birth of free market economics.
+The birth Of Free Market Economics.
 I wish I had a rock. I wish I had a stick.
