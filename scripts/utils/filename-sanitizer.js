@@ -25,6 +25,20 @@ export function sanitizeFilename(text, maxLength = 50) {
   // Truncate to max length
   cleanText = cleanText.slice(0, maxLength).replace(/-+$/g, '')
 
+  // Enforce ending: must be a-z or A-Z word, or a 4-digit year (YYYY)
+  // Remove trailing dashes/fragments/partial words
+  let match = cleanText.match(/([a-z]+|\d{4})$/i)
+  if (match) {
+    // Trim to the last valid word/year
+    cleanText = cleanText.slice(0, match.index + match[0].length)
+  } else {
+    // If nothing valid, fallback to 'unnamed'
+    cleanText = 'unnamed'
+  }
+
+  // Remove any trailing dash/underscore (shouldn't be needed, but extra safe)
+  cleanText = cleanText.replace(/[-_]+$/g, '')
+
   return cleanText || 'unnamed'
 }
 

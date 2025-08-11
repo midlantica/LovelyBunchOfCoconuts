@@ -3,6 +3,7 @@ import fs from 'fs/promises'
 import path from 'path'
 import { exec } from 'child_process'
 import { promisify } from 'util'
+import { scaleImage as sharedScaleImage } from './utils/imageScaler.js'
 import { fileURLToPath } from 'url'
 import { sanitizeFilename } from './utils/filename-sanitizer.js'
 import crypto from 'crypto'
@@ -88,6 +89,22 @@ async function resizeImage(imagePath, resizeOption, isUpscale = false) {
   }
 }
 
+// Helper: Get format and whether profiles are present
+async function getFormatAndProfiles(imagePath) {
+  try {
+    const { stdout } = await execPromise(
+      `identify -format "%m|%[profiles]" "${imagePath}"`
+    )
+    const [fmt, profiles] = stdout.trim().split('|')
+    const format = (fmt || '').toUpperCase()
+    const hasProfiles = Boolean((profiles || '').trim() && profiles !== 'none')
+    return { format, hasProfiles }
+  } catch (e) {
+    // If identify fails, err on the side of not mutating unnecessarily.
+    return { format: 'JPEG', hasProfiles: false }
+  }
+}
+
 /**
  * Unified image processing: sizing, optimization, and format conversion
  * @param {string} directory - Directory containing images
@@ -103,9 +120,9 @@ async function optimizeImages(
   const files = await fs.readdir(directory)
 
   // Configuration for target sizes
-  const MIN_WIDTH = 400
+  const MIN_SIDE = 500
+  const TARGET_LONG_SIDE = 800
   const MAX_WIDTH = 1080
-  const TARGET_UPSCALE = 600
 
   let processedCount = 0
   let skippedCount = 0
@@ -122,24 +139,21 @@ async function optimizeImages(
     const key = relImageKey(filePath)
     const entry = manifest.images[key] || {}
 
-    // Manifest optimized check (unless forcing)
+    // If a markdown pair already exists, do not alter the image unless forced
+    const hasPair = await hasMarkdownPair(filePath)
+    if (hasPair && !force) {
+      skippedFiles.push({ file, reason: 'has markdown pair' })
+      continue
+    }
+
+    // Also respect the manifest flag as an extra safety net
     if (!force && entry.optimized) {
       skippedFiles.push({ file, reason: 'manifest: optimized' })
       continue
     }
 
-    const hasPair = await hasMarkdownPair(filePath)
-    if (hasPair && entry.optimized && !force) {
-      skippedFiles.push({ file, reason: 'has markdown pair' })
-      continue
-    }
-
-    let dimensions
-    if (!dryRun) {
-      dimensions = await getImageDimensions(filePath)
-    } else {
-      dimensions = { width: entry.width || 0, height: entry.height || 0 }
-    }
+    // Always read actual dimensions (read-only) for accurate decisions/reporting
+    let dimensions = await getImageDimensions(filePath)
     if (!dimensions) {
       skippedFiles.push({ file, reason: 'no dimensions' })
       continue
@@ -151,10 +165,13 @@ async function optimizeImages(
     let action = ''
     let needsProcessing = false
 
-    if (dimensions.width < MIN_WIDTH) {
-      action = `upscale→${TARGET_UPSCALE}`
-      console.log(`📈 Upscaling to ${TARGET_UPSCALE}px width`)
-      if (!dryRun) await resizeImage(filePath, `${TARGET_UPSCALE}x`, true)
+    // Policy: Always ensure long side >= TARGET_LONG_SIDE (800).
+    const minSide = Math.min(dimensions.width, dimensions.height)
+    const maxSide = Math.max(dimensions.width, dimensions.height)
+    if (maxSide < TARGET_LONG_SIDE) {
+      action = `upscale→${TARGET_LONG_SIDE}`
+      console.log(`📈 Upscaling to ${TARGET_LONG_SIDE}px on long side`)
+      if (!dryRun) await sharedScaleImage(filePath, TARGET_LONG_SIDE, false)
       needsProcessing = true
     } else if (dimensions.width > MAX_WIDTH) {
       action = `downscale→≤${MAX_WIDTH}`
@@ -163,17 +180,36 @@ async function optimizeImages(
         await resizeImage(filePath, `${MAX_WIDTH}x${MAX_WIDTH}`, false)
       needsProcessing = true
     } else {
-      action = 'optimize-only'
-      console.log(`✅ Optimizing quality (size is good)`)
-      needsProcessing = true
+      // Already good size: only convert/strip if needed
+      const { format, hasProfiles } = await getFormatAndProfiles(filePath)
+      const needsConvert = format !== 'JPEG' && format !== 'JPG'
+      const needsStrip = hasProfiles
+      if (needsConvert || needsStrip) {
+        action = needsConvert ? 'convert-jpeg' : 'strip-profiles'
+        console.log(
+          `✅ ${
+            needsConvert ? 'Converting to JPEG' : 'Stripping profiles'
+          } (size is good)`
+        )
+        needsProcessing = true
+      } else {
+        action = 'skip-unchanged'
+        console.log(`✅ Already optimized; skipping`)
+        skippedFiles.push({ file, reason: 'already optimized' })
+        continue
+      }
     }
 
+    let dimsForManifest = dimensions
     if (needsProcessing && !dryRun) {
       try {
         await execPromise(
-          `mogrify +profile "*" -format jpg -quality 85 -interlace Plane "${filePath}"`
+          `mogrify +profile "*" -format jpg -quality 85 "${filePath}"`
         )
         await markImageOptimized(filePath)
+        // Refresh dimensions after processing so manifest is accurate
+        const newDims = await getImageDimensions(filePath)
+        if (newDims) dimsForManifest = newDims
       } catch (e) {
         skippedFiles.push({ file, reason: `opt error: ${e.message}` })
         continue
@@ -187,8 +223,8 @@ async function optimizeImages(
       hash: fileHash,
       action,
       updated: new Date().toISOString(),
-      width: dimensions.width,
-      height: dimensions.height,
+      width: dimsForManifest.width,
+      height: dimsForManifest.height,
     }
     processedFiles.push({ file, action })
     actions.push({ file, action })
@@ -251,7 +287,11 @@ async function renameImageFile(directory, filename) {
  * @param {string[]} imageFiles - Array of image filenames
  * @returns {Promise<string[]>} Array of orphaned markdown filenames that were moved
  */
-async function findAndMoveOrphanedMarkdownFiles(imageDirectory, imageFiles) {
+async function findAndMoveOrphanedMarkdownFiles(
+  imageDirectory,
+  imageFiles,
+  { dryRun = false } = {}
+) {
   try {
     // Get the corresponding content directory
     const imageDir = imageDirectory
@@ -329,8 +369,12 @@ async function findAndMoveOrphanedMarkdownFiles(imageDirectory, imageFiles) {
       }
     }
 
-    // If orphaned files found, move them to _orphaned folder
+    // If orphaned files found, move them to _orphaned folder (unless dryRun)
     if (orphanedFiles.length > 0) {
+      if (dryRun) {
+        // Report-only in dry-run; do not move files
+        return orphanedFiles.map((f) => f.filename)
+      }
       const orphanedDir = path.join(contentDir, '_orphaned')
 
       // Create _orphaned directory if it doesn't exist
@@ -396,9 +440,34 @@ async function hasMarkdownPair(imagePath) {
 
     const markdownPath = path.join(contentDir, `${imageBaseName}.md`)
 
-    // Check if markdown file exists
-    await fs.access(markdownPath)
-    return true
+    // Fast path: exact basename match
+    try {
+      await fs.access(markdownPath)
+      return true
+    } catch {}
+
+    // Fallback: scan .md files in the contentDir and check if they reference this image filename
+    try {
+      const files = await fs.readdir(contentDir)
+      const mdFiles = files.filter((f) => f.toLowerCase().endsWith('.md'))
+      const imageFilename = path.basename(imagePath)
+      for (const md of mdFiles) {
+        try {
+          const mdFull = path.join(contentDir, md)
+          const data = await fs.readFile(mdFull, 'utf-8')
+          // Check for explicit /memes/... path or at least the image filename anywhere in the doc
+          if (
+            data.includes(imageFilename) ||
+            /!\[.*?\]\(\/memes\//.test(data)
+          ) {
+            // If the file references the exact filename, treat as paired
+            if (data.includes(imageFilename)) return true
+            // If it references /memes/ but not this filename, keep searching
+          }
+        } catch {}
+      }
+    } catch {}
+    return false
   } catch {
     return false
   }
@@ -498,12 +567,14 @@ async function processImages(directory, subdirName = '', options = {}) {
     // Check for orphaned markdown files and automatically move them to _orphaned folder
     const movedOrphanedFiles = await findAndMoveOrphanedMarkdownFiles(
       directory,
-      imageFiles
+      imageFiles,
+      { dryRun }
     )
 
     // rename loop respects dryRun
     if (!dryRun) {
-      for (const filename of imageFiles) {
+      // Only rename images that do NOT yet have markdown pairs
+      for (const filename of imagesWithoutMarkdown) {
         const ext = path.extname(filename).toLowerCase()
         if (imageExtensions.includes(ext)) {
           await renameImageFile(directory, filename)
@@ -555,7 +626,11 @@ async function processImages(directory, subdirName = '', options = {}) {
 
     if (changed) {
       console.log(
-        `\n📊 Summary (${subdirName || 'root'}): optimized ${optimizationResult?.processedCount || 0}, markdown +${newMarkdownCount}, orphaned moved ${movedOrphanedFiles.length}`
+        `\n📊 Summary (${subdirName || 'root'}): optimized ${
+          optimizationResult?.processedCount || 0
+        }, markdown +${newMarkdownCount}, orphaned moved ${
+          movedOrphanedFiles.length
+        }`
       )
       if (optimizationResult?.actions?.length) {
         optimizationResult.actions.forEach((a) =>
@@ -605,3 +680,120 @@ export {
   processImages,
   hasMarkdownPair,
 }
+
+// --- Read-only Audit helpers (exported below) ------------------------------
+/**
+ * Inspect image properties without modifying files.
+ * Reports: width/height, orientation, format, interlace, profiles, xattr marker, and compliance.
+ *
+ * Compliance definition (to mirror optimizeImages intent):
+ * - Dimensions: MIN_WIDTH <= width <= MAX_WIDTH
+ * - Format: JPEG
+ * - Interlace: Plane (progressive)
+ * - Profiles: none (since we strip with +profile "*")
+ *
+ * Note: xattr user.meme_optimized indicates our pipeline touched the file on this machine.
+ */
+async function auditImages(directory, subdirName = '') {
+  const extensions = ['png', 'jpg', 'jpeg', 'gif', 'webp']
+  const files = await fs.readdir(directory)
+
+  const MIN_SIDE = 500
+  const TARGET_LONG_SIDE = 800
+  const MAX_WIDTH = 1080
+
+  const results = []
+
+  for (const file of files) {
+    const ext = path.extname(file).toLowerCase().replace('.', '')
+    if (!extensions.includes(ext)) continue
+
+    const filePath = path.join(directory, file)
+    let width = 0
+    let height = 0
+    let format = ''
+    let interlace = ''
+    let profilesRaw = ''
+    let hasProfiles = false
+    let optimizedXattr = false
+
+    try {
+      // gather with a single identify -format call where possible
+      const { stdout } = await execPromise(
+        `identify -format "%w %h|%m|%[interlace]|%[profiles]" "${filePath}"`
+      )
+      const [dimStr, fmt, il, prof] = stdout.trim().split('|')
+      const [wStr, hStr] = dimStr.split(' ')
+      width = Number(wStr) || 0
+      height = Number(hStr) || 0
+      format = (fmt || '').toUpperCase()
+      interlace = il || ''
+      profilesRaw = prof || ''
+      hasProfiles = Boolean(profilesRaw && profilesRaw.trim() !== 'none')
+    } catch (e) {
+      // fall back to separate calls if needed
+      const dims = await getImageDimensions(filePath)
+      if (dims) {
+        width = dims.width
+        height = dims.height
+      }
+      try {
+        const { stdout: fmts } = await execPromise(
+          `identify -format "%m" "${filePath}"`
+        )
+        format = (fmts || '').trim().toUpperCase()
+      } catch {}
+      try {
+        const { stdout: ils } = await execPromise(
+          `identify -format "%[interlace]" "${filePath}"`
+        )
+        interlace = (ils || '').trim()
+      } catch {}
+      try {
+        const { stdout: profs } = await execPromise(
+          `identify -format "%[profiles]" "${filePath}"`
+        )
+        profilesRaw = (profs || '').trim()
+        hasProfiles = Boolean(profilesRaw && profilesRaw !== 'none')
+      } catch {}
+    }
+
+    // orientation
+    const orientation =
+      width === height ? 'square' : width > height ? 'landscape' : 'portrait'
+
+    // xattr mark (best-effort; macOS only)
+    optimizedXattr = await isImageOptimized(filePath)
+
+    // compliance checks (new):
+    const minSide = Math.min(width, height)
+    const maxSide = Math.max(width, height)
+    let dimStatus = 'within'
+    if (minSide < MIN_SIDE) dimStatus = 'below-min'
+    else if (maxSide < TARGET_LONG_SIDE) dimStatus = 'below-target'
+    else if (width > MAX_WIDTH) dimStatus = 'above-max'
+    const fmtOk = format === 'JPEG' || format === 'JPG'
+    const profilesOk = !hasProfiles
+    // No longer require progressive/interlace
+    const compliant = dimStatus !== 'below-min' && fmtOk && profilesOk
+
+    results.push({
+      file: subdirName ? `${subdirName}/${file}` : file,
+      width,
+      height,
+      orientation,
+      format,
+      interlace,
+      hasProfiles,
+      optimizedXattr,
+      dimStatus,
+      fmtOk,
+      profilesOk,
+      compliant,
+    })
+  }
+
+  return results
+}
+
+export { auditImages }

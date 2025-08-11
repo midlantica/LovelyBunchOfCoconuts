@@ -6,37 +6,49 @@ This directory contains utility scripts for managing content and images in the W
 
 ### Main Image Processing System
 
-The primary image processing is handled by two main scripts:
+The system is driven by a single CLI entry and a shared scaler:
+
+- `run-image-processing.js` — the unified CLI for audit and full processing
+- `utils/imageScaler.js` — single source of truth for scaling logic
 
 #### `imageProcessing.js`
 
 Core image processing library that handles:
 
-- **JPEG Conversion**: Converts PNG/other formats to progressive JPEG with 85% quality
-- **Image Optimization**: Resizes images (upscales small images to 600px, downscales large images to max 1080px)
-- **File Naming**: Sanitizes filenames to be URL-friendly
-- **Markdown Integration**: Only processes images that don't already have markdown pairs
-- **Quality Control**: Uses ImageMagick for professional-grade image processing
+- Format conversion: Converts images to JPEG at 85% quality and strips profiles (no progressive requirement)
+- Image sizing: Upscales small images to a target long side and downscales overly large images
+- File naming: Sanitizes filenames to be URL-friendly
+- Markdown integration: Only processes images that don't already have markdown pairs (unless forced)
+- Quality control: Uses ImageMagick for professional-grade processing
+
+Sizing policy:
+
+- Fixed target long side: 800px. Files below this are upscaled.
+- Maximum width: 1080px (downscale if wider).
 
 #### `run-image-processing.js`
 
 Command-line interface for the image processing system:
 
 ```bash
-# Process all meme subdirectories
-node scripts/run-image-processing.js
+# Process all meme subdirectories (defaults to public/memes/*)
+pnpm process-images
 
-# Process a specific subdirectory
-node scripts/run-image-processing.js capitalism
+# Process a specific subdirectory (e.g., public/memes/capitalism)
+pnpm process-images capitalism
+
+# Run read-only audit of a subdirectory
+pnpm process-images capitalism --audit
+
+# Process a single subdirectory (fixed target: 800px long side)
+pnpm process-images quotes
 ```
 
-**Features:**
+Flags:
 
-- Automatically converts images to optimized progressive JPEGs
-- Maintains aspect ratios while ensuring consistent sizing
-- Creates markdown files for newly processed images
-- Tracks processing with extended attributes (macOS)
-- Provides detailed processing summaries
+- `--dry-run` Show what would happen without modifying files
+- `--force` Reprocess even if marked optimized in manifest
+- `--audit` Read-only inspection (dimensions, orientation, format, interlace, profiles)
 
 ## Content Organization Scripts
 
@@ -95,24 +107,33 @@ node scripts/organize_quotes_by_author.js
 
 The `utils/` subdirectory contains helper modules used by the main scripts.
 
+Key module:
+
+- `utils/imageScaler.js`
+  - `scaleImage(filePath, targetLongSide=800, dryRun=false)`
+  - `scaleAllImagesInDir(dir, targetLongSide=800, dryRun=false)`
+  - Prints per-file actions and a summary; used internally by the full pipeline.
+
 ## How the Image Processing Works
 
-1. **Detection**: Scans for images without corresponding markdown files
-2. **Optimization**:
-   - Small images (< 400px): Upscaled to 600px using Lanczos filter
-   - Large images (> 1080px): Downscaled to max 1080px
-   - Medium images: Quality optimized without resizing
-3. **Conversion**: All images converted to progressive JPEG format (85% quality)
-4. **Markdown Creation**: Generates corresponding .md files for new images
-5. **Tracking**: Uses macOS extended attributes to prevent reprocessing
+1. Detection: Scans for images and checks for existing markdown pairs
+2. Sizing and optimization:
+
+- Tiny images (even below 500px): Upscaled to reach 800px on the long side
+- Below target (long side < 800px): Upscaled to 800px long side (Lanczos)
+- Above max width (> 1080px): Downscaled so width <= 1080px
+- Otherwise: Quality optimized without resizing
+
+3. Conversion: Images converted to JPEG at ~85% quality and stripped of profiles
+4. Markdown: Generates corresponding .md files for new images (no-op in scale-only)
+5. Tracking: Uses a manifest and macOS extended attributes to avoid unnecessary work
 
 ## Notes
 
-- **JPEG Conversion**: The old separate JPEG conversion scripts have been consolidated into the main image processing system
-- **Progressive JPEGs**: All images are converted to progressive JPEG format for better web performance
-- **Markdown Pairing**: Images with existing markdown files are automatically skipped
-- **Quality Preservation**: Uses professional ImageMagick filters for high-quality results
-- **Batch Processing**: Can process entire directory trees efficiently
+- Unified entry point: All scaling now goes through `run-image-processing.js` (no duplicate scaler scripts)
+- No progressive requirement: We convert to standard JPEG and strip profiles; browsers progressively decode either way
+- Markdown pairing: Images with existing markdown files are automatically skipped unless `--force`
+- Batch friendly: Can process entire directory trees efficiently; dry-run first recommended
 
 ## Legacy
 

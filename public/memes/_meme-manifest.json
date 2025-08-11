@@ -650,11 +650,11 @@
     },
     "data/actual-individual-consumption-per-head-i.jpg": {
       "optimized": true,
-      "hash": "8f08cba25dfefc90d0fca4e473a2bc9c1e0c57a6",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:50.615Z",
-      "width": 614,
-      "height": 721
+      "hash": "966f1f8c58a6aaef49d4c2b3498fecc7cd79f1aa",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:45.430Z",
+      "width": 681,
+      "height": 800
     },
     "data/americas-richest-poorest-states-vs-g7-co.jpg": {
       "optimized": true,
@@ -682,11 +682,11 @@
     },
     "data/better-life-index-2013.jpg": {
       "optimized": true,
-      "hash": "82f8094b123ab6522725a6d631086ba32292ed35",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:50.875Z",
-      "width": 595,
-      "height": 439
+      "hash": "68e0811c9e0619fab7aa48f36046f600a793d9d8",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:45.671Z",
+      "width": 800,
+      "height": 590
     },
     "data/birth-of-liberalism-and-capitalism-perio.jpg": {
       "optimized": true,
@@ -706,19 +706,19 @@
     },
     "data/capitalism-has-failed.jpg": {
       "optimized": true,
-      "hash": "493779728ba0c3bf2d969dd55f8cc9ed60955516",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:51.042Z",
-      "width": 720,
-      "height": 459
+      "hash": "e3651728e784ba3942bc5e370e4c02aa48fe43dd",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:45.849Z",
+      "width": 800,
+      "height": 510
     },
     "data/chance-of-surviving-covid-19-by-age-and.jpg": {
       "optimized": true,
-      "hash": "b952b20c583bbf0ba0a3f17864b17dd27d2ecde9",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:51.103Z",
-      "width": 710,
-      "height": 538
+      "hash": "0f55a4006bd2d1c5216a38346454ff74f3048655",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:45.967Z",
+      "width": 800,
+      "height": 606
     },
     "data/christianity-in-the-us-by-county-distrib.jpg": {
       "optimized": true,
@@ -810,11 +810,11 @@
     },
     "data/europes-fertility-crisis-2022.jpg": {
       "optimized": true,
-      "hash": "8bf6136a65a2d44fee181190ca9340bd03d7ad5d",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:51.983Z",
-      "width": 634,
-      "height": 679
+      "hash": "7a422a438bc6e92469a733ccf33ce2537eea6e4d",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:46.611Z",
+      "width": 747,
+      "height": 800
     },
     "data/far-right-1.jpg": {
       "optimized": true,
@@ -890,11 +890,11 @@
     },
     "data/gdp-per-capita-ppp-2017.jpg": {
       "optimized": true,
-      "hash": "ca736f3ab5a580e08551896e4a3267240bf81ae8",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:52.643Z",
-      "width": 600,
-      "height": 564
+      "hash": "dafacdb2389b1b69f2c83de213500d7d2c975104",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:47.110Z",
+      "width": 800,
+      "height": 752
     },
     "data/gdp-per-capita-since-1ad-2018.jpg": {
       "optimized": true,
@@ -906,11 +906,11 @@
     },
     "data/gdp-per-person-1990-international-dollar.jpg": {
       "optimized": true,
-      "hash": "9c460e8ce56c110a5179d1ecbebcb7cf5ba37a05",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:52.753Z",
-      "width": 560,
-      "height": 340
+      "hash": "328cc20ae681a90f376afa8e792ee42e6b35fce7",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:47.247Z",
+      "width": 800,
+      "height": 486
     },
     "data/gdp-ppp-international-dollars-2018-billi.jpg": {
       "optimized": true,
@@ -938,11 +938,11 @@
     },
     "data/global-fertility-2021.jpg": {
       "optimized": true,
-      "hash": "b604d24884fb93ca02609245dd1413ddcd6612bf",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:53.048Z",
-      "width": 792,
-      "height": 792
+      "hash": "be52a04a95420268a185993bf5ae6228fd9c8cc3",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:47.506Z",
+      "width": 800,
+      "height": 800
     },
     "data/global-impact-of-terrorism.jpg": {
       "optimized": true,
@@ -954,11 +954,11 @@
     },
     "data/global-poverty-rate.jpg": {
       "optimized": true,
-      "hash": "fcc141a856ab24143afd85ea61a0361ad39ad4dd",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:53.174Z",
-      "width": 600,
-      "height": 544
+      "hash": "13fc80a091062d1efdbf28f0d92b09e2eae384d2",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:47.662Z",
+      "width": 800,
+      "height": 725
     },
     "data/global-warming-is-part-of-natural-cycle.jpg": {
       "optimized": true,
@@ -970,11 +970,11 @@
     },
     "data/growth-in-administrative-staff-principal.jpg": {
       "optimized": true,
-      "hash": "d54d2cb957ec590de8fb9fbe410cd467c8fbe419",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:53.291Z",
-      "width": 722,
-      "height": 649
+      "hash": "7076eed63fbc5fc185d5a843f4267db6248a1bbe",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:47.821Z",
+      "width": 800,
+      "height": 719
     },
     "data/growth-of-physicians-and-administrators.jpg": {
       "optimized": true,
@@ -986,11 +986,11 @@
     },
     "data/growth-of-the-upper-middle-class.jpg": {
       "optimized": true,
-      "hash": "2b6cdc6ba724d40cc99a8c167b20394d676d201d",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:53.399Z",
-      "width": 686,
-      "height": 510
+      "hash": "eaf3f28a9eee248d5452ccd50de7bdaa6afb364f",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:47.972Z",
+      "width": 800,
+      "height": 595
     },
     "data/homicide-rate-per-100000-people-in-us-st.jpg": {
       "optimized": true,
@@ -1002,19 +1002,19 @@
     },
     "data/household-appliances-1973-2009-hours-of.jpg": {
       "optimized": true,
-      "hash": "dad9f4e656bca417f9852794a0efeef6d0f18080",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:53.534Z",
-      "width": 706,
-      "height": 343
+      "hash": "165d2e78e52b939f922d9f538a8f1120db9f233e",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:48.119Z",
+      "width": 800,
+      "height": 389
     },
     "data/how-socialists-think-socialism-works.jpg": {
       "optimized": true,
-      "hash": "577f96930570557d1e687fc0b37f59fa4e93ba22",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:53.592Z",
-      "width": 720,
-      "height": 715
+      "hash": "de49865cacfb52c2e6b1a95d2a43bc6a2e64c6e9",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:48.243Z",
+      "width": 800,
+      "height": 794
     },
     "data/income-inequality-and-equality.jpg": {
       "optimized": true,
@@ -1042,11 +1042,11 @@
     },
     "data/inflation-adjusted-cost-of-a-k-12-public.jpg": {
       "optimized": true,
-      "hash": "33fa7c70e4d5a5cd52098d3b1c2de64c4685b89b",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:53.829Z",
-      "width": 500,
-      "height": 368
+      "hash": "bddfdffbf24f212958d8e765294897c959df28a9",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:48.479Z",
+      "width": 800,
+      "height": 589
     },
     "data/interracial-violent-crime-incidents-2018.jpg": {
       "optimized": true,
@@ -1074,11 +1074,11 @@
     },
     "data/keynesian-economics.jpg": {
       "optimized": true,
-      "hash": "e6abf9568e5ea01f61bb693545ce6fe81a1a10d3",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:54.163Z",
-      "width": 510,
-      "height": 622
+      "hash": "997614dc293f1eff9fa466c488eb34eccc8ef8e4",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:48.766Z",
+      "width": 656,
+      "height": 800
     },
     "data/median-earnings-for-full-time-year-round.jpg": {
       "optimized": true,
@@ -1098,11 +1098,11 @@
     },
     "data/mens-work-percentages.jpg": {
       "optimized": true,
-      "hash": "6074ad7227325dc926516d513b838c1b28a60136",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:54.355Z",
-      "width": 680,
-      "height": 680
+      "hash": "e998cee2559a779e6064525bcdfe3a14d18a0805",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:48.981Z",
+      "width": 800,
+      "height": 800
     },
     "data/most-common-self-identified-ancestry-of.jpg": {
       "optimized": true,
@@ -1146,11 +1146,11 @@
     },
     "data/no-wage-gap-between-men-and-women.jpg": {
       "optimized": true,
-      "hash": "ce70d9e876bc2413b238331f2cc151d3c3f20d54",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:54.799Z",
-      "width": 500,
-      "height": 647
+      "hash": "5bc46649f2c58cbd32f822bc0467bba25852e1bf",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:49.337Z",
+      "width": 618,
+      "height": 800
     },
     "data/north-america-agrilculture.jpg": {
       "optimized": true,
@@ -1162,11 +1162,11 @@
     },
     "data/number-of-regulatory-restrictions.jpg": {
       "optimized": true,
-      "hash": "5bbfc23f8e374c913848c3e29fb4d9c2114db524",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:54.954Z",
-      "width": 692,
-      "height": 703
+      "hash": "99ce67209baf51579f36dc33252ea5811eb1ba6f",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:49.526Z",
+      "width": 787,
+      "height": 800
     },
     "data/obama-economy-6-charts.jpg": {
       "optimized": true,
@@ -1194,11 +1194,11 @@
     },
     "data/per-capita-average-individual-consumptio.jpg": {
       "optimized": true,
-      "hash": "0319e9e0fd69cdc6b61933b67e5065677e844798",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:55.203Z",
-      "width": 745,
-      "height": 720
+      "hash": "c694347f650afa03050605525eecf333bc543a22",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:49.770Z",
+      "width": 800,
+      "height": 773
     },
     "data/percent-of-american-adults-who-reached-v.jpg": {
       "optimized": true,
@@ -1210,11 +1210,11 @@
     },
     "data/percent-of-spending-including-discretion.jpg": {
       "optimized": true,
-      "hash": "622ca25a3c5a8c425fbcf691484d9d5b5fd511dd",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:55.319Z",
-      "width": 733,
-      "height": 661
+      "hash": "0b69a5e1e582672b906b9fcb089529709db6f292",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:49.932Z",
+      "width": 800,
+      "height": 721
     },
     "data/percent-shares-of-us-households-by-total.jpg": {
       "optimized": true,
@@ -1258,11 +1258,11 @@
     },
     "data/reagan-obama-recoveries.jpg": {
       "optimized": true,
-      "hash": "b3b9d4311d5baef0cde59dd3aebcbda686064e79",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:55.717Z",
-      "width": 649,
-      "height": 486
+      "hash": "8a3f045ea688f890f53dae4b0f0285da095d31eb",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:50.279Z",
+      "width": 800,
+      "height": 599
     },
     "data/share-of-federal-income-taxes-paid-top-1.jpg": {
       "optimized": true,
@@ -1306,19 +1306,19 @@
     },
     "data/the-middle-east-prior-to-arab-colonizati.jpg": {
       "optimized": true,
-      "hash": "9c63b2a220b3f5ad1eb525c90bd90f9c10d5f6e5",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:56.101Z",
-      "width": 690,
-      "height": 749
+      "hash": "196d330bfa892a0b820aae49b3ee194ad258a12b",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:50.639Z",
+      "width": 737,
+      "height": 800
     },
     "data/the-tax-burden-has-grown-more-progressiv.jpg": {
       "optimized": true,
-      "hash": "4d931b117f7b7306f19bc86dce2f27200aea06e3",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:56.154Z",
-      "width": 619,
-      "height": 620
+      "hash": "d8b1b67a9963cb447431f08c6fb3a663f4a5709c",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:50.755Z",
+      "width": 799,
+      "height": 800
     },
     "data/the-two-totalitarian-systems-which-we-in.jpg": {
       "optimized": true,
@@ -1338,11 +1338,11 @@
     },
     "data/the-waning-of-war.jpg": {
       "optimized": true,
-      "hash": "088b0f2bc6c35210bdee09b32be145495b885307",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:56.353Z",
-      "width": 600,
-      "height": 323
+      "hash": "1cc7f68af5deb9ad9096bd213db138147abac2d0",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:50.950Z",
+      "width": 800,
+      "height": 431
     },
     "data/the-world-as-100-people-over-the-last-tw.jpg": {
       "optimized": true,
@@ -1354,11 +1354,11 @@
     },
     "data/the-worlds-population-concentrated.jpg": {
       "optimized": true,
-      "hash": "acaead9b6080dd3c9d9269790e7a85c0f0268e93",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:56.501Z",
-      "width": 528,
-      "height": 625
+      "hash": "2f0f3406d008eddd4a772236b24a075e05aabcee",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:51.107Z",
+      "width": 676,
+      "height": 800
     },
     "data/thomas-sowell-discrimination-and-dispari.jpg": {
       "optimized": true,
@@ -1418,11 +1418,11 @@
     },
     "data/total-means-tested-welfare-spending-and.jpg": {
       "optimized": true,
-      "hash": "acc4c47f1938971c47263b98788393f1b4e19977",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:57.074Z",
-      "width": 600,
-      "height": 487
+      "hash": "4cd191fe8988e44bfe08458bab2b4bde7fc81c76",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:51.528Z",
+      "width": 800,
+      "height": 649
     },
     "data/track-field-and-cross-country-records.jpg": {
       "optimized": true,
@@ -1434,11 +1434,11 @@
     },
     "data/trends-in-inflation-adjusted-cost-of-a-c.jpg": {
       "optimized": true,
-      "hash": "371b0d42e11654cc39c699eb87c118dfa2ee7975",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:57.196Z",
-      "width": 620,
-      "height": 476
+      "hash": "06382e6a19b762defbd2cd2f2c56d5427af56350",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:51.688Z",
+      "width": 800,
+      "height": 614
     },
     "data/un-total-fertility-rate-by-country-2023.jpg": {
       "optimized": true,
@@ -1474,11 +1474,11 @@
     },
     "data/us-deaths-in-wars.jpg": {
       "optimized": true,
-      "hash": "dfd36656bb44a61bdf66acfd6490566d59fe2920",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:57.536Z",
-      "width": 600,
-      "height": 195
+      "hash": "c37af7de330724495f909ed50ce90f14a64e96ff",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:51.948Z",
+      "width": 800,
+      "height": 260
     },
     "data/us-households-according-to-income-2013.jpg": {
       "optimized": true,
@@ -1498,11 +1498,11 @@
     },
     "data/us-political-spectrum.jpg": {
       "optimized": true,
-      "hash": "269bff488d7ad45d034f375351e237d60d75697c",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:57.711Z",
-      "width": 620,
-      "height": 707
+      "hash": "ff899045ef657fcf252d84b69f0fc16566326a38",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:52.143Z",
+      "width": 702,
+      "height": 800
     },
     "data/us-poverty-rate-20-trillion-spent.jpg": {
       "optimized": true,
@@ -1634,11 +1634,11 @@
     },
     "data/wrong-enemy-correct-enemy.jpg": {
       "optimized": true,
-      "hash": "d435e5e5b506afd3ce75cfde07d322c8a52fa593",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:50:58.854Z",
-      "width": 751,
-      "height": 486
+      "hash": "2add011e8d3146856df31b999382dd91c4bf1fd7",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:52.932Z",
+      "width": 800,
+      "height": 518
     },
     "data/yearly-mentions-of-prejudice-in-popular.jpg": {
       "optimized": true,
@@ -2658,11 +2658,11 @@
     },
     "politics/the-power-of-mail-in-voting-and-ballot.jpg": {
       "optimized": true,
-      "hash": "347f67006dbaadc9a9f6ba1f8ff13c3a5d2e3426",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:08.408Z",
-      "width": 525,
-      "height": 600
+      "hash": "0442c455e915aba471f465b34ecdc04d6253da9e",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:59.218Z",
+      "width": 700,
+      "height": 800
     },
     "politics/the-problem-with-socialism-is.jpg": {
       "optimized": true,
@@ -2938,595 +2938,595 @@
     },
     "quotes/a-government-which-lays-t.jpg": {
       "optimized": true,
-      "hash": "06ad2293729d9c9a129f114c0968092ee1ada91e",
+      "hash": "06d8db1b7f3c4b699c9daa4f8f1499bd2655b0fe",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:11.054Z",
+      "updated": "2025-08-11T21:11:32.767Z",
       "width": 916,
       "height": 960
     },
     "quotes/a-man-who-knows-the-orig.jpg": {
       "optimized": true,
-      "hash": "84cb8d9c92cd0f3db17d5fe36a869ce0f1e2fc49",
+      "hash": "724c29dc3e465a8703ceb4d2a64c39951d273920",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:11.116Z",
+      "updated": "2025-08-11T21:11:32.827Z",
       "width": 1080,
       "height": 542
     },
     "quotes/at-the-core-of-liberalism.jpg": {
       "optimized": true,
-      "hash": "905d72a7c6a80dadefcc19fbb6c7fdeff332802b",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:11.166Z",
+      "hash": "8195a6b45e3e810f8935afb4f0ac5260fdd53efe",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:32.925Z",
       "width": 480,
       "height": 348
     },
     "quotes/beware-the-irrational-ho.jpg": {
       "optimized": true,
-      "hash": "e159ef8f2cb65d205e75242d126e0179588ae3e3",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:11.314Z",
+      "hash": "500824c231ec5e789920fff225ab8d2786e382f9",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:33.026Z",
       "width": 513,
       "height": 713
     },
     "quotes/britain-gave-the-world.jpg": {
       "optimized": true,
-      "hash": "342d070c46eb4149fc934fbfd626c7015ea020bb",
+      "hash": "b72ba004a359cb835a5297de8a0871d0836a3b63",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:11.386Z",
+      "updated": "2025-08-11T21:11:33.072Z",
       "width": 902,
       "height": 450
     },
     "quotes/can-a-people-tax-themselv.jpg": {
       "optimized": true,
-      "hash": "da5ab2f839ac0bc8f5b50b39b47aa7fcec0ebde8",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:11.446Z",
+      "hash": "9cf3ccaba6feaeb7442c99f136042318a4c3afe0",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:33.164Z",
       "width": 600,
       "height": 463
     },
     "quotes/do-not-be-so-open-minded.jpg": {
       "optimized": true,
-      "hash": "2ad74e1a8d3c6a145a271e0911d3183489b7cc54",
+      "hash": "c1e87cce891071703662272f42aa192b74a89e4e",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:11.513Z",
+      "updated": "2025-08-11T21:11:33.222Z",
       "width": 1080,
       "height": 678
     },
     "quotes/elon-musk-did-not-make-x.jpg": {
       "optimized": true,
-      "hash": "33da536fb72d8fc841e38fb7b5d51496cb1b3f67",
+      "hash": "cb3113e85936ac58dac1cb2151098ab80580e985",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:11.617Z",
+      "updated": "2025-08-11T21:11:33.273Z",
       "width": 1080,
       "height": 611
     },
     "quotes/every-generation-civiliz.jpg": {
       "optimized": true,
-      "hash": "d1b662dcd7d22ecb3eb7c6881d65a047e23106c1",
+      "hash": "93ea77499ccaaf0a9b68acb8209d7c794c659e07",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:11.712Z",
+      "updated": "2025-08-11T21:11:33.325Z",
       "width": 1080,
       "height": 572
     },
     "quotes/government-is-not-the-sol.jpg": {
       "optimized": true,
-      "hash": "626fe0197d5cd745604524b4ae63e234b893a020",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:11.797Z",
+      "hash": "712ac3c1097f4174e64d708f78e670917209a82a",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:33.427Z",
       "width": 500,
       "height": 522
     },
     "quotes/governments-first-duty-i.jpg": {
       "optimized": true,
-      "hash": "f3c53ce16a94ec34b6312cca89c60e20faef7d6d",
+      "hash": "7a338ae2413d87512b1ca2f3264743c1d1b2ddf4",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:11.916Z",
+      "updated": "2025-08-11T21:11:33.482Z",
       "width": 925,
       "height": 929
     },
     "quotes/governments-view-of-the.jpg": {
       "optimized": true,
-      "hash": "4c1f3eeee36aafc45c54a42a83a254785eaff206",
+      "hash": "ed22c5d92439cb44f77d00e09d51b10275d374f9",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.033Z",
+      "updated": "2025-08-11T21:11:33.555Z",
       "width": 1080,
       "height": 1080
     },
     "quotes/have-you-ever-noticed-how.jpg": {
       "optimized": true,
-      "hash": "216366afa4c48f079b8f3ab8e8d964abae953ac4",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.092Z",
+      "hash": "d7b07f9587aa7a39d825740c57ace78e46538c35",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:33.657Z",
       "width": 720,
       "height": 538
     },
     "quotes/hayek-to-act-on-the-belie.jpg": {
       "optimized": true,
-      "hash": "c30c48ff0dac5ba90398dbd1ce6ad62411d64387",
+      "hash": "8411517b1221a4304364531ea286ae830551e77d",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.162Z",
+      "updated": "2025-08-11T21:11:33.701Z",
       "width": 850,
       "height": 400
     },
     "quotes/homicide-is-the-leading-c.jpg": {
       "optimized": true,
-      "hash": "e4ad1d57366843d9f825df4c9c0b3ecc1b399987",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.226Z",
+      "hash": "1e96010b5a1d5e5db867fa9c3fc125b1a2bf9cf7",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:33.800Z",
       "width": 568,
       "height": 454
     },
     "quotes/human-beings-are-born-wit.jpg": {
       "optimized": true,
-      "hash": "e5f8e5c126843605f85b48c9405048dd2a78e96f",
+      "hash": "f84182a9d9418446e2dea0879ded059aac67c8e5",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.312Z",
+      "updated": "2025-08-11T21:11:33.864Z",
       "width": 1080,
       "height": 887
     },
     "quotes/humiliating-to-human-prid.jpg": {
       "optimized": true,
-      "hash": "3db78ae49279b4573db0420e39dd219803235e87",
+      "hash": "5793d8e9019d710e26070a5ac70755c64851457d",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.364Z",
+      "updated": "2025-08-11T21:11:33.907Z",
       "width": 850,
       "height": 400
     },
     "quotes/i-always-think-its-a-sig.jpg": {
       "optimized": true,
-      "hash": "f550226e77704c100174c9bd94f1c91d44568ab5",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.417Z",
+      "hash": "8f355dbd904e75beb8b81e29461e3edcfc5a479e",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:34.011Z",
       "width": 688,
       "height": 517
     },
     "quotes/in-100-years-we-have-gone.jpg": {
       "optimized": true,
-      "hash": "ef3b72af29d1c2648bbc827bf94e684064b27c34",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.479Z",
+      "hash": "ad4bd74e70f368f9f7eb6165fb18395749d9a77a",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:34.106Z",
       "width": 525,
       "height": 368
     },
     "quotes/intellectuals-are-natural.jpg": {
       "optimized": true,
-      "hash": "e411241f6689aae9479270279104995285cdc3a9",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.539Z",
+      "hash": "24f86206cdaf85423a59ff9bf0e97e66b529e4da",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:34.207Z",
       "width": 768,
       "height": 515
     },
     "quotes/islams-borders-are-blood.jpg": {
       "optimized": true,
-      "hash": "3f8447698340bece3bcfd593ea109feaf003fdea",
+      "hash": "19164e22f8610625b5fb65bfcbf101a0427c81e9",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.594Z",
+      "updated": "2025-08-11T21:11:34.252Z",
       "width": 850,
       "height": 400
     },
     "quotes/it-constantly-amazes-me-t.jpg": {
       "optimized": true,
-      "hash": "7bf09a57e0eb848ced4cda0aeafcf9295a71db40",
+      "hash": "825d5408ff266472fb2628381f80726be83abd9c",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.667Z",
+      "updated": "2025-08-11T21:11:34.318Z",
       "width": 960,
       "height": 960
     },
     "quotes/it-didnt-start-with-gas.jpg": {
       "optimized": true,
-      "hash": "f95c69704e974db564052ad8734f0e4d61c4f081",
+      "hash": "dc52b1b51e121f6f62a2144bd8966ddf767649f3",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.747Z",
+      "updated": "2025-08-11T21:11:34.383Z",
       "width": 851,
       "height": 1029
     },
     "quotes/it-is-not-the-truth-of-ma.jpg": {
       "optimized": true,
-      "hash": "201113f40d77f9699dcfbfb83bb7635d1e7ef12a",
+      "hash": "929fc4c06ef696b3fb4c449c5f47562a39ce9104",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.806Z",
+      "updated": "2025-08-11T21:11:34.434Z",
       "width": 618,
       "height": 960
     },
     "quotes/it-is-simply-no-longer-po.jpg": {
       "optimized": true,
-      "hash": "400ebba96b2be90c398bc85108d1fb5689664cf4",
+      "hash": "aca1203d40ac0eca654184aad284271faa7b43df",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.863Z",
+      "updated": "2025-08-11T21:11:34.482Z",
       "width": 850,
       "height": 400
     },
     "quotes/it-just-continues-to-be-o.jpg": {
       "optimized": true,
-      "hash": "5ed346d94b1b9ad91ad535a295fd8191a146e5bc",
+      "hash": "9a643fe9090050a45536e046f7bd59ad36c7caec",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.925Z",
+      "updated": "2025-08-11T21:11:34.531Z",
       "width": 828,
       "height": 756
     },
     "quotes/liberals-desperately-need.jpg": {
       "optimized": true,
-      "hash": "08b8f2054450fd148ee51957630242440dc89a6f",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:12.979Z",
+      "hash": "58699ace1bea723c3321c4bbf86ea6bada03e7b0",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:34.618Z",
       "width": 572,
       "height": 365
     },
     "quotes/live-a-good-life-if-ther.jpg": {
       "optimized": true,
-      "hash": "e0ee1c427feaa5e76bc51c2edbf2e1cb1ce8e66a",
+      "hash": "f68d1edc92a8ccb84adbebd973b3e16002609e33",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.046Z",
+      "updated": "2025-08-11T21:11:34.675Z",
       "width": 1080,
       "height": 710
     },
     "quotes/marxism-is-the-most-destr.jpg": {
       "optimized": true,
-      "hash": "685686db0251df806a8d48bd0809525eca91f03f",
+      "hash": "bd86772891f8b4683b7f15fa025af24c8d59dafd",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.112Z",
+      "updated": "2025-08-11T21:11:34.734Z",
       "width": 1080,
       "height": 1080
     },
     "quotes/not-to-have-a-correct-pol.jpg": {
       "optimized": true,
-      "hash": "32ac89aaf41e0e49e84735deb026c12ff9a84bfe",
+      "hash": "e05f7704e5ae092bf6c3023c68c4585a35c41323",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.171Z",
+      "updated": "2025-08-11T21:11:34.785Z",
       "width": 1080,
       "height": 567
     },
     "quotes/now-i-get-it-when-they-s.jpg": {
       "optimized": true,
-      "hash": "d4fb38654e38c6174397898c09ebde5bf048983e",
+      "hash": "813f52ca1a18d3f3f97cc0341dc406aedd2d67c9",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.257Z",
+      "updated": "2025-08-11T21:11:34.850Z",
       "width": 1070,
       "height": 1070
     },
     "quotes/of-all-tyrannies-a-tyran.jpg": {
       "optimized": true,
-      "hash": "031731688b5bc437cbdda85350e011c5a72f0723",
+      "hash": "e52cc94730f3da3e1032940b2ecfbc0e21320589",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.314Z",
+      "updated": "2025-08-11T21:11:34.895Z",
       "width": 833,
       "height": 357
     },
     "quotes/people-who-wonder-whether.jpg": {
       "optimized": true,
-      "hash": "45e0c3c9428763c69bdc52d64b8177f94724cb5b",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.369Z",
+      "hash": "96ab580cec75cd2db99baf91e31f01afd868b2d4",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:35.003Z",
       "width": 564,
       "height": 564
     },
     "quotes/political-correctness-is.jpg": {
       "optimized": true,
-      "hash": "f4ca5f6adbfbb3783209d20c735156bdace84f07",
+      "hash": "1e440ccd5773a2ae0f68a2e084d88f4900be184d",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.447Z",
+      "updated": "2025-08-11T21:11:35.068Z",
       "width": 937,
       "height": 1080
     },
     "quotes/prior-to-capitalism-the.jpg": {
       "optimized": true,
-      "hash": "eb931e192df0f38ebb216645bc0fac1a4df03370",
+      "hash": "844e71889c8ac3b5eb2d2cc3415a3b2e9e1aa9d8",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.503Z",
+      "updated": "2025-08-11T21:11:35.112Z",
       "width": 850,
       "height": 400
     },
     "quotes/real-socialism-has-neve.jpg": {
       "optimized": true,
-      "hash": "4dc4d2f0af29ff83caeb8e9fd3dce04e3281350a",
+      "hash": "902935fff19ae82c8a96a8aff8c8f4340ab1664a",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.565Z",
+      "updated": "2025-08-11T21:11:35.162Z",
       "width": 695,
       "height": 960
     },
     "quotes/religion-is-regarded-by-t.jpg": {
       "optimized": true,
-      "hash": "a1c733df67eef097b08f13de972acaced248b6f6",
+      "hash": "1c8f0b762eda2c404dd004612be63df85a7d25a3",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.642Z",
+      "updated": "2025-08-11T21:11:35.222Z",
       "width": 1080,
       "height": 1080
     },
     "quotes/seneca-quote-religion.jpg": {
       "optimized": true,
-      "hash": "a9d17d804345e287d3bd105808ee29a94b2fd50a",
+      "hash": "905fb8ad8881f8ba9599d2eeadc080279d4267f7",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.710Z",
+      "updated": "2025-08-11T21:11:35.280Z",
       "width": 1080,
       "height": 1080
     },
     "quotes/socialism-irons-out-the-b.jpg": {
       "optimized": true,
-      "hash": "838fd012b840d6412510d0aa09bc63db726d4c28",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.758Z",
+      "hash": "8a092e9cc054fe61bf49fe1ae2614beb06fc0450",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:35.368Z",
       "width": 640,
       "height": 344
     },
     "quotes/socialism-irons-out-the-boom-bust-cycle.jpg": {
       "optimized": true,
-      "hash": "07440d00010f2e9c9de1739c55fbe011dd4b82dc",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.808Z",
+      "hash": "a986d19496fff82ca56cb78c01b101b2eed80002",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:35.460Z",
       "width": 640,
       "height": 344
     },
     "quotes/socialism-will-triumph-fi.jpg": {
       "optimized": true,
-      "hash": "3ebbdf1a91bce69584ce6cdd67fc3c94d5f76b2b",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.864Z",
+      "hash": "c8a1b0f405f44003f0dbdc62c99e9c1be64e8085",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:35.570Z",
       "width": 515,
       "height": 506
     },
     "quotes/some-ideas-are-so-stupid.jpg": {
       "optimized": true,
-      "hash": "56c0dc100ea4198fd40a2046b42ec52be4ab71b3",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.913Z",
+      "hash": "c87c1b37053ba3b91df5fbb3d1a3134d3e5f9aba",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:35.669Z",
       "width": 460,
       "height": 584
     },
     "quotes/step-1-prepare-the-enviro.jpg": {
       "optimized": true,
-      "hash": "d06cfd6967dbbde88785826dbce615d6edbbdc42",
+      "hash": "eebb7a4f7e1e10d97cba7944ca7fa55141144070",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:13.974Z",
+      "updated": "2025-08-11T21:11:35.722Z",
       "width": 828,
       "height": 953
     },
     "quotes/supreme-court-on-free-speech.jpg": {
       "optimized": true,
-      "hash": "487f2d82803614247a746de14c7b0812669f1cfc",
+      "hash": "04c62b438c05251e4534628efdbea74ec52c5101",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.068Z",
+      "updated": "2025-08-11T21:11:35.790Z",
       "width": 1080,
       "height": 1080
     },
     "quotes/that-men-do-not-learn-ver.jpg": {
       "optimized": true,
-      "hash": "385bd11be5e447ce9752aef36c73e61aef0d9f21",
+      "hash": "8aa1ee180afabb5980c5f4834db5caf4fdde1bed",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.122Z",
+      "updated": "2025-08-11T21:11:35.835Z",
       "width": 803,
       "height": 450
     },
     "quotes/the-advantage-of-a-free-m.jpg": {
       "optimized": true,
-      "hash": "ff1ebbd326e09eb9167f92bbb38d221d04abbec0",
+      "hash": "e3ab9b9eb1d051006b6192680a51a3a8e7e31b25",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.194Z",
+      "updated": "2025-08-11T21:11:35.893Z",
       "width": 960,
       "height": 960
     },
     "quotes/the-appeal-of-political-c.jpg": {
       "optimized": true,
-      "hash": "fff224bdb52c631d6ecadb5dd0fd39fe6b4a27ce",
+      "hash": "49d4ebad87e5eb971bf686b65337ffbbc611060a",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.247Z",
+      "updated": "2025-08-11T21:11:35.936Z",
       "width": 850,
       "height": 400
     },
     "quotes/the-basic-tool-for-the-ma.jpg": {
       "optimized": true,
-      "hash": "ef9639b09142cb6fd76f98b90f697ca426482e65",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.303Z",
+      "hash": "a36fe24bce624d58c8577bfe1bd0b9a8d862c347",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:36.028Z",
       "width": 539,
       "height": 694
     },
     "quotes/the-black-family-survived.jpg": {
       "optimized": true,
-      "hash": "a30df6037994c670f6eb3c65329934a5937446ff",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.353Z",
+      "hash": "8f128ac13df5ecd615d3b53a438a99bc993802a7",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:36.117Z",
       "width": 635,
       "height": 376
     },
     "quotes/the-cosmos-is-full-beyon.jpg": {
       "optimized": true,
-      "hash": "c56991189faee8660ea7c0bcf25cba5ddae73c34",
+      "hash": "5c7f72d64184d3322c1c1befb3be3e9a87ef950f",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.427Z",
+      "updated": "2025-08-11T21:11:36.182Z",
       "width": 1080,
       "height": 1017
     },
     "quotes/the-curious-task-of-econoa.jpg": {
       "optimized": true,
-      "hash": "087895cbebe554e33ba14b180f49c63f9cb9a479",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.510Z",
+      "hash": "5d66a825050066e5217a1e7e61ca1b1b677b2457",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:36.276Z",
       "width": 640,
       "height": 422
     },
     "quotes/the-curious-task-of-econob.jpg": {
       "optimized": true,
-      "hash": "821b7458ba3035cd9bb1a60c7c2b0b45125b261d",
+      "hash": "e2b64d95691be97ad924d0c51176006972153c8c",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.589Z",
+      "updated": "2025-08-11T21:11:36.339Z",
       "width": 1080,
       "height": 1080
     },
     "quotes/the-democrat-party-has-de.jpg": {
       "optimized": true,
-      "hash": "8dacf8ba355e7dd57c9a39b1d5b08766345bdfd6",
+      "hash": "ff19db2b94555768c023444192e758e9af38ee79",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.659Z",
+      "updated": "2025-08-11T21:11:36.394Z",
       "width": 740,
       "height": 960
     },
     "quotes/the-fatal-conceit-the-er.jpg": {
       "optimized": true,
-      "hash": "dca4bc58e6a666d36c56c58f6b679977ef92322e",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.709Z",
+      "hash": "1942699090490072e6927cfabdf1a61295429bd9",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:36.486Z",
       "width": 402,
       "height": 402
     },
     "quotes/the-greatest-enemy-of-the.jpg": {
       "optimized": true,
-      "hash": "642bcbc067631131c52a151422a445ced4a4ebc4",
+      "hash": "4f567a3588905ac1134b77e56982d7dc32ada06c",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.781Z",
+      "updated": "2025-08-11T21:11:36.541Z",
       "width": 883,
       "height": 883
     },
     "quotes/the-limits-of-tyrants-are.jpg": {
       "optimized": true,
-      "hash": "499efa94e096df8c4fafcb4dd24e8b174c1c8c15",
+      "hash": "a0d0986d9cee63627da1ceb55bc61ef3b41b1e3a",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.859Z",
+      "updated": "2025-08-11T21:11:36.607Z",
       "width": 1080,
       "height": 1350
     },
     "quotes/the-middle-east-bernard-l-1.jpg": {
       "optimized": true,
-      "hash": "a0b65cf26e033d5c52465a660dfb31e63e2817a9",
+      "hash": "52e9d794d9ef60fe0b8ac890a95021149b4185fe",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.928Z",
+      "updated": "2025-08-11T21:11:36.662Z",
       "width": 644,
       "height": 978
     },
     "quotes/the-middle-east-bernard-l.jpg": {
       "optimized": true,
-      "hash": "629d765c63711a38915a4c902382fe8818497daf",
+      "hash": "c0d9aeac949d618f79836085d1c48fe95fc5dd0e",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:14.996Z",
+      "updated": "2025-08-11T21:11:36.718Z",
       "width": 644,
       "height": 978
     },
     "quotes/the-people-will-believe-w.jpg": {
       "optimized": true,
-      "hash": "518b4233ae955dd891ffe88d4b466cf3c306ca35",
+      "hash": "fb9158b10db4fdec7d930f71f05eafee351fbfb9",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.059Z",
+      "updated": "2025-08-11T21:11:36.769Z",
       "width": 1080,
       "height": 558
     },
     "quotes/the-purpose-of-propaganda.jpg": {
       "optimized": true,
-      "hash": "10a0ccc8e23d1e5ffe295fb6f427a17a75ec5f49",
+      "hash": "cf1863e1c02cdd4ddaf0c2f64d7c84cea7aba277",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.123Z",
+      "updated": "2025-08-11T21:11:36.824Z",
       "width": 956,
       "height": 1080
     },
     "quotes/the-reason-you-dont-know.jpg": {
       "optimized": true,
-      "hash": "e8ce6ddf717fcd76caeaf1dbd9b9f9758a8b10a5",
+      "hash": "bd5b425db11a14aaa36d43d2ce08178884690b3b",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.186Z",
+      "updated": "2025-08-11T21:11:36.876Z",
       "width": 852,
       "height": 960
     },
     "quotes/the-trouble-with-our-libe.jpg": {
       "optimized": true,
-      "hash": "7b7124c5715e2215e1d1ccd307e317be315d6175",
+      "hash": "d3f538dca4e91cabc22fafedd58895102a2502b0",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.273Z",
+      "updated": "2025-08-11T21:11:36.945Z",
       "width": 1080,
       "height": 1080
     },
     "quotes/there-is-all-the-differen.jpg": {
       "optimized": true,
-      "hash": "16368831d6cd9c8ef783f0d637ae4637c323eebe",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.330Z",
+      "hash": "e4a6f872ddca230999e6cfb0fc38e8ee5ce34719",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:37.034Z",
       "width": 600,
       "height": 395
     },
     "quotes/there-is-no-swifter-route.jpg": {
       "optimized": true,
-      "hash": "5e52ede6c5790f91b3bb56cd9a8cfb6dda9921d3",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.382Z",
+      "hash": "e9ebc38c003eaba50b110c3119e11435990280c0",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:37.123Z",
       "width": 700,
       "height": 394
     },
     "quotes/theres-a-word-for-people.jpg": {
       "optimized": true,
-      "hash": "ecb7c4953c074116e9ab75342af073b183c43d52",
+      "hash": "5571c0f60e4998870075f455c4ef12b00dea6944",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.455Z",
+      "updated": "2025-08-11T21:11:37.182Z",
       "width": 960,
       "height": 920
     },
     "quotes/theres-simply-no-polite.jpg": {
       "optimized": true,
-      "hash": "3b540dc888e42031ba96a4cae5a5fc172a1d16fd",
+      "hash": "c80eb2e255283674425796c1fda6c5499905db75",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.517Z",
+      "updated": "2025-08-11T21:11:37.235Z",
       "width": 1080,
       "height": 678
     },
     "quotes/we-didnt-love-freedom-en.jpg": {
       "optimized": true,
-      "hash": "d665e8c8299b11debe0767a705dab61229678e04",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.563Z",
+      "hash": "d97067ee5bec50d92a5b38635aaaac1a8e3f0a6f",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:37.319Z",
       "width": 680,
       "height": 383
     },
     "quotes/we-in-america-have-learne.jpg": {
       "optimized": true,
-      "hash": "2fbef393256022fc45828bdc5d15570403322c56",
+      "hash": "8242e77c2064607e0293a055b9c39e7da2e948f1",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.632Z",
+      "updated": "2025-08-11T21:11:37.372Z",
       "width": 878,
       "height": 960
     },
     "quotes/we-know-they-are-lying-t.jpg": {
       "optimized": true,
-      "hash": "2bd733e3dcd3d0aa3e1cd8940f68a03928e27085",
+      "hash": "c68917247148bd044f4ef16b903bbbe721dfa3c4",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.683Z",
+      "updated": "2025-08-11T21:11:37.416Z",
       "width": 828,
       "height": 472
     },
     "quotes/we-must-reject-the-idea-t.jpg": {
       "optimized": true,
-      "hash": "71639260fe3c561c12193f1c698309668b718018",
+      "hash": "7718fa1731ea54b61e234d6b9f046867e69ee781",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.756Z",
+      "updated": "2025-08-11T21:11:37.473Z",
       "width": 834,
       "height": 1080
     },
     "quotes/when-young-people-want-to.jpg": {
       "optimized": true,
-      "hash": "acf11e2e00149a6791e073e3e6eb34b0831aef28",
+      "hash": "dc8da2bdda4d057cda1bc65409abbebaf7dfd848",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.820Z",
+      "updated": "2025-08-11T21:11:37.525Z",
       "width": 960,
       "height": 640
     },
     "quotes/white-liberals-are-the-mo.jpg": {
       "optimized": true,
-      "hash": "0187992737926e8caf72611aabbc09da2e954b5d",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.872Z",
+      "hash": "981f050c12ccf947004231246731ad4ea64b97ca",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:11:37.612Z",
       "width": 576,
       "height": 416
     },
     "quotes/young-people-are-told-at.jpg": {
       "optimized": true,
-      "hash": "0493d8d693616912567ada0032a66be308bc2325",
+      "hash": "79eb9ac8d8eada0e435d710d7ef7cca7768bdd06",
       "action": "optimize-only",
-      "updated": "2025-08-08T05:51:15.935Z",
+      "updated": "2025-08-11T21:11:37.665Z",
       "width": 843,
       "height": 843
     },
     "the-science/ten-years-left-to-stop-a-climate-disaste.jpg": {
       "optimized": true,
-      "hash": "b1e462e8e337159d0a1b5059940d1d0fc792ece1",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:16.045Z",
-      "width": 680,
-      "height": 425
+      "hash": "616d1596e5031d6ff3757265f6589be561843034",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:03.664Z",
+      "width": 800,
+      "height": 500
     },
     "thomas-sowell/activism-is-a-way-for-useless-people-to.jpg": {
       "optimized": true,
@@ -3594,19 +3594,19 @@
     },
     "thomas-sowell/i-have-never-understood-why-it-is-agreed.jpg": {
       "optimized": true,
-      "hash": "bf7e4a2587649c62886306ed616dac59f7c56852",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:16.806Z",
-      "width": 604,
-      "height": 569
+      "hash": "105a299903fdd1c9c24b847574622eeeef233d27",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:04.328Z",
+      "width": 800,
+      "height": 754
     },
     "thomas-sowell/if-you-are-not-prepared-to-use-force-to.jpg": {
       "optimized": true,
-      "hash": "3f45bde9d827ee14b7647907555fea7503d555dd",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:16.864Z",
-      "width": 480,
-      "height": 402
+      "hash": "2a4a508e7a4a817c0e4a7ac4d5862f0cebd66ecf",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:04.445Z",
+      "width": 800,
+      "height": 670
     },
     "thomas-sowell/if-you-cannot-achieve-a-quality-of-perfo.jpg": {
       "optimized": true,
@@ -3626,11 +3626,11 @@
     },
     "thomas-sowell/immigration-laws-are-the-only-laws.jpg": {
       "optimized": true,
-      "hash": "98eacba2da4c324e7a3e6b252c6864f0702ff861",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:17.052Z",
-      "width": 600,
-      "height": 444
+      "hash": "a0daefb9344e9ae7c167a275abe52c7eb7209b46",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:04.733Z",
+      "width": 800,
+      "height": 592
     },
     "thomas-sowell/it-is-fascinating-to-watch-politicians-c.jpg": {
       "optimized": true,
@@ -3650,11 +3650,11 @@
     },
     "thomas-sowell/it-is-usually-futile-to-try-to-talk-fact.jpg": {
       "optimized": true,
-      "hash": "bcc2189b6aa86e18b4ae1c9a499845f099f92a5d",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:17.279Z",
-      "width": 600,
-      "height": 315
+      "hash": "d355c5311e58baff72d37d02cc82820dbd34e951",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:04.929Z",
+      "width": 800,
+      "height": 420
     },
     "thomas-sowell/it-was-thomas-edison-who-brought-us-elct.jpg": {
       "optimized": true,
@@ -3666,11 +3666,11 @@
     },
     "thomas-sowell/its-amazing-how-fast-people-learn-when-t.jpg": {
       "optimized": true,
-      "hash": "5532c7303d4d208da815dc473a9a641e80474c82",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:17.423Z",
-      "width": 750,
-      "height": 621
+      "hash": "9af49a49af1482de04abd26b2a47e5440bd35ad7",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:05.107Z",
+      "width": 800,
+      "height": 662
     },
     "thomas-sowell/many-on-the-political-left-are-so-entran.jpg": {
       "optimized": true,
@@ -3698,11 +3698,11 @@
     },
     "thomas-sowell/much-of-the-social-history-of-the-wester.jpg": {
       "optimized": true,
-      "hash": "002072759339047387e1cca498100bfcad3b1f35",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:17.669Z",
-      "width": 549,
-      "height": 383
+      "hash": "fe54ff64ab5c018bc4e314fc88373f9d24492273",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:05.344Z",
+      "width": 800,
+      "height": 558
     },
     "thomas-sowell/much-of-what-are-called-social-problems.jpg": {
       "optimized": true,
@@ -3714,11 +3714,11 @@
     },
     "thomas-sowell/multiculturalism-like-the-cast-system.jpg": {
       "optimized": true,
-      "hash": "74581a3fe7d6db150df32db7c8d2c79e6bd6d6b9",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:17.785Z",
-      "width": 750,
-      "height": 648
+      "hash": "96d7b3874443e289355dbe46fd72324931fd9cf5",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:05.550Z",
+      "width": 800,
+      "height": 691
     },
     "thomas-sowell/no-government-of-the-left-has-done-as-mu.jpg": {
       "optimized": true,
@@ -3730,11 +3730,11 @@
     },
     "thomas-sowell/no-matter-how-disastrously-some-policy-h.jpg": {
       "optimized": true,
-      "hash": "626e52b7a0b3eb95d2d34ba818565edf418e9ef2",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:17.939Z",
-      "width": 640,
-      "height": 619
+      "hash": "f58c91c97eb396dbde398cc5e57a909499eb3503",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:05.743Z",
+      "width": 800,
+      "height": 774
     },
     "thomas-sowell/nobody-is-equal-to-anybody.jpg": {
       "optimized": true,
@@ -3810,11 +3810,11 @@
     },
     "thomas-sowell/socialism-in-general-has-a-record-of-fai.jpg": {
       "optimized": true,
-      "hash": "2de5a786227d7b25af0e83d2c9f2ad960fb28456",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:18.548Z",
-      "width": 600,
-      "height": 358
+      "hash": "9f64533b6cc4839c154c0e2a121ab413284a861e",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:06.249Z",
+      "width": 800,
+      "height": 477
     },
     "thomas-sowell/some-americans-will-never-appreciate.jpg": {
       "optimized": true,
@@ -3826,11 +3826,11 @@
     },
     "thomas-sowell/the-assumption-that-spending-more-of-the.jpg": {
       "optimized": true,
-      "hash": "6f3539574869f992cf2f39a46ebb15f737d8259e",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:18.654Z",
-      "width": 470,
-      "height": 315
+      "hash": "f11e6a0b550338510448b3cf05c9279115a2a0bd",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:06.381Z",
+      "width": 800,
+      "height": 536
     },
     "thomas-sowell/the-beauty-of-doing-nothing-is-that-you.jpg": {
       "optimized": true,
@@ -3850,11 +3850,11 @@
     },
     "thomas-sowell/the-endlessly-repeated-argument-that-mos.jpg": {
       "optimized": true,
-      "hash": "cf9aae86a001553fb876b607ed3f3242f5ba048f",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:18.845Z",
-      "width": 550,
-      "height": 556
+      "hash": "2d10ee667671ea6e7c7aea2c3f41768e167dce55",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:06.588Z",
+      "width": 791,
+      "height": 800
     },
     "thomas-sowell/the-fact-that-crime-and-poverty-are-corr.jpg": {
       "optimized": true,
@@ -3867,8 +3867,8 @@
     "thomas-sowell/the-fatal-attraction-of-government-is-th.jpeg": {
       "optimized": true,
       "hash": "70ec877e4712b1cd9a902ec45b4937f68e5311c1",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:18.970Z",
+      "action": "strip-profiles",
+      "updated": "2025-08-11T21:29:55.912Z",
       "width": 720,
       "height": 1080
     },
@@ -3922,19 +3922,19 @@
     },
     "thomas-sowell/the-most-basic-question-is-not-what-is.jpg": {
       "optimized": true,
-      "hash": "fa93e941f5e0ebef4babd990b4d948c4ce10637b",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:19.401Z",
-      "width": 553,
-      "height": 314
+      "hash": "dea78a314d4e6d1aef268b86ed9ddcf9a586dddc",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:07.128Z",
+      "width": 800,
+      "height": 454
     },
     "thomas-sowell/the-next-time-some-academics-tell-you-ho.jpg": {
       "optimized": true,
-      "hash": "e348095655140af1724739c388788ea6d6ea265a",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:19.459Z",
-      "width": 780,
-      "height": 411
+      "hash": "6b4922420fecf2c6e348027aa489f1b122451fb3",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:07.231Z",
+      "width": 800,
+      "height": 422
     },
     "thomas-sowell/the-purpose-of-politics-is-not-to-solve.jpg": {
       "optimized": true,
@@ -3970,11 +3970,11 @@
     },
     "thomas-sowell/there-has-now-been-created-a-world.jpg": {
       "optimized": true,
-      "hash": "e6a129d11444e0fb0856738f38ccbb7eb0d5274f",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:19.842Z",
-      "width": 720,
-      "height": 720
+      "hash": "ea76f593a46bf11d836d30725007f725999dd5cf",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:07.532Z",
+      "width": 800,
+      "height": 800
     },
     "thomas-sowell/thomas-sowell-discrimination-and-dispari.jpg": {
       "optimized": true,
@@ -4010,11 +4010,11 @@
     },
     "thomas-sowell/too-much-of-what-is-called-education.jpg": {
       "optimized": true,
-      "hash": "9e59044a1136684fd98b8c3a1121483e449dacc9",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:20.203Z",
-      "width": 600,
-      "height": 500
+      "hash": "d2d29dd841eeb7faed781159ff4349e014a0f727",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:07.876Z",
+      "width": 800,
+      "height": 667
     },
     "thomas-sowell/we-are-a-nation-of-immigrants-we-are-con.jpg": {
       "optimized": true,
@@ -4042,19 +4042,19 @@
     },
     "thomas-sowell/what-do-you-replace-a-fire-with-thomas-s.jpg": {
       "optimized": true,
-      "hash": "6a12caf4b1ec7b600391a83e9227d09554951a23",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:20.459Z",
-      "width": 518,
-      "height": 382
+      "hash": "333333b672125ea893b83c7f94f2a85abfea6d0c",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:08.102Z",
+      "width": 800,
+      "height": 590
     },
     "thomas-sowell/what-exactly-is-your-fair-share-of-what.jpg": {
       "optimized": true,
-      "hash": "66eda09a6dd77c12c952454f1bb3dd3479505fea",
-      "action": "optimize-only",
-      "updated": "2025-08-08T05:51:20.511Z",
-      "width": 480,
-      "height": 320
+      "hash": "71a1071b27576028a421af22af41f3e66443c806",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:08.198Z",
+      "width": 800,
+      "height": 533
     },
     "thomas-sowell/what-multiculturalism-boils-down-to.jpg": {
       "optimized": true,
@@ -4119,6 +4119,46 @@
       "updated": "2025-08-08T05:51:21.107Z",
       "width": 1080,
       "height": 1080
+    },
+    "capitalism/socialism-is-an-alternative-to-capitalism.jpg": {
+      "optimized": true,
+      "hash": "432475b35da1a2b2dbea76bcd470634bf5acf2d1",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:21:43.393Z",
+      "width": 800,
+      "height": 788
+    },
+    "thomas-sowell/blacks-were-not-enslaved-becuase-they-were-black.jpg": {
+      "optimized": true,
+      "hash": "8b0ef9eadb363b1c34d2777eca6e7af990b8d537",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:03.925Z",
+      "width": 675,
+      "height": 800
+    },
+    "thomas-sowell/both-free-speech-rights-and-property-rights.jpg": {
+      "optimized": true,
+      "hash": "be7babaf396603175cff207bc51fab5a056f0057",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:04.033Z",
+      "width": 800,
+      "height": 540
+    },
+    "thomas-sowell/if-you-cannot-achieve-a-quality-of-performance.jpg": {
+      "optimized": true,
+      "hash": "953525d33d72df1849110173bdff50269400a75d",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:04.576Z",
+      "width": 800,
+      "height": 800
+    },
+    "thomas-sowell/the-first-lesson-of-economics-is-scarcity.jpg": {
+      "optimized": true,
+      "hash": "906088f0cd0eecf65e947ad226613969ac15845c",
+      "action": "upscale→800",
+      "updated": "2025-08-11T21:22:06.872Z",
+      "width": 800,
+      "height": 725
     }
   }
 }
