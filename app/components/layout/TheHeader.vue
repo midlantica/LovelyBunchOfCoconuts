@@ -4,14 +4,31 @@
     <div class="px-6">
       <!-- New unified logo -->
       <div class="flex justify-center">
-        <a href="/" class="no-underline">
+        <button
+          type="button"
+          class="focus:outline-none no-underline"
+          @click="handleMastheadClick"
+        >
           <img
             src="@/assets/WakeUpNPC-logo.svg"
             alt="Wake up NPC"
             class="w-full max-w-[545px] object-contain transition-all duration-300 ease-out"
           />
-        </a>
+        </button>
       </div>
     </div>
   </header>
 </template>
+
+<script setup>
+  const { reseedWall } = useWallSeed()
+  const route = useRoute()
+  const router = useRouter()
+
+  function handleMastheadClick() {
+    // Reseed wall for new randomized ordering
+    reseedWall('masthead-click')
+    // If not already on root, navigate without full reload
+    if (route.path !== '/') router.push('/')
+  }
+</script>

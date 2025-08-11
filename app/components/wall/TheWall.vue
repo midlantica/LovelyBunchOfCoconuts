@@ -234,12 +234,16 @@
     return idx
   }
 
-  // Simple interleaving using stable ordering (no shuffle) to prevent layout shifts
+  // Use global wall seed for deterministic shuffle per reload/reseed
+  const { wallSeed } = useWallSeed()
+
+  // Interleave using seeded shuffle so a reload or explicit reseed changes order,
+  // while search/filters just constrain the pools.
   const interleavedContent = computed(() => {
     const { claims, quotes, memes } = filteredContent.value
-    // Disable shuffle for absolute stability across pages
     const result = interleaveContent(claims, quotes, memes, {
-      enableShuffle: false,
+      seed: wallSeed.value,
+      enableShuffle: true,
     })
     return result
   })

@@ -185,4 +185,8 @@
   // Provide search state for child components
   provide('searchTerm', searchTerm)
   provide('contentFilters', contentFilters)
+
+  // Provide wall seed in context (optional; components also use useWallSeed directly)
+  const { wallSeed } = useWallSeed()
+  provide('wallSeed', wallSeed)
 </script>

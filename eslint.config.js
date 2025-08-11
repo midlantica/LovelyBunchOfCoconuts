@@ -15,6 +15,8 @@ export default defineConfig([
       '.output/**',
       'dist/**',
       'public/**',
+      '.vscode/**',
+      '**/.vscode/**',
       'tsconfig.json',
     ],
   },
@@ -43,6 +45,8 @@ export default defineConfig([
   },
 
   // JSON
+  // Treat VS Code settings as JSONC (comments allowed)
+  { files: ['.vscode/*.json'], plugins: { json }, language: 'json/jsonc' },
   { files: ['**/*.json'], plugins: { json }, language: 'json/json' },
   { files: ['**/*.jsonc'], plugins: { json }, language: 'json/jsonc' },
   { files: ['**/*.json5'], plugins: { json }, language: 'json/json5' },
