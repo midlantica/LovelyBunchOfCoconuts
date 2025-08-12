@@ -4159,6 +4159,14 @@
       "updated": "2025-08-11T21:22:06.872Z",
       "width": 800,
       "height": 725
+    },
+    "thomas-sowell/it-is-not-enough-for-us-to-discover-bela.jpeg": {
+      "optimized": true,
+      "hash": "9746be1f511db8d30987d2d823aa4a21c41bc6c2",
+      "action": "strip-profiles",
+      "updated": "2025-08-12T03:21:24.119Z",
+      "width": 1080,
+      "height": 550
     }
   }
 }
