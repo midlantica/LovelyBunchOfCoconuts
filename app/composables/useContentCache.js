@@ -145,7 +145,8 @@ export function useContentCache() {
               // If this is a span-like wrapper, just recurse children
               if (tag === 'span') return stringifyNodes(children)
               // If children is array, flatten each
-              if (Array.isArray(children)) return children.map(stringifyNodes).join('')
+              if (Array.isArray(children))
+                return children.map(stringifyNodes).join('')
               return typeof children === 'string' ? children : ''
             }
             // If array of nodes
@@ -160,11 +161,12 @@ export function useContentCache() {
           )
           const headings = headingElements
             .map((el) => stringifyNodes(el[2]))
-            .map((s) =>
-              // Support author writing custom markers for line breaks: use literal "\\n" or " <br> " or " // "
-              s
-                .replace(/\\n/g, '<br>') // user typed \n in source
-                .replace(/\s*\/\/\s*/g, '<br>') // user used // as break marker
+            .map(
+              (s) =>
+                // Support author writing custom markers for line breaks: use literal "\\n" or " <br> " or " // "
+                s
+                  .replace(/\\n/g, '<br>') // user typed \n in source
+                  .replace(/\s*\/\/\s*/g, '<br>') // user used // as break marker
             )
             .filter((s) => s && s.trim().length)
 
@@ -173,7 +175,9 @@ export function useContentCache() {
           // Extract attribution from p tags
           const paragraphs = item.body.value
             .filter((element) => element[0] === 'p')
-            .map((element) => (typeof element[2] === 'string' ? element[2] : ''))
+            .map((element) =>
+              typeof element[2] === 'string' ? element[2] : ''
+            )
             .filter((p) => p && p.trim().length)
 
           transformed.attribution = paragraphs[0] || ''

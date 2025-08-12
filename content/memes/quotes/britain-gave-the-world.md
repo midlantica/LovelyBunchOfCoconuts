@@ -1,7 +1,12 @@
 ---
-title: 'Britain Gave The World'
+title: '🇬🇧️ Gave the world Magna Carta'
 ---
 
-![Britain gave the world](/memes/quotes/britain-gave-the-world.jpg)
+![🇬🇧️ Gave the world Magna Carta](/memes/quotes/britain-gave-the-world.jpg)
 
-Britain gave the world.
+As a country we:
+🇬🇧️ Gave the world Magna Carta and the rule of law
+🇬🇧️ Exported parliamentary democracy
+🇬🇧️ Ended the slave trade
+🇬🇧️ Saved Europe from three tyrannical empires
+🇬🇧️ Helped win the Cold War

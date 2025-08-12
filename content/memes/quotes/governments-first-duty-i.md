@@ -1,7 +1,7 @@
 ---
-title: 'Governments First Duty I'
+title: 'Governments first duty is to protect the people'
 ---
 
-![Governments first duty i](/memes/quotes/governments-first-duty-i.jpg)
+![Governments first duty is to protect the people](/memes/quotes/governments-first-duty-i.jpg)
 
-Governments first duty i.
+"Government's first duty is to protect the people, not run their lives." - Ronald Reagan
