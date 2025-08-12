@@ -125,6 +125,25 @@ export function useContentCache() {
       if (type === 'quotes') {
         // Extract headings from body value array (Nuxt Content v3 minimark format)
         if (item.body && item.body.value) {
+          // Frontmatter override: if author supplies multiline raw lines in meta.lines, use that directly
+          if (item.meta && typeof item.meta.lines === 'string' && item.meta.lines.trim().length) {
+            const rawLines = item.meta.lines
+              .split(/\r?\n/)
+              .map((l) => l.trimEnd())
+              .filter((l) => l.length)
+            const joined = rawLines
+              .map((l) =>
+                l
+                  .replace(/\s*\\$/g, '') // trailing hard-break backslash remove
+                  .replace(/\s*\/\/\s*$/g, '')
+              )
+              .join('<br>')
+            transformed.headings = [joined]
+            transformed.quoteText = rawLines[0] || joined
+            // Attribution fallback from meta.attribution if provided
+            if (item.meta.attribution) transformed.attribution = item.meta.attribution
+            // Skip standard heading parsing since override used
+          } else {
           // Helper to stringify a heading element's content preserving allowed inline tags
           const allowedTags = new Set(['strong', 'em', 'b', 'i', 'br', 'wbr'])
           const stringifyNodes = (node) => {
@@ -177,14 +196,16 @@ export function useContentCache() {
 
           transformed.headings = headings
 
-
           // Fallback: if no headings were authored, try first paragraph as the quote body
           if ((!headings || headings.length === 0) && item.body?.value) {
             const firstParagraphEl = item.body.value.find(
               (el) => Array.isArray(el) && el[0] === 'p'
             )
             if (firstParagraphEl) {
-              const raw = typeof firstParagraphEl[2] === 'string' ? firstParagraphEl[2] : ''
+              const raw =
+                typeof firstParagraphEl[2] === 'string'
+                  ? firstParagraphEl[2]
+                  : ''
               if (raw.trim().length) {
                 const converted = raw
                   .replace(/\n+/g, '<br>')
@@ -208,6 +229,7 @@ export function useContentCache() {
           // Set quoteText from the first heading if available
           if (headings.length > 0) {
             transformed.quoteText = headings[0]
+          }
           }
         }
       }
