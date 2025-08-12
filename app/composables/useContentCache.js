@@ -165,8 +165,14 @@ export function useContentCache() {
               (s) =>
                 // Support author writing custom markers for line breaks: use literal "\\n" or " <br> " or " // "
                 s
-                  .replace(/\\n/g, '<br>') // user typed \n in source
-                  .replace(/\s*\/\/\s*/g, '<br>') // user used // as break marker
+                  // Actual newline characters inside heading text
+                  .replace(/\n+/g, '<br>')
+                  // Escaped sequence literal \n user typed
+                  .replace(/\\n/g, '<br>')
+                  // Markdown hard line break patterns: space(s) + backslash at end of line
+                  .replace(/\s*\\\s*$/gm, '<br>')
+                  // Inline // marker
+                  .replace(/\s*\/\/\s*/g, '<br>')
             )
             .filter((s) => s && s.trim().length)
 
