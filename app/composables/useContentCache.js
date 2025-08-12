@@ -161,23 +161,40 @@ export function useContentCache() {
           )
           const headings = headingElements
             .map((el) => stringifyNodes(el[2]))
-            .map(
-              (s) =>
-                // Support author writing custom markers for line breaks: use literal "\\n" or " <br> " or " // "
-                s
-                  // Actual newline characters inside heading text
-                  .replace(/\n+/g, '<br>')
-                  // Escaped sequence literal \n user typed
-                  .replace(/\\n/g, '<br>')
-                  // Markdown hard line break patterns: space(s) + backslash at end of line
-                  .replace(/\s*\\\s*$/gm, '<br>')
-                  // Inline // marker
-                  .replace(/\s*\/\/\s*/g, '<br>')
+            .map((s) =>
+              // Support author writing custom markers for line breaks: use literal "\\n" or " <br> " or " // "
+              s
+                // Actual newline characters inside heading text
+                .replace(/\n+/g, '<br>')
+                // Escaped sequence literal \n user typed
+                .replace(/\\n/g, '<br>')
+                // Markdown hard line break patterns: space(s) + backslash at end of line
+                .replace(/\s*\\\s*$/gm, '<br>')
+                // Inline // marker
+                .replace(/\s*\/\/\s*/g, '<br>')
             )
             .filter((s) => s && s.trim().length)
 
           transformed.headings = headings
 
+
+          // Fallback: if no headings were authored, try first paragraph as the quote body
+          if ((!headings || headings.length === 0) && item.body?.value) {
+            const firstParagraphEl = item.body.value.find(
+              (el) => Array.isArray(el) && el[0] === 'p'
+            )
+            if (firstParagraphEl) {
+              const raw = typeof firstParagraphEl[2] === 'string' ? firstParagraphEl[2] : ''
+              if (raw.trim().length) {
+                const converted = raw
+                  .replace(/\n+/g, '<br>')
+                  .replace(/\\n/g, '<br>')
+                  .replace(/\s*\\\s*$/gm, '<br>')
+                  .replace(/\s*\/\/\s*/g, '<br>')
+                transformed.headings = [converted]
+              }
+            }
+          }
           // Extract attribution from p tags
           const paragraphs = item.body.value
             .filter((element) => element[0] === 'p')
