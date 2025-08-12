@@ -6,4 +6,4 @@ translation: 'Protect the innocent—except not.'
 
 ## "Disarm the Police"
 
-## Protect the innocent—except not.
+## Protect the innocent — except not.

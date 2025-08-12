@@ -6,7 +6,7 @@
       <div class="flex justify-center">
         <button
           type="button"
-          class="focus:outline-none no-underline"
+          class="focus:outline-none no-underline hover:cursor-pointer"
           @click="handleMastheadClick"
         >
           <img
