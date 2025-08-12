@@ -45,6 +45,9 @@
 
   const item = computed(() => slugMaps.memes.get(slugPath.value))
 
+  // Expose meme object for template (was missing causing Vue warn)
+  const meme = computed(() => item.value)
+
   function close() {
     modalVisible.value = false
     const modalGuardUntil = useState('modalGuardUntil', () => 0)
