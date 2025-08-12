@@ -125,18 +125,56 @@ export function useContentCache() {
       if (type === 'quotes') {
         // Extract headings from body value array (Nuxt Content v3 minimark format)
         if (item.body && item.body.value) {
-          const headings = item.body.value
-            .filter((element) => element[0] === 'h2' || element[0] === 'h1')
-            .map((element) => element[2] || '') // The text is in the 3rd position
-            .filter(Boolean)
+          // Helper to stringify a heading element's content preserving allowed inline tags
+          const allowedTags = new Set(['strong', 'em', 'b', 'i', 'br', 'wbr'])
+          const stringifyNodes = (node) => {
+            if (!node) return ''
+            // Raw string
+            if (typeof node === 'string') {
+              return node
+            }
+            // Array encoded minimark element: [tag, attrs, children]
+            if (Array.isArray(node)) {
+              const [tag, attrs, children] = node
+              // line break tags
+              if (tag === 'br' || tag === 'wbr') return `<${tag}>`
+              // Emphasis tags we allow & recurse
+              if (allowedTags.has(tag)) {
+                return `<${tag}>${stringifyNodes(children)}</${tag}>`
+              }
+              // If this is a span-like wrapper, just recurse children
+              if (tag === 'span') return stringifyNodes(children)
+              // If children is array, flatten each
+              if (Array.isArray(children)) return children.map(stringifyNodes).join('')
+              return typeof children === 'string' ? children : ''
+            }
+            // If array of nodes
+            if (Array.isArray(node)) {
+              return node.map(stringifyNodes).join('')
+            }
+            return ''
+          }
+
+          const headingElements = item.body.value.filter(
+            (element) => element[0] === 'h2' || element[0] === 'h1'
+          )
+          const headings = headingElements
+            .map((el) => stringifyNodes(el[2]))
+            .map((s) =>
+              // Support author writing custom markers for line breaks: use literal "\\n" or " <br> " or " // "
+              s
+                .replace(/\\n/g, '<br>') // user typed \n in source
+                .replace(/\s*\/\/\s*/g, '<br>') // user used // as break marker
+            )
+            .filter((s) => s && s.trim().length)
 
           transformed.headings = headings
 
           // Extract attribution from p tags
           const paragraphs = item.body.value
             .filter((element) => element[0] === 'p')
-            .map((element) => element[2] || '')
-            .filter(Boolean)
+            .map((element) => (typeof element[2] === 'string' ? element[2] : ''))
+            .filter((p) => p && p.trim().length)
 
           transformed.attribution = paragraphs[0] || ''
 

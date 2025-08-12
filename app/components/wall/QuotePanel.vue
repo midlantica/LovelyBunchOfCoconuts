@@ -6,7 +6,7 @@
   >
     <div class="flex flex-col flex-wrap gap-0.5 my-auto">
       <h1
-        class="inline-block font-light text-xl align-baseline tracking-wide"
+        class="inline-block font-light text-xl align-baseline tracking-wide leading-snug"
         v-html="formatQuote(quote.headings[0])"
       ></h1>
       <p
