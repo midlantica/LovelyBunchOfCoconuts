@@ -1,0 +1,24 @@
+name: Task
+description: Simple task / chore
+labels: ['task', 'backlog']
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      placeholder: e.g. Add shareable ?seed parameter support
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Definition of Done
+      value: |
+        - [ ] Implemented
+        - [ ] Tested manually
+        - [ ] No pattern regression
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Optional extra context.

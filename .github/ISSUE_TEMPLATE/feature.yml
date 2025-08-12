@@ -1,0 +1,44 @@
+name: Feature
+description: New feature or enhancement request
+labels: ['feature', 'backlog']
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: One short sentence.
+      placeholder: e.g. Deterministic meme ad slot injection
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Why / Motivation
+      description: Why do we need this? User / business / UX value.
+      placeholder: Users should see ads without breaking layout...
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: Bullet list of done conditions.
+      value: |
+        - [ ] Implementation behind a config flag
+        - [ ] Deterministic ordering under same seed
+        - [ ] No new layout types introduced
+  - type: textarea
+    id: details
+    attributes:
+      label: Details / Notes
+      description: Any design notes, sketches, or references.
+  - type: checkboxes
+    id: impacts
+    attributes:
+      label: Areas Touched
+      options:
+        - label: UI
+        - label: Content Processing
+        - label: Performance
+        - label: Accessibility
+        - label: Monetization

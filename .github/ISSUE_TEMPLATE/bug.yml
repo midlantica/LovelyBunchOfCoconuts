@@ -1,0 +1,35 @@
+name: Bug Report
+description: Report a defect
+labels: ['bug']
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      placeholder: Short headline
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      value: |
+        1.
+        2.
+        3.
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context / Screenshots
