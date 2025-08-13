@@ -6,7 +6,7 @@
   >
     <div class="flex flex-col flex-wrap gap-0.5 my-auto">
       <h1
-        class="inline-block font-light text-xl align-baseline leading-snug tracking-wide"
+        class="inline-block font-light text-xl align-baseline tracking-wide"
         v-html="formatQuote(quote.headings[0])"
       ></h1>
       <p
@@ -46,17 +46,8 @@
   })
 
   function formatQuote(text) {
-    if (!text) return ''
-    let out = text
-      // Decode escaped &lt;wbr&gt;
-      .replace(/&lt;wbr&gt;/g, '<wbr>')
-      // Normalize any accidental double-escaped backslashes left in content (\\ -> \)
-      .replace(/\\\\/g, '\\')
-      // Collapse 2+ <br> into max 2 (for spacing without huge gaps)
-      .replace(/(<br>\s*){3,}/g, '<br><br>')
-      // Trim stray line breaks at start/end
-      .replace(/^(<br>)+/, '')
-      .replace(/(<br>)+$/,'')
-    return out
+    return text
+      ? text.replace(/&lt;wbr&gt;/g, '<wbr>').replace(/<wbr>/g, '<wbr>')
+      : ''
   }
 </script>
