@@ -1,7 +1,8 @@
 ---
-title: 'The Fatal Conceit The Er'
+title: 'The Fatal Conceit: The errors of Socialism'
 ---
 
-![The fatal conceit the er](/memes/quotes/the-fatal-conceit-the-er.jpg)
+![The Fatal Conceit: The errors of Socialism](/memes/quotes/the-fatal-conceit-the-er.jpg)
 
-The fatal conceit the er.
+The Fatal Conceit: The errors of Socialism
+"The curious task of economics is to demonstrate to men how little they really know about what they imagine they can design." - F.A. Hayek

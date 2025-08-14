@@ -10,3 +10,5 @@ As a country we:
 🇬🇧️ Ended the slave trade
 🇬🇧️ Saved Europe from three tyrannical empires
 🇬🇧️ Helped win the Cold War
+
+Daniel Hannan @DanielJHannan

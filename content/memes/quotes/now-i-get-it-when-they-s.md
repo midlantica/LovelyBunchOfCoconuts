@@ -1,7 +1,7 @@
 ---
-title: 'Now I Get It When They S'
+title: 'Now I get it when they say democracy'
 ---
 
-![Now i get it when they s](/memes/quotes/now-i-get-it-when-they-s.jpg)
+![Now I get it when they say democracy](/memes/quotes/now-i-get-it-when-they-say-democracy.jpg)
 
-Now i get it when they s.
+"Now I get it when they say democracy they really mean 'dictatorship of the proletariat'" - Matt Kibbe

@@ -1,7 +1,7 @@
 ---
-title: "Religion is regarded by t"
+title: 'Religion is regarded by the common people'
 ---
 
-![Religion is regarded by t](/memes/quotes/religion-is-regarded-by-t.jpg)
+![Religion is regarded by the common people](/memes/quotes/religion-is-regarded-by-the-common-people.jpg)
 
-Religion is regarded by t
+"Religion is regarded by the common people as true, by the wise as false, and by rulers as useful." - Seneca the Younger

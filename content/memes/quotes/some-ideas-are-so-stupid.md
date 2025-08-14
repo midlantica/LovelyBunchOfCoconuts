@@ -1,7 +1,7 @@
 ---
-title: 'Some Ideas Are So Stupid'
+title: 'Some ideas are so stupid'
 ---
 
 ![Some ideas are so stupid](/memes/quotes/some-ideas-are-so-stupid.jpg)
 
-Some ideas are so stupid.
+"Some ideas are so stupid that only intellectuals believe them." - George Orwell

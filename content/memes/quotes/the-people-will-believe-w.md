@@ -1,7 +1,7 @@
 ---
-title: 'The People Will Believe W'
+title: 'The people will believe what the media tells them they believe'
 ---
 
-![The people will believe w](/memes/quotes/the-people-will-believe-w.jpg)
+![The people will believe what the media tells them they believe](/memes/quotes/the-people-will-believe-w.jpg)
 
-The people will believe with.
+"The people will believe what the media tells them they believe." - George Orwell

@@ -1,7 +1,7 @@
 ---
-title: 'Homicide Is The Leading C'
+title: 'Homicide is the leading cause of death for young black men'
 ---
 
-![Homicide is the leading c](/memes/quotes/homicide-is-the-leading-c.jpg)
+![Homicide is the leading cause of death for young black men](/memes/quotes/homicide-is-the-leading-c.jpg)
 
-Homicide is the leading c.
+"Homicide is the leading cause of death for young black men, and around 90% of the perpetrators are black." - Jason L Riley
