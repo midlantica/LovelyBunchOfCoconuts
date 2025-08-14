@@ -1,7 +1,7 @@
 ---
-title: 'Democrat Party Cribbing From Communists'
+title: 'Democrat party cribbing from Communists'
 ---
 
-![Democrat party cribbing from communists](/memes/politics/democrat-party-cribbing-from-communists.jpg)
+![Democrat party cribbing from Communists](/memes/politics/democrat-party-cribbing-from-communists.jpg)
 
-Democrat party cribbing from communists.
+Democrat party cribbing from Communists

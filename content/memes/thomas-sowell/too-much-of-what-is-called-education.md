@@ -1,7 +1,7 @@
 ---
-title: "Too much of what is called education"
+title: 'Too much of what is called Education is Little more than'
 ---
 
-![Too much of what is called education](/memes/thomas-sowell/too-much-of-what-is-called-education.jpg)
+![Too much of what is called Education is Little more than](/memes/thomas-sowell/too-much-of-what-is-called-education.jpg)
 
-Too much of what is called education
+"Too much of what is called Education is Little more than an expensive Isolation from reality." - Thomas Sowell

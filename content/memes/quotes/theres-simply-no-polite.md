@@ -1,7 +1,7 @@
 ---
-title: 'Theres Simply No Polite'
+title: "There's simply no polite way to tell people"
 ---
 
-![Theres simply no polite](/memes/quotes/theres-simply-no-polite.jpg)
+![There's simply no polite way to tell people ](/memes/quotes/theres-simply-no-polite.jpg)
 
-Theres simply no polite.
+"There's simply no polite way to tell people they've dedicated their lives to an illusion." - Daniel Dennett

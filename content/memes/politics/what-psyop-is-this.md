@@ -1,7 +1,7 @@
 ---
-title: 'What Psyop Is This'
+title: 'You boy, what Psyop Is This?'
 ---
 
-![What psyop is this](/memes/politics/what-psyop-is-this.jpg)
+![You boy, what Psyop Is This](/memes/politics/what-psyop-is-this.jpg)
 
-What psyop? Is This.
+You boy, what Psyop Is This?

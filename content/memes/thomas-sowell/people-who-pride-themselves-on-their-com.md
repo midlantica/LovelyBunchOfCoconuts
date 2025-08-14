@@ -1,7 +1,7 @@
 ---
-title: "People who pride themselves on their com"
+title: "People who pride themselves on their 'complexity'"
 ---
 
-![People who pride themselves on their com](/memes/thomas-sowell/people-who-pride-themselves-on-their-com.jpg)
+![People who pride themselves on their 'complexity'](/memes/thomas-sowell/people-who-pride-themselves-on-their-com.jpg)
 
-People who pride themselves on their com
+"People who pride themselves on their 'complexity' and deride others for being 'simplistic' should realize that the truth is often not very complicated. What gets complex is evading the truth." - Thomas Sowell

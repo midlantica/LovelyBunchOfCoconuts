@@ -1,7 +1,8 @@
 ---
-title: 'Why Are You So Poor And Primitive Its Go'
+title: 'Why are you so poor and primitive?'
 ---
 
-![Why are you so poor and primitive its go](/memes/politics/why-are-you-so-poor-and-primitive-its-go.jpg)
+![Why are you so poor and primitive?](/memes/politics/why-are-you-so-poor-and-primitive-its-go.jpg)
 
-Why are you so poor and primitive its go.
+A: Why are you so poor and primitive?
+B: It's going to be your fault.

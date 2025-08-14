@@ -1,7 +1,7 @@
 ---
-title: "Some americans will never appreciate"
+title: 'Some Americans will never appreciate America'
 ---
 
-![Some americans will never appreciate](/memes/thomas-sowell/some-americans-will-never-appreciate.jpg)
+![Some Americans will never appreciate America](/memes/thomas-sowell/some-americans-will-never-appreciate.jpg)
 
-Some americans will never appreciate
+"Some Americans will never appreciate America, until after they have helped destroy it, and have then begun to suffer the consequences." - Thomas Sowell

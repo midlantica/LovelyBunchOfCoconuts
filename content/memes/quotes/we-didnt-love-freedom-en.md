@@ -1,7 +1,7 @@
 ---
-title: 'We Didnt Love Freedom En'
+title: "We didn't love freedom enough"
 ---
 
-![We didnt love freedom en](/memes/quotes/we-didnt-love-freedom-en.jpg)
+![We didn't love freedom enough](/memes/quotes/we-didnt-love-freedom-en.jpg)
 
-We didnt love freedom en.
+"We didn't love freedom enough. We purely and simply deserved everything that happened afterward." - Alexander Solzhenitsyn

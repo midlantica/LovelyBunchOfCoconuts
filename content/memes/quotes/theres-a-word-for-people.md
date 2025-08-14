@@ -1,7 +1,8 @@
 ---
-title: 'Theres A Word For People'
+title: "Here's a word for people who are kept safe fed clothed"
 ---
 
-![Theres a word for people](/memes/quotes/theres-a-word-for-people.jpg)
+![Here's a word for people who are kept safe fed clothed](/memes/quotes/theres-a-word-for-people.jpg)
 
-Theres a word for people.
+"Here's a word for people who are kept safe fed clothed housed and sustained fully by others.
+And that word is slaves." - Bill Whittle
