@@ -1,81 +1,194 @@
-# WakeUpNPC
+# WakeUpNPC2
 
-A visually-strict, content-driven Nuxt 3 wall for claims, quotes, and memes.
+A Nuxt 3 content wall that renders three content types (Claims, Quotes, Memes) in a strict repeating visual pattern.
 
-## 🚀 Overview
+```
+Pattern (core Wall Pattern):
+[ claim | claim ] → [ quote ] → [ meme | meme ] → [ quote ] → (repeat)
+```
 
-WakeUpNPC2 is a Nuxt 3-powered content wall that curates political claims, quotes, and memes in a strict, repeating visual pattern. It’s designed for maximum visual consistency, even with unbalanced or randomized content. The project leverages Nuxt Content v3, progressive loading, and a robust transformation pipeline.
+Only the layout item types produced by the Pattern Engine are rendered:
+- `claimPair` (two claims side‑by‑side)
+- `quote` (full width)
+- `memeRow` (two memes side‑by‑side)
 
-## ✨ Features
+The pattern must not break, even when available content is unbalanced. Fallback logic substitutes remaining types while preserving rhythm.
 
-Strict Content Wall Pattern:
-[ claim | claim ] → [ ---quote--- ] → [ meme | meme ] → [ ---quote--- ] (repeats)
-Pattern never breaks, even if content is unbalanced
-Progressive Loading:
-Fast initial load, infinite scroll, and SSR hydration
-Content Types:
-Claims, Quotes, Memes (with YouTube video support)
-Smart Fallbacks:
-Graceful substitution if a content type runs out
-Search & Filtering:
-Real-time, dash/underscore-insensitive search
-Image & Markdown Automation:
-Scripts for image optimization and markdown generation
-Modern UI:
-Responsive, accessible, and visually consistent
+---
+## 1. Quick Start
 
-## 🏗️ Architecture
+```
+pnpm install
+pnpm dev
+# Visit http://localhost:3000
+```
 
-Nuxt 3 + Nuxt Content v3
-Pattern Engine: interleaveContent.js (single source of layout truth)
-Content Cache: useContentCache.js (reactive, SSR-friendly)
-Wall Components:
-ClaimPanel, QuotePanel, MemePanel, TheWall
-Infinite Scroll:
-useInfiniteScroll.js
-Image Processing:
-Scripts in scripts for batch optimization and markdown creation
-🛠️ Getting Started
+Optional (first time / when adding memes):
+```
+pnpm process-images --dry-run      # Preview image + markdown actions (all subdirs)
+pnpm process-images npc            # Real run for a single meme subfolder
+```
 
-1. Install dependencies
-2. Run the development server
-   Visit http://localhost:3000 to view the app.
+---
+## 2. Content Types
 
-3. Process Images & Markdown (optional)
-   🧩 Content Structure
-   claims — Markdown files for claims
-   quotes — Markdown files for quotes
-   memes — Markdown files for memes (images or YouTube videos)
-   memes — Meme images (auto-processed)
+| Type  | Location Folder            | Minimal Frontmatter | Body Usage                                   |
+|-------|----------------------------|---------------------|-----------------------------------------------|
+| Claim | `content/claims/`          | `title`, `claim`, `translation` | Optional explanatory paragraphs after `---` |
+| Quote | `content/quotes/`          | (optional `title`)  | First H2 (`##`) = quote text; first paragraph = attribution |
+| Meme  | `content/memes/` + image in `public/memes/` | `title` (auto-generated if using script) | Image markdown line + optional caption |
 
-## 🧑‍💻 Development
+Files (Markdown) or folders beginning with `_` are ignored by Nuxt Content.
 
-Format code:
-Lint & fix:
-Custom scripts: See README.md for details
+Naming rules:
+- Lowercase, hyphen-separated (no spaces, avoid underscores)
+- Descriptive but concise (≈ 3–8 words)
+- Duplicate variants using underscores should be removed (keep the hyphen version)
 
-## 📦 Build & Deploy
+---
+## 3. Wall Pattern & Engine
 
-Build for production:
-Preview production build:
-Deploy:
-See Nuxt deployment docs
+Single source of layout truth: `app/composables/interleaveContent.js`.
+Do not create alternate pattern functions. Output items may only be: `claimPair`, `quote`, `memeRow`.
 
-## 📝 Project Conventions
+Fallbacks: If one content type runs low, the engine substitutes from the remaining pools but preserves the alternating cadence (pair → quote → pair → quote ...).
 
-Single pattern engine: Only use interleaveContent.js for wall layout
-No individual claim/meme types: Only claimPair, quote, memeRow in the pattern
-Ignore files/folders starting with \_
-SSR state via useState()
-Content loaded once, cached reactively
+Search results still use the same pattern (filtered pools feed into the same interleaving logic).
 
-## 🤝 Contributing
+---
+## 4. Search & Filters
 
-PRs and suggestions are welcome! Please follow the project’s conventions and check the scripts/README for automation tips.
+- Search normalizes dashes/underscores to spaces.
+- Filters (Claims / Quotes / Memes) cannot all be off; toggling logic enforces at least one active.
+- ESC or clicking the masthead (while already on `/`) clears the in‑memory search term and removes `?q=` from the URL.
+- The URL query `?q=` is read once on page load; live typing intentionally does not continuously update the URL.
 
-## 📚 More Info
+---
+## 5. Image & Markdown Pipeline (Memes)
 
-Nuxt Documentation
-Nuxt Content
-Tailwind CSS
-© WakeUpNPC2, 2025
+Location: scripts in `scripts/` directory.
+
+Key script: `pnpm process-images [subdir] [--dry-run] [--force]`.
+
+Capabilities:
+1. Pre-pass filename normalization (lowercase, hyphens, `.jpeg` → `.jpg`, remove trailing hashes / random long numbers).
+2. Dry-run structured report sections:
+    - LIST OF NEW IMAGES
+    - IMAGE NAMES SANITIZED → jpg
+    - IMAGES SCALED / COMPRESSED (dimensions + est change)
+    - MATCHING PAIRED MARKDOWN FILES
+3. Optional resizing (target long side 800px, max width 1080px) + conversion to JPEG + profile stripping.
+4. Auto-create paired markdown for images lacking one (title/alt/caption heuristics: acronym uppercasing, standalone `i` → `I`, `maybe`/`should` leading adds `?`).
+5. Manifest `_meme-manifest.json` updated with hash, dimensions, action.
+6. Orphan markdown (no existing image reference) moved to `_orphaned` on real runs.
+
+Safety & workflow:
+```
+pnpm process-images npc --dry-run   # Inspect actions
+pnpm process-images npc             # Apply
+git diff                            # Review changes
+```
+
+Do not manually rename generated meme markdown; re-run the pipeline if source image changes.
+
+---
+## 6. Directory Overview
+
+```
+app/
+   components/ (layout, wall panels, search bar, modals, UI)
+   composables/ (pattern, cache, infinite scroll, wall seed, social/meta)
+content/
+   claims/  (claim markdown)
+   quotes/  (quote markdown)
+   memes/   (meme markdown)
+public/memes/ (meme image assets, processed)
+scripts/   (image + markdown automation, audit utilities)
+```
+
+Important composables actually present:
+`interleaveContent.js`, `useContentCache.js`, `useContentUrls.js`, `useInfiniteScroll.js`, `useLazyImages.js`, `useShareImageGenerator.js`, `useShareShelf.ts`, `useSocialMeta.js`, `useWallSeed.js`.
+
+---
+## 7. Conventions & Anti‑Patterns
+
+Do:
+- Keep one Pattern Engine (`interleaveContent.js`).
+- Use hyphenated lowercase filenames.
+- Add content via proper folders; prefix experimental or ignored items with `_`.
+- Use dry-run before running image processing.
+
+Avoid:
+1. Creating additional interleaving utilities.
+2. Emitting raw `claim` or `meme` item types in templates (must be `claimPair` / `memeRow`).
+3. Mixing underscore & hyphen variants of the same slug (clean up duplicates).
+4. Overwriting auto-generated meme markdown manually (regenerate instead).
+
+---
+## 8. Scripts Cheat Sheet
+
+```
+pnpm dev                 # Start dev server
+pnpm process-images      # Process all meme subfolders
+pnpm process-images npc  # Process single subfolder
+pnpm process-images npc --dry-run  # Safe preview
+pnpm format              # Prettier formatting (if configured)
+```
+
+Additional (custom) scripts may exist in `scripts/` (retrofix, audits).
+
+---
+## 9. Search / URL Behavior Recap
+
+- `?q=` accepted on first load to seed search.
+- Clearing search removes `?q=` (ESC, clear button, or masthead click on root).
+- No live URL updates while typing (explicit design choice).
+
+---
+## 10. Contribution Guidelines
+
+1. Run a dry-run before committing pipeline changes.
+2. Keep documentation in sync (update root README if patterns or scripts change).
+3. Prefer small focused PRs.
+4. Ensure pattern integrity—never ship a change that breaks layout rhythm.
+
+---
+## 11. License / Attribution
+
+Copyright © 2025. All rights reserved (add a LICENSE file if distribution changes).
+
+---
+## 12. Appendix: Claim / Quote / Meme Minimal Examples
+
+### Claim
+```
+---
+title: "Living wage"
+claim: "Living wage"
+translation: "Mandated higher base wage"
+---
+
+Optional explanatory paragraph.
+```
+
+### Quote
+```
+---
+# (frontmatter optional)
+---
+## “Government is best which governs least.”
+Henry David Thoreau
+```
+
+### Meme
+```
+---
+title: "Maybe I am an NPC?"
+---
+![Maybe I am an NPC?](/memes/npc/maybe-i-am-an-npc.jpg)
+
+Optional caption.
+```
+
+---
+For implementation details see `.github/copilot-instructions.md` (AI / automation guidance).

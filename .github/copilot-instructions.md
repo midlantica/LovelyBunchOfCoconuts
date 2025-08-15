@@ -2,15 +2,15 @@
 
 ## Project Overview
 
-WakeUpNPC2 is a Nuxt 3 content wall displaying political claims, quotes, and memes in a strict visual pattern. The core challenge is maintaining **strict visual layout patterns** while handling **unbalanced content** and **randomization**.
+WakeUpNPC2 is a Nuxt 3 content wall (Claims, Quotes, Memes) rendered through a strict repeating pattern. Priority: **visual consistency over randomness**.
 
 ## Critical Architecture Patterns
 
 ### Content Wall Pattern System
 
-**Core Pattern**: `[ claim | claim ] → [ ---quote--- ] → [ meme | meme ] → [ ---quote--- ]` (repeating)
+**Core Pattern**: `[ claim | claim ] → [ quote ] → [ meme | meme ] → [ quote ]` (repeating)
 
-- **Pattern Engine**: `composables/interleaveContent.js` - single source of truth for layout
+- **Pattern Engine**: `composables/interleaveContent.js` (single source of truth)
 - **Fallback Logic**: When content types are exhausted, gracefully substitutes alternatives while maintaining visual rhythm
 - **Template Compatibility**: Only creates `claimPair`, `quote`, `memeRow` types (NOT individual `claim`/`meme` types)
 
@@ -23,9 +23,9 @@ item.type === 'memeRow' // → 2-column MemePanel grid
 
 ### Content Loading & Caching
 
-- **Progressive Loading**: `loadInitialContent(20)` → `loadRemainingContent()` → infinite scroll
-- **Content Cache**: `useContentCache.js` - reactive cache with transformation pipeline
-- **Search Enhancement**: Converts dashes/underscores to spaces for filename matching
+- Progressive: initial slice then infinite scroll via `useInfiniteScroll.js`.
+- Cache: `useContentCache.js` centralizes load + transform + shuffle before patterning.
+- Search: normalizes dashes / underscores.
 
 ### Content Ignore Configuration
 
@@ -57,24 +57,18 @@ pnpm format                 # Prettier formatting
 
 ## Project-Specific Conventions
 
-### File Structure Patterns
+### File Structure (Key Parts)
 
 ```
-composables/
-├── interleaveContent.js    # Core pattern logic (NEVER create multiple versions)
-├── useContentCache.js      # Content loading/transformation
-├── useContentWall.js       # Wall state management
-├── useInfiniteScroll.js    # Infinite scroll functionality
-├── useModalLogic.js        # Modal state management
-├── useSearchAndFilters.js  # Search and filtering logic
-└── useBadgeCounts.js       # Content count tracking
-
-layouts/default.vue         # Main layout with modals, header, footer
-pages/index.vue             # Content wall rendering with SearchBar
-components/wall/            # ClaimPanel, QuotePanel, MemePanel, TheWall
-components/modals/          # ModalClaim, ModalQuote, ModalMeme, ModalFrame
-components/ui/              # ScrollToTopButton, CloseButton, Button
+app/composables/
+	interleaveContent.js   # Pattern engine (only one)
+	useContentCache.js     # Load + transform + cache
+	useInfiniteScroll.js   # Infinite scroll logic
+	useWallSeed.js         # Seed for randomized ordering
+	useLazyImages.js       # Progressive image loading
+	useSocialMeta.js       # Social sharing meta
 ```
+UI + layout components live under `app/components/` (search bar, wall panels, modals, header/footer).
 
 ### Content Type Transformations
 
@@ -83,11 +77,10 @@ components/ui/              # ScrollToTopButton, CloseButton, Button
 - **Memes**: Extract image paths from markdown AST, title as description
 
 ### Critical Anti-Patterns to Avoid
-
-1. **Multiple Interleaving Functions**: Always use single `composables/interleaveContent.js`
-2. **Template Type Mismatches**: Never create `claim`/`meme` types - only `claimPair`/`memeRow`
-3. **Pattern Breaking**: Don't dump remainder items individually - use fallback system
-4. **Import Path Confusion**: Use `~/composables/interleaveContent` not `~/utils/`
+1. Multiple pattern engines.
+2. Emitting raw `claim` or `meme` item types in templates.
+3. Breaking sequence with leftover singles.
+4. Mixing underscore + hyphen slug variants instead of cleaning.
 
 ## Search & Filtering
 
@@ -101,10 +94,12 @@ components/ui/              # ScrollToTopButton, CloseButton, Button
 - **Reactive Cache**: Content loaded once, accessed via reactive cache
 - **Infinite Scroll**: Lazy loading with visual fade-in animations
 
-## Debugging Patterns
+### Image Pipeline (Reference Only)
 
-- **Pattern Verification**: Console logs show pattern creation step-by-step
-- **Content Counts**: Input/output item tracking for balance debugging
-- **Fallback Tracking**: Logs when pattern adaptations occur
+See root `README.md` section 5 for detailed workflow. Scripts perform filename normalization, dry-run reporting, optimization, markdown generation, and orphan handling.
 
-Key insight: This project prioritizes **visual consistency** over content randomness - the pattern must never break, even with unbalanced content distributions.
+## Debugging Pattern
+- Console logs in `interleaveContent.js` trace pattern steps and fallbacks.
+- Verify only `claimPair`, `quote`, `memeRow` instances reach the wall.
+
+Key insight: **Visual consistency over randomness**—never break layout cadence.

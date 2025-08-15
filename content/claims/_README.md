@@ -1,30 +1,45 @@
-# Claims
+# Claims Guide
 
-This folder contains all claim translation markdown files for the site.
+Claims consist of a short statement plus an internal "translation" (summary / interpretation). Each file holds one claim.
 
-## How to Add a Claim
-
-1. Create a new `.md` file in this folder.
-2. Use the following frontmatter and structure:
-
+## Minimal Structure
 ```
 ---
-title: "Claim Title"
-claim: "Claim Title"
-translation: "Short translation or summary."
+title: "Living wage"
+claim: "Living wage"
+translation: "Mandated higher base wage"
 ---
 
-## "Claim Title"
-
-## Short translation or summary.
-
----
-
-Explanatory text can optionally go here.
-
+Optional explanatory paragraph(s).
 ```
 
-- The `title` and `claim` fields should match.
-- The `translation` is a short, punchy 'translation' of the real meaning of the Leftist Claim.
-- Add a "---" to separate the frontmatter from any Explanatory text you might wish to add.
-- Then the Explanatory text can optionally go here.
+Rules:
+- `title` and `claim` must match exactly.
+- `translation` is a concise interpretive summary (one short line).
+- Additional explanation is optional and placed after the frontmatter.
+
+Filenames:
+- Lowercase, hyphen-separated: `living-wage.md`
+- Avoid duplicates with underscore forms (`living_wage.md`). Remove underscore variants when encountered.
+
+Ignored: Files starting with `_`.
+
+## Adding a Claim
+1. Choose a concise hyphenated filename.
+2. Add required frontmatter fields.
+3. (Optional) add explanatory body text after frontmatter.
+
+## Example (with body)
+```
+---
+title: "Universal childcare"
+claim: "Universal childcare"
+translation: "State-funded childcare for all families"
+---
+
+Additional context about the claim can go here.
+```
+
+## See Also
+- Root `README.md` (content summary and examples)
+- `../_ReadMe.md` (overview)

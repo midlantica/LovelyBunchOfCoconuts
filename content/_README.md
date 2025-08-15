@@ -1,32 +1,34 @@
-# Content Directory
-
-This directory contains all the content displayed on the website. Each type of content has its own folder:
-
-- `claims/` - Claim translations
-- `quotes/` - Notable quotes
-- `memes/` - Meme images with metadata
-
-## File Format
-
-All content is written in Markdown (`.md`) files with YAML frontmatter. The frontmatter contains metadata about the content and is enclosed between triple dashes (`---`).
-
-Example:
-
-```md
----
 title: 'Example Title'
----
+# Content Overview
 
-Content goes here.
-```
+Folders here map directly to the three content types rendered on the wall:
 
-## Adding New Content
+- `claims/` – Claim markdown (frontmatter: `title`, `claim`, `translation`)
+- `quotes/` – Quote markdown (H2 line = quote, next line = attribution)
+- `memes/` – Meme markdown (paired with an image in `public/memes/`)
 
-Please see the README file in each specific folder for instructions on how to add that type of content.
+Files or folders beginning with `_` are ignored.
 
-## Content Guidelines
+## Format
+All items are Markdown with optional YAML frontmatter delimited by `---`.
 
-1. Use descriptive filenames that reflect the content
-2. Include all required frontmatter fields (may be just title)
-3. Keep content appropriate and relevant
-4. Follow the templates provided in each folder
+Minimal examples are in the root `README.md` (see section: Appendix). Use that as the authoritative template.
+
+## Naming
+- Lowercase, hyphen-delimited filenames
+- Avoid underscore variants; remove duplicates gradually
+- Keep names concise and descriptive
+
+## Adding Items
+1. Claims: create a file in `claims/` with required frontmatter.
+2. Quotes: copy the quote template, one quote per file.
+3. Memes: add image to `public/memes/<subdir>/`, run `pnpm process-images <subdir> --dry-run`, then run without `--dry-run`.
+
+## Automation Notes
+The image processing script can auto-generate meme markdown with a title / alt / caption heuristic. Orphan meme markdown (no image) is moved into `_orphaned` during real runs.
+
+## See Also
+- Root `README.md` (pattern, pipeline, examples)
+- `content/claims/_ReadMe.md`
+- `content/memes/_ReadMe.md`
+- `content/quotes/_ReadMe.md`

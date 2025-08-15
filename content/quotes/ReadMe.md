@@ -1,33 +1,35 @@
-# Quotes: Quick Guide
+# Quotes Guide
 
-Use this when adding or editing quotes.
+Each file contains exactly one quote.
 
-## How to add a quote
-
-1. Copy `../../templates/quote.md`.
-2. Save it here with a short filename: `author-or-topic.md`.
-3. Put the quote as an H2 heading; first paragraph is the attribution.
-
-Example:
-
+## Minimal Structure
 ```
 ---
 # frontmatter optional
 ---
-
 ## “Government is best which governs least.”
 Henry David Thoreau
 ```
 
-## Tips
+Rules:
+- H2 (`##`) line = quote text.
+- First non-empty line after the H2 = attribution (author, source, etc.).
+- Optional extra paragraphs may follow.
 
-- Keep one quote per file.
-- Use straight quotes or proper curly quotes—both are okay.
-- Filenames use dashes/underscores; avoid spaces.
-- Anything starting with `_` is ignored.
+Filenames:
+- Lowercase, hyphen-separated (e.g. `thomas-sowell.md`)
+- Avoid underscore variants; prefer hyphens.
+- Prefix with `_` to exclude from the build.
 
-## See also
+Frontmatter:
+- Optional; you may add `title:` if needed for future metadata.
 
-- Main guide: ../ReadMe.md
-- Claims guide: ../claims/ReadMe.md
-- Memes guide: ../memes/ReadMe.md
+## Adding a Quote
+1. Copy template from `templates/quote.md` or use the minimal example.
+2. Save in this folder (or a subfolder like `liberty/`, `economics/`).
+3. Keep one quote per file.
+
+## See Also
+- Root `README.md` (content type summary)
+- Claims: `../claims/_ReadMe.md`
+- Memes: `../memes/_ReadMe.md`
