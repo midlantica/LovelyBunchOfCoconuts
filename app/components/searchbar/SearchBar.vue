@@ -146,6 +146,17 @@
     emit('update:search', '')
     // Ensure focus stays on search input to prevent pill focus ring
     nextTick(() => searchInputRef.value?.focus())
+    // Remove q param from URL if present
+    try {
+      const router = useRouter()
+      const route = useRoute()
+      if (route.query.q) {
+        router.replace({
+          path: route.path,
+          query: { ...route.query, q: undefined },
+        })
+      }
+    } catch {}
   }
 
   function handleSearchInput() {

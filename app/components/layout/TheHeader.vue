@@ -29,6 +29,18 @@
     // Reseed wall for new randomized ordering
     reseedWall('masthead-click')
     // If not already on root, navigate without full reload
-    if (route.path !== '/') router.push('/')
+    if (route.path !== '/') {
+      router.push('/')
+    } else {
+      // Already on root: clear ?q= and reset filters & searchTerm state
+      const searchTerm = useState('searchTerm')
+      const contentFilters = useState('contentFilters')
+      if (searchTerm?.value) searchTerm.value = ''
+      if (contentFilters?.value) {
+        contentFilters.value = { claims: true, quotes: true, memes: true }
+      }
+      // Replace URL removing query params silently
+      router.replace({ path: route.path, query: {} })
+    }
   }
 </script>
