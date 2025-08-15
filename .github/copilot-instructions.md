@@ -68,6 +68,7 @@ app/composables/
 	useLazyImages.js       # Progressive image loading
 	useSocialMeta.js       # Social sharing meta
 ```
+
 UI + layout components live under `app/components/` (search bar, wall panels, modals, header/footer).
 
 ### Content Type Transformations
@@ -77,6 +78,7 @@ UI + layout components live under `app/components/` (search bar, wall panels, mo
 - **Memes**: Extract image paths from markdown AST, title as description
 
 ### Critical Anti-Patterns to Avoid
+
 1. Multiple pattern engines.
 2. Emitting raw `claim` or `meme` item types in templates.
 3. Breaking sequence with leftover singles.
@@ -99,6 +101,7 @@ UI + layout components live under `app/components/` (search bar, wall panels, mo
 See root `README.md` section 5 for detailed workflow. Scripts perform filename normalization, dry-run reporting, optimization, markdown generation, and orphan handling.
 
 ## Debugging Pattern
+
 - Console logs in `interleaveContent.js` trace pattern steps and fallbacks.
 - Verify only `claimPair`, `quote`, `memeRow` instances reach the wall.
 
