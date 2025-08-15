@@ -1,0 +1,164 @@
+{
+  "images": {
+    "npc-2/maybe-i-am-an-npc.jpg": {
+      "optimized": true,
+      "hash": "13f843d6c0feffc41334b0b337168819fa3e48cd",
+      "action": "strip-profiles",
+      "updated": "2025-08-15T17:31:03.901Z",
+      "width": 1063,
+      "height": 1080
+    },
+    "npc-2/msnpc-updating-approved-opinions.jpg": {
+      "optimized": true,
+      "hash": "a323409da5fc387be62fa2fda1668a67b4f37c37",
+      "action": "strip-profiles",
+      "updated": "2025-08-15T17:31:04.006Z",
+      "width": 1080,
+      "height": 513
+    },
+    "npc-2/npc-army.jpg": {
+      "optimized": true,
+      "hash": "82a3ba4939a5b33b27411c934c2f88f2b9ac6ef7",
+      "action": "strip-profiles",
+      "updated": "2025-08-15T17:31:04.128Z",
+      "width": 1047,
+      "height": 1080
+    },
+    "npc-2/npc-biden-had-a-cold.jpg": {
+      "optimized": true,
+      "hash": "d937ec5e69e678e6a25efe8ddc6fe55669ca5dee",
+      "action": "strip-profiles",
+      "updated": "2025-08-15T17:31:04.257Z",
+      "width": 1071,
+      "height": 1080
+    },
+    "npc-2/npc-college-indoctrinates.jpg": {
+      "optimized": true,
+      "hash": "cc068d699a96db395a969d800cf17591d91d7bb4",
+      "action": "upscale→800",
+      "updated": "2025-08-15T17:31:04.422Z",
+      "width": 800,
+      "height": 760
+    },
+    "npc-2/npc-dr-evil-experts-say.jpg": {
+      "optimized": true,
+      "hash": "b2102b17d9173bfc9e09e5390c8dc3c2333f53a6",
+      "action": "upscale→800",
+      "updated": "2025-08-15T17:31:04.562Z",
+      "width": 800,
+      "height": 727
+    },
+    "npc-2/npc-has-empathy-for-others.jpg": {
+      "optimized": true,
+      "hash": "79cbcdc4a636c6be3cea48fa99b220b0677908c2",
+      "action": "upscale→800",
+      "updated": "2025-08-15T17:31:04.713Z",
+      "width": 800,
+      "height": 400
+    },
+    "npc-2/npc-i-hate-thinking-me-too-leave-it-to-e.jpg": {
+      "optimized": true,
+      "hash": "de58fad2dbcfdb61e9951aad25e78a0fe59cfe8c",
+      "action": "strip-profiles",
+      "updated": "2025-08-15T17:31:04.854Z",
+      "width": 1025,
+      "height": 1080
+    },
+    "npc-2/npc-i-support-the-current-thing.jpg": {
+      "optimized": true,
+      "hash": "03f0c1a4f03a3e4ba310edfe45563acc4b707c14",
+      "action": "strip-profiles",
+      "updated": "2025-08-15T17:31:05.033Z",
+      "width": 1080,
+      "height": 1080
+    },
+    "npc-2/npc-journalism-hate.jpg": {
+      "optimized": true,
+      "hash": "352e280650fc4cc44bf243ba9d09fa8d121b556b",
+      "action": "upscale→800",
+      "updated": "2025-08-15T17:31:05.223Z",
+      "width": 800,
+      "height": 778
+    },
+    "npc-2/npc-journalism-impartial-suggest-otherwi.jpg": {
+      "optimized": true,
+      "hash": "2e510c8290efeb2ac6fa1917ef8401051d2cbb1e",
+      "action": "upscale→800",
+      "updated": "2025-08-15T17:31:05.390Z",
+      "width": 800,
+      "height": 778
+    },
+    "npc-2/npc-republicans-are-bad-in-6-frames.jpg": {
+      "optimized": true,
+      "hash": "3b40e8660c3bef78a687b2785b0c5cf4550e1607",
+      "action": "upscale→800",
+      "updated": "2025-08-15T17:31:05.606Z",
+      "width": 546,
+      "height": 800
+    },
+    "npc-2/npc-say-stopping-government-waste-and-co.jpg": {
+      "optimized": true,
+      "hash": "38e4d558000232a38c1617a9a43b78d938b3bf40",
+      "action": "strip-profiles",
+      "updated": "2025-08-15T17:31:05.773Z",
+      "width": 1080,
+      "height": 992
+    },
+    "npc-2/npc-the-left-when-trump-does-something-v.jpg": {
+      "optimized": true,
+      "hash": "db53b2a267798db4e6923ab62fa8d6e6174f98f7",
+      "action": "upscale→800",
+      "updated": "2025-08-15T17:31:05.931Z",
+      "width": 800,
+      "height": 594
+    },
+    "npc-2/npc-trump-is-bad-in-6-frames.jpg": {
+      "optimized": true,
+      "hash": "3828b61c23c49f9b7a3e7966ce7870c00d7be8c9",
+      "action": "upscale→800",
+      "updated": "2025-08-15T17:31:06.082Z",
+      "width": 546,
+      "height": 800
+    },
+    "npc-2/npc-we-are-all-individuals.jpg": {
+      "optimized": true,
+      "hash": "246c7754550367190154c7f7bfdab559061cc141",
+      "action": "upscale→800",
+      "updated": "2025-08-15T17:31:06.232Z",
+      "width": 775,
+      "height": 800
+    },
+    "npc-2/npc.jpg": {
+      "optimized": true,
+      "hash": "7b830ac2ec652d731f956598a72d5e6f4cae311d",
+      "action": "upscale→800",
+      "updated": "2025-08-15T17:31:06.372Z",
+      "width": 659,
+      "height": 800
+    },
+    "npc-2/npx-say-abort-our-own-children-import-ho.jpg": {
+      "optimized": true,
+      "hash": "7bc7e6a17aa6e39e11cb47c2b7674c7a6fc1aa50",
+      "action": "strip-profiles",
+      "updated": "2025-08-15T17:31:06.494Z",
+      "width": 1046,
+      "height": 1080
+    },
+    "npc-2/scott-jennings-doh-face.jpg": {
+      "optimized": true,
+      "hash": "f723e116830e66fc06860ca5c464eb1e9431ebfd",
+      "action": "upscale→800",
+      "updated": "2025-08-15T17:31:06.628Z",
+      "width": 800,
+      "height": 534
+    },
+    "npc-2/what-are-you-outraged-by-now-npc.jpg": {
+      "optimized": true,
+      "hash": "8ba9305ffba83595e15f9200052ad9d845b3b791",
+      "action": "strip-profiles",
+      "updated": "2025-08-15T17:31:06.753Z",
+      "width": 1071,
+      "height": 1080
+    }
+  }
+}
