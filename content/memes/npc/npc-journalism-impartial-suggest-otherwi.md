@@ -1,7 +1,7 @@
 ---
-title: "Npc journalism impartial suggest otherwi"
+title: 'Our journalism is impartial and independant'
 ---
 
-![Npc journalism impartial suggest otherwi](/memes/npc/npc-journalism-impartial-suggest-otherwi.jpg)
+![Our journalism is impartial and independant](/memes/npc/npc-journalism-impartial-suggest-otherwi.jpg)
 
-Npc journalism impartial suggest otherwi
+Our journalism is impartial and independant to suggest otherwise is dangerous and untrue.

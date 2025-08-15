@@ -1,7 +1,7 @@
 ---
-title: "Npc college indoctrinates"
+title: "NPC college indoctrinates"
 ---
 
-![Npc college indoctrinates](/memes/npc/npc-college-indoctrinates.jpg)
+![NPC college indoctrinates](/memes/npc/npc-college-indoctrinates.jpg)
 
-Npc college indoctrinates
+NPC college indoctrinates

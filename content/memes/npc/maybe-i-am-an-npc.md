@@ -1,7 +1,7 @@
 ---
-title: "Maybe i am an npc"
+title: "Maybe I am an NPC?"
 ---
 
-![Maybe i am an npc](/memes/npc/maybe-i-am-an-npc.jpg)
+![Maybe I am an NPC?](/memes/npc/maybe-i-am-an-npc.jpg)
 
-Maybe i am an npc
+Maybe I am an NPC?

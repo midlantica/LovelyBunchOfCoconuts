@@ -1,7 +1,7 @@
 ---
-title: "Npc journalism hate"
+title: 'NPC Mainstream journalism hate'
 ---
 
-![Npc journalism hate](/memes/npc/npc-journalism-hate.jpg)
+![NPC Mainstream journalism hate](/memes/npc/npc-journalism-hate.jpg)
 
-Npc journalism hate
+NPC Mainstream journalism hate

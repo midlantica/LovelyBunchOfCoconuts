@@ -1,7 +1,7 @@
 ---
-title: "Scott jennings doh face"
+title: 'Scott Jennings doh face to NPCs'
 ---
 
-![Scott jennings doh face](/memes/npc/scott-jennings-doh-face.jpg)
+![Scott Jennings doh face to NPCs](/memes/npc/scott-jennings-doh-face.jpg)
 
-Scott jennings doh face
+Scott Jennings doh face to NPCs

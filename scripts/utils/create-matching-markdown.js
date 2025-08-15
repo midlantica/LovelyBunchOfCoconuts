@@ -43,17 +43,72 @@ async function log(message) {
   console.log(message)
 }
 
-// Helper function to create a title from filename
+// Helper function to create a more natural English title from filename
 function createTitle(filename) {
-  // Remove extension and replace hyphens with spaces
   const base = path.basename(filename, path.extname(filename))
+  const rawWords = base.split('-').filter(Boolean)
+  if (!rawWords.length) return 'Untitled'
 
-  // Replace hyphens with spaces and use sentence case (only first letter capitalized)
-  const words = base.split('-').map((word) => word.toLowerCase())
-  if (words.length > 0) {
-    words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1)
+  // Lowercase everything first for normalization
+  let words = rawWords.map((w) => w.toLowerCase())
+
+  // Known acronyms to preserve / upper-case
+  const ACRONYMS = new Set([
+    'npc',
+    'usa',
+    'us',
+    'gdp',
+    'ai',
+    'eu',
+    'uk',
+    'nato',
+    'fbi',
+    'cia',
+    'nsa',
+    'lgbt',
+    'lgbtq',
+    'lgbtqia',
+    'dei',
+    'esg',
+    'irs',
+    'doj',
+    'cdc',
+    'who',
+    'un',
+    'imf',
+    'wto',
+    'epa',
+    'oecd',
+    'blm',
+    'atf',
+    'sec',
+    'dod',
+    'cop',
+    'ipcc',
+    'faq',
+  ])
+
+  words = words.map((w) => (ACRONYMS.has(w) ? w.toUpperCase() : w))
+
+  // Join into a sentence string
+  let sentence = words.join(' ')
+
+  // Capitalize standalone pronoun 'i' -> 'I'
+  sentence = sentence.replace(/\bi\b/g, 'I')
+
+  // Capitalize first letter of the sentence
+  sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1)
+
+  // Punctuation heuristic: if starts with maybe/should and lacks terminal punctuation, add ?
+  const startsToken = sentence.toLowerCase().split(/\s+/)[0]
+  if (
+    (startsToken === 'maybe' || startsToken === 'should') &&
+    !/[.!?]$/.test(sentence)
+  ) {
+    sentence += '?'
   }
-  return words.join(' ')
+
+  return sentence
 }
 
 // Helper function to check if a file exists

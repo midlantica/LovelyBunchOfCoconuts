@@ -1,7 +1,7 @@
 ---
-title: "Npc"
+title: "NPC"
 ---
 
-![Npc](/memes/npc/npc.jpg)
+![NPC](/memes/npc/npc.jpg)
 
-Npc
+NPC

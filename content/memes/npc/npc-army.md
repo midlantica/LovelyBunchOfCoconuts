@@ -1,7 +1,7 @@
 ---
-title: "Npc army"
+title: "NPC army"
 ---
 
-![Npc army](/memes/npc/npc-army.jpg)
+![NPC army](/memes/npc/npc-army.jpg)
 
-Npc army
+NPC army

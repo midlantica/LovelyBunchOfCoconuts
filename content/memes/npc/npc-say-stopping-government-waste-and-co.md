@@ -1,7 +1,7 @@
 ---
-title: "Npc say stopping government waste and co"
+title: 'NPC Stopping government waste and corruption is tyranny'
 ---
 
-![Npc say stopping government waste and co](/memes/npc/npc-say-stopping-government-waste-and-co.jpg)
+![NPC Stopping government waste and corruption is tyranny](/memes/npc/npc-say-stopping-government-waste-and-co.jpg)
 
-Npc say stopping government waste and co
+NPC Stopping government waste and corruption is tyranny
