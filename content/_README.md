@@ -1,40 +1,98 @@
-title: 'Example Title'
+# Content Overview (Unified)
 
-# Content Overview
+This directory houses all wall content: Claims, Quotes, Memes. The wall renders them using a strict repeating visual pattern:
 
-Folders here map directly to the three content types rendered on the wall:
+```
+[ claim | claim ] → [ quote ] → [ meme | meme ] → [ quote ] → (repeat)
+```
 
-- `claims/` – Claim markdown (frontmatter: `title`, `claim`, `translation`)
-- `quotes/` – Quote markdown (H2 line = quote, next line = attribution)
-- `memes/` – Meme markdown (paired with an image in `public/memes/`)
+Layout item types produced by the pattern engine (`app/composables/interleaveContent.js`):
+- `claimPair` (two claims)
+- `quote` (single quote)
+- `memeRow` (two memes)
 
-Files or folders beginning with `_` are ignored.
+Files or folders starting with `_` are ignored by the content loader.
 
-## Format
+## 1. Type Summaries
 
-All items are Markdown with optional YAML frontmatter delimited by `---`.
+| Type  | Folder                | Frontmatter (min)                 | Body Rules |
+|-------|-----------------------|-----------------------------------|-----------|
+| Claim | `claims/`             | `title`, `claim`, `translation`   | Optional explanatory text after frontmatter |
+| Quote | `quotes/`             | (optional `title`)                | First `##` line = quote; next line = attribution |
+| Meme  | `memes/` + image file | `title` (auto if scripted)        | Image markdown + optional caption |
 
-Minimal examples are in the root `README.md` (see section: Appendix). Use that as the authoritative template.
+## 2. Naming Rules
+- Lowercase, hyphen-separated (no spaces / avoid underscores)
+- Remove underscore duplicates when found
+- Concise (≈ 3–8 words) and descriptive
 
-## Naming
+## 3. Minimal Examples
 
-- Lowercase, hyphen-delimited filenames
-- Avoid underscore variants; remove duplicates gradually
-- Keep names concise and descriptive
+Claim:
+```
+---
+title: "Living wage"
+claim: "Living wage"
+translation: "Mandated higher base wage"
+---
 
-## Adding Items
+Optional details.
+```
 
-1. Claims: create a file in `claims/` with required frontmatter.
-2. Quotes: copy the quote template, one quote per file.
-3. Memes: add image to `public/memes/<subdir>/`, run `pnpm process-images <subdir> --dry-run`, then run without `--dry-run`.
+Quote:
+```
+---
+# frontmatter optional
+---
+## “Government is best which governs least.”
+Henry David Thoreau
+```
 
-## Automation Notes
+Meme:
+```
+---
+title: "Maybe I am an NPC?"
+---
+![Maybe I am an NPC?](/memes/npc/maybe-i-am-an-npc.jpg)
 
-The image processing script can auto-generate meme markdown with a title / alt / caption heuristic. Orphan meme markdown (no image) is moved into `_orphaned` during real runs.
+Optional caption.
+```
 
-## See Also
+## 4. Adding Content
+1. Claims: create file with required frontmatter; body optional.
+2. Quotes: one quote per file; H2 then attribution.
+3. Memes: add image to `public/memes/<subdir>/`, run:
+	- `pnpm process-images <subdir> --dry-run` (preview)
+	- `pnpm process-images <subdir>` (apply)
 
-- Root `README.md` (pattern, pipeline, examples)
-- `content/claims/_ReadMe.md`
-- `content/memes/_ReadMe.md`
-- `content/quotes/_ReadMe.md`
+## 5. Meme Automation Pipeline (Summary)
+Script: `pnpm process-images [subdir] [--dry-run] [--force]`
+Steps:
+1. Normalize filenames (`.jpeg`→`.jpg`, hyphens, lowercase).
+2. Report (dry-run) sections: NEW IMAGES / SANITIZED / SCALED / MARKDOWN.
+3. Resize/convert to JPEG (target long side 800px, max width 1080px).
+4. Generate markdown for missing pairs (title/alt heuristic: acronyms to upper case, `i` → `I`, leading `maybe` or `should` adds `?`).
+5. Update `_meme-manifest.json` (hash, size, action).
+6. Move orphan markdown to `_orphaned/` (real run only).
+
+## 6. Search & Filters (Behavior Reference)
+- Normalizes dashes/underscores in queries.
+- ESC or masthead click (on `/`) clears search & removes `?q=`.
+- URL `?q=` read once at load; not updated on each keystroke.
+
+## 7. Anti-Patterns
+Avoid multiple pattern engines, raw `claim`/`meme` layout types, breaking pattern with leftovers, underscore/hyphen duplicates.
+
+## 8. Cleanup & Maintenance
+Run (to preview filename + markdown actions):
+```
+pnpm process-images --dry-run
+```
+Consider periodic duplicate slug audit (dash vs underscore) using the cleanup script (see `_SCRIPTS.md`).
+
+## 9. Related Docs
+- `claims/_ReadMe.md`
+- `memes/_ReadMe.md`
+- `quotes/_ReadMe.md`
+- `.github/copilot-instructions.md` (developer/AI specifics)
+
