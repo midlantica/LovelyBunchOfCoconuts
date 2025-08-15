@@ -22,7 +22,7 @@
     "@napi-rs/canvas": "^0.1.77",
     "@nuxt/content": "3.6.3",
     "@nuxt/eslint": "1.8.0",
-    "@nuxt/icon": "1.15.0",
+    "@nuxt/icon": "2.0.0",
     "@nuxtjs/mdc": "0.17.2",
     "gray-matter": "^4.0.3",
     "lodash-es": "^4.17.21",
@@ -39,16 +39,16 @@
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/mdi-light": "^1.2.2",
     "@iconify-json/ri": "^1.2.5",
-    "@iconify-json/simple-icons": "^1.2.46",
+    "@iconify-json/simple-icons": "^1.2.47",
     "@nuxt/kit": "^4.0.0",
     "@nuxtjs/sitemap": "^7.4.3",
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
-    "@tailwindcss/vite": "^4.1.11",
-    "@typescript-eslint/parser": "^8.39.0",
+    "@tailwindcss/vite": "^4.1.12",
+    "@typescript-eslint/parser": "^8.39.1",
     "eslint": "^9.33.0",
     "eslint-plugin-vue": "^10.4.0",
     "globals": "^16.3.0",
-    "tailwindcss": "4.1.11"
+    "tailwindcss": "4.1.12"
   }
 }

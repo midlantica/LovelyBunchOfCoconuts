@@ -1,81 +1,26 @@
-Starting markdown file creation at 2025-08-12T03:21:24.176Z
-Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell
-Markdown file already exists for activism-is-a-way-for-useless-people-to.jpg
-Markdown file already exists for blacks-were-not-enslaved-becuase-they-were-black.jpg
-Markdown file already exists for both-free-speech-rights-and-property-rights.jpg
-Markdown file already exists for despite-a-voluminous-and-often-fervent-literature.jpg
-Markdown file already exists for during-the-1920s-and-the-early-1930s-fascism.jpg
-Markdown file already exists for europe-is-belatedly-discovering-how-unbe.jpg
-Markdown file already exists for guilt-has-so-furtively-stolen-into-many.jpg
-Markdown file already exists for i-have-never-understood-why-it-is-agreed.jpg
-Markdown file already exists for if-you-are-not-prepared-to-use-force-to.jpg
-Markdown file already exists for if-you-cannot-achieve-a-quality-of-performance.jpg
-Markdown file already exists for if-you-want-to-see-the-poor-remain-poor.jpg
-Markdown file already exists for immigration-laws-are-the-only-laws.jpg
-Markdown file already exists for it-is-fascinating-to-watch-politicians-come-up.jpg
-Created markdown file for it-is-not-enough-for-us-to-discover-bela.jpeg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/it-is-not-enough-for-us-to-discover-bela.md
-Markdown file already exists for it-is-not-enough-for-us-to-discover-bela.jpg
-Markdown file already exists for it-is-not-enough-for-us-to-discover-belatedly.jpg
-Markdown file already exists for it-is-usually-futile-to-try-to-talk-fact.jpg
-Markdown file already exists for it-was-thomas-edison-who-brought-us-electrity.jpg
-Markdown file already exists for its-amazing-how-fast-people-learn-when-t.jpg
-Markdown file already exists for many-on-the-political-left-are-so-entranced.jpg
-Created markdown file for more-whites-were-brought-as-slaves-to-no-the-united-states.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/more-whites-were-brought-as-slaves-to-no-the-united-states.md
-Markdown file already exists for much-of-the-social-history-of-the-wester-world.jpg
-Created markdown file for much-of-the-social-history-of-the-wester.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/much-of-the-social-history-of-the-wester.md
-Markdown file already exists for much-of-the-social-history-of-the-western-world-long.jpg
-Markdown file already exists for much-of-what-are-called-social-problems.jpg
-Markdown file already exists for multiculturalism-like-the-cast-system.jpg
-Markdown file already exists for no-government-of-the-left-has-done-as-mu.jpg
-Markdown file already exists for no-matter-how-disastrously-some-policy-h.jpg
-Markdown file already exists for nobody-is-equal-to-anybody.jpg
-Markdown file already exists for one-of-the-many-services-done-to-young-p.jpg
-Markdown file already exists for one-of-the-most-important-reasons-for-st.jpg
-Markdown file already exists for one-of-them-many-disservices-done-to-you.jpg
-Markdown file already exists for ours-may-become-the-first-civilization.jpg
-Markdown file already exists for people-who-are-very-aware-that-they-have.jpg
-Markdown file already exists for people-who-pride-themselves-on-their-com.jpg
-Markdown file already exists for racism-is-not-dead-but-it-is-on-life-sup.jpg
-Markdown file already exists for schools-exist-for-the-education-of-child.jpg
-Markdown file already exists for since-wealth-is-the-only-thing-that-can.jpg
-Markdown file already exists for socialism-in-general-has-a-record-of-fai.jpg
-Markdown file already exists for some-americans-will-never-appreciate.jpg
-Markdown file already exists for the-assumption-that-spending-more-of-the.jpg
-Markdown file already exists for the-beauty-of-doing-nothing-is-that-you.jpg
-Markdown file already exists for the-black-family-survived-centuries-of-s.jpg
-Markdown file already exists for the-endlessly-repeated-argument-that-mos.jpg
-Markdown file already exists for the-fact-that-crime-and-poverty-are-corr.jpg
-Markdown file already exists for the-fatal-attraction-of-government-is-th.jpeg
-Markdown file already exists for the-fatal-attraction-of-government-is-th.jpg
-Markdown file already exists for the-first-lesson-of-economics-is-scarcity.jpg
-Markdown file already exists for the-left-attempts-to-silence-ideas-they.jpg
-Markdown file already exists for the-left-takes-its-vision-seriously.jpg
-Markdown file already exists for the-more-i-study-the-history-of-intellec.jpg
-Markdown file already exists for the-most-basic-question-is-not-what-is-b.jpg
-Markdown file already exists for the-most-basic-question-is-not-what-is.jpg
-Markdown file already exists for the-next-time-some-academics-tell-you-ho.jpg
-Markdown file already exists for the-purpose-of-politics-is-not-to-solve.jpg
-Markdown file already exists for the-real-motives-of-liberals-have-nothin.jpg
-Markdown file already exists for the-reason-so-many-people-misunderstand.jpg
-Markdown file already exists for there-are-no-solutions-there-are-only-tr.jpg
-Markdown file already exists for there-has-now-been-created-a-world.jpg
-Markdown file already exists for thomas-sowell-discrimination-and-dispari.jpg
-Markdown file already exists for thomas-sowell-it-was-thomas-edison.jpg
-Markdown file already exists for thomas-sowell-quote-freedom-unlikely-to.jpg
-Markdown file already exists for thomas-sowell-sexual-activity-vs-economi.jpg
-Markdown file already exists for too-much-of-what-is-called-education.jpg
-Markdown file already exists for we-are-a-nation-of-immigrants-we-are-con.jpg
-Markdown file already exists for we-seem-to-be-closer-and-closer-to-a-sit.jpg
-Markdown file already exists for what-do-you-call-it-when-someone-steals.jpg
-Markdown file already exists for what-do-you-replace-a-fire-with-thomas-s.jpg
-Markdown file already exists for what-exactly-is-your-fair-share-of-what.jpg
-Markdown file already exists for what-multiculturalism-boils-down-to.jpg
-Markdown file already exists for when-i-was-growing-up-we-were-taught.jpg
-Markdown file already exists for when-it-is-proclaimed-that-one-must-beco.jpg
-Markdown file already exists for when-you-import-people-you-import-cultur.jpg
-Markdown file already exists for when-you-want-to-help-people-you-tell-th.jpg
-Markdown file already exists for you-have-to-have-a-sense-of-humor-if-you.jpg
+Starting markdown file creation at 2025-08-15T16:59:06.865Z
+Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc
+Created markdown file for maybe-i-am-an-npc.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/maybe-i-am-an-npc.md
+Created markdown file for msnpc-updating-approved-opinions.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/msnpc-updating-approved-opinions.md
+Created markdown file for npc-army.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-army.md
+Created markdown file for npc-biden-had-a-cold.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-biden-had-a-cold.md
+Created markdown file for npc-college-indoctrinates.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-college-indoctrinates.md
+Created markdown file for npc-dr-evil-experts-say.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-dr-evil-experts-say.md
+Created markdown file for npc-has-empathy-for-others.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-has-empathy-for-others.md
+Created markdown file for npc-i-hate-thinking-me-too-leave-it-to-e.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-i-hate-thinking-me-too-leave-it-to-e.md
+Created markdown file for npc-i-support-the-current-thing.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-i-support-the-current-thing.md
+Created markdown file for npc-journalism-hate.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-journalism-hate.md
+Created markdown file for npc-journalism-impartial-suggest-otherwi.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-journalism-impartial-suggest-otherwi.md
+Created markdown file for npc-republicans-are-bad-in-6-frames.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-republicans-are-bad-in-6-frames.md
+Created markdown file for npc-say-stopping-government-waste-and-co.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-say-stopping-government-waste-and-co.md
+Created markdown file for npc-the-left-when-trump-does-something-v.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-the-left-when-trump-does-something-v.md
+Created markdown file for npc-trump-is-bad-in-6-frames.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-trump-is-bad-in-6-frames.md
+Created markdown file for npc-we-are-all-individuals.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc-we-are-all-individuals.md
+Created markdown file for npc.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npc.md
+Created markdown file for npx-say-abort-our-own-children-import-ho.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/npx-say-abort-our-own-children-import-ho.md
+Created markdown file for scott-jennings-doh-face.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/scott-jennings-doh-face.md
+Created markdown file for what-are-you-outraged-by-now-npc.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/npc/what-are-you-outraged-by-now-npc.md
 
-Markdown file creation complete at 2025-08-12T03:21:24.191Z
-3 markdown files created, 72 files skipped
+Markdown file creation complete at 2025-08-15T16:59:06.877Z
+20 markdown files created, 0 files skipped
 Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/utils/markdown-creation-log.txt

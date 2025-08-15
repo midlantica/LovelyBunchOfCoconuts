@@ -281,6 +281,118 @@ async function renameImageFile(directory, filename) {
   return newFilename
 }
 
+// Pre-pass: normalize filenames (lowercase, dashes, .jpeg -> .jpg) before rest of pipeline
+async function prepassNormalizeFilenames(
+  directory,
+  subdirName,
+  { dryRun, manifest }
+) {
+  const plannedRenames = []
+  let files
+  try {
+    files = await fs.readdir(directory)
+  } catch {
+    return plannedRenames
+  }
+  for (const file of files) {
+    const extWithDot = path.extname(file)
+    if (!extWithDot) continue
+    const extLower = extWithDot.toLowerCase()
+    // Only operate on image-like files
+    if (
+      !['.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp', '.tiff'].includes(
+        extLower
+      )
+    )
+      continue
+    const baseOriginal = path.basename(file, extWithDot)
+    const sanitizedBase = sanitizeFilename(baseOriginal, 60)
+    const targetExt = extLower === '.jpeg' ? '.jpg' : extLower
+    let newName = sanitizedBase + targetExt
+    if (newName === file) continue // Already normalized
+    // uniqueness (only if actually renaming)
+    if (!dryRun) {
+      let counter = 1
+      while (
+        newName !== file &&
+        (await fs
+          .access(path.join(directory, newName))
+          .then(() => true)
+          .catch(() => false))
+      ) {
+        newName = `${sanitizedBase}-${counter}${targetExt}`
+        counter++
+      }
+    }
+    const oldPath = path.join(directory, file)
+    const newPath = path.join(directory, newName)
+    if (dryRun) {
+      plannedRenames.push({
+        from: displayImagePath(subdirName, file),
+        to: displayImagePath(subdirName, newName),
+      })
+    } else {
+      try {
+        await fs.rename(oldPath, newPath)
+        console.log(`🔁 Renamed: ${file} → ${newName}`)
+        // Update markdown reference if a paired markdown exists (best-effort)
+        try {
+          const pathParts = directory.split(path.sep)
+          const memesIndex = pathParts.findIndex((p) => p === 'memes')
+          if (memesIndex !== -1) {
+            const subdirParts = pathParts.slice(memesIndex + 1)
+            const contentDir = subdirParts.length
+              ? path.join(__dirname, '..', 'content', 'memes', ...subdirParts)
+              : path.join(__dirname, '..', 'content', 'memes')
+            const mdPathGuessOld = path.join(contentDir, `${baseOriginal}.md`)
+            const mdPathGuessSanitized = path.join(
+              contentDir,
+              `${sanitizedBase}.md`
+            )
+            const mdCandidates = [mdPathGuessOld, mdPathGuessSanitized]
+            for (const mdCandidate of mdCandidates) {
+              try {
+                const data = await fs.readFile(mdCandidate, 'utf-8')
+                const updated = data.replace(
+                  new RegExp(file.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&'), 'g'),
+                  newName
+                )
+                if (updated !== data) {
+                  await fs.writeFile(mdCandidate, updated, 'utf-8')
+                  console.log(
+                    `   ↳ Updated markdown reference in ${path.basename(
+                      mdCandidate
+                    )}`
+                  )
+                }
+              } catch {}
+            }
+          }
+        } catch {}
+        // Move manifest entry
+        try {
+          const oldKey = relImageKey(oldPath)
+          const newKey = relImageKey(newPath)
+          if (manifest.images[oldKey]) {
+            manifest.images[newKey] = { ...manifest.images[oldKey] }
+            delete manifest.images[oldKey]
+            console.log(`   ↳ Manifest key updated: ${oldKey} → ${newKey}`)
+          }
+        } catch {}
+      } catch (e) {
+        console.error(`Failed to rename ${file}: ${e.message}`)
+      }
+    }
+  }
+  return plannedRenames
+}
+
+function displayImagePath(subdirName, filename) {
+  return subdirName
+    ? path.join('public', 'memes', subdirName, filename)
+    : path.join('public', 'memes', filename)
+}
+
 /**
  * Find and move orphaned markdown files to _orphaned folder
  * @param {string} imageDirectory - Directory containing images
@@ -540,6 +652,12 @@ async function processImages(directory, subdirName = '', options = {}) {
   ]
 
   try {
+    // Pre-pass normalization (returns planned renames when dryRun)
+    const plannedRenames = await prepassNormalizeFilenames(
+      directory,
+      subdirName,
+      { dryRun, manifest }
+    )
     const files = await fs.readdir(directory)
 
     // Get all image files
@@ -564,6 +682,93 @@ async function processImages(directory, subdirName = '', options = {}) {
       }
     }
 
+    // --- Dry-run reporting prep -------------------------------------------------
+    let dryRunReport = null
+    if (dryRun && imagesWithoutMarkdown.length) {
+      const relDirParts = directory.split(path.sep)
+      const memesIdx = relDirParts.lastIndexOf('memes')
+      const subRel =
+        memesIdx !== -1 ? relDirParts.slice(memesIdx + 1).join('/') : ''
+
+      const NEW_IMAGES = []
+      const SANITIZED = []
+      const SCALE_INFO = []
+      const MARKDOWN_MAP = []
+
+      for (const filename of imagesWithoutMarkdown) {
+        const originalRel = subRel ? `${subRel}/${filename}` : filename
+        NEW_IMAGES.push(originalRel)
+        const ext = path.extname(filename).toLowerCase()
+        const base = path.basename(filename, ext)
+        const sanitizedBase = sanitizeFilename(base, 60)
+        // Final target extension for output preview always .jpg
+        const finalName = `${sanitizedBase}.jpg`
+        SANITIZED.push(finalName)
+        // Dimension + size probe (best-effort)
+        let dims = { width: 0, height: 0 }
+        try {
+          dims =
+            (await getImageDimensions(path.join(directory, filename))) || dims
+        } catch {}
+        let fileSize = 0
+        try {
+          const st = await fs.stat(path.join(directory, filename))
+          fileSize = st.size
+        } catch {}
+        // Simple action inference mirroring optimize logic (approx)
+        const MAX_WIDTH = 1080
+        const TARGET_LONG_SIDE = 800
+        const maxSide = Math.max(dims.width, dims.height)
+        const minSide = Math.min(dims.width, dims.height)
+        let action = 'convert-jpg'
+        if (maxSide < TARGET_LONG_SIDE) action = `upscale→${TARGET_LONG_SIDE}`
+        else if (dims.width > MAX_WIDTH) action = `downscale→≤${MAX_WIDTH}`
+        else action = 'optimize/strip'
+        const sizeKB = fileSize ? (fileSize / 1024).toFixed(0) : '?'
+        // We cannot know new size; show placeholder ~
+        const pct = action.startsWith('downscale')
+          ? '≈-25%'
+          : action.startsWith('upscale')
+          ? '+??'
+          : '≈-10%'
+        SCALE_INFO.push({
+          name: finalName,
+          dims: `${dims.width}x${dims.height}`,
+          sizeKB,
+          pct,
+        })
+        MARKDOWN_MAP.push({
+          image: finalName,
+          md: finalName.replace(/\.jpg$/, '') + '.md',
+        })
+      }
+
+      dryRunReport = { NEW_IMAGES, SANITIZED, SCALE_INFO, MARKDOWN_MAP }
+      // Print formatted report now
+      const bar = '###############################'
+      console.log(`\n${bar}\n\n📂 LIST OF NEW IMAGES\nfound in public/memes/ :`)
+      NEW_IMAGES.forEach((f) => console.log(f))
+      console.log('\n⮕⮕⮕⮕⮕⮕\n\n🧹 IMAGE NAMES SANITIZED & → jpg:')
+      SANITIZED.forEach((f) => console.log(f))
+      console.log(
+        '\n⮕⮕⮕⮕⮕⮕\n\n🗜️ IMAGES SCALED / COMPRESSED (orig dims, est size change):'
+      )
+      SCALE_INFO.forEach((r) =>
+        console.log(`${r.name} | ${r.dims} | ${r.sizeKB}KB | ${r.pct}`)
+      )
+      console.log(
+        '\n⮕⮕⮕⮕⮕⮕\n\n📝 MATCHING PAIRED MARKDOWN FILES (to be created in content/memes/):'
+      )
+      MARKDOWN_MAP.forEach((m) => {
+        const sub = subRel ? `${subRel}/` : ''
+        console.log(`${sub}${m.image}`)
+        console.log(`  -> ${sub}${m.md}`)
+      })
+      console.log(`\nImages updated (would process): ${SCALE_INFO.length}`)
+      console.log(`Markdown created (would create): ${MARKDOWN_MAP.length}`)
+    }
+    // ---------------------------------------------------------------------------
+
     // Check for orphaned markdown files and automatically move them to _orphaned folder
     const movedOrphanedFiles = await findAndMoveOrphanedMarkdownFiles(
       directory,
@@ -571,21 +776,27 @@ async function processImages(directory, subdirName = '', options = {}) {
       { dryRun }
     )
 
-    // rename loop respects dryRun
+    // rename loop only when not dry-run (dry-run is report-only)
     if (!dryRun) {
-      // Only rename images that do NOT yet have markdown pairs
       for (const filename of imagesWithoutMarkdown) {
         const ext = path.extname(filename).toLowerCase()
-        if (imageExtensions.includes(ext)) {
+        if (imageExtensions.includes(ext))
           await renameImageFile(directory, filename)
-        }
       }
     }
-    const optimizationResult = await optimizeImages(directory, subdirName, {
-      manifest,
-      dryRun,
-      force,
-    })
+    // If dry-run: we skip deep optimize (avoid noisy logs) and simulate
+    let optimizationResult = {
+      processedCount: 0,
+      skippedFiles: [],
+      actions: [],
+    }
+    if (!dryRun) {
+      optimizationResult = await optimizeImages(directory, subdirName, {
+        manifest,
+        dryRun,
+        force,
+      })
+    }
     // ALWAYS create markdown for missing (simulate in dry-run)
     let newMarkdownCount = 0
     let newMarkdownFiles = []
@@ -610,6 +821,7 @@ async function processImages(directory, subdirName = '', options = {}) {
           console.error(`❌ Error creating markdown files: ${e.message}`)
         }
       } else {
+        // simulate only
         newMarkdownCount = imagesWithoutMarkdown.length
         newMarkdownFiles = imagesWithoutMarkdown.map((filename) => {
           const basename = path.basename(filename, path.extname(filename))
@@ -618,6 +830,41 @@ async function processImages(directory, subdirName = '', options = {}) {
       }
     }
     await saveManifest(manifest, dryRun)
+
+    // If dry-run: print structured report & summary ONLY and return early
+    if (dryRun) {
+      const totalFiles = imageFiles.length
+      const imagesUpdated = imagesWithoutMarkdown.length // approximation
+      const optimizedThisRun = imagesUpdated
+      const bar = '\n###############################'
+      console.log(`${bar}`)
+      console.log(`\nSUMMARY: public/memes/${subdirName || '*'}`)
+      console.log(`Total image files: ${totalFiles}`)
+      console.log(`Images updated: ${imagesUpdated}`)
+      console.log(`Optimized this run: ${optimizedThisRun}`)
+      console.log(`Images with existing markdown: ${imagesWithMarkdown.length}`)
+      console.log(`New markdown files created: ${newMarkdownCount}`)
+      console.log(`Markdown created: ${newMarkdownCount}`)
+      console.log(`Orphaned markdown moved: ${movedOrphanedFiles.length}`)
+      console.log(`Mode: DRY-RUN`)
+      console.log(`${bar}`)
+      return {
+        totalFiles,
+        existingMarkdown: imagesWithMarkdown.length,
+        processedCount: 0,
+        newMarkdownCount,
+        newMarkdownFiles,
+        missingMarkdownFiles: imagesWithoutMarkdown,
+        orphanedMarkdownFiles: movedOrphanedFiles,
+        dryRun: true,
+        force,
+        manifestPath: MEME_MANIFEST_PATH,
+        skipped: [],
+        actions: [],
+        plannedRenames,
+        dryRunReport,
+      }
+    }
 
     const changed =
       (optimizationResult?.processedCount || 0) > 0 ||
@@ -664,6 +911,8 @@ async function processImages(directory, subdirName = '', options = {}) {
       manifestPath: MEME_MANIFEST_PATH,
       skipped: optimizationResult.skippedFiles,
       actions: optimizationResult.actions,
+      plannedRenames,
+      dryRunReport,
     }
   } catch (error) {
     console.error(`Error processing images: ${error.message}`)

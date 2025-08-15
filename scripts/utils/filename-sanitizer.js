@@ -9,37 +9,57 @@ import path from 'path'
  * @returns {string} Sanitized filename
  */
 export function sanitizeFilename(text, maxLength = 50) {
-  // Convert underscores to dashes first
-  let cleanText = text.replace(/_/g, '-')
-
-  // Remove non-alphanumeric characters except hyphens and spaces
-  cleanText = cleanText
-    .replace(/[^a-zA-Z0-9\-\s]/g, '')
-    .replace(/\s+/g, '-') // Convert spaces to hyphens
-    .replace(/-+/g, '-') // Collapse multiple hyphens
+  // 1. Normalize & lowercase
+  const lowered = (text || '')
+    .normalize('NFKD')
+    .replace(/[_]+/g, ' ') // underscores -> space first so they become token breaks
+    .replace(/[\u0300-\u036f]/g, '') // strip diacritics
     .toLowerCase()
-    .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
-    .replace(/[0-9a-f]{8,}$/g, '') // Remove trailing hashes/numbers
-    .replace(/-+$/g, '') // Remove trailing hyphens again
+    .replace(/[^a-z0-9\s-]/g, ' ') // keep alnum, space, dash
+    .replace(/-/g, ' ') // treat existing dashes as separators for smarter trailing number trim
+    .replace(/\s+/g, ' ') // collapse whitespace
+    .trim()
 
-  // Truncate to max length
-  cleanText = cleanText.slice(0, maxLength).replace(/-+$/g, '')
+  if (!lowered) return 'unnamed'
 
-  // Enforce ending: must be a-z or A-Z word, or a 4-digit year (YYYY)
-  // Remove trailing dashes/fragments/partial words
-  let match = cleanText.match(/([a-z]+|\d{4})$/i)
-  if (match) {
-    // Trim to the last valid word/year
-    cleanText = cleanText.slice(0, match.index + match[0].length)
-  } else {
-    // If nothing valid, fallback to 'unnamed'
-    cleanText = 'unnamed'
+  // 2. Tokenize
+  let tokens = lowered.split(' ').filter(Boolean)
+
+  // Helper: detect year
+  const isYear = (t) => /^(19|20)\d{2}$/.test(t)
+  // Helper: likely random long number (timestamp, camera seq, hash fragment)
+  const isLikelyRandomNumber = (t) =>
+    /^[0-9]+$/.test(t) && !isYear(t) && t.length >= 3
+  // Helper: hex/hashy token
+  const isHashy = (t) => /^[0-9a-f]{6,}$/.test(t)
+
+  // 3. Remove trailing hashy / random numeric tokens (keep one year if present)
+  while (tokens.length) {
+    const last = tokens[tokens.length - 1]
+    if (isHashy(last) || isLikelyRandomNumber(last)) {
+      tokens.pop()
+      continue
+    }
+    break
   }
 
-  // Remove any trailing dash/underscore (shouldn't be needed, but extra safe)
-  cleanText = cleanText.replace(/[-_]+$/g, '')
+  // If everything stripped, fallback to original first non-empty alnum chunk or 'unnamed'
+  if (!tokens.length) {
+    return 'unnamed'
+  }
 
-  return cleanText || 'unnamed'
+  // 4. Re-join with hyphens
+  let base = tokens.join('-')
+
+  // 5. Length cap (preserve start, trim at boundary, then clean trailing dash)
+  if (base.length > maxLength) base = base.slice(0, maxLength)
+  base = base.replace(/-+$/g, '')
+
+  // 6. Ensure not empty & not a single generic number; if single number that isn't a year, prefix img-
+  if (!base) base = 'unnamed'
+  else if (/^\d+$/.test(base) && !isYear(base)) base = `img-${base}`
+
+  return base || 'unnamed'
 }
 
 /**

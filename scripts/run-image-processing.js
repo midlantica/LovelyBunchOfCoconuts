@@ -148,9 +148,12 @@ if (!subdirName) {
   } else {
     processImages(targetDir, subdirName, { dryRun, force })
       .then((result) => {
-        console.log('\nImage processing complete.')
         if (!result) return
-
+        if (dryRun) {
+          // Structured dry-run report already printed inside processImages; suppress duplicate summary.
+          return
+        }
+        console.log('\nImage processing complete.')
         printHeader(`SUMMARY: ${displayPath}`)
         console.log(`Total image files: ${result.totalFiles}`)
         console.log(`Images with existing markdown: ${result.existingMarkdown}`)
@@ -161,7 +164,7 @@ if (!subdirName) {
             result.orphanedMarkdownFiles?.length || 0
           }`
         )
-        console.log(`Mode: ${dryRun ? 'DRY-RUN' : force ? 'FORCE' : 'NORMAL'}`)
+        console.log(`Mode: ${force ? 'FORCE' : 'NORMAL'}`)
         if (result.actions && result.actions.length) {
           console.log('\nActions:')
           result.actions.forEach((a) =>
