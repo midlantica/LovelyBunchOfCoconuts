@@ -1,5 +1,5 @@
 ---
-title: 'When it is proclaimed that one must become more 'sensitive' to various ethnic'
+title: "When it is proclaimed that one must become more 'sensitive' to various ethnic"
 ---
 
 ![When it is proclaimed that one must become more 'sensitive' to various ethnic](/memes/thomas-sowell/when-it-is-proclaimed-that-one-must-beco.jpg)
