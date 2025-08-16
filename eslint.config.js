@@ -5,6 +5,9 @@ import markdown from '@eslint/markdown'
 import css from '@eslint/css'
 import { defineConfig } from 'eslint/config'
 
+// NOTE: Prettier is still used (see .prettierrc) for formatting incl. vueIndentScriptAndStyle.
+// Keep ESLint focused on code-quality; avoid overlapping style rules that can conflict.
+
 export default defineConfig([
   // Ignore markdown and generated/build artifacts
   {
@@ -29,6 +32,7 @@ export default defineConfig([
       sourceType: 'module',
       parser: (await import('@typescript-eslint/parser')).default,
     },
+    rules: {},
   },
 
   // Apply Vue recommended rules only to .vue files

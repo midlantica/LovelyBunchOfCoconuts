@@ -1,4 +1,5 @@
-// Nuxt 3 global middleware to enforce allowed domains and root path
+// Nuxt 3 global middleware to enforce allowed domain.
+// Canonicalization previously in inline <script> inside app.html; moved here for cleanliness.
 export default defineNuxtRouteMiddleware((to, from) => {
   if (process.server) return // Only run on client
 
@@ -22,9 +23,8 @@ export default defineNuxtRouteMiddleware((to, from) => {
     return
   }
 
-  // DISABLED: Allow dynamic routes for content sharing
-  // If on dev or prod, but not at root path, redirect to root
-  // if (window.location.pathname !== '/') {
-  //   window.location.replace(window.location.origin + '/')
+  // Optional root-path enforcement (kept disabled to allow future routed pages):
+  // if (to.path !== '/' && process.env.ENFORCE_ROOT === '1') {
+  //   return navigateTo('/')
   // }
 })
