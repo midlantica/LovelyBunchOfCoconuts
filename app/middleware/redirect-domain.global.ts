@@ -1,9 +1,13 @@
-// Nuxt 3 global middleware to enforce allowed domain.
-// Canonicalization previously in inline <script> inside app.html; moved here for cleanliness.
-export default defineNuxtRouteMiddleware((to, from) => {
-  if (process.server) return // Only run on client
+/// <reference types="nuxt" />
+// Nuxt global middleware to enforce allowed domain.
+// Previously inline in app.html; now centralized here.
 
-  const domainName = 'wake-up-npc.com'
+import { defineNuxtRouteMiddleware } from 'nuxt/app'
+
+export default defineNuxtRouteMiddleware((_to: any, _from: any) => {
+  if (typeof window === 'undefined') return // Only run client-side
+
+  const domainName = 'wakeupnpc.com'
   const allowedHosts = [
     window.location.host, // Always allow the current host (dev or prod)
     `www.${domainName}`,
@@ -24,7 +28,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
   }
 
   // Optional root-path enforcement (kept disabled to allow future routed pages):
-  // if (to.path !== '/' && process.env.ENFORCE_ROOT === '1') {
+  // if (_to.path !== '/' && process.env.ENFORCE_ROOT === '1') {
   //   return navigateTo('/')
   // }
 })
