@@ -1,5 +1,0 @@
-{
-  "autoPush": false,
-  "pushPolicy": "manual-or-daily",
-  "notes": "Assistant will commit locally on master. Will only push when user explicitly types 'Push' (case-insensitive) or requests a daily push summary."
-}
