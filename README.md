@@ -24,7 +24,6 @@ pnpm dev
 ```
 pnpm process-images --dry-run
 pnpm process-images npc
-pnpm audit-images
 ```
 
 ## Where to Look

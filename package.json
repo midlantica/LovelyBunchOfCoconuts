@@ -10,12 +10,7 @@
     "build:quiet": "SILENT_VITE=1 QUIET_BUILD=1 nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "clean:ds": "node scripts/utils/clean-ds-store.js --run",
     "process-images": "node scripts/run-image-processing.js",
-    "process-subdir": "node scripts/run-image-processing.js",
-    "audit-images": "node scripts/run-image-processing.js --dry-run",
-    "cleanup-duplicate-claim-slugs": "node scripts/cleanup-duplicate-claim-slugs.js",
-    "cleanup-orphaned": "node scripts/cleanup-orphaned-markdown.js",
     "format": "prettier --write \"**/*.{vue,js,ts,html,css,scss,md}\"",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"

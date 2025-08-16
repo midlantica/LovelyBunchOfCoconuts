@@ -9,7 +9,6 @@ This directory contains utility scripts for managing content and images in the W
 The system is driven by a single CLI entry and a shared scaler:
 
 - `run-image-processing.js` — the unified CLI for audit and full processing
-- `utils/imageScaler.js` — single source of truth for scaling logic
 
 #### `imageProcessing.js`
 
