@@ -2,6 +2,16 @@
   // https://nuxt.com/docs/guide/concepts/typescript
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "."
-  }
+    "baseUrl": ".",
+    "allowJs": true,
+    "checkJs": false
+  },
+  "exclude": [
+    "components/**/*", // legacy exclude retained from old jsconfig (can remove if you want TS in components)
+    "node_modules",
+    ".nuxt",
+    ".output*",
+    ".data",
+    "dist"
+  ]
 }
