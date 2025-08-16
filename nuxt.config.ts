@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/mdc',
     '@nuxtjs/sitemap',
+    './modules/hide-system-files',
   ],
   css: ['./app/assets/css/main.css'],
   // Use Tailwind v4 via official Vite plugin
@@ -105,7 +106,7 @@ export default defineNuxtConfig({
       },
     },
   },
-
+  // @ts-ignore - @nuxt/content module augments config at runtime
   content: {
     build: { markdown: { contentHeading: true } },
     // NOTE: File ignore patterns handled via content/.nuxtignore and transformation filters (useContentCache).
@@ -274,14 +275,7 @@ export default defineNuxtConfig({
         origWarn(...args)
       }
     },
-    'content:file:beforeParse': (file: any) => {
-      // Some versions expose file.id or file.path
-      const id = file?.id || file?._id || file?.path || ''
-      if (id.endsWith('.DS_Store')) {
-        // Neutralize the file so it is ignored without warning
-        file.raw = ''
-      }
-    },
+    // content:file:beforeParse hook registered via inline module below for type safety
   },
   runtimeConfig: {
     public: {

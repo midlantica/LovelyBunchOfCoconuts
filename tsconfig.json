@@ -6,12 +6,13 @@
     "allowJs": true,
     "checkJs": false
   },
-  "exclude": [
-    "components/**/*", // legacy exclude retained from old jsconfig (can remove if you want TS in components)
-    "node_modules",
-    ".nuxt",
-    ".output*",
-    ".data",
-    "dist"
-  ]
+  "include": [
+    "app",
+    "server",
+    "content.config.ts",
+    "nuxt.config.ts",
+    "types/**/*.d.ts",
+    "nuxt-content.d.ts"
+  ],
+  "exclude": ["node_modules", ".nuxt", ".output*", ".data", "dist"]
 }
