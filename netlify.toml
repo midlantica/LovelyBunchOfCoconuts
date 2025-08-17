@@ -2,7 +2,10 @@
 
 [build]
 command = "pnpm run build"
-publish = ".output/public"
+## Nuxt 4 static generation (`nuxt generate`) outputs to `dist/`.
+## `.output/public` would exist only when doing an SSR/server build (`nuxt build`).
+## Since our build script runs `nuxt generate`, publish the `dist` folder.
+publish = "dist"
 
 [build.environment]
 NODE_VERSION = "20.18.0"
