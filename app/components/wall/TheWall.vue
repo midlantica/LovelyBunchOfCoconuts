@@ -91,7 +91,12 @@
   const modalGuardUntil = useState('modalGuardUntil', () => 0)
 
   // Use the proven content cache system instead of direct queryContent
-  const { cache, loadAllContent } = useContentCache()
+  const {
+    cache,
+    loadAllContent, // kept in case we need full reload
+    loadInitialContent,
+    loadRemainingContent,
+  } = useContentCache()
 
   // Props for search/filters from parent
   const props = defineProps({
@@ -343,31 +348,46 @@
     { immediate: true }
   )
 
+  const wallHasLoadedOnce = useState('wallHasLoadedOnce', () => false)
+
+  // If cache already populated (e.g. SPA nav), skip spinner entirely
+  if (
+    (cache.claims?.length || cache.quotes?.length || cache.memes?.length) &&
+    wallHasLoadedOnce.value
+  ) {
+    isLoaded.value = true
+  }
+
   onMounted(async () => {
+    if (isLoaded.value) return // already ready
     try {
-      // Ensure cache is initialized first
-      if (import.meta.dev) console.log('TheWall mounting, cache state:', cache)
-
-      // Load content using the proven cache system
-      await loadAllContent()
-
       if (import.meta.dev)
-        console.log('TheWall loaded with cache:', {
-          claims: cache.claims?.length,
-          quotes: cache.quotes?.length,
-          memes: cache.memes?.length,
+        console.log('TheWall mount (progressive load start)', {
+          hasLoadedOnce: wallHasLoadedOnce.value,
         })
-      if (import.meta.dev)
-        console.log('Computed arrays:', {
-          allClaims: allClaims.value?.length,
-          allQuotes: allQuotes.value?.length,
-          allMemes: allMemes.value?.length,
-        })
+
+      if (
+        cache.claims.length === 0 &&
+        cache.quotes.length === 0 &&
+        cache.memes.length === 0
+      ) {
+        // Progressive: show something fast
+        await loadInitialContent(24)
+        isLoaded.value = true
+        wallHasLoadedOnce.value = true
+        // Background full load (don't await; no spinner)
+        loadRemainingContent().catch((e) =>
+          console.error('Error loading remaining content:', e)
+        )
+      } else {
+        // Cache had content but first visit this session
+        isLoaded.value = true
+        wallHasLoadedOnce.value = true
+      }
     } catch (err) {
       console.error('Error loading content:', err)
       error.value = err
-    } finally {
-      isLoaded.value = true
+      isLoaded.value = true // fail open so UI still renders
     }
   })
 </script>
