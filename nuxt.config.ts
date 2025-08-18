@@ -255,6 +255,18 @@ export default defineNuxtConfig({
         },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
+      script: [
+        // GoatCounter analytics (enabled only when env var is present)
+        ...(process.env.NUXT_PUBLIC_GOATCOUNTER
+          ? [
+              {
+                'data-goatcounter': 'https://wakeupnpc.goatcounter.com/count',
+                async: true,
+                src: 'https://gc.zgo.at/count.js',
+              },
+            ]
+          : []),
+      ],
     },
   },
   hooks: {
