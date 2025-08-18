@@ -4,6 +4,13 @@
 
 import { interleaveContent } from '~/composables/interleaveContent'
 
+// Unified debug flag (enable by setting VITE_CONTENT_DEBUG=1)
+const contentDebug =
+  import.meta.dev && import.meta.env?.VITE_CONTENT_DEBUG === '1'
+const debugLog = (...args) => {
+  if (contentDebug) console.log(...args)
+}
+
 // Helper function to extract searchable text from AST body and path
 const extractSearchableText = (body, itemPath = '') => {
   if (!body || !body.value) return ''
@@ -86,8 +93,7 @@ export function useContentCache() {
       cache.memes.length === 0 &&
       !cache.isLoading
     ) {
-      if (import.meta.dev)
-        console.log('🚀 Auto-loading content for dynamic route...')
+      debugLog('🚀 Auto-loading content for dynamic route...')
       await loadAllContent()
     }
   }
@@ -468,10 +474,9 @@ export function useContentCache() {
         filterSpecialFiles(memesData),
         'memes'
       )
-      if (import.meta.dev)
-        console.log(
-          `Content loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
-        )
+      debugLog(
+        `Content loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+      )
     } catch (error) {
       console.error('Error loading content:', error)
       cache.error = error
@@ -481,12 +486,11 @@ export function useContentCache() {
   }
 
   const getInterleavedContent = () => {
-    if (import.meta.dev)
-      console.log('🎯 getInterleavedContent using interleaveContent with:', {
-        claims: cache.claims.length,
-        quotes: cache.quotes.length,
-        memes: cache.memes.length,
-      })
+    debugLog('🎯 getInterleavedContent using interleaveContent with:', {
+      claims: cache.claims.length,
+      quotes: cache.quotes.length,
+      memes: cache.memes.length,
+    })
     return interleaveContent(cache.claims, cache.quotes, cache.memes)
   }
 
@@ -503,19 +507,17 @@ export function useContentCache() {
       filteredClaims = filteredClaims.filter(match)
       filteredQuotes = filteredQuotes.filter(match)
       filteredMemes = filteredMemes.filter(match)
-      if (import.meta.dev)
-        console.log('🔍 Search results:', {
-          claims: filteredClaims.length,
-          quotes: filteredQuotes.length,
-          memes: filteredMemes.length,
-        })
-    }
-    if (import.meta.dev)
-      console.log('🎯 getFilteredContent using interleaveContent with:', {
+      debugLog('🔍 Search results:', {
         claims: filteredClaims.length,
         quotes: filteredQuotes.length,
         memes: filteredMemes.length,
       })
+    }
+    debugLog('🎯 getFilteredContent using interleaveContent with:', {
+      claims: filteredClaims.length,
+      quotes: filteredQuotes.length,
+      memes: filteredMemes.length,
+    })
     return interleaveContent(filteredClaims, filteredQuotes, filteredMemes)
   }
 
@@ -542,10 +544,9 @@ export function useContentCache() {
         filterSpecialFiles(memesData),
         'memes'
       )
-      if (import.meta.dev)
-        console.log(
-          `✅ Initial batch loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
-        )
+      debugLog(
+        `✅ Initial batch loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+      )
     } catch (error) {
       console.error('Error loading initial content:', error)
       cache.error = error
@@ -574,10 +575,9 @@ export function useContentCache() {
         filterSpecialFiles(memesData),
         'memes'
       )
-      if (import.meta.dev)
-        console.log(
-          `🎉 Full content loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
-        )
+      debugLog(
+        `🎉 Full content loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+      )
     } catch (error) {
       console.error('Error loading remaining content:', error)
       cache.error = error

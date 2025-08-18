@@ -252,7 +252,7 @@
   watch(
     interleavedContent,
     (newContent) => {
-      if (import.meta.dev)
+      if (import.meta.dev && import.meta.env?.VITE_CONTENT_DEBUG === '1')
         console.log('Content updated:', newContent?.length || 0, 'items')
       // Emit that content has been updated (for scroll-to-top)
       emit('content-updated', {

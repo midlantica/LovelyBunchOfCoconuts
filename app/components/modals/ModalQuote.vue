@@ -95,16 +95,4 @@
     },
     { immediate: true }
   )
-
-  // Debug the modal data
-  watch(
-    () => props.modalData,
-    (data) => {
-      if (data && import.meta.dev) {
-        console.log('Quote modal data received:', data)
-        console.log('Available properties:', Object.keys(data))
-      }
-    },
-    { immediate: true }
-  )
 </script>

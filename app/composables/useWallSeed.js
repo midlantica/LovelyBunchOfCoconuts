@@ -27,5 +27,22 @@ export function useWallSeed() {
     }
   }
 
+  // In a fully static (nuxt generate) deployment, the initial seed comes from the
+  // prerendered payload and is therefore identical on every hard refresh.
+  // To ensure a fresh randomized ordering on each browser refresh (matching
+  // desired behavior observed in dev SSR), we reseed once on client mount.
+  // This runs only after hydration and only once per page load.
+  if (process.client) {
+    // Use a global guard so internal navigations don't reseed unintentionally.
+    if (!window.__WALL_SEEDED_ON_LOAD__) {
+      // Delay until mounted to avoid interfering with Nuxt hydration.
+      // Auto-imported onMounted works in composables.
+      onMounted(() => {
+        reseedWall('page-load')
+        window.__WALL_SEEDED_ON_LOAD__ = true
+      })
+    }
+  }
+
   return { wallSeed, reseedWall }
 }
