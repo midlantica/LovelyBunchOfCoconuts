@@ -159,6 +159,14 @@
       "updated": "2025-08-15T17:31:06.753Z",
       "width": 1071,
       "height": 1080
+    },
+    "quotes/can-a-people-tax-themselv-1.jpg": {
+      "optimized": true,
+      "hash": "cd24ae90bd1d86c1e2362230c532b48441da87db",
+      "action": "strip-profiles",
+      "updated": "2025-08-18T03:46:01.429Z",
+      "width": 957,
+      "height": 742
     }
   }
 }
