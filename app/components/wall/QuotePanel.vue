@@ -6,11 +6,11 @@
   >
     <div class="flex flex-col flex-wrap gap-0.5 my-auto">
       <h1
-        class="inline-block font-[100] text-xl align-baseline tracking-wide"
+        class="inline-block text-shadow-xs font-[100] text-xl align-baseline tracking-wide"
         v-html="formatQuote(quote.headings[0])"
       ></h1>
       <p
-        class="inline-block font-[100] text-seagull-200 text-xl align-baseline tracking-wide"
+        class="inline-block text-shadow-xs font-[100] text-seagull-200 text-xl align-baseline tracking-wide"
         v-if="quote.attribution"
       >
         — {{ quote.attribution }}

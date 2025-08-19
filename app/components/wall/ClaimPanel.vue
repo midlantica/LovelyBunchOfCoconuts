@@ -7,7 +7,9 @@
     <div class="my-auto">
       <div class="flex items-center gap-3">
         <img src="~/assets/icons/npc_icon.svg" alt="NPC" class="w-8" />
-        <h2 class="font-[100] text-xl line-clamp-1 tracking-wide">
+        <h2
+          class="text-shadow-xs font-[100] text-xl line-clamp-1 tracking-wide"
+        >
           {{ claim.claim }}
         </h2>
       </div>
@@ -15,7 +17,7 @@
       <div class="flex items-center gap-3">
         <img src="~/assets/icons/player_icon.svg" alt="Player" class="w-8" />
         <h2
-          class="font-[100] text-xl line-clamp-1 tracking-wide"
+          class="text-shadow-xs font-[100] text-xl line-clamp-1 tracking-wide"
           v-if="claim.translation"
         >
           {{ claim.translation }}

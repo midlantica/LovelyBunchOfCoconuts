@@ -32,8 +32,10 @@
       v-else
       class="block shadow-inset-card bg-slate-800 mx-auto p-3 rounded-md w-full h-full overflow-hidden"
     >
-      <p class="text-white text-center">🚨 Meme image not found!</p>
-      <p class="mt-1 text-red-400 text-xs text-center">
+      <p class="text-shadow-xs text-white text-center">
+        🚨 Meme image not found!
+      </p>
+      <p class="text-shadow-xs mt-1 text-red-400 text-xs text-center">
         {{ getFileName(meme) }}
       </p>
     </div>

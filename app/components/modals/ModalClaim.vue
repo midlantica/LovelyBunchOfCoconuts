@@ -14,7 +14,9 @@
                 alt="NPC"
                 class="self-start w-8"
               />
-              <h1 class="mb-0 font-[100] text-white text-2xl leading-tight">
+              <h1
+                class="text-shadow-xs mb-0 font-[100] text-white text-2xl leading-tight"
+              >
                 {{ modalData?.claim || modalData?.title }}
               </h1>
             </div>
@@ -25,7 +27,9 @@
                 alt="Player"
                 class="self-start w-8"
               />
-              <h1 class="mb-0 font-[100] text-white text-2xl leading-tight">
+              <h1
+                class="text-shadow-xs mb-0 font-[100] text-white text-2xl leading-tight"
+              >
                 {{ modalData?.translation }}
               </h1>
             </div>
