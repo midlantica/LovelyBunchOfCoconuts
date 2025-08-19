@@ -29,14 +29,14 @@
   const modalData = ref(null)
 
   // Map modal types to actual component objects (async) so :is can resolve them
-  const ModalsModalMeme = defineAsyncComponent(
-    () => import('~/components/modals/ModalMeme.vue')
+  const ModalsModalMeme = defineAsyncComponent(() =>
+    import('~/components/modals/ModalMeme.vue')
   )
-  const ModalsModalClaim = defineAsyncComponent(
-    () => import('~/components/modals/ModalClaim.vue')
+  const ModalsModalClaim = defineAsyncComponent(() =>
+    import('~/components/modals/ModalClaim.vue')
   )
-  const ModalsModalQuote = defineAsyncComponent(
-    () => import('~/components/modals/ModalQuote.vue')
+  const ModalsModalQuote = defineAsyncComponent(() =>
+    import('~/components/modals/ModalQuote.vue')
   )
 
   const modalMap = {
@@ -60,6 +60,21 @@
     modalType.value = type
     modalData.value = data
     showModal.value = true
+
+    // GoatCounter virtual pageview for modal open
+    try {
+      if (
+        typeof window !== 'undefined' &&
+        window.goatcounter &&
+        window.goatcounter.count
+      ) {
+        const slug =
+          (data && (data.slug || data._path || data.title)) || 'unknown'
+        window.goatcounter.count({
+          path: `/modal/${type}/${encodeURIComponent(slug)}`,
+        })
+      }
+    } catch (e) {}
   }
 
   function closeModal() {
