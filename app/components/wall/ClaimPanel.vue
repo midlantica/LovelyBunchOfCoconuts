@@ -2,7 +2,7 @@
 <template>
   <div
     v-if="claim && claim.claim && claim.translation && slug"
-    class="shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-4 py-3 border hover:border hover:border-seagull-400 border-transparent rounded-lg h-full text-white transition-colors cursor-pointer"
+    class="shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-4 py-3 border hover:border hover:border-seagull-400/50 border-transparent rounded-lg h-full text-white transition-colors cursor-pointer"
   >
     <div class="my-auto">
       <div class="flex items-center gap-3">
