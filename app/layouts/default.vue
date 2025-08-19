@@ -68,8 +68,16 @@
         window.goatcounter &&
         window.goatcounter.count
       ) {
-        const slug =
+        const rawSlug =
           (data && (data.slug || data._path || data.title)) || 'unknown'
+        const slug = rawSlug
+          .toString()
+          .toLowerCase()
+          .replace(/[^a-z0-9\s-]/g, ' ')
+          .trim()
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-')
+          .slice(-80) // keep tail uniqueness (titles often end with distinctive part)
         window.goatcounter.count({
           path: `/modal/${type}/${encodeURIComponent(slug)}`,
         })
