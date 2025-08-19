@@ -2,11 +2,11 @@
 # netlify.toml
 
 [build]
-command = "pnpm run build"
-## Nuxt 4 static generation (`nuxt generate`) outputs to `dist/`.
-## `.output/public` would exist only when doing an SSR/server build (`nuxt build`).
-## Since our build script runs `nuxt generate`, publish the `dist` folder.
-publish = "dist"
+# Rebuild native better-sqlite3 binding explicitly before Nuxt generate to avoid missing binary in Netlify's build environment.
+# Nuxt 4 `nuxt generate` produces a static site under `.output/public` (confirmed locally).
+# Publish that directory directly to avoid an extra copy step.
+command = "pnpm rebuild better-sqlite3 && pnpm run build"
+publish = ".output/public"
 
 [build.environment]
 NODE_VERSION = "20.18.0"
