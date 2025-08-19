@@ -9,7 +9,7 @@ command = "pnpm rebuild better-sqlite3 || echo 'better-sqlite3 rebuild failed (c
 publish = "dist"
 
 [build.environment]
-NODE_VERSION = "20.18.0"
+NODE_VERSION = "22.11.0"
 PNPM_FLAGS = "--shamefully-hoist"
 
 # Force non-www canonical domain
