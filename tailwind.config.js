@@ -20,7 +20,8 @@ export default {
       fontFamily: {
         Barlow: ["'Barlow Condensed', sans-serif"], // Custom font with fallback
         helvetica: ['Helvetica, Arial, sans-serif'], // Helvetica font stack
-        sans: ["'Barlow Condensed', serif, Arial, Helvetica"],
+        // Remove generic 'serif' (was causing inconsistent fallback ordering on some Windows setups)
+        sans: ["'Barlow Condensed'", 'Arial', 'Helvetica', 'sans-serif'],
         serif: ["'Barlow Condensed', serif, Georgia"],
         mono: ['"Fira Code"', 'ui-monospace', 'SFMono-Regular'],
       },

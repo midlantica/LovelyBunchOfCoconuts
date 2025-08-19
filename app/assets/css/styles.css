@@ -1,11 +1,12 @@
 @layer base {
+  /* Avoid forcing ultra-light 100 on every element; let headings & body specify explicitly. */
   * {
-    font-weight: 100;
+    /* font-weight: 100; */
   }
 
   body {
     @apply bg-slate-950 font-Barlow;
-    font-weight: 100;
+    font-weight: 300; /* Use a more broadly supported weight for initial render */
   }
 
   h1,
@@ -15,7 +16,7 @@
   h5,
   h6 {
     @apply first:mt-0 last:mb-0 font-Barlow text-pretty leading-normal tracking-wider;
-    font-weight: 100 !important;
+    font-weight: 300; /* Slightly heavier for readability; 100 can appear missing / cause fallback timing issues */
   }
   h1 {
     @apply text-2xl;
@@ -41,7 +42,7 @@
   li,
   ol {
     @apply mt-0 mb-0 last:mb-0 text-xl leading-normal tracking-wider;
-    font-weight: 100 !important;
+    font-weight: 300;
   }
 
   h2 + p {
@@ -51,11 +52,11 @@
   /* Global prose overrides for all markdown content */
   .prose h1 {
     @apply text-3xl;
-    font-weight: 100 !important;
+    font-weight: 300;
   }
   .prose h2 {
     @apply mt-2 mb-2 text-2xl;
-    font-weight: 100 !important;
+    font-weight: 300;
   }
   .prose h2 + h2 {
     @apply mb-0;
@@ -65,6 +66,7 @@
   }
 
   /* Ensure ALL text elements use font-weight 100 */
+  /* Remove universal !important weight forcing so browser can swap to loaded webfont weights */
   .prose *,
   .prose-invert *,
   .prose-lg *,
@@ -76,7 +78,7 @@
   input,
   textarea,
   label {
-    font-weight: 100 !important;
+    /* font-weight: 100 !important; */
   }
   .prose img,
   .prose-invert img {
