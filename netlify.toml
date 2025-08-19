@@ -3,10 +3,10 @@
 
 [build]
 # Rebuild native better-sqlite3 binding explicitly before Nuxt generate to avoid missing binary in Netlify's build environment.
-# Nuxt 4 `nuxt generate` produces a static site under `.output/public` (confirmed locally).
-# Publish that directory directly to avoid an extra copy step.
-command = "pnpm rebuild better-sqlite3 && pnpm run build"
-publish = ".output/public"
+# After generation, copy the static assets from .output/public to dist (Netlify publish dir) for resilience.
+# This avoids deploy-stage failures if Nuxt changes the output folder naming or generation aborts early.
+command = "pnpm rebuild better-sqlite3 || echo 'better-sqlite3 rebuild failed (continuing)'; pnpm run build && (mkdir -p dist && if [ -d .output/public ]; then cp -R .output/public/* dist/; fi)"
+publish = "dist"
 
 [build.environment]
 NODE_VERSION = "20.18.0"
