@@ -43,14 +43,13 @@
     Array.isArray(route.params.slug) ? route.params.slug.join('/') : ''
   )
 
-  const item = computed(() => slugMaps.claims.get(slugPath.value))
+  // Claim referenced in template
+  const claim = computed(() => slugMaps.claims.get(slugPath.value))
 
-  function close() {
+  function navigateHome() {
     modalVisible.value = false
     const modalGuardUntil = useState('modalGuardUntil', () => 0)
     modalGuardUntil.value = Date.now() + 450
-
-    // Navigate back to home without hash
     router.push('/')
   }
 
@@ -69,7 +68,7 @@
     })
 
     // Handle missing item
-    if (!item.value) {
+    if (!claim.value) {
       const unfound = route.params.slug
       const q = Array.isArray(unfound) ? unfound[unfound.length - 1] : unfound
       router.replace({ path: '/', query: { q: q, nf: '1' } })
