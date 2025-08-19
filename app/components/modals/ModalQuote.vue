@@ -8,7 +8,7 @@
           class="z-10 relative bg-slate-800 shadow-modal p-0 sm:px-7 sm:py-6 rounded-none sm:rounded-lg"
         >
           <div class="mb-2 p-4 sm:p-0">
-            <h1 class="mb-2 font-bold text-white text-2xl leading-9">
+            <h1 class="mb-2 font-light text-white text-2xl leading-9">
               {{
                 modalData?.quoteText ||
                 (modalData?.headings && modalData.headings[0]) ||
