@@ -3,7 +3,9 @@ export default defineNuxtPlugin(() => {
   if (process.dev) {
     const originalConsoleWarn = console.warn
     console.warn = (...args) => {
-      const message = args.join(' ')
+      // Filter out Symbol values to avoid join error
+      const safeArgs = args.map((a) => (typeof a === 'symbol' ? '[Symbol]' : a))
+      const message = safeArgs.join(' ')
 
       // Skip .DS_Store related warnings
       if (

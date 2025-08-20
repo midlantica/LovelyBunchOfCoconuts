@@ -1,10 +1,10 @@
-Starting markdown file creation at 2025-08-18T03:46:01.482Z
+Starting markdown file creation at 2025-08-20T23:26:54.028Z
 Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes
 Markdown file already exists for a-government-which-lays-taxes.jpg
 Markdown file already exists for at-the-core-of-liberalism.jpg
-Markdown file already exists for beware-the-irrational-ho.jpg
+Created markdown file for authority-that-does-not-exist-for-libert.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/authority-that-does-not-exist-for-libert.md
+Created markdown file for beware-the-irrational-however-seductive.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/beware-the-irrational-however-seductive.md
 Markdown file already exists for britain-gave-the-world.jpg
-Created markdown file for can-a-people-tax-themselv-1.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/can-a-people-tax-themselv-1.md
 Markdown file already exists for can-a-people-tax-themselv.jpg
 Markdown file already exists for do-not-be-so-open-minded.jpg
 Markdown file already exists for elon-musk-did-not-make-x.jpg
@@ -30,7 +30,7 @@ Markdown file already exists for liberals-desperately-need-blacks.jpg
 Markdown file already exists for live-a-good-life-if-there-are-gods-and-they-are-just.jpg
 Markdown file already exists for marxism-is-the-most-destructive-religion.jpg
 Markdown file already exists for not-to-have-a-correct-political-point-of-view.jpg
-Markdown file already exists for now-i-get-it-when-they-say-democracy.jpg
+Created markdown file for now-i-get-it-when-they-say-democracy.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/now-i-get-it-when-they-say-democracy.md
 Markdown file already exists for of-all-tyrannies-a-tyranny-sincerely-exercised.jpg
 Markdown file already exists for people-who-wonder-whether.jpg
 Markdown file already exists for political-correctness-is-communist-propaganda.jpg
@@ -72,6 +72,6 @@ Markdown file already exists for when-young-people-want-to.jpg
 Markdown file already exists for white-liberals-are-the-mo.jpg
 Markdown file already exists for young-people-are-told-at.jpg
 
-Markdown file creation complete at 2025-08-18T03:46:01.504Z
-1 markdown files created, 70 files skipped
+Markdown file creation complete at 2025-08-20T23:26:54.040Z
+3 markdown files created, 68 files skipped
 Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/utils/markdown-creation-log.txt

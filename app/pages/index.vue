@@ -55,10 +55,13 @@
   onMounted(() => {
     const q = typeof route.query.q === 'string' ? route.query.q : ''
     const nf = route.query.nf
+    const modalSuppressed = useState('modalSuppressedFromQuery', () => false)
 
     if (q) {
       // Normalize dashes/underscores to spaces for search
       searchTerm.value = q.replace(/[-_]+/g, ' ').trim()
+      // Prevent immediate modal reopen after closing if refresh with query param
+      modalSuppressed.value = true
     }
     if (nf) {
       // Remove nf from URL but keep q
@@ -179,6 +182,16 @@
 
   // Expose handler to receive modal events from TheWall when it doesn't have injected modal
   function handleModalEvent(payload) {
+    const modalSuppressed = useState('modalSuppressedFromQuery', () => false)
+    if (modalSuppressed.value) {
+      // Allow first user interaction before enabling auto modal
+      modalSuppressed.value = false
+      // Still open on explicit click, only suppress automatic programmatic ones
+      if (payload && payload.__userClick) {
+        openModal && openModal(payload)
+      }
+      return
+    }
     if (openModal) openModal(payload)
   }
 

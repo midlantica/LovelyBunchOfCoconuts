@@ -1,46 +1,34 @@
 <template>
   <transition
-    enter-active-class="duration-300 transition-all ease-out"
+    enter-active-class="duration-200 transition-all ease-out"
     enter-from-class="transform opacity-0 scale-y-0 origin-top"
     enter-to-class="transform opacity-100 scale-y-100 origin-top"
-    leave-active-class="transition-all duration-200 ease-in"
+    leave-active-class="transition-all duration-100 ease-in"
     leave-from-class="transform opacity-100 scale-y-100 origin-top"
     leave-to-class="transform opacity-0 scale-y-0 origin-top"
   >
     <div
       v-if="show"
-      class="bg-slate-900 shadow-lg px-4 sm:px-6 rounded-none sm:rounded-b-lg"
-      style="
-        position: absolute;
-        left: 0.667px;
-        top: calc(100% - 0.7rem);
-        z-index: 0;
-        padding: 1rem 0px 0.5rem;
-        width: calc(100% - 1.334px);
-      "
+      class="-top-2 absolute bg-slate-900 px-2 sm:px-4 pt-2.5 pb-1 rounded-b-lg w-full"
     >
       <div class="flex justify-center gap-2">
-        <div class="z-30 relative">
-          <UiTwitterShareButton
-            ref="twitterButton"
-            :title="title"
-            :text="text"
-            :url="url"
-            :content-type="contentType"
-            @toast-show="onToastShow"
-          />
-        </div>
+        <UiTwitterShareButton
+          ref="twitterButton"
+          :title="title"
+          :text="text"
+          :url="url"
+          :content-type="contentType"
+          @toast-show="onToastShow"
+        />
 
-        <div class="z-30 relative">
-          <UiFacebookShareButton
-            ref="facebookButton"
-            :title="title"
-            :text="text"
-            :url="url"
-            :content-type="contentType"
-            @toast-show="onToastShow"
-          />
-        </div>
+        <UiFacebookShareButton
+          ref="facebookButton"
+          :title="title"
+          :text="text"
+          :url="url"
+          :content-type="contentType"
+          @toast-show="onToastShow"
+        />
       </div>
     </div>
   </transition>

@@ -48,7 +48,7 @@
   // Expose meme object for template (was missing causing Vue warn)
   const meme = computed(() => item.value)
 
-  function close() {
+  function navigateHome() {
     modalVisible.value = false
     const modalGuardUntil = useState('modalGuardUntil', () => 0)
     modalGuardUntil.value = Date.now() + 450

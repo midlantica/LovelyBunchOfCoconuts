@@ -167,6 +167,14 @@
       "updated": "2025-08-18T03:46:01.429Z",
       "width": 957,
       "height": 742
+    },
+    "quotes/authority-that-does-not-exist-for-libert.jpg": {
+      "optimized": true,
+      "hash": "5bfe286ba79805f711a3a585e94a3abdb0c8aba0",
+      "action": "strip-profiles",
+      "updated": "2025-08-20T23:26:53.974Z",
+      "width": 864,
+      "height": 1080
     }
   }
 }

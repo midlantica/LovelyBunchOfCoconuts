@@ -20,9 +20,9 @@
           class="cursor-pointer"
           role="button"
           tabindex="0"
-          @click.capture="openModal(item.data, 'quote')"
-          @keydown.enter.prevent="openModal(item.data, 'quote')"
-          @keydown.space.prevent="openModal(item.data, 'quote')"
+          @click.capture="openModal(item.data, 'quote', true)"
+          @keydown.enter.prevent="openModal(item.data, 'quote', true)"
+          @keydown.space.prevent="openModal(item.data, 'quote', true)"
         >
           <WallQuotePanel
             :quote="item.data"
@@ -41,9 +41,9 @@
             class="cursor-pointer"
             role="button"
             tabindex="0"
-            @click.capture="openModal(claimItem, 'claim')"
-            @keydown.enter.prevent="openModal(claimItem, 'claim')"
-            @keydown.space.prevent="openModal(claimItem, 'claim')"
+            @click.capture="openModal(claimItem, 'claim', true)"
+            @keydown.enter.prevent="openModal(claimItem, 'claim', true)"
+            @keydown.space.prevent="openModal(claimItem, 'claim', true)"
           >
             <WallClaimPanel
               :claim="claimItem"
@@ -63,9 +63,9 @@
             class="cursor-pointer"
             role="button"
             tabindex="0"
-            @click.capture="openModal(memeItem, 'meme')"
-            @keydown.enter.prevent="openModal(memeItem, 'meme')"
-            @keydown.space.prevent="openModal(memeItem, 'meme')"
+            @click.capture="openModal(memeItem, 'meme', true)"
+            @keydown.enter.prevent="openModal(memeItem, 'meme', true)"
+            @keydown.space.prevent="openModal(memeItem, 'meme', true)"
           >
             <WallMemePanel
               :meme="memeItem"
@@ -269,7 +269,7 @@
   )
 
   // Modal handler: emit event instead of navigating so URL can be managed without re-rendering the wall
-  const openModal = (data, type) => {
+  const openModal = (data, type, userInitiated = false) => {
     if (Date.now() < modalGuardUntil.value) return
 
     const fileBase = () => {
@@ -299,6 +299,7 @@
     }
 
     const payload = { type, data, slug }
+    if (userInitiated) payload.__userClick = true
 
     // Update URL path to /type/slug without navigating, and remember previous URL
     if (typeof window !== 'undefined' && slug) {

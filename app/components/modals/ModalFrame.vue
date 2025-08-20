@@ -8,7 +8,7 @@
       @touchmove.prevent
     >
       <div
-        class="relative flex flex-col shadow-lg mx-0 sm:mx-6 rounded-none sm:rounded-lg modal-frame"
+        class="-top-8 relative flex flex-col shadow-lg mx-0 sm:mx-6 rounded-none sm:rounded-lg modal-frame"
         :style="
           modalStyle
             ? { ...modalStyle, isolation: 'isolate' }
@@ -17,10 +17,20 @@
         :class="[modalStyle ? '' : 'w-full sm:min-w-[60vw] sm:max-w-[500px]']"
         @click.stop
       >
-        <UiCloseButton class="hidden sm:block" @click="onCloseClick" />
-        <div class="relative w-full overflow-x-visible overflow-y-visible">
-          <slot name="mainPanel" />
-          <slot name="sharePanel" />
+        <!-- Close button now always visible (previously hidden on small screens) -->
+        <UiCloseButton
+          class="hidden md:block top-2 right-2 z-10 absolute"
+          @click="onCloseClick"
+        />
+        <div
+          class="relative flex flex-col w-full overflow-x-visible overflow-y-visible"
+        >
+          <div class="flex-1 min-h-0">
+            <slot name="mainPanel" />
+          </div>
+          <div class="relative flex-shrink-0">
+            <slot name="sharePanel" />
+          </div>
         </div>
       </div>
     </div>
@@ -34,6 +44,7 @@
   })
 
   const emit = defineEmits(['close'])
+  const injectedClose = inject('closeModal', null)
 
   // Shared guard to prevent click-through reopening
   const modalGuardUntil = useState('modalGuardUntil', () => 0)
@@ -42,12 +53,23 @@
     e.stopPropagation()
     modalGuardUntil.value = Date.now() + 450
     emit('close')
+    // Fallback if parent listener missing or state not updated
+    if (injectedClose) {
+      requestAnimationFrame(() => {
+        if (props.show) injectedClose()
+      })
+    }
   }
 
   const onCloseClick = (e) => {
     e?.stopPropagation?.()
     modalGuardUntil.value = Date.now() + 450
     emit('close')
+    if (injectedClose) {
+      requestAnimationFrame(() => {
+        if (props.show) injectedClose()
+      })
+    }
   }
 
   function handleEscape(e) {
