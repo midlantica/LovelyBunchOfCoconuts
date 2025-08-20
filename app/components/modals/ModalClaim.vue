@@ -20,7 +20,7 @@
                 {{ modalData?.claim || modalData?.title }}
               </h1>
             </div>
-            <hr class="my-4 border-white/10 border-t" />
+            <UiDividerArrow wrapper-class="my-4" />
             <div class="flex gap-3">
               <img
                 src="~/assets/icons/player_icon.svg"

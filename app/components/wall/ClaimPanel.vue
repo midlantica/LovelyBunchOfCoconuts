@@ -13,7 +13,7 @@
           {{ claim.claim }}
         </h2>
       </div>
-      <hr class="my-2 border-white/10 border-t" />
+      <UiDividerArrow />
       <div class="flex items-center gap-3">
         <img src="~/assets/icons/player_icon.svg" alt="Player" class="w-8" />
         <h2

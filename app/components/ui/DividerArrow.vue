@@ -1,0 +1,33 @@
+<!-- components/ui/DividerArrow.vue -->
+<template>
+  <div class="relative my-2" :class="wrapperClass">
+    <hr :class="['border-t', colorClass, hrClass]" />
+    <span
+      class="left-1/2 absolute -translate-x-1/2"
+      :style="triangleStyle"
+    ></span>
+  </div>
+</template>
+
+<script setup>
+  const props = defineProps({
+    colorClass: { type: String, default: 'border-white/10' },
+    hrClass: { type: String, default: '' },
+    wrapperClass: { type: String, default: '' },
+    size: { type: Number, default: 5 },
+    opacity: { type: Number, default: 0.3 },
+    offset: { type: Number, default: -4.5 },
+  })
+
+  const triangleStyle = computed(() => {
+    const s = props.size
+    return {
+      height: 0,
+      width: 0,
+      borderLeft: `${s}px solid transparent`,
+      borderRight: `${s}px solid transparent`,
+      borderTop: `${s}px solid rgba(255, 255, 255, ${props.opacity})`,
+      bottom: `${props.offset}px`,
+    }
+  })
+</script>
