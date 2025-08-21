@@ -4,3 +4,9 @@
 @import './modal.css';
 @import './transitions.css';
 @import './lazyLoading.css';
+
+:root {
+  --dark: #181818;
+  --light: #6dd3ff;
+  --accent: hsl(198, 55%, 50%);
+}

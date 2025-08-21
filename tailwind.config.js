@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import typography from '@tailwindcss/typography'
+
 export default {
   content: [
     './app/components/**/*.{vue,js,jsx,mjs,ts,tsx}',
@@ -28,6 +30,8 @@ export default {
       screens: {
         xs: '320px',
         // => @media (min-width: 320px) { ... }
+        meme2: '460px',
+        // Custom: keep meme rows 2-up until below 460px
       },
       colors: {
         seagull: {
@@ -46,5 +50,5 @@ export default {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [typography],
 }

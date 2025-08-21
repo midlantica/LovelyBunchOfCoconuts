@@ -52,10 +52,10 @@
           </div>
         </div>
 
-        <!-- Meme pairs (2 columns on md+, stacked on smaller) -->
+        <!-- Meme pairs (2 columns on >=460px using custom 'meme2' breakpoint, stacked below) -->
         <div
           v-else-if="item.type === 'memeRow'"
-          class="gap-3 grid grid-cols-1 md:grid-cols-2"
+          class="gap-3 grid grid-cols-1 meme2:grid-cols-2"
         >
           <div
             v-for="(memeItem, idx) in item.data"

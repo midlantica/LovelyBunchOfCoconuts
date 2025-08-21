@@ -4,7 +4,7 @@
   <div class="gap-4 grid grid-rows-[auto_1fr_auto] h-screen overflow-hidden">
     <LayoutTheHeader class="top-0 left-0 z-10 sticky w-full" />
 
-    <main class="overflow-hidden">
+    <main class="min-h-0 overflow-hidden">
       <slot />
     </main>
 

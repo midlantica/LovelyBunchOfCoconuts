@@ -7,7 +7,7 @@
         <div
           class="z-10 relative bg-slate-800 shadow-modal p-0 sm:px-7 sm:py-6 rounded-none sm:rounded-lg"
         >
-          <div class="mb-2 p-4 sm:p-0">
+          <div class="p-4 sm:p-0">
             <h1
               class="text-shadow-xs mb-2 font-[100] text-white text-2xl leading-9"
             >

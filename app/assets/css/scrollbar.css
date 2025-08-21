@@ -1,30 +1,35 @@
 /* Custom Scrollbar - Responsive Alignment Fix */
 
 :root {
-  --dark: #181818;
-  --light: #6dd3ff;
-  --accent: hsl(198, 55%, 50%);
+  --scrollbar-track: #111827; /* slate-900 base */
+  --scrollbar-track-bg: #111827; /* hard color track */
 }
 
 /* Desktop scrollbar - force stable */
 @media (min-width: 768px) {
-  ::-webkit-scrollbar {
+  /* Base scrollbar width (WebKit) */
+  .scroll-container-stable::-webkit-scrollbar {
     width: 12px;
     display: block;
+    background: transparent; /* let track define bg */
   }
 
-  ::-webkit-scrollbar-track {
-    background: transparent;
-    border-radius: 8px;
+  /* Rounded full-height track with spacing so ends are pill-shaped */
+  .scroll-container-stable::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-bg);
+    border-radius: 999px;
+    margin: 4px 0; /* space so radius shows at top/bottom */
   }
 
-  ::-webkit-scrollbar-thumb {
+  /* Accent thumb separated by border to reveal track behind */
+  .scroll-container-stable::-webkit-scrollbar-thumb {
     background: var(--accent);
-    border-radius: 8px;
-    transition: background 0.3s ease;
+    border-radius: 999px;
+    /* border removed per request */
+    transition: background 0.25s ease;
   }
 
-  ::-webkit-scrollbar-thumb:hover {
+  .scroll-container-stable::-webkit-scrollbar-thumb:hover {
     background: var(--light);
   }
 
@@ -54,14 +59,17 @@
 
 /* Firefox - responsive behavior */
 @media (min-width: 768px) {
-  * {
-    scrollbar-width: auto;
-    scrollbar-color: var(--accent) transparent;
+  /* Firefox scoped styling */
+  .scroll-container-stable {
+    scrollbar-width: thin; /* or auto */
+    scrollbar-color: var(--accent) var(--scrollbar-track-bg); /* solid track color */
   }
 }
 
 @media (max-width: 767px) {
-  * {
+  .scroll-container-stable {
     scrollbar-width: none;
   }
 }
+
+/* (Redundant previous scoped track/thumb block removed; consolidated above) */
