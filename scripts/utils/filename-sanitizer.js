@@ -48,11 +48,42 @@ export function sanitizeFilename(text, maxLength = 50) {
     return 'unnamed'
   }
 
-  // 4. Re-join with hyphens
-  let base = tokens.join('-')
-
-  // 5. Length cap (preserve start, trim at boundary, then clean trailing dash)
-  if (base.length > maxLength) base = base.slice(0, maxLength)
+  // 4. Re-join with hyphens, respecting a max length on token boundaries
+  // Prefer whole-word endings; only truncate mid-word if a single token exceeds maxLength.
+  let base = ''
+  if (tokens.length) {
+    const isYear = (t) => /^(19|20)\d{2}$/.test(t)
+    let acc = ''
+    for (let i = 0; i < tokens.length; i++) {
+      const token = tokens[i]
+      const sep = acc ? '-' : ''
+      const next = acc + sep + token
+      if (next.length <= maxLength) {
+        acc = next
+        continue
+      }
+      // If first token alone is too long, hard-truncate it
+      if (!acc) {
+        acc = token.slice(0, Math.max(1, maxLength))
+        break
+      }
+      // If token is a year and fits exactly when replacing last token, try to include it by trimming last token
+      if (isYear(token)) {
+        // Try dropping last token to include year if that keeps within limit
+        const parts = acc.split('-')
+        if (parts.length > 0) {
+          const withoutLast = parts.slice(0, -1).join('-')
+          const candidate = withoutLast ? `${withoutLast}-${token}` : token
+          if (candidate.length <= maxLength) {
+            acc = candidate
+          }
+        }
+      }
+      break
+    }
+    base = acc
+  }
+  // Ensure no trailing hyphens
   base = base.replace(/-+$/g, '')
 
   // 6. Ensure not empty & not a single generic number; if single number that isn't a year, prefix img-

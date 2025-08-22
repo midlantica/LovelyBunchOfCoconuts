@@ -109,7 +109,7 @@ async function getFormatAndProfiles(imagePath) {
  * Unified image processing: sizing, optimization, and format conversion
  * @param {string} directory - Directory containing images
  * @param {string} subdirName - Name of subdirectory for reporting
- * @returns {Promise<void>}
+ * @returns {Promise<Object>}
  */
 async function optimizeImages(
   directory,
@@ -430,7 +430,7 @@ async function findAndMoveOrphanedMarkdownFiles(
       return [] // Content directory doesn't exist, no orphaned files
     }
 
-    // Get all markdown files in the content directory (excluding _orphaned folder)
+  // Get all markdown files in the content directory (excluding _orphaned folder)
     const contentFiles = await fs.readdir(contentDir)
     const markdownFiles = contentFiles.filter((file) => file.endsWith('.md'))
 
@@ -447,11 +447,13 @@ async function findAndMoveOrphanedMarkdownFiles(
 
         // Extract image path from markdown content using regex
         // Look for ![alt text](/memes/subdirectory/image.jpg) pattern
-        const imageMatch = content.match(/!\[.*?\]\(\/memes\/[^)]+\)/)
+  const imageMatch = content.match(/!\[.*?\]\(\/memes\/[^)]+\)/)
 
         if (imageMatch) {
           // Extract the image filename from the path
-          const imagePath = imageMatch[0].match(/\/memes\/[^)]+/)[0]
+          const m = imageMatch[0].match(/\/memes\/[^)]+/)
+          if (!m) continue
+          const imagePath = m[0]
           const imageFilename = path.basename(imagePath)
 
           // Check if this image file exists in our directory
@@ -791,11 +793,11 @@ async function processImages(directory, subdirName = '', options = {}) {
       actions: [],
     }
     if (!dryRun) {
-      optimizationResult = await optimizeImages(directory, subdirName, {
+      optimizationResult = (await optimizeImages(directory, subdirName, {
         manifest,
         dryRun,
         force,
-      })
+      })) || { processedCount: 0, skippedFiles: [], actions: [] }
     }
     // ALWAYS create markdown for missing (simulate in dry-run)
     let newMarkdownCount = 0
@@ -871,31 +873,30 @@ async function processImages(directory, subdirName = '', options = {}) {
       newMarkdownCount > 0 ||
       movedOrphanedFiles.length > 0
 
-    if (changed) {
-      console.log(
-        `\n📊 Summary (${subdirName || 'root'}): optimized ${
-          optimizationResult?.processedCount || 0
-        }, markdown +${newMarkdownCount}, orphaned moved ${
-          movedOrphanedFiles.length
-        }`
-      )
-      if (optimizationResult?.actions?.length) {
-        optimizationResult.actions.forEach((a) =>
-          console.log(`  • ${a.file} -> ${a.action}`)
-        )
-      }
-      if (newMarkdownFiles.length) {
-        console.log('  • markdown created:')
-        newMarkdownFiles.forEach((f) => console.log(`    - ${f}`))
-      }
-      if (movedOrphanedFiles.length) {
-        console.log('  • orphaned moved:')
-        movedOrphanedFiles.forEach((f) => console.log(`    - ${f}`))
-      }
-    } else if (dryRun) {
+    if (dryRun) {
       console.log(
         `\n📊 Summary (${subdirName || 'root'}): no changes (dry-run)`
       )
+    }
+    console.log(
+      `\n📊 Summary (${subdirName || 'root'}): optimized ${
+        optimizationResult?.processedCount || 0
+      }, markdown +${newMarkdownCount}, orphaned moved ${
+        movedOrphanedFiles.length
+      }`
+    )
+    if (Array.isArray(optimizationResult?.actions) && optimizationResult.actions.length) {
+      optimizationResult.actions.forEach((a) =>
+        console.log(`  • ${a.file} -> ${a.action}`)
+      )
+    }
+    if (newMarkdownFiles.length) {
+      console.log('  • markdown created:')
+      newMarkdownFiles.forEach((f) => console.log(`    - ${f}`))
+    }
+    if (movedOrphanedFiles.length) {
+      console.log('  • orphaned moved:')
+      movedOrphanedFiles.forEach((f) => console.log(`    - ${f}`))
     }
 
     return {

@@ -44,16 +44,18 @@ async function processAllSubdirectories() {
       .filter((entry) => entry.isDirectory())
       .map((entry) => entry.name)
 
-    console.log(`🔍 Found ${subdirs.length} subdirectories to process`)
-    console.log(`Options: dryRun=${dryRun} force=${force} audit=${audit}`)
+  console.log(`🔍 Found ${subdirs.length} subdirectories to process`)
+  console.log(`Options: dryRun=${dryRun} force=${force} audit=${audit}`)
 
     let totalProcessed = 0
     let totalExisting = 0
     const allNewFiles = []
 
+    const perFolder = []
+    const perFolderDetails = []
     for (const subdir of subdirs) {
       const subdirPath = path.join(baseMemeDir, subdir)
-      printHeader(`${audit ? 'Auditing' : 'Processing'}: ${subdir}`)
+      if (audit) printHeader(`Auditing: ${subdir}`)
       if (audit) {
         const rows = await auditImages(subdirPath, subdir)
         if (!rows.length) {
@@ -84,13 +86,66 @@ async function processAllSubdirectories() {
             ...result.newFiles.map((file) => `${subdir}/${file}`)
           )
         }
+        // track per-folder changes for the roll-up
+        const changed = (result.processedCount || 0) + (result.newMarkdownCount || 0)
+        perFolder.push({
+          name: subdir,
+          changed,
+          total: result.totalFiles ?? 0,
+        })
+        perFolderDetails.push({
+          name: subdir,
+          optimized: result.processedCount || 0,
+          newMarkdown: result.newMarkdownCount || 0,
+          orphanedMoved: (result.orphanedMarkdownFiles || []).length,
+          markdownFiles: result.newMarkdownFiles || [],
+        })
       }
     }
 
     if (!audit) {
+      // Folder-by-folder roll-up first
+      if (perFolder.length) {
+        perFolder.forEach((p) => {
+          console.log(`Processing: ${p.name} - changed ${p.changed} / ${p.total} files`)
+        })
+      }
+
       printHeader('GLOBAL SUMMARY')
       console.log(`Processed (optimized) new images: ${totalProcessed}`)
       console.log(`Skipped (existing/optimized): ${totalExisting}`)
+      // Tabular view for quick scan
+      if (perFolderDetails.length) {
+        const rows = perFolderDetails.map((d) => [
+          d.name,
+          String(d.optimized),
+          String(d.newMarkdown),
+          String(d.orphanedMoved),
+        ])
+        const headers = ['Folder', 'opt', 'md+', 'orphaned']
+        const widths = headers.map((h, i) =>
+          Math.max(h.length, ...rows.map((r) => r[i].length))
+        )
+        const pad = (s, i) => s.padEnd(widths[i], ' ')
+        const headerLine = headers.map((h, i) => pad(h, i)).join('  |  ')
+        const sep = widths.map((w) => '-'.repeat(w)).join('--+--')
+        console.log(`\n${headerLine}`)
+        console.log(sep)
+        rows.forEach((r) => console.log(r.map((c, i) => pad(c, i)).join('  |  ')))
+      }
+  // Detailed per-folder summaries with markdown mappings
+      if (perFolderDetails.length) {
+        perFolderDetails.forEach((d) => {
+          console.log(`\n${d.name}: opt ${d.optimized}, md +${d.newMarkdown}, orphaned ${d.orphanedMoved}`)
+          if (d.newMarkdown > 0) {
+            d.markdownFiles.forEach((md) => {
+              const base = md.replace(/\.md$/i, '')
+              const jpg = `${base}.jpg`
+              console.log(`${jpg}\n -> ${md}`)
+            })
+          }
+        })
+      }
       if (allNewFiles.length > 0) {
         console.log(`\nNew images:`)
         allNewFiles.forEach((file) => {

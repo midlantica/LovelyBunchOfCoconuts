@@ -175,6 +175,22 @@
       "updated": "2025-08-20T23:26:53.974Z",
       "width": 864,
       "height": 1080
+    },
+    "quotes/this-country-has-shed-more-blood-for-the.jpg": {
+      "optimized": true,
+      "hash": "7e29fafdffebd77a6d2480fcbbe11ed5b4e03299",
+      "action": "strip-profiles",
+      "updated": "2025-08-22T17:14:43.783Z",
+      "width": 1080,
+      "height": 720
+    },
+    "quotes/to-be-conservative-does-not-mean-to-rema.jpg": {
+      "optimized": true,
+      "hash": "dd95bda04fed6e159442f296059f519dd5658ba8",
+      "action": "strip-profiles",
+      "updated": "2025-08-22T17:14:43.895Z",
+      "width": 889,
+      "height": 1080
     }
   }
 }
