@@ -86,7 +86,7 @@
 
 <script setup>
   // Auto-impoorts components/wall/...
-  import { expandQueryTerms } from '~/data/thesaurus'
+  import { expandSearchTerms } from '~/data/termRelations'
 
   // Global guard to avoid click-through reopen after closing a modal
   const modalGuardUntil = useState('modalGuardUntil', () => 0)
@@ -152,12 +152,12 @@
   const allQuotes = computed(() => cache.quotes || [])
   const allMemes = computed(() => cache.memes || [])
 
-  // Thesaurus support (optional, lightweight)
+  // Term relations support (optional, lightweight)
   const textMatches = (text, q) => {
     const hay = String(text || '').toLowerCase()
     const fallback = [String(q || '').toLowerCase()].filter(Boolean)
     const terms =
-      typeof expandQueryTerms === 'function' ? expandQueryTerms(q) : fallback
+      typeof expandSearchTerms === 'function' ? expandSearchTerms(q) : fallback
     return terms.some((t) => hay.includes(t))
   }
 

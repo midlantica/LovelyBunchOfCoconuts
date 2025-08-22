@@ -1,6 +1,7 @@
-// Simple, extensible synonyms/antonyms map (lowercase keys)
-// Add more terms as needed. Keep lists short to avoid noise.
-export const THESAURUS = {
+// Lightweight term relations used to expand search queries.
+// Keys are lowercase; phrase keys use spaces.
+// Keep lists short to reduce noise.
+export const TERM_RELATIONS = {
   equality: [
     'egalitarianism',
     'equal rights',
@@ -85,14 +86,14 @@ export const THESAURUS = {
   'equality before the law': ['rule of law', 'equal protection'],
 }
 
-export function expandQueryTerms(q = '') {
+export function expandSearchTerms(q = '') {
   const raw = String(q).trim().toLowerCase()
   if (!raw) return []
   // Normalize hyphens/underscores to spaces and collapse whitespace
   const norm = raw.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim()
 
   // Lookup using normalized form; fall back to raw if needed
-  const extras = THESAURUS[norm] || THESAURUS[raw] || []
+  const extras = TERM_RELATIONS[norm] || TERM_RELATIONS[raw] || []
   const out = new Set([norm, ...extras.map((s) => String(s).toLowerCase())])
   return Array.from(out)
 }
