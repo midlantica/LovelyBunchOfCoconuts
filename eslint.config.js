@@ -13,6 +13,7 @@ export default defineConfig([
   {
     ignores: [
       '**/*.md',
+      '**/*.plist',
       '.nuxt/**',
       'node_modules/**',
       '.output/**',

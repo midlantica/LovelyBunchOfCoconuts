@@ -430,7 +430,7 @@ async function findAndMoveOrphanedMarkdownFiles(
       return [] // Content directory doesn't exist, no orphaned files
     }
 
-  // Get all markdown files in the content directory (excluding _orphaned folder)
+    // Get all markdown files in the content directory (excluding _orphaned folder)
     const contentFiles = await fs.readdir(contentDir)
     const markdownFiles = contentFiles.filter((file) => file.endsWith('.md'))
 
@@ -447,7 +447,7 @@ async function findAndMoveOrphanedMarkdownFiles(
 
         // Extract image path from markdown content using regex
         // Look for ![alt text](/memes/subdirectory/image.jpg) pattern
-  const imageMatch = content.match(/!\[.*?\]\(\/memes\/[^)]+\)/)
+        const imageMatch = content.match(/!\[.*?\]\(\/memes\/[^)]+\)/)
 
         if (imageMatch) {
           // Extract the image filename from the path
@@ -885,7 +885,10 @@ async function processImages(directory, subdirName = '', options = {}) {
         movedOrphanedFiles.length
       }`
     )
-    if (Array.isArray(optimizationResult?.actions) && optimizationResult.actions.length) {
+    if (
+      Array.isArray(optimizationResult?.actions) &&
+      optimizationResult.actions.length
+    ) {
       optimizationResult.actions.forEach((a) =>
         console.log(`  • ${a.file} -> ${a.action}`)
       )

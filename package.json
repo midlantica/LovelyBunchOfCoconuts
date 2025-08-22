@@ -3,6 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "check:new-memes": "node scripts/check-new-memes.js --no-fail",
+    "check:new-memes:notify": "node scripts/check-new-memes.js --notify --no-fail",
+    "watch:new-memes": "node scripts/watch-new-memes.js",
+    "watch:new-memes:notify": "node scripts/watch-new-memes.js --notify",
+    "watch:new-memes:auto": "node scripts/watch-new-memes.js --notify --auto",
     "build": "nuxt generate",
     "dev": "nuxt dev",
     "dev:quiet": "SILENT_VITE=1 nuxt dev",

@@ -191,6 +191,30 @@
       "updated": "2025-08-22T17:14:43.895Z",
       "width": 889,
       "height": 1080
+    },
+    "politics/the-more-you-tightern-your-grip-starmer.jpg": {
+      "optimized": true,
+      "hash": "a7012e34b809f8a560cbb28cc6ed0dfc5c3660f3",
+      "action": "strip-profiles",
+      "updated": "2025-08-22T18:39:46.234Z",
+      "width": 1080,
+      "height": 1080
+    },
+    "politics/dems-hands-off-our-criminals.jpg": {
+      "optimized": true,
+      "hash": "3907636fac816827528b8fb828c2f4c68cad5d8b",
+      "action": "strip-profiles",
+      "updated": "2025-08-22T19:42:28.212Z",
+      "width": 960,
+      "height": 640
+    },
+    "data/the-us-had-more-births-than-the-eu-last.jpg": {
+      "optimized": true,
+      "hash": "8d4ea7f8c716036a1c6772540a3d849ad1625461",
+      "action": "strip-profiles",
+      "updated": "2025-08-22T21:27:19.797Z",
+      "width": 915,
+      "height": 1080
     }
   }
 }
