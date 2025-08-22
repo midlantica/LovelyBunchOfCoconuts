@@ -8,8 +8,26 @@ export const THESAURUS = {
     'equity',
     'equal opportunity',
   ],
-  liberty: ['freedom', 'individualism', 'civil liberties', 'personal freedom'],
-  freedom: ['liberty', 'individualism', 'free speech'],
+  liberty: [
+    'freedom',
+    'individualism',
+    'individual',
+    'civil liberties',
+    'personal freedom',
+  ],
+  individual: [
+    'freedom',
+    'individualism',
+    'civil liberties',
+    'personal freedom',
+  ],
+  individualism: [
+    'freedom',
+    'individual',
+    'civil liberties',
+    'personal freedom',
+  ],
+  freedom: ['liberty', 'individualism', 'individual', 'free speech'],
   speech: ['free speech', 'expression', 'freedom of expression'],
   capitalism: [
     'free market',
@@ -17,24 +35,63 @@ export const THESAURUS = {
     'market economy',
     'private enterprise',
   ],
-  socialism: ['collectivism', 'state ownership', 'planned economy'],
-  collectivism: ['socialism', 'communalism'],
+  // Support phrase keys in lowercase with spaces
+  'free markets': [
+    'capitalism',
+    'freedom',
+    'market economy',
+    'private enterprise',
+    'free market',
+  ],
+  socialism: [
+    'collectivism',
+    'state ownership',
+    'planned economy',
+    'maoism',
+    'fascism',
+  ],
+  maoism: [
+    'collectivism',
+    'state ownership',
+    'planned economy',
+    'socialism',
+    'fascism',
+  ],
+  collectivism: [
+    'socialism',
+    'communalism',
+    'maoism',
+    'collectivist',
+    'fascism',
+  ],
   redistribution: ['wealth redistribution', 'reparations'],
   justice: ['social justice', 'equity'],
-  meritocracy: ['merit', 'achievement-based'],
+  meritocracy: ['merit', 'achievement'],
   patriotism: ['national pride', 'love of country'],
   authoritarianism: ['state control', 'centralized power'],
   decentralization: ['federalism', 'subsidiarity', 'local control'],
   rights: ['natural rights', 'human rights', 'civil rights'],
   property: ['property rights', 'private property'],
-  market: ['free market', 'capitalism', 'market economy'],
-  revolution: ['radical change', 'uprising'],
-  equalityBeforeTheLaw: ['rule of law', 'equal protection'],
+  market: ['free market', 'capitalism', 'market economy', 'meritocracy'],
+  revolution: [
+    'radical change',
+    'uprising',
+    'rebellion',
+    'insurrection',
+    'destruction',
+  ],
+  // Prefer space-normalized, lowercase keys for phrases
+  'equality before the law': ['rule of law', 'equal protection'],
 }
 
 export function expandQueryTerms(q = '') {
-  const key = String(q).trim().toLowerCase()
-  if (!key) return []
-  const extras = THESAURUS[key] || []
-  return [key, ...extras.map((s) => String(s).toLowerCase())]
+  const raw = String(q).trim().toLowerCase()
+  if (!raw) return []
+  // Normalize hyphens/underscores to spaces and collapse whitespace
+  const norm = raw.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim()
+
+  // Lookup using normalized form; fall back to raw if needed
+  const extras = THESAURUS[norm] || THESAURUS[raw] || []
+  const out = new Set([norm, ...extras.map((s) => String(s).toLowerCase())])
+  return Array.from(out)
 }

@@ -12,7 +12,7 @@
           <img
             src="@/assets/WakeUpNPC-logo.svg"
             alt="Wake up NPC"
-            class="w-full max-w-[545px] object-contain transition-all duration-300 ease-out"
+            class="w-full max-w-[430px] object-contain transition-all duration-300 ease-out"
           />
         </button>
       </div>
