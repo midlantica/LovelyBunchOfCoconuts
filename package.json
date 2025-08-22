@@ -11,8 +11,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "process-images": "node scripts/run-image-processing.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint . --ignore-pattern .tailwind-resolved.json",
+    "lint:fix": "eslint . --fix --ignore-pattern .tailwind-resolved.json",
     "tw:config": "tailwindcss --show-config > .tailwind-resolved.json"
   },
   "scriptsExtra": {},

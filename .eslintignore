@@ -1,0 +1,18 @@
+# Folders
+node_modules/
+.nuxt/
+.output/
+.vscode/
+.cache/
+
+# Build/deploy
+.dist/
+.vercel/
+.netlify/
+
+# Public assets and generated JSON
+public/
+.tailwind-resolved.json
+
+# OS junk
+.DS_Store

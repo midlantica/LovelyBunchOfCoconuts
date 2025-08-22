@@ -4,54 +4,61 @@
     <div class="relative flex flex-row gap-2 w-full">
       <Icon
         name="mdi:magnify"
-        size="2rem"
-        class="top-1/2 left-[.65rem] absolute text-slate-200/60 -translate-y-1/2"
+        size="1.7rem"
+        class="top-1/2 left-[.74rem] absolute text-slate-200/60 -translate-y-1/2"
       />
       <input
         type="text"
         v-model="searchTerm"
-        class="[&::-webkit-search-cancel-button]:hidden bg-transparent focus:bg-transparent ps-12 pt-[.4rem] pr-12 pb-[.6rem] border-[#6dd3ff73] border-[1.5px] focus:border-seagull-400 rounded-lg outline-none w-full font-light text-[1.4rem] text-slate-200 sm:text-[1.275rem] placeholder:text-seagull-200/50 leading-tight tracking-wider"
+        class="[&::-webkit-search-cancel-button]:hidden bg-transparent focus:bg-transparent ps-[2.5rem] pt-[.35rem] pr-[7rem] pb-[.5rem] border-[#6dd3fe7a] border-[thin] focus:border-seagull-400 rounded-[20px] outline-none w-full font-light text-[1.2rem] text-slate-200 sm:text-[1.1rem] placeholder:text-seagull-200/50 leading-tight tracking-wider"
         placeholder="Search..."
         @keydown.esc="handleInputEscape"
         @input="handleSearchInput"
         ref="searchInputRef"
       />
-      <!-- Custom clear button -->
-      <button
-        v-if="searchTerm"
-        @click="clearSearch"
-        class="top-1/2 right-[.75rem] absolute flex justify-center items-center gap-1 bg-transparent pl-4 rounded-full w-auto transition-colors -translate-y-1/2 cursor-pointer"
-        type="button"
-        aria-label="Clear search"
+      <!-- Right control group: Filter, ESC, X -->
+      <div
+        class="top-1/2 right-3 absolute flex items-center gap-2 -translate-y-1/2"
       >
-        <Icon
-          name="mdi:keyboard-esc"
-          class="hidden sm:block text-white/50 hover:text-white text-2xl"
+        <client-only>
+          <span
+            class="font-light text-[.95rem] text-slate-300 tracking-wider"
+            aria-label="Total results"
+          >
+            {{ totalDisplay }}
+          </span>
+        </client-only>
+        <SearchbarFilterButton
+          :filters="props.filters"
+          :counts="props.counts"
+          :inline="true"
+          @update:filters="(f) => emit('update:filters', f)"
         />
-        <Icon
-          name="mdi:close"
-          class="block text-white/80 hover:text-white text-2xl"
-        />
-      </button>
+        <button
+          v-if="searchTerm"
+          @click="clearSearch"
+          class="flex items-center gap-1 bg-transparent rounded-full w-auto transition-colors cursor-pointer"
+          type="button"
+          aria-label="Clear search"
+        >
+          <Icon
+            name="mdi:keyboard-esc"
+            class="hidden sm:block text-[1.35rem] text-white/50 hover:text-white"
+          />
+          <Icon
+            name="mdi:close"
+            class="block text-[1.35rem] text-white/80 hover:text-white"
+          />
+        </button>
+      </div>
     </div>
-    <div class="flex flex-row items-center gap-3 px-0 w-full">
-      <div class="flex flex-row gap-2">
-        <SearchbarPillButton
-          v-for="pill in pills"
-          :key="pill.key"
-          :label="pill.label"
-          :count="pill.count.value"
-          :on="filters[pill.key]"
-          @click="toggleFilter(pill.key)"
+    <div class="flex flex-row items-center gap-2 px-0 w-full">
+      <div class="flex-1">
+        <SearchbarIdeologyTagCloud
+          :active-term="searchTerm"
+          @select="onSelectIdeology"
         />
       </div>
-      <client-only>
-        <span
-          class="font-light text-[1.155rem] text-slate-400 uppercase tracking-wider"
-        >
-          {{ totalDisplay }}
-        </span>
-      </client-only>
     </div>
     <div
       v-if="searchTerm && props.totalCount === 0"
@@ -66,6 +73,7 @@
 
 <script setup>
   import { debounce } from 'lodash-es'
+  import { ideologies } from '~/data/ideologies'
 
   const props = defineProps({
     search: String,
@@ -87,6 +95,11 @@
   const searchTerm = ref(props.search || '')
   const searchInputRef = ref(null)
 
+  // Map lowercase ideology term -> canonical term casing
+  const ideologyCanonicalByLower = Object.fromEntries(
+    ideologies.map((i) => [i.term.toLowerCase(), i.term])
+  )
+
   const debouncedEmitSearch = debounce((val) => {
     emit('update:search', val)
   }, 300)
@@ -96,11 +109,7 @@
   const pillMemeCount = computed(() => props.counts.wall.memes || 0)
   const totalDisplay = computed(() => props.counts.wall.total || 0)
 
-  const pills = [
-    { key: 'claims', label: 'CLAIMS', count: pillClaimCount },
-    { key: 'quotes', label: 'QUOTES', count: pillQuoteCount },
-    { key: 'memes', label: 'MEMES', count: pillMemeCount },
-  ]
+  // Pill buttons removed; filter menu now lives in the input; counts remain
 
   function ensureFilterKeys(obj) {
     obj = obj && typeof obj === 'object' ? obj : {}
@@ -211,11 +220,26 @@
   watch(searchTerm, (newValue) => {
     if (import.meta.dev)
       console.log('🔍 SearchBar internal searchTerm changed:', newValue)
-    debouncedEmitSearch(newValue)
-    if (newValue === '') resetFilters()
+    // Normalize case to match tag cloud items when input equals a tag term
+    const trimmed = (newValue || '').trim()
+    const canonical = ideologyCanonicalByLower[trimmed.toLowerCase()]
+    let valueToEmit = newValue
+    if (canonical && newValue !== canonical) {
+      searchTerm.value = canonical
+      valueToEmit = canonical
+    }
+    debouncedEmitSearch(valueToEmit)
+    if (valueToEmit === '') resetFilters()
   })
   watch(
     () => props.search,
     (newValue) => (searchTerm.value = newValue)
   )
+
+  function onSelectIdeology(term) {
+    searchTerm.value = term
+    // Emit immediately to feel responsive
+    emit('update:search', term)
+    nextTick(() => searchInputRef.value?.focus())
+  }
 </script>

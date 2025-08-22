@@ -18,6 +18,8 @@ export default defineConfig([
       '.output/**',
       'dist/**',
       'public/**',
+      '.tailwind-resolved.json',
+      '**/.tailwind-resolved.json',
       '.vscode/**',
       '**/.vscode/**',
       'tsconfig.json',
@@ -51,7 +53,22 @@ export default defineConfig([
   // JSON
   // Treat VS Code settings as JSONC (comments allowed)
   { files: ['.vscode/*.json'], plugins: { json }, language: 'json/jsonc' },
-  { files: ['**/*.json'], plugins: { json }, language: 'json/json' },
-  { files: ['**/*.jsonc'], plugins: { json }, language: 'json/jsonc' },
-  { files: ['**/*.json5'], plugins: { json }, language: 'json/json5' },
+  {
+    files: ['**/*.json'],
+    plugins: { json },
+    language: 'json/json',
+    ignores: ['.tailwind-resolved.json'],
+  },
+  {
+    files: ['**/*.jsonc'],
+    plugins: { json },
+    language: 'json/jsonc',
+    ignores: ['.tailwind-resolved.json'],
+  },
+  {
+    files: ['**/*.json5'],
+    plugins: { json },
+    language: 'json/json5',
+    ignores: ['.tailwind-resolved.json'],
+  },
 ])

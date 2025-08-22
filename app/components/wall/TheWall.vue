@@ -86,6 +86,7 @@
 
 <script setup>
   // Auto-impoorts components/wall/...
+  import { expandQueryTerms } from '~/data/thesaurus'
 
   // Global guard to avoid click-through reopen after closing a modal
   const modalGuardUntil = useState('modalGuardUntil', () => 0)
@@ -151,6 +152,15 @@
   const allQuotes = computed(() => cache.quotes || [])
   const allMemes = computed(() => cache.memes || [])
 
+  // Thesaurus support (optional, lightweight)
+  const textMatches = (text, q) => {
+    const hay = String(text || '').toLowerCase()
+    const fallback = [String(q || '').toLowerCase()].filter(Boolean)
+    const terms =
+      typeof expandQueryTerms === 'function' ? expandQueryTerms(q) : fallback
+    return terms.some((t) => hay.includes(t))
+  }
+
   // Search-only filtered content (for pill counts)
   const searchFilteredContent = computed(() => {
     // Early return if cache isn't ready yet
@@ -164,18 +174,15 @@
 
     // Apply search filter using searchableText from useContentCache
     if (effectiveSearch.value?.trim()) {
-      const searchLower = effectiveSearch.value.toLowerCase()
-
-      searchClaims = searchClaims.filter((item) =>
-        item.searchableText?.toLowerCase().includes(searchLower)
+      const q = effectiveSearch.value
+      searchClaims = searchClaims.filter((it) =>
+        textMatches(it.searchableText, q)
       )
-
-      searchQuotes = searchQuotes.filter((item) =>
-        item.searchableText?.toLowerCase().includes(searchLower)
+      searchQuotes = searchQuotes.filter((it) =>
+        textMatches(it.searchableText, q)
       )
-
-      searchMemes = searchMemes.filter((item) =>
-        item.searchableText?.toLowerCase().includes(searchLower)
+      searchMemes = searchMemes.filter((it) =>
+        textMatches(it.searchableText, q)
       )
     }
 
@@ -199,18 +206,15 @@
 
     // Apply search filter using searchableText from useContentCache
     if (effectiveSearch.value?.trim()) {
-      const searchLower = effectiveSearch.value.toLowerCase()
-
-      filteredClaims = filteredClaims.filter((item) =>
-        item.searchableText?.toLowerCase().includes(searchLower)
+      const q = effectiveSearch.value
+      filteredClaims = filteredClaims.filter((it) =>
+        textMatches(it.searchableText, q)
       )
-
-      filteredQuotes = filteredQuotes.filter((item) =>
-        item.searchableText?.toLowerCase().includes(searchLower)
+      filteredQuotes = filteredQuotes.filter((it) =>
+        textMatches(it.searchableText, q)
       )
-
-      filteredMemes = filteredMemes.filter((item) =>
-        item.searchableText?.toLowerCase().includes(searchLower)
+      filteredMemes = filteredMemes.filter((it) =>
+        textMatches(it.searchableText, q)
       )
     }
 
@@ -314,6 +318,21 @@
     // Prefer injected global modal if available; otherwise emit to parent
     if (openGlobalModal) openGlobalModal(payload)
     else emit('modal', payload)
+
+    // Popularity tracking: only count when modal opened by explicit user click
+    try {
+      if (userInitiated) {
+        const searchTerm = inject('searchTerm', ref(''))
+        const key = (searchTerm?.value || '').trim().toLowerCase()
+        if (key) {
+          const pop = JSON.parse(
+            localStorage.getItem('wunu_popular_terms') || '{}'
+          )
+          pop[key] = (pop[key] || 0) + 1
+          localStorage.setItem('wunu_popular_terms', JSON.stringify(pop))
+        }
+      }
+    } catch {}
   }
 
   watch(
