@@ -18,7 +18,7 @@
       />
       <!-- Right control group: Filter, ESC, X -->
       <div
-        class="top-1/2 right-3 absolute flex items-center gap-2 -translate-y-1/2"
+        class="top-1/2 right-3 absolute flex items-center gap-3 -translate-y-1/2"
       >
         <client-only>
           <span
@@ -28,7 +28,7 @@
             {{ totalDisplay }}
           </span>
         </client-only>
-        <SearchbarFilterButton
+        <SearchbarFilterBtnMenu
           :filters="props.filters"
           :counts="props.counts"
           :inline="true"

@@ -8,5 +8,4 @@ export default defineContentConfig({
     quotes: defineCollection({ source: 'quotes/**', type: 'page' }),
   },
 })
-
-console.log('Content config loaded successfully with empty schemas')
+// No schemas defined here on purpose — we only declare collections/sources.
