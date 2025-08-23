@@ -111,11 +111,8 @@ async function getFormatAndProfiles(imagePath) {
  * @param {string} subdirName - Name of subdirectory for reporting
  * @returns {Promise<Object>}
  */
-async function optimizeImages(
-  directory,
-  subdirName = '',
-  { manifest, dryRun, force } = {}
-) {
+async function optimizeImages(directory, subdirName = '', options = {}) {
+  const { manifest, dryRun, force } = options || {}
   const extensions = ['png', 'jpg', 'jpeg', 'gif', 'webp']
   const files = await fs.readdir(directory)
 
@@ -786,6 +783,23 @@ async function processImages(directory, subdirName = '', options = {}) {
           await renameImageFile(directory, filename)
       }
     }
+    // IMPORTANT: After potential renames, recompute missing list so filenames are current
+    let effectiveMissing = imagesWithoutMarkdown
+    if (!dryRun) {
+      try {
+        const filesAfter = await fs.readdir(directory)
+        const imageFilesAfter = filesAfter.filter((fname) =>
+          imageExtensions.includes(path.extname(fname).toLowerCase())
+        )
+        const imagesWithoutMarkdownAfter = []
+        for (const filename of imageFilesAfter) {
+          const imagePath = path.join(directory, filename)
+          if (await hasMarkdownPair(imagePath)) continue
+          imagesWithoutMarkdownAfter.push(filename)
+        }
+        effectiveMissing = imagesWithoutMarkdownAfter
+      } catch {}
+    }
     // If dry-run: we skip deep optimize (avoid noisy logs) and simulate
     let optimizationResult = {
       processedCount: 0,
@@ -802,7 +816,7 @@ async function processImages(directory, subdirName = '', options = {}) {
     // ALWAYS create markdown for missing (simulate in dry-run)
     let newMarkdownCount = 0
     let newMarkdownFiles = []
-    if (imagesWithoutMarkdown.length > 0) {
+    if (effectiveMissing.length > 0) {
       if (!dryRun) {
         try {
           const createMarkdownScript = path.join(
@@ -814,8 +828,8 @@ async function processImages(directory, subdirName = '', options = {}) {
             ? `node "${createMarkdownScript}" "${subdirName}"`
             : `node "${createMarkdownScript}"`
           await execPromise(command)
-          newMarkdownCount = imagesWithoutMarkdown.length
-          newMarkdownFiles = imagesWithoutMarkdown.map((filename) => {
+          newMarkdownCount = effectiveMissing.length
+          newMarkdownFiles = effectiveMissing.map((filename) => {
             const basename = path.basename(filename, path.extname(filename))
             return `${basename}.md`
           })
@@ -824,8 +838,8 @@ async function processImages(directory, subdirName = '', options = {}) {
         }
       } else {
         // simulate only
-        newMarkdownCount = imagesWithoutMarkdown.length
-        newMarkdownFiles = imagesWithoutMarkdown.map((filename) => {
+        newMarkdownCount = effectiveMissing.length
+        newMarkdownFiles = effectiveMissing.map((filename) => {
           const basename = path.basename(filename, path.extname(filename))
           return `${basename}.md`
         })
@@ -885,14 +899,10 @@ async function processImages(directory, subdirName = '', options = {}) {
         movedOrphanedFiles.length
       }`
     )
-    if (
-      Array.isArray(optimizationResult?.actions) &&
-      optimizationResult.actions.length
-    ) {
-      optimizationResult.actions.forEach((a) =>
-        console.log(`  • ${a.file} -> ${a.action}`)
-      )
-    }
+    const acts = Array.isArray(optimizationResult?.actions)
+      ? optimizationResult.actions
+      : []
+    acts.forEach((a) => console.log(`  • ${a.file} -> ${a.action}`))
     if (newMarkdownFiles.length) {
       console.log('  • markdown created:')
       newMarkdownFiles.forEach((f) => console.log(`    - ${f}`))
@@ -908,7 +918,7 @@ async function processImages(directory, subdirName = '', options = {}) {
       processedCount: optimizationResult?.processedCount || 0,
       newMarkdownCount,
       newMarkdownFiles,
-      missingMarkdownFiles: imagesWithoutMarkdown,
+      missingMarkdownFiles: effectiveMissing,
       orphanedMarkdownFiles: movedOrphanedFiles,
       dryRun,
       force,

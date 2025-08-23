@@ -1,0 +1,7 @@
+---
+title: "20 years later and all these things fit"
+---
+
+![20 years later and all these things fit](/memes/the-science/20-years-later-and-all-these-things-fit.jpg)
+
+20 years later and all these things fit

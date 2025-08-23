@@ -48,6 +48,12 @@ Flags:
 - `--dry-run` Show what would happen without modifying files
 - `--force` Reprocess even if marked optimized in manifest
 - `--audit` Read-only inspection (dimensions, orientation, format, interlace, profiles)
+- `--reload-browser` (macOS) Reload matching Chrome/Safari tabs after processing; combine with `--reload-match=substr` and `--browser=chrome|safari|all`
+- `--open-created` Open newly created markdown files in VS Code after processing (aliases: `--open`, `--open-md`)
+
+Tip: In global mode, all newly created markdown files across subfolders will be opened. In single-subdir mode, only that subfolder's new files are opened.
+
+Auto workflow: pair with the watcher below to trigger processing and open files as they are created.
 
 ## Content Organization Scripts
 

@@ -7,70 +7,71 @@
     <!-- Loading state -->
     <WallLoadingMessage v-else-if="!isLoaded" />
 
-    <!-- Content wall -->
-    <section v-else class="flex flex-col gap-3 xs:px-2 sm:px-2 md:px-0">
-      <div
-        v-for="(item, index) in interleavedContent"
-        :key="itemKey(item, index)"
-        class="opacity-100 transition translate-y-0 duration-300 ease-in-out"
-      >
-        <!-- Quotes (full width) -->
+    <!-- Content wall (no transitions) -->
+    <section v-else class="xs:px-2 sm:px-2 md:px-0">
+      <div class="flex flex-col gap-3">
         <div
-          v-if="item.type === 'quote'"
-          class="cursor-pointer"
-          role="button"
-          tabindex="0"
-          @click.capture="openModal(item.data, 'quote', true)"
-          @keydown.enter.prevent="openModal(item.data, 'quote', true)"
-          @keydown.space.prevent="openModal(item.data, 'quote', true)"
+          v-for="(item, index) in interleavedContent"
+          :key="itemKey(item, index)"
         >
-          <WallQuotePanel
-            :quote="item.data"
-            :slug="item.data?.path || item.data?._path || ''"
-          />
-        </div>
-
-        <!-- Claim pairs (2 columns on md+, stacked on smaller) -->
-        <div
-          v-else-if="item.type === 'claimPair'"
-          class="gap-3 grid grid-cols-1 md:grid-cols-2"
-        >
+          <!-- Quotes (full width) -->
           <div
-            v-for="(claimItem, idx) in item.data"
-            :key="claimItem?._path || claimItem?.path || claimItem?.id || idx"
+            v-if="item.type === 'quote'"
             class="cursor-pointer"
             role="button"
             tabindex="0"
-            @click.capture="openModal(claimItem, 'claim', true)"
-            @keydown.enter.prevent="openModal(claimItem, 'claim', true)"
-            @keydown.space.prevent="openModal(claimItem, 'claim', true)"
+            @click.capture="openModal(item.data, 'quote', true)"
+            @keydown.enter.prevent="openModal(item.data, 'quote', true)"
+            @keydown.space.prevent="openModal(item.data, 'quote', true)"
           >
-            <WallClaimPanel
-              :claim="claimItem"
-              :slug="claimItem?.path || claimItem?._path || ''"
+            <WallQuotePanel
+              :quote="item.data"
+              :slug="item.data?.path || item.data?._path || ''"
             />
           </div>
-        </div>
 
-        <!-- Meme pairs (2 columns on >=460px using custom 'meme2' breakpoint, stacked below) -->
-        <div
-          v-else-if="item.type === 'memeRow'"
-          class="gap-3 grid grid-cols-1 meme2:grid-cols-2"
-        >
+          <!-- Claim pairs (2 columns on md+, stacked on smaller) -->
           <div
-            v-for="(memeItem, idx) in item.data"
-            :key="memeItem._path || memeItem.path || memeItem.id || idx"
-            class="cursor-pointer"
-            role="button"
-            tabindex="0"
-            @click.capture="openModal(memeItem, 'meme', true)"
-            @keydown.enter.prevent="openModal(memeItem, 'meme', true)"
-            @keydown.space.prevent="openModal(memeItem, 'meme', true)"
+            v-else-if="item.type === 'claimPair'"
+            class="gap-3 grid grid-cols-1 md:grid-cols-2"
           >
-            <WallMemePanel
-              :meme="memeItem"
-              :slug="memeItem?.path || memeItem?._path || ''"
-            />
+            <div
+              v-for="(claimItem, idx) in item.data"
+              :key="claimItem?._path || claimItem?.path || claimItem?.id || idx"
+              class="cursor-pointer"
+              role="button"
+              tabindex="0"
+              @click.capture="openModal(claimItem, 'claim', true)"
+              @keydown.enter.prevent="openModal(claimItem, 'claim', true)"
+              @keydown.space.prevent="openModal(claimItem, 'claim', true)"
+            >
+              <WallClaimPanel
+                :claim="claimItem"
+                :slug="claimItem?.path || claimItem?._path || ''"
+              />
+            </div>
+          </div>
+
+          <!-- Meme pairs (2 columns on >=460px using custom 'meme2' breakpoint, stacked below) -->
+          <div
+            v-else-if="item.type === 'memeRow'"
+            class="gap-3 grid grid-cols-1 meme2:grid-cols-2"
+          >
+            <div
+              v-for="(memeItem, idx) in item.data"
+              :key="memeItem._path || memeItem.path || memeItem.id || idx"
+              class="cursor-pointer"
+              role="button"
+              tabindex="0"
+              @click.capture="openModal(memeItem, 'meme', true)"
+              @keydown.enter.prevent="openModal(memeItem, 'meme', true)"
+              @keydown.space.prevent="openModal(memeItem, 'meme', true)"
+            >
+              <WallMemePanel
+                :meme="memeItem"
+                :slug="memeItem?.path || memeItem?._path || ''"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -411,3 +412,51 @@
     }
   })
 </script>
+
+<style scoped>
+  /* Row transitions */
+  .wall-row-enter-active,
+  .wall-row-leave-active {
+    transition: opacity 220ms ease,
+      transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  /* Keep layout stable while an item fades out */
+  .wall-row-leave-active {
+    position: absolute;
+    width: 100%;
+  }
+  .wall-row-enter-from,
+  .wall-row-leave-to {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  .wall-row-move {
+    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Inner grid items */
+  .wall-col-enter-active,
+  .wall-col-leave-active {
+    transition: opacity 200ms ease,
+      transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .wall-col-leave-active {
+    position: absolute;
+    width: 100%;
+  }
+  .wall-col-enter-from,
+  .wall-col-leave-to {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  .wall-col-move {
+    transition: transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wall-row-move,
+    .wall-col-move {
+      transition-duration: 1ms !important;
+    }
+  }
+</style>

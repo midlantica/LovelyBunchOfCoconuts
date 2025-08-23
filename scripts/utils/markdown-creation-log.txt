@@ -1,136 +1,97 @@
-Starting markdown file creation at 2025-08-22T21:27:19.850Z
-Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data
-Markdown file already exists for 2018-corruption-perceptions-index.jpg
-Markdown file already exists for 56-of-liberal-women-aged-18-29-have-been.jpg
-Markdown file already exists for 95-of-americans-who-mainstream-media-cal.jpg
-Markdown file already exists for actual-individual-consumption-per-head-i.jpg
-Markdown file already exists for americas-richest-poorest-states-vs-g7-co.jpg
-Markdown file already exists for average-annual-wage-usd-2025.jpg
-Markdown file already exists for average-consumption-per-person-in-oecd-n.jpg
-Markdown file already exists for better-life-index-2013.jpg
-Markdown file already exists for birth-of-liberalism-and-capitalism-perio.jpg
-Markdown file already exists for blacks-are-more-likely-than-other-groups.jpg
-Markdown file already exists for capitalism-has-failed.jpg
-Markdown file already exists for chance-of-surviving-covid-19-by-age-and.jpg
-Markdown file already exists for christianity-in-the-us-by-county-distrib.jpg
-Markdown file already exists for claim-nazi-was-right-wing.jpg
-Markdown file already exists for corporate-america-pledged-to-hire-more-p.jpg
-Markdown file already exists for countries-vs-us-metros-nearest-gdp-equiv.jpg
-Markdown file already exists for cps-population-and-per-capita-money-inco.jpg
-Markdown file already exists for death-rate-from-famines-by-decade-world.jpg
-Markdown file already exists for democrats-have-shifted-sharply-leftwards.jpg
-Markdown file already exists for distribution-of-us-national-income-preta.jpg
-Markdown file already exists for equality-vs-equity-vs-capitalism.jpg
-Markdown file already exists for european-per-capita-gdp-2015.jpg
-Markdown file already exists for europes-fertility-crisis-2022.jpg
-Markdown file already exists for far-right-2.jpg
-Markdown file already exists for far-right-vs-good-person.jpg
-Markdown file already exists for far-right.jpg
-Markdown file already exists for federal-spending-revenue-and-net-deficit.jpg
-Markdown file already exists for fertility-rate-2024.jpg
-Markdown file already exists for fertility-rate-collpase-2024.jpg
-Markdown file already exists for fertility-rates-are-declining-everywhere.jpg
-Markdown file already exists for frequency-of-words-denoting-prejudice-in.jpg
-Markdown file already exists for gdp-per-capita-ppp-2017.jpg
-Markdown file already exists for gdp-per-capita-since-1ad-2018.jpg
-Markdown file already exists for gdp-per-person-1990-international-dollar.jpg
-Markdown file already exists for gdp-ppp-international-dollars-2018-billi.jpg
-Markdown file already exists for german-ancestory-in-us.jpg
-Markdown file already exists for global-deaths-in-conflicts-since-the-yea.jpg
-Markdown file already exists for global-fertility-2021.jpg
-Markdown file already exists for global-impact-of-terrorism.jpg
-Markdown file already exists for global-poverty-rate.jpg
-Markdown file already exists for global-warming-is-part-of-natural-cycle.jpg
-Markdown file already exists for growth-in-administrative-staff-principal.jpg
-Markdown file already exists for growth-of-physicians-and-administrators.jpg
-Markdown file already exists for growth-of-the-upper-middle-class.jpg
-Markdown file already exists for homicide-rate-per-100000-people-in-us-st.jpg
-Markdown file already exists for household-appliances-1973-2009-hours-of.jpg
-Markdown file already exists for how-socialists-think-socialism-works.jpg
-Markdown file already exists for income-inequality-and-equality.jpg
-Markdown file already exists for income-inequality-in-4-charts.jpg
-Markdown file already exists for individual-consumption-per-cap-ppp-2020.jpg
-Markdown file already exists for inflation-adjusted-cost-of-a-k-12-public.jpg
-Markdown file already exists for interracial-violent-crime-incidents-2018.jpg
-Markdown file already exists for invasion-of-the-drug-cartels.jpg
-Markdown file already exists for italy-by-municipality-annual-gdp-per-cap.jpg
-Markdown file already exists for keynesian-economics.jpg
-Markdown file already exists for median-earnings-for-full-time-year-round.jpg
-Markdown file already exists for median-us-household-income-by-selected-e.jpg
-Markdown file already exists for mens-work-percentages.jpg
-Markdown file already exists for most-common-self-identified-ancestry-of.jpg
-Markdown file already exists for msm-news-word-frequency.jpg
-Markdown file already exists for muslim-conquest-battles-vs-crusades.jpg
-Markdown file already exists for muslims-in-the-eu-norway-and-switzerland.jpg
-Markdown file already exists for new-york-times-word-usage-frequency-1970.jpg
-Markdown file already exists for no-wage-gap-between-men-and-women.jpg
-Markdown file already exists for north-america-agrilculture.jpg
-Markdown file already exists for number-of-regulatory-restrictions.jpg
-Markdown file already exists for obama-economy-6-charts.jpg
-Markdown file already exists for ourworldindatawars-long-run-military-civ.jpg
-Markdown file already exists for outlays-in-trillions-of-2015-dollars.jpg
-Markdown file already exists for per-capita-average-individual-consumptio.jpg
-Markdown file already exists for percent-of-american-adults-who-reached-v.jpg
-Markdown file already exists for percent-of-spending-including-discretion.jpg
-Markdown file already exists for percent-shares-of-us-households-by-total.jpg
-Markdown file already exists for percentage-of-white-british-in-britain.jpg
-Markdown file already exists for percentage-of-years-americans-reach-top.jpg
-Markdown file already exists for presidential-vote-by-district-2024.jpg
-Markdown file already exists for pure-alcohol-consumption-among-2010.jpg
-Markdown file already exists for reagan-obama-recoveries.jpg
-Markdown file already exists for share-of-world-population-living-in-extr.jpg
-Markdown file already exists for socialism-crony-capitalism-free-markets.jpg
-Markdown file already exists for spread-of-christianity.jpg
-Markdown file already exists for swimming-records-boys-15-18-world-junior.jpg
-Markdown file already exists for the-middle-east-prior-to-arab-colonizati.jpg
-Markdown file already exists for the-tax-burden-has-grown-more-progressiv.jpg
-Markdown file already exists for the-two-totalitarian-systems-which-we-in.jpg
-Created markdown file for the-us-had-more-births-than-the-eu-last.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/the-us-had-more-births-than-the-eu-last.md
-Markdown file already exists for the-us-middle-class-is-shrinking-because.jpg
-Markdown file already exists for the-waning-of-war.jpg
-Markdown file already exists for the-world-as-100-people-over-the-last-tw.jpg
-Markdown file already exists for the-worlds-population-concentrated.jpg
-Markdown file already exists for thomas-sowell-discrimination-and-dispari.jpg
-Markdown file already exists for top-10-most-dangerous-us-occupations-and.jpg
-Markdown file already exists for top-20-most-dangerous-us-occupations-and.jpg
-Markdown file already exists for top-20-us-metro-areas-by-economic-activi.jpg
-Markdown file already exists for top-20-us-metro-areas-by-gdp-2017-vs-cou.jpg
-Markdown file already exists for top-20-us-metro-areas-by-gdp-per-capita.jpg
-Markdown file already exists for total-means-tested-welfare-spending-and.jpg
-Markdown file already exists for track-field-and-cross-country-records.jpg
-Markdown file already exists for trends-in-inflation-adjusted-cost-of-a-c.jpg
-Markdown file already exists for un-total-fertility-rate-by-country-2023.jpg
-Markdown file already exists for unemployment-labor-force-participation.jpg
-Markdown file already exists for united-states-croplands-ports-and-rivers.jpg
-Markdown file already exists for unnamed-1.jpg
-Markdown file already exists for unnamed-2.jpg
-Markdown file already exists for unnamed-3.jpg
-Markdown file already exists for unnamed-4.jpg
-Markdown file already exists for unnamed-5.jpg
-Markdown file already exists for unnamed-6.jpg
-Markdown file already exists for unnamed-7.jpg
-Markdown file already exists for unnamed.jpg
-Markdown file already exists for us-deaths-in-wars.jpg
-Markdown file already exists for us-households-according-to-income-2013.jpg
-Markdown file already exists for us-manufacturing-output-vs-world.jpg
-Markdown file already exists for us-political-spectrum.jpg
-Markdown file already exists for us-poverty-rate-20-trillion-spent.jpg
-Markdown file already exists for us-presidential-election-popular-vote-de.jpg
-Markdown file already exists for us-states-renamed-for-countries-with-sim.jpg
-Markdown file already exists for us-states-vs-countries-2016.jpg
-Markdown file already exists for usa-german-ancestry-2012.jpg
-Markdown file already exists for usa-political-axis.jpg
-Markdown file already exists for when-slavery-was-abolished.jpg
-Markdown file already exists for which-dictator-killed-the-most-people.jpg
-Markdown file already exists for white-women-college-voter-opinion.jpg
-Markdown file already exists for whos-paying-what-taxes.jpg
-Markdown file already exists for world-corruption-homicide-why.jpg
-Markdown file already exists for world-gdp-over-the-last-two-millennia-wh.jpg
-Markdown file already exists for world-homicide-murder-rate.jpg
-Markdown file already exists for world-population-living-in-extreme-pover.jpg
-Markdown file already exists for wrong-enemy-correct-enemy.jpg
-Markdown file already exists for yearly-mentions-of-prejudice-in-popular.jpg
+Starting markdown file creation at 2025-08-23T03:40:57.416Z
+Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science
+Created markdown file for 1960s-the-oil-supply-will-be-gone-in-10.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/1960s-the-oil-supply-will-be-gone-in-10.md
+Created markdown file for 19th-vs-21st-century-scientist.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/19th-vs-21st-century-scientist.md
+Created markdown file for 20-years-later-and-all-these-things-fit.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/20-years-later-and-all-these-things-fit.md
+Created markdown file for 4000-years-of-climate-change.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/4000-years-of-climate-change.md
+Created markdown file for 97-of-polls-show-results-as-required-by.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/97-of-polls-show-results-as-required-by.md
+Created markdown file for 97-of-scientists-agree-with-whoever-is.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/97-of-scientists-agree-with-whoever-is.md
+Created markdown file for actual-climate-change-alarmism.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/actual-climate-change-alarmism.md
+Created markdown file for al-gore-doomsday-clock-jan-27-2016.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/al-gore-doomsday-clock-jan-27-2016.md
+Created markdown file for antarctic-sea-ice-extent-is-17-higher.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/antarctic-sea-ice-extent-is-17-higher.md
+Created markdown file for awake-yet-1960-s-oil-gone-in-10-years.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/awake-yet-1960-s-oil-gone-in-10-years.md
+Created markdown file for best-global-warming-recap.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/best-global-warming-recap.md
+Created markdown file for blacks-are-more-likely-than-other-groups.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/blacks-are-more-likely-than-other-groups.md
+Created markdown file for cdc-immunization-schedule-1986-vs-2025.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/cdc-immunization-schedule-1986-vs-2025.md
+Created markdown file for climate-change-a-timeline.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/climate-change-a-timeline.md
+Created markdown file for climate-change-agenda-inflation.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/climate-change-agenda-inflation.md
+Created markdown file for climate-change-agenda-tax-to-the-dnc.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/climate-change-agenda-tax-to-the-dnc.md
+Created markdown file for climate-change-cartoon-update.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/climate-change-cartoon-update.md
+Created markdown file for climate-hysteria-marxism.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/climate-hysteria-marxism.md
+Created markdown file for climate-modeling-vs-earth-s-climate.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/climate-modeling-vs-earth-s-climate.md
+Created markdown file for climate-predictions-cartoon.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/climate-predictions-cartoon.md
+Created markdown file for climate-science-sausage-factory.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/climate-science-sausage-factory.md
+Created markdown file for covid-kids-walking-media-trumpeting.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/covid-kids-walking-media-trumpeting.md
+Created markdown file for covid-survival-rate-98-plus.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/covid-survival-rate-98-plus.md
+Created markdown file for creen-is-the-new-red.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/creen-is-the-new-red.md
+Created markdown file for diesel-versus-electric-car-dirty-versus.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/diesel-versus-electric-car-dirty-versus.md
+Created markdown file for drilling-in-anwar-1980-to-2008.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/drilling-in-anwar-1980-to-2008.md
+Created markdown file for drinking-from-a-soggy-straw-to-save-the.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/drinking-from-a-soggy-straw-to-save-the.md
+Created markdown file for early-1900s-pollution-it-s-better-now.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/early-1900s-pollution-it-s-better-now.md
+Created markdown file for evolution-of-the-alphabet.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/evolution-of-the-alphabet.md
+Created markdown file for experts-agree.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/experts-agree.md
+Created markdown file for fertility-rates-are-declining-2023.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/fertility-rates-are-declining-2023.md
+Created markdown file for germany-hot-weather-map-2017-vs-2022.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/germany-hot-weather-map-2017-vs-2022.md
+Created markdown file for global-temperatures-2500-b-c-to-2040-a-d.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/global-temperatures-2500-b-c-to-2040-a-d.md
+Created markdown file for global-warming-chart-predictions-reality.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/global-warming-chart-predictions-reality.md
+Created markdown file for global-warming-is-part-of-natural-cycle.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/global-warming-is-part-of-natural-cycle.md
+Created markdown file for global-warming-provides-a-marvelous.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/global-warming-provides-a-marvelous.md
+Created markdown file for global-warming-rebranded-weather.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/global-warming-rebranded-weather.md
+Created markdown file for government-corruption-iceberg.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/government-corruption-iceberg.md
+Created markdown file for green-for-thee.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/green-for-thee.md
+Created markdown file for has-a-doctor-or-healthcare-provider-ever.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/has-a-doctor-or-healthcare-provider-ever.md
+Created markdown file for how-racial-groups-rate-each-other.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/how-racial-groups-rate-each-other.md
+Created markdown file for in-12-years-coastal-areas-would-be-under.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/in-12-years-coastal-areas-would-be-under.md
+Created markdown file for indo-european-and-uralic-language-tree.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/indo-european-and-uralic-language-tree.md
+Created markdown file for industrial-pollution.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/industrial-pollution.md
+Created markdown file for industrial-polution.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/industrial-polution.md
+Created markdown file for interglacials-usually-last-1000010-000.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/interglacials-usually-last-1000010-000.md
+Created markdown file for it-is-simply-no-longer-possible-to-1.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/it-is-simply-no-longer-possible-to-1.md
+Created markdown file for it-is-simply-no-longer-possible-to.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/it-is-simply-no-longer-possible-to.md
+Created markdown file for it-s-global-warm-its-summer.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/it-s-global-warm-its-summer.md
+Created markdown file for it-s-just-as-easy-to-buy-a-scientist-as.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/it-s-just-as-easy-to-buy-a-scientist-as.md
+Created markdown file for kids-running-with-ddt-trucks.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/kids-running-with-ddt-trucks.md
+Created markdown file for knowledge-isn-t-free-you-have-to-pay.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/knowledge-isn-t-free-you-have-to-pay.md
+Created markdown file for look-at-my-new-clean-green-car.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/look-at-my-new-clean-green-car.md
+Created markdown file for no-such-thing-as-a-low-energy-rich.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/no-such-thing-as-a-low-energy-rich.md
+Created markdown file for north-america-agrilculture.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/north-america-agrilculture.md
+Created markdown file for not-a-single-prediction-of-the-climate.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/not-a-single-prediction-of-the-climate.md
+Created markdown file for oil-gone-in-ten-years-famine.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/oil-gone-in-ten-years-famine.md
+Created markdown file for pipelines-in-europe.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/pipelines-in-europe.md
+Created markdown file for pollution-industrial-revolution.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/pollution-industrial-revolution.md
+Created markdown file for projected-growth-puppy.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/projected-growth-puppy.md
+Created markdown file for refuting-12-claims-made-by-climate.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/refuting-12-claims-made-by-climate.md
+Created markdown file for science-vs-pseudoscience.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/science-vs-pseudoscience.md
+Created markdown file for science-vs-the-science.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/science-vs-the-science.md
+Created markdown file for scientists-say-earths-warming-could-set.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/scientists-say-earths-warming-could-set.md
+Created markdown file for share-that-answered-people-of-another.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/share-that-answered-people-of-another.md
+Created markdown file for snowfalls-are-now-just-a-thing-of-the.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/snowfalls-are-now-just-a-thing-of-the.md
+Created markdown file for studies-show-that-all-studies-can.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/studies-show-that-all-studies-can.md
+Created markdown file for stuff-you-know-humility.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/stuff-you-know-humility.md
+Created markdown file for sure-i-ll-settle-that-science-for-ya.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/sure-i-ll-settle-that-science-for-ya.md
+Created markdown file for temperature-curve-last-fifteen-thousand.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/temperature-curve-last-fifteen-thousand.md
+Markdown file already exists for ten-years-left-to-stop-a-climate-disaste.jpg
+Created markdown file for the-evolutionary-tree-of-religion.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/the-evolutionary-tree-of-religion.md
+Created markdown file for the-first-earth-day-was-celebrated-on.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/the-first-earth-day-was-celebrated-on.md
+Created markdown file for the-ice-age-cometh-1974.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/the-ice-age-cometh-1974.md
+Created markdown file for the-inequity-between-male-and-female.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/the-inequity-between-male-and-female.md
+Created markdown file for the-north-pole-will-be-ice-free-by-the.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/the-north-pole-will-be-ice-free-by-the.md
+Created markdown file for the-right-to-control-your-body-should.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/the-right-to-control-your-body-should.md
+Created markdown file for the-world-s-population-concentrated.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/the-world-s-population-concentrated.md
+Created markdown file for the-world-will-end-in-12-years.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/the-world-will-end-in-12-years.md
+Created markdown file for there-s-simply-no-polite-way-to-tell.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/there-s-simply-no-polite-way-to-tell.md
+Created markdown file for trust-the-science-they-say.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/trust-the-science-they-say.md
+Created markdown file for trust-the-science.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/trust-the-science.md
+Created markdown file for u-n-predicts-disaster-if-global-warming.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/u-n-predicts-disaster-if-global-warming.md
+Created markdown file for usa-river-map.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/usa-river-map.md
+Created markdown file for watermelons-green-outside-red-within.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/watermelons-green-outside-red-within.md
+Created markdown file for what-does-it-mean-when-someone-says.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/what-does-it-mean-when-someone-says.md
+Created markdown file for what-happens-if-we-don-t-listen-to.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/what-happens-if-we-don-t-listen-to.md
+Created markdown file for what-rhymes-with-climate-change.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/what-rhymes-with-climate-change.md
+Created markdown file for which-pipeline-is-going-to-ruin-our.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/which-pipeline-is-going-to-ruin-our.md
+Created markdown file for your-body-vs-someone-elses-body.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/your-body-vs-someone-elses-body.md
+Created markdown file for your-child-isn-t-trans-you-re-just-a.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/the-science/your-child-isn-t-trans-you-re-just-a.md
 
-Markdown file creation complete at 2025-08-22T21:27:19.875Z
-1 markdown files created, 129 files skipped
+Markdown file creation complete at 2025-08-23T03:40:57.452Z
+90 markdown files created, 1 files skipped
 Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/utils/markdown-creation-log.txt

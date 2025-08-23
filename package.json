@@ -8,6 +8,7 @@
     "watch:new-memes": "node scripts/watch-new-memes.js",
     "watch:new-memes:notify": "node scripts/watch-new-memes.js --notify",
     "watch:new-memes:auto": "node scripts/watch-new-memes.js --notify --auto",
+    "watch:new-memes:auto:open": "node scripts/watch-new-memes.js --notify --auto --open-created",
     "build": "nuxt generate",
     "dev": "nuxt dev",
     "dev:quiet": "SILENT_VITE=1 nuxt dev",

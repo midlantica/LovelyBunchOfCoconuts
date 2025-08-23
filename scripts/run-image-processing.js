@@ -26,6 +26,8 @@ const reloadBrowserArg = rawArgs.find((a) => a.startsWith('--browser='))
 const reloadTarget = (
   reloadBrowserArg ? reloadBrowserArg.split('=')[1] : 'all'
 ).toLowerCase()
+const openCreated =
+  flags.has('--open-created') || flags.has('--open-md') || flags.has('--open')
 
 if (flags.has('--help')) {
   console.log(`Usage: pnpm process-images [subdir] [--dry-run] [--force] [--audit] [--reload-browser] [--reload-match=substr] [--browser=chrome|safari|all]
@@ -43,8 +45,36 @@ Flags:
   --audit       Read-only inspection (dimensions, orientation, format, interlace, profiles)
   --reload-browser           macOS dev convenience: reload matching browser tabs after processing
   --reload-match=substr      Tab URL substring to match (default: localhost)
-  --browser=chrome|safari|all  Which browser to target (default: all)`)
+  --browser=chrome|safari|all  Which browser to target (default: all)
+  --open-created | --open     Open any newly-created markdown files in VS Code after processing`)
   process.exit(0)
+}
+
+async function openInVSCode(paths) {
+  if (!paths || !paths.length) return
+  // Wait briefly for files to exist to avoid opening empty buffers on race
+  const waitFor = async (p, tries = 10, delay = 100) => {
+    for (let i = 0; i < tries; i++) {
+      try {
+        const st = await fs.stat(p)
+        if (st.size >= 0) return true
+      } catch {}
+      await new Promise((r) => setTimeout(r, delay))
+    }
+    return false
+  }
+  for (const p of paths) {
+    await waitFor(p)
+  }
+  const esc = (s) => `'${s.replace(/'/g, "'\\''")}'`
+  const args = paths.map(esc).join(' ')
+  try {
+    await exec(`command -v code >/dev/null 2>&1 && code -r ${args}`)
+    return
+  } catch {}
+  try {
+    await exec(`open -a "Visual Studio Code" ${args}`)
+  } catch {}
 }
 
 async function maybeReloadBrowser() {
@@ -103,6 +133,7 @@ async function processAllSubdirectories() {
 
     const perFolder = []
     const perFolderDetails = []
+    const createdMarkdownPaths = []
 
     for (const subdir of subdirs) {
       const subdirPath = path.join(baseMemeDir, subdir)
@@ -134,6 +165,17 @@ async function processAllSubdirectories() {
         newMarkdown: result.newMarkdownCount || 0,
         orphanedMoved: (result.orphanedMarkdownFiles || []).length,
       })
+      if (
+        !dryRun &&
+        Array.isArray(result.newMarkdownFiles) &&
+        result.newMarkdownFiles.length
+      ) {
+        for (const f of result.newMarkdownFiles) {
+          createdMarkdownPaths.push(
+            path.join(__dirname, '..', 'content', 'memes', subdir, f)
+          )
+        }
+      }
     }
 
     if (!audit) {
@@ -161,6 +203,12 @@ async function processAllSubdirectories() {
           dryRun ? 'DRY-RUN (no changes written)' : force ? 'FORCE' : 'NORMAL'
         }`
       )
+      if (openCreated && createdMarkdownPaths.length) {
+        console.log(
+          `\nOpening ${createdMarkdownPaths.length} new markdown file(s) in VS Code...`
+        )
+        await openInVSCode(createdMarkdownPaths)
+      }
       await maybeReloadBrowser()
     }
   } catch (error) {
@@ -219,6 +267,19 @@ if (!subdirName) {
           }`
         )
         console.log(`Mode: ${force ? 'FORCE' : 'NORMAL'}`)
+        if (
+          openCreated &&
+          Array.isArray(result.newMarkdownFiles) &&
+          result.newMarkdownFiles.length
+        ) {
+          const files = result.newMarkdownFiles.map((f) =>
+            path.join(__dirname, '..', 'content', 'memes', subdirName, f)
+          )
+          console.log(
+            `\nOpening ${files.length} new markdown file(s) in VS Code...`
+          )
+          return openInVSCode(files).then(() => maybeReloadBrowser())
+        }
         return maybeReloadBrowser()
       })
       .catch((err) => {
