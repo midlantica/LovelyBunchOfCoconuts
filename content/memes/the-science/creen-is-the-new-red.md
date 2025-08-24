@@ -1,7 +1,7 @@
 ---
-title: "Creen is the new red"
+title: 'Green is the new Red'
 ---
 
-![Creen is the new red](/memes/the-science/creen-is-the-new-red.jpg)
+![Green is the new Red](/memes/the-science/green-is-the-new-red.jpg)
 
-Creen is the new red
+Green is the new Red

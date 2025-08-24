@@ -1,7 +1,7 @@
 ---
-title: "4000 years of climate change"
+title: '4,000 years of temperature-driven cultural advances and retreats'
 ---
 
-![4000 years of climate change](/memes/the-science/4000-years-of-climate-change.jpg)
+![4,000 years of temperature-driven cultural advances and retreats](/memes/the-science/4000-years-of-climate-change.jpg)
 
-4000 years of climate change
+4,000 years of temperature-driven cultural advances and retreats

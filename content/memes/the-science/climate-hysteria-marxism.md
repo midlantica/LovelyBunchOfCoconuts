@@ -1,7 +1,7 @@
 ---
-title: "Climate hysteria marxism"
+title: 'Climate Hysteria Marxism'
 ---
 
-![Climate hysteria marxism](/memes/the-science/climate-hysteria-marxism.jpg)
+![Climate Hysteria Marxism](/memes/the-science/climate-hysteria-marxism.jpg)
 
-Climate hysteria marxism
+Climate Hysteria Marxism

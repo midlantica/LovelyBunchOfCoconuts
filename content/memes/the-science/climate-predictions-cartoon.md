@@ -1,7 +1,7 @@
 ---
-title: "Climate predictions cartoon"
+title: 'Climate predictions cartoon fail'
 ---
 
-![Climate predictions cartoon](/memes/the-science/climate-predictions-cartoon.jpg)
+![Climate predictions cartoon fail](/memes/the-science/climate-predictions-cartoon.jpg)
 
-Climate predictions cartoon
+Climate predictions fail cartoon

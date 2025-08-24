@@ -1,7 +1,7 @@
 ---
-title: "Evolution of the alphabet"
+title: 'Evolution of the Alphabet'
 ---
 
-![Evolution of the alphabet](/memes/the-science/evolution-of-the-alphabet.jpg)
+![Evolution of the Alphabet](/memes/the-science/evolution-of-the-alphabet.jpg)
 
-Evolution of the alphabet
+Evolution of the Alphabet

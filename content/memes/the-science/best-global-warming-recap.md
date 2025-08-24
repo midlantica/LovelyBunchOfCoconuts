@@ -1,7 +1,7 @@
 ---
-title: "Best global warming recap"
+title: 'Best Global Warming Recap'
 ---
 
-![Best global warming recap](/memes/the-science/best-global-warming-recap.jpg)
+![Best Global Warming Recap](/memes/the-science/best-global-warming-recap.jpg)
 
-Best global warming recap
+Best Global Warming Recap

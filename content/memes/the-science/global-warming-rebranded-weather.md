@@ -1,7 +1,9 @@
 ---
-title: "Global warming rebranded weather"
+title: 'Global Warming, Climate Change, Climate Disruption'
 ---
 
-![Global warming rebranded weather](/memes/the-science/global-warming-rebranded-weather.jpg)
+![Global Warming, Climate Change, Climate Disruption](/memes/the-science/global-warming-rebranded-weather.jpg)
 
-Global warming rebranded weather
+Scientific Consensus
+Global Cooling, Global Warming, Climate Change, Climate Disruption.
+It's called Weather
