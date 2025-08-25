@@ -1,7 +1,7 @@
 ---
-title: "Not a single prediction of the climate"
+title: 'Not a single prediction of the climate'
 ---
 
 ![Not a single prediction of the climate](/memes/the-science/not-a-single-prediction-of-the-climate.jpg)
 
-Not a single prediction of the climate
+Reminder... Not a single prediction of the climate cult has ever come true. Not. One.

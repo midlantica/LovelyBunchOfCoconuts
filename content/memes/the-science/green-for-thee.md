@@ -1,5 +1,5 @@
 ---
-title: "Green for thee"
+title: 'Green for thee'
 ---
 
 ![Green for thee](/memes/the-science/green-for-thee.jpg)

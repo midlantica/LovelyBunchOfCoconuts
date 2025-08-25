@@ -1,7 +1,7 @@
 ---
-title: "Pipelines in europe"
+title: 'Pipelines in Europe'
 ---
 
-![Pipelines in europe](/memes/the-science/pipelines-in-europe.jpg)
+![Pipelines in Europe](/memes/the-science/pipelines-in-europe.jpg)
 
-Pipelines in europe
+Pipelines in Europe, sooo.. which one is destroying your water supply?

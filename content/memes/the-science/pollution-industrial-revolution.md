@@ -1,7 +1,7 @@
 ---
-title: "Pollution industrial revolution"
+title: 'Pollution Industrial Revolution'
 ---
 
-![Pollution industrial revolution](/memes/the-science/pollution-industrial-revolution.jpg)
+![Pollution Industrial Revolution](/memes/the-science/pollution-industrial-revolution.jpg)
 
-Pollution industrial revolution
+Pollution Industrial Revolution, we've come a long way.

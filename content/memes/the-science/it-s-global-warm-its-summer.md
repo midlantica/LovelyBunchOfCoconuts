@@ -1,7 +1,7 @@
 ---
-title: "It s global warm its summer"
+title: "It's global warm... It's Summer!"
 ---
 
-![It s global warm its summer](/memes/the-science/it-s-global-warm-its-summer.jpg)
+![It's global warm... It's Summer!](/memes/the-science/it-s-global-warm-its-summer.jpg)
 
-It s global warm its summer
+It's global warm... It's Summer!

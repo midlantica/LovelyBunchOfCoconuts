@@ -1,7 +1,7 @@
 ---
-title: "Science vs pseudoscience"
+title: 'Science vs Pseudoscience'
 ---
 
-![Science vs pseudoscience](/memes/the-science/science-vs-pseudoscience.jpg)
+![Science vs Pseudoscience](/memes/the-science/science-vs-pseudoscience.jpg)
 
-Science vs pseudoscience
+Science vs Pseudoscience

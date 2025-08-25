@@ -1,7 +1,7 @@
 ---
-title: "Refuting 12 claims made by climate"
+title: 'Refuting 12 claims made by Climate Alarmists'
 ---
 
-![Refuting 12 claims made by climate](/memes/the-science/refuting-12-claims-made-by-climate.jpg)
+![Refuting 12 claims made by Climate Alarmists](/memes/the-science/Refuting-12-claims-made-by-climate-alarmists.jpg)
 
-Refuting 12 claims made by climate
+Refuting 12 claims made by Climate Alarmists

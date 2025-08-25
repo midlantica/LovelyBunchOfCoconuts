@@ -1,7 +1,7 @@
 ---
-title: 'Scientists say earths warming could set'
+title: "Scientists say Earth's warming could set off"
 ---
 
-![Scientists say earths warming could set](/memes/the-science/scientists-say-earths-warming-could-set.jpg)
+![Scientists say Earth's warming could set off Wide Disruptions](/memes/the-science/scientists-say-earths-warming-could-set.jpg)
 
-Scientists say earths warming could set
+Scientists say Earth's warming could set off Wide Disruptions

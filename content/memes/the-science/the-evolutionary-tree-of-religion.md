@@ -1,7 +1,7 @@
 ---
-title: "The evolutionary tree of religion"
+title: 'The evolutionary Tree of Religion'
 ---
 
-![The evolutionary tree of religion](/memes/the-science/the-evolutionary-tree-of-religion.jpg)
+![The evolutionary Tree of Religion](/memes/the-science/the-evolutionary-tree-of-religion.jpg)
 
-The evolutionary tree of religion
+The evolutionary Tree of Religion
