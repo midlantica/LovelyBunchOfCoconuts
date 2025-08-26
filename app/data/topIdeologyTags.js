@@ -16,4 +16,5 @@ export const curatedTop = [
   'Free Speech',
   'Social Justice',
   'Free Markets',
+  'Pro-Life',
 ]

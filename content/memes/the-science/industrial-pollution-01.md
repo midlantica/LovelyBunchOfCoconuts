@@ -1,7 +1,7 @@
 ---
-title: 'Industrial polution 01'
+title: 'Industrial pollution 01'
 ---
 
-![Industrial polution](/memes/the-science/industrial-polution-01.jpg)
+![Industrial pollution 01](/memes/the-science/industrial-pollution-01.jpg)
 
-Industrial pollution. We've come a long way. 01
+Industrial pollution 01. We've come a long way.

@@ -935,6 +935,22 @@
       "updated": "2025-08-23T03:40:57.356Z",
       "width": 866,
       "height": 874
+    },
+    "the-science/i-got-climate-change-in-the-palm-of-my.jpg": {
+      "optimized": true,
+      "hash": "9d18906a30c0576b129c02e6120c9398d8ccc857",
+      "action": "strip-profiles",
+      "updated": "2025-08-25T19:17:02.825Z",
+      "width": 1024,
+      "height": 916
+    },
+    "thomas-sowell/the-political-left-has-never-understood.jpg": {
+      "optimized": true,
+      "hash": "0016d55310168016dd4f39a297c6df3b25eb3674",
+      "action": "upscale→800",
+      "updated": "2025-08-25T19:17:03.106Z",
+      "width": 790,
+      "height": 800
     }
   }
 }

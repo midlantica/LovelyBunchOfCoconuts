@@ -47,4 +47,6 @@ export const ideologies = [
   { id: 47, term: 'Equality', group: 'Collectivism' },
   { id: 48, term: 'Freedom', group: 'Freedom' },
   { id: 49, term: 'LGBT', group: 'Collectivism' },
+  { id: 50, term: 'Abortion', group: 'Collectivism' },
+  { id: 51, term: 'Pro-Life', group: 'Freedom' },
 ]

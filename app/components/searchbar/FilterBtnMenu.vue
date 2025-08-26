@@ -18,7 +18,7 @@
 
     <div
       v-if="open"
-      class="top-[1.9rem] right-0 z-20 absolute bg-slate-900/95 shadow-[3px_4px_9px_-2px_rgba(0,0,0,1)] backdrop-blur p-2 rounded-lg w-fit"
+      class="top-[1.9rem] right-0 z-20 absolute bg-seagull-950 shadow-[3px_4px_9px_-2px_rgba(0,0,0,1)] backdrop-blur p-2 rounded-lg w-fit"
       role="menu"
       :ref="(el) => (panelRef = el)"
       :style="panelStyle"
@@ -138,7 +138,7 @@
     const active = !!local[key]
     return active
       ? 'bg-[#358fbb] text-black hover:brightness-110'
-      : 'bg-slate-800/90 text-slate-200/80 hover:brightness-[1.15] text-shadow-sm'
+      : 'bg-seagull-800/90 text-slate-200/80 hover:brightness-[1.15] text-shadow-sm'
   }
 
   function radiusClass(pos) {
@@ -207,7 +207,7 @@
       width: '2.7rem',
       height: '2.9rem',
       opacity: '1',
-      backgroundColor: 'hsl(223 48% 11% / 1)',
+      backgroundColor: '#06304b',
       zIndex: -20,
       boxShadow: 'none',
     }

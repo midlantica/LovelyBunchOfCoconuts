@@ -2,6 +2,15 @@
 // Keys are lowercase; phrase keys use spaces.
 // Keep lists short to reduce noise.
 export const TERM_RELATIONS = {
+  'pro-life': [
+    'right to life',
+    'abortion',
+    'reproductive rights',
+    'choice',
+    'my body my choice',
+    'body',
+    'baby',
+  ],
   equality: [
     'egalitarianism',
     'equal rights',

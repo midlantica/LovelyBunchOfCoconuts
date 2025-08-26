@@ -1,7 +1,7 @@
 ---
-title: 'Us Poverty Rate 20 Trillion Spent'
+title: "US Poverty Rate - LBJ's 'War on Poverty'"
 ---
 
-![Us poverty rate 20 trillion spent](/memes/data/us-poverty-rate-20-trillion-spent.jpg)
+![US Poverty Rate - LBJ's 'War on Poverty'](/memes/data/us-poverty-rate-20-trillion-spent.jpg)
 
-Us poverty rate 20 trillion spent.
+US Poverty Rate - LBJ's 'War on Poverty', 20 trillion spent.
