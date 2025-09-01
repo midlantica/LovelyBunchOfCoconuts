@@ -202,8 +202,8 @@
     // Cap shape/position exactly as provided
     capStyle.value = {
       right: '0px',
-      top: '-38.1px',
-      borderRadius: '9px 20px 0 0',
+      top: '-38.25px',
+      borderRadius: '12px 12px 0 0',
       width: '2.7rem',
       height: '2.9rem',
       opacity: '1',
