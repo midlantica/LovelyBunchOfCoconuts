@@ -156,10 +156,24 @@
   // Term relations support (optional, lightweight)
   const textMatches = (text, q) => {
     const hay = String(text || '').toLowerCase()
-    const fallback = [String(q || '').toLowerCase()].filter(Boolean)
-    const terms =
-      typeof expandSearchTerms === 'function' ? expandSearchTerms(q) : fallback
-    return terms.some((t) => hay.includes(t))
+    const raw = String(q || '')
+      .toLowerCase()
+      .trim()
+    if (!raw) return true
+    // Interpret spaces/+ as separators for multi-term search
+    const tokens = raw
+      .replace(/[+]+/g, ' ')
+      .replace(/[-_]+/g, ' ')
+      .split(/\s+/)
+      .filter(Boolean)
+    if (!tokens.length) return true
+    // For AND semantics: each input token must be satisfied by the haystack.
+    // A token is satisfied if ANY of its expanded related terms is present.
+    return tokens.every((tok) => {
+      const expanded =
+        typeof expandSearchTerms === 'function' ? expandSearchTerms(tok) : [tok]
+      return expanded.some((t) => hay.includes(String(t || '').toLowerCase()))
+    })
   }
 
   // Search-only filtered content (for pill counts)

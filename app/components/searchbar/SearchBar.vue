@@ -5,17 +5,44 @@
       <Icon
         name="mdi:magnify"
         size="1.7rem"
-        class="top-1/2 left-[.74rem] absolute text-slate-200/60 -translate-y-1/2"
+        class="top-1/2 left-[.34rem] absolute text-slate-200/60 -translate-y-1/2"
       />
-      <input
-        type="text"
-        v-model="searchTerm"
-        class="[&::-webkit-search-cancel-button]:hidden bg-transparent focus:bg-transparent ps-[2.5rem] pt-[.35rem] pr-[7rem] pb-[.5rem] border-[#6dd3fe7a] border-[thin] focus:border-seagull-400 rounded-[20px] outline-none w-full font-light text-[1.2rem] text-slate-200 sm:text-[1.1rem] placeholder:text-seagull-200/50 leading-tight tracking-wider"
-        placeholder="Search..."
-        @keydown.esc="handleInputEscape"
-        @input="handleSearchInput"
-        ref="searchInputRef"
-      />
+      <!-- Tokenized input with pills -->
+      <div
+        class="bg-transparent focus-within:bg-transparent py-[.25rem] ps-[2.2rem] pr-[7rem] border-[#6dd3fe7a] border-[thin] focus-within:border-seagull-400 rounded-[20px] outline-none w-full font-light text-[1.2rem] text-slate-200 sm:text-[1.1rem] leading-none tracking-wider"
+        @click="focusInnerInput"
+      >
+        <div class="flex flex-wrap items-center gap-1 leading-none">
+          <template v-for="(t, idx) in tokens" :key="t + ':' + idx">
+            <span
+              class="inline-flex items-center gap-0.5 bg-white/10 py-[1px] pr-2 pl-2.5 rounded-full text-[.825rem] text-white/90 leading-none cursor-pointer select-none"
+            >
+              <span class="whitespace-nowrap">{{ t }}</span>
+              <button
+                type="button"
+                class="-mr-1 p-[0px] text-white/50 hover:text-white cursor-pointer"
+                :aria-label="`Remove ${t}`"
+                @click.stop="removeToken(idx)"
+              >
+                <Icon name="mdi:close" class="text-[1rem]" />
+              </button>
+            </span>
+          </template>
+          <input
+            type="text"
+            v-model="inputText"
+            class="flex-1 bg-transparent focus:bg-transparent outline-none min-w-[6ch] placeholder:text-seagull-200/50 leading-none"
+            :placeholder="tokens.length ? '' : 'Search...'"
+            @keydown.enter.prevent="commitInputAsToken()"
+            @keydown.space.prevent="commitInputAsToken()"
+            @keydown.backspace="maybePopToken"
+            @keydown.delete="maybePopToken"
+            @keydown.esc="handleInputEscape"
+            @input="handleSearchInput"
+            ref="searchInputRef"
+          />
+        </div>
+      </div>
       <!-- Right control group: Filter, ESC, X -->
       <div
         class="top-1/2 right-3 absolute flex items-center gap-3 -translate-y-1/2"
@@ -29,22 +56,34 @@
           </span>
         </client-only>
         <SearchbarFilterBtnMenu
+          v-if="showInlineFilterMenu"
           :filters="props.filters"
           :counts="props.counts"
           :inline="true"
           @update:filters="(f) => emit('update:filters', f)"
         />
         <button
-          v-if="searchTerm"
+          @click="copyShareUrl"
+          type="button"
+          class="relative flex justify-center items-center text-white/80 hover:text-white"
+          title="Copy shareable link"
+          aria-label="Copy shareable link"
+        >
+          <Icon name="mdi:share-variant" class="text-[1.25rem]" />
+          <span
+            v-if="sharedCopied"
+            class="-top-6 absolute bg-black/70 px-2 py-0.5 rounded text-[11px] text-white"
+          >
+            Copied
+          </span>
+        </button>
+        <button
+          v-if="hasSearch"
           @click="clearSearch"
           class="flex items-center gap-1 bg-transparent rounded-full w-auto transition-colors cursor-pointer"
           type="button"
           aria-label="Clear search"
         >
-          <Icon
-            name="mdi:keyboard-esc"
-            class="hidden sm:block text-[1.35rem] text-white/50 hover:text-white"
-          />
           <Icon
             name="mdi:close"
             class="block text-[1.35rem] text-white/80 hover:text-white"
@@ -55,13 +94,13 @@
     <div class="flex flex-row items-center gap-2 px-0 w-full">
       <div class="flex-1">
         <SearchbarIdeologyTagCloud
-          :active-term="searchTerm"
+          :active-term="tokens"
           @select="onSelectIdeology"
         />
       </div>
     </div>
     <div
-      v-if="searchTerm && props.totalCount === 0"
+      v-if="hasSearch && totalDisplay === 0"
       class="flex flex-col flex-1 justify-center items-center w-full min-h-[60vh]"
     >
       <h1 class="m-auto mt-16 font-light text-white text-2xl text-center">
@@ -91,9 +130,18 @@
     },
   })
   const emit = defineEmits(['update:search', 'update:filters'])
+  // Hide inline filter menu for now; flip to true to re-enable or move elsewhere
+  const showInlineFilterMenu = false
 
-  const searchTerm = ref(props.search || '')
+  // Tokenized search state
+  const tokens = ref([])
+  const inputText = ref('')
+  const joinedSearch = computed(() => [...tokens.value].join(' ').trim())
+  const hasSearch = computed(() => tokens.value.length > 0)
   const searchInputRef = ref(null)
+  const router = useRouter()
+  const route = useRoute()
+  const lastEmittedSearch = ref('')
 
   // Map lowercase ideology term -> canonical term casing
   const ideologyCanonicalByLower = Object.fromEntries(
@@ -101,13 +149,34 @@
   )
 
   const debouncedEmitSearch = debounce((val) => {
+    lastEmittedSearch.value = val
     emit('update:search', val)
-  }, 300)
+    // Update the display URL preserving literal '+' separators
+    updateUrlWithTokens()
+  }, 250)
 
   const pillClaimCount = computed(() => props.counts.wall.claims || 0)
   const pillQuoteCount = computed(() => props.counts.wall.quotes || 0)
   const pillMemeCount = computed(() => props.counts.wall.memes || 0)
   const totalDisplay = computed(() => props.counts.wall.total || 0)
+  const sharedCopied = ref(false)
+  function copyShareUrl() {
+    try {
+      const href = buildShareUrlWithTokens()
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(href)
+      } else {
+        const ta = document.createElement('textarea')
+        ta.value = href
+        document.body.appendChild(ta)
+        ta.select()
+        document.execCommand('copy')
+        document.body.removeChild(ta)
+      }
+      sharedCopied.value = true
+      setTimeout(() => (sharedCopied.value = false), 1200)
+    } catch {}
+  }
 
   // Pill buttons removed; filter menu now lives in the input; counts remain
 
@@ -148,23 +217,17 @@
 
   function clearSearch() {
     if (import.meta.dev) console.log('🔍 SearchBar clearSearch called')
-    searchTerm.value = ''
+    tokens.value = []
+    inputText.value = ''
     resetFilters()
     // Immediately emit the search change instead of waiting for debounce
     if (import.meta.dev) console.log('🔍 SearchBar emitting clear search')
     emit('update:search', '')
     // Ensure focus stays on search input to prevent pill focus ring
     nextTick(() => searchInputRef.value?.focus())
-    // Remove q param from URL if present
+    // Remove q param from URL if present (preserve other params and literal '+')
     try {
-      const router = useRouter()
-      const route = useRoute()
-      if (route.query.q) {
-        router.replace({
-          path: route.path,
-          query: { ...route.query, q: undefined },
-        })
-      }
+      updateUrlWithTokens([])
     } catch {}
   }
 
@@ -181,8 +244,8 @@
   }
 
   function handleInputEscape() {
-    // When escape is pressed within the input, always clear if there's text
-    if (searchTerm.value.trim() !== '') {
+    // When escape is pressed within the input, always clear if there's text/tokens
+    if (inputText.value.trim() !== '' || tokens.value.length > 0) {
       if (import.meta.dev)
         console.log('🔍 Input escape pressed - clearing search')
       clearSearch()
@@ -199,7 +262,7 @@
   function onGlobalKeydown(e) {
     if (e.key === 'Escape') {
       // Only clear search if there's actually something in the search input
-      if (searchTerm.value.trim() !== '') {
+      if (inputText.value.trim() !== '' || tokens.value.length > 0) {
         if (import.meta.dev)
           console.log('🔍 Escape key pressed - clearing search')
         clearSearch()
@@ -217,29 +280,114 @@
     window.removeEventListener('keydown', onGlobalKeydown)
   })
 
-  watch(searchTerm, (newValue) => {
-    if (import.meta.dev)
-      console.log('🔍 SearchBar internal searchTerm changed:', newValue)
-    // Normalize case to match tag cloud items when input equals a tag term
-    const trimmed = (newValue || '').trim()
-    const canonical = ideologyCanonicalByLower[trimmed.toLowerCase()]
-    let valueToEmit = newValue
-    if (canonical && newValue !== canonical) {
-      searchTerm.value = canonical
-      valueToEmit = canonical
-    }
-    debouncedEmitSearch(valueToEmit)
-    if (valueToEmit === '') resetFilters()
-  })
+  // Emit whenever tokens change
+  watch(
+    tokens,
+    (arr) => {
+      const valueToEmit = arr.join(' ').trim()
+      debouncedEmitSearch(valueToEmit)
+      if (valueToEmit === '') resetFilters()
+    },
+    { deep: true }
+  )
+  // Keep internal tokens in sync with prop changes (e.g., initial q)
   watch(
     () => props.search,
-    (newValue) => (searchTerm.value = newValue)
+    (newValue) => {
+      const incoming = String(newValue || '')
+      if (incoming === lastEmittedSearch.value) return
+      const parsed = parseToTokens(incoming)
+      tokens.value = parsed
+    },
+    { immediate: true }
   )
 
   function onSelectIdeology(term) {
-    searchTerm.value = term
-    // Emit immediately to feel responsive
-    emit('update:search', term)
+    // Toggle-add behavior for multi-term search
+    const lower = term.toLowerCase()
+    const idx = tokens.value.findIndex((p) => p.toLowerCase() === lower)
+    if (idx >= 0) tokens.value.splice(idx, 1)
+    else tokens.value.push(canonicalizeToken(term))
+    // Emit immediately to feel responsive and guard re-parse
+    lastEmittedSearch.value = joinedSearch.value
+    emit('update:search', joinedSearch.value)
     nextTick(() => searchInputRef.value?.focus())
+  }
+
+  // Helpers for tokenized input
+  function parseToTokens(text) {
+    const raw = String(text || '').trim()
+    if (!raw) return []
+    if (raw.includes('+')) {
+      return raw
+        .split('+')
+        .map((s) => s.replace(/_/g, ' ').trim())
+        .filter(Boolean)
+        .map(canonicalizeToken)
+    }
+    // Fallback: treat as a single token (preserve spaces in phrases)
+    return [canonicalizeToken(raw)]
+  }
+  function canonicalizeToken(t) {
+    const cleaned = String(t || '').replace(/_/g, ' ')
+    const c = ideologyCanonicalByLower[cleaned.toLowerCase()]
+    return c || cleaned
+  }
+  function commitInputAsToken() {
+    const raw = inputText.value.trim()
+    if (!raw) return
+    tokens.value.push(canonicalizeToken(raw))
+    inputText.value = ''
+  }
+  function maybePopToken(e) {
+    // If input is empty, treat backspace/delete as removing the last token
+    if (inputText.value.length === 0 && tokens.value.length > 0) {
+      tokens.value.pop()
+      // Prevent browser navigating back on Backspace when input is empty
+      e.preventDefault()
+    }
+  }
+  function removeToken(idx) {
+    tokens.value.splice(idx, 1)
+  }
+  function focusInnerInput() {
+    searchInputRef.value?.focus()
+  }
+
+  // URL helpers to preserve literal '+' for token separation
+  function serializeTokensForUrl(arr = tokens.value) {
+    return (arr || [])
+      .map((t) => String(t).trim().toLowerCase().replace(/\s+/g, '_'))
+      .filter(Boolean)
+      .join('+')
+  }
+  function updateUrlWithTokens(arr) {
+    if (typeof window === 'undefined') return
+    const qEnc = serializeTokensForUrl(arr ?? tokens.value)
+    const raw = window.location.search.replace(/^\?/, '')
+    const parts = raw ? raw.split('&').filter(Boolean) : []
+    const kept = parts.filter(
+      (p) => decodeURIComponent(p.split('=')[0]) !== 'q'
+    )
+    if (qEnc) kept.push(`q=${qEnc}`)
+    const query = kept.length ? `?${kept.join('&')}` : ''
+    const url = `${window.location.pathname}${query}${
+      window.location.hash || ''
+    }`
+    window.history.replaceState({}, '', url)
+  }
+  function buildShareUrlWithTokens() {
+    if (typeof window === 'undefined') return ''
+    const qEnc = serializeTokensForUrl()
+    const raw = window.location.search.replace(/^\?/, '')
+    const parts = raw ? raw.split('&').filter(Boolean) : []
+    const kept = parts.filter(
+      (p) => decodeURIComponent(p.split('=')[0]) !== 'q'
+    )
+    if (qEnc) kept.push(`q=${qEnc}`)
+    const query = kept.length ? `?${kept.join('&')}` : ''
+    return `${window.location.origin}${window.location.pathname}${query}${
+      window.location.hash || ''
+    }`
   }
 </script>

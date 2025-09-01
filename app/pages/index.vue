@@ -53,20 +53,43 @@
 
   // If redirected from a not-found deep link, prefill search and clean URL
   onMounted(() => {
-    const q = typeof route.query.q === 'string' ? route.query.q : ''
+    // Read raw q from the URL to preserve literal '+' between tokens
+    let q = ''
+    try {
+      const m = window.location.search.match(/[?&]q=([^&]*)/)
+      q = m ? m[1] : ''
+    } catch {}
     const nf = route.query.nf
     const modalSuppressed = useState('modalSuppressedFromQuery', () => false)
 
     if (q) {
-      // Normalize dashes/underscores to spaces for search
-      searchTerm.value = q.replace(/[-_]+/g, ' ').trim()
+      // Keep '+' separators intact; SearchBar will parse tokens and URL will stay stable
+      const decoded = (() => {
+        try {
+          return decodeURIComponent(q)
+        } catch {
+          return q
+        }
+      })()
+      searchTerm.value = decoded.toLowerCase().trim()
       // Prevent immediate modal reopen after closing if refresh with query param
       modalSuppressed.value = true
     }
     if (nf) {
-      // Remove nf from URL but keep q
-      const nextQuery = q ? { q } : {}
-      router.replace({ path: route.path, query: nextQuery })
+      // Remove nf from URL but keep q exactly as typed (preserve literal '+')
+      try {
+        const raw = window.location.search.replace(/^\?/, '')
+        const parts = raw ? raw.split('&').filter(Boolean) : []
+        const kept = parts.filter(
+          (p) => decodeURIComponent(p.split('=')[0]) !== 'nf'
+        )
+        const query = kept.length ? `?${kept.join('&')}` : ''
+        window.history.replaceState(
+          {},
+          '',
+          `${window.location.pathname}${query}${window.location.hash || ''}`
+        )
+      } catch {}
     }
 
     // Attach scroll listener to persist position

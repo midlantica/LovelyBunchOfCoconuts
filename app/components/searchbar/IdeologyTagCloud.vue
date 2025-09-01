@@ -5,9 +5,9 @@
         v-for="i in visibleTags"
         :key="i.term"
         type="button"
-        class="px-2 pt-[3px] pb-[4px] rounded-sm focus:outline-none text-sm leading-tight tracking-[0.025rem] whitespace-nowrap transition"
+        class="px-2 pt-[3px] pb-[4px] rounded-sm focus:outline-none text-xs leading-tight tracking-[0.025rem] whitespace-nowrap transition cursor-pointer"
         :class="
-          activeTerm && i.term.toLowerCase().includes(activeTerm.toLowerCase())
+          isActive(i.term)
             ? i.group === 'Freedom'
               ? 'bg-seagull-500 text-slate-950'
               : 'bg-slate-300 text-slate-900'
@@ -26,7 +26,7 @@
 <script setup>
   import { ideologies } from '~/data/ideologies'
   import { curatedTop } from '~/data/topIdeologyTags'
-  defineProps({ activeTerm: String })
+  const props = defineProps({ activeTerm: [String, Array] })
   const emit = defineEmits(['select'])
 
   const byTerm = Object.fromEntries(ideologies.map((i) => [i.term, i]))
@@ -60,6 +60,17 @@
     popularTerms.forEach(add)
     return out.slice(0, totalLimit)
   })
+
+  function isActive(term) {
+    const active = props.activeTerm
+    if (!active) return false
+    if (Array.isArray(active)) {
+      const lc = term.toLowerCase()
+      return active.some((t) => String(t).toLowerCase() === lc)
+    }
+    // Fallback for legacy string prop: substring match
+    return term.toLowerCase().includes(String(active).toLowerCase())
+  }
 </script>
 
 <style scoped></style>
