@@ -2,7 +2,7 @@
   <div class="z-10 relative" ref="buttonRef">
     <button
       @click="handleClick"
-      class="z-10 relative flex justify-center items-center bg-transparent hover:brightness-150 p-2.5 rounded-lg text-gray-400 hover:text-white transition-all duration-200 hover:cursor-pointer"
+      class="z-10 relative flex justify-center items-center bg-transparent hover:brightness-150 rounded-lg text-gray-400 hover:text-white transition-all duration-200 hover:cursor-pointer"
       :aria-label="ariaLabel"
     >
       <Icon :name="iconName" size="1.3rem" />

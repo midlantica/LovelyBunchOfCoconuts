@@ -62,7 +62,7 @@
       </div>
       <!-- Right control group: Filter, ESC, X -->
       <div
-        class="top-1/2 right-2.5 absolute flex items-center gap-1 -translate-y-1/2"
+        class="top-1/2 right-3 absolute flex items-center gap-1 -translate-y-1/2"
       >
         <client-only>
           <span
