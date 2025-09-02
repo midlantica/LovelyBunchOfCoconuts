@@ -1,4 +1,4 @@
-<!-- components/ModalMeme.vue (reverted to pre-scrollbar version) -->
+<!-- components/ModalMeme.vue -->
 <template>
   <client-only>
     <ModalsModalFrame v-if="modalData" :show="show" @close="handleClose">
@@ -14,19 +14,19 @@
             <img
               v-if="modalData?.image"
               :src="modalData.image"
-              :alt="modalData.title || 'Meme image'"
+              alt=""
               class="w-full sm:w-auto max-w-full h-auto max-h-[60vh] object-contain"
               loading="lazy"
               decoding="async"
             />
-            <!-- Scrollable text (only this area scrolls) -->
             <div
               v-if="modalData?.bodyText"
-              class="flex-1 text-shadow-xs mt-2 px-4 sm:px-0 w-full min-h-0 overflow-y-auto font-[100] text-gray-300 text-base sm:text-lg text-center leading-normal"
+              class="relative flex-1 text-shadow-xs mt-2 px-4 sm:px-0 pr-2 w-full min-h-0 overflow-y-auto font-[100] text-gray-300 text-base sm:text-lg text-center leading-normal scroll-area"
             >
-              <div class="overflow-scroll whitespace-pre-line">
-                {{ modalData.bodyText }}
-              </div>
+              <div class="whitespace-pre-line">{{ modalData.bodyText }}</div>
+              <div
+                class="right-0 bottom-0 left-0 absolute bg-gradient-to-t from-slate-800 to-transparent h-2 pointer-events-none"
+              ></div>
             </div>
           </div>
         </div>
@@ -59,6 +59,7 @@
   // Reactive state
   const shareImageBlob = ref(null)
   const { showShareShelf, onToggle } = useShareShelf(500)
+  // Custom ScrollArea handles scrollbar visuals, no overlay detection needed here
 
   // Computed share props
   const shareTitle = computed(
@@ -114,6 +115,28 @@
       { immediate: true }
     )
   }
+
+  // Native scrollbar styling handled via CSS
 </script>
 
-<!-- No extra styles needed in reverted version -->
+<style scoped>
+  .scroll-area {
+    scrollbar-gutter: stable;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #0089cc rgba(255, 255, 255, 0.08); /* thumb, track */
+  }
+  .scroll-area::-webkit-scrollbar {
+    width: 5px;
+  }
+  .scroll-area::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+  }
+  .scroll-area::-webkit-scrollbar-thumb {
+    background: #0089cc; /* seagull-600 */
+    border-radius: 6px;
+  }
+  .scroll-area::-webkit-scrollbar-thumb:hover {
+    background: #09acee; /* seagull-500 */
+  }
+</style>

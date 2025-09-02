@@ -41,9 +41,14 @@
               modalData.body.value &&
               modalData.body.value.length > 0
             "
-            class="prose-invert max-w-none prose"
+            class="relative max-w-none max-h-[50vh] overflow-y-auto scroll-area"
           >
-            <div v-html="modalData?.bodyHtml"></div>
+            <div class="prose-invert pr-3 prose">
+              <div v-html="modalData?.bodyHtml"></div>
+            </div>
+            <div
+              class="right-0 bottom-0 left-0 absolute bg-gradient-to-t from-slate-800 to-transparent h-2 pointer-events-none"
+            ></div>
           </div>
         </div>
       </template>
@@ -123,4 +128,28 @@
     },
     { immediate: true }
   )
+
+  // Native scrollbar styling handled via CSS
 </script>
+
+<style scoped>
+  .scroll-area {
+    scrollbar-gutter: stable;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #0089cc rgba(255, 255, 255, 0.08); /* thumb, track */
+  }
+  .scroll-area::-webkit-scrollbar {
+    width: 5px;
+  }
+  .scroll-area::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+  }
+  .scroll-area::-webkit-scrollbar-thumb {
+    background: #0089cc; /* seagull-600 */
+    border-radius: 6px;
+  }
+  .scroll-area::-webkit-scrollbar-thumb:hover {
+    background: #09acee; /* seagull-500 */
+  }
+</style>

@@ -9,9 +9,9 @@
   >
     <div
       v-if="show"
-      class="-top-2 absolute bg-slate-900 px-2 sm:px-4 pt-2.5 pb-1 rounded-b-lg w-full"
+      class="-top-2 absolute bg-slate-900 px-2 sm:px-4 pt-5 pb-3 rounded-b-lg w-full"
     >
-      <div class="flex justify-center gap-2">
+      <div class="flex justify-center gap-3">
         <UiTwitterShareButton
           ref="twitterButton"
           :title="title"

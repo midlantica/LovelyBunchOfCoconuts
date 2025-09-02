@@ -4,8 +4,6 @@
       v-if="show"
       class="z-50 fixed inset-0 flex justify-center items-center bg-black/80 overscroll-contain modal-overlay"
       @click.self="handleBackdropClick"
-      @wheel.prevent
-      @touchmove.prevent
     >
       <div
         class="-top-8 relative flex flex-col shadow-lg mx-0 sm:mx-6 rounded-none sm:rounded-lg modal-frame"
@@ -87,4 +85,20 @@
   onBeforeUnmount(() => {
     window.removeEventListener('keydown', handleEscape, true)
   })
+
+  // Prevent background page scroll while modal is open (does not block inner scroll areas)
+  watch(
+    () => props.show,
+    (open) => {
+      if (import.meta.client) {
+        const root = document.documentElement
+        if (open) {
+          root.style.overflow = 'hidden'
+        } else {
+          root.style.overflow = ''
+        }
+      }
+    },
+    { immediate: true }
+  )
 </script>

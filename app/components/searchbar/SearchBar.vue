@@ -51,7 +51,7 @@
             class="flex-1 bg-transparent focus:bg-transparent pb-0.5 outline-none min-w-[6ch] h-[1.6rem] placeholder:text-seagull-200/50 leading-[1.6rem]"
             :placeholder="tokens.length ? '' : 'Search...'"
             @keydown.enter.prevent="commitInputAsToken()"
-            @keydown.space.prevent="commitInputAsToken()"
+            @blur="commitInputAsToken()"
             @keydown="onKeydown"
             @keyup="onKeyup"
             @keydown.esc="handleInputEscape"
@@ -79,13 +79,24 @@
           :inline="true"
           @update:filters="(f) => emit('update:filters', f)"
         />
-        <UiShareButtonBase
-          icon-name="mdi:share-variant"
-          aria-label="Copy shareable link"
-          toast-message="Copied"
-          :toast-duration="1200"
+        <button
           @click="copyShareUrl"
-        />
+          type="button"
+          class="relative flex justify-center items-center text-white/80 hover:text-white"
+          title="Copy shareable link"
+          aria-label="Copy shareable link"
+        >
+          <Icon
+            name="mdi:share-variant"
+            class="mr-0.5 text-[1.25rem] cursor-pointer"
+          />
+          <span
+            v-if="sharedCopied"
+            class="-top-6 absolute bg-black/70 px-2 py-0.5 rounded text-[11px] text-white"
+          >
+            Copied
+          </span>
+        </button>
         <button
           v-if="hasSearch"
           @click="clearSearch"
@@ -122,7 +133,6 @@
 <script setup>
   import { debounce } from 'lodash-es'
   import { ideologies } from '~/data/ideologies'
-  import UiShareButtonBase from '~/components/ui/ShareButtonBase.vue'
 
   const props = defineProps({
     search: String,
@@ -171,6 +181,7 @@
   const pillQuoteCount = computed(() => props.counts.wall.quotes || 0)
   const pillMemeCount = computed(() => props.counts.wall.memes || 0)
   const totalDisplay = computed(() => props.counts.wall.total || 0)
+  const sharedCopied = ref(false)
   function copyShareUrl() {
     try {
       const href = buildShareUrlWithTokens()
@@ -184,6 +195,8 @@
         document.execCommand('copy')
         document.body.removeChild(ta)
       }
+      sharedCopied.value = true
+      setTimeout(() => (sharedCopied.value = false), 1200)
     } catch {}
   }
 
@@ -366,6 +379,7 @@
       }
       e.preventDefault()
     }
+    // Allow spaces to be typed as part of a single token; do not commit on space
   }
   function onKeyup(e) {
     const k = e.key
