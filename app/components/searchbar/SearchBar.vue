@@ -62,7 +62,7 @@
       </div>
       <!-- Right control group: Filter, ESC, X -->
       <div
-        class="top-1/2 right-3 absolute flex items-center gap-3 -translate-y-1/2"
+        class="top-1/2 right-2.5 absolute flex items-center gap-1 -translate-y-1/2"
       >
         <client-only>
           <span
@@ -79,21 +79,13 @@
           :inline="true"
           @update:filters="(f) => emit('update:filters', f)"
         />
-        <button
-          @click="copyShareUrl"
-          type="button"
-          class="relative flex justify-center items-center text-white/80 hover:text-white"
-          title="Copy shareable link"
+        <UiShareButtonBase
+          icon-name="mdi:share-variant"
           aria-label="Copy shareable link"
-        >
-          <Icon name="mdi:share-variant" class="text-[1.25rem]" />
-          <span
-            v-if="sharedCopied"
-            class="-top-6 absolute bg-black/70 px-2 py-0.5 rounded text-[11px] text-white"
-          >
-            Copied
-          </span>
-        </button>
+          toast-message="Copied"
+          :toast-duration="1200"
+          @click="copyShareUrl"
+        />
         <button
           v-if="hasSearch"
           @click="clearSearch"
@@ -130,6 +122,7 @@
 <script setup>
   import { debounce } from 'lodash-es'
   import { ideologies } from '~/data/ideologies'
+  import UiShareButtonBase from '~/components/ui/ShareButtonBase.vue'
 
   const props = defineProps({
     search: String,
@@ -178,7 +171,6 @@
   const pillQuoteCount = computed(() => props.counts.wall.quotes || 0)
   const pillMemeCount = computed(() => props.counts.wall.memes || 0)
   const totalDisplay = computed(() => props.counts.wall.total || 0)
-  const sharedCopied = ref(false)
   function copyShareUrl() {
     try {
       const href = buildShareUrlWithTokens()
@@ -192,8 +184,6 @@
         document.execCommand('copy')
         document.body.removeChild(ta)
       }
-      sharedCopied.value = true
-      setTimeout(() => (sharedCopied.value = false), 1200)
     } catch {}
   }
 

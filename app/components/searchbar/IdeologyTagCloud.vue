@@ -6,15 +6,7 @@
         :key="i.term"
         type="button"
         class="px-2 pt-[3px] pb-[4px] rounded-sm focus:outline-none text-xs leading-tight tracking-[0.025rem] whitespace-nowrap transition cursor-pointer"
-        :class="
-          isActive(i.term)
-            ? i.group === 'Freedom'
-              ? 'bg-seagull-500 text-slate-950'
-              : 'bg-slate-300 text-slate-900'
-            : i.group === 'Freedom'
-            ? 'bg-seagull-600/20 text-slate-200 hover:bg-seagull-600/30'
-            : 'bg-slate-500/20 text-slate-200 hover:bg-slate-500/30'
-        "
+        :class="classesFor(i)"
         @click="emit('select', i.term)"
       >
         {{ i.term }}
@@ -31,6 +23,26 @@
 
   const byTerm = Object.fromEntries(ideologies.map((i) => [i.term, i]))
   const totalLimit = Math.max(1, Math.ceil(ideologies.length / 3))
+
+  // Visual theme by group; add new groups here. Keeps template free of hard-coded names.
+  const groupStyles = {
+    Freedom: {
+      base: 'bg-seagull-600/20 text-slate-200 hover:bg-seagull-600/30',
+      active: 'bg-seagull-500 text-slate-950',
+    },
+    Collectivism: {
+      base: 'bg-slate-500/20 text-slate-200 hover:bg-slate-500/30',
+      active: 'bg-slate-300 text-slate-900',
+    },
+  }
+  const defaultStyles = {
+    base: 'bg-white/10 text-slate-200 hover:bg-white/20',
+    active: 'bg-slate-300 text-slate-900',
+  }
+  function classesFor(item) {
+    const styles = groupStyles[item.group] || defaultStyles
+    return isActive(item.term) ? styles.active : styles.base
+  }
 
   function loadPopularity() {
     try {

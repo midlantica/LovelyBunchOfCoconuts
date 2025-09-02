@@ -24,7 +24,9 @@
               v-if="modalData?.bodyText"
               class="flex-1 text-shadow-xs mt-2 px-4 sm:px-0 w-full min-h-0 overflow-y-auto font-[100] text-gray-300 text-base sm:text-lg text-center leading-normal"
             >
-              <div class="whitespace-pre-line">{{ modalData.bodyText }}</div>
+              <div class="overflow-scroll whitespace-pre-line">
+                {{ modalData.bodyText }}
+              </div>
             </div>
           </div>
         </div>

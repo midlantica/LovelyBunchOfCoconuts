@@ -71,10 +71,12 @@ export const TERM_RELATIONS = {
   ],
   collectivism: [
     'socialism',
+    'communism',
     'communalism',
     'maoism',
-    'collectivist',
+    'collectivism',
     'fascism',
+    'marxism',
   ],
   redistribution: ['wealth redistribution', 'reparations'],
   justice: ['social justice', 'equity'],
