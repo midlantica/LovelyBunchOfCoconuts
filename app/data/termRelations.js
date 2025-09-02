@@ -10,6 +10,7 @@ export const TERM_RELATIONS = {
     'my body my choice',
     'body',
     'baby',
+    'pro life',
   ],
   equality: [
     'egalitarianism',

@@ -4,39 +4,56 @@
     <div class="relative flex flex-row gap-2 w-full">
       <Icon
         name="mdi:magnify"
-        size="1.7rem"
-        class="top-1/2 left-[.34rem] absolute text-slate-200/60 -translate-y-1/2"
+        size="1.4rem"
+        class="top-1/2 left-[.5rem] absolute text-slate-200/60 -translate-y-1/2"
       />
       <!-- Tokenized input with pills -->
       <div
-        class="bg-transparent focus-within:bg-transparent py-[.25rem] ps-[2.2rem] pr-[7rem] border-[#6dd3fe7a] border-[thin] focus-within:border-seagull-400 rounded-[20px] outline-none w-full font-light text-[1.2rem] text-slate-200 sm:text-[1.1rem] leading-none tracking-wider"
+        class="bg-transparent focus-within:bg-transparent px-[2.25rem] py-[0.2rem] border-[thin] border-seagull-400/40 focus-within:border-seagull-400/80 rounded-[20px] outline-none w-full font-light text-[1.02rem] text-slate-200 sm:text-[0.935rem] leading-none tracking-wider"
         @click="focusInnerInput"
       >
-        <div class="flex flex-wrap items-center gap-1 leading-none">
+        <div
+          class="flex flex-wrap items-center content-center gap-1 leading-none"
+        >
           <template v-for="(t, idx) in tokens" :key="t + ':' + idx">
             <span
-              class="inline-flex items-center gap-0.5 bg-white/10 py-[1px] pr-2 pl-2.5 rounded-full text-[.825rem] text-white/90 leading-none cursor-pointer select-none"
+              class="group inline-flex items-center gap-0.5 bg-white/15 hover:bg-white/25 py-0.5 pr-2 pl-2.5 rounded-full focus:outline-none text-[.825rem] text-white/80 leading-none transition-colors cursor-pointer select-none"
+              :class="{ 'pill-flash': isFlashing(t) }"
+              role="button"
+              tabindex="0"
+              @click.stop="removeToken(idx)"
+              @keydown.enter.prevent="removeToken(idx)"
+              @keydown.space.prevent="removeToken(idx)"
             >
-              <span class="whitespace-nowrap">{{ t }}</span>
+              <span
+                class="block group-hover:text-white align-middle leading-none whitespace-nowrap"
+                >{{ t }}</span
+              >
               <button
                 type="button"
-                class="-mr-1 p-[0px] text-white/50 hover:text-white cursor-pointer"
+                class="flex justify-center items-center -mr-1 p-0 w-[1.15rem] h-[1.15rem] text-white/50 hover:text-white group-hover:text-white cursor-pointer"
                 :aria-label="`Remove ${t}`"
                 @click.stop="removeToken(idx)"
               >
-                <Icon name="mdi:close" class="text-[1rem]" />
+                <Icon
+                  name="mdi:close"
+                  class="block text-[1rem] align-middle leading-none"
+                />
               </button>
             </span>
           </template>
           <input
             type="text"
             v-model="inputText"
-            class="flex-1 bg-transparent focus:bg-transparent outline-none min-w-[6ch] placeholder:text-seagull-200/50 leading-none"
+            id="search-input"
+            name="q"
+            aria-label="Search terms"
+            class="flex-1 bg-transparent focus:bg-transparent pb-0.5 outline-none min-w-[6ch] h-[1.6rem] placeholder:text-seagull-200/50 leading-[1.6rem]"
             :placeholder="tokens.length ? '' : 'Search...'"
             @keydown.enter.prevent="commitInputAsToken()"
             @keydown.space.prevent="commitInputAsToken()"
-            @keydown.backspace="maybePopToken"
-            @keydown.delete="maybePopToken"
+            @keydown="onKeydown"
+            @keyup="onKeyup"
             @keydown.esc="handleInputEscape"
             @input="handleSearchInput"
             ref="searchInputRef"
@@ -142,6 +159,8 @@
   const router = useRouter()
   const route = useRoute()
   const lastEmittedSearch = ref('')
+  const popLock = ref(false)
+  const flashingTokens = ref(new Set())
 
   // Map lowercase ideology term -> canonical term casing
   const ideologyCanonicalByLower = Object.fromEntries(
@@ -336,22 +355,51 @@
   function commitInputAsToken() {
     const raw = inputText.value.trim()
     if (!raw) return
-    tokens.value.push(canonicalizeToken(raw))
+    const token = canonicalizeToken(raw)
+    const exists = tokens.value.some(
+      (p) => p.toLowerCase() === token.toLowerCase()
+    )
+    if (exists) {
+      inputText.value = ''
+      flashToken(token)
+      return
+    }
+    tokens.value.push(token)
     inputText.value = ''
   }
-  function maybePopToken(e) {
-    // If input is empty, treat backspace/delete as removing the last token
-    if (inputText.value.length === 0 && tokens.value.length > 0) {
-      tokens.value.pop()
-      // Prevent browser navigating back on Backspace when input is empty
+  function onKeydown(e) {
+    const k = e.key
+    if ((k === 'Backspace' || k === 'Delete') && inputText.value.length === 0) {
+      if (tokens.value.length > 0 && !popLock.value) {
+        tokens.value.pop()
+        popLock.value = true
+      }
       e.preventDefault()
     }
+  }
+  function onKeyup(e) {
+    const k = e.key
+    if (k === 'Backspace' || k === 'Delete') popLock.value = false
   }
   function removeToken(idx) {
     tokens.value.splice(idx, 1)
   }
   function focusInnerInput() {
     searchInputRef.value?.focus()
+  }
+  function isFlashing(t) {
+    return flashingTokens.value.has(String(t).toLowerCase())
+  }
+  function flashToken(t) {
+    const key = String(t).toLowerCase()
+    const next = new Set(flashingTokens.value)
+    next.add(key)
+    flashingTokens.value = next
+    setTimeout(() => {
+      const rem = new Set(flashingTokens.value)
+      rem.delete(key)
+      flashingTokens.value = rem
+    }, 450)
   }
 
   // URL helpers to preserve literal '+' for token separation
@@ -391,3 +439,21 @@
     }`
   }
 </script>
+
+<style scoped>
+  @keyframes pillFlash {
+    0% {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+    50% {
+      background-color: rgba(255, 255, 255, 0.45);
+    }
+    100% {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+  .pill-flash {
+    animation: pillFlash 200ms ease-in-out 2;
+    will-change: background-color;
+  }
+</style>
