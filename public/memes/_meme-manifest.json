@@ -951,6 +951,78 @@
       "updated": "2025-08-25T19:17:03.106Z",
       "width": 790,
       "height": 800
+    },
+    "capitalism/underlying-most-arguments-against-the.jpg": {
+      "optimized": true,
+      "hash": "752f200f7be47355f01589b4cb675fe36de7ce5d",
+      "action": "upscale→800",
+      "updated": "2025-09-03T18:33:19.305Z",
+      "width": 800,
+      "height": 800
+    },
+    "margaret-thatcher/prosperity-won-t-come-by-inventing-more.jpg": {
+      "optimized": true,
+      "hash": "f53fcbf4803c3574b6bdf8bdb29639e165d32463",
+      "action": "strip-profiles",
+      "updated": "2025-09-03T18:33:19.501Z",
+      "width": 1080,
+      "height": 660
+    },
+    "margaret-thatcher/the-first-country-to-attempt-and-to.jpg": {
+      "optimized": true,
+      "hash": "709e6801242b547bf3fde7068a1075e19ee759e5",
+      "action": "strip-profiles",
+      "updated": "2025-09-03T18:33:19.588Z",
+      "width": 863,
+      "height": 974
+    },
+    "thomas-sowell/we-enjoy-freedom-and-the-rule-of-law-on.jpg": {
+      "optimized": true,
+      "hash": "c3e721032fabd69a0ce0d2701d7e73013cd4ce05",
+      "action": "upscale→800",
+      "updated": "2025-09-03T18:33:19.920Z",
+      "width": 789,
+      "height": 800
+    },
+    "cartoons/what-s-the-magic-word-to-get-what-you.jpg": {
+      "optimized": true,
+      "hash": "6eefa01fc63c77dfba8b06fba5bc800c76ad8e97",
+      "action": "strip-profiles",
+      "updated": "2025-09-03T18:39:35.692Z",
+      "width": 796,
+      "height": 912
+    },
+    "margaret-thatcher/the-feminists-hate-me-don-t-they-and-i.jpg": {
+      "optimized": true,
+      "hash": "df8d6bd1cd149d5bf02d80b6d707cff734a60bbc",
+      "action": "strip-profiles",
+      "updated": "2025-09-03T18:39:35.874Z",
+      "width": 864,
+      "height": 957
+    },
+    "capitalism/if-you-embrace-socialism-you-will.jpg": {
+      "optimized": true,
+      "hash": "8d1a8d1f76663c024d0a5be511c0730f7ddb8399",
+      "action": "upscale→800",
+      "updated": "2025-09-03T20:11:01.540Z",
+      "width": 638,
+      "height": 800
+    },
+    "cartoons/gop-safer-cities-vs-dems-more-crime.jpg": {
+      "optimized": true,
+      "hash": "b9a36ef48c69b9dc3c75db5d98f995ccc7f273af",
+      "action": "upscale→800",
+      "updated": "2025-09-03T20:11:01.726Z",
+      "width": 800,
+      "height": 549
+    },
+    "capitalism/marxism-has-led-to-fascism-and-national.jpg": {
+      "optimized": true,
+      "hash": "2513bab68819a2b237b7711b555785be96a55ab3",
+      "action": "upscale→800",
+      "updated": "2025-09-03T20:20:43.474Z",
+      "width": 800,
+      "height": 651
     }
   }
 }
