@@ -124,7 +124,7 @@
       class="flex flex-col flex-1 justify-center items-center w-full min-h-[60vh]"
     >
       <h1 class="m-auto mt-16 font-light text-white text-2xl text-center">
-        No results found, Pinko! 🤣 😜
+        No results found.
       </h1>
     </div>
   </div>

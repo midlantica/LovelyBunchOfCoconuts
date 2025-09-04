@@ -1023,6 +1023,46 @@
       "updated": "2025-09-03T20:20:43.474Z",
       "width": 800,
       "height": 651
+    },
+    "politics/a-culture-of-repudiation-has-taken-hold.jpg": {
+      "optimized": true,
+      "hash": "4f1478f85142e9d0bd45a9f86f49c66be388e23e",
+      "action": "strip-profiles",
+      "updated": "2025-09-03T22:36:25.564Z",
+      "width": 934,
+      "height": 1080
+    },
+    "cartoons/do-now-the-correct-term-for-glutenfree.jpg": {
+      "optimized": true,
+      "hash": "400993cae38941c98c57509c6d20fa0f93e51f19",
+      "action": "upscale→800",
+      "updated": "2025-09-04T23:10:56.476Z",
+      "width": 800,
+      "height": 706
+    },
+    "data/70pc-of-young-people-never-heard-of-mao.jpg": {
+      "optimized": true,
+      "hash": "e7b135d57b6b4739e07644088888b355d46a0560",
+      "action": "strip-profiles",
+      "updated": "2025-09-04T23:10:56.707Z",
+      "width": 1080,
+      "height": 766
+    },
+    "politics/the-goal-of-socialism-is-communism-lenin.jpg": {
+      "optimized": true,
+      "hash": "89979b0c55da4f6131e3416e7e1f9e5ef26e7e82",
+      "action": "upscale→800",
+      "updated": "2025-09-04T23:10:56.956Z",
+      "width": 796,
+      "height": 800
+    },
+    "thomas-sowell/no-society-ever-thrived-because.jpg": {
+      "optimized": true,
+      "hash": "859e59afa0c4763247f98b86db300a908ab4e515",
+      "action": "upscale→800",
+      "updated": "2025-09-04T23:10:57.239Z",
+      "width": 800,
+      "height": 684
     }
   }
 }
