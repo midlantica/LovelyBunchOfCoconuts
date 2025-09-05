@@ -21,12 +21,12 @@
           @toast-show="onToastShow"
         />
 
-        <UiFacebookShareButton
-          ref="facebookButton"
-          :title="title"
-          :text="text"
+        <!-- Replace generic share with a simple Copy Link button (matches SearchBar icon/toast) -->
+        <UiCopyLinkButton
+          ref="copyButton"
           :url="url"
-          :content-type="contentType"
+          icon-size="1.6rem"
+          :button-style="{ position: 'relative', top: '-1.5px' }"
           @toast-show="onToastShow"
         />
       </div>
@@ -48,11 +48,11 @@
 
   // Button refs for coordination
   const twitterButton = ref(null)
-  const facebookButton = ref(null)
+  const copyButton = ref(null)
 
   // Handle toast coordination - clear others when one shows
   const onToastShow = (buttonType) => {
     if (buttonType !== 'twitter') twitterButton.value?.clearToast()
-    if (buttonType !== 'facebook') facebookButton.value?.clearToast()
+    if (buttonType !== 'copy') copyButton.value?.clearToast()
   }
 </script>

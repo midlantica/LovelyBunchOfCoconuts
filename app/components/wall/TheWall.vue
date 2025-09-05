@@ -80,6 +80,7 @@
       <WallNoContent
         v-if="interleavedContent.length === 0"
         message="No content available"
+        @clear-search="onClearSearch"
       />
     </section>
   </div>
@@ -153,6 +154,14 @@
   const allQuotes = computed(() => cache.quotes || [])
   const allMemes = computed(() => cache.memes || [])
 
+  // Clear search and reset filters (triggered from WallNoContent button)
+  function onClearSearch() {
+    const defaults = { claims: true, quotes: true, memes: true }
+    if (injectedSearch) injectedSearch.value = ''
+    else globalSearch.value = ''
+    if (injectedFilters) injectedFilters.value = { ...defaults }
+    else globalFilters.value = { ...defaults }
+  }
   // Term relations support (optional, lightweight)
   const textMatches = (text, q) => {
     const hay = String(text || '').toLowerCase()

@@ -2,7 +2,8 @@
 // Provides per-item liked state and a local count placeholder.
 // Swap the storage backend later for a server API to get global counts.
 
-import { onMounted, useState } from '#imports'
+import { onMounted } from 'vue'
+import { useState } from 'nuxt/app'
 
 export type LikeId = string
 

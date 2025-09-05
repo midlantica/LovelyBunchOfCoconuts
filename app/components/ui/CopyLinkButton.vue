@@ -1,9 +1,11 @@
 <template>
   <UiShareButtonBase
     ref="buttonBase"
-    icon-name="heroicons:link"
+    icon-name="line-md:external-link"
+    :icon-size="iconSize"
     aria-label="Copy link"
     toast-message="Link copied"
+    :button-style="buttonStyle"
     @click="copyLink"
     @toast-show="onToastShow"
   />
@@ -12,6 +14,8 @@
 <script setup>
   const props = defineProps({
     url: { type: String, required: true },
+    iconSize: { type: String, default: '1.3rem' },
+    buttonStyle: { type: [String, Object], default: null },
   })
 
   const emit = defineEmits(['toast-show'])

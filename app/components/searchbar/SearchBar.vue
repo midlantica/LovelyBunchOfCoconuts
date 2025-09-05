@@ -79,24 +79,13 @@
           :inline="true"
           @update:filters="(f) => emit('update:filters', f)"
         />
-        <button
-          @click="copyShareUrl"
-          type="button"
-          class="relative flex justify-center items-center text-white/80 hover:text-white"
-          title="Copy shareable link"
+        <UiShareButtonBase
+          icon-name="line-md:external-link"
           aria-label="Copy shareable link"
-        >
-          <Icon
-            name="mdi:share-variant"
-            class="mr-0.5 text-[1.25rem] cursor-pointer"
-          />
-          <span
-            v-if="sharedCopied"
-            class="-top-6 absolute bg-black/70 px-2 py-0.5 rounded text-[11px] text-white"
-          >
-            Copied
-          </span>
-        </button>
+          toast-message="Link copied"
+          :toast-duration="1200"
+          @click="copyShareUrl"
+        />
         <button
           v-if="hasSearch"
           @click="clearSearch"
@@ -118,14 +107,6 @@
           @select="onSelectIdeology"
         />
       </div>
-    </div>
-    <div
-      v-if="hasSearch && totalDisplay === 0"
-      class="flex flex-col flex-1 justify-center items-center w-full min-h-[60vh]"
-    >
-      <h1 class="m-auto mt-16 font-light text-white text-2xl text-center">
-        No results found.
-      </h1>
     </div>
   </div>
 </template>

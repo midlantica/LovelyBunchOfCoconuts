@@ -96,6 +96,8 @@ export const TERM_RELATIONS = {
   ],
   // Prefer space-normalized, lowercase keys for phrases
   'equality before the law': ['rule of law', 'equal protection'],
+  axis: ['axes', 'spectrum'],
+  sex: ['sexist', 'gender'],
 }
 
 export function expandSearchTerms(q = '') {
