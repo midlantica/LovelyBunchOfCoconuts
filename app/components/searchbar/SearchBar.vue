@@ -246,8 +246,8 @@
     }
   }
 
+  // When escape is pressed within the input, always clear if there's text/tokens
   function handleInputEscape() {
-    // When escape is pressed within the input, always clear if there's text/tokens
     if (inputText.value.trim() !== '' || tokens.value.length > 0) {
       if (import.meta.dev)
         console.log('🔍 Input escape pressed - clearing search')

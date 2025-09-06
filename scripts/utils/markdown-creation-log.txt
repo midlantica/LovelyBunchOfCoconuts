@@ -1,4 +1,4 @@
-Starting markdown file creation at 2025-09-04T23:10:57.289Z
+Starting markdown file creation at 2025-09-05T19:19:12.126Z
 Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell
 Markdown file already exists for activism-is-a-way-for-useless-people-to.jpg
 Markdown file already exists for blacks-were-not-enslaved-because-they-were-black.jpg
@@ -11,6 +11,7 @@ Markdown file already exists for i-have-never-understood-why-it-is-agreed.jpg
 Markdown file already exists for if-you-are-not-prepared-to-use-force-to.jpg
 Markdown file already exists for if-you-cannot-achieve-a-quality-of-performance.jpg
 Markdown file already exists for if-you-want-to-see-the-poor-remain-poor.jpg
+Created markdown file for img.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/img.md
 Markdown file already exists for immigration-laws-are-the-only-laws.jpg
 Markdown file already exists for it-is-fascinating-to-watch-politicians-come-up.jpg
 Markdown file already exists for it-is-not-enough-for-us-to-discover-belatedly.jpg
@@ -26,7 +27,7 @@ Markdown file already exists for much-of-what-are-called-social-problems.jpg
 Markdown file already exists for multiculturalism-like-the-cast-system.jpg
 Markdown file already exists for no-government-of-the-left-has-done-as-mu.jpg
 Markdown file already exists for no-matter-how-disastrously-some-policy-h.jpg
-Created markdown file for no-society-ever-thrived-because.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/no-society-ever-thrived-because.md
+Markdown file already exists for no-society-ever-thrived-because.jpg
 Markdown file already exists for nobody-is-equal-to-anybody.jpg
 Markdown file already exists for one-of-the-many-services-done-to-young-p.jpg
 Markdown file already exists for one-of-the-most-important-reasons-for-st.jpg
@@ -76,6 +77,6 @@ Markdown file already exists for when-you-import-people-you-import-culture.jpg
 Markdown file already exists for when-you-want-to-help-people-you-tell-th.jpg
 Markdown file already exists for you-have-to-have-a-sense-of-humor-if-you.jpg
 
-Markdown file creation complete at 2025-09-04T23:10:57.302Z
-1 markdown files created, 74 files skipped
+Markdown file creation complete at 2025-09-05T19:19:12.145Z
+1 markdown files created, 75 files skipped
 Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/utils/markdown-creation-log.txt

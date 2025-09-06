@@ -1063,6 +1063,430 @@
       "updated": "2025-09-04T23:10:57.239Z",
       "width": 800,
       "height": 684
+    },
+    "cartoons/the-left-fascism.jpg": {
+      "optimized": true,
+      "hash": "e4310a3f96551b823bba5204b609135df3ff8838",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:04.427Z",
+      "width": 1080,
+      "height": 1080
+    },
+    "data/workers-in-every-canadian-province-earn.jpg": {
+      "optimized": true,
+      "hash": "d06003bdc2bfc3b0b2751161e4df555bd77eaf2d",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:04.740Z",
+      "width": 800,
+      "height": 640
+    },
+    "media/a-new-poll-released-today-shows.jpg": {
+      "optimized": true,
+      "hash": "993619a277f8853e088c091813ae3c3bbed901b4",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:05.036Z",
+      "width": 735,
+      "height": 800
+    },
+    "media/ap-reports-biden-at-81-sharp-and-focused.jpg": {
+      "optimized": true,
+      "hash": "e404739ae5e3fc13a8e9b3d8143c32f69060992d",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:05.202Z",
+      "width": 638,
+      "height": 800
+    },
+    "media/benghazi-msm-see-no-evil-hear-no-evil.jpg": {
+      "optimized": true,
+      "hash": "ff39350ed68eb9c78f630d8306c80275c0cfb5ba",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:05.374Z",
+      "width": 800,
+      "height": 637
+    },
+    "media/brainwashed-society-government.jpg": {
+      "optimized": true,
+      "hash": "f16bf555b0d9177ee1f4cc0549f8ae81bf0589ce",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:05.500Z",
+      "width": 940,
+      "height": 1080
+    },
+    "media/don-t-believe-the-liberal-media.jpg": {
+      "optimized": true,
+      "hash": "4a307def18c542183fb5d799772e30a2120e72fe",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:05.646Z",
+      "width": 800,
+      "height": 490
+    },
+    "media/downloading-celebrity-opinions.jpg": {
+      "optimized": true,
+      "hash": "6a7f1b6e872a09257af26962cfac4353b6fe572b",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:05.803Z",
+      "width": 800,
+      "height": 579
+    },
+    "media/fiery-but-mostly-burning-leftist-dei.jpg": {
+      "optimized": true,
+      "hash": "d0e41b4b30eb22c048fa2788257ae49201067e06",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:05.950Z",
+      "width": 800,
+      "height": 599
+    },
+    "media/fiery-but-mostly-peaceful-protests.jpg": {
+      "optimized": true,
+      "hash": "caf8f8a2a2bb3acc7e83f02e1aa0579ca641e54b",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:06.058Z",
+      "width": 1080,
+      "height": 599
+    },
+    "media/how-could-anyone-think-the-media-is.jpg": {
+      "optimized": true,
+      "hash": "2a5d463a9dc7343fccc49177ae17e14fb06aa462",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:06.224Z",
+      "width": 800,
+      "height": 798
+    },
+    "media/i-m-starting-to-think-the-media-is-lying.jpg": {
+      "optimized": true,
+      "hash": "d31c202206ba13e74e7ef242cca3aa874d3a3dd4",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:06.339Z",
+      "width": 899,
+      "height": 964
+    },
+    "media/if-you-tell-a-lie-big-enough-and-keep.jpg": {
+      "optimized": true,
+      "hash": "d65c70f964bae879f39318886d3ce03e0c0cb22e",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:06.494Z",
+      "width": 800,
+      "height": 787
+    },
+    "media/it-s-on-teh-tv-so-it-must-be-true.jpg": {
+      "optimized": true,
+      "hash": "6b92caf496aed08f610d4e3f2fd4ab7d1ad09e6c",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:06.608Z",
+      "width": 868,
+      "height": 1080
+    },
+    "media/its-time-to-confront-the-real-virus-in.jpg": {
+      "optimized": true,
+      "hash": "fa7c8da624cd88a39a917e56dd1ef842e3f95cbc",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:06.724Z",
+      "width": 1080,
+      "height": 894
+    },
+    "media/jake-tapper-im-know-nuzzing.jpg": {
+      "optimized": true,
+      "hash": "7f98d56fa4ee6757cb29d2cd9be0460cd47ccfec",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:06.848Z",
+      "width": 1080,
+      "height": 970
+    },
+    "media/journalism-is-about-covering-important.jpg": {
+      "optimized": true,
+      "hash": "2ff10781d156d5cf0bf215a7d59066620490596f",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:06.966Z",
+      "width": 800,
+      "height": 226
+    },
+    "media/me-trying-to-escape-mainstream-media.jpg": {
+      "optimized": true,
+      "hash": "dca8f813529b3740e68214a5ac82d740716e887f",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:07.090Z",
+      "width": 960,
+      "height": 960
+    },
+    "media/media-frames-fake-news.jpg": {
+      "optimized": true,
+      "hash": "0f9a58817f23ad7672bbc25b3a73c08b15b568b2",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:07.244Z",
+      "width": 612,
+      "height": 800
+    },
+    "media/msm-garbage-for-your-body-and-mind.jpg": {
+      "optimized": true,
+      "hash": "056f070b9f764b393fb3349967f3a8d3a7f75fe8",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:07.408Z",
+      "width": 800,
+      "height": 800
+    },
+    "media/msm-media-pours-fear.jpg": {
+      "optimized": true,
+      "hash": "1c638b8f5b2899d3fc37250187a354d7f48a5db9",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:07.509Z",
+      "width": 832,
+      "height": 540
+    },
+    "media/msnpc-updating-approved-opinions.jpg": {
+      "optimized": true,
+      "hash": "a323409da5fc387be62fa2fda1668a67b4f37c37",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:07.613Z",
+      "width": 1080,
+      "height": 513
+    },
+    "media/new-poll-asked-americans-how-many-people.jpg": {
+      "optimized": true,
+      "hash": "c192aee7ee3732883d34288e652774f3c5e4f2a6",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:07.765Z",
+      "width": 737,
+      "height": 800
+    },
+    "media/no-thanks-i-won-t-be-needing-that-i.jpg": {
+      "optimized": true,
+      "hash": "39dacfacc7a075c21533044d8d995817ae9018f7",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:07.885Z",
+      "width": 1080,
+      "height": 1075
+    },
+    "media/npc-biden-had-a-cold.jpg": {
+      "optimized": true,
+      "hash": "d937ec5e69e678e6a25efe8ddc6fe55669ca5dee",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:08.008Z",
+      "width": 1071,
+      "height": 1080
+    },
+    "media/npc-i-hate-thinking-me-too-leave-it-to.jpg": {
+      "optimized": true,
+      "hash": "de58fad2dbcfdb61e9951aad25e78a0fe59cfe8c",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:08.127Z",
+      "width": 1025,
+      "height": 1080
+    },
+    "media/npc-journalism-hate.jpg": {
+      "optimized": true,
+      "hash": "352e280650fc4cc44bf243ba9d09fa8d121b556b",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:08.280Z",
+      "width": 800,
+      "height": 778
+    },
+    "media/npc-journalism-impartial-suggest.jpg": {
+      "optimized": true,
+      "hash": "2e510c8290efeb2ac6fa1917ef8401051d2cbb1e",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:08.435Z",
+      "width": 800,
+      "height": 778
+    },
+    "media/npc-republicans-are-bad-in-6-frames.jpg": {
+      "optimized": true,
+      "hash": "3b40e8660c3bef78a687b2785b0c5cf4550e1607",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:08.587Z",
+      "width": 546,
+      "height": 800
+    },
+    "media/npc-trump-is-bad-in-6-frames.jpg": {
+      "optimized": true,
+      "hash": "3828b61c23c49f9b7a3e7966ce7870c00d7be8c9",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:08.737Z",
+      "width": 546,
+      "height": 800
+    },
+    "media/npc-we-are-all-individuals.jpg": {
+      "optimized": true,
+      "hash": "246c7754550367190154c7f7bfdab559061cc141",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:08.891Z",
+      "width": 775,
+      "height": 800
+    },
+    "media/oh-look-celebrity-opinions.jpg": {
+      "optimized": true,
+      "hash": "858d4c891111a67127bf6f5f29f19a83f258d0de",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:09.034Z",
+      "width": 800,
+      "height": 533
+    },
+    "media/one-day-many-will-hang-their-heads-in.jpg": {
+      "optimized": true,
+      "hash": "058e17f69ff243572348ea602012a4a7a7fb8951",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:09.154Z",
+      "width": 1004,
+      "height": 1080
+    },
+    "media/pbs-npc-you-re-not-being-taxpayer-funded.jpg": {
+      "optimized": true,
+      "hash": "68c4b24c77b60d08680c6bd49b675e223c77a799",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:09.269Z",
+      "width": 1004,
+      "height": 1080
+    },
+    "media/peter-griffin-race-carded-01.jpg": {
+      "optimized": true,
+      "hash": "21f340a6f7a7aa437b42c12cf3931ecbb70a1a85",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:09.400Z",
+      "width": 1080,
+      "height": 614
+    },
+    "media/so-what-you-re-saying-is.jpg": {
+      "optimized": true,
+      "hash": "95833870b6b3bf3dd0fd91f07b7fae0fede46bc9",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:09.545Z",
+      "width": 800,
+      "height": 533
+    },
+    "media/the-blue-church-msm.jpg": {
+      "optimized": true,
+      "hash": "a901880d21ebff7665a14e4d8eb052cc9570e96c",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:09.657Z",
+      "width": 1080,
+      "height": 678
+    },
+    "media/the-democrat-party-mainstream-media.jpg": {
+      "optimized": true,
+      "hash": "4bca24392f11425c88243944a8f709664675a809",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:09.775Z",
+      "width": 843,
+      "height": 814
+    },
+    "media/the-first-victim-of-war-truth.jpg": {
+      "optimized": true,
+      "hash": "d0131b4d2627c49abc475332919387507e2b2f0b",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:09.922Z",
+      "width": 800,
+      "height": 565
+    },
+    "media/the-media-s-job-is-to-obscure-the-truth.jpg": {
+      "optimized": true,
+      "hash": "4316b3bacbfa2f38220d4450e3b3a2b7fc8500e9",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:10.043Z",
+      "width": 1080,
+      "height": 859
+    },
+    "media/the-people-will-believe-what-the-media.jpg": {
+      "optimized": true,
+      "hash": "252283afc244456a27ee1a51d53eb7f68973d8c5",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:10.156Z",
+      "width": 1080,
+      "height": 558
+    },
+    "media/the-reason-you-don-t-know-you-ve-been.jpg": {
+      "optimized": true,
+      "hash": "a477cacf95c4804f790688e8dca7569582981ccd",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:10.313Z",
+      "width": 710,
+      "height": 800
+    },
+    "media/the-white-house-coverup-would-have-been.jpg": {
+      "optimized": true,
+      "hash": "2cd6ca69d1e27b3cb970ce1333c2e6607aba4909",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:10.483Z",
+      "width": 800,
+      "height": 660
+    },
+    "media/this-is-true-trust-me-i-was-there.jpg": {
+      "optimized": true,
+      "hash": "5b84587f551cf793acc925ee87306bb16a95ca8a",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:10.656Z",
+      "width": 800,
+      "height": 493
+    },
+    "media/trump-being-given-the-ellis-island-award.jpg": {
+      "optimized": true,
+      "hash": "e9e8714e69de7d5f0a63f1dd4a9d293749ee6768",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:10.834Z",
+      "width": 800,
+      "height": 601
+    },
+    "media/urinalism-nbc-abc-cnn-nyt-cbs.jpg": {
+      "optimized": true,
+      "hash": "72bacbfa28caa0380d50250fdf1f3782170509f0",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:10.974Z",
+      "width": 800,
+      "height": 620
+    },
+    "media/warning-the-following-media-outlets.jpg": {
+      "optimized": true,
+      "hash": "334ed03862af68e11bf30f8ce7cd261a760a0743",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:11.079Z",
+      "width": 960,
+      "height": 644
+    },
+    "media/we-all-lied-to-you-over-and-over-again.jpg": {
+      "optimized": true,
+      "hash": "66ad532319bb09a537469166cb186971c7506474",
+      "action": "upscale→800",
+      "updated": "2025-09-05T19:19:11.236Z",
+      "width": 659,
+      "height": 800
+    },
+    "media/we-are-a-brainwashed-generation.jpg": {
+      "optimized": true,
+      "hash": "cc4320acb8fe8bea7fdaa2abaf5b5026aa850aa0",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:11.362Z",
+      "width": 1004,
+      "height": 1010
+    },
+    "media/we-know-they-are-lying-they-know-they.jpg": {
+      "optimized": true,
+      "hash": "754723282a894a984d47f3abf2ea187a943e2ae6",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:11.456Z",
+      "width": 828,
+      "height": 472
+    },
+    "media/what-are-you-outraged-by-now-npc.jpg": {
+      "optimized": true,
+      "hash": "8ba9305ffba83595e15f9200052ad9d845b3b791",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:11.579Z",
+      "width": 1071,
+      "height": 1080
+    },
+    "media/what-went-wrong-mass-formation-psychosis.jpg": {
+      "optimized": true,
+      "hash": "f54391cd5808b5cd2fe665c2d372bce0679b9efa",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:11.716Z",
+      "width": 1033,
+      "height": 1080
+    },
+    "thomas-sowell/img.jpg": {
+      "optimized": true,
+      "hash": "8a2a3e466eb099f05f175f6bd8fdf03db9f618ca",
+      "action": "strip-profiles",
+      "updated": "2025-09-05T19:19:12.062Z",
+      "width": 1080,
+      "height": 1080
     }
   }
 }
