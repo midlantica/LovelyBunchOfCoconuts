@@ -88,7 +88,8 @@
 
 <script setup>
   // Auto-impoorts components/wall/...
-  import { expandSearchTerms } from '~/data/termRelations'
+  import { useWallFiltering } from '~/composables/useWallFiltering'
+  import { useWallModalOpener } from '~/composables/useWallModalOpener'
 
   // Global guard to avoid click-through reopen after closing a modal
   const modalGuardUntil = useState('modalGuardUntil', () => 0)
@@ -149,11 +150,6 @@
   // Emit counts for search bar
   const emit = defineEmits(['counts', 'modal', 'content-updated'])
 
-  // Computed content arrays from cache
-  const allClaims = computed(() => cache.claims || [])
-  const allQuotes = computed(() => cache.quotes || [])
-  const allMemes = computed(() => cache.memes || [])
-
   // Clear search and reset filters (triggered from WallNoContent button)
   function onClearSearch() {
     const defaults = { claims: true, quotes: true, memes: true }
@@ -162,92 +158,12 @@
     if (injectedFilters) injectedFilters.value = { ...defaults }
     else globalFilters.value = { ...defaults }
   }
-  // Term relations support (optional, lightweight)
-  const textMatches = (text, q) => {
-    const hay = String(text || '').toLowerCase()
-    const raw = String(q || '')
-      .toLowerCase()
-      .trim()
-    if (!raw) return true
-    // Interpret spaces/+ as separators for multi-term search
-    const tokens = raw
-      .replace(/[+]+/g, ' ')
-      .replace(/[-_]+/g, ' ')
-      .split(/\s+/)
-      .filter(Boolean)
-    if (!tokens.length) return true
-    // For AND semantics: each input token must be satisfied by the haystack.
-    // A token is satisfied if ANY of its expanded related terms is present.
-    return tokens.every((tok) => {
-      const expanded =
-        typeof expandSearchTerms === 'function' ? expandSearchTerms(tok) : [tok]
-      return expanded.some((t) => hay.includes(String(t || '').toLowerCase()))
-    })
-  }
-
-  // Search-only filtered content (for pill counts)
-  const searchFilteredContent = computed(() => {
-    // Early return if cache isn't ready yet
-    if (!cache.claims && !cache.quotes && !cache.memes) {
-      return { claims: [], quotes: [], memes: [] }
-    }
-
-    let searchClaims = allClaims.value
-    let searchQuotes = allQuotes.value
-    let searchMemes = allMemes.value
-
-    // Apply search filter using searchableText from useContentCache
-    if (effectiveSearch.value?.trim()) {
-      const q = effectiveSearch.value
-      searchClaims = searchClaims.filter((it) =>
-        textMatches(it.searchableText, q)
-      )
-      searchQuotes = searchQuotes.filter((it) =>
-        textMatches(it.searchableText, q)
-      )
-      searchMemes = searchMemes.filter((it) =>
-        textMatches(it.searchableText, q)
-      )
-    }
-
-    return {
-      claims: searchClaims,
-      quotes: searchQuotes,
-      memes: searchMemes,
-    }
-  })
-
-  // Simple content filtering
-  const filteredContent = computed(() => {
-    // Early return if cache isn't ready yet
-    if (!cache.claims && !cache.quotes && !cache.memes) {
-      return { claims: [], quotes: [], memes: [] }
-    }
-
-    let filteredClaims = effectiveFilters.value.claims ? allClaims.value : []
-    let filteredQuotes = effectiveFilters.value.quotes ? allQuotes.value : []
-    let filteredMemes = effectiveFilters.value.memes ? allMemes.value : []
-
-    // Apply search filter using searchableText from useContentCache
-    if (effectiveSearch.value?.trim()) {
-      const q = effectiveSearch.value
-      filteredClaims = filteredClaims.filter((it) =>
-        textMatches(it.searchableText, q)
-      )
-      filteredQuotes = filteredQuotes.filter((it) =>
-        textMatches(it.searchableText, q)
-      )
-      filteredMemes = filteredMemes.filter((it) =>
-        textMatches(it.searchableText, q)
-      )
-    }
-
-    return {
-      claims: filteredClaims,
-      quotes: filteredQuotes,
-      memes: filteredMemes,
-    }
-  })
+  // Centralized filtering & counts (DRY extraction)
+  const { filteredContent, searchFilteredContent, counts } = useWallFiltering(
+    cache,
+    effectiveSearch,
+    effectiveFilters
+  )
 
   // Stable key generator for top-level pattern items
   function itemKey(item, idx) {
@@ -296,98 +212,19 @@
     { immediate: true }
   )
 
-  // Modal handler: emit event instead of navigating so URL can be managed without re-rendering the wall
-  const openModal = (data, type, userInitiated = false) => {
-    if (Date.now() < modalGuardUntil.value) return
+  // Modal opener composable handles slug, history, popularity tracking
+  const { openModal } = useWallModalOpener({
+    modalGuardUntil,
+    effectiveSearch,
+    openGlobalModal,
+    emit,
+  })
 
-    const fileBase = () => {
-      const id = data?.id || data?._id || ''
-      if (id) return id.split('/').pop()?.replace(/\.md$/, '') || ''
-      const p = data?._path || data?.path || ''
-      if (p) return p.split('/').pop()?.replace(/\.md$/, '') || ''
-      return ''
-    }
-    const slugify = (s = '') =>
-      s
-        .toString()
-        .toLowerCase()
-        .replace(/[^a-z0-9\s-_]/g, '')
-        .trim()
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .substring(0, 80)
-
-    let slug = fileBase()
-    if (!slug) {
-      if (type === 'claim') slug = slugify(data?.claim || data?.title || '')
-      else if (type === 'quote')
-        slug = slugify(data?.title || data?.quoteText || '')
-      else if (type === 'meme')
-        slug = slugify(data?.title || data?.description || '')
-    }
-
-    const payload = { type, data, slug }
-    if (userInitiated) payload.__userClick = true
-
-    // Update URL path to /type/slug without navigating, and remember previous URL
-    if (typeof window !== 'undefined' && slug) {
-      const preModalUrl = useState('preModalUrl', () => null)
-      if (!preModalUrl.value) {
-        preModalUrl.value = `${window.location.pathname}${window.location.search}${window.location.hash}`
-      }
-      // Use replaceState so we don't add a history entry; omit query to keep the path clean
-      window.history.replaceState({}, '', `/${type}/${slug}`)
-    }
-
-    // Prefer injected global modal if available; otherwise emit to parent
-    if (openGlobalModal) openGlobalModal(payload)
-    else emit('modal', payload)
-
-    // Popularity tracking: only count when modal opened by explicit user click
-    try {
-      if (userInitiated) {
-        const searchTerm = inject('searchTerm', ref(''))
-        const key = (searchTerm?.value || '').trim().toLowerCase()
-        if (key) {
-          const pop = JSON.parse(
-            localStorage.getItem('wunu_popular_terms') || '{}'
-          )
-          pop[key] = (pop[key] || 0) + 1
-          localStorage.setItem('wunu_popular_terms', JSON.stringify(pop))
-        }
-      }
-    } catch {}
-  }
-
+  // Emit counts reactively
   watch(
-    filteredContent,
-    (content) => {
-      emit('counts', {
-        wallCounts: {
-          claims: searchFilteredContent.value.claims.length,
-          quotes: searchFilteredContent.value.quotes.length,
-          memes: searchFilteredContent.value.memes.length,
-          total:
-            (effectiveFilters.value.claims
-              ? searchFilteredContent.value.claims.length
-              : 0) +
-            (effectiveFilters.value.quotes
-              ? searchFilteredContent.value.quotes.length
-              : 0) +
-            (effectiveFilters.value.memes
-              ? searchFilteredContent.value.memes.length
-              : 0),
-        },
-        totalCounts: {
-          claims: allClaims.value.length,
-          quotes: allQuotes.value.length,
-          memes: allMemes.value.length,
-          total:
-            allClaims.value.length +
-            allQuotes.value.length +
-            allMemes.value.length,
-        },
-      })
+    counts,
+    (c) => {
+      emit('counts', c)
     },
     { immediate: true }
   )
