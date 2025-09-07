@@ -1,44 +1,57 @@
 <!-- components/MemePanel.vue -->
 <template>
   <div>
-    <div
-      v-if="meme && meme.image && slug"
-      class="block shadow-inset-card bg-slate-800 hover:bg-slate-900 mx-auto p-3 border hover:border hover:border-seagull-400/50 border-transparent rounded-md w-full h-full overflow-hidden cursor-pointer"
-      @click="openModal"
-    >
-      <img
-        ref="lazyImg"
-        :data-src="meme.image"
-        :alt="imageAlt"
-        decoding="async"
-        loading="lazy"
-        class="bg-black/40 rounded-md w-full min-w-0 max-w-full h-full min-h-0 max-h-full object-contain aspect-square"
-      />
-    </div>
-    <div
-      v-else-if="meme && meme.image"
-      class="block shadow-inset-card bg-slate-800 mx-auto p-3 rounded-md w-full h-full overflow-hidden"
-    >
-      <img
-        ref="lazyImg"
-        :data-src="meme.image"
-        :alt="imageAlt"
-        decoding="async"
-        loading="lazy"
-        class="bg-black/40 rounded-md w-full min-w-0 max-w-full h-full min-h-0 max-h-full object-contain aspect-square"
-      />
-    </div>
-    <div
-      v-else
-      class="block shadow-inset-card bg-slate-800 mx-auto p-3 rounded-md w-full h-full overflow-hidden"
-    >
-      <p class="text-shadow-xs text-white text-center">
-        🚨 Meme image not found!
-      </p>
-      <p class="text-shadow-xs mt-1 text-red-400 text-xs text-center">
-        {{ getFileName(meme) }}
-      </p>
-    </div>
+    <template v-if="meme && meme.image && slug">
+      <div
+        class="group relative shadow-inset-card bg-slate-800 hover:bg-slate-900 mx-auto p-3 border hover:border hover:border-seagull-400/50 border-transparent rounded-md w-full h-full overflow-hidden cursor-pointer"
+        @click="openModal"
+      >
+        <div class="top-1 right-1 z-10 absolute">
+          <UiLikeButton
+            :id="meme?._path || meme?.path || slug"
+            :title="imageAlt"
+            :count-inside="true"
+            :hide-zero="true"
+            :faded-unliked="true"
+            @click.stop
+          />
+        </div>
+        <img
+          ref="lazyImg"
+          :data-src="meme.image"
+          :alt="imageAlt"
+          decoding="async"
+          loading="lazy"
+          class="bg-black/40 rounded-md w-full min-w-0 max-w-full h-full min-h-0 max-h-full object-contain aspect-square"
+        />
+      </div>
+    </template>
+    <template v-else-if="meme && meme.image">
+      <div
+        class="relative shadow-inset-card bg-slate-800 mx-auto p-3 rounded-md w-full h-full overflow-hidden"
+      >
+        <img
+          ref="lazyImg"
+          :data-src="meme.image"
+          :alt="imageAlt"
+          decoding="async"
+          loading="lazy"
+          class="bg-black/40 rounded-md w-full min-w-0 max-w-full h-full min-h-0 max-h-full object-contain aspect-square"
+        />
+      </div>
+    </template>
+    <template v-else>
+      <div
+        class="shadow-inset-card bg-slate-800 mx-auto p-3 rounded-md w-full h-full overflow-hidden"
+      >
+        <p class="text-shadow-xs text-white text-center">
+          🚨 Meme image not found!
+        </p>
+        <p class="text-shadow-xs mt-1 text-red-400 text-xs text-center">
+          {{ getFileName(meme) }}
+        </p>
+      </div>
+    </template>
     <!-- Modal removed: now handled as singleton in pages/index.vue -->
   </div>
 </template>

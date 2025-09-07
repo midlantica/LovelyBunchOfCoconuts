@@ -2,8 +2,18 @@
 <template>
   <div
     v-if="quote && quote.headings && quote.headings.length > 0 && slug"
-    class="shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-6 py-4 border hover:border hover:border-seagull-400/50 border-transparent rounded-lg text-white cursor-pointer quotePanel"
+    class="group relative shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-6 py-4 border hover:border hover:border-seagull-400/50 border-transparent rounded-lg text-white cursor-pointer quotePanel"
   >
+    <div class="top-1 right-1 z-10 absolute">
+      <UiLikeButton
+        :id="quote?._path || quote?.path || slug"
+        :title="quote?.headings?.[0] || 'quote'"
+        :count-inside="true"
+        :hide-zero="true"
+        :faded-unliked="true"
+        @click.stop
+      />
+    </div>
     <div class="flex flex-col flex-wrap gap-0.5 my-auto">
       <h1
         class="inline-block text-shadow-xs font-[100] text-xl align-baseline tracking-wide"
@@ -19,7 +29,7 @@
   </div>
   <div
     v-else
-    class="shadow-inset-card flex flex-col gap-2 bg-slate-800 px-5 py-4 rounded-lg text-white quotePanel"
+    class="relative shadow-inset-card flex flex-col gap-2 bg-slate-800 px-5 py-4 rounded-lg text-white quotePanel"
   >
     <div class="my-auto">
       <h2 class="inline-block align-baseline">

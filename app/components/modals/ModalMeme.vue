@@ -56,6 +56,7 @@
           :generated-image-blob="shareImageBlob"
           :show="showShareShelf"
           content-type="meme"
+          :like-id="modalData?._path || modalData?.path || ''"
         />
       </template>
     </ModalsModalFrame>

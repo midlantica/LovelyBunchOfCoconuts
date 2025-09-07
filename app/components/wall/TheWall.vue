@@ -20,7 +20,9 @@
             class="cursor-pointer"
             role="button"
             tabindex="0"
-            @click.capture="openModal(item.data, 'quote', true)"
+            @click.capture="
+              maybeOpenModal($event, () => openModal(item.data, 'quote', true))
+            "
             @keydown.enter.prevent="openModal(item.data, 'quote', true)"
             @keydown.space.prevent="openModal(item.data, 'quote', true)"
           >
@@ -41,7 +43,11 @@
               class="cursor-pointer"
               role="button"
               tabindex="0"
-              @click.capture="openModal(claimItem, 'claim', true)"
+              @click.capture="
+                maybeOpenModal($event, () =>
+                  openModal(claimItem, 'claim', true)
+                )
+              "
               @keydown.enter.prevent="openModal(claimItem, 'claim', true)"
               @keydown.space.prevent="openModal(claimItem, 'claim', true)"
             >
@@ -63,7 +69,9 @@
               class="cursor-pointer"
               role="button"
               tabindex="0"
-              @click.capture="openModal(memeItem, 'meme', true)"
+              @click.capture="
+                maybeOpenModal($event, () => openModal(memeItem, 'meme', true))
+              "
               @keydown.enter.prevent="openModal(memeItem, 'meme', true)"
               @keydown.space.prevent="openModal(memeItem, 'meme', true)"
             >
@@ -219,6 +227,15 @@
     openGlobalModal,
     emit,
   })
+
+  // Ignore clicks that originated from a LikeButton (or inside it)
+  function maybeOpenModal(ev, fn) {
+    const target = ev?.target
+    if (target && target.closest && target.closest('[data-like-button]')) {
+      return // swallow like button clicks
+    }
+    fn && fn()
+  }
 
   // Emit counts reactively
   watch(

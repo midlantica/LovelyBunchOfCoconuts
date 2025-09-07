@@ -1,9 +1,9 @@
 ---
-title: 'Nationalization'
-claim: 'Nationalization'
+title: 'Nationalism'
+claim: 'Nationalism'
 translation: 'Communism, Socialism, Fascism, Big State. Increased poverty.'
 ---
 
-## Nationalization
+## Nationalism
 
 ## Communism, Socialism, Fascism, Big State. Increased poverty.

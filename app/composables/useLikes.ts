@@ -27,6 +27,7 @@ export function useLikes() {
       const c = localStorage.getItem(storageKeyCounts)
       if (l) Object.assign(likedMap.value, JSON.parse(l))
       if (c) Object.assign(countMap.value, JSON.parse(c))
+      preMigrateAll()
     } catch (e) {
       console.warn('Like storage load failed', e)
     }
@@ -47,29 +48,148 @@ export function useLikes() {
   }
 
   const isLiked = (id: LikeId | undefined | null) => {
-    if (!id) return false
-    return !!likedMap.value[id]
+    const cid = canonicalizeId(id)
+    if (!cid) return false
+    // If legacy (full URL) key exists but canonical not yet migrated, migrate lazily
+    if (!likedMap.value[cid] && id && id !== cid && likedMap.value[id]) {
+      likedMap.value[cid] = likedMap.value[id]
+      if (countMap.value[id] && !countMap.value[cid]) {
+        countMap.value[cid] = countMap.value[id]
+      }
+      delete likedMap.value[id]
+      delete countMap.value[id]
+      persistToStorage()
+    }
+    return !!likedMap.value[cid]
   }
 
   const getCount = (id: LikeId | undefined | null) => {
-    if (!id) return 0
-    return Math.max(0, Number(countMap.value[id] || 0))
+    const cid = canonicalizeId(id)
+    if (!cid) return 0
+    // Lazy migrate if needed
+    if (!countMap.value[cid] && id && id !== cid && countMap.value[id]) {
+      countMap.value[cid] = countMap.value[id]
+      if (likedMap.value[id] && !likedMap.value[cid]) {
+        likedMap.value[cid] = likedMap.value[id]
+      }
+      delete likedMap.value[id]
+      delete countMap.value[id]
+      persistToStorage()
+    }
+    return Math.max(0, Number(countMap.value[cid] || 0))
   }
 
   const setCount = (id: LikeId, count: number) => {
-    countMap.value[id] = Math.max(0, Math.floor(count))
+    const cid = canonicalizeId(id)
+    if (!cid) return
+    countMap.value[cid] = Math.max(0, Math.floor(count))
     persistToStorage()
   }
 
   const toggleLike = (id: LikeId | undefined | null) => {
-    if (!id) return false
-    const next = !isLiked(id)
-    likedMap.value[id] = next
+    const cid = canonicalizeId(id)
+    if (!cid) return false
+    const next = !isLiked(cid)
+    likedMap.value[cid] = next
     // Local-only count adjustment; replace with server call later
-    const current = getCount(id)
-    countMap.value[id] = Math.max(0, current + (next ? 1 : -1))
+    const current = getCount(cid)
+    countMap.value[cid] = Math.max(0, current + (next ? 1 : -1))
     persistToStorage()
+    // Fire-and-forget server sync
+    if (import.meta.client) {
+      const delta = next ? 1 : -1
+      fetch(`/api/likes/${encodeURIComponent(cid)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ delta }),
+      }).catch((e) => {
+        if (import.meta.dev)
+          console.warn('[likes] server sync failed', cid, e?.message || e)
+      })
+    }
     return next
+  }
+
+  async function hydrateServer(ids: string[]) {
+    if (!ids || ids.length === 0) return
+    if (import.meta.server) return
+    try {
+      const qs = encodeURIComponent(ids.join(','))
+      const res = await fetch(`/api/likes?ids=${qs}`)
+      if (!res.ok) return
+      const data = await res.json()
+      const counts = data?.counts || {}
+      let changed = false
+      for (const [k, v] of Object.entries(counts)) {
+        const cid = canonicalizeId(k)
+        if (cid && typeof v === 'number' && v >= 0) {
+          if (countMap.value[cid] !== v) {
+            countMap.value[cid] = v
+            changed = true
+          }
+        }
+      }
+      if (changed) persistToStorage()
+    } catch (e) {
+      if (import.meta.dev) console.warn('[likes] hydrate failed', e)
+    }
+  }
+
+  function canonicalizeId(id: LikeId | undefined | null): string {
+    if (!id) return ''
+    let raw = String(id).trim()
+    // Strip protocol + domain if present
+    if (/^https?:\/\//i.test(raw)) {
+      try {
+        const u = new URL(raw)
+        raw = u.pathname || ''
+      } catch {
+        // ignore parse errors
+      }
+    }
+    // Remove trailing slashes (except root)
+    raw = raw.replace(/\/$/, '')
+    return raw
+  }
+
+  function migrateKey(oldKey: string, newKey: string) {
+    if (!oldKey || !newKey || oldKey === newKey) return
+    let migrated = false
+    if (
+      likedMap.value[oldKey] !== undefined &&
+      likedMap.value[newKey] === undefined
+    ) {
+      likedMap.value[newKey] = likedMap.value[oldKey]
+      migrated = true
+    }
+    if (
+      countMap.value[oldKey] !== undefined &&
+      countMap.value[newKey] === undefined
+    ) {
+      countMap.value[newKey] = countMap.value[oldKey]
+      migrated = true
+    }
+    if (migrated) {
+      delete likedMap.value[oldKey]
+      delete countMap.value[oldKey]
+      console.info('[likes] migrated key', { from: oldKey, to: newKey })
+    }
+    return migrated
+  }
+
+  function preMigrateAll() {
+    const keys = Object.keys({ ...likedMap.value, ...countMap.value })
+    let changed = false
+    for (const k of keys) {
+      const canon = canonicalizeId(k)
+      if (canon && canon !== k) {
+        if (migrateKey(k, canon)) changed = true
+      }
+    }
+    if (changed) {
+      persistToStorage()
+      console.info('[likes] pre-migration complete')
+    }
   }
 
   return {
@@ -77,5 +197,11 @@ export function useLikes() {
     getCount,
     setCount,
     toggleLike,
+    // expose for potential debugging
+    _likedMap: likedMap,
+    _countMap: countMap,
+    _preMigrateAll: preMigrateAll,
+    _canonicalizeId: canonicalizeId,
+    hydrateServer,
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <transition
-    enter-active-class="duration-200 transition-all ease-out"
+    enter-active-class="transition-all duration-200 ease-out"
     enter-from-class="transform opacity-0 scale-y-0 origin-top"
     enter-to-class="transform opacity-100 scale-y-100 origin-top"
     leave-active-class="transition-all duration-100 ease-in"
@@ -9,25 +9,36 @@
   >
     <div
       v-if="show"
-      class="-top-2 absolute bg-slate-900 px-2 sm:px-4 pt-5 pb-3 rounded-b-lg w-full"
+      class="-top-2 absolute bg-slate-900 px-3 sm:px-3.5 pt-4 pb-2 rounded-b-lg w-full"
     >
-      <div class="flex justify-center gap-3">
-        <UiTwitterShareButton
-          ref="twitterButton"
+      <div class="flex items-center gap-4">
+        <!-- Share cluster flush left -->
+        <div class="flex flex-1 items-center gap-3">
+          <UiTwitterShareButton
+            ref="twitterButton"
+            :title="title"
+            :text="text"
+            :url="url"
+            :content-type="contentType"
+            @toast-show="onToastShow"
+          />
+          <UiCopyLinkButton
+            ref="copyButton"
+            :url="url"
+            icon-size="1.7rem"
+            :button-style="{ position: 'relative', top: '0.5px' }"
+            @toast-show="onToastShow"
+          />
+        </div>
+        <!-- Like button flush right -->
+        <UiLikeButton
+          v-if="contentType && url"
+          :id="likeId || url"
           :title="title"
-          :text="text"
-          :url="url"
-          :content-type="contentType"
-          @toast-show="onToastShow"
-        />
-
-        <!-- Replace generic share with a simple Copy Link button (matches SearchBar icon/toast) -->
-        <UiCopyLinkButton
-          ref="copyButton"
-          :url="url"
-          icon-size="1.6rem"
-          :button-style="{ position: 'relative', top: '-1.5px' }"
-          @toast-show="onToastShow"
+          :count-inside="true"
+          :hide-zero="true"
+          icon-size="1.8rem"
+          @click.stop
         />
       </div>
     </div>
@@ -44,6 +55,7 @@
     generatedImageBlob: { type: Blob, default: null },
     contentType: { type: String, default: 'general' },
     show: { type: Boolean, default: true },
+    likeId: { type: String, default: null },
   })
 
   // Button refs for coordination

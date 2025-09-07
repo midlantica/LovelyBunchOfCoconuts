@@ -77,6 +77,7 @@
             modalData?.translation
           }`"
           :url="shareUrl"
+          :like-id="modalData?._path || modalData?.path || ''"
           :generated-image-blob="shareImageBlob"
           :show="showShareShelf"
           content-type="claim"
