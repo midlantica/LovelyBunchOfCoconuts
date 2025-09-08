@@ -11,7 +11,7 @@
     <section v-else class="xs:px-2 sm:px-2 md:px-0">
       <div class="flex flex-col gap-3">
         <div
-          v-for="(item, index) in interleavedContent"
+          v-for="(item, index) in displayedInterleavedContent"
           :key="itemKey(item, index)"
         >
           <!-- Quotes (full width) -->
@@ -194,33 +194,7 @@
   // Use global wall seed for deterministic shuffle per reload/reseed
   const { wallSeed } = useWallSeed()
 
-  // Interleave using seeded shuffle so a reload or explicit reseed changes order,
-  // while search/filters just constrain the pools.
-  const interleavedContent = computed(() => {
-    const { claims, quotes, memes } = filteredContent.value
-    const result = interleaveContent(claims, quotes, memes, {
-      seed: wallSeed.value,
-      enableShuffle: true,
-    })
-    return result
-  })
-
-  // Update displayed items when content changes
-  watch(
-    interleavedContent,
-    (newContent) => {
-      if (import.meta.dev && import.meta.env?.VITE_CONTENT_DEBUG === '1')
-        console.log('Content updated:', newContent?.length || 0, 'items')
-      // Emit that content has been updated (for scroll-to-top)
-      emit('content-updated', {
-        hasContent: newContent?.length > 0,
-        isSearchResult: !!effectiveSearch.value?.trim(),
-      })
-    },
-    { immediate: true }
-  )
-
-  // Modal opener composable handles slug, history, popularity tracking
+  // Modal opener composable (was lost during refactor)
   const { openModal } = useWallModalOpener({
     modalGuardUntil,
     effectiveSearch,
@@ -228,12 +202,313 @@
     emit,
   })
 
-  // Ignore clicks that originated from a LikeButton (or inside it)
+  // Frozen baseline pattern (no search, all filters) returned instantly when clearing search.
+  // Built once after initial load; later growth triggers an idle rebuild (non-blocking).
+  const baselineState = useState('wallBaselinePattern', () => ({
+    seed: null,
+    claims: 0,
+    quotes: 0,
+    memes: 0,
+    pattern: [],
+    order: { claims: [], quotes: [], memes: [] },
+    rebuilding: false,
+  }))
+
+  function deriveBaselineOrder(pattern) {
+    const order = { claims: [], quotes: [], memes: [] }
+    const seen = { claims: new Set(), quotes: new Set(), memes: new Set() }
+    for (const item of pattern) {
+      if (!item) continue
+      if (item.type === 'claimPair') {
+        for (const c of item.data || []) {
+          const p = c?._path || c?.path || ''
+          if (p && !seen.claims.has(p)) {
+            seen.claims.add(p)
+            order.claims.push(p)
+          }
+        }
+      } else if (item.type === 'memeRow') {
+        for (const m of item.data || []) {
+          const p = m?._path || m?.path || ''
+          if (p && !seen.memes.has(p)) {
+            seen.memes.add(p)
+            order.memes.push(p)
+          }
+        }
+      } else if (item.type === 'quote') {
+        const q = item.data || {}
+        const p = q?._path || q?.path || ''
+        if (p && !seen.quotes.has(p)) {
+          seen.quotes.add(p)
+          order.quotes.push(p)
+        }
+      }
+    }
+    return order
+  }
+
+  function reorderByBaseline(arr, orderMap) {
+    if (!Array.isArray(arr) || !orderMap || !orderMap.size) return arr
+    return [...arr].sort((a, b) => {
+      const ap = a?._path || a?.path || ''
+      const bp = b?._path || b?.path || ''
+      return (orderMap.get(ap) ?? 0) - (orderMap.get(bp) ?? 0)
+    })
+  }
+
+  function buildBaselineNow() {
+    try {
+      const pattern = interleaveContent(
+        cache.claims,
+        cache.quotes,
+        cache.memes,
+        { seed: wallSeed.value, enableShuffle: true }
+      )
+      const order = deriveBaselineOrder(pattern)
+      baselineState.value = {
+        seed: wallSeed.value,
+        claims: cache.claims.length,
+        quotes: cache.quotes.length,
+        memes: cache.memes.length,
+        pattern,
+        order,
+        rebuilding: false,
+      }
+    } catch (e) {
+      baselineState.value.rebuilding = false
+    }
+  }
+
+  function scheduleBaselineRebuild() {
+    const bs = baselineState.value
+    if (bs.rebuilding) return
+    bs.rebuilding = true
+    if (typeof window === 'undefined') {
+      // SSR: skip; will build on client mount
+      bs.rebuilding = false
+      return
+    }
+    const schedule = (cb) =>
+      window.requestIdleCallback
+        ? window.requestIdleCallback(cb, { timeout: 1200 })
+        : setTimeout(cb, 16)
+    schedule(() => {
+      buildBaselineNow()
+    })
+  }
+
+  const interleavedContent = computed(() => {
+    const { claims, quotes, memes } = filteredContent.value
+    const emptySearch = !effectiveSearch.value?.trim()
+    const allFiltersActive =
+      effectiveFilters.value.claims &&
+      effectiveFilters.value.quotes &&
+      effectiveFilters.value.memes
+
+    // Fast path: empty search & all filters -> return frozen baseline reference
+    if (emptySearch && allFiltersActive) {
+      const bs = baselineState.value
+      const baselineEmpty = !bs.pattern.length
+      const countsChanged =
+        bs.seed !== wallSeed.value ||
+        bs.claims !== cache.claims.length ||
+        bs.quotes !== cache.quotes.length ||
+        bs.memes !== cache.memes.length
+      if (baselineEmpty) {
+        buildBaselineNow()
+      } else if (countsChanged && typeof window !== 'undefined') {
+        // Rebuild later; return stale instantly
+        scheduleBaselineRebuild()
+      }
+      return baselineState.value.pattern
+    }
+
+    // Filtered / searched path: impose baseline ordering for stability, no shuffle.
+    const baseOrder = baselineState.value.order
+    let orderedClaims = claims
+    let orderedQuotes = quotes
+    let orderedMemes = memes
+    if (baseOrder && baseOrder.claims?.length) {
+      orderedClaims = reorderByBaseline(
+        claims,
+        new Map(baseOrder.claims.map((p, i) => [p, i]))
+      )
+    }
+    if (baseOrder && baseOrder.quotes?.length) {
+      orderedQuotes = reorderByBaseline(
+        quotes,
+        new Map(baseOrder.quotes.map((p, i) => [p, i]))
+      )
+    }
+    if (baseOrder && baseOrder.memes?.length) {
+      orderedMemes = reorderByBaseline(
+        memes,
+        new Map(baseOrder.memes.map((p, i) => [p, i]))
+      )
+    }
+    return interleaveContent(orderedClaims, orderedQuotes, orderedMemes, {
+      seed: wallSeed.value,
+      enableShuffle: false,
+    })
+  })
+
+  // --------------------------------------------------
+  // Progressive virtualization for baseline view
+  // --------------------------------------------------
+  const wallDisplayCount = ref(Infinity) // full for SSR & non-baseline / search views
+  const virtualizingBaseline = ref(false)
+  const displayedInterleavedContent = computed(() =>
+    interleavedContent.value.slice(0, wallDisplayCount.value)
+  )
+
+  function isBaselineView() {
+    return (
+      !effectiveSearch.value?.trim() &&
+      effectiveFilters.value.claims &&
+      effectiveFilters.value.quotes &&
+      effectiveFilters.value.memes
+    )
+  }
+
+  function scheduleGrowBaseline(total) {
+    if (!virtualizingBaseline.value) return
+    if (wallDisplayCount.value >= total) return
+    const chunk = 40 // pattern items per growth step
+    const next = Math.min(wallDisplayCount.value + chunk, total)
+    const cb = () => {
+      wallDisplayCount.value = next
+      if (next < total) scheduleGrowBaseline(total)
+    }
+    if (window.requestIdleCallback) {
+      requestIdleCallback(cb, { timeout: 60 })
+    } else {
+      setTimeout(cb, 16)
+    }
+  }
+
+  // Watch for interleaved changes & decide virtualization (SSR-safe)
+  watch(
+    interleavedContent,
+    (val, prev) => {
+      if (typeof window === 'undefined') {
+        // SSR: render full list to avoid hydration mismatch
+        wallDisplayCount.value = Infinity
+        virtualizingBaseline.value = false
+        return
+      }
+      const baseline = isBaselineView()
+      if (!baseline) {
+        wallDisplayCount.value = Infinity
+        virtualizingBaseline.value = false
+        return
+      }
+      const total = val.length
+      if (!total) {
+        wallDisplayCount.value = 0
+        virtualizingBaseline.value = false
+        return
+      }
+      const baselineReset =
+        prev &&
+        prev.length &&
+        prev.length !== total &&
+        wallDisplayCount.value !== Infinity
+      if (!virtualizingBaseline.value || baselineReset) {
+        const initial = 70
+        wallDisplayCount.value = Math.min(initial, total)
+        virtualizingBaseline.value = true
+        scheduleGrowBaseline(total)
+      }
+    },
+    { immediate: true }
+  )
+
+  // Boost growth if user scrolls near bottom during virtualization
+  function onScrollBoost() {
+    if (!virtualizingBaseline.value) return
+    const scrollY = window.scrollY || document.documentElement.scrollTop
+    const vh = window.innerHeight
+    const full = document.documentElement.scrollHeight
+    if (scrollY + vh * 1.4 > full) {
+      wallDisplayCount.value = Math.min(
+        wallDisplayCount.value + 120,
+        interleavedContent.value.length
+      )
+    }
+  }
+  let scrollListenerAttached = false
+  watch(
+    virtualizingBaseline,
+    (v) => {
+      if (v && !scrollListenerAttached) {
+        window.addEventListener('scroll', onScrollBoost, { passive: true })
+        scrollListenerAttached = true
+      } else if (!v && scrollListenerAttached) {
+        window.removeEventListener('scroll', onScrollBoost)
+        scrollListenerAttached = false
+        watch(
+          virtualizingBaseline,
+          (v) => {
+            if (typeof window === 'undefined') return
+            if (v && !scrollListenerAttached) {
+              window.addEventListener('scroll', onScrollBoost, {
+                passive: true,
+              })
+              scrollListenerAttached = true
+            } else if (!v && scrollListenerAttached) {
+              window.removeEventListener('scroll', onScrollBoost)
+              scrollListenerAttached = false
+            }
+          },
+          { immediate: true }
+        )
+      }
+    },
+    { immediate: true }
+  )
+
+  onBeforeUnmount(() => {
+    if (typeof window !== 'undefined' && scrollListenerAttached) {
+      window.removeEventListener('scroll', onScrollBoost)
+      scrollListenerAttached = false
+    }
+  })
+
+  // Build baseline soon after initial load; if already populated skip.
+  watch(
+    () => isLoaded.value,
+    (ready) => {
+      if (!ready) return
+      if (baselineState.value.pattern.length) return
+      requestAnimationFrame(() => buildBaselineNow())
+    },
+    { immediate: true }
+  )
+
+  // Detect content growth after background load and schedule a rebuild (idle) if user is on baseline view.
+  watch(
+    () => [
+      cache.claims.length,
+      cache.quotes.length,
+      cache.memes.length,
+      wallSeed.value,
+    ],
+    () => {
+      const bs = baselineState.value
+      if (!bs.pattern.length) return // nothing yet
+      const emptySearch = !effectiveSearch.value?.trim()
+      const allFiltersActive =
+        effectiveFilters.value.claims &&
+        effectiveFilters.value.quotes &&
+        effectiveFilters.value.memes
+      if (emptySearch && allFiltersActive) scheduleBaselineRebuild()
+    }
+  )
+
+  // Update displayed items when content changes
   function maybeOpenModal(ev, fn) {
     const target = ev?.target
-    if (target && target.closest && target.closest('[data-like-button]')) {
-      return // swallow like button clicks
-    }
+    if (target && target.closest && target.closest('[data-like-button]')) return
     fn && fn()
   }
 

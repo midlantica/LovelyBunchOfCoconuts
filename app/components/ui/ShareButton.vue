@@ -14,14 +14,6 @@
       <div class="flex items-center gap-4">
         <!-- Share cluster flush left -->
         <div class="flex flex-1 items-center gap-3">
-          <UiTwitterShareButton
-            ref="twitterButton"
-            :title="title"
-            :text="text"
-            :url="url"
-            :content-type="contentType"
-            @toast-show="onToastShow"
-          />
           <UiCopyLinkButton
             ref="copyButton"
             :url="url"
@@ -59,12 +51,10 @@
   })
 
   // Button refs for coordination
-  const twitterButton = ref(null)
   const copyButton = ref(null)
 
   // Handle toast coordination - clear others when one shows
   const onToastShow = (buttonType) => {
-    if (buttonType !== 'twitter') twitterButton.value?.clearToast()
     if (buttonType !== 'copy') copyButton.value?.clearToast()
   }
 </script>

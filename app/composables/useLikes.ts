@@ -2,7 +2,7 @@
 // Provides per-item liked state and a local count placeholder.
 // Swap the storage backend later for a server API to get global counts.
 
-import { onMounted } from 'vue'
+import { onMounted, getCurrentInstance, nextTick } from 'vue'
 import { useState } from 'nuxt/app'
 
 export type LikeId = string
@@ -44,7 +44,17 @@ export function useLikes() {
   }
 
   if (import.meta.client) {
-    onMounted(loadFromStorage)
+    // Register within component context if available; otherwise fallback to microtask
+    const instance = getCurrentInstance()
+    if (instance) {
+      onMounted(loadFromStorage)
+    } else {
+      queueMicrotask(() => {
+        try {
+          loadFromStorage()
+        } catch {}
+      })
+    }
   }
 
   const isLiked = (id: LikeId | undefined | null) => {
@@ -110,11 +120,20 @@ export function useLikes() {
     return next
   }
 
+  const _hydrating = new Set<string>()
   async function hydrateServer(ids: string[]) {
     if (!ids || ids.length === 0) return
     if (import.meta.server) return
+    // Filter out ids already hydrating
+    const pending = ids
+      .map((i) => canonicalizeId(i))
+      .filter((i) => i && !_hydrating.has(i))
+    if (!pending.length) return
+    pending.forEach((i) => _hydrating.add(i))
     try {
-      const qs = encodeURIComponent(ids.join(','))
+      // Reduce mega requests: cap batch size
+      const batch = pending.slice(0, 100)
+      const qs = batch.map((i) => encodeURIComponent(i)).join(',')
       const res = await fetch(`/api/likes?ids=${qs}`)
       if (!res.ok) return
       const data = await res.json()
@@ -122,16 +141,19 @@ export function useLikes() {
       let changed = false
       for (const [k, v] of Object.entries(counts)) {
         const cid = canonicalizeId(k)
-        if (cid && typeof v === 'number' && v >= 0) {
-          if (countMap.value[cid] !== v) {
-            countMap.value[cid] = v
-            changed = true
-          }
+        if (!cid) continue
+        if (typeof v === 'number' && v >= 0 && countMap.value[cid] !== v) {
+          countMap.value[cid] = v
+          changed = true
         }
       }
       if (changed) persistToStorage()
+      // Dev: minimal log once per call (comment out to silence completely)
+      // if (import.meta.dev) console.info('[likes] hydrated batch', Object.keys(counts).length)
     } catch (e) {
       if (import.meta.dev) console.warn('[likes] hydrate failed', e)
+    } finally {
+      pending.forEach((i) => _hydrating.delete(i))
     }
   }
 
@@ -149,6 +171,17 @@ export function useLikes() {
     }
     // Remove trailing slashes (except root)
     raw = raw.replace(/\/$/, '')
+    // Collapse accidental double content-type segments (e.g. /claims/claims/foo)
+    raw = raw.replace(/\/(claims|memes|quotes)\/(?:\1\/)+/g, '/$1/')
+    // Convert underscores to hyphens to match actual _path values
+    raw = raw.replace(/_/g, '-')
+    // Collapse duplicate slashes
+    raw = raw.replace(/\/+/g, '/')
+    // Normalize singular route variants to plural content folder form
+    raw = raw
+      .replace(/^\/claim\//, '/claims/')
+      .replace(/^\/meme\//, '/memes/')
+      .replace(/^\/quote\//, '/quotes/')
     return raw
   }
 

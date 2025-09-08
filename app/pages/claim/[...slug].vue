@@ -30,12 +30,20 @@
 <script setup>
   // Nuxt auto-imports: onMounted, watch, nextTick, ref, computed
 
+  import { useContentCache } from '~/composables/useContentCache'
   const route = useRoute()
   const router = useRouter()
 
   const modalVisible = ref(true)
-  const { useContentCache } = await import('~/composables/useContentCache')
-  const { claims, loadAllContent, slugMaps } = useContentCache()
+  const { claims, ensureContentLoaded, loadAllContent, slugMaps } =
+    useContentCache()
+  const contentReady = ref(false)
+  onServerPrefetch(async () => {
+    try {
+      await ensureContentLoaded()
+      contentReady.value = true
+    } catch {}
+  })
 
   const wallScrollTop = useState('wallScrollTop', () => 0)
 
@@ -57,6 +65,12 @@
     // Ensure content is loaded
     if (!claims?.value?.length) {
       await loadAllContent()
+    }
+    if (!contentReady.value) {
+      try {
+        await ensureContentLoaded()
+        contentReady.value = true
+      } catch {}
     }
 
     // Restore wall scroll if available

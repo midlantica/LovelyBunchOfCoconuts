@@ -5,7 +5,10 @@ import { getCounts } from '#imports'
 
 export default defineEventHandler(async (event) => {
   if (process.env.NODE_ENV === 'production' && !getQuery(event).dev) {
-    throw createError({ statusCode: 403, statusMessage: 'Disabled in production' })
+    throw createError({
+      statusCode: 403,
+      statusMessage: 'Disabled in production',
+    })
   }
   const query = getQuery(event)
   const min = Number(query.min ?? 0)

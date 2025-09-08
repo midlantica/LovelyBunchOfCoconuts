@@ -4,4 +4,4 @@ title: "No man's life, liberty or property is safe"
 
 ## "No man's life, liberty or property is safe while the legislature is in session."
 
-Gideon J. Tucker
+Gideon J. Tucker (sometimes incorrectly attributed to Mark Twain)

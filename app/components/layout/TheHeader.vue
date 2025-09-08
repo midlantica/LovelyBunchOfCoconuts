@@ -10,8 +10,12 @@
           @click="handleMastheadClick"
         >
           <img
-            src="@/assets/WakeUpNPC-logo.svg"
+            src="/WakeUpNPC-logo.svg"
             alt="Wake up NPC"
+            width="1150"
+            height="153"
+            fetchpriority="high"
+            decoding="async"
             class="w-full max-w-[430px] object-contain transition-all duration-300 ease-out"
           />
         </button>

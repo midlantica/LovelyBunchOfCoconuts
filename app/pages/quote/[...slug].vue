@@ -30,6 +30,7 @@
 <script setup>
   // Nuxt auto-imports: onMounted, watch, ref, computed
 
+  import { useContentCache } from '~/composables/useContentCache'
   const route = useRoute()
   const router = useRouter()
 
@@ -38,22 +39,24 @@
 
   // Persisted wall scroll position
   const wallScrollTop = useState('wallScrollTop', () => 0)
-
-  const { useContentCache } = await import('~/composables/useContentCache')
   const { quotes, ensureContentLoaded, cache, loadAllContent, slugMaps } =
     useContentCache()
   const runtimeConfig = useRuntimeConfig()
   const siteUrl = runtimeConfig.public.siteUrl || 'https://wakeupnpc.com'
 
   const contentReady = ref(false)
-
-  // Ensure content is loaded immediately for SSR and client-side
-  await ensureContentLoaded()
-  contentReady.value = true
+  onServerPrefetch(async () => {
+    try {
+      await ensureContentLoaded()
+      contentReady.value = true
+    } catch {}
+  })
 
   onMounted(async () => {
-    await ensureContentLoaded()
-    contentReady.value = true
+    if (!contentReady.value) {
+      await ensureContentLoaded()
+      contentReady.value = true
+    }
     // Restore background wall scroll position
     const scroller = document.querySelector('.scroll-container-stable')
     if (scroller && wallScrollTop.value > 0) {

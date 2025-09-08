@@ -22,21 +22,39 @@
 
   const buttonBase = ref(null)
 
-  const copyLink = async () => {
-    console.log('🔗 Copy link clicked')
+  const canonicalUrl = computed(() => {
+    let raw = (props.url || '').trim()
+    if (!raw) return ''
+    // If it's a relative path, prefix with current origin (client only)
+    if (!/^https?:\/\//i.test(raw)) {
+      if (import.meta.client && typeof window !== 'undefined') {
+        const origin = window.location.origin
+        if (raw.startsWith('/')) raw = origin + raw
+        else raw = origin + '/' + raw
+      }
+    }
+    // Normalize localhost to production domain for sharing
+    raw = raw.replace('http://localhost:3000', 'https://wakeupnpc.com')
+    raw = raw.replace('https://localhost:3000', 'https://wakeupnpc.com')
+    return raw
+  })
 
+  const copyLink = async () => {
     try {
-      await navigator.clipboard.writeText(props.url.trim())
-      console.log('✅ Link copied')
+      const shareUrl = canonicalUrl.value
+      if (!shareUrl) return
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(shareUrl)
+      } else {
+        const textArea = document.createElement('textarea')
+        textArea.value = shareUrl
+        document.body.appendChild(textArea)
+        textArea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textArea)
+      }
     } catch (err) {
-      // Fallback for older browsers
-      const textArea = document.createElement('textarea')
-      textArea.value = props.url.trim()
-      document.body.appendChild(textArea)
-      textArea.select()
-      document.execCommand('copy')
-      document.body.removeChild(textArea)
-      console.log('✅ Link copied (fallback)')
+      console.warn('Copy failed, user interaction or permission?', err)
     }
   }
 

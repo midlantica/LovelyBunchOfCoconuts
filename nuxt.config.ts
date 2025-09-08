@@ -186,6 +186,14 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         // Canonical home URL
         { rel: 'canonical', href: 'https://wakeupnpc.com/' },
+        // Preload primary masthead logo (likely LCP element)
+        {
+          rel: 'preload',
+          href: '/WakeUpNPC-logo.svg',
+          as: 'image',
+          type: 'image/svg+xml',
+          fetchpriority: 'high',
+        },
         // Preload key background images used above the fold
         {
           rel: 'icon',

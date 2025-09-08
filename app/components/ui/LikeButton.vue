@@ -6,63 +6,63 @@
     :class="outerClass"
     type="button"
     data-like-button="true"
+    :data-like-id="id"
     @click.stop.prevent.capture="onToggle"
     @keydown.enter.prevent.stop="onToggle"
     @keydown.space.prevent.stop="onToggle"
   >
     <!-- Outside count (reversed order) -->
     <span
-      v-if="!countInside && isReversed && showCount"
+      v-if="!countInside && isReversed && showCount && displayCount > 0"
       class="pr-1 pl-0.5 min-w-[1ch] font-medium tabular-nums text-xs transition-colors"
       :class="
-        liked
-          ? 'text-seagull-300'
-          : 'text-seagull-300/70 group-hover:text-seagull-300'
+        isSolid
+          ? 'text-seagull-700'
+          : 'text-seagull-700/70 group-hover:text-seagull-700'
       "
       >{{ abbreviated }}</span
     >
     <span
       class="inline-flex justify-center items-center rounded-full transition-all duration-150"
-      :class="[
-        'w-8 h-8',
-        liked
-          ? 'text-seagull-300'
+      :class="['w-8 h-8',
+        isSolid
+          ? 'text-seagull-700'
           : fadedUnliked
-          ? 'text-seagull-300/50 hover:text-seagull-300'
-          : 'text-seagull-300/70 hover:text-seagull-300',
+          ? 'text-seagull-700/50 hover:text-seagull-700'
+          : 'text-seagull-700/70 hover:text-seagull-700',
         countInside ? 'relative' : isReversed ? 'ml-1' : 'mr-1',
       ]"
       style="text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6)"
     >
       <Icon
-        :key="liked ? 'heart-solid' : 'heart-outline'"
-        :name="liked ? 'heroicons:heart-20-solid' : 'heroicons:heart'"
+        :key="isSolid ? 'heart-solid' : 'heart-outline'"
+        :name="isSolid ? 'heroicons:heart-20-solid' : 'heroicons:heart'"
         class="transition-transform duration-200"
         :class="[
-          liked ? 'scale-105' : 'scale-100',
-          liked
-            ? 'text-seagull-300'
+          isSolid ? 'scale-105' : 'scale-100',
+          isSolid
+            ? 'text-seagull-700'
             : fadedUnliked
-            ? 'text-seagull-300/50'
-            : 'text-seagull-300/80',
+            ? 'text-seagull-700/50'
+            : 'text-seagull-700/80',
         ]"
         :size="iconSize"
       />
       <span
-        v-if="countInside && showCount"
-        class="top-1/2 left-1/2 absolute drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] font-semibold text-[0.65rem] tracking-tight -translate-x-1/2 -translate-y-1/2 select-none"
-        :class="liked ? 'text-slate-900' : 'text-white'"
+        v-if="countInside && displayCount > 0 && showCount"
+        class="top-1/2 left-1/2 absolute drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] font-300 text-[0.8rem] text-white tracking-tight -translate-x-1/2 -translate-y-1/2 select-none"
+        style="font-weight: 300"
         >{{ abbreviated }}</span
       >
     </span>
     <!-- Outside count (normal order) -->
     <span
-      v-if="!countInside && !isReversed && showCount"
+      v-if="!countInside && !isReversed && showCount && displayCount > 0"
       class="pr-1 pl-0.5 min-w-[1ch] font-medium tabular-nums text-xs transition-colors"
       :class="
-        liked
-          ? 'text-seagull-300'
-          : 'text-seagull-300/70 group-hover:text-seagull-300'
+        isSolid
+          ? 'text-seagull-700'
+          : 'text-seagull-700/70 group-hover:text-seagull-700'
       "
       >{{ abbreviated }}</span
     >
@@ -80,7 +80,6 @@
     iconSize: { type: String, default: '1.6rem' },
     fadedUnliked: { type: Boolean, default: false },
   })
-  // (Removed previous duplicate local prop objects)
 
   const isReversed = computed(() => {
     if (props.reverse) return true
@@ -103,9 +102,16 @@
 
   const liked = computed(() => isLiked(props.id))
   const count = computed(() => getCount(props.id))
-  const showCount = computed(() => (props.hideZero ? count.value > 0 : true))
+  const displayCount = computed(() => {
+    if (count.value > 0) return count.value
+    if (liked.value) return 1
+    return 0
+  })
+  const showCount = computed(() =>
+    props.hideZero ? displayCount.value > 0 : true
+  )
+  const isSolid = computed(() => liked.value || displayCount.value > 0)
 
-  // Abbreviate counts (1.2k, 3.4m, etc.)
   function formatAbbrev(n) {
     if (n < 1000) return n.toString()
     const units = [
@@ -125,7 +131,7 @@
     }
     return n.toString()
   }
-  const abbreviated = computed(() => formatAbbrev(count.value))
+  const abbreviated = computed(() => formatAbbrev(displayCount.value))
   const ariaLabel = computed(() =>
     `${liked.value ? 'Unlike' : 'Like'} ${props.title || ''}`.trim()
   )
@@ -134,7 +140,6 @@
     if (e) {
       if (typeof e.stopPropagation === 'function') e.stopPropagation()
       if (typeof e.preventDefault === 'function') e.preventDefault()
-      // Some browsers: also halt immediate for safety
       if (typeof e.stopImmediatePropagation === 'function')
         e.stopImmediatePropagation()
     }
