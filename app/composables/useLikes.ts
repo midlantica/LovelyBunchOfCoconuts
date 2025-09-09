@@ -108,6 +108,7 @@ export function useLikes() {
     // Fire-and-forget server sync
     if (import.meta.client) {
       const delta = next ? 1 : -1
+      // Use catch-all route that supports slashes
       fetch(`/api/likes/${encodeURIComponent(cid)}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
