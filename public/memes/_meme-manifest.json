@@ -1487,6 +1487,46 @@
       "updated": "2025-09-05T19:19:12.062Z",
       "width": 1080,
       "height": 1080
+    },
+    "margaret-thatcher/we-know-what-works-the-anglo-saxon-model.jpg": {
+      "optimized": true,
+      "hash": "76b8ede8bc819a3c99164eb5a4d160391bb0cfd0",
+      "action": "strip-profiles",
+      "updated": "2025-09-08T22:48:09.464Z",
+      "width": 787,
+      "height": 1080
+    },
+    "politics/just-remember-covd-was-never-bad-enouch.jpg": {
+      "optimized": true,
+      "hash": "ed0f9ddc294984a3bf5796b0a7ece27ac42bfca7",
+      "action": "strip-profiles",
+      "updated": "2025-09-08T22:48:09.766Z",
+      "width": 807,
+      "height": 506
+    },
+    "thomas-sowell/many-colleges-claim-that-they-develop.jpg": {
+      "optimized": true,
+      "hash": "9f4ef56e647a5085ef8c61aabf5bfb5e68f12c45",
+      "action": "strip-profiles",
+      "updated": "2025-09-08T22:48:09.998Z",
+      "width": 803,
+      "height": 815
+    },
+    "thomas-sowell/when-someone-tries-to-lay-a-guilt-trip.jpg": {
+      "optimized": true,
+      "hash": "008bf4e997b02ee88be4a342bee80a54e302c4e7",
+      "action": "strip-profiles",
+      "updated": "2025-09-08T22:48:10.087Z",
+      "width": 960,
+      "height": 784
+    },
+    "woke-insanity/things-we-actually-have-feminists-to.jpg": {
+      "optimized": true,
+      "hash": "9411bae9c9e5e035733b83589d335eaa2fe510ba",
+      "action": "strip-profiles",
+      "updated": "2025-09-08T22:48:10.236Z",
+      "width": 863,
+      "height": 895
     }
   }
 }
