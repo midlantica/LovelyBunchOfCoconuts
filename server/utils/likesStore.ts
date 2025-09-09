@@ -70,3 +70,19 @@ export async function bulkEnsure(ids: string[]): Promise<LikeCounts> {
     return out
   })
 }
+
+export async function mergeLikes(fromId: string, toId: string) {
+  if (!fromId || !toId) return { from: 0, to: 0 }
+  const storage = useStorage(NAMESPACE)
+  return await withLock(async () => {
+    const all = await readAll(storage)
+    const from = Math.max(0, all[fromId] || 0)
+    const to = Math.max(0, all[toId] || 0)
+    const nextTo = from + to
+    all[toId] = nextTo
+    // zero out source to avoid double counting, but keep key present intentionally minimal
+    all[fromId] = 0
+    await storage.setItem(STORAGE_KEY, all)
+    return { from, to: nextTo }
+  })
+}

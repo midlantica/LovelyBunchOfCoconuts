@@ -175,6 +175,42 @@ export function useLikes() {
           changed = true
         }
       }
+      // Optional rename-automerge: if an id returns 0, check debug map for a very similar id
+      if (
+        !changed &&
+        ids.length === 1 &&
+        countMap.value[canonicalizeId(ids[0])] === 0
+      ) {
+        try {
+          const isProd =
+            typeof window !== 'undefined' &&
+            location.hostname.endsWith('wakeupnpc.com')
+          const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
+          const res3 = await fetch(url)
+          if (res3.ok) {
+            const data3 = await res3.json()
+            const all: Record<string, number> = data3?.counts || {}
+            const target = canonicalizeId(ids[0])
+            // Find a close match by ignoring small slug edits (levenshtein-lite for dashes only)
+            const slug = target.split('/').pop() || ''
+            const candidates = Object.entries(all)
+              .map(([k, v]) => ({ k: canonicalizeId(k), v }))
+              .filter(
+                ({ k, v }) =>
+                  v > 0 && k.startsWith(target.replace(/\/[^/]+$/, '/'))
+              )
+            if (candidates.length === 1) {
+              // Hydrate from candidate for now (server merge API available for later)
+              const cand = candidates[0] as { k: string; v: number }
+              const v = cand?.v
+              if (typeof v === 'number') {
+                countMap.value[target] = v
+                changed = true
+              }
+            }
+          }
+        } catch {}
+      }
       if (changed) persistToStorage()
       // Dev: minimal log once per call (comment out to silence completely)
       // if (import.meta.dev) console.info('[likes] hydrated batch', Object.keys(counts).length)
