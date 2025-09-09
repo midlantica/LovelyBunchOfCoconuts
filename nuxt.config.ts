@@ -90,6 +90,8 @@ export default defineNuxtConfig({
         driver: 'netlify-blobs',
         // Netlify Blobs requires a store name (global across deploys)
         name: 'wakeupnpc_likes',
+        // Ensure immediate read-after-write behavior for small counters
+        consistency: 'strong',
         // Optional: default consistency is 'eventual'; keep default
       },
     },
