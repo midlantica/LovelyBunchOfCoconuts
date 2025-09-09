@@ -138,7 +138,9 @@ export function useLikes() {
       let res = await fetch(`/api/likes?ids=${qs}`)
       if (!res.ok) {
         // Fallback to debug route that returns all counts; append ?dev=1 in prod
-        const isProd = typeof window !== 'undefined' && location.hostname.endsWith('wakeupnpc.com')
+        const isProd =
+          typeof window !== 'undefined' &&
+          location.hostname.endsWith('wakeupnpc.com')
         const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
         res = await fetch(url).catch(() => null as any)
         if (!res || !res.ok) return
@@ -148,7 +150,9 @@ export function useLikes() {
       // If the batch endpoint returns no counts (mismatch or cold store), try debug map
       if (Object.keys(counts).length === 0) {
         try {
-          const isProd = typeof window !== 'undefined' && location.hostname.endsWith('wakeupnpc.com')
+          const isProd =
+            typeof window !== 'undefined' &&
+            location.hostname.endsWith('wakeupnpc.com')
           const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
           const res2 = await fetch(url)
           if (res2.ok) {

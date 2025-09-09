@@ -49,14 +49,23 @@
         {{ error }}
       </div>
 
-      <div class="border border-slate-700 rounded overflow-hidden" style="max-height: 70vh; overflow: auto;">
+      <div
+        class="border border-slate-700 rounded overflow-hidden"
+        style="max-height: 70vh; overflow: auto"
+      >
         <table class="w-full text-sm">
           <thead class="bg-slate-800 text-slate-300">
             <tr>
               <th class="px-3 py-2 text-left">ID (decoded)</th>
-              <th class="px-3 py-2 w-24 text-right cursor-pointer select-none" @click="toggleSortDir()">
+              <th
+                class="px-3 py-2 w-24 text-right cursor-pointer select-none"
+                @click="toggleSortDir()"
+              >
                 Count
-                <span class="inline-block ml-1 text-seagull-400" aria-hidden="true">
+                <span
+                  class="inline-block ml-1 text-seagull-400"
+                  aria-hidden="true"
+                >
                   {{ sortDir === 'desc' ? '▾' : '▴' }}
                 </span>
               </th>
