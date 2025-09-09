@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   try {
     const query = getQuery(event)
     const idsParam = (query.ids as string) || ''
-    const ids = idsParam
+    const idsRaw = idsParam
       .split(',')
       .map((s) => {
         const t = s.trim()
@@ -16,6 +16,30 @@ export default defineEventHandler(async (event) => {
         }
       })
       .filter(Boolean)
+    // Server-side normalization to match storage keys
+    const ids = Array.from(
+      new Set(
+        idsRaw.map((id) => {
+          let x = id
+          // ensure leading slash
+          if (x && !x.startsWith('/')) x = '/' + x
+          // remove trailing slash
+          x = x.replace(/\/$/, '')
+          // collapse duplicate content prefixes
+          x = x.replace(/\/(claims|memes|quotes)\/(?:\1\/)+/g, '/$1/')
+          // underscores to hyphens
+          x = x.replace(/_/g, '-')
+          // singular route variants
+          x = x
+            .replace(/^\/claim\//, '/claims/')
+            .replace(/^\/meme\//, '/memes/')
+            .replace(/^\/quote\//, '/quotes/')
+          // collapse duplicate slashes
+          x = x.replace(/\/+/g, '/')
+          return x
+        })
+      )
+    )
     const counts = await getCounts(ids)
     return { counts }
   } catch (e: any) {
