@@ -42,20 +42,6 @@
             type="number"
             class="bg-slate-800 px-2 py-1 border border-slate-700 rounded focus:outline-none focus:ring-1 focus:ring-seagull-500 w-20 text-slate-100"
           />
-          <select
-            v-model="sortBy"
-            class="bg-slate-800 px-2 py-1 border border-slate-700 rounded text-slate-100"
-          >
-            <option value="id">Sort: ID</option>
-            <option value="count">Sort: Count</option>
-          </select>
-          <select
-            v-model="sortDir"
-            class="bg-slate-800 px-2 py-1 border border-slate-700 rounded text-slate-100"
-          >
-            <option value="asc">Asc</option>
-            <option value="desc">Desc</option>
-          </select>
         </div>
       </div>
 
@@ -63,13 +49,17 @@
         {{ error }}
       </div>
 
-      <div class="border border-slate-700 rounded overflow-hidden">
+      <div class="border border-slate-700 rounded overflow-hidden" style="max-height: 70vh; overflow: auto;">
         <table class="w-full text-sm">
           <thead class="bg-slate-800 text-slate-300">
             <tr>
               <th class="px-3 py-2 text-left">ID (decoded)</th>
-              <th class="px-3 py-2 w-24 text-right">Count</th>
-              <th class="px-3 py-2 w-64 text-right">Actions</th>
+              <th class="px-3 py-2 w-24 text-right cursor-pointer select-none" @click="toggleSortDir()">
+                Count
+                <span class="inline-block ml-1 text-seagull-400" aria-hidden="true">
+                  {{ sortDir === 'desc' ? '▾' : '▴' }}
+                </span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -97,27 +87,9 @@
                 </div>
               </td>
               <td class="px-3 py-2 tabular-nums text-right">{{ row.count }}</td>
-              <td class="px-3 py-2">
-                <div class="flex justify-end items-center gap-2">
-                  <button
-                    class="bg-slate-800 hover:bg-slate-700 px-2 py-1 border border-slate-700 rounded text-slate-200"
-                    :disabled="pending[row.key]"
-                    @click="bump(row.key, -1)"
-                  >
-                    -1
-                  </button>
-                  <button
-                    class="bg-seagull-600 hover:bg-seagull-500 px-2 py-1 rounded text-slate-950"
-                    :disabled="pending[row.key]"
-                    @click="bump(row.key, +1)"
-                  >
-                    +1
-                  </button>
-                </div>
-              </td>
             </tr>
             <tr v-if="!rows.length">
-              <td colspan="3" class="px-3 py-6 text-slate-400 text-center">
+              <td colspan="2" class="px-3 py-6 text-slate-400 text-center">
                 No results
               </td>
             </tr>
@@ -141,8 +113,8 @@
   const query = ref('')
   const minCount = ref(null)
   const maxCount = ref(null)
-  const sortBy = ref('id')
-  const sortDir = ref('asc')
+  const sortBy = ref('count')
+  const sortDir = ref('desc')
   const live = ref(true)
 
   const sumCounts = computed(() =>
@@ -168,6 +140,11 @@
     })
     return arr
   })
+
+  function toggleSortDir() {
+    sortDir.value = sortDir.value === 'desc' ? 'asc' : 'desc'
+    sortBy.value = 'count'
+  }
 
   async function refresh() {
     if (!allowed.value) return
@@ -211,27 +188,7 @@
     }
   }
 
-  async function bump(id, delta) {
-    if (!allowed.value || !id) return
-    if (pending[id]) return
-    pending[id] = true
-    try {
-      const res = await fetch(`/api/likes/${encodeURIComponent(id)}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ delta }),
-      })
-      if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      const data = await res.json()
-      const next = Number(data?.count || 0)
-      const row = items.value.find((r) => r.key === id)
-      if (row) row.count = next
-    } catch (e) {
-      error.value = e?.message || String(e)
-    } finally {
-      pending[id] = false
-    }
-  }
+  // Removed bump actions per requirements
 
   async function copy(text) {
     try {

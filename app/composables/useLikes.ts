@@ -137,12 +137,31 @@ export function useLikes() {
       const qs = batch.map((i) => encodeURIComponent(i)).join(',')
       let res = await fetch(`/api/likes?ids=${qs}`)
       if (!res.ok) {
-        // Fallback to debug route that returns all counts (Netlify static fallback)
-        res = await fetch(`/api/likes/debug`).catch(() => null as any)
+        // Fallback to debug route that returns all counts; append ?dev=1 in prod
+        const isProd = typeof window !== 'undefined' && location.hostname.endsWith('wakeupnpc.com')
+        const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
+        res = await fetch(url).catch(() => null as any)
         if (!res || !res.ok) return
       }
       const data = await res.json()
-      const counts = data?.counts || {}
+      let counts = data?.counts || {}
+      // If the batch endpoint returns no counts (mismatch or cold store), try debug map
+      if (Object.keys(counts).length === 0) {
+        try {
+          const isProd = typeof window !== 'undefined' && location.hostname.endsWith('wakeupnpc.com')
+          const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
+          const res2 = await fetch(url)
+          if (res2.ok) {
+            const data2 = await res2.json()
+            const all = data2?.counts || {}
+            // Filter to only requested ids
+            const set = new Set(batch.map((i) => canonicalizeId(i)))
+            counts = Object.fromEntries(
+              Object.entries(all).filter(([k]) => set.has(canonicalizeId(k)))
+            )
+          }
+        } catch {}
+      }
       let changed = false
       for (const [k, v] of Object.entries(counts)) {
         const cid = canonicalizeId(k)
