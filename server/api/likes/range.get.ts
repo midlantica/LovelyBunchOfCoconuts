@@ -1,7 +1,7 @@
 // GET /api/likes/range?min=5&max=10
 // Development helper: returns all like ids whose counts are within [min,max].
 // Do NOT ship to production unless access restricted.
-import { getCounts } from '#imports'
+import { getCounts } from '../../utils/likesStore'
 
 export default defineEventHandler(async (event) => {
   if (process.env.NODE_ENV === 'production' && !getQuery(event).dev) {
