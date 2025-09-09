@@ -99,7 +99,7 @@
   })
 
   const emit = defineEmits(['toggle'])
-  const { isLiked, getCount, toggleLike } = useLikes()
+  const { isLiked, getCount, toggleLike, hydrateServer } = useLikes()
 
   const liked = computed(() => isLiked(props.id))
   const count = computed(() => getCount(props.id))
@@ -147,6 +147,12 @@
     toggleLike(props.id)
     emit('toggle', { id: props.id, liked: liked.value, count: count.value })
   }
+
+  // Guarantee per-button hydration on mount in case the batch hydrator
+  // misses or is delayed. Debounced by hydrateServer's internal guard.
+  onMounted(() => {
+    if (props.id) hydrateServer([props.id])
+  })
 </script>
 
 <style scoped>
