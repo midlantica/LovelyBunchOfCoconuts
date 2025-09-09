@@ -177,7 +177,8 @@
       let res = await fetch('/api/likes')
       if (!res.ok) {
         // Fallback to debug route if present
-        res = await fetch('/api/likes/debug')
+        const isProd = process.env.NODE_ENV === 'production'
+        res = await fetch(`/api/likes/debug${isProd ? '?dev=1' : ''}`)
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
       }
       const data = await res.json()

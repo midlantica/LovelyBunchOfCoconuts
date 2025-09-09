@@ -86,13 +86,13 @@ export default defineNuxtConfig({
     },
     // Persist likes in production using Netlify Blobs; use FS locally
     storage: {
-      likes: {
+      wakeupnpc_likes: {
         driver: 'netlify-blobs',
         base: 'likes',
       },
     },
     devStorage: {
-      likes: {
+      wakeupnpc_likes: {
         driver: 'fs',
         base: './server/.data/likes',
       },
