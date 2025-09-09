@@ -134,8 +134,12 @@ export function useLikes() {
       // Reduce mega requests: cap batch size
       const batch = pending.slice(0, 100)
       const qs = batch.map((i) => encodeURIComponent(i)).join(',')
-      const res = await fetch(`/api/likes?ids=${qs}`)
-      if (!res.ok) return
+      let res = await fetch(`/api/likes?ids=${qs}`)
+      if (!res.ok) {
+        // Fallback to debug route that returns all counts (Netlify static fallback)
+        res = await fetch(`/api/likes/debug`).catch(() => null as any)
+        if (!res || !res.ok) return
+      }
       const data = await res.json()
       const counts = data?.counts || {}
       let changed = false

@@ -2,10 +2,8 @@
 # netlify.toml
 
 [build]
-# Rebuild native better-sqlite3 binding explicitly before Nuxt generate to avoid missing binary in Netlify's build environment.
-# After generation, copy the static assets from .output/public to dist (Netlify publish dir) for resilience.
-# This avoids deploy-stage failures if Nuxt changes the output folder naming or generation aborts early.
-command = "pnpm rebuild better-sqlite3 || echo 'better-sqlite3 rebuild failed (continuing)'; pnpm run build && (mkdir -p dist && if [ -d .output/public ]; then cp -R .output/public/* dist/; fi)"
+# Use Nitro Netlify preset (auto-detected). This builds SSR with Functions.
+command = "pnpm run build"
 publish = "dist"
 
 [build.environment]
@@ -18,12 +16,6 @@ from = "https://www.wakeupnpc.com/*"
 to = "https://wakeupnpc.com/:splat"
 status = 301
 force = true
-
-# SPA fallback in dev/prod hosting (keep last)
-[[redirects]]
-from = "/*"
-to = "/"
-status = 200
 
 # Security headers
 [[headers]]

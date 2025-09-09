@@ -5,8 +5,9 @@
   }
 
   body {
-    @apply bg-slate-950 font-Barlow;
+    @apply bg-slate-950 text-slate-200 font-Barlow;
     font-weight: 300; /* Use a more broadly supported weight for initial render */
+    color-scheme: dark;
   }
 
   h1,

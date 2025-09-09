@@ -63,6 +63,8 @@ export default defineNuxtConfig({
   },
   ssr: true,
   nitro: {
+    // Ensure Netlify Functions v2 features (incl. Blobs) are enabled
+    compatibilityDate: '2025-06-27',
     prerender: {
       routes: ['/'],
       crawlLinks: true,
@@ -81,6 +83,19 @@ export default defineNuxtConfig({
     },
     externals: {
       inline: ['@nuxt/content'],
+    },
+    // Persist likes in production using Netlify Blobs; use FS locally
+    storage: {
+      likes: {
+        driver: 'netlify-blobs',
+        base: 'likes',
+      },
+    },
+    devStorage: {
+      likes: {
+        driver: 'fs',
+        base: './server/.data/likes',
+      },
     },
     // Enable lossless compression for built public assets (gz/br)
     compressPublicAssets: true,
@@ -262,6 +277,13 @@ export default defineNuxtConfig({
           href: '/favicon/favicon-512x512.png',
         },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      ],
+      // Inline critical background color to avoid white flash before CSS loads
+      style: [
+        {
+          children:
+            'html,body,#__nuxt{background-color:#020617;}#modal-root{position:fixed;inset:0;pointer-events:none;}',
+        } as any,
       ],
       script: [
         // GoatCounter analytics (enabled only when env var is present)

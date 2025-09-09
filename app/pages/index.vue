@@ -51,63 +51,73 @@
   const openModal = inject('openModal')
   const isModalOpen = inject('isModalOpen', ref(false))
 
-  // If redirected from a not-found deep link, prefill search and clean URL
-  onMounted(() => {
-    // Read raw q from the URL to preserve literal '+' between tokens
-    let q = ''
-    try {
-      const m = window.location.search.match(/[?&]q=([^&]*)/)
-      q = m ? m[1] : ''
-    } catch {}
-    const nf = route.query.nf
-    const modalSuppressed = useState('modalSuppressedFromQuery', () => false)
-
-    if (q) {
-      // Keep '+' separators intact; SearchBar will parse tokens and URL will stay stable
-      const decoded = (() => {
+  // Client-only init: query handling, scroll persistence, and hash routing
+  if (import.meta.client) {
+    let cleanupScroll = null
+    const handleHashChange = () => {
+      const hash = window.location.hash
+      if (!hash || (isModalOpen && isModalOpen.value)) return
+      const match = hash.match(/^(#)(claim|quote|meme)[\/-](.+)$/)
+      if (match) {
+        const [, , contentType, slug] = match
         try {
-          return decodeURIComponent(q)
-        } catch {
-          return q
-        }
-      })()
-      searchTerm.value = decoded.toLowerCase().trim()
-      // Prevent immediate modal reopen after closing if refresh with query param
-      modalSuppressed.value = true
-    }
-    if (nf) {
-      // Remove nf from URL but keep q exactly as typed (preserve literal '+')
-      try {
-        const raw = window.location.search.replace(/^\?/, '')
-        const parts = raw ? raw.split('&').filter(Boolean) : []
-        const kept = parts.filter(
-          (p) => decodeURIComponent(p.split('=')[0]) !== 'nf'
-        )
-        const query = kept.length ? `?${kept.join('&')}` : ''
-        window.history.replaceState(
-          {},
-          '',
-          `${window.location.pathname}${query}${window.location.hash || ''}`
-        )
-      } catch {}
+          const u = new URL(window.location.href)
+          u.hash = ''
+          window.history.replaceState({}, '', u.toString())
+        } catch {}
+        openContentFromSlug(contentType, slug)
+      }
     }
 
-    // Attach scroll listener to persist position
-    const scrollContainer = document.querySelector('.scroll-container-stable')
-    if (scrollContainer) {
-      const onScroll = () => {
-        wallScrollTop.value = scrollContainer.scrollTop || 0
-      }
-      scrollContainer.addEventListener('scroll', onScroll, { passive: true })
-      // Restore if coming back without remount
-      if (wallScrollTop.value > 0) {
-        scrollContainer.scrollTo({ top: wallScrollTop.value })
-      }
-      onUnmounted(() => {
-        scrollContainer.removeEventListener('scroll', onScroll)
-      })
+    const initClient = () => {
+      // 1) Handle ?q= and ?nf=
+      try {
+        const url = new URL(window.location.href)
+        const rawQ = url.searchParams.get('q') || ''
+        const modalSuppressed = useState(
+          'modalSuppressedFromQuery',
+          () => false
+        )
+        if (rawQ) {
+          let decoded = rawQ
+          try {
+            decoded = decodeURIComponent(rawQ)
+          } catch {}
+          searchTerm.value = decoded.toLowerCase().trim()
+          modalSuppressed.value = true
+        }
+        if (url.searchParams.has('nf')) {
+          url.searchParams.delete('nf')
+          window.history.replaceState({}, '', url.toString())
+        }
+      } catch {}
+
+      // 2) Scroll persistence
+      try {
+        const el = document.querySelector('.scroll-container-stable')
+        if (el) {
+          const onScroll = () => {
+            wallScrollTop.value = el.scrollTop || 0
+          }
+          el.addEventListener('scroll', onScroll, { passive: true })
+          if (wallScrollTop.value > 0) {
+            el.scrollTo({ top: wallScrollTop.value })
+          }
+          cleanupScroll = () => el.removeEventListener('scroll', onScroll)
+        }
+      } catch {}
+
+      // 3) Hash routing
+      handleHashChange()
+      window.addEventListener('hashchange', handleHashChange)
     }
-  })
+
+    nextTick(initClient)
+    onBeforeUnmount(() => {
+      if (typeof cleanupScroll === 'function') cleanupScroll()
+      window.removeEventListener('hashchange', handleHashChange)
+    })
+  }
 
   // Count tracking
   const wallCounts = ref({ claims: 0, quotes: 0, memes: 0, total: 0 })
@@ -117,33 +127,7 @@
     total: totalCounts.value,
   }))
 
-  // Handle hash URLs for backward compatibility (Twitter shares, bookmarks, etc.)
-  onMounted(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash
-      if (!hash || isModalOpen?.value) return
-      // Accept both #type-slug and #type/slug
-      const match = hash.match(/^(#)(claim|quote|meme)[\/-](.+)$/)
-      if (match) {
-        const [, , contentType, slug] = match
-        // Clear the hash to prevent router scroll warnings
-        window.history.replaceState(
-          {},
-          '',
-          window.location.pathname + window.location.search
-        )
-        openContentFromSlug(contentType, slug)
-      }
-    }
-
-    // Handle initial hash and hash changes
-    handleHashChange()
-    window.addEventListener('hashchange', handleHashChange)
-
-    onUnmounted(() => {
-      window.removeEventListener('hashchange', handleHashChange)
-    })
-  })
+  // (hash handling handled in client-only init above)
 
   const openContentFromSlug = async (contentType, slug) => {
     try {
