@@ -88,7 +88,9 @@ export default defineNuxtConfig({
     storage: {
       wakeupnpc_likes: {
         driver: 'netlify-blobs',
-        base: 'likes',
+        // Netlify Blobs requires a store name (global across deploys)
+        name: 'wakeupnpc_likes',
+        // Optional: default consistency is 'eventual'; keep default
       },
     },
     devStorage: {
