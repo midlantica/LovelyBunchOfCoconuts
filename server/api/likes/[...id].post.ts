@@ -37,6 +37,7 @@ export default defineEventHandler(async (event) => {
       .replace(/^\/claim\//, '/claims/')
       .replace(/^\/meme\//, '/memes/')
       .replace(/^\/quote\//, '/quotes/')
+    if (id && !id.startsWith('/')) id = '/' + id
 
     const body = (await readBody(event).catch(() => ({}))) as any
     let delta = 1

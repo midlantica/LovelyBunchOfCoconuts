@@ -187,6 +187,8 @@ export function useLikes() {
       .replace(/^\/claim\//, '/claims/')
       .replace(/^\/meme\//, '/memes/')
       .replace(/^\/quote\//, '/quotes/')
+    // Ensure leading slash for consistency with server keys
+    if (raw && !raw.startsWith('/')) raw = '/' + raw
     return raw
   }
 

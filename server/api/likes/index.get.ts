@@ -6,7 +6,15 @@ export default defineEventHandler(async (event) => {
     const idsParam = (query.ids as string) || ''
     const ids = idsParam
       .split(',')
-      .map((s) => s.trim())
+      .map((s) => {
+        const t = s.trim()
+        if (!t) return ''
+        try {
+          return decodeURIComponent(t)
+        } catch {
+          return t
+        }
+      })
       .filter(Boolean)
     const counts = await getCounts(ids)
     return { counts }
