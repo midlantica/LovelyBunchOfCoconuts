@@ -150,24 +150,6 @@
     return arr
   })
 
-  async function filterMissing() {
-    try {
-      const ids = items.value.map((r) => r.id)
-      if (!ids.length) return
-      const qs = ids.map(encodeURIComponent).join(',')
-      const res = await fetch(`/api/content/exists?ids=${qs}`)
-      if (!res.ok) return
-      const data = await res.json()
-      const existing = data?.existing || []
-      const set = new Set(existing)
-      const before = items.value.length
-      items.value = items.value.filter((r) => set.has(r.id))
-      if (before !== items.value.length) {
-        totalKeys.value = items.value.length
-      }
-    } catch {}
-  }
-
   function toggleSortDir() {
     sortDir.value = sortDir.value === 'desc' ? 'asc' : 'desc'
     sortBy.value = 'count'
@@ -188,7 +170,7 @@
       const data = await res.json()
       const counts = data?.counts || data || {}
       totalKeys.value = Number(data?.totalKeys || Object.keys(counts).length)
-      items.value = Object.entries(counts).map(([key, count]) => {
+      const mapped = Object.entries(counts).map(([key, count]) => {
         let decoded = key
         try {
           decoded = decodeURIComponent(key)
@@ -208,8 +190,31 @@
         const routeUrl = slug ? `/${singular}/${slug}` : `/${singular}`
         return { key, id: decoded, url: routeUrl, count: Number(count) || 0 }
       })
-      // After populating, strip any IDs whose content no longer exists
-      await filterMissing()
+      // Check existence of all ids; filter out missing to avoid crashes
+      const idsParam = mapped.map((m) => encodeURIComponent(m.id)).join(',')
+      if (idsParam) {
+        try {
+          const exRes = await fetch(`/api/content/exists?ids=${idsParam}`)
+          if (exRes.ok) {
+            const existData = await exRes.json()
+            const allowedSet = new Set(existData?.exists || [])
+            const before = mapped.length
+            items.value = mapped.filter((m) => allowedSet.has(m.id))
+            if (import.meta.dev && before !== items.value.length) {
+              console.info(
+                '[admin/likes] filtered orphans',
+                before - items.value.length
+              )
+            }
+          } else {
+            items.value = mapped
+          }
+        } catch {
+          items.value = mapped
+        }
+      } else {
+        items.value = mapped
+      }
     } catch (e) {
       error.value = e?.message || String(e)
     } finally {
