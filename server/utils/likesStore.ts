@@ -35,6 +35,21 @@ async function readAll(storage: any): Promise<LikeCounts> {
       changed = true
     }
   }
+  // Hard purge of explicitly banned legacy keys (user request)
+  // If we want to preserve their counts, merge into a preferred target first.
+  const banned: Record<string, string | null> = {
+    '/claims/rehabilitation-and-restorative-justice': '/claims/restorative-justice',
+  }
+  for (const from in banned) {
+    if (raw[from] !== undefined) {
+      const target = banned[from]
+      if (target) {
+        raw[target] = Math.max(0, (raw[target] || 0) + (raw[from] || 0))
+      }
+      delete raw[from]
+      changed = true
+    }
+  }
   if (changed) await storage.setItem(STORAGE_KEY, raw)
   return raw
 }
@@ -42,17 +57,6 @@ async function readAll(storage: any): Promise<LikeCounts> {
 export async function getCounts(ids: string[]): Promise<LikeCounts> {
   const storage = useStorage(NAMESPACE)
   const all = await readAll(storage)
-  // Opportunistic specific legacy slug merge (one-off) – can be removed later
-  if (
-    all['/claims/rehabilitation-and-restorative-justice'] &&
-    !all['/claims/restorative-justice']
-  ) {
-    all['/claims/restorative-justice'] =
-      (all['/claims/restorative-justice'] || 0) +
-      all['/claims/rehabilitation-and-restorative-justice']
-    delete all['/claims/rehabilitation-and-restorative-justice']
-    await useStorage(NAMESPACE).setItem(STORAGE_KEY, all)
-  }
   if (!ids || ids.length === 0) return all
   const out: LikeCounts = {}
   for (const id of ids) out[id] = Math.max(0, all[id] || 0)

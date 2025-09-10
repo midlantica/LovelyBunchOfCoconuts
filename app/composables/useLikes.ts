@@ -107,12 +107,8 @@ export function useLikes() {
     likedMap.value[cid] = true
     // Optimistic increment only if local count doesn't already reflect a positive number
     const current = getCount(cid)
-    if (current === 0) {
-      countMap.value[cid] = 1
-    } else {
-      // If already have a server-provided count, just leave it; server will add +1 soon
-      countMap.value[cid] = current + 1
-    }
+  // Only optimistic bump if we truly have no count yet.
+  if (current === 0) countMap.value[cid] = 1
     persistToStorage()
     if (import.meta.client) {
       fetch(`/api/likes/${encodeURIComponent(cid)}`, {
@@ -176,9 +172,12 @@ export function useLikes() {
       for (const [k, v] of Object.entries(counts)) {
         const cid = canonicalizeId(k)
         if (!cid) continue
-        if (typeof v === 'number' && v >= 0 && countMap.value[cid] !== v) {
-          countMap.value[cid] = v
-          changed = true
+        if (typeof v === 'number' && v >= 0) {
+          // Always accept server value; if it matches local optimistic value changed stays false
+          if (countMap.value[cid] !== v) {
+            countMap.value[cid] = v
+            changed = true
+          }
         }
       }
       // Optional rename-automerge: if an id returns 0, check debug map for a very similar id

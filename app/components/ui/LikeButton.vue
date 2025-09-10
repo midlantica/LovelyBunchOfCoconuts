@@ -103,11 +103,9 @@
 
   const liked = computed(() => isLiked(props.id))
   const count = computed(() => getCount(props.id))
-  const displayCount = computed(() => {
-    if (count.value > 0) return count.value
-    if (liked.value) return 1
-    return 0
-  })
+  // Display server (or hydrated) count only; do NOT fabricate 1 just because user liked.
+  // This ensures once global count >1 it will show properly.
+  const displayCount = computed(() => count.value)
   const showCount = computed(() =>
     props.hideZero ? displayCount.value > 0 : true
   )
@@ -151,7 +149,10 @@
   // Guarantee per-button hydration on mount in case the batch hydrator
   // misses or is delayed. Debounced by hydrateServer's internal guard.
   onMounted(() => {
-    if (props.id) hydrateServer([props.id])
+    if (props.id) {
+      // Force hydration immediately when we mount if local count is zero
+      if (getCount(props.id) === 0) hydrateServer([props.id])
+    }
   })
 </script>
 
