@@ -12,7 +12,10 @@ export default defineEventHandler(async (event) => {
     if (!rawIds.length) return { existing: [] }
     // Normalize like likes IDs
     const norm = (id: string) => {
-      let x = id.replace(/\/$/, '').replace(/\/(claims|memes|quotes)\/(?:\1\/)+/g, '/$1/').replace(/_/g, '-')
+      let x = id
+        .replace(/\/$/, '')
+        .replace(/\/(claims|memes|quotes)\/(?:\1\/)+/g, '/$1/')
+        .replace(/_/g, '-')
       x = x
         .replace(/^\/claim\//, '/claims/')
         .replace(/^\/meme\//, '/memes/')
@@ -24,7 +27,9 @@ export default defineEventHandler(async (event) => {
     const existing: string[] = []
     await Promise.all(
       ids.map(async (id) => {
-        const doc = await serverQueryContent(event).where({ _path: id }).findOne()
+        const doc = await serverQueryContent(event)
+          .where({ _path: id })
+          .findOne()
         if (doc) existing.push(id)
       })
     )
