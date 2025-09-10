@@ -107,8 +107,8 @@ export function useLikes() {
     likedMap.value[cid] = true
     // Optimistic increment only if local count doesn't already reflect a positive number
     const current = getCount(cid)
-  // Only optimistic bump if we truly have no count yet.
-  if (current === 0) countMap.value[cid] = 1
+    // Only optimistic bump if we truly have no count yet.
+    if (current === 0) countMap.value[cid] = 1
     persistToStorage()
     if (import.meta.client) {
       fetch(`/api/likes/${encodeURIComponent(cid)}`, {

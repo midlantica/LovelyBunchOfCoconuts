@@ -38,7 +38,8 @@ async function readAll(storage: any): Promise<LikeCounts> {
   // Hard purge of explicitly banned legacy keys (user request)
   // If we want to preserve their counts, merge into a preferred target first.
   const banned: Record<string, string | null> = {
-    '/claims/rehabilitation-and-restorative-justice': '/claims/restorative-justice',
+    '/claims/rehabilitation-and-restorative-justice':
+      '/claims/restorative-justice',
   }
   for (const from in banned) {
     if (raw[from] !== undefined) {
