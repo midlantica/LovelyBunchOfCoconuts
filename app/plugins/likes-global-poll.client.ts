@@ -27,11 +27,11 @@ export default defineNuxtPlugin(() => {
       for (const [k, v] of Object.entries(counts)) {
         const cid = _canonicalizeId(k)
         if (!cid) continue
-        // Only update if server count is higher (avoid briefly overwriting optimistic local increments)
-        const current = _countMap.value[cid] || 0
-        if (typeof v === 'number' && v > current) {
-          _countMap.value[cid] = v
-          changed = true
+        if (typeof v === 'number' && v >= 0) {
+          if (_countMap.value[cid] !== v) {
+            _countMap.value[cid] = v
+            changed = true
+          }
         }
       }
       if (

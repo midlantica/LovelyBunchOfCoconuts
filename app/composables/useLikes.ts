@@ -103,6 +103,51 @@ export function useLikes() {
     }
   }
 
+  // Integrity sync: fetch full server map once (debug endpoint) and reconcile local
+  async function integritySync() {
+    if (import.meta.server) return
+    try {
+      const isProd =
+        typeof window !== 'undefined' &&
+        location.hostname.endsWith('wakeupnpc.com')
+      const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
+      const res = await fetch(url).catch(() => null as any)
+      if (!res || !res.ok) return
+      const data = await res.json().catch(() => ({}))
+      const serverCounts: Record<string, number> = data?.counts || {}
+      // Canonicalize keys
+      const serverMap: Record<string, number> = {}
+      for (const [k, v] of Object.entries(serverCounts)) {
+        const cid = canonicalizeId(k)
+        if (!cid) continue
+        serverMap[cid] = typeof v === 'number' && v >= 0 ? v : 0
+      }
+      let changed = false
+      // Remove local keys not on server (they were likely stale migrations)
+      for (const k of Object.keys(countMap.value)) {
+        if (serverMap[k] === undefined) {
+          delete countMap.value[k]
+          changed = true
+        }
+      }
+      // Upsert authoritative counts
+      for (const [k, v] of Object.entries(serverMap)) {
+        if (countMap.value[k] !== v) {
+          countMap.value[k] = v
+          changed = true
+        }
+      }
+      if (changed) persistToStorage()
+    } catch (e) {
+      if (
+        import.meta.dev &&
+        import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
+      ) {
+        console.warn('[likes] integrity sync failed', e)
+      }
+    }
+  }
+
   // Toggle like (user can undo their single like). Each user contributes at most 1.
   const _inFlight = new Set<string>()
   const toggleLike = (id: LikeId | undefined | null) => {
@@ -318,6 +363,7 @@ export function useLikes() {
     getCount,
     setCount,
     toggleLike,
+    integritySync,
     // expose for potential debugging
     _likedMap: likedMap,
     _countMap: countMap,
