@@ -42,6 +42,17 @@ async function readAll(storage: any): Promise<LikeCounts> {
 export async function getCounts(ids: string[]): Promise<LikeCounts> {
   const storage = useStorage(NAMESPACE)
   const all = await readAll(storage)
+  // Opportunistic specific legacy slug merge (one-off) – can be removed later
+  if (
+    all['/claims/rehabilitation-and-restorative-justice'] &&
+    !all['/claims/restorative-justice']
+  ) {
+    all['/claims/restorative-justice'] =
+      (all['/claims/restorative-justice'] || 0) +
+      all['/claims/rehabilitation-and-restorative-justice']
+    delete all['/claims/rehabilitation-and-restorative-justice']
+    await useStorage(NAMESPACE).setItem(STORAGE_KEY, all)
+  }
   if (!ids || ids.length === 0) return all
   const out: LikeCounts = {}
   for (const id of ids) out[id] = Math.max(0, all[id] || 0)

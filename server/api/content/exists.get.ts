@@ -4,9 +4,9 @@
 import { queryContent } from '#content'
 
 export default defineEventHandler(async (event) => {
+  const query = getQuery(event)
+  const idsParam = (query.ids as string) || ''
   try {
-    const query = getQuery(event)
-    const idsParam = (query.ids as string) || ''
     const rawIds = idsParam
       .split(',')
       .map((s) => s.trim())
@@ -14,6 +14,9 @@ export default defineEventHandler(async (event) => {
     const norm = (id: string) => {
       if (!id) return ''
       let x = id
+      try {
+        x = decodeURIComponent(x)
+      } catch {}
       if (!x.startsWith('/')) x = '/' + x
       x = x
         .replace(/\/$/, '')
@@ -22,22 +25,32 @@ export default defineEventHandler(async (event) => {
         .replace(/^\/claim\//, '/claims/')
         .replace(/^\/meme\//, '/memes/')
         .replace(/^\/quote\//, '/quotes/')
+        .replace(/\/+/, '/')
       return x
     }
     const ids = Array.from(new Set(rawIds.map(norm))).filter(Boolean)
     if (!ids.length) return { exists: [], missing: [] }
 
-    // Use content query to check existence quickly
-    const content = await queryContent().only(['_path']).find()
-    const existingSet = new Set(content.map((c: any) => c._path))
+    // Narrow query to only requested paths to reduce load & potential serialization issues
+    const found = await queryContent()
+      // @ts-ignore - $in operator supported by content query builder
+      .where({ _path: { $in: ids } })
+      .only(['_path'])
+      .find()
+    const foundSet = new Set(found.map((c: any) => c._path))
     const exists: string[] = []
     const missing: string[] = []
-    for (const id of ids) {
-      if (existingSet.has(id)) exists.push(id)
-      else missing.push(id)
-    }
+    for (const id of ids) (foundSet.has(id) ? exists : missing).push(id)
     return { exists, missing }
   } catch (e: any) {
-    return { exists: [], missing: [], error: e?.message || 'failed' }
+    // Graceful fallback to avoid 500 loops; treat all as existing so UI won't spam
+    return {
+      exists: idsParam
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean),
+      missing: [],
+      error: e?.message || 'failed',
+    }
   }
 })
