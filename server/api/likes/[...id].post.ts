@@ -40,11 +40,10 @@ export default defineEventHandler(async (event) => {
     if (id && !id.startsWith('/')) id = '/' + id
 
     const body = (await readBody(event).catch(() => ({}))) as any
-    // Enforce one-way (+1 only). Any non-positive delta becomes +0 (ignored)
+    // Allow toggle: +1 or -1 (clamped to not go below zero in store)
     let delta = 1
-    if (typeof body?.delta === 'number') delta = body.delta > 0 ? 1 : 0
-
-    const count = delta ? await increment(id, delta) : await increment(id, 0)
+    if (typeof body?.delta === 'number') delta = body.delta > 0 ? 1 : -1
+    const count = await increment(id, delta)
     return { id, count }
   } catch (e: any) {
     throw createError({

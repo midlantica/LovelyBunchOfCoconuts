@@ -209,8 +209,11 @@
         const routeUrl = slug ? `/${singular}/${slug}` : `/${singular}`
         return { key, id: decoded, url: routeUrl, count: Number(count) || 0 }
       })
+      // Hard filter banned legacy ids (user request)
+      const banned = new Set(['/claims/rehabilitation-and-restorative-justice'])
+      let filtered = mapped.filter((m) => !banned.has(m.id))
       // Check existence of all ids; filter out missing to avoid crashes
-      const idsParam = mapped.map((m) => encodeURIComponent(m.id)).join(',')
+      const idsParam = filtered.map((m) => encodeURIComponent(m.id)).join(',')
       if (idsParam) {
         try {
           const exRes = await fetch(`/api/content/exists?ids=${idsParam}`)
@@ -218,8 +221,8 @@
             const existData = await exRes.json()
             const allowedSet = new Set(existData?.exists || [])
             orphanIds.value = (existData?.missing || []).filter(Boolean)
-            const before = mapped.length
-            items.value = mapped.filter((m) => allowedSet.has(m.id))
+            const before = filtered.length
+            items.value = filtered.filter((m) => allowedSet.has(m.id))
             if (import.meta.dev && before !== items.value.length) {
               console.info(
                 '[admin/likes] filtered orphans',
@@ -227,13 +230,13 @@
               )
             }
           } else {
-            items.value = mapped
+            items.value = filtered
           }
         } catch {
-          items.value = mapped
+          items.value = filtered
         }
       } else {
-        items.value = mapped
+        items.value = filtered
       }
     } catch (e) {
       error.value = e?.message || String(e)

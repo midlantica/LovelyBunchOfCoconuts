@@ -96,31 +96,33 @@ export function useLikes() {
     persistToStorage()
   }
 
-  // Enforce one-way like: once liked, cannot unlike (idempotent on repeat clicks)
+  // Toggle like (user can undo their single like). Each user contributes at most 1.
+  const _inFlight = new Set<string>()
   const toggleLike = (id: LikeId | undefined | null) => {
     const cid = canonicalizeId(id)
     if (!cid) return false
-    if (isLiked(cid)) {
-      // Already liked – no-op (still return true so UI stays solid)
-      return true
-    }
-    likedMap.value[cid] = true
-    // Optimistic increment only if local count doesn't already reflect a positive number
+    if (_inFlight.has(cid)) return likedMap.value[cid] // ignore rapid double click
+    const wasLiked = !!likedMap.value[cid]
+    const next = !wasLiked
+    likedMap.value[cid] = next
     const current = getCount(cid)
-    // Only optimistic bump if we truly have no count yet.
-    if (current === 0) countMap.value[cid] = 1
+    const delta = next ? 1 : -1
+    countMap.value[cid] = Math.max(0, current + delta)
     persistToStorage()
     if (import.meta.client) {
+      _inFlight.add(cid)
       fetch(`/api/likes/${encodeURIComponent(cid)}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ delta: 1 }),
-      }).catch((e) => {
-        if (import.meta.dev)
-          console.warn('[likes] server sync failed', cid, e?.message || e)
+        body: JSON.stringify({ delta }),
       })
+        .catch((e) => {
+          if (import.meta.dev)
+            console.warn('[likes] server sync failed', cid, e?.message || e)
+        })
+        .finally(() => _inFlight.delete(cid))
     }
-    return true
+    return next
   }
 
   const _hydrating = new Set<string>()
