@@ -151,14 +151,15 @@
     }
     toggleLike(props.id)
     emit('toggle', { id: props.id, liked: liked.value, count: count.value })
+    // Schedule a server reconciliation so any stale optimistic local count is corrected quickly
+    setTimeout(() => hydrateServer([props.id]), 150)
   }
 
   // Guarantee per-button hydration on mount in case the batch hydrator
   // misses or is delayed. Debounced by hydrateServer's internal guard.
   onMounted(() => {
     if (props.id) {
-      // Force hydration immediately when we mount if local count is zero
-      if (getCount(props.id) === 0) hydrateServer([props.id])
+      hydrateServer([props.id]) // Always hydrate; server value is authoritative
     }
   })
 </script>
