@@ -33,9 +33,8 @@ export default defineEventHandler(async (event) => {
         if (doc) existing.push(id)
       })
     )
-    const missing = ids.filter((i) => !existing.includes(i))
-    return { existing, missing }
+    return { existing }
   } catch (e: any) {
-    return { existing: [], missing: [], error: e?.message || 'failed' }
+    return { existing: [], error: e?.message || 'failed' }
   }
 })
