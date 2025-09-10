@@ -150,6 +150,24 @@
     return arr
   })
 
+  async function filterMissing() {
+    try {
+      const ids = items.value.map((r) => r.id)
+      if (!ids.length) return
+      const qs = ids.map(encodeURIComponent).join(',')
+      const res = await fetch(`/api/content/exists?ids=${qs}`)
+      if (!res.ok) return
+  const data = await res.json()
+  const existing = data?.existing || []
+      const set = new Set(existing)
+      const before = items.value.length
+      items.value = items.value.filter((r) => set.has(r.id))
+      if (before !== items.value.length) {
+        totalKeys.value = items.value.length
+      }
+    } catch {}
+  }
+
   function toggleSortDir() {
     sortDir.value = sortDir.value === 'desc' ? 'asc' : 'desc'
     sortBy.value = 'count'
@@ -190,6 +208,8 @@
         const routeUrl = slug ? `/${singular}/${slug}` : `/${singular}`
         return { key, id: decoded, url: routeUrl, count: Number(count) || 0 }
       })
+  // After populating, strip any IDs whose content no longer exists
+  await filterMissing()
     } catch (e) {
       error.value = e?.message || String(e)
     } finally {
