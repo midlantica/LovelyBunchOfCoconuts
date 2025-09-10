@@ -18,8 +18,11 @@
         >
           {{ loading ? 'Refreshing…' : 'Refresh' }}
         </button>
-        <span class="text-slate-300 text-sm">Total IDs: {{ totalKeys }}</span>
-        <span class="text-slate-300 text-sm">Sum: {{ sumCounts }}</span>
+        <span class="text-slate-300 text-sm">Total IDs: {{ total }}</span>
+        <span class="text-slate-300 text-sm">Loaded: {{ items.length }}</span>
+        <span class="text-slate-300 text-sm"
+          >Sum (loaded): {{ sumCounts }}</span
+        >
         <label class="flex items-center gap-2 ml-2 text-slate-300 text-sm">
           <input type="checkbox" v-model="live" class="accent-seagull-500" />
           Live
@@ -69,13 +72,14 @@
       <div
         class="border border-slate-700 rounded overflow-hidden"
         style="max-height: 70vh; overflow: auto"
+        data-likes-table-container
       >
         <table class="w-full text-sm">
           <thead class="bg-slate-800 text-slate-300">
             <tr>
               <th class="px-3 py-2 text-left">ID (decoded)</th>
               <th
-                class="px-3 py-2 w-24 text-right cursor-pointer select-none"
+                class="px-3 py-2 w-20 text-right cursor-pointer select-none"
                 @click="toggleSortDir()"
               >
                 Count
@@ -86,6 +90,8 @@
                   {{ sortDir === 'desc' ? '▾' : '▴' }}
                 </span>
               </th>
+              <th class="px-3 py-2 w-28 text-right">Custom Count</th>
+              <th class="px-3 py-2 w-16 text-right">Apply</th>
             </tr>
           </thead>
           <tbody>
@@ -112,7 +118,30 @@
                   </button>
                 </div>
               </td>
-              <td class="px-3 py-2 tabular-nums text-right">{{ row.count }}</td>
+              <td class="px-3 py-2 tabular-nums text-right align-top">
+                {{ row.count }}
+              </td>
+              <td class="px-3 py-2 text-right">
+                <input
+                  v-model.number="customValues[row.id]"
+                  type="number"
+                  min="0"
+                  class="bg-slate-800 px-2 py-1 border border-slate-700 rounded focus:outline-none focus:ring-1 focus:ring-seagull-500 w-20 text-slate-100 text-xs text-right"
+                />
+              </td>
+              <td class="px-3 py-2 text-right">
+                <button
+                  class="bg-seagull-600 hover:bg-seagull-500 disabled:opacity-40 px-2 py-1 rounded text-slate-950 text-xs disabled:cursor-not-allowed"
+                  :disabled="
+                    pending[row.id] ||
+                    customValues[row.id] == null ||
+                    customValues[row.id] < 0
+                  "
+                  @click="applyCustom(row)"
+                >
+                  Set
+                </button>
+              </td>
             </tr>
             <tr v-if="!rows.length">
               <td colspan="2" class="px-3 py-6 text-slate-400 text-center">
@@ -121,6 +150,17 @@
             </tr>
           </tbody>
         </table>
+        <div v-if="loading" class="p-3 text-slate-400 text-xs text-center">
+          Loading…
+        </div>
+        <div v-if="!loading && items.length < total" class="p-3 text-center">
+          <button
+            class="bg-seagull-600 hover:bg-seagull-500 px-3 py-1.5 rounded text-slate-950 text-sm"
+            @click="refresh(false)"
+          >
+            Load More ({{ items.length }}/{{ total }})
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -132,9 +172,13 @@
 
   const loading = ref(false)
   const error = ref(null)
-  const totalKeys = ref(0)
+  const total = ref(0)
   const items = ref([])
+  const pageSize = 200
+  const offset = ref(0)
+  const reachedEnd = ref(false)
   const pending = reactive({})
+  const customValues = reactive({})
   const orphanIds = ref([])
   const cleaningOrphans = ref(false)
 
@@ -174,69 +218,60 @@
     sortBy.value = 'count'
   }
 
-  async function refresh() {
+  async function refresh(reset = true) {
     if (!allowed.value) return
     loading.value = true
     error.value = null
     try {
-      let res = await fetch('/api/likes')
-      if (!res.ok) {
-        // Fallback to debug route if present
-        const isProd = process.env.NODE_ENV === 'production'
-        res = await fetch(`/api/likes/debug${isProd ? '?dev=1' : ''}`)
-        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      if (reset) {
+        offset.value = 0
+        reachedEnd.value = false
+        items.value = []
       }
+      if (reachedEnd.value) return
+      const params = new URLSearchParams()
+      params.set('offset', String(offset.value))
+      params.set('limit', String(pageSize))
+      if (query.value.trim()) params.set('search', query.value.trim())
+      const isProd = process.env.NODE_ENV === 'production'
+      if (isProd) params.set('dev', '1')
+      const res = await fetch(`/api/likes/list?${params.toString()}`)
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
       const data = await res.json()
-      const counts = data?.counts || data || {}
-      totalKeys.value = Number(data?.totalKeys || Object.keys(counts).length)
-      const mapped = Object.entries(counts).map(([key, count]) => {
-        let decoded = key
-        try {
-          decoded = decodeURIComponent(key)
-        } catch {}
-        if (!decoded.startsWith('/')) decoded = `/${decoded}`
-        const segs = decoded.split('/').filter(Boolean)
-        const type = segs[0] || ''
-        const slug = segs[segs.length - 1] || ''
-        const singular =
-          type === 'claims'
-            ? 'claim'
-            : type === 'memes'
-            ? 'meme'
-            : type === 'quotes'
-            ? 'quote'
-            : type
-        const routeUrl = slug ? `/${singular}/${slug}` : `/${singular}`
-        return { key, id: decoded, url: routeUrl, count: Number(count) || 0 }
-      })
-      // Hard filter banned legacy ids (user request) - keep list in sync with server
+      total.value = data.total || 0
       const bannedIds = ['/claims/rehabilitation-and-restorative-justice']
-      let filtered = mapped.filter((m) => !bannedIds.includes(m.id))
-      // Check existence of all ids; filter out missing to avoid crashes
-      const idsParam = filtered.map((m) => encodeURIComponent(m.id)).join(',')
-      if (idsParam) {
-        try {
-          const exRes = await fetch(`/api/content/exists?ids=${idsParam}`)
-          if (exRes.ok) {
-            const existData = await exRes.json()
-            const allowedSet = new Set(existData?.exists || [])
-            orphanIds.value = (existData?.missing || []).filter(Boolean)
-            const before = filtered.length
-            items.value = filtered.filter((m) => allowedSet.has(m.id))
-            if (import.meta.dev && before !== items.value.length) {
-              console.info(
-                '[admin/likes] filtered orphans',
-                before - items.value.length
-              )
-            }
-          } else {
-            items.value = filtered
-          }
-        } catch {
-          items.value = filtered
-        }
+      const newRows = (data.items || [])
+        .filter((r) => !bannedIds.includes(r.id))
+        .map((r) => {
+          let id = r.id
+          try {
+            id = decodeURIComponent(id)
+          } catch {}
+          // id is normalized like /claims/foo; build route directly
+          const segs = id.split('/').filter(Boolean)
+          const type = segs[0] || ''
+          const slug = segs.slice(1).join('/') // allow nested if any
+          let routeUrl = id // default
+          // Adjust to singular front-end route pattern /claim/slug etc
+          const singular =
+            type === 'claims'
+              ? 'claim'
+              : type === 'memes'
+              ? 'meme'
+              : type === 'quotes'
+              ? 'quote'
+              : type
+          if (slug) routeUrl = `/${singular}/${slug}`
+          return { key: id, id, url: routeUrl, count: r.count }
+        })
+      if (!newRows.length) {
+        reachedEnd.value = true
       } else {
-        items.value = filtered
+        offset.value += newRows.length
+        for (const it of newRows) {
+          if (customValues[it.id] == null) customValues[it.id] = it.count
+        }
+        items.value = [...items.value, ...newRows]
       }
     } catch (e) {
       error.value = e?.message || String(e)
@@ -266,6 +301,38 @@
     }
   }
 
+  async function applyCustom(row) {
+    const id = row.id
+    const val = customValues[id]
+    if (val == null || val < 0) return
+    pending[id] = true
+    try {
+      const res = await fetch('/api/likes/set', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, value: Math.floor(val) }),
+      })
+      if (res.ok) {
+        const data = await res.json().catch(() => ({}))
+        if (typeof data?.count === 'number') {
+          row.count = data.count
+        } else {
+          row.count = Math.floor(val)
+        }
+        // Immediately sync any open client session displaying this id
+        if (process.client && window.__wakeupnpcSetLike) {
+          window.__wakeupnpcSetLike(row.id, row.count)
+        }
+      } else {
+        row.count = Math.floor(val)
+      }
+    } catch {
+      row.count = Math.floor(val)
+    } finally {
+      pending[id] = false
+    }
+  }
+
   async function copy(text) {
     try {
       await navigator.clipboard.writeText(text)
@@ -274,16 +341,32 @@
     }
   }
 
-  let _timer
+  function handleScroll(e) {
+    if (loading.value || reachedEnd.value) return
+    const el = e.target
+    if (el.scrollTop + el.clientHeight >= el.scrollHeight - 10) {
+      refresh(false)
+    }
+  }
+  let containerEl
   onMounted(() => {
-    refresh()
-    _timer = setInterval(() => {
-      if (allowed.value && live.value && !loading.value) refresh()
-    }, 2000)
+    refresh(true)
+    containerEl = document.querySelector('[data-likes-table-container]')
+    if (containerEl) containerEl.addEventListener('scroll', handleScroll)
   })
   onUnmounted(() => {
-    if (_timer) clearInterval(_timer)
+    if (containerEl) containerEl.removeEventListener('scroll', handleScroll)
   })
+
+  watch(
+    () => query.value,
+    () => {
+      // Debounce search slightly
+      if (searchTimer) clearTimeout(searchTimer)
+      searchTimer = setTimeout(() => refresh(true), 250)
+    }
+  )
+  let searchTimer
 </script>
 
 <style scoped>

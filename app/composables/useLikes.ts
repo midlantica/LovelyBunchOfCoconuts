@@ -96,6 +96,13 @@ export function useLikes() {
     persistToStorage()
   }
 
+  // Small in-memory event for admin-forced updates (no external bus needed)
+  if (import.meta.client) {
+    ;(window as any).__wakeupnpcSetLike = (id: string, value: number) => {
+      setCount(id, value)
+    }
+  }
+
   // Toggle like (user can undo their single like). Each user contributes at most 1.
   const _inFlight = new Set<string>()
   const toggleLike = (id: LikeId | undefined | null) => {

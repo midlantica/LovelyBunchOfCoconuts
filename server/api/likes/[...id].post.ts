@@ -1,4 +1,4 @@
-import { increment } from '../../utils/likesStore'
+import { increment, setCount } from '../../utils/likesStore'
 
 export default defineEventHandler(async (event) => {
   try {
@@ -40,7 +40,12 @@ export default defineEventHandler(async (event) => {
     if (id && !id.startsWith('/')) id = '/' + id
 
     const body = (await readBody(event).catch(() => ({}))) as any
-    // Allow toggle: +1 or -1 (clamped to not go below zero in store)
+    // Admin override: force set explicit value
+    if (body?.force && typeof body?.value === 'number' && body.value >= 0) {
+      const count = await setCount(id, Math.floor(body.value))
+      return { id, count, forced: true }
+    }
+    // Allow toggle: +1 or -1 (clamped in store)
     let delta = 1
     if (typeof body?.delta === 'number') delta = body.delta > 0 ? 1 : -1
     const count = await increment(id, delta)

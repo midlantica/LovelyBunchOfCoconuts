@@ -103,13 +103,20 @@
 
   const liked = computed(() => isLiked(props.id))
   const count = computed(() => getCount(props.id))
-  // Display server (or hydrated) count only; do NOT fabricate 1 just because user liked.
-  // This ensures once global count >1 it will show properly.
-  const displayCount = computed(() => count.value)
+  // Display rules:
+  // 1. If count > 0 -> show that count (solid heart)
+  // 2. If user has liked but count still 0 (optimistic race) -> show 1 (solid heart)
+  // 3. Else -> show 0 (outline heart, no number)
+  const displayCount = computed(() => {
+    if (count.value > 0) return count.value
+    if (liked.value) return 1
+    return 0
+  })
   const showCount = computed(() =>
     props.hideZero ? displayCount.value > 0 : true
   )
-  const isSolid = computed(() => liked.value || displayCount.value > 0)
+  // Heart is solid ONLY when a number will be displayed; prevents solid-without-number state.
+  const isSolid = computed(() => displayCount.value > 0)
 
   function formatAbbrev(n) {
     if (n < 1000) return n.toString()

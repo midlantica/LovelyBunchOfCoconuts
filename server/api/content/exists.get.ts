@@ -1,23 +1,7 @@
 // GET /api/content/exists?ids=/claims/foo,/memes/bar
 // Returns { exists: string[], missing: string[] }
 // Lazy import of @nuxt/content runtime to avoid Vite resolve warning during dev build
-let _queryContent: any
-async function getQueryContent() {
-  if (_queryContent) return _queryContent
-  try {
-    // @ts-ignore dynamic runtime import
-    const mod = await import('#content/server')
-    _queryContent = mod.queryContent
-  } catch {
-    // Fallback to legacy path (Nuxt <=4 content export) if needed
-    try {
-      // @ts-ignore
-      const mod2 = await import('#content')
-      _queryContent = (mod2 as any).queryContent
-    } catch {}
-  }
-  return _queryContent
-}
+import { getQueryContent } from '../../utils/queryContentRuntime'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
