@@ -159,11 +159,16 @@
       if (!res.ok) return
       const data = await res.json()
       const existing = data?.existing || []
+      const missing = data?.missing || []
       const set = new Set(existing)
       const before = items.value.length
       items.value = items.value.filter((r) => set.has(r.id))
       if (before !== items.value.length) {
         totalKeys.value = items.value.length
+      }
+      // Future: optionally auto-merge or remove orphaned counts via API if needed.
+      if (missing.length && import.meta.dev) {
+        console.info('[likes][admin] Orphan like IDs removed:', missing)
       }
     } catch {}
   }
