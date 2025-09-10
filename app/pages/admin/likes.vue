@@ -209,9 +209,9 @@
         const routeUrl = slug ? `/${singular}/${slug}` : `/${singular}`
         return { key, id: decoded, url: routeUrl, count: Number(count) || 0 }
       })
-      // Hard filter banned legacy ids (user request)
-      const banned = new Set(['/claims/rehabilitation-and-restorative-justice'])
-      let filtered = mapped.filter((m) => !banned.has(m.id))
+      // Hard filter banned legacy ids (user request) - keep list in sync with server
+      const bannedIds = ['/claims/rehabilitation-and-restorative-justice']
+      let filtered = mapped.filter((m) => !bannedIds.includes(m.id))
       // Check existence of all ids; filter out missing to avoid crashes
       const idsParam = filtered.map((m) => encodeURIComponent(m.id)).join(',')
       if (idsParam) {

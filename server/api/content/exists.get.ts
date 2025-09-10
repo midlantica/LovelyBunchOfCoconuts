@@ -1,7 +1,23 @@
 // GET /api/content/exists?ids=/claims/foo,/memes/bar
 // Returns { exists: string[], missing: string[] }
-// @ts-ignore - virtual import provided by @nuxt/content
-import { queryContent } from '#content'
+// Lazy import of @nuxt/content runtime to avoid Vite resolve warning during dev build
+let _queryContent: any
+async function getQueryContent() {
+  if (_queryContent) return _queryContent
+  try {
+    // @ts-ignore dynamic runtime import
+    const mod = await import('#content/server')
+    _queryContent = mod.queryContent
+  } catch {
+    // Fallback to legacy path (Nuxt <=4 content export) if needed
+    try {
+      // @ts-ignore
+      const mod2 = await import('#content')
+      _queryContent = (mod2 as any).queryContent
+    } catch {}
+  }
+  return _queryContent
+}
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
@@ -32,7 +48,9 @@ export default defineEventHandler(async (event) => {
     if (!ids.length) return { exists: [], missing: [] }
 
     // Narrow query to only requested paths to reduce load & potential serialization issues
-    const found = await queryContent()
+    const qc = await getQueryContent()
+    if (!qc) throw new Error('queryContent unavailable')
+    const found = await qc()
       // @ts-ignore - $in operator supported by content query builder
       .where({ _path: { $in: ids } })
       .only(['_path'])

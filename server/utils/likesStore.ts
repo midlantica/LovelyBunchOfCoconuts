@@ -12,6 +12,7 @@ function withLock(fn: () => Promise<any>) {
 const STORAGE_KEY = 'counts'
 // Use a unique mount key to avoid duplicate mounts during Nitro prerender/build
 const NAMESPACE = 'wakeupnpc_likes'
+import { applyBanPurge } from './likesBanned'
 
 interface LikeCounts {
   [id: string]: number
@@ -35,22 +36,7 @@ async function readAll(storage: any): Promise<LikeCounts> {
       changed = true
     }
   }
-  // Hard purge of explicitly banned legacy keys (user request)
-  // If we want to preserve their counts, merge into a preferred target first.
-  const banned: Record<string, string | null> = {
-    '/claims/rehabilitation-and-restorative-justice':
-      '/claims/restorative-justice',
-  }
-  for (const from in banned) {
-    if (raw[from] !== undefined) {
-      const target = banned[from]
-      if (target) {
-        raw[target] = Math.max(0, (raw[target] || 0) + (raw[from] || 0))
-      }
-      delete raw[from]
-      changed = true
-    }
-  }
+  if (applyBanPurge(raw)) changed = true
   if (changed) await storage.setItem(STORAGE_KEY, raw)
   return raw
 }
