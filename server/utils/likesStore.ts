@@ -18,7 +18,25 @@ interface LikeCounts {
 }
 
 async function readAll(storage: any): Promise<LikeCounts> {
-  return ((await storage.getItem(STORAGE_KEY)) as LikeCounts) || {}
+  const raw = ((await storage.getItem(STORAGE_KEY)) as LikeCounts) || {}
+  // One-time normalization / migration: collapse duplicated segment keys
+  // e.g. /claims/claims/foo -> /claims/foo (same for memes, quotes)
+  let changed = false
+  const normKey = (k: string) =>
+    k
+      .replace(/\/$/, '')
+      .replace(/\/(claims|memes|quotes)\/(?:\1\/)+/g, '/$1/')
+      .replace(/_/g, '-')
+  for (const key of Object.keys(raw)) {
+    const nk = normKey(key)
+    if (nk !== key) {
+      raw[nk] = Math.max(0, (raw[nk] || 0) + (raw[key] || 0))
+      delete raw[key]
+      changed = true
+    }
+  }
+  if (changed) await storage.setItem(STORAGE_KEY, raw)
+  return raw
 }
 
 export async function getCounts(ids: string[]): Promise<LikeCounts> {
@@ -84,5 +102,22 @@ export async function mergeLikes(fromId: string, toId: string) {
     all[fromId] = 0
     await storage.setItem(STORAGE_KEY, all)
     return { from, to: nextTo }
+  })
+}
+
+export async function removeKeys(ids: string[]) {
+  if (!ids?.length) return { removed: 0 }
+  const storage = useStorage(NAMESPACE)
+  return await withLock(async () => {
+    const all = await readAll(storage)
+    let removed = 0
+    for (const id of ids) {
+      if (all[id] !== undefined) {
+        delete all[id]
+        removed++
+      }
+    }
+    if (removed) await storage.setItem(STORAGE_KEY, all)
+    return { removed }
   })
 }

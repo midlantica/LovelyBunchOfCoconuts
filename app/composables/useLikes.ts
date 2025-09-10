@@ -96,29 +96,35 @@ export function useLikes() {
     persistToStorage()
   }
 
+  // Enforce one-way like: once liked, cannot unlike (idempotent on repeat clicks)
   const toggleLike = (id: LikeId | undefined | null) => {
     const cid = canonicalizeId(id)
     if (!cid) return false
-    const next = !isLiked(cid)
-    likedMap.value[cid] = next
-    // Local-only count adjustment; replace with server call later
+    if (isLiked(cid)) {
+      // Already liked – no-op (still return true so UI stays solid)
+      return true
+    }
+    likedMap.value[cid] = true
+    // Optimistic increment only if local count doesn't already reflect a positive number
     const current = getCount(cid)
-    countMap.value[cid] = Math.max(0, current + (next ? 1 : -1))
+    if (current === 0) {
+      countMap.value[cid] = 1
+    } else {
+      // If already have a server-provided count, just leave it; server will add +1 soon
+      countMap.value[cid] = current + 1
+    }
     persistToStorage()
-    // Fire-and-forget server sync
     if (import.meta.client) {
-      const delta = next ? 1 : -1
-      // Use catch-all route that supports slashes
       fetch(`/api/likes/${encodeURIComponent(cid)}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ delta }),
+        body: JSON.stringify({ delta: 1 }),
       }).catch((e) => {
         if (import.meta.dev)
           console.warn('[likes] server sync failed', cid, e?.message || e)
       })
     }
-    return next
+    return true
   }
 
   const _hydrating = new Set<string>()
@@ -211,7 +217,15 @@ export function useLikes() {
           }
         } catch {}
       }
-      if (changed) persistToStorage()
+      if (changed) {
+        if (
+          import.meta.dev &&
+          import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
+        ) {
+          console.info('[likes] hydrated', Object.entries(counts))
+        }
+        persistToStorage()
+      }
       // Dev: minimal log once per call (comment out to silence completely)
       // if (import.meta.dev) console.info('[likes] hydrated batch', Object.keys(counts).length)
     } catch (e) {

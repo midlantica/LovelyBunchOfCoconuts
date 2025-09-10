@@ -45,6 +45,23 @@
         </div>
       </div>
 
+      <div
+        v-if="orphanIds.length"
+        class="flex items-center gap-3 bg-amber-900/30 p-2 border border-amber-700/40 rounded text-xs"
+      >
+        <span class="text-amber-300"
+          >{{ orphanIds.length }} orphan
+          {{ orphanIds.length === 1 ? 'ID' : 'IDs' }} detected</span
+        >
+        <button
+          class="bg-amber-500/90 hover:bg-amber-400 disabled:opacity-40 px-2 py-1 rounded text-slate-900 disabled:cursor-not-allowed"
+          :disabled="cleaningOrphans"
+          @click="cleanupOrphans"
+        >
+          {{ cleaningOrphans ? 'Cleaning…' : 'Cleanup Orphans' }}
+        </button>
+      </div>
+
       <div v-if="error" class="bg-red-900/40 p-3 rounded text-red-200 text-sm">
         {{ error }}
       </div>
@@ -118,6 +135,8 @@
   const totalKeys = ref(0)
   const items = ref([])
   const pending = reactive({})
+  const orphanIds = ref([])
+  const cleaningOrphans = ref(false)
 
   const query = ref('')
   const minCount = ref(null)
@@ -198,6 +217,7 @@
           if (exRes.ok) {
             const existData = await exRes.json()
             const allowedSet = new Set(existData?.exists || [])
+            orphanIds.value = (existData?.missing || []).filter(Boolean)
             const before = mapped.length
             items.value = mapped.filter((m) => allowedSet.has(m.id))
             if (import.meta.dev && before !== items.value.length) {
@@ -223,6 +243,25 @@
   }
 
   // Removed bump actions per requirements
+
+  async function cleanupOrphans() {
+    if (!orphanIds.value.length || cleaningOrphans.value) return
+    if (!confirm(`Remove ${orphanIds.value.length} orphan like key(s)?`)) return
+    cleaningOrphans.value = true
+    try {
+      await fetch('/api/likes/cleanup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: orphanIds.value }),
+      })
+      orphanIds.value = []
+      refresh()
+    } catch (e) {
+      if (import.meta.dev) console.warn('[admin/likes] cleanup failed', e)
+    } finally {
+      cleaningOrphans.value = false
+    }
+  }
 
   async function copy(text) {
     try {
