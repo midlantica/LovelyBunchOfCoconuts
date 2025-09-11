@@ -6,7 +6,8 @@
 // @ts-ignore - provided globally by Nuxt at runtime
 export default defineNuxtPlugin(() => {
   if (import.meta.server) return
-  if (import.meta.env?.NUXT_PUBLIC_LIKES_GLOBAL_POLL === 'off') return
+  // Default OFF; opt-in if you really need background merging
+  if (import.meta.env?.NUXT_PUBLIC_LIKES_GLOBAL_POLL !== 'on') return
   // @ts-ignore auto-import composable
   const { _countMap, _canonicalizeId } = useLikes()
   let timer: any = null

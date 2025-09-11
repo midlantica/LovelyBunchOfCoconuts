@@ -170,16 +170,29 @@
     async (data) => {
       // Only generate images on client-side
       if (import.meta.server) return
-
+      // Don’t block first render/open; schedule for idle time
       if (data && data.claim && data.translation) {
-        const { useShareImageGenerator } = await import(
-          '~/composables/useShareImageGenerator'
-        )
-        const { generateClaimImage } = useShareImageGenerator()
-        shareImageBlob.value = await generateClaimImage(
-          data.claim,
-          data.translation
-        )
+        const run = async () => {
+          try {
+            const { useShareImageGenerator } = await import(
+              '~/composables/useShareImageGenerator'
+            )
+            const { generateClaimImage } = useShareImageGenerator()
+            const blob = await generateClaimImage(data.claim, data.translation)
+            // Only apply if modal is still showing same item
+            if (props.modalData === data) {
+              shareImageBlob.value = blob
+            }
+          } catch (e) {
+            if (import.meta.dev)
+              console.warn('share image generation failed', e)
+          }
+        }
+        const idle = (cb) =>
+          window.requestIdleCallback
+            ? window.requestIdleCallback(cb, { timeout: 2500 })
+            : setTimeout(cb, 200)
+        idle(run)
       }
     },
     { immediate: true }

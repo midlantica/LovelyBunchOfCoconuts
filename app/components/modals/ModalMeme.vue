@@ -102,18 +102,29 @@
     () => props.modalData,
     async (data) => {
       if (import.meta.server || !data?.image) return
-      try {
-        const { useShareImageGenerator } = await import(
-          '~/composables/useShareImageGenerator'
-        )
-        const { generateMemeShareImage } = useShareImageGenerator()
-        shareImageBlob.value = await generateMemeShareImage(
-          data.image,
-          shareTitle.value
-        )
-      } catch (error) {
-        console.warn('Failed to generate share image:', error)
+      const run = async () => {
+        try {
+          const { useShareImageGenerator } = await import(
+            '~/composables/useShareImageGenerator'
+          )
+          const { generateMemeShareImage } = useShareImageGenerator()
+          const blob = await generateMemeShareImage(
+            data.image,
+            shareTitle.value
+          )
+          if (props.modalData === data) {
+            shareImageBlob.value = blob
+          }
+        } catch (error) {
+          if (import.meta.dev)
+            console.warn('Failed to generate share image:', error)
+        }
       }
+      const idle = (cb) =>
+        window.requestIdleCallback
+          ? window.requestIdleCallback(cb, { timeout: 2500 })
+          : setTimeout(cb, 200)
+      idle(run)
     },
     { immediate: true }
   )

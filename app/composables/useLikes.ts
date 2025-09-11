@@ -103,9 +103,34 @@ export function useLikes() {
     }
   }
 
-  // Integrity sync: fetch full server map once (debug endpoint) and reconcile local
+  // Integrity sync: by default, do a lightweight reconciliation of currently present buttons only.
+  // Set NUXT_PUBLIC_LIKES_INTEGRITY=full to run a full map sync (dev/admin only recommended).
   async function integritySync() {
     if (import.meta.server) return
+    const mode = import.meta.env?.NUXT_PUBLIC_LIKES_INTEGRITY || 'light'
+    if (mode !== 'full') {
+      try {
+        // Collect current like ids in DOM and hydrate only those
+        const els = document.querySelectorAll?.(
+          '[data-like-button][data-like-id]'
+        )
+        const ids: string[] = []
+        els?.forEach?.((el: any) => {
+          const id = el.getAttribute?.('data-like-id') || ''
+          if (id) ids.push(id)
+        })
+        if (ids.length) await hydrateServer(ids)
+      } catch (e) {
+        if (
+          import.meta.dev &&
+          import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
+        ) {
+          console.warn('[likes] light integrity sync failed', e)
+        }
+      }
+      return
+    }
+    // Full sync path (heavy): fetch entire server map and reconcile
     try {
       const isProd =
         typeof window !== 'undefined' &&
@@ -115,7 +140,6 @@ export function useLikes() {
       if (!res || !res.ok) return
       const data = await res.json().catch(() => ({}))
       const serverCounts: Record<string, number> = data?.counts || {}
-      // Canonicalize keys
       const serverMap: Record<string, number> = {}
       for (const [k, v] of Object.entries(serverCounts)) {
         const cid = canonicalizeId(k)
@@ -123,14 +147,12 @@ export function useLikes() {
         serverMap[cid] = typeof v === 'number' && v >= 0 ? v : 0
       }
       let changed = false
-      // Remove local keys not on server (they were likely stale migrations)
       for (const k of Object.keys(countMap.value)) {
         if (serverMap[k] === undefined) {
           delete countMap.value[k]
           changed = true
         }
       }
-      // Upsert authoritative counts
       for (const [k, v] of Object.entries(serverMap)) {
         if (countMap.value[k] !== v) {
           countMap.value[k] = v
@@ -185,21 +207,28 @@ export function useLikes() {
       .filter((i) => i && !_hydrating.has(i))
     if (!pending.length) return
     pending.forEach((i) => _hydrating.add(i))
+    // Keep a reference for potential retry on hard network failure
+    let batch: string[] = []
+    let shouldRetry = false
     try {
       // Reduce mega requests: cap batch size
-      const batch = pending.slice(0, 100)
+      batch = pending.slice(0, 100)
       const qs = batch.map((i) => encodeURIComponent(i)).join(',')
-      let res = await fetch(`/api/likes?ids=${qs}`)
-      if (!res.ok) {
+      let res = await fetch(`/api/likes?ids=${qs}`).catch(() => null as any)
+      if (!res || !res.ok) {
         // Fallback to debug route that returns all counts; append ?dev=1 in prod
         const isProd =
           typeof window !== 'undefined' &&
           location.hostname.endsWith('wakeupnpc.com')
         const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
         res = await fetch(url).catch(() => null as any)
-        if (!res || !res.ok) return
+        if (!res || !res.ok) {
+          // Hard network failure; allow a silent retry later
+          shouldRetry = true
+          return
+        }
       }
-      const data = await res.json()
+      const data = (await res.json().catch(() => ({}))) as any
       let counts = data?.counts || {}
       // If the batch endpoint returns no counts (mismatch or cold store), try debug map
       if (Object.keys(counts).length === 0) {
@@ -208,9 +237,9 @@ export function useLikes() {
             typeof window !== 'undefined' &&
             location.hostname.endsWith('wakeupnpc.com')
           const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
-          const res2 = await fetch(url)
-          if (res2.ok) {
-            const data2 = await res2.json()
+          const res2 = await fetch(url).catch(() => null as any)
+          if (res2 && res2.ok) {
+            const data2 = await res2.json().catch(() => ({}))
             const all = data2?.counts || {}
             // Filter to only requested ids
             const set = new Set(batch.map((i) => canonicalizeId(i)))
@@ -243,9 +272,9 @@ export function useLikes() {
             typeof window !== 'undefined' &&
             location.hostname.endsWith('wakeupnpc.com')
           const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
-          const res3 = await fetch(url)
-          if (res3.ok) {
-            const data3 = await res3.json()
+          const res3 = await fetch(url).catch(() => null as any)
+          if (res3 && res3.ok) {
+            const data3 = await res3.json().catch(() => ({}))
             const all: Record<string, number> = data3?.counts || {}
             const target = canonicalizeId(ids[0])
             // Find a close match by ignoring small slug edits (levenshtein-lite for dashes only)
@@ -280,9 +309,21 @@ export function useLikes() {
       // Dev: minimal log once per call (comment out to silence completely)
       // if (import.meta.dev) console.info('[likes] hydrated batch', Object.keys(counts).length)
     } catch (e) {
-      if (import.meta.dev) console.warn('[likes] hydrate failed', e)
+      if (
+        import.meta.dev &&
+        import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
+      ) {
+        console.warn('[likes] hydrate failed', e)
+      }
     } finally {
       pending.forEach((i) => _hydrating.delete(i))
+      if (shouldRetry && batch.length) {
+        // Gentle backoff retry to avoid noisy warnings during transient outages
+        setTimeout(() => {
+          // Re-run for the same batch; hydrator guard prevents duplicate spam
+          hydrateServer(batch)
+        }, 1500)
+      }
     }
   }
 

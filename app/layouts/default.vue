@@ -45,6 +45,20 @@
     quote: ModalsModalQuote,
   }
 
+  // Pre-warm modal component chunks after initial render to avoid first-click delay
+  onMounted(() => {
+    const idle = (cb) =>
+      window.requestIdleCallback
+        ? window.requestIdleCallback(cb, { timeout: 2500 })
+        : setTimeout(cb, 1200)
+    idle(() => {
+      // Fire and forget; purpose is to prime dynamic import chunks
+      import('~/components/modals/ModalMeme.vue').catch(() => {})
+      import('~/components/modals/ModalClaim.vue').catch(() => {})
+      import('~/components/modals/ModalQuote.vue').catch(() => {})
+    })
+  })
+
   // Allow calling with either (type, data) or ({ type, data, slug })
   function handleModal(arg1, arg2) {
     let type, data

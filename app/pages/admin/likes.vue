@@ -1,7 +1,5 @@
 <template>
-  <div class="mx-auto p-6 max-w-5xl">
-    <h1 class="mb-4 font-semibold text-slate-100 text-2xl">Likes Admin</h1>
-
+  <div class="mx-auto px-4 py-2 max-w-5xl font-light">
     <div class="mb-4 text-sm" v-if="!allowed">
       <p class="text-amber-300">
         Admin view is disabled in production. Append <code>?dev=1</code> to the
@@ -12,39 +10,49 @@
     <div v-if="allowed" class="space-y-4">
       <div class="flex flex-wrap items-center gap-3">
         <button
-          class="bg-seagull-600 hover:bg-seagull-500 px-3 py-1.5 rounded-md text-slate-950"
-          @click="refresh"
+          class="inline-flex justify-center items-center opacity-75 hover:opacity-100 disabled:opacity-50 transition-opacity cursor-pointer"
+          @click="handleRefresh"
           :disabled="loading"
+          aria-label="Refresh"
+          title="Refresh"
         >
-          {{ loading ? 'Refreshing…' : 'Refresh' }}
+          <Icon
+            name="tdesign:refresh"
+            :class="[
+              'w-6 h-6',
+              refreshing
+                ? 'animate-spin drop-shadow-[0_0_10px_rgba(94,234,212,0.7)]'
+                : '',
+            ]"
+            aria-hidden="true"
+          />
         </button>
-        <span class="text-slate-300 text-sm">Total IDs: {{ total }}</span>
-        <span class="text-slate-300 text-sm">Loaded: {{ items.length }}</span>
-        <span class="text-slate-300 text-sm"
+        <span class="text-slate-300 text-base">Total IDs: {{ total }}</span>
+        <span class="text-slate-300 text-base">Loaded: {{ items.length }}</span>
+        <span class="text-slate-300 text-base"
           >Sum (loaded): {{ sumCounts }}</span
         >
-        <label class="flex items-center gap-2 ml-2 text-slate-300 text-sm">
+        <label class="flex items-center gap-2 ml-2 text-slate-300 text-base">
           <input type="checkbox" v-model="live" class="accent-seagull-500" />
           Live
         </label>
         <div class="flex items-center gap-2 ml-auto">
-          <input
-            v-model="query"
-            placeholder="Filter by id…"
-            class="bg-slate-800 px-2 py-1 border border-slate-700 rounded focus:outline-none focus:ring-1 focus:ring-seagull-500 text-slate-100"
-          />
-          <label class="text-slate-300 text-xs">Min</label>
-          <input
-            v-model.number="minCount"
-            type="number"
-            class="bg-slate-800 px-2 py-1 border border-slate-700 rounded focus:outline-none focus:ring-1 focus:ring-seagull-500 w-20 text-slate-100"
-          />
-          <label class="text-slate-300 text-xs">Max</label>
-          <input
-            v-model.number="maxCount"
-            type="number"
-            class="bg-slate-800 px-2 py-1 border border-slate-700 rounded focus:outline-none focus:ring-1 focus:ring-seagull-500 w-20 text-slate-100"
-          />
+          <div class="inline-flex items-stretch gap-0">
+            <input
+              v-model="query"
+              placeholder="Search for…"
+              class="bg-slate-800 px-2 py-1 border border-slate-700 rounded-r-none rounded-l-md focus:outline-none focus:ring-1 focus:ring-seagull-500 text-slate-100"
+            />
+            <button
+              class="inline-flex justify-center items-center bg-slate-700 hover:bg-slate-600 -ml-px rounded-r-md rounded-l-none w-8 h-8 text-slate-200"
+              @click="refresh(true)"
+              type="button"
+              aria-label="Search"
+              title="Search"
+            >
+              <Icon name="heroicons:magnifying-glass" class="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -71,27 +79,31 @@
 
       <div
         class="border border-slate-700 rounded overflow-hidden"
-        style="max-height: 70vh; overflow: auto"
+        style="max-height: 80vh; overflow: auto"
         data-likes-table-container
       >
-        <table class="w-full text-sm">
-          <thead class="bg-slate-800 text-slate-300">
+        <table class="w-full font-light text-lg">
+          <thead
+            class="top-0 z-10 sticky bg-slate-800 font-light text-slate-300"
+          >
             <tr>
-              <th class="px-3 py-2 text-left">ID (decoded)</th>
+              <th class="px-3 py-2 font-light text-left uppercase">
+                ID (decoded)
+              </th>
               <th
-                class="px-3 py-2 w-20 text-right cursor-pointer select-none"
+                class="px-3 py-2 w-20 font-light text-right uppercase cursor-pointer select-none"
                 @click="toggleSortDir()"
               >
-                Count
-                <span
+                Count&nbsp;<span
                   class="inline-block ml-1 text-seagull-400"
                   aria-hidden="true"
                 >
                   {{ sortDir === 'desc' ? '▾' : '▴' }}
                 </span>
               </th>
-              <th class="px-3 py-2 w-28 text-right">Custom Count</th>
-              <th class="px-3 py-2 w-16 text-right">Apply</th>
+              <th class="px-3 py-2 w-36 font-light text-left uppercase">
+                Set Count
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -105,46 +117,55 @@
                   <NuxtLink
                     :to="row.url"
                     target="_blank"
-                    class="text-seagull-400 hover:text-seagull-300 underline underline-offset-2"
+                    class="text-seagull-400 hover:text-seagull-300"
                   >
                     {{ row.id }}
                   </NuxtLink>
                   <button
-                    class="bg-slate-800 hover:bg-slate-700 px-2 py-0.5 border border-slate-700 rounded text-slate-300"
+                    class="inline-flex justify-center items-center opacity-50 hover:opacity-100 rounded text-slate-400 transition-opacity cursor-pointer"
                     @click="copy(row.id)"
                     title="Copy id"
+                    aria-label="Copy id"
                   >
-                    Copy
+                    <Icon
+                      name="heroicons:document-duplicate"
+                      class="w-5 h-5"
+                      aria-hidden="true"
+                    />
                   </button>
                 </div>
               </td>
-              <td class="px-3 py-2 tabular-nums text-right align-top">
+              <td
+                class="px-3 py-2 tabular-nums text-right align-middle leading-none"
+              >
                 {{ row.count }}
               </td>
-              <td class="px-3 py-2 text-right">
-                <input
-                  v-model.number="customValues[row.id]"
-                  type="number"
-                  min="0"
-                  class="bg-slate-800 px-2 py-1 border border-slate-700 rounded focus:outline-none focus:ring-1 focus:ring-seagull-500 w-20 text-slate-100 text-xs text-right"
-                />
-              </td>
-              <td class="px-3 py-2 text-right">
-                <button
-                  class="bg-seagull-600 hover:bg-seagull-500 disabled:opacity-40 px-2 py-1 rounded text-slate-950 text-xs disabled:cursor-not-allowed"
-                  :disabled="
-                    pending[row.id] ||
-                    customValues[row.id] == null ||
-                    customValues[row.id] < 0
-                  "
-                  @click="applyCustom(row)"
-                >
-                  Set
-                </button>
+              <td class="px-3 py-2 text-left">
+                <div class="inline-flex justify-start items-stretch gap-0">
+                  <input
+                    v-model.number="customValues[row.id]"
+                    type="number"
+                    min="0"
+                    class="bg-slate-800 px-2 py-0 border border-slate-700 rounded-r-none rounded-l-md focus:outline-none focus:ring-1 focus:ring-seagull-500 w-[4.8rem] text-slate-100 text-base text-right"
+                  />
+                  <button
+                    class="inline-flex justify-center items-center bg-seagull-600 hover:bg-seagull-500 disabled:opacity-40 -ml-px rounded-r-md rounded-l-none w-7 h-7 text-[20px] text-slate-950 disabled:cursor-not-allowed"
+                    :disabled="
+                      pending[row.id] ||
+                      customValues[row.id] == null ||
+                      customValues[row.id] < 0
+                    "
+                    @click="applyCustom(row)"
+                    title="Apply set count"
+                    aria-label="Apply set count"
+                  >
+                    <Icon name="material-symbols-light:input" class="w-5 h-5" />
+                  </button>
+                </div>
               </td>
             </tr>
             <tr v-if="!rows.length">
-              <td colspan="2" class="px-3 py-6 text-slate-400 text-center">
+              <td colspan="3" class="px-3 py-6 text-slate-400 text-center">
                 No results
               </td>
             </tr>
@@ -183,11 +204,10 @@
   const cleaningOrphans = ref(false)
 
   const query = ref('')
-  const minCount = ref(null)
-  const maxCount = ref(null)
   const sortBy = ref('count')
   const sortDir = ref('desc')
   const live = ref(true)
+  const refreshing = ref(false)
 
   const sumCounts = computed(() =>
     items.value.reduce((a, b) => a + (b.count || 0), 0)
@@ -201,10 +221,7 @@
         (r) =>
           r.id.toLowerCase().includes(q) || r.key?.toLowerCase?.().includes(q)
       )
-    if (minCount.value != null)
-      arr = arr.filter((r) => r.count >= minCount.value)
-    if (maxCount.value != null)
-      arr = arr.filter((r) => r.count <= maxCount.value)
+    // Min/Max filters removed per request
     arr = [...arr].sort((a, b) => {
       const dir = sortDir.value === 'asc' ? 1 : -1
       if (sortBy.value === 'count') return (a.count - b.count) * dir
@@ -277,6 +294,21 @@
       error.value = e?.message || String(e)
     } finally {
       loading.value = false
+    }
+  }
+
+  async function handleRefresh() {
+    if (loading.value || refreshing.value) {
+      // Prevent stacking
+      return
+    }
+    refreshing.value = true
+    try {
+      await refresh(true)
+      // brief glow/animation persists a moment after completion
+      await new Promise((r) => setTimeout(r, 300))
+    } finally {
+      refreshing.value = false
     }
   }
 

@@ -158,14 +158,29 @@
       if (import.meta.server) return
 
       if (data && (data.quoteText || data.title) && data.attribution) {
-        const { useShareImageGenerator } = await import(
-          '~/composables/useShareImageGenerator'
-        )
-        const { generateQuoteImage } = useShareImageGenerator()
-        shareImageBlob.value = await generateQuoteImage(
-          data.quoteText || data.title,
-          data.attribution
-        )
+        const run = async () => {
+          try {
+            const { useShareImageGenerator } = await import(
+              '~/composables/useShareImageGenerator'
+            )
+            const { generateQuoteImage } = useShareImageGenerator()
+            const blob = await generateQuoteImage(
+              data.quoteText || data.title,
+              data.attribution
+            )
+            if (props.modalData === data) {
+              shareImageBlob.value = blob
+            }
+          } catch (e) {
+            if (import.meta.dev)
+              console.warn('quote share image generation failed', e)
+          }
+        }
+        const idle = (cb) =>
+          window.requestIdleCallback
+            ? window.requestIdleCallback(cb, { timeout: 2500 })
+            : setTimeout(cb, 200)
+        idle(run)
       }
     },
     { immediate: true }
