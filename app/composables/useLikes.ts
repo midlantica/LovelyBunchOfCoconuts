@@ -153,20 +153,18 @@ export function useLikes() {
   const toggleLike = (id: LikeId | undefined | null) => {
     const cid = canonicalizeId(id)
     if (!cid) return false
-    if (_inFlight.has(cid)) return likedMap.value[cid] // ignore rapid double click
-    const wasLiked = !!likedMap.value[cid]
-    const next = !wasLiked
-    likedMap.value[cid] = next
+    if (_inFlight.has(cid)) return likedMap.value[cid]
+    if (likedMap.value[cid]) return true // already liked: one-way increment policy
+    likedMap.value[cid] = true
     const current = getCount(cid)
-    const delta = next ? 1 : -1
-    countMap.value[cid] = Math.max(0, current + delta)
+    countMap.value[cid] = Math.max(0, current + 1)
     persistToStorage()
     if (import.meta.client) {
       _inFlight.add(cid)
       fetch(`/api/likes/${encodeURIComponent(cid)}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ delta }),
+        body: JSON.stringify({ delta: 1 }),
       })
         .catch((e) => {
           if (import.meta.dev)
@@ -174,7 +172,7 @@ export function useLikes() {
         })
         .finally(() => _inFlight.delete(cid))
     }
-    return next
+    return true
   }
 
   const _hydrating = new Set<string>()
