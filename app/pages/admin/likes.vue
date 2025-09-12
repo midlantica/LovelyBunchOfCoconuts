@@ -8,12 +8,6 @@
     </div>
 
     <div v-if="allowed" class="space-y-4">
-      <div class="flex justify-end mb-1 w-full">
-        <img
-          src="https://api.netlify.com/api/v1/badges/cbd5cc6d-699c-403c-bd9c-b81c372c06fd/deploy-status)](https://app.netlify.com/projects/wakeupnpc/deploys"
-          alt="Netlify Status"
-        />
-      </div>
       <div class="flex flex-wrap items-center gap-3">
         <button
           class="inline-flex justify-center items-center opacity-75 hover:opacity-100 disabled:opacity-50 transition-opacity cursor-pointer"
