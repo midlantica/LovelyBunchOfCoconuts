@@ -10,12 +10,7 @@ publish = "dist"
 NODE_VERSION = "22.11.0"
 PNPM_FLAGS = "--shamefully-hoist"
 
-# Pro Plan: Enable build plugins for optimization
-[[plugins]]
-package = "@netlify/plugin-sitemap"
-
-[[plugins]]
-package = "netlify-plugin-cache"
+# Pro Plan: Build plugins removed - using built-in optimizations instead
 
 # Pro Plan: Advanced caching configuration
 [build.processing]
