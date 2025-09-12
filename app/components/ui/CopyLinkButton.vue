@@ -33,9 +33,8 @@
         else raw = origin + '/' + raw
       }
     }
-    // Normalize localhost to production domain for sharing
-    raw = raw.replace('http://localhost:3000', 'https://wakeupnpc.com')
-    raw = raw.replace('https://localhost:3000', 'https://wakeupnpc.com')
+    // In development, keep localhost URLs as-is
+    // In production, they should already be production URLs
     return raw
   })
 

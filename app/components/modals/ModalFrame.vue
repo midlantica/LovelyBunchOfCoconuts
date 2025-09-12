@@ -1,37 +1,43 @@
 <template>
   <teleport to="#modal-root">
-    <div
-      v-if="show"
-      class="z-50 fixed inset-0 flex justify-center items-center bg-black/80 overscroll-contain modal-overlay"
-      @click.self="handleBackdropClick"
+    <transition
+      enter-active-class="modal-enter-active"
+      enter-from-class="modal-enter-from"
+      enter-to-class="modal-enter-to"
+      leave-active-class="modal-leave-active"
+      leave-from-class="modal-leave-from"
+      leave-to-class="modal-leave-to"
     >
       <div
-        class="-top-8 relative flex flex-col shadow-lg mx-0 sm:mx-6 rounded-none sm:rounded-lg modal-frame"
-        :style="
-          modalStyle
-            ? { ...modalStyle, isolation: 'isolate' }
-            : { maxHeight: '90vh', isolation: 'isolate' }
-        "
-        :class="[modalStyle ? '' : 'w-full sm:min-w-[60vw] sm:max-w-[500px]']"
-        @click.stop
+        v-if="show"
+        class="z-50 fixed inset-0 flex justify-center items-center overscroll-contain modal-overlay"
+        @click.self="handleBackdropClick"
       >
-        <!-- Close button now always visible (previously hidden on small screens) -->
-        <UiCloseButton
-          class="hidden md:block top-2 right-2 z-10 absolute"
-          @click="onCloseClick"
-        />
         <div
-          class="relative flex flex-col w-full overflow-x-visible overflow-y-visible"
+          ref="modalEl"
+          class="-top-8 relative flex flex-col shadow-lg mx-0 sm:mx-6 rounded-none sm:rounded-lg modal-frame"
+          :style="computedModalStyle"
+          :class="[modalStyle ? '' : 'w-full sm:min-w-[60vw] sm:max-w-[500px]']"
+          @click.stop
         >
-          <div class="flex-1 min-h-0">
-            <slot name="mainPanel" />
-          </div>
-          <div class="relative flex-shrink-0">
-            <slot name="sharePanel" />
+          <!-- Close button now always visible (previously hidden on small screens) -->
+          <UiCloseButton
+            class="hidden md:block top-2 right-2 z-10 absolute"
+            @click="onCloseClick"
+          />
+          <div
+            class="relative flex flex-col w-full overflow-x-visible overflow-y-visible"
+          >
+            <div class="flex-1 min-h-0">
+              <slot name="mainPanel" />
+            </div>
+            <div class="relative flex-shrink-0">
+              <slot name="sharePanel" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </transition>
   </teleport>
 </template>
 
@@ -43,13 +49,22 @@
 
   const emit = defineEmits(['close'])
   const injectedClose = inject('closeModal', null)
+  const modalEl = ref(null)
 
   // Shared guard to prevent click-through reopening
   const modalGuardUntil = useState('modalGuardUntil', () => 0)
 
+  const computedModalStyle = computed(() => {
+    const baseStyle = props.modalStyle || {
+      maxHeight: '90vh',
+      isolation: 'isolate',
+    }
+    return baseStyle
+  })
+
   const handleBackdropClick = (e) => {
     e.stopPropagation()
-    modalGuardUntil.value = Date.now() + 450
+    modalGuardUntil.value = Date.now() + 150
     emit('close')
     // Fallback if parent listener missing or state not updated
     if (injectedClose) {
@@ -61,7 +76,7 @@
 
   const onCloseClick = (e) => {
     e?.stopPropagation?.()
-    modalGuardUntil.value = Date.now() + 450
+    modalGuardUntil.value = Date.now() + 150
     emit('close')
     if (injectedClose) {
       requestAnimationFrame(() => {
@@ -73,7 +88,7 @@
   function handleEscape(e) {
     if (props.show && (e.key === 'Escape' || e.key === ' ')) {
       e.stopPropagation()
-      modalGuardUntil.value = Date.now() + 450
+      modalGuardUntil.value = Date.now() + 150
       emit('close')
     }
   }
@@ -102,3 +117,38 @@
     { immediate: true }
   )
 </script>
+
+<style scoped>
+  .modal-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: background-color 300ms ease-out;
+  }
+
+  .modal-enter-active {
+    transition: all 300ms ease-out;
+  }
+
+  .modal-leave-active {
+    transition: all 200ms ease-in;
+  }
+
+  .modal-enter-from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  .modal-enter-to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .modal-leave-from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .modal-leave-to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+</style>

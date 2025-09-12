@@ -64,6 +64,7 @@ export function useWallModalOpener({
 
   function openModal(data, type, userInitiated = false) {
     if (Date.now() < modalGuardUntil.value) return
+
     const slug = buildSlug(data, type)
     const payload = { type, data, slug }
     if (userInitiated) payload.__userClick = true

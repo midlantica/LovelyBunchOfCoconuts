@@ -2,7 +2,7 @@
   <button
     :aria-label="ariaLabel"
     :aria-pressed="liked ? 'true' : 'false'"
-    class="group inline-flex relative items-center px-1 py-0.5 rounded-md focus:outline-none cursor-pointer select-none"
+    class="group inline-flex relative items-center px-0 py-0 rounded-md focus:outline-none cursor-pointer select-none"
     :class="outerClass"
     type="button"
     data-like-button="true"
@@ -121,9 +121,9 @@
   function formatAbbrev(n) {
     if (n < 1000) return n.toString()
     const units = [
-      { v: 1e9, s: 'b' },
-      { v: 1e6, s: 'm' },
-      { v: 1e3, s: 'k' },
+      { v: 1e9, s: 'B' },
+      { v: 1e6, s: 'M' },
+      { v: 1e3, s: 'K' },
     ]
     for (const u of units) {
       if (n >= u.v) {
@@ -155,12 +155,11 @@
     setTimeout(() => hydrateServer([props.id]), 150)
   }
 
-  // Guarantee per-button hydration on mount in case the batch hydrator
-  // misses or is delayed. Debounced by hydrateServer's internal guard.
+  // PERFORMANCE: Completely disable individual hydration to avoid blocking modals
+  // The hydration plugin will handle all hydration after user interaction
   onMounted(() => {
-    if (props.id) {
-      hydrateServer([props.id]) // Always hydrate; server value is authoritative
-    }
+    // Individual button hydration is now handled by the hydration plugin
+    // This prevents any blocking API calls when modals open
   })
 </script>
 

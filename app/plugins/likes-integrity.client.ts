@@ -5,8 +5,9 @@ export default defineNuxtPlugin(() => {
   try {
     // @ts-ignore auto-imported composable
     const { integritySync } = useLikes()
-    // Delay slightly more and use lightweight mode by default
-    setTimeout(() => integritySync(), 900)
+    // PERFORMANCE: Increased delay significantly to avoid blocking modal loads
+    // Only run after user has had time to interact with the site
+    setTimeout(() => integritySync(), 5000)
   } catch (e) {
     if (import.meta.dev) console.warn('[likes][integrity] failed init', e)
   }

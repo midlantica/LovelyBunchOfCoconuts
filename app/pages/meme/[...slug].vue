@@ -11,7 +11,7 @@
       >
         <div class="mx-auto md:px-0 pr-3 pl-2 w-full max-w-screen-md">
           <main class="pb-8">
-            <WallTheWall />
+            <WallTheWall :hide-no-content="true" />
           </main>
         </div>
       </div>
@@ -54,29 +54,27 @@
     Array.isArray(route.params.slug) ? route.params.slug.join('/') : ''
   )
 
-  // Try slug map first, then fallback to linear search if not found yet (e.g. progressive load)
+  // Find the meme that matches this path - only look after content is loaded
   const meme = computed(() => {
-    const slug = slugPath.value
-    if (slugMaps.memes.has(slug)) return slugMaps.memes.get(slug)
-    const memesArr = memes.value?.length ? memes.value : cache.memes
-    return memesArr.find((m) => (m.title || '').toLowerCase().includes(slug))
+    if (!contentReady.value) return null
+    return slugMaps.memes.get(slugPath.value)
   })
 
-  watch(
-    meme,
-    (val) => {
-      if (!contentReady.value) return
-      if (!val && slugPath.value) {
+  // Watch for content loading completion and check meme availability
+  watch(contentReady, async (ready) => {
+    if (ready) {
+      await nextTick()
+      // If content is ready but meme still not found, redirect
+      if (!meme.value && slugPath.value) {
         const q = slugPath.value.split('/').pop()
         navigateTo({ path: '/', query: { nf: '1', q } })
       }
-    },
-    { immediate: true }
-  )
+    }
+  })
 
   function navigateHome() {
     modalVisible.value = false
-    modalGuardUntil.value = Date.now() + 450
+    modalGuardUntil.value = Date.now() + 150
     requestAnimationFrame(() => router.push('/'))
   }
 

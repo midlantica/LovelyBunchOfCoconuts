@@ -11,7 +11,7 @@
       >
         <div class="mx-auto md:px-0 pr-3 pl-2 w-full max-w-screen-md">
           <main class="pb-8">
-            <WallTheWall />
+            <WallTheWall :hide-no-content="true" />
           </main>
         </div>
       </div>
@@ -40,52 +40,98 @@
   const contentReady = ref(false)
   onServerPrefetch(async () => {
     try {
-      await ensureContentLoaded()
+      await loadAllContent()
       contentReady.value = true
-    } catch {}
+    } catch (e) {
+      console.error('Server prefetch failed:', e)
+    }
   })
 
   const wallScrollTop = useState('wallScrollTop', () => 0)
 
-  const slugPath = computed(() =>
-    Array.isArray(route.params.slug) ? route.params.slug.join('/') : ''
-  )
+  const slugPath = computed(() => {
+    const slug = Array.isArray(route.params.slug)
+      ? route.params.slug.join('/')
+      : route.params.slug || ''
+    return slug
+  })
 
-  // Claim referenced in template
-  const claim = computed(() => slugMaps.claims.get(slugPath.value))
+  // Claim referenced in template - only look in slug maps after content is loaded
+  const claim = computed(() => {
+    if (!contentReady.value) return null
+
+    // First try slug map lookup
+    let foundClaim = slugMaps.claims.get(slugPath.value)
+
+    // If not found, try fallback search through claims array
+    if (!foundClaim && claims.value?.length) {
+      const slug = slugPath.value.toLowerCase()
+      foundClaim = claims.value.find((claim) => {
+        const filename = (claim.id || claim._path || '')
+          .split('/')
+          .pop()
+          ?.replace(/\.md$/, '')
+          .toLowerCase()
+        return (
+          filename === slug ||
+          filename?.includes(slug) ||
+          slug.includes(filename || '')
+        )
+      })
+    }
+
+    return foundClaim
+  })
 
   function navigateHome() {
     modalVisible.value = false
     const modalGuardUntil = useState('modalGuardUntil', () => 0)
-    modalGuardUntil.value = Date.now() + 450
+    modalGuardUntil.value = Date.now() + 150
     router.push('/')
   }
 
   onMounted(async () => {
-    // Ensure content is loaded
-    if (!claims?.value?.length) {
+    console.log('🔍 Claim page mounted, looking for:', slugPath.value)
+
+    // Ensure content is loaded first
+    if (!claims?.value?.length || !contentReady.value) {
+      console.log('📥 Loading content...')
       await loadAllContent()
+      contentReady.value = true
     }
-    if (!contentReady.value) {
-      try {
-        await ensureContentLoaded()
-        contentReady.value = true
-      } catch {}
+
+    // Wait for next tick to ensure reactive updates have processed
+    await nextTick()
+
+    console.log('🗺️ Slug maps claims size:', slugMaps.claims.size)
+    console.log('🔍 Looking for slug:', slugPath.value)
+    console.log('✅ Found claim:', !!slugMaps.claims.get(slugPath.value))
+
+    // Debug: show all available claim slugs
+    if (import.meta.dev) {
+      console.log('Available claim slugs:', Array.from(slugMaps.claims.keys()))
     }
 
     // Restore wall scroll if available
-    nextTick(() => {
-      const scrollContainer = document.querySelector('.scroll-container-stable')
-      if (scrollContainer && wallScrollTop.value > 0) {
-        scrollContainer.scrollTo({ top: wallScrollTop.value })
-      }
-    })
+    const scrollContainer = document.querySelector('.scroll-container-stable')
+    if (scrollContainer && wallScrollTop.value > 0) {
+      scrollContainer.scrollTo({ top: wallScrollTop.value })
+    }
 
-    // Handle missing item
-    if (!claim.value) {
-      const unfound = route.params.slug
-      const q = Array.isArray(unfound) ? unfound[unfound.length - 1] : unfound
-      router.replace({ path: '/', query: { q: q, nf: '1' } })
+    // Don't redirect - just stay on the claim URL even if not found
+    if (contentReady.value && !claim.value) {
+      console.log('❌ Claim not found, but staying on URL')
+    }
+  })
+
+  // Watch for content loading completion and check claim availability
+  watch(contentReady, async (ready) => {
+    if (ready) {
+      await nextTick()
+      // Don't redirect - just stay on the claim URL even if not found
+      if (!claim.value) {
+        console.log('❌ Claim not found in watcher, but staying on URL')
+      }
     }
   })
 </script>

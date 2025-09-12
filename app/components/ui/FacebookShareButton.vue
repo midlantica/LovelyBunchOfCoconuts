@@ -54,10 +54,8 @@
   const handleClick = async () => {
     let shareUrl = props.url.trim()
     if (shareUrl.includes('localhost')) {
-      shareUrl = shareUrl.replace(
-        'http://localhost:3000',
-        'https://wakeupnpc.com'
-      )
+      // In development, keep localhost URLs as-is
+      // In production, they should already be production URLs
     }
     const shareText = `${formattedText.value}\n\n${shareUrl}`
     try {

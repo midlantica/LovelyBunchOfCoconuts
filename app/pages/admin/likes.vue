@@ -36,6 +36,14 @@
           <input type="checkbox" v-model="live" class="accent-seagull-500" />
           Live
         </label>
+        <div class="flex items-center gap-2 ml-4">
+          <button
+            class="bg-green-600 hover:bg-green-500 px-3 py-1 rounded text-white text-sm"
+            @click="showTestingTools = !showTestingTools"
+          >
+            {{ showTestingTools ? 'Hide' : 'Show' }} Testing Tools
+          </button>
+        </div>
         <div class="flex items-center gap-2 ml-auto">
           <div class="inline-flex items-stretch gap-0">
             <input
@@ -75,6 +83,85 @@
 
       <div v-if="error" class="bg-red-900/40 p-3 rounded text-red-200 text-sm">
         {{ error }}
+      </div>
+
+      <!-- Testing Tools Panel -->
+      <div
+        v-if="showTestingTools"
+        class="space-y-4 bg-slate-800/50 p-4 border border-slate-600 rounded-lg"
+      >
+        <h3 class="mb-3 font-medium text-slate-200 text-lg">
+          🧪 Likes Testing Tools
+        </h3>
+
+        <div class="gap-4 grid grid-cols-1 md:grid-cols-2">
+          <!-- Quick Test Buttons -->
+          <div class="space-y-3">
+            <h4 class="font-medium text-slate-300 text-sm">Quick Actions</h4>
+            <div class="flex flex-wrap gap-2">
+              <button
+                class="bg-blue-600 hover:bg-blue-500 px-3 py-1.5 rounded text-white text-sm"
+                @click="addRandomLikes(5)"
+                :disabled="addingLikes"
+              >
+                {{ addingLikes ? 'Adding...' : 'Add 5 Random Likes' }}
+              </button>
+              <button
+                class="bg-purple-600 hover:bg-purple-500 px-3 py-1.5 rounded text-white text-sm"
+                @click="simulateMultiUser()"
+                :disabled="simulatingUsers"
+              >
+                {{ simulatingUsers ? 'Simulating...' : 'Simulate Multi-User' }}
+              </button>
+              <button
+                class="bg-orange-600 hover:bg-orange-500 px-3 py-1.5 rounded text-white text-sm"
+                @click="testModalPerformance()"
+              >
+                Test Modal Speed
+              </button>
+            </div>
+          </div>
+
+          <!-- Performance Info -->
+          <div class="space-y-3">
+            <h4 class="font-medium text-slate-300 text-sm">
+              Performance Status
+            </h4>
+            <div class="space-y-1 text-slate-400 text-xs">
+              <div>
+                Live Poll:
+                <span class="text-red-400">DISABLED</span> (performance)
+              </div>
+              <div>
+                Global Poll:
+                <span class="text-red-400">DISABLED</span> (performance)
+              </div>
+              <div>
+                Hydration: <span class="text-green-400">OPTIMIZED</span> (200ms
+                delay)
+              </div>
+              <div>
+                Integrity: <span class="text-green-400">OPTIMIZED</span> (5s
+                delay)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Test Results -->
+        <div v-if="testResults.length" class="mt-4">
+          <h4 class="mb-2 font-medium text-slate-300 text-sm">Test Results</h4>
+          <div class="bg-slate-900/50 p-3 rounded max-h-32 overflow-y-auto">
+            <div
+              v-for="result in testResults"
+              :key="result.id"
+              class="mb-1 text-slate-300 text-xs"
+            >
+              <span class="text-slate-500">{{ result.time }}</span> -
+              {{ result.message }}
+            </div>
+          </div>
+        </div>
       </div>
 
       <div
@@ -209,6 +296,12 @@
   const live = ref(true)
   const refreshing = ref(false)
 
+  // Testing tools state
+  const showTestingTools = ref(false)
+  const addingLikes = ref(false)
+  const simulatingUsers = ref(false)
+  const testResults = ref([])
+
   const sumCounts = computed(() =>
     items.value.reduce((a, b) => a + (b.count || 0), 0)
   )
@@ -231,8 +324,14 @@
   })
 
   function toggleSortDir() {
-    sortDir.value = sortDir.value === 'desc' ? 'asc' : 'desc'
-    sortBy.value = 'count'
+    if (sortBy.value === 'count') {
+      // Toggle direction if already sorting by count
+      sortDir.value = sortDir.value === 'desc' ? 'asc' : 'desc'
+    } else {
+      // Switch to count sorting with desc as default
+      sortBy.value = 'count'
+      sortDir.value = 'desc'
+    }
   }
 
   async function refresh(reset = true) {
@@ -389,6 +488,142 @@
   onUnmounted(() => {
     if (containerEl) containerEl.removeEventListener('scroll', handleScroll)
   })
+
+  // Testing Tools Functions
+  function addTestResult(message) {
+    const now = new Date()
+    testResults.value.unshift({
+      id: Date.now(),
+      time: now.toLocaleTimeString(),
+      message,
+    })
+    // Keep only last 10 results
+    if (testResults.value.length > 10) {
+      testResults.value = testResults.value.slice(0, 10)
+    }
+  }
+
+  async function addRandomLikes(count = 5) {
+    if (addingLikes.value || !items.value.length) return
+    addingLikes.value = true
+
+    try {
+      const randomItems = [...items.value]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, count)
+
+      let added = 0
+      for (const item of randomItems) {
+        const randomLikes = Math.floor(Math.random() * 10) + 1
+        const newCount = (item.count || 0) + randomLikes
+
+        try {
+          const res = await fetch('/api/likes/set', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: item.id, value: newCount }),
+          })
+
+          if (res.ok) {
+            item.count = newCount
+            customValues[item.id] = newCount
+            if (process.client && window.__wakeupnpcSetLike) {
+              window.__wakeupnpcSetLike(item.id, newCount)
+            }
+            added++
+          }
+        } catch (e) {
+          console.warn('Failed to add likes to', item.id, e)
+        }
+      }
+
+      addTestResult(`Added random likes to ${added}/${count} items`)
+    } catch (e) {
+      addTestResult(`Error adding random likes: ${e.message}`)
+    } finally {
+      addingLikes.value = false
+    }
+  }
+
+  async function simulateMultiUser() {
+    if (simulatingUsers.value || !items.value.length) return
+    simulatingUsers.value = true
+
+    try {
+      // Pick 3 random items and simulate multiple users liking them
+      const targets = [...items.value]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3)
+
+      addTestResult('Simulating multi-user activity...')
+
+      for (const target of targets) {
+        // Simulate 2-5 users liking this item over time
+        const userCount = Math.floor(Math.random() * 4) + 2
+        const baseCount = target.count || 0
+
+        for (let i = 0; i < userCount; i++) {
+          await new Promise((resolve) =>
+            setTimeout(resolve, 200 + Math.random() * 300)
+          )
+
+          const newCount = baseCount + i + 1
+          try {
+            await fetch('/api/likes/set', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: target.id, value: newCount }),
+            })
+
+            target.count = newCount
+            customValues[target.id] = newCount
+            if (process.client && window.__wakeupnpcSetLike) {
+              window.__wakeupnpcSetLike(target.id, newCount)
+            }
+          } catch (e) {
+            console.warn('Simulation step failed', e)
+          }
+        }
+      }
+
+      addTestResult(
+        `Simulated ${targets.length} items with multi-user activity`
+      )
+    } catch (e) {
+      addTestResult(`Multi-user simulation error: ${e.message}`)
+    } finally {
+      simulatingUsers.value = false
+    }
+  }
+
+  async function testModalPerformance() {
+    if (!items.value.length) {
+      addTestResult('No items available for modal test')
+      return
+    }
+
+    const startTime = performance.now()
+    addTestResult('Testing modal performance...')
+
+    try {
+      // Find a random item to test with
+      const testItem =
+        items.value[Math.floor(Math.random() * items.value.length)]
+
+      // Open the item in a new tab to test modal loading
+      const url = testItem.url
+      window.open(url, '_blank')
+
+      const endTime = performance.now()
+      const duration = Math.round(endTime - startTime)
+
+      addTestResult(
+        `Modal test initiated in ${duration}ms - Check new tab for actual load time`
+      )
+    } catch (e) {
+      addTestResult(`Modal test error: ${e.message}`)
+    }
+  }
 
   watch(
     () => query.value,

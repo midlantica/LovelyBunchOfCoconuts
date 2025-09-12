@@ -86,7 +86,7 @@
 
       <!-- No content message -->
       <WallNoContent
-        v-if="interleavedContent.length === 0"
+        v-if="interleavedContent.length === 0 && !hideNoContent"
         message="No content available"
         @clear-search="onClearSearch"
       />
@@ -117,6 +117,7 @@
       type: Object,
       default: () => ({ claims: true, quotes: true, memes: true }),
     },
+    hideNoContent: { type: Boolean, default: false },
   })
 
   // Inject global state (provided by index.vue) and fallback to useState so it persists across routes

@@ -55,14 +55,12 @@
     console.log('🐦 Twitter share clicked')
 
     let shareUrl = props.url.trim()
-    if (shareUrl.includes('localhost')) {
-      shareUrl = shareUrl.replace(
-        'http://localhost:3000',
-        'https://wakeupnpc.com'
-      )
-    }
+    // In development, keep localhost URLs as-is
+    // In production, they should already be production URLs
 
-    const twitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(formattedText.value)}&url=${encodeURIComponent(shareUrl)}`
+    const twitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(
+      formattedText.value
+    )}&url=${encodeURIComponent(shareUrl)}`
     window.open(twitterUrl, '_blank', 'width=550,height=420')
   }
 

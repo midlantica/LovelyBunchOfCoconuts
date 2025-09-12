@@ -97,7 +97,7 @@
   const { generateContentUrl } = useContentUrls()
 
   const shareImageBlob = ref(null)
-  const { showShareShelf, onToggle } = useShareShelf(500)
+  const { showShareShelf, onToggle } = useShareShelf(25)
 
   // Create shareable URL
   const shareUrl = computed(() => {

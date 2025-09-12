@@ -3,7 +3,9 @@
 // @ts-ignore defineNuxtPlugin provided by Nuxt at runtime
 export default defineNuxtPlugin(() => {
   if (import.meta.server) return
-  if (import.meta.env?.NUXT_PUBLIC_LIKES_LIVE === 'off') return
+  // PERFORMANCE: Disabled by default to improve modal load times
+  // Enable with NUXT_PUBLIC_LIKES_LIVE=on if needed
+  if (import.meta.env?.NUXT_PUBLIC_LIKES_LIVE !== 'on') return
   // @ts-ignore useLikes auto-import
   const { _countMap, hydrateServer } = useLikes()
   let timer: any

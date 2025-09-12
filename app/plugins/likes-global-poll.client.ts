@@ -6,6 +6,9 @@
 // @ts-ignore - provided globally by Nuxt at runtime
 export default defineNuxtPlugin(() => {
   if (import.meta.server) return
+  // PERFORMANCE: Disabled entirely to improve modal load times
+  // This plugin was causing heavy API calls that slowed down the site
+  return
   // Default OFF; opt-in if you really need background merging
   if (import.meta.env?.NUXT_PUBLIC_LIKES_GLOBAL_POLL !== 'on') return
   // @ts-ignore auto-import composable

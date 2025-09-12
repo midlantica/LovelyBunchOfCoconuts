@@ -11,7 +11,7 @@
       >
         <div class="mx-auto md:px-0 pr-3 pl-2 w-full max-w-screen-md">
           <main class="pb-8">
-            <WallTheWall />
+            <WallTheWall :hide-no-content="true" />
           </main>
         </div>
       </div>
@@ -70,45 +70,23 @@
       : route.params.slug
   )
 
-  // Find the quote that matches this path - make it reactive to route changes
+  // Find the quote that matches this path - only look after content is loaded
   const quote = computed(() => {
-    const currentSlug = routeSlug.value
-
-    const quotesArray = quotes.value?.length > 0 ? quotes.value : cache.quotes
-
-    if (!quotesArray || quotesArray.length === 0) {
-      return null
-    }
-
-    const foundQuote = quotesArray.find((quote) => {
-      if (quote.id) {
-        const filename = quote.id.split('/').pop()?.replace(/\.md$/, '') || ''
-        const currentSlugLower = currentSlug.toLowerCase()
-        const filenameLower = filename.toLowerCase()
-
-        return (
-          filenameLower.includes(currentSlugLower) ||
-          currentSlugLower.includes(filenameLower)
-        )
-      }
-      return false
-    })
-
-    return foundQuote
+    if (!contentReady.value) return null
+    return slugMaps.quotes.get(routeSlug.value)
   })
 
-  // Redirect to home with prefilled search if not found
-  watch(
-    quote,
-    (val) => {
-      if (!contentReady.value) return
-      if (!val && routeSlug.value) {
+  // Watch for content loading completion and check quote availability
+  watch(contentReady, async (ready) => {
+    if (ready) {
+      await nextTick()
+      // If content is ready but quote still not found, redirect
+      if (!quote.value && routeSlug.value) {
         const q = routeSlug.value
         navigateTo({ path: '/', query: { nf: '1', q } })
       }
-    },
-    { immediate: true }
-  )
+    }
+  })
 
   const slugify = (str = '') =>
     str
@@ -121,7 +99,7 @@
 
   const navigateHome = () => {
     const modalGuardUntil = useState('modalGuardUntil', () => 0)
-    modalGuardUntil.value = Date.now() + 450
+    modalGuardUntil.value = Date.now() + 150
     modalVisible.value = false
     requestAnimationFrame(() => router.push('/'))
   }
