@@ -24,7 +24,7 @@
   "scriptsExtra": {},
   "dependencies": {
     "@napi-rs/canvas": "^0.1.79",
-    "@nuxt/content": "3.6.3",
+    "@nuxt/content": "3.7.0",
     "@nuxt/eslint": "1.9.0",
     "@nuxt/icon": "2.0.0",
     "@nuxtjs/mdc": "0.17.4",

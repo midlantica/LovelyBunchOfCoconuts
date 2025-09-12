@@ -1,5 +1,7 @@
 # WakeUpNPC2
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cbd5cc6d-699c-403c-bd9c-b81c372c06fd/deploy-status)](https://app.netlify.com/projects/wakeupnpc/deploys)
+
 Nuxt 3 content wall (Claims · Quotes · Memes) rendered in a strict repeating pattern:
 
 `[ claim | claim ] → [ quote ] → [ meme | meme ] → [ quote ] → (repeat)`
