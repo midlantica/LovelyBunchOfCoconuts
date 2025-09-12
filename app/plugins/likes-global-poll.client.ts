@@ -6,11 +6,9 @@
 // @ts-ignore - provided globally by Nuxt at runtime
 export default defineNuxtPlugin(() => {
   if (import.meta.server) return
-  // PERFORMANCE: Disabled entirely to improve modal load times
-  // This plugin was causing heavy API calls that slowed down the site
-  return
-  // Default OFF; opt-in if you really need background merging
-  if (import.meta.env?.NUXT_PUBLIC_LIKES_GLOBAL_POLL !== 'on') return
+  // Enable global polling by default to sync likes across browsers
+  // Can be disabled with NUXT_PUBLIC_LIKES_GLOBAL_POLL=off
+  if (import.meta.env?.NUXT_PUBLIC_LIKES_GLOBAL_POLL === 'off') return
   // @ts-ignore auto-import composable
   const { _countMap, _canonicalizeId } = useLikes()
   let timer: any = null
