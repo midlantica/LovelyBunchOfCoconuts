@@ -43,9 +43,12 @@ export const TERM_RELATIONS = {
   speech: ['free speech', 'expression', 'freedom of expression'],
   capitalism: [
     'free market',
+    'free markets',
     'freedom',
     'market economy',
     'private enterprise',
+    'hayek',
+    'capitalism',
   ],
   // Support phrase keys in lowercase with spaces
   'free markets': [

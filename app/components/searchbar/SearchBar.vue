@@ -9,7 +9,7 @@
       />
       <!-- Tokenized input with pills -->
       <div
-        class="bg-transparent focus-within:bg-transparent px-[2.25rem] py-[0.2rem] border-[thin] border-seagull-400/40 focus-within:border-seagull-400/80 rounded-[20px] outline-none w-full font-light text-[1.02rem] text-slate-200 sm:text-[0.935rem] leading-none tracking-wider"
+        class="bg-transparent focus-within:bg-transparent px-[2.25rem] py-[0.2rem] border-[thin] border-seagull-400/40 rounded-[20px] outline-none w-full font-light text-[1.02rem] text-slate-200 sm:text-[0.935rem] leading-none tracking-wider"
         @click="focusInnerInput"
       >
         <div

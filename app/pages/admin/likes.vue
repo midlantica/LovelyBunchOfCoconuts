@@ -49,7 +49,7 @@
             <input
               v-model="query"
               placeholder="Search for…"
-              class="bg-slate-800 px-2 py-1 border border-slate-700 rounded-r-none rounded-l-md focus:outline-none focus:ring-1 focus:ring-seagull-500 text-slate-100"
+              class="bg-slate-800 px-2 py-1 border border-slate-700 rounded-r-none rounded-l-md outline-0 text-slate-100"
             />
             <button
               class="inline-flex justify-center items-center bg-slate-700 hover:bg-slate-600 -ml-px rounded-r-md rounded-l-none w-8 h-8 text-slate-200"

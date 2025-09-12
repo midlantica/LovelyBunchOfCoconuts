@@ -44,7 +44,9 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     if (!q?.trim()) return groups
     const out = {}
     for (const k in groups) {
-      out[k] = groups[k].filter((it) => textMatches(it.searchableText, q))
+      out[k] = groups[k].filter((it) =>
+        textMatches(it._search || it.searchableText, q)
+      )
     }
     return out
   }
