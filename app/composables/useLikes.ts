@@ -134,7 +134,8 @@ export function useLikes() {
     try {
       const isProd =
         typeof window !== 'undefined' &&
-        location.hostname.endsWith('wakeupnpc.com')
+        (location.hostname.endsWith('wakeupnpc.com') ||
+          location.hostname.includes('netlify.app'))
       const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
       const res = await fetch(url).catch(() => null as any)
       if (!res || !res.ok) return
@@ -170,17 +171,19 @@ export function useLikes() {
     }
   }
 
-  // Toggle like (user can undo their single like). Each user contributes at most 1.
+  // Toggle like - users can like multiple times to increment count
   const _inFlight = new Set<string>()
   const toggleLike = (id: LikeId | undefined | null) => {
     const cid = canonicalizeId(id)
     if (!cid) return false
     if (_inFlight.has(cid)) return likedMap.value[cid]
-    if (likedMap.value[cid]) return true // already liked: one-way increment policy
+
+    // Always allow incrementing - remove one-way restriction
     likedMap.value[cid] = true
     const current = getCount(cid)
     countMap.value[cid] = Math.max(0, current + 1)
     persistToStorage()
+
     if (import.meta.client) {
       _inFlight.add(cid)
       fetch(`/api/likes/${encodeURIComponent(cid)}`, {
@@ -188,6 +191,16 @@ export function useLikes() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ delta: 1 }),
       })
+        .then(async (res) => {
+          if (res.ok) {
+            const data = await res.json().catch(() => ({}))
+            if (typeof data.count === 'number') {
+              // Update with server's authoritative count
+              countMap.value[cid] = data.count
+              persistToStorage()
+            }
+          }
+        })
         .catch((e) => {
           if (import.meta.dev)
             console.warn('[likes] server sync failed', cid, e?.message || e)
@@ -219,7 +232,8 @@ export function useLikes() {
         // Fallback to debug route that returns all counts; append ?dev=1 in prod
         const isProd =
           typeof window !== 'undefined' &&
-          location.hostname.endsWith('wakeupnpc.com')
+          (location.hostname.endsWith('wakeupnpc.com') ||
+            location.hostname.includes('netlify.app'))
         const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
         res = await fetch(url).catch(() => null as any)
         if (!res || !res.ok) {
@@ -235,7 +249,8 @@ export function useLikes() {
         try {
           const isProd =
             typeof window !== 'undefined' &&
-            location.hostname.endsWith('wakeupnpc.com')
+            (location.hostname.endsWith('wakeupnpc.com') ||
+              location.hostname.includes('netlify.app'))
           const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
           const res2 = await fetch(url).catch(() => null as any)
           if (res2 && res2.ok) {
@@ -270,7 +285,8 @@ export function useLikes() {
         try {
           const isProd =
             typeof window !== 'undefined' &&
-            location.hostname.endsWith('wakeupnpc.com')
+            (location.hostname.endsWith('wakeupnpc.com') ||
+              location.hostname.includes('netlify.app'))
           const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
           const res3 = await fetch(url).catch(() => null as any)
           if (res3 && res3.ok) {
