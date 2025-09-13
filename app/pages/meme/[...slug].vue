@@ -67,7 +67,13 @@
       // If content is ready but meme still not found, redirect
       if (!meme.value && slugPath.value) {
         const q = slugPath.value.split('/').pop()
-        navigateTo({ path: '/', query: { nf: '1', q } })
+        // Only redirect if we're not already on the home page
+        if (route.path !== '/') {
+          await navigateTo(
+            { path: '/', query: { nf: '1', q } },
+            { replace: true }
+          )
+        }
       }
     }
   })
@@ -89,11 +95,14 @@
         scrollContainer.scrollTo({ top: wallScrollTop.value })
       }
     })
-    if (!meme.value) {
-      const unfound = route.params.slug
-      const q = Array.isArray(unfound) ? unfound[unfound.length - 1] : unfound
-      router.replace({ path: '/', query: { q: q, nf: '1' } })
-    }
+    // Check after a small delay to ensure content is fully loaded
+    setTimeout(() => {
+      if (!meme.value && route.path !== '/') {
+        const unfound = route.params.slug
+        const q = Array.isArray(unfound) ? unfound[unfound.length - 1] : unfound
+        router.replace({ path: '/', query: { q: q, nf: '1' } })
+      }
+    }, 100)
   })
 
   const slugify = (str = '') =>
