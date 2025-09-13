@@ -211,6 +211,9 @@ export function useLikes() {
   }
 
   const _hydrating = new Set<string>()
+  const _retryCount = new Map<string, number>()
+  const MAX_RETRIES = 2
+
   async function hydrateServer(ids: string[]) {
     if (!ids || ids.length === 0) return
     if (import.meta.server) return
@@ -334,11 +337,40 @@ export function useLikes() {
     } finally {
       pending.forEach((i) => _hydrating.delete(i))
       if (shouldRetry && batch.length) {
-        // Gentle backoff retry to avoid noisy warnings during transient outages
-        setTimeout(() => {
-          // Re-run for the same batch; hydrator guard prevents duplicate spam
-          hydrateServer(batch)
-        }, 1500)
+        // Check retry count to prevent infinite retries
+        const batchKey = batch.join(',')
+        const retryCount = _retryCount.get(batchKey) || 0
+
+        if (retryCount < MAX_RETRIES) {
+          _retryCount.set(batchKey, retryCount + 1)
+          const retryDelay = 1500 * Math.pow(2, retryCount) // Exponential backoff
+
+          if (!import.meta.dev) {
+            // In production, only log on first retry
+            if (retryCount === 0) {
+              console.info(
+                `[likes] API request failed, retrying in ${
+                  retryDelay / 1000
+                }s...`
+              )
+            }
+          }
+
+          setTimeout(() => {
+            // Re-run for the same batch
+            hydrateServer(batch)
+          }, retryDelay)
+        } else {
+          // Max retries reached, clear retry count and give up
+          _retryCount.delete(batchKey)
+          if (!import.meta.dev) {
+            console.warn('[likes] Max retries reached, giving up on batch')
+          }
+        }
+      } else {
+        // Success or no retry needed, clear retry count
+        const batchKey = batch.join(',')
+        _retryCount.delete(batchKey)
       }
     }
   }
