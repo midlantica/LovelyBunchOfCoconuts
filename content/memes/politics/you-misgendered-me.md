@@ -1,7 +1,8 @@
 ---
-title: "You misgendered me"
+title: 'You misgendered me'
 ---
 
 ![You misgendered me](/memes/politics/you-misgendered-me.jpg)
 
-You misgendered me
+A: You misgendered me!
+B: You have misgendered yourself.

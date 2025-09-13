@@ -1,7 +1,7 @@
 ---
-title: "Ludwig von mises"
+title: 'Ludwig von Mises'
 ---
 
-![Ludwig von mises](/memes/politics/ludwig-von-mises.jpg)
+![Ludwig von Mises](/memes/politics/ludwig-von-mises.jpg)
 
-Ludwig von mises
+Ludwig von Mises
