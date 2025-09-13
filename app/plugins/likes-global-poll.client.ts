@@ -19,13 +19,57 @@ export default defineNuxtPlugin(() => {
     try {
       const isProd =
         typeof window !== 'undefined' &&
-        location.hostname.endsWith('wakeupnpc.com')
+        (location.hostname.endsWith('wakeupnpc.com') ||
+          location.hostname.includes('netlify.app'))
       const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
+
+      if (
+        import.meta.dev &&
+        import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
+      ) {
+        console.info('[likes][global-poll] fetching from:', url)
+      }
+
       const res = await fetch(url).catch(() => null as any)
-      if (!res || !res.ok) return schedule()
+      if (!res || !res.ok) {
+        if (
+          import.meta.dev &&
+          import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
+        ) {
+          console.warn(
+            '[likes][global-poll] fetch failed:',
+            res?.status,
+            res?.statusText
+          )
+        }
+        return schedule()
+      }
+
       const data = await res.json().catch(() => ({}))
+
+      if (
+        import.meta.dev &&
+        import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
+      ) {
+        console.info('[likes][global-poll] response:', {
+          totalKeys: data?.totalKeys,
+          environment: data?.environment,
+          restricted: data?.restricted,
+          error: data?.error,
+        })
+      }
+
+      if (data?.restricted) {
+        console.warn(
+          '[likes][global-poll] API restricted - likes may not sync across browsers'
+        )
+        return schedule()
+      }
+
       const counts: Record<string, number> = data?.counts || {}
       let changed = false
+      let updatedCount = 0
+
       for (const [k, v] of Object.entries(counts)) {
         const cid = _canonicalizeId(k)
         if (!cid) continue
@@ -33,15 +77,27 @@ export default defineNuxtPlugin(() => {
           if (_countMap.value[cid] !== v) {
             _countMap.value[cid] = v
             changed = true
+            updatedCount++
           }
         }
       }
-      if (
-        changed &&
-        import.meta.dev &&
-        import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
-      ) {
-        console.info('[likes][global-poll] merged higher counts')
+
+      if (changed) {
+        if (
+          import.meta.dev &&
+          import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
+        ) {
+          console.info(`[likes][global-poll] updated ${updatedCount} counts`)
+        }
+        // Persist the updated counts to localStorage
+        try {
+          localStorage.setItem(
+            'wakeupnpc.likeCounts.v1',
+            JSON.stringify(_countMap.value)
+          )
+        } catch (e) {
+          console.warn('[likes][global-poll] failed to persist counts', e)
+        }
       }
     } catch (e) {
       if (import.meta.dev && import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1')
