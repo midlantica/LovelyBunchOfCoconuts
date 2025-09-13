@@ -70,7 +70,7 @@
     }
 
     const initClient = () => {
-      // 1) Handle ?q= and ?nf=
+      // 1) Handle ?q= and ?nf= with better error handling
       try {
         const url = new URL(window.location.href)
         const rawQ = url.searchParams.get('q') || ''
@@ -78,19 +78,39 @@
           'modalSuppressedFromQuery',
           () => false
         )
+
+        // Handle the search query parameter
         if (rawQ) {
           let decoded = rawQ
           try {
             decoded = decodeURIComponent(rawQ)
-          } catch {}
-          searchTerm.value = decoded.toLowerCase().trim()
+          } catch (e) {
+            console.warn('Failed to decode search query:', e)
+            decoded = rawQ // Use raw value if decoding fails
+          }
+
+          // Sanitize and limit the search term length to prevent issues
+          const sanitized = decoded
+            .toLowerCase()
+            .trim()
+            .substring(0, 100) // Limit length
+            .replace(/[^\w\s-]/g, '') // Remove special characters except spaces and hyphens
+
+          searchTerm.value = sanitized
           modalSuppressed.value = true
         }
-        if (url.searchParams.has('nf')) {
+
+        // Clean up URL parameters after processing
+        if (url.searchParams.has('nf') || url.searchParams.has('q')) {
           url.searchParams.delete('nf')
+          url.searchParams.delete('q')
+          // Use replaceState to avoid adding to history
           window.history.replaceState({}, '', url.toString())
         }
-      } catch {}
+      } catch (e) {
+        console.error('Error processing URL parameters:', e)
+        // Continue execution even if URL processing fails
+      }
 
       // 2) Scroll persistence
       try {
@@ -112,7 +132,9 @@
       window.addEventListener('hashchange', handleHashChange)
     }
 
-    nextTick(initClient)
+    // Delay initialization slightly to ensure DOM is ready
+    setTimeout(initClient, 100)
+
     onBeforeUnmount(() => {
       if (typeof cleanupScroll === 'function') cleanupScroll()
       window.removeEventListener('hashchange', handleHashChange)
