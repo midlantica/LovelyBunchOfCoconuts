@@ -1,7 +1,11 @@
 <template>
-  <NuxtLayout>
-    <NuxtPage :keepalive="keepAliveConfig" />
-  </NuxtLayout>
+  <div>
+    <NuxtLayout>
+      <NuxtPage :keepalive="keepAliveConfig" />
+    </NuxtLayout>
+    <!-- Modal root for teleport -->
+    <div id="modal-root"></div>
+  </div>
 </template>
 
 <script setup>
