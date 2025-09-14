@@ -45,35 +45,101 @@
   const siteUrl = runtimeConfig.public.siteUrl || 'https://wakeupnpc.com'
 
   const contentReady = ref(false)
+  const loadingTimeout = ref(null)
+
   onServerPrefetch(async () => {
     try {
       await ensureContentLoaded()
       contentReady.value = true
-    } catch {}
+    } catch (e) {
+      console.error('Failed to load content during SSR:', e)
+    }
   })
 
   onMounted(async () => {
     if (!contentReady.value) {
-      await ensureContentLoaded()
-      contentReady.value = true
+      // Set a timeout to prevent infinite loading
+      loadingTimeout.value = setTimeout(() => {
+        console.warn('Content loading timeout - redirecting to home')
+        const q = routeSlug.value?.split('/').pop() || ''
+        navigateTo({ path: '/', query: { nf: '1', q } }, { replace: true })
+      }, 5000) // 5 second timeout
+
+      try {
+        await ensureContentLoaded()
+        contentReady.value = true
+
+        // Clear timeout if loading succeeded
+        if (loadingTimeout.value) {
+          clearTimeout(loadingTimeout.value)
+          loadingTimeout.value = null
+        }
+      } catch (e) {
+        console.error('Failed to load content:', e)
+        // Redirect on error
+        const q = routeSlug.value?.split('/').pop() || ''
+        navigateTo({ path: '/', query: { nf: '1', q } }, { replace: true })
+      }
     }
+
     // Restore background wall scroll position
-    const scroller = document.querySelector('.scroll-container-stable')
-    if (scroller && wallScrollTop.value > 0) {
-      scroller.scrollTop = wallScrollTop.value
+    nextTick(() => {
+      const scroller = document.querySelector('.scroll-container-stable')
+      if (scroller && wallScrollTop.value > 0) {
+        scroller.scrollTop = wallScrollTop.value
+      }
+    })
+  })
+
+  onBeforeUnmount(() => {
+    if (loadingTimeout.value) {
+      clearTimeout(loadingTimeout.value)
     }
   })
 
-  const routeSlug = computed(() =>
-    Array.isArray(route.params.slug)
+  const routeSlug = computed(() => {
+    const slug = Array.isArray(route.params.slug)
       ? route.params.slug.join('/')
-      : route.params.slug
-  )
+      : route.params.slug || ''
+
+    // Handle different slug formats
+    // Remove 'economics/' prefix if present to get just the quote slug
+    const parts = slug.split('/')
+    if (parts.length > 1) {
+      // For URLs like "economics/the-power-to-tax-involves-the-power-to-destroy"
+      // We want just "the-power-to-tax-involves-the-power-to-destroy"
+      return parts[parts.length - 1]
+    }
+    return slug
+  })
 
   // Find the quote that matches this path - only look after content is loaded
   const quote = computed(() => {
     if (!contentReady.value) return null
-    return slugMaps.quotes.get(routeSlug.value)
+
+    // Try multiple lookup strategies
+    const slug = routeSlug.value
+
+    // Direct lookup
+    let found = slugMaps.quotes.get(slug)
+
+    // If not found, try with full path
+    if (!found && route.params.slug) {
+      const fullSlug = Array.isArray(route.params.slug)
+        ? route.params.slug.join('/')
+        : route.params.slug
+      found = slugMaps.quotes.get(fullSlug)
+    }
+
+    // If still not found, try searching through all quotes
+    if (!found && quotes.value?.length) {
+      found = quotes.value.find((q) => {
+        const qSlug = q._path?.split('/').pop()?.replace('.md', '') || ''
+        return qSlug === slug || q._path?.includes(slug)
+      })
+    }
+
+    return found
   })
 
   // Watch for content loading completion and check quote availability

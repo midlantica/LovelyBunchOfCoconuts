@@ -84,17 +84,44 @@
     requestAnimationFrame(() => router.push('/'))
   }
 
+  const loadingTimeout = ref(null)
+
   onMounted(async () => {
     if (!contentReady.value) {
-      await ensureContentLoaded()
-      contentReady.value = true
+      // Set a timeout to prevent infinite loading
+      loadingTimeout.value = setTimeout(() => {
+        console.warn('Content loading timeout - redirecting to home')
+        const unfound = route.params.slug
+        const q = Array.isArray(unfound) ? unfound[unfound.length - 1] : unfound
+        router.replace({ path: '/', query: { q: q, nf: '1' } })
+      }, 5000) // 5 second timeout
+
+      try {
+        await ensureContentLoaded()
+        contentReady.value = true
+
+        // Clear timeout if loading succeeded
+        if (loadingTimeout.value) {
+          clearTimeout(loadingTimeout.value)
+          loadingTimeout.value = null
+        }
+      } catch (e) {
+        console.error('Failed to load content:', e)
+        // Redirect on error
+        const unfound = route.params.slug
+        const q = Array.isArray(unfound) ? unfound[unfound.length - 1] : unfound
+        router.replace({ path: '/', query: { q: q, nf: '1' } })
+        return
+      }
     }
+
     nextTick(() => {
       const scrollContainer = document.querySelector('.scroll-container-stable')
       if (scrollContainer && wallScrollTop.value > 0) {
         scrollContainer.scrollTo({ top: wallScrollTop.value })
       }
     })
+
     // Check after a small delay to ensure content is fully loaded
     setTimeout(() => {
       if (!meme.value && route.path !== '/') {
@@ -103,6 +130,12 @@
         router.replace({ path: '/', query: { q: q, nf: '1' } })
       }
     }, 100)
+  })
+
+  onBeforeUnmount(() => {
+    if (loadingTimeout.value) {
+      clearTimeout(loadingTimeout.value)
+    }
   })
 
   const slugify = (str = '') =>

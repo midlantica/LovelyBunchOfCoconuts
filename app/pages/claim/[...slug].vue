@@ -90,14 +90,38 @@
     router.push('/')
   }
 
+  const loadingTimeout = ref(null)
+
   onMounted(async () => {
     console.log('🔍 Claim page mounted, looking for:', slugPath.value)
 
     // Ensure content is loaded first
     if (!claims?.value?.length || !contentReady.value) {
       console.log('📥 Loading content...')
-      await loadAllContent()
-      contentReady.value = true
+
+      // Set a timeout to prevent infinite loading
+      loadingTimeout.value = setTimeout(() => {
+        console.warn('Content loading timeout - redirecting to home')
+        const q = slugPath.value?.split('/').pop() || ''
+        navigateTo({ path: '/', query: { nf: '1', q } }, { replace: true })
+      }, 5000) // 5 second timeout
+
+      try {
+        await loadAllContent()
+        contentReady.value = true
+
+        // Clear timeout if loading succeeded
+        if (loadingTimeout.value) {
+          clearTimeout(loadingTimeout.value)
+          loadingTimeout.value = null
+        }
+      } catch (e) {
+        console.error('Failed to load content:', e)
+        // Redirect on error
+        const q = slugPath.value?.split('/').pop() || ''
+        navigateTo({ path: '/', query: { nf: '1', q } }, { replace: true })
+        return
+      }
     }
 
     // Wait for next tick to ensure reactive updates have processed
@@ -121,6 +145,12 @@
     // Don't redirect - just stay on the claim URL even if not found
     if (contentReady.value && !claim.value) {
       console.log('❌ Claim not found, but staying on URL')
+    }
+  })
+
+  onBeforeUnmount(() => {
+    if (loadingTimeout.value) {
+      clearTimeout(loadingTimeout.value)
     }
   })
 
