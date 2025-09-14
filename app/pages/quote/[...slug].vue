@@ -39,8 +39,7 @@
 
   // Persisted wall scroll position
   const wallScrollTop = useState('wallScrollTop', () => 0)
-  const { quotes, ensureContentLoaded, cache, loadAllContent, slugMaps } =
-    useContentCache()
+  const { quotes, loadAllContent, slugMaps } = useContentCache()
   const runtimeConfig = useRuntimeConfig()
   const siteUrl = runtimeConfig.public.siteUrl || 'https://wakeupnpc.com'
 
@@ -49,15 +48,20 @@
 
   onServerPrefetch(async () => {
     try {
-      await ensureContentLoaded()
+      await loadAllContent()
       contentReady.value = true
     } catch (e) {
-      console.error('Failed to load content during SSR:', e)
+      console.error('Server prefetch failed:', e)
     }
   })
 
   onMounted(async () => {
-    if (!contentReady.value) {
+    console.log('🔍 Quote page mounted, looking for:', routeSlug.value)
+
+    // Ensure content is loaded first
+    if (!quotes?.value?.length || !contentReady.value) {
+      console.log('📥 Loading content...')
+
       // Set a timeout to prevent infinite loading
       loadingTimeout.value = setTimeout(() => {
         console.warn('Content loading timeout - redirecting to home')
@@ -66,7 +70,7 @@
       }, 5000) // 5 second timeout
 
       try {
-        await ensureContentLoaded()
+        await loadAllContent()
         contentReady.value = true
 
         // Clear timeout if loading succeeded
@@ -79,16 +83,32 @@
         // Redirect on error
         const q = routeSlug.value?.split('/').pop() || ''
         navigateTo({ path: '/', query: { nf: '1', q } }, { replace: true })
+        return
       }
     }
 
-    // Restore background wall scroll position
-    nextTick(() => {
-      const scroller = document.querySelector('.scroll-container-stable')
-      if (scroller && wallScrollTop.value > 0) {
-        scroller.scrollTop = wallScrollTop.value
-      }
-    })
+    // Wait for next tick to ensure reactive updates have processed
+    await nextTick()
+
+    console.log('🗺️ Slug maps quotes size:', slugMaps.quotes.size)
+    console.log('🔍 Looking for slug:', routeSlug.value)
+    console.log('✅ Found quote:', !!slugMaps.quotes.get(routeSlug.value))
+
+    // Debug: show all available quote slugs
+    if (import.meta.dev) {
+      console.log('Available quote slugs:', Array.from(slugMaps.quotes.keys()))
+    }
+
+    // Restore wall scroll if available
+    const scrollContainer = document.querySelector('.scroll-container-stable')
+    if (scrollContainer && wallScrollTop.value > 0) {
+      scrollContainer.scrollTo({ top: wallScrollTop.value })
+    }
+
+    // Don't redirect - just stay on the quote URL even if not found
+    if (contentReady.value && !quote.value) {
+      console.log('❌ Quote not found, but staying on URL')
+    }
   })
 
   onBeforeUnmount(() => {
@@ -113,43 +133,48 @@
     return slug
   })
 
-  // Find the quote that matches this path - only look after content is loaded
+  // Quote referenced in template - only look in slug maps after content is loaded
   const quote = computed(() => {
     if (!contentReady.value) return null
 
-    // Try multiple lookup strategies
-    const slug = routeSlug.value
-
-    // Direct lookup
-    let found = slugMaps.quotes.get(slug)
+    // First try slug map lookup with the processed slug
+    let foundQuote = slugMaps.quotes.get(routeSlug.value)
 
     // If not found, try with full path
-    if (!found && route.params.slug) {
+    if (!foundQuote && route.params.slug) {
       const fullSlug = Array.isArray(route.params.slug)
         ? route.params.slug.join('/')
         : route.params.slug
-      found = slugMaps.quotes.get(fullSlug)
+      foundQuote = slugMaps.quotes.get(fullSlug)
     }
 
-    // If still not found, try searching through all quotes
-    if (!found && quotes.value?.length) {
-      found = quotes.value.find((q) => {
-        const qSlug = q._path?.split('/').pop()?.replace('.md', '') || ''
-        return qSlug === slug || q._path?.includes(slug)
+    // If not found, try fallback search through quotes array
+    if (!foundQuote && quotes.value?.length) {
+      const slug = routeSlug.value.toLowerCase()
+      foundQuote = quotes.value.find((quote) => {
+        const filename = (quote.id || quote._path || '')
+          .split('/')
+          .pop()
+          ?.replace(/\.md$/, '')
+          .toLowerCase()
+        return (
+          filename === slug ||
+          filename?.includes(slug) ||
+          slug.includes(filename || '')
+        )
       })
     }
 
-    return found
+    return foundQuote
   })
 
   // Watch for content loading completion and check quote availability
   watch(contentReady, async (ready) => {
     if (ready) {
       await nextTick()
-      // If content is ready but quote still not found, redirect
-      if (!quote.value && routeSlug.value) {
-        const q = routeSlug.value
-        navigateTo({ path: '/', query: { nf: '1', q } })
+      // Don't redirect - just stay on the quote URL even if not found
+      if (!quote.value) {
+        console.log('❌ Quote not found in watcher, but staying on URL')
       }
     }
   })

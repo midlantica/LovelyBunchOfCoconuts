@@ -37,43 +37,58 @@
 
   const wallScrollTop = useState('wallScrollTop', () => 0)
   const modalGuardUntil = useState('modalGuardUntil', () => 0)
-  const { memes, ensureContentLoaded, cache, loadAllContent, slugMaps } =
-    useContentCache()
+  const { memes, loadAllContent, slugMaps } = useContentCache()
   const runtimeConfig = useRuntimeConfig()
   const siteUrl = runtimeConfig.public.siteUrl || 'https://wakeupnpc.com'
 
   const contentReady = ref(false)
   onServerPrefetch(async () => {
     try {
-      await ensureContentLoaded()
+      await loadAllContent()
       contentReady.value = true
-    } catch {}
+    } catch (e) {
+      console.error('Server prefetch failed:', e)
+    }
   })
 
   const slugPath = computed(() =>
     Array.isArray(route.params.slug) ? route.params.slug.join('/') : ''
   )
 
-  // Find the meme that matches this path - only look after content is loaded
+  // Meme referenced in template - only look in slug maps after content is loaded
   const meme = computed(() => {
     if (!contentReady.value) return null
-    return slugMaps.memes.get(slugPath.value)
+
+    // First try slug map lookup
+    let foundMeme = slugMaps.memes.get(slugPath.value)
+
+    // If not found, try fallback search through memes array
+    if (!foundMeme && memes.value?.length) {
+      const slug = slugPath.value.toLowerCase()
+      foundMeme = memes.value.find((meme) => {
+        const filename = (meme.id || meme._path || '')
+          .split('/')
+          .pop()
+          ?.replace(/\.md$/, '')
+          .toLowerCase()
+        return (
+          filename === slug ||
+          filename?.includes(slug) ||
+          slug.includes(filename || '')
+        )
+      })
+    }
+
+    return foundMeme
   })
 
   // Watch for content loading completion and check meme availability
   watch(contentReady, async (ready) => {
     if (ready) {
       await nextTick()
-      // If content is ready but meme still not found, redirect
-      if (!meme.value && slugPath.value) {
-        const q = slugPath.value.split('/').pop()
-        // Only redirect if we're not already on the home page
-        if (route.path !== '/') {
-          await navigateTo(
-            { path: '/', query: { nf: '1', q } },
-            { replace: true }
-          )
-        }
+      // Don't redirect - just stay on the meme URL even if not found
+      if (!meme.value) {
+        console.log('❌ Meme not found in watcher, but staying on URL')
       }
     }
   })
@@ -87,17 +102,21 @@
   const loadingTimeout = ref(null)
 
   onMounted(async () => {
-    if (!contentReady.value) {
+    console.log('🔍 Meme page mounted, looking for:', slugPath.value)
+
+    // Ensure content is loaded first
+    if (!memes?.value?.length || !contentReady.value) {
+      console.log('📥 Loading content...')
+
       // Set a timeout to prevent infinite loading
       loadingTimeout.value = setTimeout(() => {
         console.warn('Content loading timeout - redirecting to home')
-        const unfound = route.params.slug
-        const q = Array.isArray(unfound) ? unfound[unfound.length - 1] : unfound
-        router.replace({ path: '/', query: { q: q, nf: '1' } })
+        const q = slugPath.value?.split('/').pop() || ''
+        navigateTo({ path: '/', query: { nf: '1', q } }, { replace: true })
       }, 5000) // 5 second timeout
 
       try {
-        await ensureContentLoaded()
+        await loadAllContent()
         contentReady.value = true
 
         // Clear timeout if loading succeeded
@@ -108,28 +127,34 @@
       } catch (e) {
         console.error('Failed to load content:', e)
         // Redirect on error
-        const unfound = route.params.slug
-        const q = Array.isArray(unfound) ? unfound[unfound.length - 1] : unfound
-        router.replace({ path: '/', query: { q: q, nf: '1' } })
+        const q = slugPath.value?.split('/').pop() || ''
+        navigateTo({ path: '/', query: { nf: '1', q } }, { replace: true })
         return
       }
     }
 
-    nextTick(() => {
-      const scrollContainer = document.querySelector('.scroll-container-stable')
-      if (scrollContainer && wallScrollTop.value > 0) {
-        scrollContainer.scrollTo({ top: wallScrollTop.value })
-      }
-    })
+    // Wait for next tick to ensure reactive updates have processed
+    await nextTick()
 
-    // Check after a small delay to ensure content is fully loaded
-    setTimeout(() => {
-      if (!meme.value && route.path !== '/') {
-        const unfound = route.params.slug
-        const q = Array.isArray(unfound) ? unfound[unfound.length - 1] : unfound
-        router.replace({ path: '/', query: { q: q, nf: '1' } })
-      }
-    }, 100)
+    console.log('🗺️ Slug maps memes size:', slugMaps.memes.size)
+    console.log('🔍 Looking for slug:', slugPath.value)
+    console.log('✅ Found meme:', !!slugMaps.memes.get(slugPath.value))
+
+    // Debug: show all available meme slugs
+    if (import.meta.dev) {
+      console.log('Available meme slugs:', Array.from(slugMaps.memes.keys()))
+    }
+
+    // Restore wall scroll if available
+    const scrollContainer = document.querySelector('.scroll-container-stable')
+    if (scrollContainer && wallScrollTop.value > 0) {
+      scrollContainer.scrollTo({ top: wallScrollTop.value })
+    }
+
+    // Don't redirect - just stay on the meme URL even if not found
+    if (contentReady.value && !meme.value) {
+      console.log('❌ Meme not found, but staying on URL')
+    }
   })
 
   onBeforeUnmount(() => {
