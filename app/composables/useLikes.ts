@@ -171,14 +171,20 @@ export function useLikes() {
     }
   }
 
-  // Toggle like - users can like multiple times to increment count
+  // Toggle like - users can only like once per item
   const _inFlight = new Set<string>()
   const toggleLike = (id: LikeId | undefined | null) => {
     const cid = canonicalizeId(id)
     if (!cid) return false
     if (_inFlight.has(cid)) return likedMap.value[cid]
 
-    // Always allow incrementing - remove one-way restriction
+    // Check if already liked - if so, don't allow another like
+    if (likedMap.value[cid]) {
+      // User has already liked this item
+      return false
+    }
+
+    // Mark as liked and increment count by 1
     likedMap.value[cid] = true
     const current = getCount(cid)
     countMap.value[cid] = Math.max(0, current + 1)
