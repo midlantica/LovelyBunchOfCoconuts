@@ -21,7 +21,7 @@
             />
             <div
               v-if="modalData?.bodyText"
-              class="flex-1 mt-2 px-4 sm:px-0 w-full min-h-0 overflow-y-scroll font-[100] text-gray-300 text-base sm:text-lg text-center leading-normal scroll-area"
+              class="flex-1 mt-2 px-4 sm:px-0 py-1 w-full min-h-0 overflow-y-scroll font-[100] text-gray-300 text-base sm:text-lg text-center leading-normal scroll-area"
             >
               <div class="p-2 whitespace-pre-line">
                 {{ modalData.bodyText }}
@@ -135,18 +135,21 @@
     scrollbar-gutter: stable;
     scrollbar-width: auto; /* Firefox - always visible */
     scrollbar-color: #0089cc rgba(255, 255, 255, 0.15); /* thumb, track */
+    /* Add padding to show full scrollbar track */
+    padding-right: 2px;
   }
   .scroll-area::-webkit-scrollbar {
     width: 12px; /* Wider, more visible scrollbar */
   }
   .scroll-area::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
+    border-radius: 999px;
+    /* Inset the track slightly to show rounded ends */
+    margin: 4px 0;
   }
   .scroll-area::-webkit-scrollbar-thumb {
     background: #0089cc; /* seagull-600 */
-    border-radius: 6px;
-    border: 2px solid rgba(255, 255, 255, 0.1); /* Better visibility */
+    border-radius: 999px;
   }
   .scroll-area::-webkit-scrollbar-thumb:hover {
     background: #09acee; /* seagull-500 */

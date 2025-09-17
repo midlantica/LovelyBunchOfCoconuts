@@ -101,6 +101,14 @@ export const TERM_RELATIONS = {
   'equality before the law': ['rule of law', 'equal protection'],
   axis: ['axes', 'spectrum'],
   sex: ['sexist', 'gender'],
+  conservativism: [
+    'conservative',
+    'traditionalist',
+    'right-wing',
+    'stability',
+    'revolution',
+    'Burke',
+  ],
 }
 
 export function expandSearchTerms(q = '') {

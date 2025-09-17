@@ -1,52 +1,101 @@
-export const ideologies = [
-  { id: 1, term: 'Individualism', group: 'Freedom' },
-  { id: 2, term: 'Limited Government', group: 'Freedom' },
-  { id: 3, term: 'Free Markets', group: 'Freedom' },
-  { id: 4, term: 'Responsibility', group: 'Freedom' },
-  { id: 5, term: 'Rule of Law', group: 'Freedom' },
-  { id: 6, term: 'Property Rights', group: 'Freedom' },
-  { id: 7, term: 'Free Speech', group: 'Freedom' },
-  { id: 8, term: 'Tradition', group: 'Freedom' },
-  { id: 9, term: 'Capitalism', group: 'Freedom' },
-  { id: 10, term: 'Self-Reliance', group: 'Freedom' },
-  { id: 11, term: 'Constitutionalism', group: 'Freedom' },
-  { id: 12, term: 'Individualism', group: 'Freedom' },
-  { id: 13, term: 'Meritocracy', group: 'Freedom' },
-  { id: 15, term: 'Religious Liberty', group: 'Freedom' },
-  { id: 16, term: 'Voluntary Exchange', group: 'Freedom' },
-  { id: 17, term: 'Natural Rights', group: 'Freedom' },
-  { id: 18, term: 'Decentralization', group: 'Freedom' },
-  { id: 19, term: 'Patriotism', group: 'Freedom' },
-  { id: 20, term: 'Authoritarianism', group: 'Collectivism' },
-  { id: 21, term: 'Class', group: 'Collectivism' },
-  { id: 22, term: 'Collectivism', group: 'Collectivism' },
-  { id: 23, term: 'Social Equality', group: 'Collectivism' },
-  { id: 24, term: 'State Ownership', group: 'Collectivism' },
-  { id: 25, term: 'Redistribution', group: 'Collectivism' },
-  { id: 26, term: 'Proletariat', group: 'Collectivism' },
-  { id: 27, term: 'Central Planning', group: 'Collectivism' },
-  { id: 28, term: 'Social Justice', group: 'Collectivism' },
-  { id: 29, term: 'Utilitarianism', group: 'Collectivism' },
-  { id: 30, term: 'Solidarity', group: 'Collectivism' },
-  { id: 31, term: 'Abolition of Property', group: 'Collectivism' },
-  { id: 32, term: 'Revolution', group: 'Collectivism' },
-  { id: 33, term: 'Egalitarianism', group: 'Collectivism' },
-  { id: 34, term: 'State Control', group: 'Collectivism' },
-  { id: 35, term: 'Anti-Capitalism', group: 'Collectivism' },
-  { id: 36, term: 'Welfare', group: 'Collectivism' },
-  { id: 37, term: 'Dialectical Materialism', group: 'Collectivism' },
-  { id: 38, term: 'Authoritarianism', group: 'Collectivism' },
-  { id: 39, term: 'Progressive Change', group: 'Collectivism' },
-  { id: 40, term: 'Centralized Power', group: 'Collectivism' },
-  { id: 41, term: 'Fascism', group: 'Collectivism' },
-  { id: 42, term: 'Socialism', group: 'Collectivism' },
-  { id: 43, term: 'Communism', group: 'Collectivism' },
-  { id: 44, term: 'Marxism', group: 'Collectivism' },
-  { id: 45, term: 'Maoism', group: 'Collectivism' },
-  { id: 46, term: 'Progressive', group: 'Collectivism' },
-  { id: 47, term: 'Equality', group: 'Collectivism' },
-  { id: 48, term: 'Freedom', group: 'Freedom' },
-  { id: 49, term: 'LGBT', group: 'Collectivism' },
-  { id: 50, term: 'Abortion', group: 'Collectivism' },
-  { id: 51, term: 'Pro-Life', group: 'Freedom' },
-]
+// Ideologies grouped by category for easier management
+export const ideologyGroups = {
+  Freedom: [
+    'Individualism',
+    'Limited Government',
+    'Free Markets',
+    'Responsibility',
+    'Rule of Law',
+    'Property Rights',
+    'Free Speech',
+    'Tradition',
+    'Capitalism',
+    'Self-Reliance',
+    'Constitutionalism',
+    'Meritocracy',
+    'Religious Liberty',
+    'Voluntary Exchange',
+    'Natural Rights',
+    'Decentralization',
+    'Patriotism',
+    'Freedom',
+    'Pro-Life',
+    'Conservativism',
+  ],
+  Collectivism: [
+    'Authoritarianism',
+    'Class',
+    'Collectivism',
+    'Social Equality',
+    'State Ownership',
+    'Redistribution',
+    'Proletariat',
+    'Central Planning',
+    'Social Justice',
+    'Utilitarianism',
+    'Solidarity',
+    'Abolition of Property',
+    'Revolution',
+    'Egalitarianism',
+    'State Control',
+    'Anti-Capitalism',
+    'Welfare',
+    'Dialectical Materialism',
+    'Progressive Change',
+    'Centralized Power',
+    'Fascism',
+    'Socialism',
+    'Communism',
+    'Marxism',
+    'Maoism',
+    'Progressive',
+    'Equality',
+    'LGBT',
+    'Abortion',
+  ],
+}
+
+// Convert grouped structure to flat array format for backward compatibility
+let idCounter = 1
+export const ideologies = []
+
+for (const [group, terms] of Object.entries(ideologyGroups)) {
+  for (const term of terms) {
+    ideologies.push({
+      id: idCounter++,
+      term,
+      group,
+    })
+  }
+}
+
+// Helper function to add new terms
+export function addTerm(group, term) {
+  if (!ideologyGroups[group]) {
+    ideologyGroups[group] = []
+  }
+  ideologyGroups[group].push(term)
+
+  // Rebuild the flat array
+  ideologies.length = 0
+  idCounter = 1
+  for (const [g, terms] of Object.entries(ideologyGroups)) {
+    for (const t of terms) {
+      ideologies.push({
+        id: idCounter++,
+        term: t,
+        group: g,
+      })
+    }
+  }
+}
+
+// Helper function to get all terms for a specific group
+export function getTermsByGroup(group) {
+  return ideologyGroups[group] || []
+}
+
+// Helper function to get all groups
+export function getGroups() {
+  return Object.keys(ideologyGroups)
+}
