@@ -1,7 +1,7 @@
 ---
-title: 'The Socialist Dream Vs Reality'
+title: 'The Socialist Dream vs Reality'
 ---
 
-![The Socialist Dream Vs Reality](/memes/capitalism/the-socialist-dream-vs-reality.jpg)
+![The Socialist Dream vs Reality](/memes/capitalism/the-socialist-dream-vs-reality.jpg)
 
-The Socialist Dream Vs Reality
+The Socialist Dream vs Reality

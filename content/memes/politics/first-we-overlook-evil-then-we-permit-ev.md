@@ -1,7 +1,7 @@
 ---
-title: "First we overlook evil then we permit ev"
+title: 'First we overlook evil then we permit evil'
 ---
 
-![First we overlook evil then we permit ev](/memes/politics/first-we-overlook-evil-then-we-permit-ev.jpg)
+![First we overlook evil then we permit evil](/memes/politics/first-we-overlook-evil-then-we-permit-evil.jpg)
 
-First we overlook evil then we permit ev
+First we overlook evil then we permit evil

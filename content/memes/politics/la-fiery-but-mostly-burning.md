@@ -1,7 +1,7 @@
 ---
-title: 'La Fiery But Mostly Burning'
+title: 'LA Fiery But Mostly Burning'
 ---
 
-![La Fiery But Mostly Burning](/memes/politics/la-fiery-but-mostly-burning.jpg)
+![LA Fiery But Mostly Burning](/memes/politics/la-fiery-but-mostly-burning.jpg)
 
-La fiery but mostly burning.
+LA fiery but mostly burning.
