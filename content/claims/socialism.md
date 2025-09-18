@@ -1,9 +1,9 @@
 ---
 title: 'Socialism'
 claim: 'Socialism'
-translation: 'Capitalism'
+translation: 'Poverty for all'
 ---
 
 ## "Socialism"
 
-## Capitalism
+## Poverty for all
