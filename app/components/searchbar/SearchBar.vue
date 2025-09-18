@@ -50,7 +50,7 @@
             aria-label="Search terms"
             class="flex-1 bg-transparent focus:bg-transparent pb-0.5 outline-none min-w-[6ch] h-[1.6rem] placeholder:text-seagull-200/50 leading-[1.6rem]"
             :placeholder="tokens.length ? '' : 'Search...'"
-            @keydown.enter.prevent="commitInputAsToken()"
+            @keydown.enter.prevent="handleEnterKey()"
             @blur="commitInputAsToken()"
             @keydown="onKeydown"
             @keyup="onKeyup"
@@ -314,7 +314,15 @@
     // Emit immediately to feel responsive and guard re-parse
     lastEmittedSearch.value = joinedSearch.value
     emit('update:search', joinedSearch.value)
-    nextTick(() => searchInputRef.value?.focus())
+    // On mobile, blur to dismiss keyboard after selecting a tag
+    // On desktop, keep focus for continued typing
+    nextTick(() => {
+      if (window.innerWidth < 768) {
+        searchInputRef.value?.blur()
+      } else {
+        searchInputRef.value?.focus()
+      }
+    })
   }
 
   // Helpers for tokenized input
@@ -350,6 +358,15 @@
     }
     tokens.value.push(token)
     inputText.value = ''
+  }
+
+  // Handle Enter key - commit token and blur to dismiss keyboard on mobile
+  function handleEnterKey() {
+    commitInputAsToken()
+    // Blur the input to dismiss the keyboard on mobile devices
+    if (searchInputRef.value) {
+      searchInputRef.value.blur()
+    }
   }
   function onKeydown(e) {
     const k = e.key
