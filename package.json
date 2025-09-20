@@ -18,6 +18,7 @@
     "postinstall": "nuxt prepare",
     "process-images": "node scripts/run-image-processing.js",
     "regenerate-content": "node scripts/regenerate-content-json.js",
+    "update-ads": "node scripts/regenerate-content-json.js && echo 'Ads updated! Refresh your browser to see changes.'",
     "lint": "eslint . --ignore-pattern .tailwind-resolved.json",
     "lint:fix": "eslint . --fix --ignore-pattern .tailwind-resolved.json",
     "tw:config": "tailwindcss --show-config > .tailwind-resolved.json"
@@ -52,10 +53,10 @@
     "@nuxtjs/sitemap": "^7.4.7",
     "@tailwindcss/cli": "4.1.13",
     "@tailwindcss/postcss": "^4.1.13",
-    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/typography": "^0.5.17",
     "@tailwindcss/vite": "^4.1.13",
     "@typescript-eslint/parser": "^8.44.0",
-    "eslint": "^9.35.0",
+    "eslint": "^9.36.0",
     "eslint-plugin-vue": "^10.4.0",
     "globals": "^16.4.0",
     "tailwindcss": "4.1.13"

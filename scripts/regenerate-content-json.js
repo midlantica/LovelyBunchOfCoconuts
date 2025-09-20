@@ -26,15 +26,39 @@ function processMarkdownFiles(contentDir, outputFile) {
     const parsed = matter(content)
 
     const slug = file.replace('.md', '')
-    const contentType = contentDir.split('/')[1] // claims, memes, quotes
+    const contentType = contentDir.split('/')[1] // claims, memes, quotes, ads
 
-    files.push({
-      _path: `/claims/${contentType}/${slug}`,
-      title: parsed.data.title || parsed.data.claim || slug.replace(/-/g, ' '),
-      claim: parsed.data.claim || parsed.data.title || slug.replace(/-/g, ' '),
-      translation: parsed.data.translation || '',
-      body: parsed.content || '',
-    })
+    // Special handling for ads
+    if (contentType === 'ads') {
+      // Map old size values to new ones
+      let size = parsed.data.size || 'square'
+      if (size === 'small') size = 'square'
+      if (size === 'large') size = 'horizontal'
+
+      files.push({
+        id: parsed.data.id || slug,
+        title: parsed.data.title || 'Advertisement',
+        type: parsed.data.type || 'claim',
+        size: size,
+        advertiser: parsed.data.advertiser || 'Demo Advertiser',
+        campaign: parsed.data.campaign || 'Test Campaign',
+        link: parsed.data.link || '#',
+        image: parsed.data.image || `/ads/${slug}.png`,
+        frequency: parsed.data.frequency || 10,
+        active: parsed.data.active !== false,
+        body: parsed.content || '',
+      })
+    } else {
+      files.push({
+        _path: `/claims/${contentType}/${slug}`,
+        title:
+          parsed.data.title || parsed.data.claim || slug.replace(/-/g, ' '),
+        claim:
+          parsed.data.claim || parsed.data.title || slug.replace(/-/g, ' '),
+        translation: parsed.data.translation || '',
+        body: parsed.content || '',
+      })
+    }
   }
 
   const outputPath = path.join(process.cwd(), 'public', outputFile)
@@ -46,5 +70,6 @@ function processMarkdownFiles(contentDir, outputFile) {
 processMarkdownFiles('content/claims', 'content-claims.json')
 processMarkdownFiles('content/memes', 'content-memes.json')
 processMarkdownFiles('content/quotes', 'content-quotes.json')
+processMarkdownFiles('content/ads', 'content-ads.json')
 
 console.log('Content JSON files regenerated successfully!')

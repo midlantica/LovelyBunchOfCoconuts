@@ -60,7 +60,7 @@ function seededShuffle(arr, rng) {
  * @param {Object} options
  * @param {string} [options.seed] - Seed for deterministic shuffle
  * @param {number} [options.adInterval=0] - Inject ad placeholder every N pattern items (0 = disabled)
- * @param {Function} [options.adProvider] - () => { id, title, body } returns data for ad. If returns falsy, ad skipped.
+ * @param {Function} [options.adProvider] - () => { id, title, body, size } returns data for ad. If returns falsy, ad skipped.
  * @param {boolean} [options.enableShuffle=true] - Disable to keep original order
  * @returns {Array} pattern items (types: claimPair | quote | memeRow)
  */
@@ -83,6 +83,8 @@ export function interleaveContent(claims, quotes, memes, options = {}) {
   const pattern = ['claimPair', 'quote', 'memeRow', 'quote']
   let patternIndex = 0
   let producedCoreItems = 0 // counts non‑ad items only
+  let lastItemWasAd = false // Track if last item added was an ad
+  let itemsSinceLastAd = 0 // Track items since last ad
 
   const haveClaims = () => ci < c.length
   const haveMemes = () => mi < m.length
@@ -91,24 +93,84 @@ export function interleaveContent(claims, quotes, memes, options = {}) {
   const memeRemaining = () => m.length - mi
   const quoteRemaining = () => q.length - qi
 
-  const pushClaimPair = (count = 2) => {
+  const pushClaimPair = (count = 2, includeAd = false) => {
     const slice = c.slice(ci, ci + count)
     ci += slice.length
+
+    let hadAd = false
+
+    // If we should include an ad and have an ad provider
+    // But don't add if last item was an ad
+    if (includeAd && adProvider && slice.length > 0 && !lastItemWasAd) {
+      const adData = adProvider()
+      if (adData && (adData.size === 'square' || adData.size === 'small')) {
+        // Replace one claim with an ad (push the claim back)
+        if (slice.length === 2) {
+          // Put the second claim back
+          ci -= 1
+          slice.pop()
+        }
+        // Add the ad as a claim-like item
+        slice.push({
+          ...adData,
+          isAd: true,
+          _type: 'claim',
+        })
+        hadAd = true
+        itemsSinceLastAd = 0
+      }
+    }
+
     output.push({ type: 'claimPair', data: slice })
     producedCoreItems++
+    lastItemWasAd = hadAd
+    if (!hadAd) itemsSinceLastAd++
   }
-  const pushMemeRow = (count = 2) => {
+  const pushMemeRow = (count = 2, includeAd = false) => {
     const slice = m.slice(mi, mi + count)
     mi += slice.length
+
+    let hadAd = false
+
+    // If we should include an ad and have an ad provider
+    // But don't add if last item was an ad
+    if (includeAd && adProvider && slice.length > 0 && !lastItemWasAd) {
+      const adData = adProvider()
+      if (adData && (adData.size === 'square' || adData.size === 'small')) {
+        // Replace one meme with an ad (push the meme back)
+        if (slice.length === 2) {
+          // Put the second meme back
+          mi -= 1
+          slice.pop()
+        }
+        // Add the ad as a meme-like item
+        slice.push({
+          ...adData,
+          isAd: true,
+          _type: 'meme',
+        })
+        hadAd = true
+        itemsSinceLastAd = 0
+      }
+    }
+
     output.push({ type: 'memeRow', data: slice })
     producedCoreItems++
+    lastItemWasAd = hadAd
+    if (!hadAd) itemsSinceLastAd++
   }
   const pushQuote = (quoteObj, isAd = false) => {
     output.push({
       type: 'quote',
       data: isAd ? { ...quoteObj, isAd: true } : quoteObj,
     })
-    if (!isAd) producedCoreItems++
+    if (!isAd) {
+      producedCoreItems++
+      itemsSinceLastAd++
+    } else {
+      itemsSinceLastAd = 0
+    }
+    lastItemWasAd = isAd
   }
 
   // Main build loop
@@ -118,12 +180,26 @@ export function interleaveContent(claims, quotes, memes, options = {}) {
 
     if (expected === 'claimPair') {
       if (claimRemaining() >= 2) {
-        pushClaimPair(2)
+        // Check if we should inject a square ad in this claim pair
+        const shouldInjectAd =
+          adInterval > 0 &&
+          producedCoreItems > 0 &&
+          producedCoreItems % adInterval === 0 &&
+          adProvider
+
+        pushClaimPair(2, shouldInjectAd)
         created = true
       }
     } else if (expected === 'memeRow') {
       if (memeRemaining() >= 2) {
-        pushMemeRow(2)
+        // Check if we should inject a small ad in this meme row
+        const shouldInjectAd =
+          adInterval > 0 &&
+          producedCoreItems > 0 &&
+          producedCoreItems % adInterval === 0 &&
+          adProvider
+
+        pushMemeRow(2, shouldInjectAd)
         created = true
       }
     } else if (expected === 'quote') {
@@ -158,20 +234,24 @@ export function interleaveContent(claims, quotes, memes, options = {}) {
     if (!created) break // nothing left to place
 
     // Optional ad injection (as quote placeholder) AFTER creating a core item
+    // Only inject if we haven't just placed an ad and have had enough items since last ad
     if (
       adInterval > 0 &&
       producedCoreItems > 0 &&
       producedCoreItems % adInterval === 0 &&
-      adProvider
+      adProvider &&
+      !lastItemWasAd &&
+      itemsSinceLastAd >= 2 // Ensure at least 2 items between ads
     ) {
       const adData = adProvider()
-      if (adData) {
+      if (adData && (adData.size === 'horizontal' || adData.size === 'large')) {
         pushQuote(
           {
             id: adData.id || `ad-${producedCoreItems}`,
             title: adData.title || 'Sponsored',
             body: adData.body || '',
             isAd: true,
+            ...adData,
           },
           true
         )

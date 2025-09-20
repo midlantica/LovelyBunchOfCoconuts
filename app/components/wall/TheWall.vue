@@ -14,25 +14,41 @@
           v-for="(item, index) in displayedInterleavedContent"
           :key="itemKey(item, index)"
         >
-          <!-- Quotes (full width) -->
+          <!-- Quotes (full width) - or Large Ads -->
           <div
             v-if="item.type === 'quote'"
             class="cursor-pointer"
             role="button"
             tabindex="0"
             @click.capture="
-              maybeOpenModal($event, () => openModal(item.data, 'quote', true))
+              item.data?.isAd
+                ? null
+                : maybeOpenModal($event, () =>
+                    openModal(item.data, 'quote', true)
+                  )
             "
-            @keydown.enter.prevent="openModal(item.data, 'quote', true)"
-            @keydown.space.prevent="openModal(item.data, 'quote', true)"
+            @keydown.enter.prevent="
+              item.data?.isAd ? null : openModal(item.data, 'quote', true)
+            "
+            @keydown.space.prevent="
+              item.data?.isAd ? null : openModal(item.data, 'quote', true)
+            "
           >
+            <!-- Ad Panel for horizontal ads -->
+            <WallAdPanel
+              v-if="item.data?.isAd"
+              :ad="item.data"
+              :size="item.data.size || 'horizontal'"
+            />
+            <!-- Regular Quote Panel -->
             <WallQuotePanel
+              v-else
               :quote="item.data"
               :slug="item.data?.path || item.data?._path || ''"
             />
           </div>
 
-          <!-- Claim pairs (2 columns on md+, stacked on smaller) -->
+          <!-- Claim pairs (2 columns on md+, stacked on smaller) - or Small Ads -->
           <div
             v-else-if="item.type === 'claimPair'"
             class="gap-3 grid grid-cols-1 md:grid-cols-2"
@@ -44,21 +60,35 @@
               role="button"
               tabindex="0"
               @click.capture="
-                maybeOpenModal($event, () =>
-                  openModal(claimItem, 'claim', true)
-                )
+                claimItem?.isAd
+                  ? null
+                  : maybeOpenModal($event, () =>
+                      openModal(claimItem, 'claim', true)
+                    )
               "
-              @keydown.enter.prevent="openModal(claimItem, 'claim', true)"
-              @keydown.space.prevent="openModal(claimItem, 'claim', true)"
+              @keydown.enter.prevent="
+                claimItem?.isAd ? null : openModal(claimItem, 'claim', true)
+              "
+              @keydown.space.prevent="
+                claimItem?.isAd ? null : openModal(claimItem, 'claim', true)
+              "
             >
+              <!-- Ad Panel for square ads -->
+              <WallAdPanel
+                v-if="claimItem?.isAd"
+                :ad="claimItem"
+                :size="claimItem.size || 'square'"
+              />
+              <!-- Regular Claim Panel -->
               <WallClaimPanel
+                v-else
                 :claim="claimItem"
                 :slug="claimItem?.path || claimItem?._path || ''"
               />
             </div>
           </div>
 
-          <!-- Meme pairs (2 columns on >=460px using custom 'meme2' breakpoint, stacked below) -->
+          <!-- Meme pairs (2 columns on >=460px using custom 'meme2' breakpoint, stacked below) - or Small Ads -->
           <div
             v-else-if="item.type === 'memeRow'"
             class="gap-3 grid grid-cols-1 meme2:grid-cols-2"
@@ -70,12 +100,28 @@
               role="button"
               tabindex="0"
               @click.capture="
-                maybeOpenModal($event, () => openModal(memeItem, 'meme', true))
+                memeItem?.isAd
+                  ? null
+                  : maybeOpenModal($event, () =>
+                      openModal(memeItem, 'meme', true)
+                    )
               "
-              @keydown.enter.prevent="openModal(memeItem, 'meme', true)"
-              @keydown.space.prevent="openModal(memeItem, 'meme', true)"
+              @keydown.enter.prevent="
+                memeItem?.isAd ? null : openModal(memeItem, 'meme', true)
+              "
+              @keydown.space.prevent="
+                memeItem?.isAd ? null : openModal(memeItem, 'meme', true)
+              "
             >
+              <!-- Ad Panel for square ads in meme slots -->
+              <WallAdPanel
+                v-if="memeItem?.isAd"
+                :ad="memeItem"
+                :size="memeItem.size || 'square'"
+              />
+              <!-- Regular Meme Panel -->
               <WallMemePanel
+                v-else
                 :meme="memeItem"
                 :slug="memeItem?.path || memeItem?._path || ''"
               />
@@ -98,6 +144,7 @@
   // Auto-impoorts components/wall/...
   import { useWallFiltering } from '~/composables/useWallFiltering'
   import { useWallModalOpener } from '~/composables/useWallModalOpener'
+  import { useAds } from '~/composables/useAds'
 
   // Global guard to avoid click-through reopen after closing a modal
   const modalGuardUntil = useState('modalGuardUntil', () => 0)
@@ -109,6 +156,9 @@
     loadInitialContent,
     loadRemainingContent,
   } = useContentCache()
+
+  // Initialize ads system
+  const { loadAds, createAdProvider, calculateAdInterval } = useAds()
 
   // Props for search/filters from parent
   const props = defineProps({
@@ -155,6 +205,8 @@
   // State
   const isLoaded = ref(false)
   const error = ref(null)
+  const adsEnabled = ref(true) // Toggle for ads
+  const adInterval = ref(5) // Show ad every N content items (reduced for testing)
 
   // Emit counts for search bar
   const emit = defineEmits(['counts', 'modal', 'content-updated'])
@@ -179,16 +231,22 @@
     if (!item) return idx
     if (item.type === 'quote') {
       const q = item.data || {}
-      return `q-${q._path || q.path || q.id || idx}`
+      // Include index for ads to ensure uniqueness
+      const baseKey = q._path || q.path || q.id || idx
+      return q.isAd ? `q-${baseKey}-${idx}` : `q-${baseKey}`
     }
-    const joinIds = (arr = []) =>
+    const joinIds = (arr = [], index) =>
       (arr || [])
-        .map((d) => d?._path || d?.path || d?.id || '')
+        .map((d, i) => {
+          const base = d?._path || d?.path || d?.id || ''
+          // Add index for ads to ensure uniqueness
+          return d?.isAd ? `${base}-${index}-${i}` : base
+        })
         .filter(Boolean)
         .join('|') || idx
 
-    if (item.type === 'claimPair') return `cp-${joinIds(item.data)}`
-    if (item.type === 'memeRow') return `mr-${joinIds(item.data)}`
+    if (item.type === 'claimPair') return `cp-${joinIds(item.data, idx)}`
+    if (item.type === 'memeRow') return `mr-${joinIds(item.data, idx)}`
     return idx
   }
 
@@ -259,11 +317,25 @@
 
   function buildBaselineNow() {
     try {
+      // Create ad provider if ads are enabled
+      // Note: ads should be loaded in onMounted before this is called
+      const adProvider = adsEnabled.value
+        ? createAdProvider({ smallWeight: 0.7 })
+        : null
+      const interval = adsEnabled.value
+        ? calculateAdInterval(adInterval.value)
+        : 0
+
       const pattern = interleaveContent(
         cache.claims,
         cache.quotes,
         cache.memes,
-        { seed: wallSeed.value, enableShuffle: true }
+        {
+          seed: wallSeed.value,
+          enableShuffle: true,
+          adInterval: interval,
+          adProvider: adProvider,
+        }
       )
       const order = deriveBaselineOrder(pattern)
       baselineState.value = {
@@ -358,9 +430,51 @@
   // --------------------------------------------------
   const wallDisplayCount = ref(Infinity) // full for SSR & non-baseline / search views
   const virtualizingBaseline = ref(false)
-  const displayedInterleavedContent = computed(() =>
-    interleavedContent.value.slice(0, wallDisplayCount.value)
-  )
+  // Track if we've shown the ad summary
+  const adSummaryShown = ref(false)
+
+  const displayedInterleavedContent = computed(() => {
+    const content = interleavedContent.value.slice(0, wallDisplayCount.value)
+    return content
+  })
+
+  // Show ad summary once when loading is complete
+  function showAdSummary() {
+    if (adSummaryShown.value) return
+
+    // Count ALL ads in the full interleaved content (not just displayed)
+    const adCounts = {}
+    let totalAds = 0
+
+    // Use interleavedContent.value to get ALL content, not just displayed
+    interleavedContent.value.forEach((item) => {
+      if (item.type === 'quote' && item.data?.isAd) {
+        const adId = item.data.id || 'unknown'
+        adCounts[adId] = (adCounts[adId] || 0) + 1
+        totalAds++
+      } else if (item.type === 'claimPair' || item.type === 'memeRow') {
+        item.data?.forEach((d) => {
+          if (d?.isAd) {
+            const adId = d.id || 'unknown'
+            adCounts[adId] = (adCounts[adId] || 0) + 1
+            totalAds++
+          }
+        })
+      }
+    })
+
+    // Log ad summary only when there are ads
+    if (Object.keys(adCounts).length > 0) {
+      console.log('📊 Ad Display Summary:')
+      Object.entries(adCounts)
+        .sort((a, b) => b[1] - a[1]) // Sort by count descending
+        .forEach(([id, count]) => {
+          console.log(`  ${id}: ${count}`)
+        })
+      console.log(`Total Ads: ${totalAds}`)
+      adSummaryShown.value = true
+    }
+  }
 
   function isBaselineView() {
     return (
@@ -540,6 +654,24 @@
           hasLoadedOnce: wallHasLoadedOnce.value,
         })
 
+      // Load ads if enabled - fetch from API endpoint
+      if (adsEnabled.value) {
+        try {
+          // Fetch ads from the API endpoint
+          const response = await $fetch('/api/content/ads')
+          const adContent = response?.data || []
+
+          // Pass the loaded content to the ads system
+          if (adContent.length > 0) {
+            await loadAds(null, adContent)
+          } else {
+            console.log('No ads returned from API')
+          }
+        } catch (e) {
+          console.warn('Could not load ads:', e)
+        }
+      }
+
       if (
         cache.claims.length === 0 &&
         cache.quotes.length === 0 &&
@@ -550,13 +682,19 @@
         isLoaded.value = true
         wallHasLoadedOnce.value = true
         // Background full load (don't await; no spinner)
-        loadRemainingContent().catch((e) =>
-          console.error('Error loading remaining content:', e)
-        )
+        loadRemainingContent()
+          .then(() => {
+            // Show ad summary after all content is loaded
+            // Wait a bit longer to ensure baseline is fully built
+            setTimeout(() => showAdSummary(), 1500)
+          })
+          .catch((e) => console.error('Error loading remaining content:', e))
       } else {
         // Cache had content but first visit this session
         isLoaded.value = true
         wallHasLoadedOnce.value = true
+        // Show ad summary after a delay to ensure baseline is built
+        setTimeout(() => showAdSummary(), 1500)
       }
     } catch (err) {
       console.error('Error loading content:', err)

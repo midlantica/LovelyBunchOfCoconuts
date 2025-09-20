@@ -91,6 +91,13 @@
     "body": "\n## \"Affirmative Art\"\n\n## Aesthetic diversity over talent.\n"
   },
   {
+    "_path": "/claims/claims/against-term-limits",
+    "title": "Against Term Limits",
+    "claim": "Against Term Limits",
+    "translation": "Favor Term Limits",
+    "body": "\n## \"Against Term Limits\"\n\n## Favor Term Limits\n"
+  },
+  {
     "_path": "/claims/claims/anti-capitalist-zoning",
     "title": "Anti-Capitalist Zoning",
     "claim": "Anti-Capitalist Zoning",
@@ -294,6 +301,13 @@
     "body": "\n## \"Banned Books Week\"\n\n## Promote the fringe with flair.\n"
   },
   {
+    "_path": "/claims/claims/big-government",
+    "title": "Big Government",
+    "claim": "Big Government",
+    "translation": "Small Individual",
+    "body": "\n## \"Big Government\"\n\n## Small Individual\n"
+  },
+  {
     "_path": "/claims/claims/billionaires-shouldnt-exist",
     "title": "Billionaires Shouldn't Exist",
     "claim": "Billionaires Shouldn't Exist",
@@ -432,6 +446,13 @@
     "claim": "Collective Healing",
     "translation": "Therapy as policy.",
     "body": "\n## \"Collective Healing\"\n\n## Therapy as policy.\n"
+  },
+  {
+    "_path": "/claims/claims/communism",
+    "title": "Communism",
+    "claim": "Communism",
+    "translation": "Constitutional Republic",
+    "body": "\n## \"Communism\"\n\n## Constitutional Republic\n"
   },
   {
     "_path": "/claims/claims/community-based-alternatives",
@@ -894,6 +915,13 @@
     "claim": "Deindustrialize America",
     "translation": "Rust as a virtue.",
     "body": "\n## \"Deindustrialize America\"\n\n## Rust as a virtue.\n"
+  },
+  {
+    "_path": "/claims/claims/democratic-socialism-2",
+    "title": "Democratic Socialism",
+    "claim": "Democratic Socialism",
+    "translation": "Capitalism",
+    "body": "\n## \"Democratic Socialism\"\n\n## Socialism\n"
   },
   {
     "_path": "/claims/claims/democratic-socialism",
@@ -1589,6 +1617,13 @@
     "body": "\n## \"Healthcare is a Right\"\n\n## So you owe me a surgeon.\n"
   },
   {
+    "_path": "/claims/claims/higher-taxes",
+    "title": "Higher Taxes",
+    "claim": "Higher Taxes",
+    "translation": "Keep more of your earned income",
+    "body": "\n## \"Higher Taxes\"\n\n## Keep more of your earned income\n"
+  },
+  {
     "_path": "/claims/claims/houselessness",
     "title": "Houselessness",
     "claim": "Houselessness",
@@ -1615,6 +1650,13 @@
     "claim": "Identify as...",
     "translation": "Pretending to be...",
     "body": "\n## \"Identify as...\"\n\n## Pretending to be...\n"
+  },
+  {
+    "_path": "/claims/claims/illegal-immigration",
+    "title": "Illegal Immigration",
+    "claim": "Illegal Immigration",
+    "translation": "Legal Immigration",
+    "body": "\n## \"Illegal Immigration\"\n\n## Legal Immigration\n"
   },
   {
     "_path": "/claims/claims/immigration",
@@ -1757,6 +1799,13 @@
     "body": "\n## \"Justice-Oriented AI\"\n\n## Programmed to preach.\n"
   },
   {
+    "_path": "/claims/claims/killing-babies",
+    "title": "Killing babies",
+    "claim": "Killing babies",
+    "translation": "Letting babies live.",
+    "body": "\n## \"Killing babies\"\n\n## Letting babies live.\n"
+  },
+  {
     "_path": "/claims/claims/labor-unions",
     "title": "Labor Unions",
     "claim": "Labor Unions",
@@ -1769,6 +1818,20 @@
     "claim": "Land Back",
     "translation": "Evict everyone, selectively.",
     "body": "\n## \"Land Back\"\n\n## Evict everyone, selectively.\n"
+  },
+  {
+    "_path": "/claims/claims/leftism",
+    "title": "Leftism",
+    "claim": "Leftism",
+    "translation": "Conservatism, Classical Liberalism",
+    "body": "\n## \"Leftism\"\n\n## Conservatism, Classical Liberalism\n"
+  },
+  {
+    "_path": "/claims/claims/let-anyone-vote",
+    "title": "Let Anyone Vote",
+    "claim": "Let Anyone Vote",
+    "translation": "Voter ID",
+    "body": "\n## \"Let Anyone Vote\"\n\n## Voter ID\n"
   },
   {
     "_path": "/claims/claims/lgbt",
@@ -1818,6 +1881,13 @@
     "claim": "Living Wage",
     "translation": "Pay me more than I’m worth.",
     "body": "\n## \"Living Wage\"\n\n## Pay me more than I’m worth.\n"
+  },
+  {
+    "_path": "/claims/claims/lockdown-state",
+    "title": "Lockdown State",
+    "claim": "Lockdown State",
+    "translation": "Working Economy",
+    "body": "\n## \"Lockdown State\"\n\n## Working Economy\n"
   },
   {
     "_path": "/claims/claims/love",
@@ -1874,6 +1944,13 @@
     "claim": "Misinformation, Disinformation",
     "translation": "Free Speech the Left doesn't like.",
     "body": "\n## \"Misinformation\", \"Disinformation\"\n\n## Free Speech the Left doesn't like\n"
+  },
+  {
+    "_path": "/claims/claims/more-control-mandates",
+    "title": "More Control/Mandates",
+    "claim": "More Control/Mandates",
+    "translation": "Less Control/Mandates",
+    "body": "\n## \"More Control/Mandates\"\n\n## Less Control/Mandates\n"
   },
   {
     "_path": "/claims/claims/mutual-accountability",
@@ -1960,13 +2037,6 @@
     "body": "\n## \"No Justice, No Peace\"\n\n## Threats are now activism.\n"
   },
   {
-    "_path": "/claims/claims/no_justice,_no_peace",
-    "title": "No Justice, No Peace",
-    "claim": "No Justice, No Peace",
-    "translation": "Threats are now activism.",
-    "body": "\n## \"No Justice, No Peace\"\n\n## Threats are now activism.\n"
-  },
-  {
     "_path": "/claims/claims/non-binary-inclusion",
     "title": "Non-Binary Inclusion",
     "claim": "Non-Binary Inclusion",
@@ -2002,6 +2072,13 @@
     "body": "\n## \"Normalize Polyamory\"\n\n## Stability is oppressive.\n"
   },
   {
+    "_path": "/claims/claims/open-borders-2",
+    "title": "Open Borders",
+    "claim": "Open Borders",
+    "translation": "Border Control",
+    "body": "\n## \"Open Borders\"\n\n## Border Control\n"
+  },
+  {
     "_path": "/claims/claims/open-borders",
     "title": "Open Borders",
     "claim": "Open Borders",
@@ -2014,6 +2091,13 @@
     "claim": "Oppression Olympics",
     "translation": "Gold medals in grievance.",
     "body": "\n## \"Oppression Olympics\"\n\n## Gold medals in grievance.\n"
+  },
+  {
+    "_path": "/claims/claims/over-regulations",
+    "title": "Over-Regulations",
+    "claim": "Over-Regulations",
+    "translation": "Small Businesses",
+    "body": "\n## \"Over-Regulations\"\n\n## Small Businesses\n"
   },
   {
     "_path": "/claims/claims/patriarchy",
@@ -2035,6 +2119,13 @@
     "claim": "Police-Free Schools",
     "translation": "Safety is a colonial concept.",
     "body": "\n## \"Police-Free Schools\"\n\n## Safety is a colonial concept.\n"
+  },
+  {
+    "_path": "/claims/claims/political-correctness-2",
+    "title": "Political Correctness",
+    "claim": "Political Correctness",
+    "translation": "Free Speech",
+    "body": "\n## \"Political Correctness\"\n\n## Free Speech\n"
   },
   {
     "_path": "/claims/claims/political-correctness",
@@ -2541,6 +2632,13 @@
     "body": "\n## \"Rewilding Cities\"\n\n## Let nature and crime run free.\n"
   },
   {
+    "_path": "/claims/claims/riots-violence",
+    "title": "Riots & Violence",
+    "claim": "Riots & Violence",
+    "translation": "Law & Order",
+    "body": "\n## \"Riots & Violence\"\n\n## Law & Order\n"
+  },
+  {
     "_path": "/claims/claims/safe-expression-zones",
     "title": "Safe Expression Zones",
     "claim": "Safe Expression Zones",
@@ -2623,6 +2721,13 @@
     "claim": "Social Welfare",
     "translation": "Increased poverty.",
     "body": "\n## \"Social Welfare\"\n\n## Increased poverty, balkanization\n"
+  },
+  {
+    "_path": "/claims/claims/socialism",
+    "title": "Socialism",
+    "claim": "Socialism",
+    "translation": "Poverty for all",
+    "body": "\n## \"Socialism\"\n\n## Poverty for all\n"
   },
   {
     "_path": "/claims/claims/socialized-medicine-1",
@@ -2777,5 +2882,26 @@
     "claim": "Trauma-Informed Policing",
     "translation": "Whispers instead of warrants.",
     "body": "\n## \"Trauma-Informed Policing\"\n\n## Whispers instead of warrants.\n"
+  },
+  {
+    "_path": "/claims/claims/tyrannical-government",
+    "title": "Tyrannical Government",
+    "claim": "Tyrannical Government",
+    "translation": "Free Constitutional Republic",
+    "body": "\n## \"Tyrannical Government\"\n\n## Free Constitutional Republic\n"
+  },
+  {
+    "_path": "/claims/claims/weak-military",
+    "title": "Weak Military",
+    "claim": "Weak Military",
+    "translation": "Strong Military",
+    "body": "\n## \"Weak Military\"\n\n## Strong Military\n"
+  },
+  {
+    "_path": "/claims/claims/welfare-state",
+    "title": "Welfare State",
+    "claim": "Welfare State",
+    "translation": "Working Class",
+    "body": "\n## \"Welfare State\"\n\n## Working Class\n"
   }
 ]

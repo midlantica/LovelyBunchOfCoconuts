@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Dummy Ads</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f0f0f0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      .ad-preview {
+        margin: 20px 0;
+        border: 1px solid #ddd;
+        padding: 10px;
+        background: #fafafa;
+      }
+
+      canvas {
+        display: block;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
+
+      button:hover {
+        background: #0056b3;
+      }
+
+      .download-section {
+        margin-top: 20px;
+        padding: 20px;
+        background: #e9ecef;
+        border-radius: 4px;
+      }
+
+      .instructions {
+        background: #fff3cd;
+        border: 1px solid #ffc107;
+        padding: 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>WakeUpNPC Dummy Ad Generator</h1>
+
+      <div class="instructions">
+        <h3>Instructions:</h3>
+        <ol>
+          <li>Click "Generate All Ads" to create the dummy advertisements</li>
+          <li>Right-click each image and select "Save Image As..."</li>
+          <li>Save small ads to: <code>content/ads/</code> as <code>ad-small-1.jpg</code>, <code>ad-small-2.jpg</code>,
+            etc.</li>
+          <li>Save large ads to: <code>content/ads/</code> as <code>ad-large-1.jpg</code>, <code>ad-large-2.jpg</code>,
+            etc.</li>
+        </ol>
+      </div>
+
+      <button onclick="generateAllAds()">Generate All Ads</button>
+
+      <div id="ads-container"></div>
+    </div>
+
+    <script>
+      // Ad specifications
+      const adSpecs = {
+        small: {
+          width: 400,
+          height: 300,
+          count: 4,
+          bgColors: ['#6B7280', '#9CA3AF', '#6B7280', '#9CA3AF']
+        },
+        large: {
+          width: 800,
+          height: 400,
+          count: 4,
+          bgColors: ['#6B7280', '#9CA3AF', '#6B7280', '#9CA3AF']
+        }
+      }
+
+      function createCanvas (width, height) {
+        const canvas = document.createElement('canvas')
+        canvas.width = width
+        canvas.height = height
+        return canvas
+      }
+
+      function drawAd (canvas, type, number, bgColor) {
+        const ctx = canvas.getContext('2d')
+        const width = canvas.width
+        const height = canvas.height
+
+        // Fill background
+        ctx.fillStyle = bgColor
+        ctx.fillRect(0, 0, width, height)
+
+        // Add border
+        ctx.strokeStyle = '#4B5563'
+        ctx.lineWidth = 2
+        ctx.strokeRect(1, 1, width - 2, height - 2)
+
+        // Add diagonal lines for placeholder effect
+        ctx.strokeStyle = '#374151'
+        ctx.lineWidth = 1
+        ctx.beginPath()
+        ctx.moveTo(0, 0)
+        ctx.lineTo(width, height)
+        ctx.moveTo(width, 0)
+        ctx.lineTo(0, height)
+        ctx.stroke()
+
+        // Add center text
+        ctx.fillStyle = '#FFFFFF'
+        ctx.font = 'bold 48px Arial'
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+
+        const mainText = `${type.toUpperCase()} AD ${number}`
+        ctx.fillText(mainText, width / 2, height / 2 - 30)
+
+        // Add dimensions text
+        ctx.font = '24px Arial'
+        ctx.fillStyle = '#E5E7EB'
+        ctx.fillText(`${width} × ${height}px`, width / 2, height / 2 + 20)
+
+        // Add "PLACEHOLDER" text
+        ctx.font = '16px Arial'
+        ctx.fillStyle = '#9CA3AF'
+        ctx.fillText('PLACEHOLDER', width / 2, height / 2 + 50)
+
+        // Add corner markers
+        const markerSize = 20
+        ctx.strokeStyle = '#FFFFFF'
+        ctx.lineWidth = 2
+
+        // Top-left
+        ctx.beginPath()
+        ctx.moveTo(10, 10 + markerSize)
+        ctx.lineTo(10, 10)
+        ctx.lineTo(10 + markerSize, 10)
+        ctx.stroke()
+
+        // Top-right
+        ctx.beginPath()
+        ctx.moveTo(width - 10 - markerSize, 10)
+        ctx.lineTo(width - 10, 10)
+        ctx.lineTo(width - 10, 10 + markerSize)
+        ctx.stroke()
+
+        // Bottom-left
+        ctx.beginPath()
+        ctx.moveTo(10, height - 10 - markerSize)
+        ctx.lineTo(10, height - 10)
+        ctx.lineTo(10 + markerSize, height - 10)
+        ctx.stroke()
+
+        // Bottom-right
+        ctx.beginPath()
+        ctx.moveTo(width - 10 - markerSize, height - 10)
+        ctx.lineTo(width - 10, height - 10)
+        ctx.lineTo(width - 10, height - 10 - markerSize)
+        ctx.stroke()
+      }
+
+      function generateAllAds () {
+        const container = document.getElementById('ads-container')
+        container.innerHTML = ''
+
+        // Generate small ads
+        const smallSection = document.createElement('div')
+        smallSection.innerHTML = '<h2>Small Ads (Claims-sized)</h2>'
+        container.appendChild(smallSection)
+
+        for (let i = 1; i <= adSpecs.small.count; i++) {
+          const adDiv = document.createElement('div')
+          adDiv.className = 'ad-preview'
+
+          const canvas = createCanvas(adSpecs.small.width, adSpecs.small.height)
+          drawAd(canvas, 'Small', i, adSpecs.small.bgColors[i - 1])
+
+          const label = document.createElement('p')
+          label.innerHTML = `<strong>ad-small-${i}.jpg</strong> (${adSpecs.small.width}×${adSpecs.small.height}px)`
+
+          adDiv.appendChild(label)
+          adDiv.appendChild(canvas)
+          smallSection.appendChild(adDiv)
+        }
+
+        // Generate large ads
+        const largeSection = document.createElement('div')
+        largeSection.innerHTML = '<h2>Large Ads (Quotes-sized)</h2>'
+        container.appendChild(largeSection)
+
+        for (let i = 1; i <= adSpecs.large.count; i++) {
+          const adDiv = document.createElement('div')
+          adDiv.className = 'ad-preview'
+
+          const canvas = createCanvas(adSpecs.large.width, adSpecs.large.height)
+          drawAd(canvas, 'Large', i, adSpecs.large.bgColors[i - 1])
+
+          const label = document.createElement('p')
+          label.innerHTML = `<strong>ad-large-${i}.jpg</strong> (${adSpecs.large.width}×${adSpecs.large.height}px)`
+
+          adDiv.appendChild(label)
+          adDiv.appendChild(canvas)
+          largeSection.appendChild(adDiv)
+        }
+
+        // Add download instructions
+        const downloadSection = document.createElement('div')
+        downloadSection.className = 'download-section'
+        downloadSection.innerHTML = `
+                <h3>✅ Ads Generated!</h3>
+                <p>Now right-click each image above and save them with the filenames shown.</p>
+                <p>Save all images to: <code>content/ads/</code></p>
+            `
+        container.appendChild(downloadSection)
+      }
+
+      // Auto-generate on load
+      window.onload = function() {
+        generateAllAds()
+      };
+    </script>
+  </body>
+
+</html>
