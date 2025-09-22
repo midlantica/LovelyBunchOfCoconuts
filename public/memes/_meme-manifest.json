@@ -1759,6 +1759,14 @@
       "updated": "2025-09-13T04:55:14.901Z",
       "width": 960,
       "height": 784
+    },
+    "quotes/its-crazy-how-supporting-free-speech.jpg": {
+      "optimized": true,
+      "hash": "aba55a2e46819c56a7316736407e071061194c94",
+      "action": "upscale→800",
+      "updated": "2025-09-22T17:24:15.158Z",
+      "width": 640,
+      "height": 800
     }
   }
 }

@@ -14,7 +14,7 @@
     <div class="mb-8">
       <h2 class="mb-2 font-semibold text-xl">Sample Small Ad</h2>
       <div class="max-w-md">
-        <WallAdPanel v-if="sampleSmallAd" :ad="sampleSmallAd" size="small" />
+        <WallPanelAd v-if="sampleSmallAd" :ad="sampleSmallAd" size="small" />
         <p v-else class="text-red-500">No small ads available</p>
       </div>
     </div>
@@ -22,7 +22,7 @@
     <div class="mb-8">
       <h2 class="mb-2 font-semibold text-xl">Sample Large Ad</h2>
       <div class="max-w-2xl">
-        <WallAdPanel v-if="sampleLargeAd" :ad="sampleLargeAd" size="large" />
+        <WallPanelAd v-if="sampleLargeAd" :ad="sampleLargeAd" size="large" />
         <p v-else class="text-red-500">No large ads available</p>
       </div>
     </div>

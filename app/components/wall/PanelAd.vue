@@ -4,8 +4,8 @@
     class="relative shadow-md hover:shadow-lg rounded-lg overflow-hidden transition-shadow duration-200 wall-ad-panel"
     :class="panelClasses"
   >
-    <!-- Use the WallAdBadge component -->
-    <WallAdBadge :size="size" />
+    <!-- Use the UiAdBadge component -->
+    <UiAdBadge :size="size" />
 
     <!-- Ad link wrapper -->
     <a

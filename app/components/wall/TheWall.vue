@@ -35,13 +35,13 @@
             "
           >
             <!-- Ad Panel for horizontal ads -->
-            <WallAdPanel
+            <WallPanelAd
               v-if="item.data?.isAd"
               :ad="item.data"
               :size="item.data.size || 'horizontal'"
             />
             <!-- Regular Quote Panel -->
-            <WallQuotePanel
+            <WallPanelQuote
               v-else
               :quote="item.data"
               :slug="item.data?.path || item.data?._path || ''"
@@ -74,13 +74,13 @@
               "
             >
               <!-- Ad Panel for square ads -->
-              <WallAdPanel
+              <WallPanelAd
                 v-if="claimItem?.isAd"
                 :ad="claimItem"
                 :size="claimItem.size || 'square'"
               />
               <!-- Regular Claim Panel -->
-              <WallClaimPanel
+              <WallPanelClaim
                 v-else
                 :claim="claimItem"
                 :slug="claimItem?.path || claimItem?._path || ''"
@@ -114,13 +114,13 @@
               "
             >
               <!-- Ad Panel for square ads in meme slots -->
-              <WallAdPanel
+              <WallPanelAd
                 v-if="memeItem?.isAd"
                 :ad="memeItem"
                 :size="memeItem.size || 'square'"
               />
               <!-- Regular Meme Panel -->
-              <WallMemePanel
+              <WallPanelMeme
                 v-else
                 :meme="memeItem"
                 :slug="memeItem?.path || memeItem?._path || ''"

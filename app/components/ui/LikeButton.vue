@@ -25,7 +25,7 @@
     <span
       class="inline-flex justify-center items-center rounded-full transition-all duration-150"
       :class="[
-        'w-8 h-8',
+        'h-8',
         isSolid
           ? 'text-seagull-700'
           : fadedUnliked

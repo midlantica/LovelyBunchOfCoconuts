@@ -48,7 +48,10 @@ export const TERM_RELATIONS = {
     'market economy',
     'private enterprise',
     'hayek',
+    'mises',
     'capitalism',
+    'capitalist',
+    'capital',
   ],
   // Support phrase keys in lowercase with spaces
   'free markets': [
@@ -63,7 +66,12 @@ export const TERM_RELATIONS = {
     'state ownership',
     'planned economy',
     'maoism',
+    'maoist',
+    'mao',
     'fascism',
+    'fascist',
+    'nazism',
+    'nazi',
   ],
   maoism: [
     'collectivism',
@@ -71,6 +79,8 @@ export const TERM_RELATIONS = {
     'planned economy',
     'socialism',
     'fascism',
+    'mao',
+    'maoist',
   ],
   collectivism: [
     'socialism',
@@ -80,6 +90,7 @@ export const TERM_RELATIONS = {
     'collectivism',
     'fascism',
     'marxism',
+    'nazism',
   ],
   redistribution: ['wealth redistribution', 'reparations'],
   justice: ['social justice', 'equity'],
