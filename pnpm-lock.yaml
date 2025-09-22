@@ -13,7 +13,7 @@ importers:
         version: 0.1.80
       '@nuxt/content':
         specifier: 3.7.1
-        version: 3.7.1(better-sqlite3@12.2.0)(magicast@0.3.5)
+        version: 3.7.1(better-sqlite3@12.3.0)(magicast@0.3.5)
       '@nuxt/eslint':
         specifier: 1.9.0
         version: 1.9.0(@typescript-eslint/utils@8.44.0(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2))(@vue/compiler-sfc@3.5.21)(eslint@9.36.0(jiti@2.5.1))(magicast@0.3.5)(typescript@5.9.2)(vite@7.1.6(@types/node@24.0.6)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.44.0)(yaml@2.8.1))
@@ -24,8 +24,8 @@ importers:
         specifier: 0.17.4
         version: 0.17.4(magicast@0.3.5)
       better-sqlite3:
-        specifier: 12.2.0
-        version: 12.2.0
+        specifier: 12.3.0
+        version: 12.3.0
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -37,7 +37,7 @@ importers:
         version: 14.1.0
       nuxt:
         specifier: ^4.1.2
-        version: 4.1.2(@netlify/blobs@9.1.2)(@parcel/watcher@2.5.1)(@types/node@24.0.6)(@vue/compiler-sfc@3.5.21)(better-sqlite3@12.2.0)(db0@0.3.2(better-sqlite3@12.2.0))(eslint@9.36.0(jiti@2.5.1))(ioredis@5.7.0)(lightningcss@1.30.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.50.2)(terser@5.44.0)(typescript@5.9.2)(vite@7.1.6(@types/node@24.0.6)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.44.0)(yaml@2.8.1))(yaml@2.8.1)
+        version: 4.1.2(@netlify/blobs@9.1.2)(@parcel/watcher@2.5.1)(@types/node@24.0.6)(@vue/compiler-sfc@3.5.21)(better-sqlite3@12.3.0)(db0@0.3.2(better-sqlite3@12.3.0))(eslint@9.36.0(jiti@2.5.1))(ioredis@5.7.0)(lightningcss@1.30.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.50.2)(terser@5.44.0)(typescript@5.9.2)(vite@7.1.6(@types/node@24.0.6)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.44.0)(yaml@2.8.1))(yaml@2.8.1)
       vue:
         specifier: ^3.5.21
         version: 3.5.21(typescript@5.9.2)
@@ -55,8 +55,8 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0
       '@iconify-json/heroicons':
-        specifier: ^1.2.2
-        version: 1.2.2
+        specifier: ^1.2.3
+        version: 1.2.3
       '@iconify-json/heroicons-outline':
         specifier: ^1.2.1
         version: 1.2.1
@@ -85,8 +85,8 @@ importers:
         specifier: ^4.1.13
         version: 4.1.13
       '@tailwindcss/typography':
-        specifier: ^0.5.17
-        version: 0.5.17(tailwindcss@4.1.13)
+        specifier: ^0.5.18
+        version: 0.5.18(tailwindcss@4.1.13)
       '@tailwindcss/vite':
         specifier: ^4.1.13
         version: 4.1.13(vite@7.1.6(@types/node@24.0.6)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.44.0)(yaml@2.8.1))
@@ -97,8 +97,8 @@ importers:
         specifier: ^9.36.0
         version: 9.36.0(jiti@2.5.1)
       eslint-plugin-vue:
-        specifier: ^10.4.0
-        version: 10.4.0(@typescript-eslint/parser@8.44.0(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.36.0(jiti@2.5.1))(vue-eslint-parser@10.2.0(eslint@9.36.0(jiti@2.5.1)))
+        specifier: ^10.5.0
+        version: 10.5.0(@stylistic/eslint-plugin@5.3.1(eslint@9.36.0(jiti@2.5.1)))(@typescript-eslint/parser@8.44.0(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.36.0(jiti@2.5.1))(vue-eslint-parser@10.2.0(eslint@9.36.0(jiti@2.5.1)))
       globals:
         specifier: ^16.4.0
         version: 16.4.0
@@ -523,8 +523,8 @@ packages:
   '@iconify-json/heroicons-outline@1.2.1':
     resolution: {integrity: sha512-QNYV4/KsW8Ww9a3B+hxDntS5BwLLbErKpL1V3MkvB8X+ZVTX5VLxjlj8rAEih+GCDWzaiZJOrdO/pagvsuBkXg==}
 
-  '@iconify-json/heroicons@1.2.2':
-    resolution: {integrity: sha512-qoW4pXr5kTTL6juEjgTs83OJIwpePu7q1tdtKVEdj+i0zyyVHgg/dd9grsXJQnpTpBt6/VwNjrXBvFjRsKPENg==}
+  '@iconify-json/heroicons@1.2.3':
+    resolution: {integrity: sha512-n+vmCEgTesRsOpp5AB5ILB6srsgsYK+bieoQBNlafvoEhjVXLq8nIGN4B0v/s4DUfa0dOrjwE/cKJgIKdJXOEg==}
 
   '@iconify-json/mdi-light@1.2.2':
     resolution: {integrity: sha512-86UV9uyNve8zRFWiPrOrrDp9GDzsZM7plYV/on4VjgLLqXlyriuy541eHZB7LIOzTUyIPVli7QiUpBbTtBhsFw==}
@@ -1523,8 +1523,8 @@ packages:
   '@tailwindcss/postcss@4.1.13':
     resolution: {integrity: sha512-HLgx6YSFKJT7rJqh9oJs/TkBFhxuMOfUKSBEPYwV+t78POOBsdQ7crhZLzwcH3T0UyUuOzU/GK5pk5eKr3wCiQ==}
 
-  '@tailwindcss/typography@0.5.17':
-    resolution: {integrity: sha512-Ll/jGz1flUVaSxK/Y7OqT+kHOhrbDpSXpAszhEBCE82yTcs47bJJLI0MB5Peoh9TgBOMUjJpsGez9MECzXLw9Q==}
+  '@tailwindcss/typography@0.5.18':
+    resolution: {integrity: sha512-dDIgwZOlf+tVkZ7A029VvQ1+ngKATENDjMEx2N35s2yPjfTS05RWSM8ilhEWSa5DMJ6ci2Ha9WNZEd2GQjrdQg==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20 || >=4.0.0-beta.1'
 
@@ -1985,8 +1985,8 @@ packages:
     resolution: {integrity: sha512-TiU4qUT9jdCuh4aVOG7H1QozyeI2sZRqoRPdqBIaslfNt4WUSanRBueAwl2x5jt4rXBMim3lIN2x6yT8PDi24Q==}
     hasBin: true
 
-  better-sqlite3@12.2.0:
-    resolution: {integrity: sha512-eGbYq2CT+tos1fBwLQ/tkBt9J5M3JEHjku4hbvQUePCckkvVf14xWj+1m7dGoK81M/fOjFT7yM9UMeKT/+vFLQ==}
+  better-sqlite3@12.3.0:
+    resolution: {integrity: sha512-FFf+rsghyvXQIPV/6PDUj05EsuZA1b0drGLzNgtrELkXnJKUH6NNM2h7Ce7dkA6vvPOM4SOoUIDGRPy3yRKmqw==}
     engines: {node: 20.x || 22.x || 23.x || 24.x}
 
   bindings@1.5.0:
@@ -2597,14 +2597,17 @@ packages:
     peerDependencies:
       eslint: '>=9.29.0'
 
-  eslint-plugin-vue@10.4.0:
-    resolution: {integrity: sha512-K6tP0dW8FJVZLQxa2S7LcE1lLw3X8VvB3t887Q6CLrFVxHYBXGANbXvwNzYIu6Ughx1bSJ5BDT0YB3ybPT39lw==}
+  eslint-plugin-vue@10.5.0:
+    resolution: {integrity: sha512-7BZHsG3kC2vei8F2W8hnfDi9RK+cv5eKPMvzBdrl8Vuc0hR5odGQRli8VVzUkrmUHkxFEm4Iio1r5HOKslO0Aw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
+      '@stylistic/eslint-plugin': ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
       '@typescript-eslint/parser': ^7.0.0 || ^8.0.0
       eslint: ^8.57.0 || ^9.0.0
       vue-eslint-parser: ^10.0.0
     peerDependenciesMeta:
+      '@stylistic/eslint-plugin':
+        optional: true
       '@typescript-eslint/parser':
         optional: true
 
@@ -5637,7 +5640,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/heroicons@1.2.2':
+  '@iconify-json/heroicons@1.2.3':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -5888,7 +5891,7 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@nuxt/content@3.7.1(better-sqlite3@12.2.0)(magicast@0.3.5)':
+  '@nuxt/content@3.7.1(better-sqlite3@12.3.0)(magicast@0.3.5)':
     dependencies:
       '@nuxt/kit': 4.1.2(magicast@0.3.5)
       '@nuxtjs/mdc': 0.17.4(magicast@0.3.5)
@@ -5899,7 +5902,7 @@ snapshots:
       c12: 3.3.0(magicast@0.3.5)
       chokidar: 4.0.3
       consola: 3.4.2
-      db0: 0.3.2(better-sqlite3@12.2.0)
+      db0: 0.3.2(better-sqlite3@12.3.0)
       defu: 6.1.4
       destr: 2.0.5
       git-url-parse: 16.1.0
@@ -5938,7 +5941,7 @@ snapshots:
       zod: 3.25.76
       zod-to-json-schema: 3.24.6(zod@3.25.76)
     optionalDependencies:
-      better-sqlite3: 12.2.0
+      better-sqlite3: 12.3.0
     transitivePeerDependencies:
       - bufferutil
       - drizzle-orm
@@ -6027,7 +6030,7 @@ snapshots:
       eslint-plugin-jsdoc: 54.7.0(eslint@9.36.0(jiti@2.5.1))
       eslint-plugin-regexp: 2.10.0(eslint@9.36.0(jiti@2.5.1))
       eslint-plugin-unicorn: 60.0.0(eslint@9.36.0(jiti@2.5.1))
-      eslint-plugin-vue: 10.4.0(@typescript-eslint/parser@8.44.0(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.36.0(jiti@2.5.1))(vue-eslint-parser@10.2.0(eslint@9.36.0(jiti@2.5.1)))
+      eslint-plugin-vue: 10.5.0(@stylistic/eslint-plugin@5.3.1(eslint@9.36.0(jiti@2.5.1)))(@typescript-eslint/parser@8.44.0(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.36.0(jiti@2.5.1))(vue-eslint-parser@10.2.0(eslint@9.36.0(jiti@2.5.1)))
       eslint-processor-vue-blocks: 2.0.0(@vue/compiler-sfc@3.5.21)(eslint@9.36.0(jiti@2.5.1))
       globals: 16.4.0
       local-pkg: 1.1.2
@@ -6810,7 +6813,7 @@ snapshots:
       postcss: 8.5.6
       tailwindcss: 4.1.13
 
-  '@tailwindcss/typography@0.5.17(tailwindcss@4.1.13)':
+  '@tailwindcss/typography@0.5.18(tailwindcss@4.1.13)':
     dependencies:
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.1.13
@@ -7356,7 +7359,7 @@ snapshots:
 
   baseline-browser-mapping@2.8.5: {}
 
-  better-sqlite3@12.2.0:
+  better-sqlite3@12.3.0:
     dependencies:
       bindings: 1.5.0
       prebuild-install: 7.1.3
@@ -7671,9 +7674,9 @@ snapshots:
   data-uri-to-buffer@4.0.1:
     optional: true
 
-  db0@0.3.2(better-sqlite3@12.2.0):
+  db0@0.3.2(better-sqlite3@12.3.0):
     optionalDependencies:
-      better-sqlite3: 12.2.0
+      better-sqlite3: 12.3.0
 
   de-indent@1.0.2: {}
 
@@ -7970,7 +7973,7 @@ snapshots:
       semver: 7.7.2
       strip-indent: 4.1.0
 
-  eslint-plugin-vue@10.4.0(@typescript-eslint/parser@8.44.0(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.36.0(jiti@2.5.1))(vue-eslint-parser@10.2.0(eslint@9.36.0(jiti@2.5.1))):
+  eslint-plugin-vue@10.5.0(@stylistic/eslint-plugin@5.3.1(eslint@9.36.0(jiti@2.5.1)))(@typescript-eslint/parser@8.44.0(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.36.0(jiti@2.5.1))(vue-eslint-parser@10.2.0(eslint@9.36.0(jiti@2.5.1))):
     dependencies:
       '@eslint-community/eslint-utils': 4.9.0(eslint@9.36.0(jiti@2.5.1))
       eslint: 9.36.0(jiti@2.5.1)
@@ -7981,6 +7984,7 @@ snapshots:
       vue-eslint-parser: 10.2.0(eslint@9.36.0(jiti@2.5.1))
       xml-name-validator: 4.0.0
     optionalDependencies:
+      '@stylistic/eslint-plugin': 5.3.1(eslint@9.36.0(jiti@2.5.1))
       '@typescript-eslint/parser': 8.44.0(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2)
 
   eslint-processor-vue-blocks@2.0.0(@vue/compiler-sfc@3.5.21)(eslint@9.36.0(jiti@2.5.1)):
@@ -9296,7 +9300,7 @@ snapshots:
       qs: 6.14.0
     optional: true
 
-  nitropack@2.12.6(@netlify/blobs@9.1.2)(better-sqlite3@12.2.0):
+  nitropack@2.12.6(@netlify/blobs@9.1.2)(better-sqlite3@12.3.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@rollup/plugin-alias': 5.1.1(rollup@4.50.2)
@@ -9317,7 +9321,7 @@ snapshots:
       cookie-es: 2.0.0
       croner: 9.1.0
       crossws: 0.3.5
-      db0: 0.3.2(better-sqlite3@12.2.0)
+      db0: 0.3.2(better-sqlite3@12.3.0)
       defu: 6.1.4
       destr: 2.0.5
       dot-prop: 9.0.0
@@ -9363,7 +9367,7 @@ snapshots:
       unenv: 2.0.0-rc.21
       unimport: 5.2.0
       unplugin-utils: 0.3.0
-      unstorage: 1.17.1(@netlify/blobs@9.1.2)(db0@0.3.2(better-sqlite3@12.2.0))(ioredis@5.7.0)
+      unstorage: 1.17.1(@netlify/blobs@9.1.2)(db0@0.3.2(better-sqlite3@12.3.0))(ioredis@5.7.0)
       untyped: 2.0.0
       unwasm: 0.3.11
       youch: 4.1.0-beta.11
@@ -9494,7 +9498,7 @@ snapshots:
       - magicast
       - vue
 
-  nuxt@4.1.2(@netlify/blobs@9.1.2)(@parcel/watcher@2.5.1)(@types/node@24.0.6)(@vue/compiler-sfc@3.5.21)(better-sqlite3@12.2.0)(db0@0.3.2(better-sqlite3@12.2.0))(eslint@9.36.0(jiti@2.5.1))(ioredis@5.7.0)(lightningcss@1.30.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.50.2)(terser@5.44.0)(typescript@5.9.2)(vite@7.1.6(@types/node@24.0.6)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.44.0)(yaml@2.8.1))(yaml@2.8.1):
+  nuxt@4.1.2(@netlify/blobs@9.1.2)(@parcel/watcher@2.5.1)(@types/node@24.0.6)(@vue/compiler-sfc@3.5.21)(better-sqlite3@12.3.0)(db0@0.3.2(better-sqlite3@12.3.0))(eslint@9.36.0(jiti@2.5.1))(ioredis@5.7.0)(lightningcss@1.30.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.50.2)(terser@5.44.0)(typescript@5.9.2)(vite@7.1.6(@types/node@24.0.6)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.44.0)(yaml@2.8.1))(yaml@2.8.1):
     dependencies:
       '@nuxt/cli': 3.28.0(magicast@0.3.5)
       '@nuxt/devalue': 2.0.2
@@ -9529,7 +9533,7 @@ snapshots:
       mlly: 1.8.0
       mocked-exports: 0.1.1
       nanotar: 0.2.0
-      nitropack: 2.12.6(@netlify/blobs@9.1.2)(better-sqlite3@12.2.0)
+      nitropack: 2.12.6(@netlify/blobs@9.1.2)(better-sqlite3@12.3.0)
       nypm: 0.6.2
       ofetch: 1.4.1
       ohash: 2.0.11
@@ -9553,7 +9557,7 @@ snapshots:
       unimport: 5.2.0
       unplugin: 2.3.10
       unplugin-vue-router: 0.15.0(@vue/compiler-sfc@3.5.21)(typescript@5.9.2)(vue-router@4.5.1(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
-      unstorage: 1.17.1(@netlify/blobs@9.1.2)(db0@0.3.2(better-sqlite3@12.2.0))(ioredis@5.7.0)
+      unstorage: 1.17.1(@netlify/blobs@9.1.2)(db0@0.3.2(better-sqlite3@12.3.0))(ioredis@5.7.0)
       untyped: 2.0.0
       vue: 3.5.21(typescript@5.9.2)
       vue-bundle-renderer: 2.1.2
@@ -10888,7 +10892,7 @@ snapshots:
       '@unrs/resolver-binding-win32-ia32-msvc': 1.11.1
       '@unrs/resolver-binding-win32-x64-msvc': 1.11.1
 
-  unstorage@1.17.1(@netlify/blobs@9.1.2)(db0@0.3.2(better-sqlite3@12.2.0))(ioredis@5.7.0):
+  unstorage@1.17.1(@netlify/blobs@9.1.2)(db0@0.3.2(better-sqlite3@12.3.0))(ioredis@5.7.0):
     dependencies:
       anymatch: 3.1.3
       chokidar: 4.0.3
@@ -10900,7 +10904,7 @@ snapshots:
       ufo: 1.6.1
     optionalDependencies:
       '@netlify/blobs': 9.1.2
-      db0: 0.3.2(better-sqlite3@12.2.0)
+      db0: 0.3.2(better-sqlite3@12.3.0)
       ioredis: 5.7.0
 
   untun@0.1.3:
