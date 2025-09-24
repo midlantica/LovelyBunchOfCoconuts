@@ -60,6 +60,31 @@
           />
         </div>
       </div>
+      <!-- Search suggestions dropdown -->
+      <div
+        v-if="showSuggestions && suggestions.length > 0"
+        class="top-full right-0 left-0 z-[1000] absolute bg-slate-800 shadow-lg mt-1 border border-seagull-400/40 rounded-lg max-h-64 overflow-y-auto"
+      >
+        <div
+          v-for="(suggestion, idx) in suggestions"
+          :key="suggestion.term + idx"
+          class="px-4 py-2 text-slate-200 transition-colors cursor-pointer"
+          :class="{
+            'bg-slate-700': selectedSuggestionIndex === idx,
+            'hover:bg-slate-600': selectedSuggestionIndex !== idx,
+          }"
+          @click="selectSuggestion(suggestion)"
+          @mouseenter="selectedSuggestionIndex = idx"
+        >
+          <div class="flex justify-between items-center">
+            <span class="font-light">{{ suggestion.term }}</span>
+            <span class="text-slate-400 text-xs capitalize">{{
+              suggestion.type
+            }}</span>
+          </div>
+        </div>
+      </div>
+
       <!-- Right control group: Filter, ESC, X -->
       <div
         class="top-1/2 right-3 absolute flex items-center gap-1 -translate-y-1/2"
@@ -145,6 +170,17 @@
   const lastEmittedSearch = ref('')
   const popLock = ref(false)
   const flashingTokens = ref(new Set())
+
+  // Search autocomplete state
+  const showSuggestions = ref(false)
+  const suggestions = ref([])
+  const recentSearches = useState('recentSearches', () => [])
+  const selectedSuggestionIndex = ref(-1)
+
+  // Ensure suggestions is always an array
+  if (!suggestions.value) {
+    suggestions.value = []
+  }
 
   // Map lowercase ideology term -> canonical term casing
   const ideologyCanonicalByLower = Object.fromEntries(
@@ -370,6 +406,43 @@
   }
   function onKeydown(e) {
     const k = e.key
+
+    // Handle suggestion navigation when suggestions are visible
+    if (showSuggestions.value && suggestions.value.length > 0) {
+      if (k === 'ArrowDown') {
+        e.preventDefault()
+        selectedSuggestionIndex.value = Math.min(
+          selectedSuggestionIndex.value + 1,
+          suggestions.value.length - 1
+        )
+        return
+      } else if (k === 'ArrowUp') {
+        e.preventDefault()
+        selectedSuggestionIndex.value = Math.max(
+          selectedSuggestionIndex.value - 1,
+          0
+        )
+        return
+      } else if (k === 'Enter') {
+        e.preventDefault()
+        if (
+          selectedSuggestionIndex.value >= 0 &&
+          selectedSuggestionIndex.value < suggestions.value.length
+        ) {
+          selectSuggestion(suggestions.value[selectedSuggestionIndex.value])
+        } else {
+          // No selection, commit current input as token
+          commitInputAsToken()
+        }
+        return
+      } else if (k === 'Escape') {
+        e.preventDefault()
+        showSuggestions.value = false
+        selectedSuggestionIndex.value = -1
+        return
+      }
+    }
+
     if ((k === 'Backspace' || k === 'Delete') && inputText.value.length === 0) {
       if (tokens.value.length > 0 && !popLock.value) {
         tokens.value.pop()
@@ -440,6 +513,110 @@
       window.location.hash || ''
     }`
   }
+
+  // Search autocomplete functionality
+  const popularTerms = [
+    'freedom',
+    'equality',
+    'capitalism',
+    'socialism',
+    'democracy',
+    'climate change',
+    'environment',
+    'education',
+    'healthcare',
+    'rights',
+    'government',
+    'politics',
+    'economy',
+    'society',
+    'justice',
+    'liberty',
+    'progressive',
+    'conservative',
+    'reform',
+    'policy',
+  ]
+
+  function generateSuggestions(input) {
+    if (!input || input.length < 2) {
+      suggestions.value = []
+      showSuggestions.value = false
+      return
+    }
+
+    const inputLower = input.toLowerCase()
+    const results = []
+
+    // Add matching popular terms
+    popularTerms.forEach((term) => {
+      if (term.toLowerCase().includes(inputLower)) {
+        results.push({ term, type: 'popular' })
+      }
+    })
+
+    // Add recent searches that match
+    recentSearches.value.forEach((term) => {
+      if (
+        term.toLowerCase().includes(inputLower) &&
+        !results.find((r) => r.term === term)
+      ) {
+        results.push({ term, type: 'recent' })
+      }
+    })
+
+    // Add ideology terms that match
+    ideologies.forEach((ideology) => {
+      if (
+        ideology.term.toLowerCase().includes(inputLower) &&
+        !results.find((r) => r.term === ideology.term)
+      ) {
+        results.push({ term: ideology.term, type: 'ideology' })
+      }
+    })
+
+    suggestions.value = results.slice(0, 6) // Limit to 6 suggestions
+    showSuggestions.value = results.length > 0
+  }
+
+  function selectSuggestion(suggestion) {
+    inputText.value = suggestion.term
+    showSuggestions.value = false
+    commitInputAsToken()
+
+    // Add to recent searches if not already there
+    const termLower = suggestion.term.toLowerCase()
+    const existingIndex = recentSearches.value.findIndex(
+      (t) => t.toLowerCase() === termLower
+    )
+    if (existingIndex >= 0) {
+      recentSearches.value.splice(existingIndex, 1)
+    }
+    recentSearches.value.unshift(suggestion.term)
+    recentSearches.value = recentSearches.value.slice(0, 10) // Keep only 10 recent searches
+  }
+
+  // Watch for input changes to generate suggestions
+  watch(inputText, (newVal) => {
+    generateSuggestions(newVal)
+  })
+
+  // Hide suggestions when clicking outside
+  function handleGlobalClick(e) {
+    if (searchInputRef.value && !searchInputRef.value.contains(e.target)) {
+      showSuggestions.value = false
+    }
+  }
+
+  onMounted(() => {
+    window.addEventListener('keydown', onGlobalKeydown)
+    window.addEventListener('click', handleGlobalClick)
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('keydown', onGlobalKeydown)
+    window.removeEventListener('click', handleGlobalClick)
+  })
 </script>
 
 <style scoped>

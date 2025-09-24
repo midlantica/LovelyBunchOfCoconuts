@@ -3,8 +3,9 @@
   <div
     v-if="claim && claim.claim && claim.translation && slug"
     class="group relative shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-4 py-3 border hover:border hover:border-seagull-400/50 border-transparent rounded-lg h-full text-white transition-colors cursor-pointer"
+    @click="openModal"
   >
-    <!-- Single like overlay (number left / heart right) -->
+    <!-- Like button only -->
     <div class="top-1 right-1 z-10 absolute">
       <UiLikeButton
         :id="claim?._path || claim?.path || slug"
@@ -65,4 +66,51 @@
     claim: Object,
     slug: String,
   })
+
+  const contentType = computed(() => 'political claim')
+
+  function openModal() {
+    // Emit event to parent to open modal
+    // This will be handled by the parent component
+    console.log('Opening modal for claim:', props.slug)
+  }
+
+  function shareContent() {
+    const url = `${window.location.origin}/${props.slug}`
+    const title = props.claim?.claim || 'Political Claim'
+    const description = `Check out this political claim from WakeUpNPC - Political Claims, Quotes & Memes`
+
+    // Use Web Share API if available (mobile)
+    if (navigator.share) {
+      navigator
+        .share({
+          title: `WakeUpNPC - ${title}`,
+          text: description,
+          url: url,
+        })
+        .catch(() => {
+          // Fallback to copying URL
+          copyToClipboard(url)
+        })
+    } else {
+      // Fallback to copying URL
+      copyToClipboard(url)
+    }
+  }
+
+  function copyToClipboard(text) {
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text)
+    } else {
+      const ta = document.createElement('textarea')
+      ta.value = text
+      document.body.appendChild(ta)
+      ta.select()
+      document.execCommand('copy')
+      document.body.removeChild(ta)
+    }
+
+    // Show toast notification (you could add a toast system)
+    console.log('Link copied to clipboard!')
+  }
 </script>

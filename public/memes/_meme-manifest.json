@@ -506,11 +506,11 @@
     },
     "the-science/global-warming-rebranded-weather.jpg": {
       "optimized": true,
-      "hash": "a96368b4bd13d908cd97bd6a4986b40a6f6dc43f",
+      "hash": "111e5c5b404bdb414ce735e6a3568b3d78f3b6ac",
       "action": "upscale→800",
-      "updated": "2025-08-23T03:40:51.665Z",
+      "updated": "2025-09-24T17:39:01.060Z",
       "width": 800,
-      "height": 449
+      "height": 422
     },
     "the-science/government-corruption-iceberg.jpg": {
       "optimized": true,
@@ -698,11 +698,11 @@
     },
     "the-science/refuting-12-claims-made-by-climate.jpg": {
       "optimized": true,
-      "hash": "9a38942e2a9e21584cfd964260f5661d32511d9e",
-      "action": "strip-profiles",
-      "updated": "2025-08-23T03:40:54.214Z",
-      "width": 839,
-      "height": 960
+      "hash": "ad58ad3215913d4b68374accde59e13144d1b5a9",
+      "action": "downscale→≤1080",
+      "updated": "2025-09-24T17:39:02.489Z",
+      "width": 1080,
+      "height": 1080
     },
     "the-science/science-vs-pseudoscience.jpg": {
       "optimized": true,
@@ -786,11 +786,11 @@
     },
     "the-science/the-first-earth-day-was-celebrated-on.jpg": {
       "optimized": true,
-      "hash": "c52e570ad0875ac875745fc7679d5f9b0208dc33",
+      "hash": "352d3dfc8822f1f99e01db3f8694ab7cf1d3b423",
       "action": "strip-profiles",
-      "updated": "2025-08-23T03:40:55.417Z",
-      "width": 1080,
-      "height": 519
+      "updated": "2025-09-24T17:39:03.105Z",
+      "width": 1017,
+      "height": 457
     },
     "the-science/the-ice-age-cometh-1974.jpg": {
       "optimized": true,

@@ -6,6 +6,7 @@
         class="group relative shadow-inset-card bg-slate-800 hover:bg-slate-900 mx-auto p-3 border hover:border hover:border-seagull-400/50 border-transparent rounded-md w-full h-full overflow-hidden cursor-pointer"
         @click="openModal"
       >
+        <!-- Like button only -->
         <div class="top-1 right-1 z-10 absolute">
           <UiLikeButton
             :id="meme?._path || meme?.path || slug"
@@ -65,6 +66,14 @@
   const { registerLazyImage } = useLazyImages()
   const lazyImg = ref(null)
 
+  const contentType = computed(() => 'political meme')
+
+  function openModal() {
+    // Emit event to parent to open modal
+    // This will be handled by the parent component
+    console.log('Opening modal for meme:', props.slug)
+  }
+
   // Get the image filename for alt text
   const imageAlt = computed(() => {
     if (!props.meme?.image) return 'Meme'
@@ -122,5 +131,45 @@
 
     console.error('🚨 Broken meme:', finalFilename)
     return finalFilename
+  }
+
+  function shareContent() {
+    const url = `${window.location.origin}/${props.slug}`
+    const title =
+      props.meme?.title || props.meme?.description || 'Political Meme'
+    const description = `Check out this political meme from WakeUpNPC - Political Claims, Quotes & Memes`
+
+    // Use Web Share API if available (mobile)
+    if (navigator.share) {
+      navigator
+        .share({
+          title: `WakeUpNPC - ${title}`,
+          text: description,
+          url: url,
+        })
+        .catch(() => {
+          // Fallback to copying URL
+          copyToClipboard(url)
+        })
+    } else {
+      // Fallback to copying URL
+      copyToClipboard(url)
+    }
+  }
+
+  function copyToClipboard(text) {
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text)
+    } else {
+      const ta = document.createElement('textarea')
+      ta.value = text
+      document.body.appendChild(ta)
+      ta.select()
+      document.execCommand('copy')
+      document.body.removeChild(ta)
+    }
+
+    // Show toast notification (you could add a toast system)
+    console.log('Link copied to clipboard!')
   }
 </script>

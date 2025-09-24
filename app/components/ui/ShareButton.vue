@@ -14,11 +14,14 @@
       <div class="flex items-center gap-4">
         <!-- Share cluster flush left -->
         <div class="flex flex-1 items-center gap-3">
-          <UiCopyLinkButton
-            ref="copyButton"
-            :url="url"
+          <!-- Copy image button -->
+          <UiShareButtonBase
+            icon-name="stash:image-plus-light"
+            aria-label="Copy meme image"
+            toast-message="Image copied!"
             icon-size="1.7rem"
             :button-style="{ position: 'relative', top: '0.5px' }"
+            @click="copyImageOnly"
             @toast-show="onToastShow"
           />
         </div>
@@ -56,5 +59,78 @@
   // Handle toast coordination - clear others when one shows
   const onToastShow = (buttonType) => {
     if (buttonType !== 'copy') copyButton.value?.clearToast()
+  }
+
+  // Copy image only
+  const copyImageOnly = async () => {
+    try {
+      const { useSocialShare } = await import('~/composables/useSocialShare')
+
+      // Create content object based on type
+      const content = {
+        claim: props.contentType === 'claim' ? props.title : null,
+        translation: props.contentType === 'claim' ? props.text : null,
+        headings: props.contentType === 'quote' ? [props.title] : null,
+        attribution: props.contentType === 'quote' ? props.text : null,
+        title: props.contentType === 'meme' ? props.title : null,
+        description: props.contentType === 'meme' ? props.text : null,
+      }
+
+      const { shareToPlatform } = useSocialShare()
+
+      // Copy just the image
+      await shareToPlatform(content, props.contentType, 'image')
+    } catch (error) {
+      console.error('Error copying image:', error)
+    }
+  }
+
+  // Copy text/URL only
+  const copyTextOnly = async () => {
+    try {
+      // Simply copy the URL to clipboard
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(props.url)
+        // Show toast notification
+        const toast = document.createElement('div')
+        toast.className = 'share-toast'
+        toast.textContent = 'Link copied!'
+        toast.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: #1e293b;
+          color: white;
+          padding: 12px 20px;
+          border-radius: 8px;
+          border: 1px solid #475569;
+          z-index: 9999;
+          font-family: Arial, sans-serif;
+          font-size: 14px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+          animation: toastSlideIn 0.3s ease-out;
+        `
+        document.body.appendChild(toast)
+        setTimeout(() => {
+          toast.style.animation = 'toastSlideOut 0.3s ease-in'
+          setTimeout(() => {
+            if (toast.parentNode) {
+              toast.parentNode.removeChild(toast)
+            }
+          }, 300)
+        }, 3000)
+      } else {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea')
+        textArea.value = props.url
+        document.body.appendChild(textArea)
+        textArea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textArea)
+        alert('Link copied to clipboard!')
+      }
+    } catch (error) {
+      console.error('Error copying text:', error)
+    }
   }
 </script>

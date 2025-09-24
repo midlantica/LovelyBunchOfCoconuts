@@ -3,7 +3,9 @@
   <div
     v-if="quote && quote.headings && quote.headings.length > 0 && slug"
     class="group relative shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-6 py-4 border hover:border hover:border-seagull-400/50 border-transparent rounded-lg text-white cursor-pointer quotePanel"
+    @click="openModal"
   >
+    <!-- Like button only -->
     <div class="top-1 right-1 z-10 absolute">
       <UiLikeButton
         :id="quote?._path || quote?.path || slug"
@@ -55,9 +57,56 @@
     slug: String,
   })
 
+  const contentType = computed(() => 'political quote')
+
+  function openModal() {
+    // Emit event to parent to open modal
+    // This will be handled by the parent component
+    console.log('Opening modal for quote:', props.slug)
+  }
+
   function formatQuote(text) {
     return text
-      ? text.replace(/&lt;wbr&gt;/g, '<wbr>').replace(/<wbr>/g, '<wbr>')
+      ? text.replace(/<wbr>/g, '<wbr>').replace(/<wbr>/g, '<wbr>')
       : ''
+  }
+
+  function shareContent() {
+    const url = `${window.location.origin}/${props.slug}`
+    const title = props.quote?.headings?.[0] || 'Political Quote'
+    const description = `Check out this political quote from WakeUpNPC - Political Claims, Quotes & Memes`
+
+    // Use Web Share API if available (mobile)
+    if (navigator.share) {
+      navigator
+        .share({
+          title: `WakeUpNPC - ${title}`,
+          text: description,
+          url: url,
+        })
+        .catch(() => {
+          // Fallback to copying URL
+          copyToClipboard(url)
+        })
+    } else {
+      // Fallback to copying URL
+      copyToClipboard(url)
+    }
+  }
+
+  function copyToClipboard(text) {
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text)
+    } else {
+      const ta = document.createElement('textarea')
+      ta.value = text
+      document.body.appendChild(ta)
+      ta.select()
+      document.execCommand('copy')
+      document.body.removeChild(ta)
+    }
+
+    // Show toast notification (you could add a toast system)
+    console.log('Link copied to clipboard!')
   }
 </script>

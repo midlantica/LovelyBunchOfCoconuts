@@ -141,11 +141,7 @@
 </template>
 
 <script setup>
-  // Auto-impoorts components/wall/...
-  import { useWallFiltering } from '~/composables/useWallFiltering'
-  import { useWallModalOpener } from '~/composables/useWallModalOpener'
-  import { useAds } from '~/composables/useAds'
-
+  // Auto-impoorts components/composables
   // Global guard to avoid click-through reopen after closing a modal
   const modalGuardUntil = useState('modalGuardUntil', () => 0)
 
