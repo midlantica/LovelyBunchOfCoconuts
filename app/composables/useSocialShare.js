@@ -530,38 +530,52 @@ export function useSocialShare() {
                   } catch (jpegError) {
                     console.warn('JPEG clipboard failed:', jpegError)
 
-                    // Mobile fallback: try older clipboard API or show instructions
+                    // Mobile fallback: use Web Share API or download
                     if (isMobile) {
                       try {
-                        // Try to use the older clipboard API for mobile
-                        if (navigator.clipboard.writeText) {
-                          // Create a data URL and copy it as text
-                          const reader = new FileReader()
-                          reader.onload = async () => {
-                            const dataUrl = reader.result
-                            try {
-                              await navigator.clipboard.writeText(dataUrl)
-                              showToast(
-                                'Image copied! (Paste as image in supported apps)'
-                              )
-                            } catch (textError) {
-                              console.warn('Text clipboard failed:', textError)
-                              showToast(
-                                'Copy failed - try long-press > Share/Copy Image'
-                              )
-                            }
-                          }
-                          reader.readAsDataURL(pngBlob)
-                        } else {
-                          showToast(
-                            'Copy failed - try long-press > Share/Copy Image'
+                        // Try Web Share API first (standard mobile sharing)
+                        if (navigator.share && navigator.canShare) {
+                          const file = new File(
+                            [pngBlob],
+                            `wakeupnpc-${type}.png`,
+                            { type: 'image/png' }
                           )
+                          if (navigator.canShare({ files: [file] })) {
+                            await navigator.share({
+                              title: 'WakeUpNPC Content',
+                              text: 'Check out this content from WakeUpNPC',
+                              files: [file],
+                            })
+                            showToast('Image shared!')
+                          } else {
+                            // Fallback: download the image
+                            const downloadUrl = URL.createObjectURL(pngBlob)
+                            const a = document.createElement('a')
+                            a.href = downloadUrl
+                            a.download = `wakeupnpc-${type}-${Date.now()}.png`
+                            a.style.display = 'none'
+                            document.body.appendChild(a)
+                            a.click()
+                            document.body.removeChild(a)
+                            URL.revokeObjectURL(downloadUrl)
+                            showToast('Image downloaded!')
+                          }
+                        } else {
+                          // Fallback: download the image
+                          const downloadUrl = URL.createObjectURL(pngBlob)
+                          const a = document.createElement('a')
+                          a.href = downloadUrl
+                          a.download = `wakeupnpc-${type}-${Date.now()}.png`
+                          a.style.display = 'none'
+                          document.body.appendChild(a)
+                          a.click()
+                          document.body.removeChild(a)
+                          URL.revokeObjectURL(downloadUrl)
+                          showToast('Image downloaded!')
                         }
                       } catch (mobileError) {
-                        console.warn('Mobile clipboard failed:', mobileError)
-                        showToast(
-                          'Copy failed - try long-press > Share/Copy Image'
-                        )
+                        console.warn('Mobile sharing failed:', mobileError)
+                        showToast('Tap to download image')
                       }
                     } else {
                       showToast('Copy failed - try right-click > Copy Image')
@@ -588,11 +602,6 @@ export function useSocialShare() {
           }
         } catch (clipboardError) {
           console.warn('Clipboard failed:', clipboardError)
-          const isMobile =
-            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-              navigator.userAgent
-            ) ||
-            (window.innerWidth <= 768 && window.innerHeight <= 1024)
           if (isMobile) {
             showToast('Copy failed - try long-press > Share/Copy Image')
           } else {
