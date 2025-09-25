@@ -488,35 +488,58 @@ export function useSocialShare() {
 
       // Handle different sharing modes
       if (platform === 'image') {
-        // For claims and quotes, copy the branded image
-        if (navigator.clipboard?.write) {
-          try {
-            await navigator.clipboard.write([
-              new ClipboardItem({ 'image/jpeg': imageBlob }),
-            ])
-            showToast('Image copied!')
-          } catch (error) {
-            console.warn('Image clipboard failed, downloading:', error)
-            const downloadUrl = URL.createObjectURL(imageBlob)
-            const a = document.createElement('a')
-            a.href = downloadUrl
-            a.download = `wakeupnpc-${type}-${Date.now()}.jpg`
-            document.body.appendChild(a)
-            a.click()
-            document.body.removeChild(a)
-            URL.revokeObjectURL(downloadUrl)
-            showToast('Image downloaded!')
+        // For claims and quotes, copy the branded image to clipboard
+        try {
+          if (navigator.clipboard?.write) {
+            // Convert JPEG to PNG for better clipboard compatibility
+            const canvas = document.createElement('canvas')
+            const ctx = canvas.getContext('2d')
+
+            // Create image from blob to draw on canvas
+            const img = new Image()
+            const blobUrl = URL.createObjectURL(imageBlob)
+
+            img.onload = async () => {
+              canvas.width = img.width
+              canvas.height = img.height
+              ctx.drawImage(img, 0, 0)
+
+              // Convert to PNG blob
+              canvas.toBlob(async (pngBlob) => {
+                try {
+                  await navigator.clipboard.write([
+                    new ClipboardItem({ 'image/png': pngBlob }),
+                  ])
+                  showToast('Image copied!')
+                } catch (pngError) {
+                  console.warn('PNG clipboard failed:', pngError)
+                  // Try original JPEG as fallback
+                  try {
+                    await navigator.clipboard.write([
+                      new ClipboardItem({ 'image/jpeg': imageBlob }),
+                    ])
+                    showToast('Image copied!')
+                  } catch (jpegError) {
+                    console.warn('JPEG clipboard failed:', jpegError)
+                    showToast('Copy failed - try right-click > Copy Image')
+                  }
+                }
+                URL.revokeObjectURL(blobUrl)
+              }, 'image/png')
+            }
+
+            img.onerror = () => {
+              URL.revokeObjectURL(blobUrl)
+              throw new Error('Failed to load image for clipboard')
+            }
+
+            img.src = blobUrl
+          } else {
+            throw new Error('Clipboard not available')
           }
-        } else {
-          const downloadUrl = URL.createObjectURL(imageBlob)
-          const a = document.createElement('a')
-          a.href = downloadUrl
-          a.download = `wakeupnpc-${type}-${Date.now()}.jpg`
-          document.body.appendChild(a)
-          a.click()
-          document.body.removeChild(a)
-          URL.revokeObjectURL(downloadUrl)
-          showToast('Image downloaded!')
+        } catch (clipboardError) {
+          console.warn('Clipboard failed:', clipboardError)
+          showToast('Copy failed - try right-click > Copy Image')
         }
       } else {
         // Social media mode: try to copy both image and URL, with fallbacks
