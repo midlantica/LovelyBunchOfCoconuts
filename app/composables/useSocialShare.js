@@ -490,6 +490,13 @@ export function useSocialShare() {
       if (platform === 'image') {
         // For claims and quotes, copy the branded image to clipboard
         try {
+          // Detect if we're on mobile
+          const isMobile =
+            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+              navigator.userAgent
+            ) ||
+            (window.innerWidth <= 768 && window.innerHeight <= 1024)
+
           if (navigator.clipboard?.write) {
             // Convert JPEG to PNG for better clipboard compatibility
             const canvas = document.createElement('canvas')
@@ -507,6 +514,7 @@ export function useSocialShare() {
               // Convert to PNG blob
               canvas.toBlob(async (pngBlob) => {
                 try {
+                  // Try modern clipboard API first
                   await navigator.clipboard.write([
                     new ClipboardItem({ 'image/png': pngBlob }),
                   ])
@@ -521,7 +529,43 @@ export function useSocialShare() {
                     showToast('Image copied!')
                   } catch (jpegError) {
                     console.warn('JPEG clipboard failed:', jpegError)
-                    showToast('Copy failed - try right-click > Copy Image')
+
+                    // Mobile fallback: try older clipboard API or show instructions
+                    if (isMobile) {
+                      try {
+                        // Try to use the older clipboard API for mobile
+                        if (navigator.clipboard.writeText) {
+                          // Create a data URL and copy it as text
+                          const reader = new FileReader()
+                          reader.onload = async () => {
+                            const dataUrl = reader.result
+                            try {
+                              await navigator.clipboard.writeText(dataUrl)
+                              showToast(
+                                'Image copied! (Paste as image in supported apps)'
+                              )
+                            } catch (textError) {
+                              console.warn('Text clipboard failed:', textError)
+                              showToast(
+                                'Copy failed - try long-press > Share/Copy Image'
+                              )
+                            }
+                          }
+                          reader.readAsDataURL(pngBlob)
+                        } else {
+                          showToast(
+                            'Copy failed - try long-press > Share/Copy Image'
+                          )
+                        }
+                      } catch (mobileError) {
+                        console.warn('Mobile clipboard failed:', mobileError)
+                        showToast(
+                          'Copy failed - try long-press > Share/Copy Image'
+                        )
+                      }
+                    } else {
+                      showToast('Copy failed - try right-click > Copy Image')
+                    }
                   }
                 }
                 URL.revokeObjectURL(blobUrl)
@@ -535,11 +579,25 @@ export function useSocialShare() {
 
             img.src = blobUrl
           } else {
-            throw new Error('Clipboard not available')
+            // Fallback for browsers without modern clipboard API
+            if (isMobile) {
+              showToast('Copy failed - try long-press > Share/Copy Image')
+            } else {
+              showToast('Copy failed - try right-click > Copy Image')
+            }
           }
         } catch (clipboardError) {
           console.warn('Clipboard failed:', clipboardError)
-          showToast('Copy failed - try right-click > Copy Image')
+          const isMobile =
+            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+              navigator.userAgent
+            ) ||
+            (window.innerWidth <= 768 && window.innerHeight <= 1024)
+          if (isMobile) {
+            showToast('Copy failed - try long-press > Share/Copy Image')
+          } else {
+            showToast('Copy failed - try right-click > Copy Image')
+          }
         }
       } else {
         // Social media mode: try to copy both image and URL, with fallbacks
