@@ -120,6 +120,13 @@ export const TERM_RELATIONS = {
     'revolution',
     'Burke',
   ],
+  // Content type keywords for filtering
+  claims: ['claim', 'statement', 'assertion', 'position'],
+  claim: ['claims', 'statement', 'assertion', 'position'],
+  quotes: ['quote', 'quotation', 'saying', 'citation'],
+  quote: ['quotes', 'quotation', 'saying', 'citation'],
+  memes: ['meme', 'image', 'picture', 'graphic'],
+  meme: ['memes', 'image', 'picture', 'graphic'],
 }
 
 export function expandSearchTerms(q = '') {

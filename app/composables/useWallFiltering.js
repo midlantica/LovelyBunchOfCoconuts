@@ -40,8 +40,50 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     memes: normalizeArray(cacheRef.memes),
   }))
 
+  // Check if search query is targeting specific content types
+  function getContentTypeFilter(q) {
+    if (!q?.trim()) return null
+    const query = q.toLowerCase().trim()
+    const expanded = expandSearchTerms(query)
+
+    // Check if any expanded terms match content type keywords
+    const hasClaimsKeyword = expanded.some((term) =>
+      ['claims', 'claim', 'statement', 'assertion', 'position'].includes(term)
+    )
+    const hasQuotesKeyword = expanded.some((term) =>
+      ['quotes', 'quote', 'quotation', 'saying', 'citation'].includes(term)
+    )
+    const hasMemesKeyword = expanded.some((term) =>
+      ['memes', 'meme', 'image', 'picture', 'graphic'].includes(term)
+    )
+
+    // If searching for specific content types, return filter
+    if (hasClaimsKeyword || hasQuotesKeyword || hasMemesKeyword) {
+      return {
+        claims: hasClaimsKeyword,
+        quotes: hasQuotesKeyword,
+        memes: hasMemesKeyword,
+      }
+    }
+
+    return null
+  }
+
   function applySearch(groups, q) {
     if (!q?.trim()) return groups
+
+    // Check if this is a content type search
+    const contentTypeFilter = getContentTypeFilter(q)
+    if (contentTypeFilter) {
+      // Filter by content type only
+      return {
+        claims: contentTypeFilter.claims ? groups.claims : [],
+        quotes: contentTypeFilter.quotes ? groups.quotes : [],
+        memes: contentTypeFilter.memes ? groups.memes : [],
+      }
+    }
+
+    // Regular text search within content
     const out = {}
     for (const k in groups) {
       out[k] = groups[k].filter((it) =>
