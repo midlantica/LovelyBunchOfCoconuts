@@ -1,11 +1,11 @@
 <template>
   <transition
-    enter-active-class="transition-all duration-100 cubic-bezier(0.34, 1.56, 0.64, 1)"
-    enter-from-class="transform opacity-0 scale-y-0 scale-x-95 translate-y-[-12px] origin-top"
-    enter-to-class="transform opacity-100 scale-y-100 scale-x-100 translate-y-0 origin-top"
-    leave-active-class="transition-all duration-50 ease-in"
-    leave-from-class="transform opacity-100 scale-y-100 scale-x-100 translate-y-0 origin-top"
-    leave-to-class="transform opacity-0 scale-y-0 scale-x-98 translate-y-[-6px] origin-top"
+    enter-active-class="0.64, 1) 1.56, cubic-bezier(0.34, transition-all duration-100"
+    enter-from-class="transform translate-y-[-12px] opacity-0 scale-x-95 scale-y-0 origin-top"
+    enter-to-class="transform opacity-100 scale-x-100 scale-y-100 translate-y-0 origin-top"
+    leave-active-class="duration-50 transition-all ease-in"
+    leave-from-class="transform opacity-100 scale-x-100 scale-y-100 translate-y-0 origin-top"
+    leave-to-class="scale-x-98 transform translate-y-[-6px] opacity-0 scale-y-0 origin-top"
   >
     <div
       v-if="show"
@@ -14,16 +14,36 @@
       <div class="flex items-center gap-4">
         <!-- Share cluster flush left -->
         <div class="flex flex-1 items-center gap-3">
-          <!-- Copy image button -->
-          <UiShareButtonBase
-            icon-name="stash:image-plus-light"
-            aria-label="Copy meme image"
-            toast-message="Image copied!"
-            icon-size="1.7rem"
-            :button-style="{ position: 'relative', top: '0.5px' }"
-            @click="copyImageOnly"
-            @toast-show="onToastShow"
-          />
+          <!-- Copy image button using Button.vue -->
+          <div class="flex items-center gap-2">
+            <UiButton
+              text="Copy Image"
+              :disabled="isLoading"
+              @click="copyImageOnly"
+            />
+
+            <!-- Spinner positioned 0.5rem to the right of button -->
+            <div v-if="isLoading" class="ml-2">
+              <Icon
+                name="svg-spinners:ring-resize"
+                size="1.25rem"
+                class="text-slate-300"
+              />
+            </div>
+
+            <!-- Inline feedback message with blinking animation -->
+            <div
+              v-if="feedbackMessage"
+              class="mb-1 ml-1 text-slate-200 text-base"
+              :class="
+                feedbackMessage === 'Image copied'
+                  ? 'animate-blink-success'
+                  : 'animate-pulse'
+              "
+            >
+              {{ feedbackMessage }}
+            </div>
+          </div>
         </div>
         <!-- Like button flush right -->
         <UiLikeButton
@@ -53,6 +73,10 @@
     likeId: { type: String, default: null },
   })
 
+  // Loading and feedback state
+  const isLoading = ref(false)
+  const feedbackMessage = ref('')
+
   // Button refs for coordination
   const copyButton = ref(null)
 
@@ -63,7 +87,12 @@
 
   // Copy image only
   const copyImageOnly = async () => {
+    if (isLoading.value) return // Prevent multiple clicks
+
     try {
+      isLoading.value = true
+      feedbackMessage.value = ''
+
       const { useSocialShare } = await import('~/composables/useSocialShare')
 
       // Create content object based on type
@@ -78,10 +107,27 @@
 
       const { shareToPlatform } = useSocialShare()
 
-      // Copy just the image
-      await shareToPlatform(content, props.contentType, 'image')
+      // Copy just the image - pass feedback callback
+      await shareToPlatform(
+        content,
+        props.contentType,
+        'image',
+        null,
+        (message) => {
+          feedbackMessage.value = message
+          setTimeout(() => {
+            feedbackMessage.value = ''
+          }, 3000)
+        }
+      )
     } catch (error) {
       console.error('Error copying image:', error)
+      feedbackMessage.value = 'Error copying image'
+      setTimeout(() => {
+        feedbackMessage.value = ''
+      }, 3000)
+    } finally {
+      isLoading.value = false
     }
   }
 
@@ -134,3 +180,25 @@
     }
   }
 </script>
+
+<style scoped>
+  @keyframes blinkSuccess {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    25% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 0.3;
+    }
+  }
+
+  .animate-blink-success {
+    animation: blinkSuccess 1.5s ease-in-out;
+  }
+</style>

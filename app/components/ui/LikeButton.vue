@@ -45,7 +45,7 @@
             ? 'text-seagull-700'
             : fadedUnliked
             ? 'text-seagull-700/50'
-            : 'text-seagull-700/80',
+            : 'text-white/40',
         ]"
         :size="iconSize"
       />

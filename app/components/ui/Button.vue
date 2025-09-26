@@ -1,17 +1,20 @@
 <!-- components/Button.vue -->
 <template>
-  <NuxtLink
-    :to="resolveRoute(to)"
-    class="flex gap-1 mt-3 p-2 font-light text-slate-400 hover:text-white text-lg tracking-widest"
+  <component
+    :is="to ? 'NuxtLink' : 'button'"
+    :to="to ? resolveRoute(to) : undefined"
+    :type="to ? undefined : 'button'"
+    @click="to ? undefined : $emit('click')"
+    class="flex gap-1 hover:bg-slate-950 px-2.5 pt-1 pb-1.25 border border-slate-400/40 hover:border-white/70 rounded-md font-light text-slate-300/80 hover:text-white text-xs uppercase tracking-widest transition-all duration-200"
+    :class="[
+      disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+      $attrs.class,
+    ]"
+    :disabled="disabled"
   >
     <!-- Left icon slot -->
     <slot name="icon-left">
-      <Icon
-        v-if="iconLeft"
-        :name="iconLeft"
-        size="1.25rem"
-        class="self-center"
-      />
+      <Icon v-if="iconLeft" :name="iconLeft" size="1rem" class="self-center" />
     </slot>
 
     <!-- Default slot for button text -->
@@ -22,11 +25,11 @@
       <Icon
         v-if="iconRight"
         :name="iconRight"
-        size="1.25rem"
+        size="1rem"
         class="self-center"
       />
     </slot>
-  </NuxtLink>
+  </component>
 </template>
 
 <script setup>
@@ -34,7 +37,7 @@
     // Route destination - can be a string path, route name, or route object
     to: {
       type: [String, Object],
-      default: '/',
+      default: null,
     },
     // Left icon name (from your icon library)
     iconLeft: {
@@ -51,7 +54,14 @@
       type: String,
       default: '',
     },
+    // Disabled state
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   })
+
+  const emit = defineEmits(['click'])
 
   // Helper function to resolve route based on input type
   const resolveRoute = (route) => {

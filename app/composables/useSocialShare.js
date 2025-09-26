@@ -21,6 +21,60 @@ export function useSocialShare() {
     ctx.fillText(text, centerX, y)
   }
 
+  // Helper function to calculate optimal font size based on content length
+  function calculateOptimalFontSize(
+    baseFontSize,
+    textLength,
+    maxWidth,
+    maxHeight
+  ) {
+    // More conservative sizes to handle very long text
+    const size15Percent = baseFontSize * 1.15
+    const size10Percent = baseFontSize * 1.1
+    const sizeOriginal = baseFontSize
+    const size5PercentSmaller = baseFontSize * 0.95
+    const size10PercentSmaller = baseFontSize * 0.9
+    const size15PercentSmaller = baseFontSize * 0.85
+
+    // Calculate characters per line and max lines (more conservative)
+    const lineHeight = size15Percent * 1.375
+    const charsPerLine = Math.floor(maxWidth / size15Percent)
+    const maxLines = Math.floor(maxHeight / lineHeight)
+
+    // Estimate total capacity (more conservative - 75% efficiency for safety)
+    const estimatedCapacity = charsPerLine * maxLines * 0.75
+
+    // Choose font size based on content length - more aggressive reduction
+    if (textLength <= estimatedCapacity * 0.6) {
+      // Short text - use 15% larger
+      return { fontSize: size15Percent, lineHeight: size15Percent * 1.375 }
+    } else if (textLength <= estimatedCapacity * 0.75) {
+      // Medium text - use 10% larger
+      return { fontSize: size10Percent, lineHeight: size10Percent * 1.375 }
+    } else if (textLength <= estimatedCapacity * 0.9) {
+      // Long text - use original size
+      return { fontSize: sizeOriginal, lineHeight: sizeOriginal * 1.375 }
+    } else if (textLength <= estimatedCapacity * 1.1) {
+      // Very long text - use 5% smaller
+      return {
+        fontSize: size5PercentSmaller,
+        lineHeight: size5PercentSmaller * 1.375,
+      }
+    } else if (textLength <= estimatedCapacity * 1.3) {
+      // Extremely long text - use 10% smaller
+      return {
+        fontSize: size10PercentSmaller,
+        lineHeight: size10PercentSmaller * 1.375,
+      }
+    } else {
+      // Ultra long text - use 15% smaller
+      return {
+        fontSize: size15PercentSmaller,
+        lineHeight: size15PercentSmaller * 1.375,
+      }
+    }
+  }
+
   // Helper function to convert blob to base64
   function blobToBase64(blob) {
     return new Promise((resolve, reject) => {
@@ -162,9 +216,17 @@ export function useSocialShare() {
             }
           }
 
-          // Quote text (all white as requested) - 10% larger
+          // Calculate optimal font size for quote text
+          const quoteOptimalSize = calculateOptimalFontSize(
+            40.7, // Base font size
+            quoteText.length,
+            1062, // Max width
+            476 // Max height
+          )
+
+          // Quote text (all white as requested) - smart sizing for mobile readability
           ctx.fillStyle = '#ffffff'
-          ctx.font = '100 40.7px Barlow Condensed, Arial, sans-serif'
+          ctx.font = `100 ${quoteOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
           ctx.textAlign = 'center'
 
           // Word wrap for quote - max width 1062 as requested
@@ -186,8 +248,7 @@ export function useSocialShare() {
           lines.push(currentLine)
 
           // Draw the quote lines centered on inner frame center
-          const lineHeight = 56 // 37px * 1.5 line height
-          const totalTextHeight = lines.length * lineHeight
+          const totalTextHeight = lines.length * quoteOptimalSize.lineHeight
           const quoteStartY = centerY - totalTextHeight / 2
 
           lines.forEach((line, index) => {
@@ -195,23 +256,31 @@ export function useSocialShare() {
               ctx,
               line,
               centerX,
-              quoteStartY + index * lineHeight
+              quoteStartY + index * quoteOptimalSize.lineHeight
             )
           })
 
-          // Author name (light blue #6DD3FF as requested) - only show if author exists and is not empty
+          // Author name (light blue #6DD3FF as requested) - smart sizing for mobile readability
           if (
             authorName &&
             authorName !== 'Author' &&
             authorName.trim() !== ''
           ) {
+            // Calculate optimal size for author (smaller than quote text)
+            const authorOptimalSize = calculateOptimalFontSize(
+              31.74, // Base author font size
+              authorName.length,
+              1062, // Max width
+              476 // Max height
+            )
+
             ctx.fillStyle = '#6DD3FF'
-            ctx.font = '100 31.74px Barlow Condensed, Arial, sans-serif' // 15% larger than 27.6px
+            ctx.font = `100 ${authorOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
             drawCenteredText(
               ctx,
               `— ${authorName}`,
               centerX,
-              quoteStartY + totalTextHeight + 15
+              quoteStartY + totalTextHeight + authorOptimalSize.fontSize * 0.4
             )
           }
         } else if (type === 'claim') {
@@ -239,11 +308,24 @@ export function useSocialShare() {
           console.log('Final claimText:', claimText)
           console.log('Final cleanTranslationText:', cleanTranslationText)
 
-          // Claim text (white, 10% smaller = 45px) - just the claim, not concatenated
+          // Calculate optimal font size for claim text
+          const claimOptimalSize = calculateOptimalFontSize(
+            45, // Base font size
+            claimText.length,
+            1062, // Max width
+            476 // Max height
+          )
+
+          // Claim text (white) - smart sizing for mobile readability
           ctx.fillStyle = '#ffffff'
-          ctx.font = '100 45px Barlow Condensed, Arial, sans-serif'
+          ctx.font = `100 ${claimOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
           ctx.textAlign = 'center'
-          drawCenteredText(ctx, claimText, centerX, centerY - 44)
+          drawCenteredText(
+            ctx,
+            claimText,
+            centerX,
+            centerY - claimOptimalSize.fontSize * 0.6
+          )
 
           // Horizontal rule (#6DD3FF at 50% opacity, 820px wide)
           ctx.fillStyle = '#6DD3FF'
@@ -253,10 +335,23 @@ export function useSocialShare() {
           ctx.fillRect(centerX - ruleWidth / 2, ruleY, ruleWidth, 2)
           ctx.globalAlpha = 1
 
-          // Translation text (white, same font size 45px) - just the translation, not concatenated
+          // Calculate optimal font size for translation text
+          const translationOptimalSize = calculateOptimalFontSize(
+            45, // Base font size (same as claim)
+            cleanTranslationText.length,
+            1062, // Max width
+            476 // Max height
+          )
+
+          // Translation text (white) - smart sizing for mobile readability
           ctx.fillStyle = '#ffffff'
-          ctx.font = '100 45px Barlow Condensed, Arial, sans-serif'
-          drawCenteredText(ctx, cleanTranslationText, centerX, centerY + 78)
+          ctx.font = `100 ${translationOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
+          drawCenteredText(
+            ctx,
+            cleanTranslationText,
+            centerX,
+            centerY + translationOptimalSize.fontSize * 0.9 + 18
+          )
         } else if (type === 'meme') {
           // Meme layout - fills entire inner panel but stays within bounds
           const memeText =
@@ -316,7 +411,13 @@ export function useSocialShare() {
     })
   }
 
-  const shareToPlatform = async (content, type, platform, url = null) => {
+  const shareToPlatform = async (
+    content,
+    type,
+    platform,
+    url = null,
+    onFeedback = null
+  ) => {
     try {
       // Handle memes differently - just copy raw image without branding
       if (type === 'meme') {
@@ -408,7 +509,7 @@ export function useSocialShare() {
                         await navigator.clipboard.write([
                           new ClipboardItem({ 'image/png': pngBlob }),
                         ])
-                        showToast('Meme image copied!')
+                        onFeedback?.('Meme image copied!')
                       } catch (pngError) {
                         console.warn('PNG clipboard failed:', pngError)
                         // Fallback to original image without logo
@@ -416,13 +517,13 @@ export function useSocialShare() {
                           await navigator.clipboard.write([
                             new ClipboardItem({ [memeBlob.type]: memeBlob }),
                           ])
-                          showToast('Meme image copied!')
+                          onFeedback?.('Meme image copied!')
                         } catch (originalError) {
                           console.warn(
                             'Original clipboard failed:',
                             originalError
                           )
-                          showToast(
+                          onFeedback?.(
                             'Copy failed - try right-click > Copy Image'
                           )
                         }
@@ -436,10 +537,10 @@ export function useSocialShare() {
                       await navigator.clipboard.write([
                         new ClipboardItem({ [memeBlob.type]: memeBlob }),
                       ])
-                      showToast('Meme image copied!')
+                      onFeedback?.('Meme image copied!')
                     } catch (fallbackError) {
                       console.warn('Fallback clipboard failed:', fallbackError)
-                      showToast('Copy failed - try right-click > Copy Image')
+                      onFeedback?.('Copy failed - try right-click > Copy Image')
                     }
                   }
 
@@ -449,18 +550,18 @@ export function useSocialShare() {
                 }
               } catch (clipboardError) {
                 console.warn('Clipboard failed:', clipboardError)
-                showToast('Copy failed - try right-click > Copy Image')
+                onFeedback?.('Copy failed - try right-click > Copy Image')
               }
             } catch (error) {
               console.error('Error fetching meme image:', error)
-              showToast('Error copying meme image')
+              onFeedback?.('Error copying meme image')
             }
           } else {
-            showToast('No meme image found to copy')
+            onFeedback?.('No meme image found to copy')
           }
         } catch (error) {
           console.error('Error copying meme:', error)
-          showToast('Error copying meme')
+          onFeedback?.('Error copying meme')
         }
         return
       }
@@ -518,7 +619,7 @@ export function useSocialShare() {
                   await navigator.clipboard.write([
                     new ClipboardItem({ 'image/png': pngBlob }),
                   ])
-                  showToast('Image copied!')
+                  onFeedback?.('Image copied')
                 } catch (pngError) {
                   console.warn('PNG clipboard failed:', pngError)
                   // Try original JPEG as fallback
@@ -526,7 +627,7 @@ export function useSocialShare() {
                     await navigator.clipboard.write([
                       new ClipboardItem({ 'image/jpeg': imageBlob }),
                     ])
-                    showToast('Image copied!')
+                    onFeedback?.('Image copied')
                   } catch (jpegError) {
                     console.warn('JPEG clipboard failed:', jpegError)
 
@@ -546,7 +647,7 @@ export function useSocialShare() {
                               text: 'Check out this content from WakeUpNPC',
                               files: [file],
                             })
-                            showToast('Image shared!')
+                            onFeedback?.('Image shared!')
                           } else {
                             // Fallback: download the image
                             const downloadUrl = URL.createObjectURL(pngBlob)
@@ -558,7 +659,7 @@ export function useSocialShare() {
                             a.click()
                             document.body.removeChild(a)
                             URL.revokeObjectURL(downloadUrl)
-                            showToast('Image downloaded!')
+                            onFeedback?.('Image downloaded!')
                           }
                         } else {
                           // Fallback: download the image
@@ -571,14 +672,14 @@ export function useSocialShare() {
                           a.click()
                           document.body.removeChild(a)
                           URL.revokeObjectURL(downloadUrl)
-                          showToast('Image downloaded!')
+                          onFeedback?.('Image downloaded!')
                         }
                       } catch (mobileError) {
                         console.warn('Mobile sharing failed:', mobileError)
-                        showToast('Tap to download image')
+                        onFeedback?.('Tap to download image')
                       }
                     } else {
-                      showToast('Copy failed - try right-click > Copy Image')
+                      onFeedback?.('Copy failed - try right-click > Copy Image')
                     }
                   }
                 }
@@ -669,7 +770,7 @@ export function useSocialShare() {
                 await navigator.clipboard.write([
                   new ClipboardItem({ 'image/jpeg': imageBlob }),
                 ])
-                showToast('Image copied!')
+                showToast('Image copied')
               } catch (imageError) {
                 console.warn(
                   'Image clipboard not supported, trying text only:',
