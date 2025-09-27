@@ -213,6 +213,22 @@ export default defineNuxtConfig({
           type: 'image/svg+xml',
           fetchpriority: 'high',
         },
+        // Preload Google Fonts to prevent white flash
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.googleapis.com',
+        },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+          crossorigin: '',
+        },
+        {
+          rel: 'preload',
+          href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap',
+          as: 'style',
+          onload: "this.onload=null;this.rel='stylesheet'",
+        },
         // Preload key background images used above the fold
         {
           rel: 'icon',
@@ -286,7 +302,7 @@ export default defineNuxtConfig({
       style: [
         {
           children:
-            'html,body,#__nuxt{background-color:#020617;}#modal-root{position:fixed;inset:0;pointer-events:none;}',
+            'html{background-color:#020617!important;color:#e2e8f0!important;color-scheme:dark!important;font-family:system-ui,-apple-system,sans-serif!important;}body{background-color:#020617!important;color:#e2e8f0!important;margin:0;padding:0;font-family:system-ui,-apple-system,sans-serif!important;}#__nuxt{background-color:#020617!important;min-height:100vh;}*{box-sizing:border-box;}#modal-root{position:fixed;inset:0;pointer-events:none;}',
         } as any,
       ],
       script: [

@@ -13,6 +13,7 @@
       fill="none"
       viewBox="0 0 550 72"
       class="w-full h-auto WakeUpNPC-logo"
+      style="min-height: 72px; display: block; contain: layout"
       @mouseenter="isHovered = true"
       @mouseleave="isHovered = false"
     >
@@ -132,6 +133,9 @@
 <style scoped>
   svg {
     cursor: pointer;
+    min-height: 72px;
+    display: block;
+    contain: layout;
   }
 
   [class^='icon'] {

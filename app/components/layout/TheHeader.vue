@@ -1,6 +1,6 @@
 <!-- components/TheHeader.vue -->
 <template>
-  <header class="top-0 left-0 z-10 sticky bg-slate-900 pt-4 pb-3 w-full">
+  <header class="top-0 left-0 z-10 sticky bg-slate-900 pt-2 pb-1 w-full">
     <div class="px-6">
       <!-- New unified logo -->
       <div class="flex justify-center">
@@ -21,22 +21,19 @@
   const route = useRoute()
   const router = useRouter()
 
-  function handleMastheadClick() {
-    // Reseed wall for new randomized ordering
-    reseedWall('masthead-click')
-    // If not already on root, navigate without full reload
-    if (route.path !== '/') {
-      router.push('/')
-    } else {
-      // Already on root: clear ?q= and reset filters & searchTerm state
-      const searchTerm = useState('searchTerm')
-      const contentFilters = useState('contentFilters')
-      if (searchTerm?.value) searchTerm.value = ''
-      if (contentFilters?.value) {
-        contentFilters.value = { claims: true, quotes: true, memes: true }
-      }
-      // Replace URL removing query params silently
-      router.replace({ path: route.path, query: {} })
+  // Global loading state for wall refresh
+  const isWallRefreshing = useState('isWallRefreshing', () => false)
+
+  async function handleMastheadClick() {
+    if (isWallRefreshing.value) return // Prevent multiple clicks
+
+    // For optimal performance, do a full page reload instead of client-side navigation
+    // This matches the speed of a hard refresh (4s) vs slow client-side rebuild (6s)
+    if (typeof window !== 'undefined') {
+      // Clear any search params and reload
+      const currentUrl = new URL(window.location)
+      currentUrl.search = '' // Remove all query parameters
+      window.location.href = currentUrl.toString()
     }
   }
 </script>

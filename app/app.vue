@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app-root">
     <NuxtLayout>
       <NuxtPage :keepalive="keepAliveConfig" />
     </NuxtLayout>
@@ -62,3 +62,10 @@
     max: 5,
   }
 </script>
+
+<style>
+  /* Ensure consistent background during hydration - minimal override */
+  #__nuxt {
+    min-height: 100vh;
+  }
+</style>
