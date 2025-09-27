@@ -1767,6 +1767,14 @@
       "updated": "2025-09-22T17:24:15.158Z",
       "width": 640,
       "height": 800
+    },
+    "capitalism/friedrich-hayek-vulcan.jpg": {
+      "optimized": true,
+      "hash": "a322c7a060c52282ac969539c4ffdb30f263ec7b",
+      "action": "downscale→≤1080",
+      "updated": "2025-09-27T15:02:05.253Z",
+      "width": 1080,
+      "height": 717
     }
   }
 }
