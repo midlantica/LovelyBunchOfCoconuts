@@ -252,6 +252,14 @@
   // Use global wall seed for deterministic shuffle per reload/reseed
   const { wallSeed } = useWallSeed()
 
+  // Background pre-computation system for instant refreshes
+  const {
+    schedulePrecomputation,
+    clearStalePrecomputations,
+    usePrecomputedRefresh,
+    precomputationReady,
+  } = useWallPrecomputation()
+
   // Modal opener composable (was lost during refactor)
   const { openModal } = useWallModalOpener({
     modalGuardUntil,
@@ -686,6 +694,12 @@
             // Show ad summary after all content is loaded
             // Wait a bit longer to ensure baseline is fully built
             setTimeout(() => showAdSummary(), 1500)
+
+            // Schedule background pre-computation for instant refreshes
+            schedulePrecomputation(cache.claims, cache.quotes, cache.memes, {
+              adsEnabled: adsEnabled.value,
+              adInterval: adInterval.value,
+            })
           })
           .catch((e) => console.error('Error loading remaining content:', e))
       } else {

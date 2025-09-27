@@ -60,7 +60,7 @@
 
     // Ensure content is loaded first
     if (!quotes?.value?.length || !contentReady.value) {
-      console.log('📥 Loading content...')
+      console.log('📥 loading content...')
 
       // Set a timeout to prevent infinite loading
       loadingTimeout.value = setTimeout(() => {

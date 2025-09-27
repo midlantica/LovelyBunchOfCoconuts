@@ -168,31 +168,28 @@
     top: 0;
     left: 0;
     width: 100%;
-    transition: transform 0.75s ease-in-out, opacity 0.4s ease-in-out;
+    transition: opacity 0.6s ease-in-out;
   }
 
-  /* Initial state - everythingText visible, npcText hidden below */
+  /* Initial state - everythingText visible, npcText hidden */
   .everythingText {
-    transform: translateY(0px);
     opacity: 1;
     z-index: 2;
   }
 
   .npcText {
-    transform: translateY(27px);
     opacity: 0;
     z-index: 1;
+    transform: translateY(-25px);
   }
 
-  /* Hover effect - swap positions and visibility */
+  /* Hover effect - simple fade swap */
   .WakeUpNPC-logo:hover .everythingText {
-    transform: translateY(27px);
     opacity: 0;
     z-index: 1;
   }
 
   .WakeUpNPC-logo:hover .npcText {
-    transform: translateY(-27px);
     opacity: 1;
     z-index: 2;
   }

@@ -24,16 +24,59 @@
   // Global loading state for wall refresh
   const isWallRefreshing = useState('isWallRefreshing', () => false)
 
+  // Pre-computation system for instant refreshes
+  const { usePrecomputedRefresh } = useWallPrecomputation()
+  const { cache } = useContentCache()
+
   async function handleMastheadClick() {
     if (isWallRefreshing.value) return // Prevent multiple clicks
 
-    // For optimal performance, do a full page reload instead of client-side navigation
-    // This matches the speed of a hard refresh (4s) vs slow client-side rebuild (6s)
-    if (typeof window !== 'undefined') {
-      // Clear any search params and reload
-      const currentUrl = new URL(window.location)
-      currentUrl.search = '' // Remove all query parameters
-      window.location.href = currentUrl.toString()
+    try {
+      isWallRefreshing.value = true
+
+      // Try to use pre-computed layout for instant refresh
+      const precomputedLayout = usePrecomputedRefresh(
+        cache.claims,
+        cache.quotes,
+        cache.memes
+      )
+
+      if (precomputedLayout) {
+        // Instant refresh using pre-computed layout!
+        if (import.meta.dev) {
+          console.log('⚡ Instant refresh using pre-computed layout!')
+        }
+
+        // Clear search and filters if needed
+        if (route.path !== '/') {
+          await router.push('/')
+        } else {
+          const searchTerm = useState('searchTerm')
+          const contentFilters = useState('contentFilters')
+          if (searchTerm?.value) searchTerm.value = ''
+          if (contentFilters?.value) {
+            contentFilters.value = { claims: true, quotes: true, memes: true }
+          }
+          await router.replace({ path: route.path, query: {} })
+        }
+
+        // Brief visual feedback (much shorter since it's instant)
+        await new Promise((resolve) => setTimeout(resolve, 100))
+      } else {
+        // Fallback to full page reload if no pre-computed layout available
+        if (import.meta.dev) {
+          console.log(
+            '🔄 No pre-computed layout available, using page reload fallback'
+          )
+        }
+
+        const currentUrl = new URL(window.location)
+        currentUrl.search = '' // Remove all query parameters
+        window.location.href = currentUrl.toString()
+        return // Don't set isWallRefreshing to false since we're reloading
+      }
+    } finally {
+      isWallRefreshing.value = false
     }
   }
 </script>

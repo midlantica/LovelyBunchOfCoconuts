@@ -15,7 +15,7 @@
 
 <script setup>
   const props = defineProps({
-    message: { type: String, default: 'Loading content...' },
+    message: { type: String, default: 'loading content...' },
   })
 </script>
 

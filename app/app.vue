@@ -28,7 +28,7 @@
           // Look for signs the page is stuck
           const bodyText = document.body?.textContent || ''
           const isStuck =
-            bodyText.includes('Loading content...') &&
+            bodyText.includes('loading content...') &&
             bodyText.length < 200 &&
             checkCount > 3
 

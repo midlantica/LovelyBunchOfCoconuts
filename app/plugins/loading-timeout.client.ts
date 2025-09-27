@@ -23,7 +23,7 @@ export default defineNuxtPlugin(() => {
         const pageText = loadingElement?.textContent || ''
 
         if (
-          pageText.includes('Loading content...') ||
+          pageText.includes('loading content...') ||
           pageText.trim().length < 100
         ) {
           console.warn('Page appears stuck on loading, attempting recovery...')
@@ -46,7 +46,7 @@ export default defineNuxtPlugin(() => {
         const loadingElement = document.querySelector('body')
         const pageText = loadingElement?.textContent || ''
 
-        if (pageText.includes('Loading content...')) {
+        if (pageText.includes('loading content...')) {
           console.error('Page stuck on loading - forcing redirect')
           window.location.href = '/'
         }
