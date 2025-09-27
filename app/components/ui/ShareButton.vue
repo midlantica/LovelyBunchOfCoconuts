@@ -166,39 +166,124 @@
           }, 300)
         }, 3000)
       } else {
-        // Fallback for older browsers
+        // Enhanced fallback for Windows compatibility
         const textArea = document.createElement('textarea')
         textArea.value = props.url
+        textArea.style.position = 'fixed'
+        textArea.style.left = '-999999px'
+        textArea.style.top = '-999999px'
+        textArea.style.opacity = '0'
+        textArea.setAttribute('readonly', '')
+        textArea.setAttribute('aria-hidden', 'true')
+
         document.body.appendChild(textArea)
+
+        // Focus and select - important for Windows
+        textArea.focus()
         textArea.select()
-        document.execCommand('copy')
+        textArea.setSelectionRange(0, textArea.value.length)
+
+        // Try execCommand with better error handling
+        const successful = document.execCommand('copy')
         document.body.removeChild(textArea)
-        alert('Link copied to clipboard!')
+
+        if (successful) {
+          // Show success toast
+          const toast = document.createElement('div')
+          toast.className = 'share-toast'
+          toast.textContent = 'Link copied!'
+          toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #1e293b;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            z-index: 9999;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: toastSlideIn 0.3s ease-out;
+          `
+          document.body.appendChild(toast)
+          setTimeout(() => {
+            toast.style.animation = 'toastSlideOut 0.3s ease-in'
+            setTimeout(() => {
+              if (toast.parentNode) {
+                toast.parentNode.removeChild(toast)
+              }
+            }, 300)
+          }, 3000)
+        } else {
+          throw new Error('execCommand copy failed')
+        }
       }
     } catch (error) {
       console.error('Error copying text:', error)
+      // Show error toast
+      const toast = document.createElement('div')
+      toast.className = 'share-toast'
+      toast.textContent = 'Copy failed - please try Ctrl+C'
+      toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #dc2626;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        z-index: 9999;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      `
+      document.body.appendChild(toast)
+      setTimeout(() => {
+        if (toast.parentNode) {
+          toast.parentNode.removeChild(toast)
+        }
+      }, 3000)
     }
   }
 </script>
 
 <style scoped>
-  @keyframes blinkSuccess {
+  @keyframes toastSlideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes toastSlideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes blink-success {
     0%,
+    50%,
     100% {
       opacity: 1;
     }
-    25% {
-      opacity: 0.3;
-    }
-    50% {
-      opacity: 1;
-    }
+    25%,
     75% {
       opacity: 0.3;
     }
   }
 
   .animate-blink-success {
-    animation: blinkSuccess 1.5s ease-in-out;
+    animation: blink-success 1.2s ease-in-out 2;
   }
 </style>
