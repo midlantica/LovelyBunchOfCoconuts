@@ -1,7 +1,7 @@
 ---
-title: "The reason you don't know you've been lied to"
+title: "The reason you dont know"
 ---
 
-![The reason you don't know you've been lied to](/memes/quotes/the-reason-you-dont-know.jpg)
+![The reason you dont know](/memes/quotes/the-reason-you-dont-know.jpg)
 
-The reason you don't know you've been lied to, conditioned and brainwashed is because you've been lied to, conditioned and brainwashed.
+The reason you dont know
