@@ -1775,6 +1775,62 @@
       "updated": "2025-09-27T15:02:05.253Z",
       "width": 1080,
       "height": 717
+    },
+    "politics/g0vtzxrwmaagksm.jpg": {
+      "optimized": true,
+      "hash": "bacfd14577082bad7a4d2836c14ac732390e9d59",
+      "action": "strip-profiles",
+      "updated": "2025-09-28T01:47:59.640Z",
+      "width": 867,
+      "height": 835
+    },
+    "thomas-sowell/emotions-neither-prove-nor-disprove.jpg": {
+      "optimized": true,
+      "hash": "58079a7f7d7633e80aa593284afbda6aa134577a",
+      "action": "upscale→800",
+      "updated": "2025-09-28T01:48:00.142Z",
+      "width": 799,
+      "height": 800
+    },
+    "thomas-sowell/someone-once-said-that-a-fool-can-put-on.jpg": {
+      "optimized": true,
+      "hash": "c31b313f1038e654df9052545ece9e2262c66b7b",
+      "action": "upscale→800",
+      "updated": "2025-09-28T01:48:00.330Z",
+      "width": 791,
+      "height": 800
+    },
+    "thomas-sowell/the-family-is-the-basic-unit-of-society.jpg": {
+      "optimized": true,
+      "hash": "bc78df3d15b179231331ed9dd1bf7ca8d293f884",
+      "action": "strip-profiles",
+      "updated": "2025-09-28T01:48:00.449Z",
+      "width": 1080,
+      "height": 1069
+    },
+    "thomas-sowell/the-political-left-has-long-favored.jpg": {
+      "optimized": true,
+      "hash": "6bc46658464b812b4101829d983ace6ac14d3468",
+      "action": "strip-profiles",
+      "updated": "2025-09-28T01:48:00.556Z",
+      "width": 886,
+      "height": 884
+    },
+    "thomas-sowell/the-real-egalitarians-are-not-the-people.jpg": {
+      "optimized": true,
+      "hash": "4da594fb64029537a53603e58c6b146015a834e0",
+      "action": "upscale→800",
+      "updated": "2025-09-28T01:48:00.725Z",
+      "width": 792,
+      "height": 800
+    },
+    "thomas-sowell/what-social-justice-advocates-want-is.jpg": {
+      "optimized": true,
+      "hash": "821d1adb3858924c38fff8ffba48c28f6e7b85e2",
+      "action": "upscale→800",
+      "updated": "2025-09-28T01:48:00.876Z",
+      "width": 790,
+      "height": 800
     }
   }
 }
