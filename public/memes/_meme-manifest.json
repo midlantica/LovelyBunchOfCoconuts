@@ -1855,6 +1855,126 @@
       "updated": "2025-09-28T19:55:29.236Z",
       "width": 736,
       "height": 800
+    },
+    "cartoons/by-your-powers-combinedi-am-socialism.jpg": {
+      "optimized": true,
+      "hash": "81261675b51c374c11090be8ccc8aa61ae3faf11",
+      "action": "upscale→800",
+      "updated": "2025-09-30T16:56:20.048Z",
+      "width": 750,
+      "height": 800
+    },
+    "cartoons/freedom-is-the-greater-good.jpg": {
+      "optimized": true,
+      "hash": "72523304f74fb82829a89196243b8f22c809155f",
+      "action": "strip-profiles",
+      "updated": "2025-09-30T16:56:20.139Z",
+      "width": 820,
+      "height": 1080
+    },
+    "cartoons/sidney-sweeney-traditional-crush.jpg": {
+      "optimized": true,
+      "hash": "89f43af3a7e04f22463fda9e2046d7e211651e5b",
+      "action": "strip-profiles",
+      "updated": "2025-09-30T16:56:20.226Z",
+      "width": 1080,
+      "height": 648
+    },
+    "cartoons/they-don-t-ban-hate-speech.jpg": {
+      "optimized": true,
+      "hash": "65d88884eac6afa1f30e8221b7c74b68e700b741",
+      "action": "strip-profiles",
+      "updated": "2025-09-30T16:56:20.322Z",
+      "width": 923,
+      "height": 898
+    },
+    "media/cnn-trash.jpg": {
+      "optimized": true,
+      "hash": "dbd9ccc39148a81553bafd7bc8c90dcd8a9f0721",
+      "action": "strip-profiles",
+      "updated": "2025-09-30T16:56:20.512Z",
+      "width": 805,
+      "height": 805
+    },
+    "quotes/democracy-will-inevitably-destroy-itself.jpg": {
+      "optimized": true,
+      "hash": "7e3a3f7eee6e12875c788f97e6ac429823872a31",
+      "action": "strip-profiles",
+      "updated": "2025-09-30T16:56:20.809Z",
+      "width": 1004,
+      "height": 1080
+    },
+    "quotes/the-weak-want-to-bring-the-strong-down.jpg": {
+      "optimized": true,
+      "hash": "7f80b39920a4c345fac4aeb6b5ef3915f7e949bd",
+      "action": "strip-profiles",
+      "updated": "2025-09-30T16:56:20.910Z",
+      "width": 1049,
+      "height": 870
+    },
+    "quotes/those-who-fail-to-learn-from-history-are.jpg": {
+      "optimized": true,
+      "hash": "04743137cfc9229234f0c3fa1035aef51fbb616f",
+      "action": "strip-profiles",
+      "updated": "2025-09-30T16:56:21.009Z",
+      "width": 887,
+      "height": 1080
+    },
+    "thomas-sowell/competition-does-a-much-more-effective.jpg": {
+      "optimized": true,
+      "hash": "277401ef1c6f907332dbeeb7a9c9ea49b4868734",
+      "action": "strip-profiles",
+      "updated": "2025-09-30T16:56:21.301Z",
+      "width": 1080,
+      "height": 720
+    },
+    "thomas-sowell/i-ve-often-said-there-are-three.jpg": {
+      "optimized": true,
+      "hash": "19c0ee780d094c0196a5481e9bb380eb34f567c1",
+      "action": "upscale→800",
+      "updated": "2025-09-30T16:56:21.430Z",
+      "width": 800,
+      "height": 611
+    },
+    "thomas-sowell/much-of-the-appeal-of-socialism-comes.jpg": {
+      "optimized": true,
+      "hash": "9808e43b1a4d49b6c9377de5230725aac0cc8143",
+      "action": "strip-profiles",
+      "updated": "2025-09-30T16:56:21.535Z",
+      "width": 1064,
+      "height": 1064
+    },
+    "thomas-sowell/the-grand-sweep-of-socialistic-rhetoric.jpg": {
+      "optimized": true,
+      "hash": "b100b53952b14e753802011b8e26dba92158f799",
+      "action": "strip-profiles",
+      "updated": "2025-09-30T16:56:21.635Z",
+      "width": 900,
+      "height": 900
+    },
+    "thomas-sowell/the-history-of-the-20th-century.jpg": {
+      "optimized": true,
+      "hash": "df045d6d1eafc2546b761f393e051e1bbe68453c",
+      "action": "strip-profiles",
+      "updated": "2025-09-30T16:56:21.745Z",
+      "width": 1080,
+      "height": 996
+    },
+    "thomas-sowell/the-key-feature-of-communist-propaganda.jpg": {
+      "optimized": true,
+      "hash": "64b5948276407cc265e3262bdce75e526b1b8565",
+      "action": "upscale→800",
+      "updated": "2025-09-30T16:56:21.943Z",
+      "width": 800,
+      "height": 595
+    },
+    "thomas-sowell/to-say-that-men-and-women-differ-in-no.jpg": {
+      "optimized": true,
+      "hash": "6340464eec3f9e8e9debab32d4d3557f70821ae0",
+      "action": "strip-profiles",
+      "updated": "2025-09-30T16:56:22.054Z",
+      "width": 1065,
+      "height": 1080
     }
   }
 }

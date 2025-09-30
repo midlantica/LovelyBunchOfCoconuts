@@ -6,6 +6,7 @@ import { exec as execCb } from 'child_process'
 import { promisify } from 'util'
 import { fileURLToPath } from 'url'
 import { processImages, auditImages } from './imageProcessing.js'
+import crypto from 'crypto'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -124,6 +125,177 @@ function printHeader(title) {
   console.log('-'.repeat(title.length))
 }
 
+/**
+ * Calculate similarity between two strings using Levenshtein distance
+ */
+function calculateSimilarity(str1, str2) {
+  const len1 = str1.length
+  const len2 = str2.length
+  const matrix = []
+
+  for (let i = 0; i <= len1; i++) {
+    matrix[i] = [i]
+  }
+  for (let j = 0; j <= len2; j++) {
+    matrix[0][j] = j
+  }
+
+  for (let i = 1; i <= len1; i++) {
+    for (let j = 1; j <= len2; j++) {
+      const cost = str1[i - 1] === str2[j - 1] ? 0 : 1
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,
+        matrix[i][j - 1] + 1,
+        matrix[i - 1][j - 1] + cost
+      )
+    }
+  }
+
+  const distance = matrix[len1][len2]
+  const maxLen = Math.max(len1, len2)
+  return maxLen === 0 ? 1 : 1 - distance / maxLen
+}
+
+/**
+ * Extract content body from markdown file
+ */
+function extractContentBody(content) {
+  // Remove frontmatter
+  const withoutFrontmatter = content.replace(/^---[\s\S]*?---\n*/m, '')
+  // Remove markdown formatting
+  return withoutFrontmatter
+    .replace(/#+\s/g, '') // headers
+    .replace(/\*\*/g, '') // bold
+    .replace(/\*/g, '') // italic
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, '') // images
+    .trim()
+    .toLowerCase()
+}
+
+/**
+ * Find duplicate or near-duplicate markdown files in content directories
+ */
+async function findDuplicateContent(
+  categories = ['claims', 'quotes', 'memes']
+) {
+  const contentDir = path.join(__dirname, '..', 'content')
+  const duplicates = []
+
+  for (const category of categories) {
+    const categoryDir = path.join(contentDir, category)
+
+    try {
+      await fs.access(categoryDir)
+    } catch {
+      continue // Skip if category doesn't exist
+    }
+
+    // Read all markdown files in category
+    const files = await fs.readdir(categoryDir)
+    const mdFiles = files.filter((f) => f.endsWith('.md') && !f.startsWith('_'))
+
+    const fileContents = []
+
+    // Read all file contents
+    for (const file of mdFiles) {
+      try {
+        const filePath = path.join(categoryDir, file)
+        const content = await fs.readFile(filePath, 'utf-8')
+        const body = extractContentBody(content)
+        const hash = crypto.createHash('md5').update(body).digest('hex')
+
+        fileContents.push({
+          file,
+          path: filePath,
+          body,
+          hash,
+          category,
+        })
+      } catch (err) {
+        // Skip files that can't be read
+      }
+    }
+
+    // Compare files for duplicates
+    for (let i = 0; i < fileContents.length; i++) {
+      for (let j = i + 1; j < fileContents.length; j++) {
+        const file1 = fileContents[i]
+        const file2 = fileContents[j]
+
+        // Check for exact hash match (identical content)
+        if (file1.hash === file2.hash) {
+          duplicates.push({
+            category,
+            file1: file1.file,
+            file2: file2.file,
+            path1: file1.path,
+            path2: file2.path,
+            similarity: 1.0,
+            type: 'identical',
+          })
+          continue
+        }
+
+        // Check for near-identical content (>85% similar)
+        const similarity = calculateSimilarity(file1.body, file2.body)
+        if (similarity > 0.85) {
+          duplicates.push({
+            category,
+            file1: file1.file,
+            file2: file2.file,
+            path1: file1.path,
+            path2: file2.path,
+            similarity,
+            type: 'similar',
+          })
+        }
+      }
+    }
+  }
+
+  return duplicates
+}
+
+/**
+ * Print duplicate content report with clickable links
+ */
+function printDuplicateReport(duplicates) {
+  if (duplicates.length === 0) {
+    printHeader('✅ NO DUPLICATE CONTENT DETECTED')
+    console.log('Found 0 potential duplicate(s).\n')
+    return
+  }
+
+  printHeader('⚠️  DUPLICATE CONTENT DETECTED')
+  console.log(`Found ${duplicates.length} potential duplicate(s):\n`)
+
+  const byCategory = {}
+  for (const dup of duplicates) {
+    if (!byCategory[dup.category]) {
+      byCategory[dup.category] = []
+    }
+    byCategory[dup.category].push(dup)
+  }
+
+  for (const [category, dups] of Object.entries(byCategory)) {
+    console.log(`\n📁 ${category.toUpperCase()}:`)
+    for (const dup of dups) {
+      const simPercent = (dup.similarity * 100).toFixed(1)
+      const typeLabel =
+        dup.type === 'identical' ? '🔴 IDENTICAL' : `🟡 ${simPercent}% SIMILAR`
+      console.log(`\n  ${typeLabel}`)
+      console.log(`    file://${dup.path1}`)
+      console.log(`    file://${dup.path2}`)
+    }
+  }
+
+  console.log(
+    '\n💡 Tip: Cmd+Click (macOS) or Ctrl+Click (Windows/Linux) the file:// paths to open them'
+  )
+  console.log('')
+}
+
 async function processAllSubdirectories() {
   const baseMemeDir = path.join(__dirname, '..', 'public', 'memes')
 
@@ -210,6 +382,15 @@ async function processAllSubdirectories() {
         await openInVSCode(createdMarkdownPaths)
       }
       await maybeReloadBrowser()
+
+      // Check for duplicate content
+      console.log('\nScanning for duplicate content...')
+      const duplicates = await findDuplicateContent([
+        'claims',
+        'quotes',
+        'memes',
+      ])
+      printDuplicateReport(duplicates)
     }
   } catch (error) {
     console.error(`Error processing subdirectories: ${error.message}`)
@@ -252,7 +433,7 @@ if (!subdirName) {
       })
   } else {
     processImages(targetDir, subdirName, { dryRun, force })
-      .then((result) => {
+      .then(async (result) => {
         if (!result) return
         if (dryRun) return // suppress duplicate summary in subdir mode
         console.log('\nImage processing complete.')
@@ -278,9 +459,18 @@ if (!subdirName) {
           console.log(
             `\nOpening ${files.length} new markdown file(s) in VS Code...`
           )
-          return openInVSCode(files).then(() => maybeReloadBrowser())
+          await openInVSCode(files)
         }
-        return maybeReloadBrowser()
+        await maybeReloadBrowser()
+
+        // Check for duplicate content
+        console.log('\nScanning for duplicate content...')
+        const duplicates = await findDuplicateContent([
+          'claims',
+          'quotes',
+          'memes',
+        ])
+        printDuplicateReport(duplicates)
       })
       .catch((err) => {
         console.error('Image processing failed:', err)

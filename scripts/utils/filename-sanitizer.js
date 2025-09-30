@@ -14,6 +14,7 @@ export function sanitizeFilename(text, maxLength = 50) {
     .normalize('NFKD')
     .replace(/[_]+/g, ' ') // underscores -> space first so they become token breaks
     .replace(/[\u0300-\u036f]/g, '') // strip diacritics
+    .replace(/'/g, '') // remove apostrophes directly (don't convert to space)
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, ' ') // keep alnum, space, dash
     .replace(/-/g, ' ') // treat existing dashes as separators for smarter trailing number trim

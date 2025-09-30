@@ -674,7 +674,14 @@ async function processImages(directory, subdirName = '', options = {}) {
 
     for (const filename of imageFiles) {
       const imagePath = path.join(directory, filename)
-      if (await hasMarkdownPair(imagePath)) {
+      const key = relImageKey(imagePath)
+      const entry = manifest.images[key] || {}
+
+      // Check both hasMarkdownPair AND manifest optimized flag
+      const hasPair = await hasMarkdownPair(imagePath)
+      const isOptimized = entry.optimized === true
+
+      if (hasPair || isOptimized) {
         imagesWithMarkdown.push(filename)
       } else {
         imagesWithoutMarkdown.push(filename)
@@ -728,8 +735,8 @@ async function processImages(directory, subdirName = '', options = {}) {
         const pct = action.startsWith('downscale')
           ? '≈-25%'
           : action.startsWith('upscale')
-          ? '+??'
-          : '≈-10%'
+            ? '+??'
+            : '≈-10%'
         SCALE_INFO.push({
           name: finalName,
           dims: `${dims.width}x${dims.height}`,

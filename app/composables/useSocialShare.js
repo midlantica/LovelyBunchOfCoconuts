@@ -419,24 +419,19 @@ export function useSocialShare() {
     onFeedback = null
   ) => {
     try {
-      // Handle memes differently - just copy raw image without branding
+      // Handle memes differently - copy raw image with logo overlay
       if (type === 'meme') {
         try {
-          // For memes, just copy the image directly without any processing
-          // The image should already be available as a blob or we can get it from the DOM
-
-          // Look specifically for the modal's meme image
+          // Find the meme image in the DOM
           let foundImage = null
-
-          // Try different selectors to find the modal image
           const possibleSelectors = [
-            '.modal img', // Modal images
-            '.modal-content img', // Modal content images
-            '[role="dialog"] img', // ARIA dialog images
-            '.vfm img', // Vue Final Modal images
-            '.modal-container img', // Modal container images
-            '.popup img', // Popup images
-            '.overlay img', // Overlay images
+            '.modal img',
+            '.modal-content img',
+            '[role="dialog"] img',
+            '.vfm img',
+            '.modal-container img',
+            '.popup img',
+            '.overlay img',
           ]
 
           for (const selector of possibleSelectors) {
@@ -450,7 +445,6 @@ export function useSocialShare() {
             if (foundImage) break
           }
 
-          // If no modal image found, try the most recently loaded large image
           if (!foundImage) {
             const allImages = document.querySelectorAll('img')
             for (let i = allImages.length - 1; i >= 0; i--) {
@@ -467,98 +461,87 @@ export function useSocialShare() {
             }
           }
 
-          if (foundImage) {
-            try {
-              // Fetch the image from the src URL
-              const response = await fetch(foundImage.src)
-              const memeBlob = await response.blob()
-
-              // Try modern clipboard API first with logo overlay
-              try {
-                if (navigator.clipboard?.write) {
-                  // Create canvas with original image dimensions
-                  const canvas = document.createElement('canvas')
-                  const ctx = canvas.getContext('2d')
-
-                  // Set canvas size to match original image exactly
-                  canvas.width = foundImage.naturalWidth
-                  canvas.height = foundImage.naturalHeight
-
-                  // Draw the original image at its natural size
-                  ctx.drawImage(foundImage, 0, 0, canvas.width, canvas.height)
-
-                  // Load and draw the WakeUpNPC logo in bottom-right corner
-                  const logoImg = new Image()
-                  logoImg.crossOrigin = 'anonymous'
-                  logoImg.onload = async () => {
-                    // Logo positioning: 5px from bottom-right
-                    // Logo is 158px x 19px, so use full size
-                    const logoWidth = 158
-                    const logoHeight = 19
-                    const logoX = canvas.width - logoWidth - 5
-                    const logoY = canvas.height - logoHeight - 5
-
-                    // Draw logo with transparency
-                    ctx.globalAlpha = 0.9
-                    ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight)
-                    ctx.globalAlpha = 1.0
-
-                    // Convert to PNG blob
-                    canvas.toBlob(async (pngBlob) => {
-                      try {
-                        await navigator.clipboard.write([
-                          new ClipboardItem({ 'image/png': pngBlob }),
-                        ])
-                        onFeedback?.('Meme image copied!')
-                      } catch (pngError) {
-                        console.warn('PNG clipboard failed:', pngError)
-                        // Fallback to original image without logo
-                        try {
-                          await navigator.clipboard.write([
-                            new ClipboardItem({ [memeBlob.type]: memeBlob }),
-                          ])
-                          onFeedback?.('Meme image copied!')
-                        } catch (originalError) {
-                          console.warn(
-                            'Original clipboard failed:',
-                            originalError
-                          )
-                          onFeedback?.(
-                            'Copy failed - try right-click > Copy Image'
-                          )
-                        }
-                      }
-                    }, 'image/png')
-                  }
-
-                  logoImg.onerror = async () => {
-                    // If logo fails to load, copy original image
-                    try {
-                      await navigator.clipboard.write([
-                        new ClipboardItem({ [memeBlob.type]: memeBlob }),
-                      ])
-                      onFeedback?.('Meme image copied!')
-                    } catch (fallbackError) {
-                      console.warn('Fallback clipboard failed:', fallbackError)
-                      onFeedback?.('Copy failed - try right-click > Copy Image')
-                    }
-                  }
-
-                  logoImg.src = '/wakeupnpc-mini.png'
-                } else {
-                  throw new Error('Clipboard not available')
-                }
-              } catch (clipboardError) {
-                console.warn('Clipboard failed:', clipboardError)
-                onFeedback?.('Copy failed - try right-click > Copy Image')
-              }
-            } catch (error) {
-              console.error('Error fetching meme image:', error)
-              onFeedback?.('Error copying meme image')
-            }
-          } else {
-            onFeedback?.('No meme image found to copy')
+          if (!foundImage) {
+            onFeedback?.('No meme image found')
+            return
           }
+
+          // Fetch the image
+          const response = await fetch(foundImage.src)
+          const memeBlob = await response.blob()
+
+          // Create canvas with logo overlay
+          const canvas = document.createElement('canvas')
+          const ctx = canvas.getContext('2d')
+          canvas.width = foundImage.naturalWidth
+          canvas.height = foundImage.naturalHeight
+
+          // Draw original image
+          ctx.drawImage(foundImage, 0, 0, canvas.width, canvas.height)
+
+          // Load and draw logo
+          const logoImg = new Image()
+          logoImg.crossOrigin = 'anonymous'
+
+          const applyLogoAndCopy = async () => {
+            try {
+              const logoWidth = 158
+              const logoHeight = 19
+              const logoX = canvas.width - logoWidth - 5
+              const logoY = canvas.height - logoHeight - 5
+
+              ctx.globalAlpha = 0.9
+              ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight)
+              ctx.globalAlpha = 1.0
+
+              // Convert to blob
+              const finalBlob = await new Promise((resolve) => {
+                canvas.toBlob(resolve, 'image/png', 1.0)
+              })
+
+              // Use universal clipboard
+              const { useUniversalClipboard } = await import(
+                '~/composables/useUniversalClipboard'
+              )
+              const { copyImageToClipboard } = useUniversalClipboard()
+
+              await copyImageToClipboard(finalBlob, {
+                contentType: 'meme',
+                onSuccess: (message) => onFeedback?.(message),
+                onError: (message) => onFeedback?.(message),
+              })
+            } catch (error) {
+              console.error('Logo overlay failed:', error)
+              // Fallback: copy without logo
+              const { useUniversalClipboard } = await import(
+                '~/composables/useUniversalClipboard'
+              )
+              const { copyImageToClipboard } = useUniversalClipboard()
+
+              await copyImageToClipboard(memeBlob, {
+                contentType: 'meme',
+                onSuccess: (message) => onFeedback?.(message),
+                onError: (message) => onFeedback?.(message),
+              })
+            }
+          }
+
+          logoImg.onload = applyLogoAndCopy
+          logoImg.onerror = async () => {
+            // Logo failed, copy without it
+            const { useUniversalClipboard } = await import(
+              '~/composables/useUniversalClipboard'
+            )
+            const { copyImageToClipboard } = useUniversalClipboard()
+
+            await copyImageToClipboard(memeBlob, {
+              contentType: 'meme',
+              onSuccess: (message) => onFeedback?.(message),
+              onError: (message) => onFeedback?.(message),
+            })
+          }
+
+          logoImg.src = '/wakeupnpc-mini.png'
         } catch (error) {
           console.error('Error copying meme:', error)
           onFeedback?.('Error copying meme')
@@ -582,133 +565,19 @@ export function useSocialShare() {
         return
       }
 
-      // For social media platforms, create a shareable file
-      const file = new File([imageBlob], `wakeupnpc-${type}.jpg`, {
-        type: 'image/jpeg',
-      })
-
       // Handle different sharing modes
       if (platform === 'image') {
-        // For claims and quotes, copy the branded image to clipboard
-        try {
-          // Detect if we're on mobile
-          const isMobile =
-            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-              navigator.userAgent
-            ) ||
-            (window.innerWidth <= 768 && window.innerHeight <= 1024)
+        // For claims and quotes, use universal clipboard utility
+        const { useUniversalClipboard } = await import(
+          '~/composables/useUniversalClipboard'
+        )
+        const { copyImageToClipboard } = useUniversalClipboard()
 
-          if (navigator.clipboard?.write) {
-            // Convert JPEG to PNG for better clipboard compatibility
-            const canvas = document.createElement('canvas')
-            const ctx = canvas.getContext('2d')
-
-            // Create image from blob to draw on canvas
-            const img = new Image()
-            const blobUrl = URL.createObjectURL(imageBlob)
-
-            img.onload = async () => {
-              canvas.width = img.width
-              canvas.height = img.height
-              ctx.drawImage(img, 0, 0)
-
-              // Convert to PNG blob
-              canvas.toBlob(async (pngBlob) => {
-                try {
-                  // Try modern clipboard API first
-                  await navigator.clipboard.write([
-                    new ClipboardItem({ 'image/png': pngBlob }),
-                  ])
-                  onFeedback?.('Image copied')
-                } catch (pngError) {
-                  console.warn('PNG clipboard failed:', pngError)
-                  // Try original JPEG as fallback
-                  try {
-                    await navigator.clipboard.write([
-                      new ClipboardItem({ 'image/jpeg': imageBlob }),
-                    ])
-                    onFeedback?.('Image copied')
-                  } catch (jpegError) {
-                    console.warn('JPEG clipboard failed:', jpegError)
-
-                    // Mobile fallback: use Web Share API or download
-                    if (isMobile) {
-                      try {
-                        // Try Web Share API first (standard mobile sharing)
-                        if (navigator.share && navigator.canShare) {
-                          const file = new File(
-                            [pngBlob],
-                            `wakeupnpc-${type}.png`,
-                            { type: 'image/png' }
-                          )
-                          if (navigator.canShare({ files: [file] })) {
-                            await navigator.share({
-                              title: 'WakeUpNPC Content',
-                              text: 'Check out this content from WakeUpNPC',
-                              files: [file],
-                            })
-                            onFeedback?.('Image shared!')
-                          } else {
-                            // Fallback: download the image
-                            const downloadUrl = URL.createObjectURL(pngBlob)
-                            const a = document.createElement('a')
-                            a.href = downloadUrl
-                            a.download = `wakeupnpc-${type}-${Date.now()}.png`
-                            a.style.display = 'none'
-                            document.body.appendChild(a)
-                            a.click()
-                            document.body.removeChild(a)
-                            URL.revokeObjectURL(downloadUrl)
-                            onFeedback?.('Image downloaded!')
-                          }
-                        } else {
-                          // Fallback: download the image
-                          const downloadUrl = URL.createObjectURL(pngBlob)
-                          const a = document.createElement('a')
-                          a.href = downloadUrl
-                          a.download = `wakeupnpc-${type}-${Date.now()}.png`
-                          a.style.display = 'none'
-                          document.body.appendChild(a)
-                          a.click()
-                          document.body.removeChild(a)
-                          URL.revokeObjectURL(downloadUrl)
-                          onFeedback?.('Image downloaded!')
-                        }
-                      } catch (mobileError) {
-                        console.warn('Mobile sharing failed:', mobileError)
-                        onFeedback?.('Tap to download image')
-                      }
-                    } else {
-                      onFeedback?.('Copy failed - try right-click > Copy Image')
-                    }
-                  }
-                }
-                URL.revokeObjectURL(blobUrl)
-              }, 'image/png')
-            }
-
-            img.onerror = () => {
-              URL.revokeObjectURL(blobUrl)
-              throw new Error('Failed to load image for clipboard')
-            }
-
-            img.src = blobUrl
-          } else {
-            // Fallback for browsers without modern clipboard API
-            if (isMobile) {
-              showToast('Copy failed - try long-press > Share/Copy Image')
-            } else {
-              showToast('Copy failed - try right-click > Copy Image')
-            }
-          }
-        } catch (clipboardError) {
-          console.warn('Clipboard failed:', clipboardError)
-          if (isMobile) {
-            showToast('Copy failed - try long-press > Share/Copy Image')
-          } else {
-            showToast('Copy failed - try right-click > Copy Image')
-          }
-        }
+        await copyImageToClipboard(imageBlob, {
+          contentType: type,
+          onSuccess: (message) => onFeedback?.(message),
+          onError: (message) => onFeedback?.(message),
+        })
       } else {
         // Social media mode: try to copy both image and URL, with fallbacks
         if (navigator.clipboard?.write) {
