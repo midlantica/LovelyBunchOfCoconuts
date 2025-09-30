@@ -1839,6 +1839,22 @@
       "updated": "2025-09-28T02:39:39.377Z",
       "width": 1080,
       "height": 1080
+    },
+    "politics/no-one-on-the-left-is-celebrating-murder.jpg": {
+      "optimized": true,
+      "hash": "ea844f8cf4a77162c013ce59c4270c144eb030d6",
+      "action": "upscale→800",
+      "updated": "2025-09-28T19:48:52.535Z",
+      "width": 559,
+      "height": 800
+    },
+    "cartoons/0-days-without-leftist-violence.jpg": {
+      "optimized": true,
+      "hash": "693cdadcb993ebdb4a0c2c692029cda07c6ac9e1",
+      "action": "upscale→800",
+      "updated": "2025-09-28T19:55:29.236Z",
+      "width": 736,
+      "height": 800
     }
   }
 }
