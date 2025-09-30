@@ -151,11 +151,6 @@ export default defineNuxtConfig({
             'A curated wall of political claims, insightful quotes, and thought-provoking memes. Explore diverse perspectives and challenge your thinking.',
         },
         { name: 'theme-color', content: '#68D2FF' },
-        // Content Security Policy - allow blob: URLs for image copying
-        {
-          'http-equiv': 'Content-Security-Policy',
-          content: "img-src 'self' data: blob: https:; default-src 'self'",
-        },
 
         // Open Graph / Facebook
         { property: 'og:type', content: 'website' },

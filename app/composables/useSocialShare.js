@@ -422,64 +422,91 @@ export function useSocialShare() {
       // Handle memes differently - copy raw image with logo overlay
       if (type === 'meme') {
         try {
-          // Find the meme image in the DOM
-          let foundImage = null
-          const possibleSelectors = [
-            '.modal img',
-            '.modal-content img',
-            '[role="dialog"] img',
-            '.vfm img',
-            '.modal-container img',
-            '.popup img',
-            '.overlay img',
-          ]
+          // Find the meme image in the DOM with timeout
+          const findImagePromise = new Promise((resolve, reject) => {
+            const timeout = setTimeout(() => {
+              reject(new Error('Image search timeout'))
+            }, 3000)
 
-          for (const selector of possibleSelectors) {
-            const modalImages = document.querySelectorAll(selector)
-            for (const img of modalImages) {
-              if (img.src && img.naturalWidth > 50) {
-                foundImage = img
-                break
+            let foundImage = null
+            const possibleSelectors = [
+              '.modal img',
+              '.modal-content img',
+              '[role="dialog"] img',
+              '.vfm img',
+              '.modal-container img',
+              '.popup img',
+              '.overlay img',
+            ]
+
+            for (const selector of possibleSelectors) {
+              const modalImages = document.querySelectorAll(selector)
+              for (const img of modalImages) {
+                if (img.src && img.naturalWidth > 50 && img.complete) {
+                  foundImage = img
+                  break
+                }
+              }
+              if (foundImage) break
+            }
+
+            if (!foundImage) {
+              const allImages = document.querySelectorAll('img')
+              for (let i = allImages.length - 1; i >= 0; i--) {
+                const img = allImages[i]
+                if (
+                  img.src &&
+                  img.naturalWidth > 100 &&
+                  !img.src.includes('logo') &&
+                  !img.src.includes('icon') &&
+                  img.complete
+                ) {
+                  foundImage = img
+                  break
+                }
               }
             }
-            if (foundImage) break
-          }
 
-          if (!foundImage) {
-            const allImages = document.querySelectorAll('img')
-            for (let i = allImages.length - 1; i >= 0; i--) {
-              const img = allImages[i]
-              if (
-                img.src &&
-                img.naturalWidth > 100 &&
-                !img.src.includes('logo') &&
-                !img.src.includes('icon')
-              ) {
-                foundImage = img
-                break
-              }
+            clearTimeout(timeout)
+            if (foundImage) {
+              resolve(foundImage)
+            } else {
+              reject(new Error('No meme image found'))
             }
+          })
+
+          const foundImage = await findImagePromise
+
+          // Fetch the image with timeout
+          const controller = new AbortController()
+          const fetchTimeout = setTimeout(() => controller.abort(), 5000)
+
+          const response = await fetch(foundImage.src, {
+            signal: controller.signal,
+          })
+          clearTimeout(fetchTimeout)
+
+          if (!response.ok) {
+            throw new Error(`Failed to fetch image: ${response.status}`)
           }
 
-          if (!foundImage) {
-            onFeedback?.('No meme image found')
-            return
-          }
-
-          // Fetch the image
-          const response = await fetch(foundImage.src)
           const memeBlob = await response.blob()
 
           // Create canvas with logo overlay
           const canvas = document.createElement('canvas')
-          const ctx = canvas.getContext('2d')
+          const ctx = canvas.getContext('2d', { willReadFrequently: false })
+
+          if (!ctx) {
+            throw new Error('Failed to get canvas context')
+          }
+
           canvas.width = foundImage.naturalWidth
           canvas.height = foundImage.naturalHeight
 
           // Draw original image
           ctx.drawImage(foundImage, 0, 0, canvas.width, canvas.height)
 
-          // Load and draw logo
+          // Load and draw logo with timeout
           const logoImg = new Image()
           logoImg.crossOrigin = 'anonymous'
 
@@ -494,9 +521,24 @@ export function useSocialShare() {
               ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight)
               ctx.globalAlpha = 1.0
 
-              // Convert to blob
-              const finalBlob = await new Promise((resolve) => {
-                canvas.toBlob(resolve, 'image/png', 1.0)
+              // Convert to blob with timeout
+              const finalBlob = await new Promise((resolve, reject) => {
+                const timeout = setTimeout(() => {
+                  reject(new Error('Canvas to blob timeout'))
+                }, 5000)
+
+                canvas.toBlob(
+                  (blob) => {
+                    clearTimeout(timeout)
+                    if (blob) {
+                      resolve(blob)
+                    } else {
+                      reject(new Error('Failed to create blob from canvas'))
+                    }
+                  },
+                  'image/png',
+                  1.0
+                )
               })
 
               // Use universal clipboard
@@ -513,6 +555,49 @@ export function useSocialShare() {
             } catch (error) {
               console.error('Logo overlay failed:', error)
               // Fallback: copy without logo
+              try {
+                const { useUniversalClipboard } = await import(
+                  '~/composables/useUniversalClipboard'
+                )
+                const { copyImageToClipboard } = useUniversalClipboard()
+
+                await copyImageToClipboard(memeBlob, {
+                  contentType: 'meme',
+                  onSuccess: (message) => onFeedback?.(message),
+                  onError: (message) => onFeedback?.(message),
+                })
+              } catch (fallbackError) {
+                console.error('Fallback copy failed:', fallbackError)
+                onFeedback?.('Error copying meme')
+              }
+            }
+          }
+
+          // Set up logo load with timeout
+          const logoLoadPromise = new Promise((resolve, reject) => {
+            const timeout = setTimeout(() => {
+              reject(new Error('Logo load timeout'))
+            }, 3000)
+
+            logoImg.onload = () => {
+              clearTimeout(timeout)
+              resolve()
+            }
+            logoImg.onerror = (error) => {
+              clearTimeout(timeout)
+              reject(error)
+            }
+          })
+
+          logoImg.src = '/wakeupnpc-mini.png'
+
+          try {
+            await logoLoadPromise
+            await applyLogoAndCopy()
+          } catch (logoError) {
+            console.warn('Logo load failed, copying without logo:', logoError)
+            // Logo failed, copy without it
+            try {
               const { useUniversalClipboard } = await import(
                 '~/composables/useUniversalClipboard'
               )
@@ -523,28 +608,14 @@ export function useSocialShare() {
                 onSuccess: (message) => onFeedback?.(message),
                 onError: (message) => onFeedback?.(message),
               })
+            } catch (fallbackError) {
+              console.error('Fallback copy failed:', fallbackError)
+              onFeedback?.('Error copying meme')
             }
           }
-
-          logoImg.onload = applyLogoAndCopy
-          logoImg.onerror = async () => {
-            // Logo failed, copy without it
-            const { useUniversalClipboard } = await import(
-              '~/composables/useUniversalClipboard'
-            )
-            const { copyImageToClipboard } = useUniversalClipboard()
-
-            await copyImageToClipboard(memeBlob, {
-              contentType: 'meme',
-              onSuccess: (message) => onFeedback?.(message),
-              onError: (message) => onFeedback?.(message),
-            })
-          }
-
-          logoImg.src = '/wakeupnpc-mini.png'
         } catch (error) {
           console.error('Error copying meme:', error)
-          onFeedback?.('Error copying meme')
+          onFeedback?.(error.message || 'Error copying meme')
         }
         return
       }

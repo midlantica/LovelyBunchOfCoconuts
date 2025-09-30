@@ -85,15 +85,29 @@
     if (buttonType !== 'copy') copyButton.value?.clearToast()
   }
 
-  // Copy image only
+  // Copy image only - must complete synchronously to preserve user gesture
   const copyImageOnly = async () => {
     if (isLoading.value) return // Prevent multiple clicks
 
-    try {
-      isLoading.value = true
-      feedbackMessage.value = ''
+    // Start loading immediately
+    isLoading.value = true
+    feedbackMessage.value = ''
 
+    // Set timeout to prevent infinite loading state
+    const loadingTimeout = setTimeout(() => {
+      if (isLoading.value) {
+        isLoading.value = false
+        feedbackMessage.value = 'Request timed out'
+        setTimeout(() => {
+          feedbackMessage.value = ''
+        }, 3000)
+      }
+    }, 15000) // 15 second timeout
+
+    try {
+      // Import composable
       const { useSocialShare } = await import('~/composables/useSocialShare')
+      const { shareToPlatform } = useSocialShare()
 
       // Create content object based on type
       const content = {
@@ -104,8 +118,6 @@
         title: props.contentType === 'meme' ? props.title : null,
         description: props.contentType === 'meme' ? props.text : null,
       }
-
-      const { shareToPlatform } = useSocialShare()
 
       // Copy just the image - pass feedback callback
       await shareToPlatform(
@@ -122,11 +134,12 @@
       )
     } catch (error) {
       console.error('Error copying image:', error)
-      feedbackMessage.value = 'Error copying image'
+      feedbackMessage.value = error.message || 'Error copying image'
       setTimeout(() => {
         feedbackMessage.value = ''
       }, 3000)
     } finally {
+      clearTimeout(loadingTimeout)
       isLoading.value = false
     }
   }
