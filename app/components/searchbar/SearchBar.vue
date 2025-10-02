@@ -1,7 +1,7 @@
 <!-- components/SearchBar.vue -->
 <template>
   <div class="flex flex-col items-center gap-2 w-full h-auto text-seagull-950">
-    <div class="relative flex flex-row gap-2 w-full">
+    <div class="relative flex flex-row gap-2 w-full overflow-visible">
       <Icon
         name="mdi:magnify"
         size="1.4rem"
@@ -87,7 +87,7 @@
 
       <!-- Right control group: Filter, ESC, X -->
       <div
-        class="top-1/2 right-3 absolute flex items-center gap-1 -translate-y-1/2"
+        class="top-1/2 right-3 absolute flex items-center gap-1 overflow-visible -translate-y-1/2"
       >
         <client-only>
           <span
@@ -103,13 +103,6 @@
           :counts="props.counts"
           :inline="true"
           @update:filters="(f) => emit('update:filters', f)"
-        />
-        <UiShareButtonBase
-          icon-name="line-md:external-link"
-          aria-label="Copy shareable link"
-          toast-message="Link copied"
-          :toast-duration="1200"
-          @click="copyShareUrl"
         />
         <button
           v-if="hasSearch"

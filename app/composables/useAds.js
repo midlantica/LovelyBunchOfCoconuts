@@ -73,7 +73,7 @@ export function useAds() {
   }
 
   // Create an ad provider function for interleaveContent
-  function createAdProvider(options = {}) {
+  function createAdProviderInternal(options = {}) {
     const { squareWeight = 0.6 } = options
 
     // Helper function to select ad based on frequency weights
@@ -154,7 +154,7 @@ export function useAds() {
   }
 
   // Calculate ad interval based on setting
-  function calculateAdInterval(baseSetting = 10) {
+  function calculateAdIntervalInternal(baseSetting = 10) {
     // Lower number = more frequent ads
     // baseSetting of 10 means show ad every 10 content items
     return Math.max(3, baseSetting) // Minimum of 3 items between ads
@@ -163,7 +163,71 @@ export function useAds() {
   return {
     ads: readonly(ads),
     loadAds,
-    createAdProvider,
-    calculateAdInterval,
+    createAdProvider: createAdProviderInternal,
+    calculateAdInterval: calculateAdIntervalInternal,
   }
+}
+
+// Export standalone versions for use outside composable (e.g., in precomputation)
+export function createAdProvider(options = {}) {
+  const { ads } = useAds()
+
+  const { squareWeight = 0.6 } = options
+
+  // Helper function to select ad based on frequency weights
+  function selectWeightedAd(adArray) {
+    if (!adArray || adArray.length === 0) return null
+
+    const totalWeight = adArray.reduce(
+      (sum, ad) => sum + (ad.frequency || 10),
+      0
+    )
+
+    let random = Math.random() * totalWeight
+
+    for (const ad of adArray) {
+      const freq = ad.frequency || 10
+      random -= freq
+      if (random <= 0) {
+        return ad
+      }
+    }
+
+    return adArray[adArray.length - 1]
+  }
+
+  return () => {
+    const trySquareFirst = Math.random() < squareWeight
+    let selectedAd = null
+
+    if (trySquareFirst) {
+      selectedAd = selectWeightedAd(ads.value.square)
+      if (!selectedAd) {
+        selectedAd = selectWeightedAd(ads.value.horizontal)
+      }
+    } else {
+      selectedAd = selectWeightedAd(ads.value.horizontal)
+      if (!selectedAd) {
+        selectedAd = selectWeightedAd(ads.value.square)
+      }
+    }
+
+    if (selectedAd) {
+      let size = selectedAd.size
+      if (size === 'small') size = 'square'
+      if (size === 'large') size = 'horizontal'
+
+      return {
+        ...selectedAd,
+        size: size || 'square',
+        isAd: true,
+      }
+    }
+
+    return null
+  }
+}
+
+export function calculateAdInterval(baseSetting = 10) {
+  return Math.max(3, baseSetting)
 }

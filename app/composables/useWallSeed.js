@@ -3,7 +3,7 @@
 // - New seed on each SSR render (via useState initializer)
 // - Manual reseed trigger (e.g., masthead click)
 
-function generateSeed() {
+export function generateSeed() {
   try {
     // Prefer crypto for better entropy if available
     if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
