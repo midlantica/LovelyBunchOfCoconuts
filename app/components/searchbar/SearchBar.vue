@@ -475,7 +475,7 @@
     return (arr || [])
       .map((t) => String(t).trim().toLowerCase().replace(/\s+/g, '_'))
       .filter(Boolean)
-      .join('+')
+      .join('+') // Use literal + as separator for cleaner URLs
   }
   function updateUrlWithTokens(arr) {
     if (typeof window === 'undefined') return
@@ -485,6 +485,7 @@
     const kept = parts.filter(
       (p) => decodeURIComponent(p.split('=')[0]) !== 'q'
     )
+    // Don't double-encode - qEnc already contains %2B
     if (qEnc) kept.push(`q=${qEnc}`)
     const query = kept.length ? `?${kept.join('&')}` : ''
     const url = `${window.location.pathname}${query}${
@@ -500,6 +501,7 @@
     const kept = parts.filter(
       (p) => decodeURIComponent(p.split('=')[0]) !== 'q'
     )
+    // Don't double-encode - qEnc already contains %2B
     if (qEnc) kept.push(`q=${qEnc}`)
     const query = kept.length ? `?${kept.join('&')}` : ''
     return `${window.location.origin}${window.location.pathname}${query}${

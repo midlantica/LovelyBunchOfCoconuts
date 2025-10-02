@@ -72,35 +72,51 @@
     const initClient = () => {
       // 1) Handle ?q= and ?nf= with better error handling
       try {
-        const url = new URL(window.location.href)
-        const rawQ = url.searchParams.get('q') || ''
         const modalSuppressed = useState(
           'modalSuppressedFromQuery',
           () => false
         )
 
+        // Parse query string manually to preserve + as separator (not decode to space)
+        const queryString = window.location.search.substring(1)
+        const params = new URLSearchParams()
+        let rawQ = ''
+
+        // Manually parse to get raw q value before URL decoding
+        if (queryString) {
+          const pairs = queryString.split('&')
+          for (const pair of pairs) {
+            const [key, value] = pair.split('=')
+            if (key === 'q' && value) {
+              // Don't use decodeURIComponent yet - keep + as is
+              rawQ = value.replace(/_/g, ' ') // Convert underscores to spaces
+              // Only decode %XX sequences, not +
+              try {
+                rawQ = rawQ.replace(/%([0-9A-F]{2})/gi, (match, hex) => {
+                  return String.fromCharCode(parseInt(hex, 16))
+                })
+              } catch (e) {
+                console.warn('Failed to decode search query:', e)
+              }
+            }
+          }
+        }
+
         // Handle the search query parameter
         if (rawQ) {
-          let decoded = rawQ
-          try {
-            decoded = decodeURIComponent(rawQ)
-          } catch (e) {
-            console.warn('Failed to decode search query:', e)
-            decoded = rawQ // Use raw value if decoding fails
-          }
-
           // Sanitize and limit the search term length to prevent issues
-          const sanitized = decoded
+          const sanitized = rawQ
             .toLowerCase()
             .trim()
             .substring(0, 100) // Limit length
-            .replace(/[^\w\s-]/g, '') // Remove special characters except spaces and hyphens
+            .replace(/[^\w\s+_-]/g, '') // Preserve +, _, spaces, and hyphens for multi-token parsing
 
           searchTerm.value = sanitized
           modalSuppressed.value = true
         }
 
         // Clean up URL parameters after processing
+        const url = new URL(window.location.href)
         if (url.searchParams.has('nf') || url.searchParams.has('q')) {
           url.searchParams.delete('nf')
           url.searchParams.delete('q')
