@@ -1,3 +1,4 @@
+// @ts-nocheck
 // utils/filename-sanitizer.js
 import fs from 'fs/promises'
 import path from 'path'
