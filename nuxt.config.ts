@@ -206,14 +206,6 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         // Canonical home URL
         { rel: 'canonical', href: 'https://wakeupnpc.com/' },
-        // Preload logo with low priority to prevent FOUC without blocking other resources
-        {
-          rel: 'preload',
-          href: '/WakeUpNPC-logo.svg',
-          as: 'image',
-          type: 'image/svg+xml',
-          fetchpriority: 'low',
-        },
         // Preload Google Fonts to prevent white flash
         {
           rel: 'preconnect',
