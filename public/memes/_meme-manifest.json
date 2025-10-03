@@ -1975,6 +1975,70 @@
       "updated": "2025-09-30T16:56:22.054Z",
       "width": 1065,
       "height": 1080
+    },
+    "data/abortions-non-edge-choice-us-total.jpg": {
+      "optimized": true,
+      "hash": "805c2a0e694b5c9ad19d0e43b4b097ed4655bd59",
+      "action": "upscale→800",
+      "updated": "2025-10-02T23:37:30.558Z",
+      "width": 800,
+      "height": 585
+    },
+    "data/arnachy-to-socialism-concentric-circles.jpg": {
+      "optimized": true,
+      "hash": "2075e01b6e0c519f4b007f601b6090606d9e7579",
+      "action": "strip-profiles",
+      "updated": "2025-10-02T23:37:30.695Z",
+      "width": 1077,
+      "height": 1080
+    },
+    "data/far-right-vs-far-left-2025-picard.jpg": {
+      "optimized": true,
+      "hash": "032dcb284bede75e312bafa069ab4cc0befdbd1b",
+      "action": "strip-profiles",
+      "updated": "2025-10-02T23:37:30.843Z",
+      "width": 968,
+      "height": 812
+    },
+    "quotes/liberty-is-always-freedom-from-the.jpg": {
+      "optimized": true,
+      "hash": "a04964ac58a9a2e95b1b0691231cb705c425dd02",
+      "action": "strip-profiles",
+      "updated": "2025-10-02T23:37:31.173Z",
+      "width": 1077,
+      "height": 739
+    },
+    "thomas-sowell/although-the-big-word-on-the-left-is.jpg": {
+      "optimized": true,
+      "hash": "203ce58f52f1bfe6d7c86e42bdf8cfc864e0f965",
+      "action": "strip-profiles",
+      "updated": "2025-10-02T23:37:31.486Z",
+      "width": 1080,
+      "height": 720
+    },
+    "politics/this-isnt-real-socialism-47.jpg": {
+      "optimized": true,
+      "hash": "c9478cb6ae0cc878d34a461795e9fe68ed1eec8d",
+      "action": "strip-profiles",
+      "updated": "2025-10-03T02:27:51.729Z",
+      "width": 943,
+      "height": 1080
+    },
+    "thomas-sowell/if-the-wealth-of-rich-capitalists-comes.jpg": {
+      "optimized": true,
+      "hash": "f9c4670f7a11c7214e4b1f3b16ab6f2a5c55d140",
+      "action": "strip-profiles",
+      "updated": "2025-10-03T02:27:51.983Z",
+      "width": 1080,
+      "height": 720
+    },
+    "thomas-sowell/the-concept-of-micro-aggression.jpg": {
+      "optimized": true,
+      "hash": "1711fc07d25fcb8f3df4ad3817b54d9f97b0aa67",
+      "action": "strip-profiles",
+      "updated": "2025-10-03T02:27:52.096Z",
+      "width": 1080,
+      "height": 810
     }
   }
 }
