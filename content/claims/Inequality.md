@@ -1,9 +1,9 @@
 ---
 title: 'Inequality'
 claim: 'Inequality'
-translation: 'Your money should be theirs'
+translation: 'Your money should be theirs.'
 ---
 
-## "Inequality"
+## Inequality
 
 ## Your money should be theirs

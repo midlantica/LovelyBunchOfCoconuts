@@ -1,9 +1,9 @@
 ---
 title: 'Pro-Choice'
 claim: 'Pro-Choice'
-translation: 'Legalized Murder'
+translation: 'Legalized Murder.'
 ---
 
-## "Pro-Choice"
+## Pro-Choice
 
 ## Legalized Murder

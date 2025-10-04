@@ -4,6 +4,6 @@ claim: 'Assault Weapon'
 translation: 'Any Gun'
 ---
 
-## "Assault Weapon"
+## Assault Weapon
 
 ## Any Gun

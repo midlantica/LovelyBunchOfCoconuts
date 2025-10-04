@@ -1,9 +1,9 @@
 ---
 title: 'Political Correctness'
 claim: 'Political Correctness'
-translation: 'Controlling Speech'
+translation: 'Controlling speech.'
 ---
 
-## "Political Correctness"
+## Political Correctness
 
-## Controlling Speech
+## Controlling speech
