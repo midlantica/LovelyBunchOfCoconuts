@@ -28,7 +28,7 @@
         v-else
         class="flex justify-center items-center bg-gray-200 w-full h-full"
       >
-        <span class="font-medium text-gray-500 text-lg">{{ ad.title }}</span>
+        <span class="font-300 text-gray-500 text-lg">{{ ad.title }}</span>
       </div>
     </a>
 
@@ -45,7 +45,7 @@
         v-else
         class="flex justify-center items-center bg-gray-200 w-full h-full"
       >
-        <span class="font-medium text-gray-500 text-lg">{{ ad.title }}</span>
+        <span class="font-300 text-gray-500 text-lg">{{ ad.title }}</span>
       </div>
     </div>
   </div>

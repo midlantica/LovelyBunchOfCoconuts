@@ -9,7 +9,7 @@
       />
       <!-- Tokenized input with pills -->
       <div
-        class="bg-transparent focus-within:bg-transparent px-[2.25rem] py-[0.2rem] border-[thin] border-seagull-400/40 rounded-[20px] outline-none w-full font-light text-[1.02rem] text-slate-200 sm:text-[0.935rem] leading-none tracking-wider"
+        class="bg-transparent focus-within:bg-transparent px-[2.25rem] py-[0.2rem] border-[thin] border-seagull-400/40 rounded-[20px] outline-none w-full font-100 text-[1.02rem] text-slate-200 sm:text-[0.935rem] leading-none tracking-wider"
         @click="focusInnerInput"
       >
         <div
@@ -77,7 +77,7 @@
           @mouseenter="selectedSuggestionIndex = idx"
         >
           <div class="flex justify-between items-center">
-            <span class="font-light">{{ suggestion.term }}</span>
+            <span class="font-100">{{ suggestion.term }}</span>
             <span class="text-slate-400 text-xs capitalize">{{
               suggestion.type
             }}</span>
@@ -91,7 +91,7 @@
       >
         <client-only>
           <span
-            class="font-light text-[.95rem] text-slate-300 tracking-wider"
+            class="font-100 text-[.95rem] text-slate-300 tracking-wider"
             aria-label="Total results"
           >
             {{ totalDisplay }}

@@ -14,7 +14,7 @@
     <!-- Outside count (reversed order) -->
     <span
       v-if="!countInside && isReversed && showCount && displayCount > 0"
-      class="pr-1 pl-0.5 min-w-[1ch] font-medium tabular-nums text-xs transition-colors"
+      class="pr-1 pl-0.5 min-w-[1ch] font-300 tabular-nums text-xs transition-colors"
       :class="
         isSolid
           ? 'text-seagull-700'
@@ -29,8 +29,8 @@
         isSolid
           ? 'text-seagull-700'
           : fadedUnliked
-          ? 'text-seagull-700/50 hover:text-seagull-700'
-          : 'text-seagull-700/70 hover:text-seagull-700',
+            ? 'text-seagull-700/50 hover:text-seagull-700'
+            : 'text-seagull-700/70 hover:text-seagull-700',
         countInside ? 'relative' : isReversed ? 'ml-1' : 'mr-1',
       ]"
       style="text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6)"
@@ -44,8 +44,8 @@
           isSolid
             ? 'text-seagull-700'
             : fadedUnliked
-            ? 'text-seagull-700/50'
-            : 'text-white/40',
+              ? 'text-seagull-700/50'
+              : 'text-white/40',
         ]"
         :size="iconSize"
       />
@@ -59,7 +59,7 @@
     <!-- Outside count (normal order) -->
     <span
       v-if="!countInside && !isReversed && showCount && displayCount > 0"
-      class="pr-1 pl-0.5 min-w-[1ch] font-medium tabular-nums text-xs transition-colors"
+      class="pr-1 pl-0.5 min-w-[1ch] font-300 tabular-nums text-xs transition-colors"
       :class="
         isSolid
           ? 'text-seagull-700'

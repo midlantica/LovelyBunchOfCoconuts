@@ -1,36 +1,36 @@
 <template>
   <div class="mx-auto px-2 md:px-0 py-0 w-full max-w-screen-md">
-    <h1 class="mb-2 font-300 font-medium text-xl">Advertising Rates</h1>
-    <p class="mb-8 font-100 text-slate-300 text-base">
-      Reach engaged conservatives who get the joke
-    </p>
+    <div class="pb-4">
+      <h1 class="mt-2 mb-3 font-300 text-2xl">Advertising Rates</h1>
+      <p class="mb-8 font-100 text-slate-300 text-base">
+        Reach engaged conservatives who get the joke
+      </p>
+    </div>
 
     <!-- Stats Overview -->
     <div class="gap-4 grid grid-cols-1 md:grid-cols-3 mb-8">
       <div class="bg-slate-800 shadow-lg p-4 rounded-lg text-center">
-        <div class="mb-1 font-300 font-medium text-blue-400 text-2xl">50K+</div>
+        <div class="mb-1 font-300 text-slate-400 text-2xl">50K+</div>
         <div class="font-100 text-slate-300 text-sm">Monthly Visitors</div>
       </div>
       <div class="bg-slate-800 shadow-lg p-4 rounded-lg text-center">
-        <div class="mb-1 font-300 font-medium text-blue-400 text-2xl">
-          4.2 min
-        </div>
+        <div class="mb-1 font-300 text-slate-400 text-2xl">4.2 min</div>
         <div class="font-100 text-slate-300 text-sm">Avg. Session</div>
       </div>
       <div class="bg-slate-800 shadow-lg p-4 rounded-lg text-center">
-        <div class="mb-1 font-300 font-medium text-blue-400 text-2xl">72%</div>
+        <div class="mb-1 font-300 text-slate-400 text-2xl">72%</div>
         <div class="font-100 text-slate-300 text-sm">Return Rate</div>
       </div>
     </div>
 
     <!-- Ad Specifications -->
     <div class="bg-slate-800 shadow-xl mb-8 p-6 rounded-lg">
-      <h2 class="mb-4 font-300 font-medium text-lg">Ad Specifications</h2>
+      <h2 class="mb-4 font-300 text-lg">Ad Specifications</h2>
 
       <div class="gap-6 grid grid-cols-1 md:grid-cols-2">
         <!-- Square Ads -->
         <div class="p-4 border border-slate-700 rounded-lg">
-          <h3 class="mb-3 font-300 font-medium text-blue-400">Square Ads</h3>
+          <h3 class="mb-3 font-300 text-slate-400">Square Ads</h3>
           <ul class="space-y-1 font-100 text-slate-300 text-base">
             <li>• Size: 378x378px</li>
             <li>• Format: JPG or PNG</li>
@@ -41,9 +41,7 @@
 
         <!-- Horizontal Ads -->
         <div class="p-4 border border-slate-700 rounded-lg">
-          <h3 class="mb-3 font-300 font-medium text-blue-400">
-            Horizontal Ads
-          </h3>
+          <h3 class="mb-3 font-300 text-slate-400">Horizontal Ads</h3>
           <ul class="space-y-1 font-100 text-slate-300 text-base">
             <li>• Size: 768x100px (max height)</li>
             <li>• Format: JPG or PNG</li>
@@ -56,19 +54,15 @@
 
     <!-- Pricing Tiers -->
     <div class="mb-8">
-      <h2 class="mb-4 font-300 font-medium text-lg text-center">
-        Pricing Tiers
-      </h2>
+      <h2 class="mb-4 font-300 text-lg text-center">Pricing Tiers</h2>
 
       <div class="gap-4 grid grid-cols-1 md:grid-cols-3">
         <!-- Basic -->
         <div
           class="bg-slate-800 shadow-lg p-5 border-2 border-slate-700 rounded-lg"
         >
-          <h3 class="mb-1 font-300 font-medium">Basic</h3>
-          <div class="mb-2 font-300 font-medium text-blue-400 text-2xl">
-            $150
-          </div>
+          <h3 class="mb-1 font-300">Basic</h3>
+          <div class="mb-2 font-300 text-slate-400 text-2xl">$150</div>
           <div class="mb-4 font-100 text-slate-400 text-xs">per month</div>
           <ul class="space-y-2 mb-4 font-100 text-slate-300 text-base">
             <li>✓ Square ads (378x378px)</li>
@@ -78,7 +72,7 @@
           </ul>
           <NuxtLink
             to="/contact"
-            class="block bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-300 font-medium text-sm text-center transition-colors"
+            class="block bg-slate-600 hover:bg-slate-700 px-4 py-2 rounded-lg font-300 text-sm text-center transition-colors"
           >
             Get Started
           </NuxtLink>
@@ -86,17 +80,15 @@
 
         <!-- Standard -->
         <div
-          class="bg-slate-800 shadow-xl p-5 border-2 border-blue-500 rounded-lg scale-105 transform"
+          class="bg-slate-800 shadow-xl p-5 border-2 border-slate-500 rounded-lg scale-105 transform"
         >
           <div
-            class="top-0 right-0 absolute bg-blue-500 px-2 py-1 rounded-tr-lg rounded-bl-lg font-300 font-medium text-xs"
+            class="top-0 right-0 absolute bg-slate-500 px-2 py-1 rounded-tr-lg rounded-bl-lg font-300 text-xs"
           >
             Popular
           </div>
-          <h3 class="mb-1 font-300 font-medium">Standard</h3>
-          <div class="mb-2 font-300 font-medium text-blue-400 text-2xl">
-            $300
-          </div>
+          <h3 class="mb-1 font-300">Standard</h3>
+          <div class="mb-2 font-300 text-slate-400 text-2xl">$300</div>
           <div class="mb-4 font-100 text-slate-400 text-xs">per month</div>
           <ul class="space-y-2 mb-4 font-100 text-slate-300 text-base">
             <li>✓ Square ads (378x378px)</li>
@@ -107,7 +99,7 @@
           </ul>
           <NuxtLink
             to="/contact"
-            class="block bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-300 font-medium text-sm text-center transition-colors"
+            class="block bg-slate-600 hover:bg-slate-700 px-4 py-2 rounded-lg font-300 text-sm text-center transition-colors"
           >
             Get Started
           </NuxtLink>
@@ -117,10 +109,8 @@
         <div
           class="bg-slate-800 shadow-lg p-5 border-2 border-slate-700 rounded-lg"
         >
-          <h3 class="mb-1 font-300 font-medium">Premium</h3>
-          <div class="mb-2 font-300 font-medium text-blue-400 text-2xl">
-            $500
-          </div>
+          <h3 class="mb-1 font-300">Premium</h3>
+          <div class="mb-2 font-300 text-slate-400 text-2xl">$500</div>
           <div class="mb-4 font-100 text-slate-400 text-xs">per month</div>
           <ul class="space-y-2 mb-4 font-100 text-slate-300 text-base">
             <li>✓ Square ads (378x378px)</li>
@@ -132,7 +122,7 @@
           </ul>
           <NuxtLink
             to="/contact"
-            class="block bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-300 font-medium text-sm text-center transition-colors"
+            class="block bg-slate-600 hover:bg-slate-700 px-4 py-2 rounded-lg font-300 text-sm text-center transition-colors"
           >
             Get Started
           </NuxtLink>
@@ -142,7 +132,7 @@
       <!-- Horizontal Ads Pricing -->
       <div class="mt-6 font-100 text-slate-300 text-base text-center">
         <p class="mb-1">
-          <strong class="font-300 text-blue-400">Horizontal Ads:</strong>
+          <strong class="font-300 text-slate-400">Horizontal Ads:</strong>
           Add 50% to any tier price
         </p>
         <p class="text-slate-400 text-xs">
@@ -153,30 +143,24 @@
 
     <!-- Why Advertise -->
     <div class="bg-slate-800 shadow-xl mb-8 p-6 rounded-lg">
-      <h2 class="mb-4 font-300 font-medium text-lg">
-        Why Advertise on WakeUpNPC?
-      </h2>
+      <h2 class="mb-4 font-300 text-lg">Why Advertise on WakeUpNPC?</h2>
       <div class="gap-4 grid grid-cols-1 md:grid-cols-2">
         <div>
-          <h3 class="mb-2 font-300 font-medium text-blue-400">
-            Native Integration
-          </h3>
+          <h3 class="mb-2 font-300 text-slate-400">Native Integration</h3>
           <p class="font-100 text-slate-300 text-base">
             Ads seamlessly blend into the content wall, maintaining user
             experience while maximizing visibility.
           </p>
         </div>
         <div>
-          <h3 class="mb-2 font-300 font-medium text-blue-400">
-            Engaged Audience
-          </h3>
+          <h3 class="mb-2 font-300 text-slate-400">Engaged Audience</h3>
           <p class="font-100 text-slate-300 text-base">
             High session duration and return rate indicate an audience that
             actively engages with content.
           </p>
         </div>
         <div>
-          <h3 class="mb-2 font-300 font-medium text-blue-400">
+          <h3 class="mb-2 font-300 text-slate-400">
             Conservative Demographics
           </h3>
           <p class="font-100 text-slate-300 text-base">
@@ -185,9 +169,7 @@
           </p>
         </div>
         <div>
-          <h3 class="mb-2 font-300 font-medium text-blue-400">
-            Performance Tracking
-          </h3>
+          <h3 class="mb-2 font-300 text-slate-400">Performance Tracking</h3>
           <p class="font-100 text-slate-300 text-base">
             Detailed analytics and reporting to measure your campaign's
             effectiveness and ROI.
@@ -197,17 +179,19 @@
     </div>
 
     <!-- CTA -->
-    <div class="bg-blue-600 shadow-xl p-6 rounded-lg text-center">
-      <h2 class="mb-3 font-300 font-medium text-lg">Ready to Get Started?</h2>
-      <p class="mb-4 font-100 text-blue-100 text-base">
+    <div class="bg-slate-600 shadow-xl p-6 rounded-lg text-center">
+      <h2 class="mb-3 font-300 text-lg">Ready to Get Started?</h2>
+      <p class="mb-4 font-100 text-slate-100 text-base">
         Founding advertisers get 50% off their first month
       </p>
-      <NuxtLink
-        to="/contact"
-        class="inline-block bg-white hover:bg-slate-100 px-6 py-2 rounded-lg font-300 font-medium text-blue-600 text-sm transition-colors"
-      >
-        Contact Us Today
-      </NuxtLink>
+      <div class="flex justify-center">
+        <UiButton
+          to="/contact"
+          text="Contact Us Today"
+          size="lg"
+          class="!bg-white hover:!bg-slate-100 !border-0 font-300 !text-slate-600 hover:!text-slate-600"
+        />
+      </div>
     </div>
   </div>
 </template>

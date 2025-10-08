@@ -218,7 +218,7 @@ export default defineNuxtConfig({
         },
         {
           rel: 'preload',
-          href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap',
+          href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap',
           as: 'style',
           onload: "this.onload=null;this.rel='stylesheet'",
         },

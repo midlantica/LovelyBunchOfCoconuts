@@ -33,7 +33,7 @@
         <p class="mb-2">To see ads on the main page:</p>
         <ol class="space-y-1 list-decimal list-inside">
           <li>
-            Go to the <a href="/" class="text-blue-600 underline">home page</a>
+            Go to the <a href="/" class="text-slate-600 underline">home page</a>
           </li>
           <li>Scroll down through the content</li>
           <li>Ads should appear every 10 content items</li>

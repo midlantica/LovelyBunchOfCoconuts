@@ -5,7 +5,7 @@
   }
 
   body {
-    @apply bg-slate-950 text-slate-200 font-Barlow font-100;
+    @apply bg-slate-950 text-slate-200 font-sans font-100;
     color-scheme: dark;
   }
 
@@ -15,7 +15,7 @@
   h4,
   h5,
   h6 {
-    @apply first:mt-0 last:mb-0 font-Barlow text-pretty leading-normal tracking-wider font-100;
+    @apply first:mt-0 last:mb-0 font-sans text-pretty leading-normal tracking-wider font-100;
   }
   h1 {
     @apply text-2xl;
@@ -182,4 +182,17 @@ div > p:last-of-type {
 
 *::-webkit-scrollbar-thumb:hover {
   background-color: #006ea5;
+}
+
+.about,
+.contact,
+.advertising {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-300 text-seagull-300;
+  }
 }

@@ -1,12 +1,12 @@
 <template>
   <div class="mx-auto px-2 md:px-0 py-0 pb-3 w-full max-w-screen-md">
-    <h1 class="mb-6 font-300 font-medium text-xl">Contact</h1>
+    <h1 class="mb-6 font-300 text-2xl">Contact</h1>
 
     <form @submit.prevent="handleSubmit" class="space-y-4">
       <!-- First and Last Name Row -->
       <div class="gap-4 grid grid-cols-1 md:grid-cols-2">
         <div>
-          <label for="firstName" class="block mb-2 font-light text-base">
+          <label for="firstName" class="block mb-2 font-100 text-base">
             First name
           </label>
           <input
@@ -14,13 +14,13 @@
             v-model="form.firstName"
             type="text"
             required
-            class="bg-transparent px-3 pt-1 pb-2 border-1 border-cyan-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 w-full font-light text-white placeholder-slate-500"
+            class="bg-transparent px-3 pt-1 pb-2 border-1 border-cyan-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 w-full font-100 text-white placeholder-slate-500"
             placeholder="First Name"
           />
         </div>
 
         <div>
-          <label for="lastName" class="block mb-2 font-light text-base">
+          <label for="lastName" class="block mb-2 font-100 text-base">
             Last name
           </label>
           <input
@@ -28,7 +28,7 @@
             v-model="form.lastName"
             type="text"
             required
-            class="bg-transparent px-3 pt-1 pb-2 border-1 border-cyan-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 w-full font-light text-white placeholder-slate-500"
+            class="bg-transparent px-3 pt-1 pb-2 border-1 border-cyan-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 w-full font-100 text-white placeholder-slate-500"
             placeholder="Last Name"
           />
         </div>
@@ -36,22 +36,20 @@
 
       <!-- Email -->
       <div>
-        <label for="email" class="block mb-2 font-light text-base">
-          Email
-        </label>
+        <label for="email" class="block mb-2 font-100 text-base"> Email </label>
         <input
           id="email"
           v-model="form.email"
           type="email"
           required
-          class="bg-transparent px-3 pt-1 pb-2 border-1 border-cyan-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 w-full font-light text-white placeholder-slate-500"
+          class="bg-transparent px-3 pt-1 pb-2 border-1 border-cyan-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 w-full font-100 text-white placeholder-slate-500"
           placeholder="you@yourcompany.com"
         />
       </div>
 
       <!-- Message -->
       <div>
-        <label for="message" class="block mb-2 font-light text-base">
+        <label for="message" class="block mb-2 font-100 text-base">
           Message
         </label>
         <textarea
@@ -59,7 +57,7 @@
           v-model="form.message"
           required
           rows="6"
-          class="bg-transparent px-3 py-2 border-1 border-cyan-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 w-full font-light text-white resize-none to1dpb-2 er-1 placeholder-slate-500"
+          class="bg-transparent px-3 py-2 border-1 border-cyan-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 w-full font-100 text-white resize-none to1dpb-2 er-1 placeholder-slate-500"
           placeholder="Leave a message..."
         ></textarea>
       </div>
@@ -69,7 +67,7 @@
         <button
           type="submit"
           :disabled="isSubmitting"
-          class="bg-slate-800 hover:bg-slate-700 disabled:bg-slate-400 px-6 pt-2 pb-3 rounded-lg font-300 font-light text-slate-50 hover:text-slate-100 tracking-widest transition-colors cursor-pointer disabled:cursor-not-allowed"
+          class="bg-slate-800 hover:bg-slate-700 disabled:bg-slate-400 px-6 pt-2 pb-3 rounded-lg font-100 text-slate-50 hover:text-slate-100 tracking-widest transition-colors cursor-pointer disabled:cursor-not-allowed"
         >
           {{ isSubmitting ? 'Sending...' : 'Send Message' }}
         </button>
@@ -78,13 +76,13 @@
       <!-- Success/Error Messages -->
       <div
         v-if="submitStatus === 'success'"
-        class="font-light text-green-400 text-sm text-center"
+        class="font-100 text-green-400 text-sm text-center"
       >
         ✓ Message sent successfully! We'll get back to you soon.
       </div>
       <div
         v-if="submitStatus === 'error'"
-        class="font-light text-red-400 text-sm text-center"
+        class="font-100 text-red-400 text-sm text-center"
       >
         ✗ Something went wrong. Please try again or email us directly.
       </div>

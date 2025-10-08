@@ -10,20 +10,14 @@ export default {
     './app/composables/**/*.{js,ts,mjs}',
     './app/utils/**/*.{js,ts,mjs}',
     './app/app.{vue,js,jsx,mjs,ts,tsx}',
-    './app/content/**/*.{md,mdx}',
+    // Removed: './app/content/**/*.{md,mdx}', (not needed for Tailwind scanning)
   ],
   theme: {
     extend: {
       fontWeight: {
-        100: '100',
-        200: '200',
-        300: '300',
-        400: '400',
-        500: '500',
-        600: '600',
-        700: '700',
-        800: '800',
-        900: '900',
+        100: 100,
+        300: 300,
+        500: 500,
       },
       boxShadow: {
         // Frequently used custom shadows
@@ -31,12 +25,9 @@ export default {
         'inset-card': 'inset 0 0 12px 0 #0f1e24',
       },
       fontFamily: {
-        Barlow: ["'Barlow Condensed', sans-serif"], // Custom font with fallback
-        helvetica: ['Helvetica, Arial, sans-serif'], // Helvetica font stack
-        // Remove generic 'serif' (was causing inconsistent fallback ordering on some Windows setups)
-        sans: ["'Barlow Condensed'", 'Arial', 'Helvetica', 'sans-serif'],
-        serif: ["'Barlow Condensed', serif, Georgia"],
-        mono: ['"Fira Code"', 'ui-monospace', 'SFMono-Regular'],
+        helvetica: ['Helvetica', 'Arial', 'sans-serif'],
+        sans: ['Barlow Condensed', 'Arial', 'Helvetica', 'sans-serif'],
+        mono: ['Fira Code', 'ui-monospace', 'SFMono-Regular'],
       },
       screens: {
         xs: '320px',

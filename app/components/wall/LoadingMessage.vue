@@ -6,7 +6,7 @@
         size="2rem"
         class="text-white spinner-continuous"
       />
-      <h1 class="font-light text-white text-xl text-center">
+      <h1 class="font-100 text-white text-xl text-center">
         {{ message }}
       </h1>
     </div>

@@ -684,24 +684,19 @@
         cache.quotes.length === 0 &&
         cache.memes.length === 0
       ) {
-        // Progressive: show something fast
-        await loadInitialContent(24)
+        // Load all content once instead of progressive loading to avoid double-fetch
+        await loadAllContent()
         isLoaded.value = true
         wallHasLoadedOnce.value = true
-        // Background full load (don't await; no spinner)
-        loadRemainingContent()
-          .then(() => {
-            // Show ad summary after all content is loaded
-            // Wait a bit longer to ensure baseline is fully built
-            setTimeout(() => showAdSummary(), 1500)
 
-            // Schedule background pre-computation for instant refreshes
-            schedulePrecomputation(cache.claims, cache.quotes, cache.memes, {
-              adsEnabled: adsEnabled.value,
-              adInterval: adInterval.value,
-            })
-          })
-          .catch((e) => console.error('Error loading remaining content:', e))
+        // Show ad summary after content is loaded
+        setTimeout(() => showAdSummary(), 500)
+
+        // Schedule background pre-computation for instant refreshes
+        schedulePrecomputation(cache.claims, cache.quotes, cache.memes, {
+          adsEnabled: adsEnabled.value,
+          adInterval: adInterval.value,
+        })
       } else {
         // Cache had content but first visit this session
         isLoaded.value = true

@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto px-4 py-2 max-w-5xl font-light">
+  <div class="mx-auto px-4 py-2 max-w-5xl font-100">
     <div class="mb-4 text-sm" v-if="!allowed">
       <p class="text-amber-300">
         Admin view is disabled in production. Append <code>?dev=1</code> to the
@@ -90,17 +90,17 @@
         v-if="showTestingTools"
         class="space-y-4 bg-slate-800/50 p-4 border border-slate-600 rounded-lg"
       >
-        <h3 class="mb-3 font-medium text-slate-200 text-lg">
+        <h3 class="mb-3 font-300 text-slate-200 text-lg">
           🧪 Likes Testing Tools
         </h3>
 
         <div class="gap-4 grid grid-cols-1 md:grid-cols-2">
           <!-- Quick Test Buttons -->
           <div class="space-y-3">
-            <h4 class="font-medium text-slate-300 text-sm">Quick Actions</h4>
+            <h4 class="font-300 text-slate-300 text-sm">Quick Actions</h4>
             <div class="flex flex-wrap gap-2">
               <button
-                class="bg-blue-600 hover:bg-blue-500 px-3 py-1.5 rounded text-white text-sm"
+                class="bg-slate-600 hover:bg-slate-500 px-3 py-1.5 rounded text-white text-sm"
                 @click="addRandomLikes(5)"
                 :disabled="addingLikes"
               >
@@ -124,9 +124,7 @@
 
           <!-- Performance Info -->
           <div class="space-y-3">
-            <h4 class="font-medium text-slate-300 text-sm">
-              Performance Status
-            </h4>
+            <h4 class="font-300 text-slate-300 text-sm">Performance Status</h4>
             <div class="space-y-1 text-slate-400 text-xs">
               <div>
                 Live Poll:
@@ -150,7 +148,7 @@
 
         <!-- Test Results -->
         <div v-if="testResults.length" class="mt-4">
-          <h4 class="mb-2 font-medium text-slate-300 text-sm">Test Results</h4>
+          <h4 class="mb-2 font-300 text-slate-300 text-sm">Test Results</h4>
           <div class="bg-slate-900/50 p-3 rounded max-h-32 overflow-y-auto">
             <div
               v-for="result in testResults"
@@ -169,16 +167,14 @@
         style="max-height: 80vh; overflow: auto"
         data-likes-table-container
       >
-        <table class="w-full font-light text-lg">
-          <thead
-            class="top-0 z-10 sticky bg-slate-800 font-light text-slate-300"
-          >
+        <table class="w-full font-100 text-lg">
+          <thead class="top-0 z-10 sticky bg-slate-800 font-100 text-slate-300">
             <tr>
-              <th class="px-3 py-2 font-light text-left uppercase">
+              <th class="px-3 py-2 font-100 text-left uppercase">
                 ID (decoded)
               </th>
               <th
-                class="px-3 py-2 w-20 font-light text-right uppercase cursor-pointer select-none"
+                class="px-3 py-2 w-20 font-100 text-right uppercase cursor-pointer select-none"
                 @click="toggleSortDir()"
               >
                 Count&nbsp;<span
@@ -188,7 +184,7 @@
                   {{ sortDir === 'desc' ? '▾' : '▴' }}
                 </span>
               </th>
-              <th class="px-3 py-2 w-36 font-light text-left uppercase">
+              <th class="px-3 py-2 w-36 font-100 text-left uppercase">
                 Set Count
               </th>
             </tr>
@@ -373,10 +369,10 @@
             type === 'claims'
               ? 'claim'
               : type === 'memes'
-              ? 'meme'
-              : type === 'quotes'
-              ? 'quote'
-              : type
+                ? 'meme'
+                : type === 'quotes'
+                  ? 'quote'
+                  : type
           if (slug) routeUrl = `/${singular}/${slug}`
           return { key: id, id, url: routeUrl, count: r.count }
         })

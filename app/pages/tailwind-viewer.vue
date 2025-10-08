@@ -3,7 +3,7 @@
     class="prose-invert px-6 py-8 w-full max-w-none h-full min-h-0 overflow-y-auto prose scrollbar-thin"
   >
     <h1 class="!mt-0 text-2xl">Design Tokens (Tailwind)</h1>
-    <p v-if="!isDev" class="font-medium text-amber-400 text-base">
+    <p v-if="!isDev" class="font-300 text-amber-400 text-base">
       Run pnpm dev to view live config (hidden in prod).
     </p>
     <div v-else>
@@ -92,7 +92,7 @@
                   @click="copyColorShade(c.name, shade)"
                 >
                   <span
-                    class="font-medium text-white text-base mix-blend-difference"
+                    class="font-300 text-white text-base mix-blend-difference"
                     >{{ shade }}</span
                   >
                   <span
@@ -238,8 +238,8 @@
       typeof value === 'string'
         ? { name, value }
         : value && typeof value === 'object'
-        ? { name, shades: value }
-        : { name, value: String(value) }
+          ? { name, shades: value }
+          : { name, value: String(value) }
     )
   })
   // Default palette (subset) merged for comprehensive view

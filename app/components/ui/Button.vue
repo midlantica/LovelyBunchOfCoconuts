@@ -1,12 +1,13 @@
 <!-- components/Button.vue -->
 <template>
   <component
-    :is="to ? 'NuxtLink' : 'button'"
+    :is="componentType"
     :to="to ? resolveRoute(to) : undefined"
     :type="to ? undefined : 'button'"
     @click="to ? undefined : $emit('click')"
-    class="flex gap-1 hover:bg-slate-950 px-2.5 pt-1 pb-1.25 border border-slate-400/40 hover:border-white/70 rounded-md font-light text-slate-300/80 hover:text-white text-xs uppercase tracking-widest transition-all duration-200"
+    class="flex gap-1 hover:bg-slate-950 border border-slate-400/40 hover:border-white/70 rounded-md font-100 text-slate-300/80 hover:text-white uppercase tracking-widest transition-all duration-200"
     :class="[
+      sizeClasses,
       disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
       $attrs.class,
     ]"
@@ -54,11 +55,39 @@
       type: String,
       default: '',
     },
+    // Size variant
+    size: {
+      type: String,
+      default: '', // base size
+      validator: (value) =>
+        ['xl', 'lg', '', 'sm', 'xs', 'badge'].includes(value),
+    },
     // Disabled state
     disabled: {
       type: Boolean,
       default: false,
     },
+  })
+
+  const componentType = computed(() => {
+    return props.to ? resolveComponent('NuxtLink') : 'button'
+  })
+
+  const sizeClasses = computed(() => {
+    switch (props.size) {
+      case 'xl':
+        return 'px-6 py-3 text-lg gap-2'
+      case 'lg':
+        return 'px-4 py-2 text-base gap-2'
+      case 'sm':
+        return 'px-1.5 py-0.5 text-xs gap-1'
+      case 'xs':
+        return 'px-1 py-0.25 text-xs gap-0.5'
+      case 'badge':
+        return 'px-1 py-0.5 text-[10px] gap-0.5'
+      default: // base
+        return 'px-2.5 pt-1 pb-1.25 text-xs gap-1'
+    }
   })
 
   const emit = defineEmits(['click'])
