@@ -4,7 +4,7 @@
   <div class="gap-4 grid grid-rows-[auto_1fr_auto] h-screen overflow-hidden">
     <LayoutTheHeader class="top-0 left-0 z-10 sticky w-full" />
 
-    <main class="min-h-0 overflow-hidden">
+    <main class="px-4 min-h-0 overflow-y-auto">
       <slot />
     </main>
 
@@ -29,14 +29,14 @@
   const modalData = ref(null)
 
   // Map modal types to actual component objects (async) so :is can resolve them
-  const ModalsModalMeme = defineAsyncComponent(() =>
-    import('~/components/modals/ModalMeme.vue')
+  const ModalsModalMeme = defineAsyncComponent(
+    () => import('~/components/modals/ModalMeme.vue')
   )
-  const ModalsModalClaim = defineAsyncComponent(() =>
-    import('~/components/modals/ModalClaim.vue')
+  const ModalsModalClaim = defineAsyncComponent(
+    () => import('~/components/modals/ModalClaim.vue')
   )
-  const ModalsModalQuote = defineAsyncComponent(() =>
-    import('~/components/modals/ModalQuote.vue')
+  const ModalsModalQuote = defineAsyncComponent(
+    () => import('~/components/modals/ModalQuote.vue')
   )
 
   const modalMap = {

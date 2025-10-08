@@ -1,42 +1,44 @@
 /* Modal styles for all modals using ModalFrame.vue */
-#modal-root .modal-overlay {
-  z-index: 50;
-  position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.7);
-}
-#modal-root .modal-frame {
-  position: relative;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  /* Mobile: no border radius, no max-width, no padding */
-  border-radius: 0;
-  max-width: none;
-  padding: 0 0 1rem 0;
-}
-
-/* Desktop styles */
-@media (min-width: 640px) {
-  #modal-root .modal-frame {
-    border-radius: 0.5rem;
-    max-width: 600px;
-    padding: 1.5rem;
+@layer top {
+  #modal-root .modal-overlay {
+    z-index: 50;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
   }
-}
+  #modal-root .modal-frame {
+    position: relative;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    /* Mobile: no border radius, no max-width, no padding */
+    border-radius: 0;
+    max-width: none;
+    padding: 0 0 1rem 0;
+  }
 
-/* Special image sizing for meme modal in column mode (≤ 762px) */
-@media (max-width: 762px) {
-  .meme-modal-img-column {
-    max-height: 55vh !important;
-    width: auto !important;
-    height: auto !important;
-    display: block;
-    margin: 0 auto !important;
-    object-fit: contain;
-    object-position: top;
+  /* Desktop styles */
+  @media (min-width: 640px) {
+    #modal-root .modal-frame {
+      border-radius: 0.5rem;
+      max-width: 600px;
+      padding: 1.5rem;
+    }
+  }
+
+  /* Special image sizing for meme modal in column mode (≤ 762px) */
+  @media (max-width: 762px) {
+    .meme-modal-img-column {
+      max-height: 55vh !important;
+      width: auto !important;
+      height: auto !important;
+      display: block;
+      margin: 0 auto !important;
+      object-fit: contain;
+      object-position: top;
+    }
   }
 }

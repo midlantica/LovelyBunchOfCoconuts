@@ -5,8 +5,7 @@
   }
 
   body {
-    @apply bg-slate-950 text-slate-200 font-Barlow;
-    font-weight: 300; /* Use a more broadly supported weight for initial render */
+    @apply bg-slate-950 text-slate-200 font-Barlow font-100;
     color-scheme: dark;
   }
 
@@ -16,8 +15,7 @@
   h4,
   h5,
   h6 {
-    @apply first:mt-0 last:mb-0 font-Barlow text-pretty leading-normal tracking-wider;
-    font-weight: 300; /* Slightly heavier for readability; 100 can appear missing / cause fallback timing issues */
+    @apply first:mt-0 last:mb-0 font-Barlow text-pretty leading-normal tracking-wider font-100;
   }
   h1 {
     @apply text-2xl;
@@ -42,8 +40,7 @@
   ul,
   li,
   ol {
-    @apply mt-0 mb-0 last:mb-0 text-xl leading-normal tracking-wider;
-    font-weight: 300;
+    @apply mt-0 mb-0 last:mb-0 last:pb-0 text-xl leading-normal tracking-wider font-100;
   }
 
   h2 + p {
@@ -52,12 +49,10 @@
 
   /* Global prose overrides for all markdown content */
   .prose h1 {
-    @apply text-3xl;
-    font-weight: 300;
+    @apply text-3xl font-100;
   }
   .prose h2 {
-    @apply mt-2 mb-2 text-2xl;
-    font-weight: 300;
+    @apply mt-2 mb-2 text-2xl font-100;
   }
   .prose h2 + h2 {
     @apply mb-0;
@@ -106,6 +101,31 @@
   .prose-base p {
     margin-top: 0 !important;
     margin-bottom: 0.5rem !important;
+    font-weight: 100 !important;
+  }
+
+  /* Last child paragraphs should have no bottom spacing */
+  .prose p:last-child,
+  .prose-invert p:last-child,
+  .prose-lg p:last-child,
+  .prose-sm p:last-child,
+  .prose-base p:last-child,
+  p:last-child,
+  div p:last-child {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Additional utilities layer override for last paragraphs - must override **:mb-* classes */
+@layer utilities {
+  p:last-child,
+  div p:last-child,
+  section p:last-child,
+  article p:last-child,
+  * p:last-child {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
   }
 }
 
@@ -117,4 +137,49 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  /* Nuclear option: Override ALL last-child paragraph margins with maximum specificity */
+  p:last-of-type,
+  div > p:last-of-type,
+  section > div > p:last-of-type,
+  .space-y-3 > p:last-child,
+  .space-y-4 > p:last-child,
+  [class*='space-y'] > p:last-child {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* CRITICAL: Outside all layers for maximum specificity - overrides **:mb-* arbitrary variants */
+p:last-child,
+p:last-of-type,
+div p:last-child,
+div > p:last-child,
+div > p:last-of-type {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Custom Scrollbar Styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #045d88 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #045d88;
+  border-radius: 6px;
+  border: none;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #006ea5;
 }

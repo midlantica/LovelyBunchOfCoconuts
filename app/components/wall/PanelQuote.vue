@@ -2,11 +2,11 @@
 <template>
   <div
     v-if="quote && quote.headings && quote.headings.length > 0 && slug"
-    class="group relative shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-6 py-4 border hover:border hover:border-seagull-400/50 border-transparent rounded-lg text-white cursor-pointer quotePanel"
+    class="group isolate relative shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-6 py-4 border hover:border hover:border-seagull-400/50 border-transparent rounded-lg text-white cursor-pointer quotePanel"
     @click="openModal"
   >
     <!-- Like button only -->
-    <div class="top-1 right-1 z-10 absolute">
+    <div class="top-1 right-1 z-[20] absolute">
       <UiLikeButton
         :id="quote?._path || quote?.path || slug"
         :title="quote?.headings?.[0] || 'quote'"
@@ -18,11 +18,11 @@
     </div>
     <div class="flex flex-col flex-wrap gap-0.5 my-auto">
       <h1
-        class="inline-block text-shadow-xs font-[100] text-xl align-baseline tracking-wide"
+        class="inline-block text-shadow-xs font-100 text-xl align-baseline tracking-wide"
         v-html="formatQuote(quote.headings[0])"
       ></h1>
       <p
-        class="inline-block text-shadow-xs font-[100] text-seagull-200 text-xl align-baseline tracking-wide"
+        class="inline-block text-shadow-xs font-100 text-seagull-200 text-xl align-baseline tracking-wide"
         v-if="quote.attribution"
       >
         — {{ quote.attribution }}
@@ -42,7 +42,7 @@
         }}
       </h2>
       <p
-        class="inline-block font-[100] text-seagull-200 text-xl align-baseline"
+        class="inline-block font-100 text-seagull-200 text-xl align-baseline"
         v-if="quote && quote.attribution"
       >
         — {{ quote.attribution }}

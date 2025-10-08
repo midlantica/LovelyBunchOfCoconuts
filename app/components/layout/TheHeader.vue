@@ -2,15 +2,26 @@
 <template>
   <header class="top-0 left-0 z-10 sticky bg-slate-900 pt-2 pb-1 w-full">
     <div class="px-6">
-      <!-- New unified logo -->
-      <div class="flex justify-center">
-        <button
-          type="button"
-          class="focus:outline-none no-underline hover:cursor-pointer"
-          @click="handleMastheadClick"
-        >
-          <LogoComponent />
-        </button>
+      <!-- Flex container with three sections for balanced layout -->
+      <div class="flex justify-between items-center">
+        <!-- Left spacer (same width as hamburger menu) - hidden on mobile -->
+        <div class="hidden sm:block w-10"></div>
+
+        <!-- Center logo on desktop, left-aligned on mobile -->
+        <div class="flex flex-1 sm:justify-center">
+          <button
+            type="button"
+            class="focus:outline-none no-underline hover:cursor-pointer"
+            @click="handleMastheadClick"
+          >
+            <LogoComponent />
+          </button>
+        </div>
+
+        <!-- Right navigation menu -->
+        <div class="w-10">
+          <LayoutNavigationMenu />
+        </div>
       </div>
     </div>
   </header>
@@ -31,6 +42,13 @@
   async function handleMastheadClick() {
     if (isWallRefreshing.value) return // Prevent multiple clicks
 
+    // If on a sub page (not index), navigate to home
+    if (route.path !== '/') {
+      await router.push('/')
+      return
+    }
+
+    // Otherwise, do wall refresh logic
     try {
       isWallRefreshing.value = true
 
@@ -47,18 +65,14 @@
           console.log('⚡ Instant refresh using pre-computed layout!')
         }
 
-        // Clear search and filters if needed
-        if (route.path !== '/') {
-          await router.push('/')
-        } else {
-          const searchTerm = useState('searchTerm')
-          const contentFilters = useState('contentFilters')
-          if (searchTerm?.value) searchTerm.value = ''
-          if (contentFilters?.value) {
-            contentFilters.value = { claims: true, quotes: true, memes: true }
-          }
-          await router.replace({ path: route.path, query: {} })
+        // Clear search and filters
+        const searchTerm = useState('searchTerm')
+        const contentFilters = useState('contentFilters')
+        if (searchTerm?.value) searchTerm.value = ''
+        if (contentFilters?.value) {
+          contentFilters.value = { claims: true, quotes: true, memes: true }
         }
+        await router.replace({ path: route.path, query: {} })
 
         // Brief visual feedback (much shorter since it's instant)
         await new Promise((resolve) => setTimeout(resolve, 100))

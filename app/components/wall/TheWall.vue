@@ -721,7 +721,8 @@
   /* Row transitions */
   .wall-row-enter-active,
   .wall-row-leave-active {
-    transition: opacity 220ms ease,
+    transition:
+      opacity 220ms ease,
       transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
   }
   /* Keep layout stable while an item fades out */
@@ -741,7 +742,8 @@
   /* Inner grid items */
   .wall-col-enter-active,
   .wall-col-leave-active {
-    transition: opacity 200ms ease,
+    transition:
+      opacity 200ms ease,
       transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
   }
   .wall-col-leave-active {

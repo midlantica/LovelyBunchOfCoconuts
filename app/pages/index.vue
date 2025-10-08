@@ -9,7 +9,7 @@
           v-model:search="searchTerm"
           v-model:filters="contentFilters"
           :counts="liveCounts"
-          class="top-0 z-10 sticky w-full"
+          class="top-0 z-5 sticky w-full"
         />
       </div>
     </div>

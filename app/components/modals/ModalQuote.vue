@@ -9,7 +9,7 @@
         >
           <div class="p-4 sm:p-0">
             <h1
-              class="text-shadow-xs mb-2 font-[100] text-white text-2xl leading-9"
+              class="text-shadow-xs mb-2 font-100 text-white text-2xl leading-9"
             >
               {{
                 modalData?.quoteText ||
@@ -17,7 +17,7 @@
                 modalData?.title
               }}
             </h1>
-            <p class="text-shadow-xs mb-2 font-[100] text-seagull-300 text-xl">
+            <p class="text-shadow-xs mb-2 font-100 text-seagull-300 text-xl">
               — {{ modalData?.attribution }}
             </p>
           </div>

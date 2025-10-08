@@ -15,7 +15,7 @@
                 class="self-start w-8"
               />
               <h1
-                class="text-shadow-xs mb-0 font-[100] text-white text-2xl leading-tight"
+                class="text-shadow-xs mb-0 font-100 text-white text-2xl leading-tight"
               >
                 {{ modalData?.claim || modalData?.title }}
               </h1>
@@ -28,7 +28,7 @@
                 class="self-start w-8"
               />
               <h1
-                class="text-shadow-xs mb-0 font-[100] text-white text-2xl leading-tight"
+                class="text-shadow-xs mb-0 font-100 text-white text-2xl leading-tight"
               >
                 {{ modalData?.translation }}
               </h1>

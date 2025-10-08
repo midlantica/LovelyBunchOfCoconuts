@@ -63,7 +63,7 @@
       <!-- Search suggestions dropdown -->
       <div
         v-if="showSuggestions && suggestions.length > 0"
-        class="top-full right-0 left-0 z-[1000] absolute bg-slate-800 shadow-lg mt-1 border border-seagull-400/40 rounded-lg max-h-64 overflow-y-auto"
+        class="top-full right-0 left-0 z-[5] absolute bg-slate-800 shadow-lg mt-1 border border-seagull-400/40 rounded-lg max-h-64 overflow-y-auto"
       >
         <div
           v-for="(suggestion, idx) in suggestions"

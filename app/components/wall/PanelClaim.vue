@@ -2,11 +2,11 @@
 <template>
   <div
     v-if="claim && claim.claim && claim.translation && slug"
-    class="group relative shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-4 py-3 border hover:border hover:border-seagull-400/50 border-transparent rounded-lg h-full text-white transition-colors cursor-pointer"
+    class="group isolate relative shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-4 py-3 border hover:border hover:border-seagull-400/50 border-transparent rounded-lg h-full text-white transition-colors cursor-pointer"
     @click="openModal"
   >
     <!-- Like button only -->
-    <div class="top-1 right-1 z-10 absolute">
+    <div class="top-1 right-1 z-[20] absolute">
       <UiLikeButton
         :id="claim?._path || claim?.path || slug"
         :title="claim?.claim || 'claim'"
@@ -21,7 +21,7 @@
       <div class="flex items-center gap-3">
         <img src="~/assets/icons/npc_icon.svg" alt="NPC" class="w-8" />
         <h2
-          class="text-shadow-xs font-[100] text-xl line-clamp-1 tracking-wide"
+          class="text-shadow-xs font-100 text-xl line-clamp-1 tracking-wide"
           v-if="claim.claim"
         >
           {{ claim.claim }}
@@ -31,7 +31,7 @@
       <div class="flex items-center gap-3">
         <img src="~/assets/icons/player_icon.svg" alt="Player" class="w-8" />
         <h2
-          class="text-shadow-xs font-[100] text-xl line-clamp-1 tracking-wide"
+          class="text-shadow-xs font-100 text-xl line-clamp-1 tracking-wide"
           v-if="claim.translation"
         >
           {{ claim.translation }}
