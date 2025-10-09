@@ -6,4 +6,4 @@ translation: 'Working Class'
 
 ## "Welfare State"
 
-## Working Class
+## Forever Poverty

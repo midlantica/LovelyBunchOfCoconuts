@@ -64,13 +64,13 @@
 
       <!-- Submit Button -->
       <div class="flex justify-end">
-        <button
-          type="submit"
+        <UiButton
+          @click="handleSubmit"
+          :text="isSubmitting ? 'Sending...' : 'Send Message'"
+          variant="secondary"
+          size="lg"
           :disabled="isSubmitting"
-          class="bg-slate-800 hover:bg-slate-700 disabled:bg-slate-400 px-6 pt-2 pb-3 rounded-lg font-100 text-slate-50 hover:text-slate-100 tracking-widest transition-colors cursor-pointer disabled:cursor-not-allowed"
-        >
-          {{ isSubmitting ? 'Sending...' : 'Send Message' }}
-        </button>
+        />
       </div>
 
       <!-- Success/Error Messages -->

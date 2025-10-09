@@ -18,8 +18,10 @@
           <div class="flex items-center gap-2">
             <UiButton
               text="Copy Image"
+              variant="secondary"
               :disabled="isLoading"
               @click="copyImageOnly"
+              class="!bg-slate-800 hover:!bg-slate-700"
             />
 
             <!-- Spinner positioned 0.5rem to the right of button -->

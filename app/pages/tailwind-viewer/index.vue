@@ -7,6 +7,40 @@
       Run pnpm dev to view live config (hidden in prod).
     </p>
     <div v-else>
+      <!-- Button Showcase -->
+      <section class="mt-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="!mt-0 text-xl">Button Components</h2>
+          <NuxtLink
+            to="/tailwind-viewer/buttons"
+            class="font-300 text-accent text-sm hover:underline"
+          >
+            See All 30 Button Variations →
+          </NuxtLink>
+        </div>
+
+        <!-- Basic Variants Preview (LG size only) -->
+        <div class="bg-slate-950 mb-6 p-6 rounded-lg">
+          <h3 class="mb-4 text-slate-300 text-base">Button Variants Preview</h3>
+          <div class="flex flex-wrap gap-3">
+            <UiButton text="Default" size="lg" />
+            <UiButton text="Primary" variant="primary" size="lg" />
+            <UiButton text="Secondary" variant="secondary" size="lg" />
+            <UiButton text="Tertiary" variant="tertiary" size="lg" />
+            <UiButton text="Outline" variant="outline" size="lg" />
+          </div>
+        </div>
+
+        <!-- Light Background Sample -->
+        <div class="bg-white mb-6 p-6 rounded-lg">
+          <h3 class="mb-4 text-slate-800 text-base">On Light Background</h3>
+          <div class="flex flex-wrap gap-3">
+            <UiButton text="Default" size="lg" />
+            <UiButton text="Primary" variant="primary" size="lg" />
+            <UiButton text="Secondary" variant="secondary" size="lg" />
+          </div>
+        </div>
+      </section>
       <!-- CSS Root Variables moved to top -->
       <section class="mt-6">
         <h2 class="mt-0 text-xl">CSS Root Variables</h2>
@@ -202,7 +236,7 @@
   if (isDev && process.client) {
     ;(async () => {
       try {
-        const mod = await import('../../tailwind.config.js')
+        const mod = await import('../../../tailwind.config.js')
         const configObj = (mod && (mod.default || mod)) || {}
         themeExtend.value = configObj?.theme?.extend || {}
       } catch (e) {

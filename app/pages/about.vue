@@ -29,9 +29,9 @@
           <div>
             <h3 class="mb-1 text-xl uppercase">Claims</h3>
             <p class="last:pb-0 font-100 text-seagull-100 text-xl">
-              Real statements and ideological positions from progressive
-              sources, presented with sane translations. These aren't strawmen —
-              they're actual beliefs being advocated in mainstream spaces.
+              Real ideological positions from hard Left-wing Woke sources,
+              presented with sane Translations for normal people. These are
+              actual beliefs being advocated in mainstream spaces.
             </p>
           </div>
 
@@ -40,16 +40,16 @@
             <p class="last:pb-0 font-100 text-seagull-100 text-xl">
               Memorable statements from politicians, academics, activists, and
               media figures that reveal the absurdity or contradictions inherent
-              in progressive ideology.
+              in leftist Woke ideology.
             </p>
           </div>
 
           <div>
             <h3 class="mb-1 text-xl uppercase">Memes</h3>
             <p class="last:pb-0 font-100 text-seagull-100 text-xl">
-              Visual humor that cuts through the noise and exposes ideological
-              inconsistencies in ways that are immediately shareable and
-              relatable.
+              The motherload of Memes! Steal them liberally! Quotes, cartoons,
+              charts, that reveal the absurdity or contradictions inherent in
+              Leftist Woke ideology.
             </p>
           </div>
         </div>
@@ -64,16 +64,14 @@
           class="space-y-3 font-100 text-seagull-100 *:text-xl leading-relaxed"
         >
           <p>
-            In an era of increasing ideological conformity, where questioning
-            progressive orthodoxy can result in social and professional
-            consequences, humor provides a necessary release valve and a way to
-            maintain sanity.
+            In an era of off-the-wall Leftist insanity, where speech can result
+            in social and professional consequences, and lethal outcomes, humor
+            provides a necessary release valve and a way to maintain sanity.
           </p>
           <p>
-            We're not trying to change minds—we're providing community and
-            validation for those who already see the emperor has no clothes.
-            Sometimes you just need to know you're not crazy, and that others
-            see what you see.
+            We're providing community and validation for those who already see
+            the emperor has no clothes. Sometimes you just need to know you're
+            not crazy, and that others see what you see.
           </p>
           <p>
             The content here represents real positions, real statements, and
@@ -92,9 +90,14 @@
           Have content to submit? Want to support our work? We'd love to hear
           from you.
         </p>
-        <div class="flex sm:flex-row flex-col justify-center gap-5 mt-4">
-          <UiButton to="/contact" text="Contact Us" size="lg" />
-          <UiButton to="/" text="Browse Content" size="lg" />
+        <div class="flex sm:flex-row flex-col justify-center gap-5 mt-4 mb-2">
+          <UiButton
+            to="/contact"
+            text="Contact Us"
+            variant="primary"
+            size="lg"
+          />
+          <UiButton to="/" text="Browse Content" variant="tertiary" size="lg" />
         </div>
       </div>
     </div>
