@@ -189,7 +189,7 @@
           to="/contact"
           text="Contact Us Today"
           size="lg"
-          class="!bg-white hover:!bg-slate-100 !border-0 font-300 !text-slate-600 hover:!text-slate-600"
+          variant="tertiary"
         />
       </div>
     </div>

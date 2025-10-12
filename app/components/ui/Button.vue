@@ -78,6 +78,7 @@
           'tertiary',
           'outline',
           'outline-dark',
+          'custom',
         ].includes(value),
     },
     // Disabled state
@@ -103,6 +104,8 @@
         return '!bg-transparent hover:!bg-white/20 !text-black !border-0 ring-1 ring-black/50 hover:ring-2 hover:ring-black !font-300'
       case 'outline-dark':
         return '!bg-transparent hover:!bg-white/20 !text-white !border-0 ring-1 ring-white/50 hover:ring-2 hover:ring-white !font-300'
+      case 'custom':
+        return '!font-300 !border-0' // Custom variant: only structural styles, parent controls colors
       default:
         return '!font-300' // Explicit font-300 for default variant
     }

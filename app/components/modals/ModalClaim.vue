@@ -12,6 +12,7 @@
               <img
                 src="~/assets/icons/npc_icon.svg"
                 alt="NPC"
+                title="NPC"
                 class="self-start w-8"
               />
               <h1
@@ -25,6 +26,7 @@
               <img
                 src="~/assets/icons/player_icon.svg"
                 alt="Player"
+                title="Player"
                 class="self-start w-8"
               />
               <h1

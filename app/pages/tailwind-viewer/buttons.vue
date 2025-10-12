@@ -13,6 +13,44 @@
       </p>
     </div>
 
+    <!-- Custom Variant Demo -->
+    <section class="mb-12">
+      <h2 class="mb-6 font-300 text-2xl">Custom Variant (New!)</h2>
+      <div class="bg-slate-900 p-4 rounded-lg">
+        <p class="text-slate-300">
+          The custom variant provides only structural styles (padding, layout,
+          typography) without any color/background styles, allowing you to
+          easily set custom colors without !important conflicts.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 mt-4">
+          <UiButton
+            text="Fuchsia Button"
+            variant="custom"
+            size="lg"
+            class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white"
+          />
+          <UiButton
+            text="Purple & Yellow"
+            variant="custom"
+            size="lg"
+            class="bg-purple-600 hover:bg-purple-500 text-yellow-300 hover:text-yellow-200"
+          />
+          <UiButton
+            text="Pink Gradient"
+            variant="custom"
+            size="lg"
+            class="bg-gradient-to-r from-pink-500 hover:from-pink-600 to-violet-600 hover:to-violet-700 text-white"
+          />
+        </div>
+        <div class="bg-slate-800 mt-4 p-3 rounded">
+          <code class="text-slate-300 text-sm">
+            &lt;UiButton variant="custom" class="bg-fuchsia-600 text-orange-400"
+            /&gt;
+          </code>
+        </div>
+      </div>
+    </section>
+
     <!-- Variants Section -->
     <section class="mb-12">
       <h2 class="mb-6 font-300 text-2xl">Variants (Large Size)</h2>
@@ -351,7 +389,7 @@
               <td class="p-3">'default'</td>
               <td class="p-3">
                 default | primary | secondary | tertiary | outline |
-                outline-dark
+                outline-dark | custom
               </td>
             </tr>
             <tr class="border-slate-800 border-b">

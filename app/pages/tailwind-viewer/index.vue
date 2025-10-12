@@ -20,8 +20,10 @@
         </div>
 
         <!-- Basic Variants Preview (LG size only) -->
-        <div class="bg-slate-950 mb-6 p-6 rounded-lg">
-          <h3 class="mb-4 text-slate-300 text-base">Button Variants Preview</h3>
+        <div class="bg-slate-950 mb-2 rounded-lg">
+          <h3 class="!mt-0 mb-4 text-slate-300 text-base">
+            Button Variants Preview
+          </h3>
           <div class="flex flex-wrap gap-3">
             <UiButton text="Default" size="lg" />
             <UiButton text="Primary" variant="primary" size="lg" />
@@ -31,9 +33,42 @@
           </div>
         </div>
 
+        <!-- Custom Variant Example -->
+        <div class="bg-slate-950 mb-6 rounded-lg">
+          <h3 class="!mt-0 mb-4 text-slate-300 text-base">
+            Custom Variant (New!)
+          </h3>
+          <p class="mb-6 text-slate-400 text-sm">
+            Structural styles only - add your own colors without !important
+            conflicts
+          </p>
+          <div class="flex flex-wrap gap-3 mt-2">
+            <UiButton
+              text="Fuchsia Button"
+              variant="custom"
+              size="lg"
+              class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white"
+            />
+            <UiButton
+              text="Purple & Yellow"
+              variant="custom"
+              size="lg"
+              class="bg-purple-600 hover:bg-purple-500 text-yellow-300 hover:text-yellow-200"
+            />
+            <UiButton
+              text="Pink Gradient"
+              variant="custom"
+              size="lg"
+              class="bg-gradient-to-r from-pink-500 hover:from-pink-600 to-violet-600 hover:to-violet-700 text-white"
+            />
+          </div>
+        </div>
+
         <!-- Light Background Sample -->
-        <div class="bg-white mb-6 p-6 rounded-lg">
-          <h3 class="mb-4 text-slate-800 text-base">On Light Background</h3>
+        <div class="bg-white mb-2 p-4 rounded-lg">
+          <h3 class="!mt-0 mb-4 text-slate-800 text-base">
+            On Light Background
+          </h3>
           <div class="flex flex-wrap gap-3">
             <UiButton text="Default" size="lg" />
             <UiButton text="Primary" variant="primary" size="lg" />
@@ -262,7 +297,12 @@
       if (standardScreensOrder.includes(k)) continue
       list.push({ name: k, value: v })
     }
-    return list
+    // Sort by pixel value in ascending order
+    return list.sort((a, b) => {
+      const aNum = parseInt(a.value)
+      const bNum = parseInt(b.value)
+      return aNum - bNum
+    })
   })
   const isCustomScreen = (name) => !standardScreensOrder.includes(name)
   const colorsList = computed(() => {
