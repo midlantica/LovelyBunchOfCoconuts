@@ -1,5 +1,5 @@
 ---
 title: 'Democratic Socialism'
 claim: 'Democratic Socialism'
-translation: 'Capitalism'
+translation: 'Socialism'
 ---
