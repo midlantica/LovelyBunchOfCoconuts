@@ -2159,6 +2159,14 @@
       "updated": "2025-10-14T03:51:39.026Z",
       "width": 800,
       "height": 593
+    },
+    "cartoons/how-to-lib-leftist-1.jpg": {
+      "optimized": true,
+      "hash": "63ea20a10ff2cc26843e3aa00d3a16f38b9f3369",
+      "action": "strip-profiles",
+      "updated": "2025-10-14T04:23:04.576Z",
+      "width": 864,
+      "height": 1080
     }
   }
 }
