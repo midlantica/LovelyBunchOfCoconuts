@@ -37,7 +37,10 @@
             <p class="welcome-modal-paragraph">
               WakeUpNPC is a gold mine of conservative Memes, Quotes, and
               <span class="underlined-text">Leftist terms</span>
-              <Icon name="heroicons:arrow-right" class="top-1 relative mx-1" />
+              <Icon
+                name="heroicons:arrow-right"
+                class="top-1.5 relative mx-1.5"
+              />
               <span class="underlined-text">sane Translations</span> panels.
             </p>
           </div>

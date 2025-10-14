@@ -55,34 +55,6 @@
         </div>
       </div>
 
-      <!-- Why This Matters -->
-      <div class="bg-slate-900 shadow-xl px-6 py-5 rounded-lg font-100">
-        <h2 class="mb-3 text-seagull-300 text-2xl uppercase">
-          Why This Matters
-        </h2>
-        <div
-          class="space-y-3 font-100 text-seagull-100 *:text-xl leading-relaxed"
-        >
-          <p>
-            In an era of off-the-wall Leftist insanity, where speech can result
-            in social and professional consequences, and lethal outcomes, humor
-            provides a necessary release valve and a way to maintain sanity.
-          </p>
-          <p>
-            We're providing community and validation for those who already see
-            the emperor has no clothes. Sometimes you just need to know you're
-            not crazy, and that others see what you see.
-          </p>
-          <p>
-            The content here represents real positions, real statements, and
-            real ideological movements. We don't need to exaggerate or
-            misrepresent—the material speaks for itself. Our role is simply to
-            present it in ways that highlight the inherent contradictions and
-            absurdities.
-          </p>
-        </div>
-      </div>
-
       <!-- Get Involved -->
       <div class="bg-slate-900 shadow-xl px-6 py-5 rounded-lg text-center">
         <h2 class="mb-3 text-xl uppercase">Get Involved</h2>
