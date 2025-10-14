@@ -2167,6 +2167,30 @@
       "updated": "2025-10-14T04:23:04.576Z",
       "width": 864,
       "height": 1080
+    },
+    "politics/img.jpg": {
+      "optimized": true,
+      "hash": "bb161de41e008c2d644d22761a4be42515350a8c",
+      "action": "strip-profiles",
+      "updated": "2025-10-14T18:41:20.743Z",
+      "width": 1080,
+      "height": 890
+    },
+    "politics/youre-in-no-position-to-lecture-the.jpg": {
+      "optimized": true,
+      "hash": "579606cecc7cbd1fd7037e05710173a9fc674ce0",
+      "action": "strip-profiles",
+      "updated": "2025-10-14T18:41:20.884Z",
+      "width": 945,
+      "height": 1080
+    },
+    "quotes/unnamed.jpg": {
+      "optimized": true,
+      "hash": "b81fd86574aced7c9fe4b1feb2dc5cf6d70abe0b",
+      "action": "strip-profiles",
+      "updated": "2025-10-14T18:41:21.193Z",
+      "width": 1080,
+      "height": 972
     }
   }
 }

@@ -528,12 +528,11 @@ async function findAndMoveOrphanedMarkdownFiles(
 async function hasMarkdownPair(imagePath) {
   try {
     // Get the directory structure from the image path
-    // imagePath is like: /Users/drew/Documents/_work/WakeUpNPC2/public/memes/thomas-sowell/image.jpg
     const imageDir = path.dirname(imagePath)
     const imageBaseName = path.basename(imagePath, path.extname(imagePath))
+    const imageFilename = path.basename(imagePath)
 
     // Extract the subdirectory name from the path
-    // Split the path and find the part after 'memes'
     const pathParts = imageDir.split(path.sep)
     const memesIndex = pathParts.findIndex((part) => part === 'memes')
 
@@ -558,23 +557,57 @@ async function hasMarkdownPair(imagePath) {
       return true
     } catch {}
 
-    // Fallback: scan .md files in the contentDir and check if they reference this image filename
+    // Enhanced fuzzy matching fallback
     try {
       const files = await fs.readdir(contentDir)
       const mdFiles = files.filter((f) => f.toLowerCase().endsWith('.md'))
-      const imageFilename = path.basename(imagePath)
+
+      // Create normalized versions for comparison
+      const sanitizedImageBase = sanitizeFilename(
+        imageBaseName,
+        60
+      ).toLowerCase()
+      const imageBaseNoExt = imageBaseName.toLowerCase()
+
       for (const md of mdFiles) {
+        const mdBaseName = path.basename(md, '.md').toLowerCase()
+        const sanitizedMdBase = sanitizeFilename(
+          path.basename(md, '.md'),
+          60
+        ).toLowerCase()
+
+        // Check 1: Exact or sanitized basename match
+        if (
+          mdBaseName === imageBaseNoExt ||
+          sanitizedMdBase === sanitizedImageBase
+        ) {
+          return true
+        }
+
+        // Check 2: Read file content and look for image reference
         try {
           const mdFull = path.join(contentDir, md)
           const data = await fs.readFile(mdFull, 'utf-8')
-          // Check for explicit /memes/... path or at least the image filename anywhere in the doc
-          if (
-            data.includes(imageFilename) ||
-            /!\[.*?\]\(\/memes\//.test(data)
-          ) {
-            // If the file references the exact filename, treat as paired
-            if (data.includes(imageFilename)) return true
-            // If it references /memes/ but not this filename, keep searching
+
+          // Check if markdown references this specific image
+          if (data.includes(imageFilename)) {
+            return true
+          }
+
+          // Check if markdown references image with subdirectory path
+          const subdirPath =
+            subdirParts.length > 0 ? subdirParts.join('/') + '/' : ''
+          if (data.includes(`/memes/${subdirPath}${imageFilename}`)) {
+            return true
+          }
+
+          // Check 3: Fuzzy match - if basenames are very similar (allowing for minor differences)
+          if (areBaseNamesSimilar(mdBaseName, imageBaseNoExt)) {
+            // Double-check that the markdown references *some* image in the same subdirectory
+            const pathPattern = subdirPath ? `/memes/${subdirPath}` : '/memes/'
+            if (data.includes(pathPattern)) {
+              return true
+            }
           }
         } catch {}
       }
@@ -583,6 +616,26 @@ async function hasMarkdownPair(imagePath) {
   } catch {
     return false
   }
+}
+
+/**
+ * Helper: Check if two basenames are similar enough to be considered a match
+ * Allows for minor variations in naming (numbers, special chars, etc.)
+ */
+function areBaseNamesSimilar(name1, name2) {
+  // Remove common suffixes, numbers, and special chars for comparison
+  const normalize = (str) => str.replace(/[-_\d]+$/, '').replace(/[^a-z]/g, '')
+  const n1 = normalize(name1)
+  const n2 = normalize(name2)
+
+  if (n1 === n2 && n1.length > 3) return true
+
+  // Check if one contains the other (for cases like "example" vs "example-1")
+  if (n1.length > 5 && n2.length > 5) {
+    if (n1.includes(n2) || n2.includes(n1)) return true
+  }
+
+  return false
 }
 
 // Manifest helpers ----------------------------------------------------------
