@@ -1,5 +1,5 @@
 ---
 title: 'Socialism'
 claim: 'Socialism'
-translation: 'Poverty for all'
+translation: 'Tall Poppy Syndrome Poverty for All'
 ---

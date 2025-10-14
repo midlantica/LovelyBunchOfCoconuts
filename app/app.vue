@@ -5,10 +5,34 @@
     </NuxtLayout>
     <!-- Modal root for teleport -->
     <div id="modal-root"></div>
+    <!-- Welcome modal for first-time visitors -->
+    <ModalsWelcomeModal :show="showWelcomeModal" @close="closeWelcomeModal" />
   </div>
 </template>
 
 <script setup>
+  // Welcome modal state for first-time visitors
+  const showWelcomeModal = ref(false)
+
+  // TEMPORARY: Always show modal on refresh for editing purposes
+  if (import.meta.client) {
+    onMounted(() => {
+      showWelcomeModal.value = true
+      // const hasVisited = localStorage.getItem('wakeupnpc_has_visited')
+      // if (!hasVisited) {
+      //   showWelcomeModal.value = true
+      // }
+    })
+  }
+
+  const closeWelcomeModal = () => {
+    showWelcomeModal.value = false
+    // TEMPORARY: Don't save to localStorage while editing
+    // if (import.meta.client) {
+    //   localStorage.setItem('wakeupnpc_has_visited', 'true')
+    // }
+  }
+
   // Production-specific loading recovery
   if (import.meta.client && !import.meta.dev) {
     onMounted(() => {

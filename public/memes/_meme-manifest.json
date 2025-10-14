@@ -2039,6 +2039,126 @@
       "updated": "2025-10-03T02:27:52.096Z",
       "width": 1080,
       "height": 810
+    },
+    "cartoons/and-just-like-that-the-left-goes-back-to.jpg": {
+      "optimized": true,
+      "hash": "6da98250f8602b9f573763a271b0b3bdac07bc07",
+      "action": "upscale→800",
+      "updated": "2025-10-14T02:49:06.230Z",
+      "width": 800,
+      "height": 458
+    },
+    "cartoons/dad-are-we-in-a-cult.jpg": {
+      "optimized": true,
+      "hash": "7950799e392eedb6b578b64e236a281ae6e3800b",
+      "action": "strip-profiles",
+      "updated": "2025-10-14T02:49:06.330Z",
+      "width": 792,
+      "height": 1080
+    },
+    "cartoons/femenists-men-are-trash-and-women-are.jpg": {
+      "optimized": true,
+      "hash": "d7b6c24243e75d0992ce9c91ce0bd152894cd7fc",
+      "action": "strip-profiles",
+      "updated": "2025-10-14T02:49:06.441Z",
+      "width": 1067,
+      "height": 1080
+    },
+    "cartoons/how-to-liberal.jpg": {
+      "optimized": true,
+      "hash": "c948ab8bfaf0274b9509a2c66264f58f8fdea5d4",
+      "action": "strip-profiles",
+      "updated": "2025-10-14T02:49:06.555Z",
+      "width": 864,
+      "height": 1080
+    },
+    "cartoons/its-not-socialism-its-democratic.jpg": {
+      "optimized": true,
+      "hash": "982c46d8a95e0a07c12e6dbf86ad2da5b849e71e",
+      "action": "upscale→800",
+      "updated": "2025-10-14T02:49:06.680Z",
+      "width": 800,
+      "height": 768
+    },
+    "cartoons/jabba-the-hut-antifa-girls-antifa-guys.jpg": {
+      "optimized": true,
+      "hash": "4bc9b7821e729adae0f559b24cb5d6654e043e11",
+      "action": "upscale→800",
+      "updated": "2025-10-14T02:49:06.797Z",
+      "width": 800,
+      "height": 532
+    },
+    "cartoons/per-capita-2001.jpg": {
+      "optimized": true,
+      "hash": "6e7844406e088e1fd1622eebfc15585c8cacd485",
+      "action": "strip-profiles",
+      "updated": "2025-10-14T02:49:06.893Z",
+      "width": 990,
+      "height": 679
+    },
+    "data/average-incomes-by-world-region.jpg": {
+      "optimized": true,
+      "hash": "6e5eed85172ae71ee5d42f5b2404c34062810c52",
+      "action": "strip-profiles",
+      "updated": "2025-10-14T02:49:07.098Z",
+      "width": 915,
+      "height": 1080
+    },
+    "politics/immigration-is-not-corrupting-the.jpg": {
+      "optimized": true,
+      "hash": "06f151c3e35ac808ef063d82b7785b3e53b35a26",
+      "action": "upscale→800",
+      "updated": "2025-10-14T02:49:07.383Z",
+      "width": 800,
+      "height": 800
+    },
+    "politics/james-woods-venn-diagram-dnc.jpg": {
+      "optimized": true,
+      "hash": "576831c56ec0ebd7591f26df1c11878ef425e507",
+      "action": "upscale→800",
+      "updated": "2025-10-14T02:49:07.508Z",
+      "width": 713,
+      "height": 800
+    },
+    "quotes/communists-and-nazis-clashed-more.jpg": {
+      "optimized": true,
+      "hash": "28d06dbf101e0cdb977f269e946b64e9f4cde40e",
+      "action": "strip-profiles",
+      "updated": "2025-10-14T02:49:07.710Z",
+      "width": 670,
+      "height": 1080
+    },
+    "quotes/transgenderism-is-the-only-mental.jpg": {
+      "optimized": true,
+      "hash": "4190108e8530d65e5526a94ced223eebd080bcb7",
+      "action": "upscale→800",
+      "updated": "2025-10-14T02:49:07.853Z",
+      "width": 800,
+      "height": 570
+    },
+    "thomas-sowell/the-ideas-of-the-political-left-are-not.jpg": {
+      "optimized": true,
+      "hash": "a0e4f341ccfa5fb2513d234903709d2f63fd7898",
+      "action": "strip-profiles",
+      "updated": "2025-10-14T02:49:08.145Z",
+      "width": 1080,
+      "height": 1080
+    },
+    "politics/individualism-collectivism-communism.jpg": {
+      "optimized": true,
+      "hash": "85e2cb2838e8f14d458be560ba21dde39562a322",
+      "action": "strip-profiles",
+      "updated": "2025-10-14T03:29:32.503Z",
+      "width": 807,
+      "height": 600
+    },
+    "politics/a90rh7.jpg": {
+      "optimized": true,
+      "hash": "da7766ac521bc3cb8767c33f71d65b2a8a551be3",
+      "action": "upscale→800",
+      "updated": "2025-10-14T03:51:39.026Z",
+      "width": 800,
+      "height": 593
     }
   }
 }

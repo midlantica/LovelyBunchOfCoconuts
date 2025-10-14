@@ -1,5 +1,5 @@
 ---
 title: 'Communism'
 claim: 'Communism'
-translation: 'Poverty for All'
+translation: 'Totalitarian Poverty for All'
 ---

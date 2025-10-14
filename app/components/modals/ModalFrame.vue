@@ -20,9 +20,10 @@
           :class="[modalStyle ? '' : 'w-full sm:min-w-[60vw] sm:max-w-[500px]']"
           @click.stop
         >
-          <!-- Close button now always visible (previously hidden on small screens) -->
+          <!-- Close button now always visible (works on all screens) -->
           <UiCloseButton
-            class="hidden md:block top-2 right-2 z-10 absolute"
+            v-if="!hideCloseButton"
+            class="block top-2 right-2 z-10 absolute"
             @click="onCloseClick"
           />
           <div
@@ -45,6 +46,7 @@
   const props = defineProps({
     show: { type: Boolean, default: false },
     modalStyle: { type: Object, default: null },
+    hideCloseButton: { type: Boolean, default: false },
   })
 
   const emit = defineEmits(['close'])
@@ -86,7 +88,7 @@
   }
 
   function handleEscape(e) {
-    if (props.show && (e.key === 'Escape' || e.key === ' ')) {
+    if (props.show && e.key === 'Escape') {
       e.stopPropagation()
       modalGuardUntil.value = Date.now() + 150
       emit('close')
@@ -119,6 +121,11 @@
 </script>
 
 <style scoped>
+  /* Fix close button X centering */
+  :deep(.absolute.top-2.right-2) {
+    padding-top: 0 !important;
+  }
+
   .modal-overlay {
     background-color: rgba(0, 0, 0, 0.8);
     transition: background-color 300ms ease-out;
