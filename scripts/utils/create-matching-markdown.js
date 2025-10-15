@@ -197,9 +197,33 @@ async function createMarkdownFiles() {
       const basename = path.basename(file, path.extname(file))
       const markdownPath = path.join(contentDir, `${basename}.md`)
 
-      // If markdown file already exists and we're not forcing update, skip it
-      if ((await fileExists(markdownPath)) && !forceUpdate) {
-        await log(`Markdown file already exists for ${file}`)
+      // Check for existing markdown file (case-insensitive)
+      let existingMarkdown = false
+      if (!forceUpdate) {
+        try {
+          // First try exact match
+          if (await fileExists(markdownPath)) {
+            existingMarkdown = true
+          } else {
+            // Try case-insensitive match by reading directory
+            const existingFiles = await readdir(contentDir)
+            const basenameLower = basename.toLowerCase()
+            for (const existingFile of existingFiles) {
+              if (existingFile.toLowerCase() === `${basenameLower}.md`) {
+                await log(
+                  `Markdown file already exists for ${file} (case-insensitive match: ${existingFile})`
+                )
+                existingMarkdown = true
+                break
+              }
+            }
+          }
+        } catch (err) {
+          // Directory doesn't exist yet, no existing markdown
+        }
+      }
+
+      if (existingMarkdown) {
         skippedCount++
         continue
       }

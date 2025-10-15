@@ -557,57 +557,35 @@ async function hasMarkdownPair(imagePath) {
       return true
     } catch {}
 
-    // Enhanced fuzzy matching fallback
+    // Case-insensitive fallback: check if any markdown file matches case-insensitively
     try {
       const files = await fs.readdir(contentDir)
       const mdFiles = files.filter((f) => f.toLowerCase().endsWith('.md'))
-
-      // Create normalized versions for comparison
-      const sanitizedImageBase = sanitizeFilename(
-        imageBaseName,
-        60
-      ).toLowerCase()
       const imageBaseNoExt = imageBaseName.toLowerCase()
 
       for (const md of mdFiles) {
         const mdBaseName = path.basename(md, '.md').toLowerCase()
-        const sanitizedMdBase = sanitizeFilename(
-          path.basename(md, '.md'),
-          60
-        ).toLowerCase()
 
-        // Check 1: Exact or sanitized basename match
-        if (
-          mdBaseName === imageBaseNoExt ||
-          sanitizedMdBase === sanitizedImageBase
-        ) {
+        // Case-insensitive exact match
+        if (mdBaseName === imageBaseNoExt) {
           return true
         }
 
-        // Check 2: Read file content and look for image reference
+        // Also check if the markdown file references this specific image filename
         try {
           const mdFull = path.join(contentDir, md)
           const data = await fs.readFile(mdFull, 'utf-8')
 
-          // Check if markdown references this specific image
+          // Check if markdown references this specific image by filename
           if (data.includes(imageFilename)) {
             return true
           }
 
-          // Check if markdown references image with subdirectory path
+          // Check if markdown references image with full path
           const subdirPath =
             subdirParts.length > 0 ? subdirParts.join('/') + '/' : ''
           if (data.includes(`/memes/${subdirPath}${imageFilename}`)) {
             return true
-          }
-
-          // Check 3: Fuzzy match - if basenames are very similar (allowing for minor differences)
-          if (areBaseNamesSimilar(mdBaseName, imageBaseNoExt)) {
-            // Double-check that the markdown references *some* image in the same subdirectory
-            const pathPattern = subdirPath ? `/memes/${subdirPath}` : '/memes/'
-            if (data.includes(pathPattern)) {
-              return true
-            }
           }
         } catch {}
       }
@@ -616,26 +594,6 @@ async function hasMarkdownPair(imagePath) {
   } catch {
     return false
   }
-}
-
-/**
- * Helper: Check if two basenames are similar enough to be considered a match
- * Allows for minor variations in naming (numbers, special chars, etc.)
- */
-function areBaseNamesSimilar(name1, name2) {
-  // Remove common suffixes, numbers, and special chars for comparison
-  const normalize = (str) => str.replace(/[-_\d]+$/, '').replace(/[^a-z]/g, '')
-  const n1 = normalize(name1)
-  const n2 = normalize(name2)
-
-  if (n1 === n2 && n1.length > 3) return true
-
-  // Check if one contains the other (for cases like "example" vs "example-1")
-  if (n1.length > 5 && n2.length > 5) {
-    if (n1.includes(n2) || n2.includes(n1)) return true
-  }
-
-  return false
 }
 
 // Manifest helpers ----------------------------------------------------------

@@ -30,18 +30,14 @@
 
             <!-- Intro paragraphs -->
             <p class="welcome-modal-paragraph">
-              NPCs — Non-Player Characters from games — are caught in the
+              NPCs — Non&#8209;Player Characters from games — are caught in the
               Leftist echo chamber. It's time to wake them up!
             </p>
 
             <p class="welcome-modal-paragraph">
-              WakeUpNPC is a gold mine of conservative Memes, Quotes, and
-              <span class="underlined-text">Leftist terms</span>
-              <Icon
-                name="heroicons:arrow-right"
-                class="top-1.5 relative mx-1.5"
-              />
-              <span class="underlined-text">sane Translations</span> panels.
+              WakeUpNPC is a gold mine of anti&#8209;Leftist Memes, Quotes,
+              and&nbsp;<span class="underlined-text">Grift&#8209;Decoders</span
+              >.
             </p>
           </div>
 

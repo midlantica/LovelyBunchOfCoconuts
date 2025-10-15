@@ -163,15 +163,23 @@ function calculateSimilarity(str1, str2) {
 function extractContentBody(content) {
   // Remove frontmatter
   const withoutFrontmatter = content.replace(/^---[\s\S]*?---\n*/m, '')
-  // Remove markdown formatting
-  return withoutFrontmatter
+  // Remove markdown formatting but keep the text content
+  const cleaned = withoutFrontmatter
     .replace(/#+\s/g, '') // headers
     .replace(/\*\*/g, '') // bold
     .replace(/\*/g, '') // italic
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links
-    .replace(/!\[([^\]]*)\]\([^)]+\)/g, '') // images
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links - keep link text
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, '') // images - remove completely
+    .replace(/\n\s*\n/g, '\n') // normalize multiple newlines
     .trim()
-    .toLowerCase()
+
+  // Only compare if there's actual content (at least 10 characters)
+  // This prevents false matches on nearly-empty files
+  if (cleaned.length < 10) {
+    return crypto.randomBytes(16).toString('hex') // Return unique value for empty files
+  }
+
+  return cleaned.toLowerCase()
 }
 
 /**
