@@ -32,8 +32,8 @@
   const ModalsModalMeme = defineAsyncComponent(
     () => import('~/components/modals/ModalMeme.vue')
   )
-  const ModalsModalClaim = defineAsyncComponent(
-    () => import('~/components/modals/ModalClaim.vue')
+  const ModalsModalGrift = defineAsyncComponent(
+    () => import('~/components/modals/ModalGrift.vue')
   )
   const ModalsModalQuote = defineAsyncComponent(
     () => import('~/components/modals/ModalQuote.vue')
@@ -41,7 +41,7 @@
 
   const modalMap = {
     meme: ModalsModalMeme,
-    claim: ModalsModalClaim,
+    grift: ModalsModalGrift,
     quote: ModalsModalQuote,
   }
 
@@ -54,7 +54,7 @@
     idle(() => {
       // Fire and forget; purpose is to prime dynamic import chunks
       import('~/components/modals/ModalMeme.vue').catch(() => {})
-      import('~/components/modals/ModalClaim.vue').catch(() => {})
+      import('~/components/modals/ModalGrift.vue').catch(() => {})
       import('~/components/modals/ModalQuote.vue').catch(() => {})
     })
   })

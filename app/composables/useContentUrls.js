@@ -25,17 +25,17 @@ export const useContentUrls = () => {
       id: item.id,
       hasPathProp: !!item.path,
       pathProp: item.path,
-      title: item.title || item.claim || item.quoteText,
+      title: item.title || item.grift || item.quoteText,
       allKeys: Object.keys(item),
     })
 
     // If item already has a path (from Nuxt Content), transform it to route format
     if (item._path) {
-      // Transform "/claims/some-claim" to "/claim/some-claim"
+      // Transform "/grifts/some-grift" to "/grift/some-grift"
       // Transform "/quotes/some-quote" to "/quote/some-quote"
       // Transform "/memes/category/some-meme" to "/meme/category/some-meme"
       const routePath = item._path
-        .replace(/^\/claims\//, '/claim/')
+        .replace(/^\/grifts\//, '/grift/')
         .replace(/^\/quotes\//, '/quote/')
         .replace(/^\/memes\//, '/meme/')
 
@@ -47,7 +47,7 @@ export const useContentUrls = () => {
     // Try using item.path if _path doesn't exist
     if (item.path) {
       const routePath = item.path
-        .replace(/^\/claims\//, '/claim/')
+        .replace(/^\/grifts\//, '/grift/')
         .replace(/^\/quotes\//, '/quote/')
         .replace(/^\/memes\//, '/meme/')
 
@@ -61,7 +61,7 @@ export const useContentUrls = () => {
       // Remove file extension and convert to path
       const pathFromId = '/' + item.id.replace(/\.md$/, '')
       const routePath = pathFromId
-        .replace(/^\/claims\//, '/claim/')
+        .replace(/^\/grifts\//, '/grift/')
         .replace(/^\/quotes\//, '/quote/')
         .replace(/^\/memes\//, '/meme/')
 
@@ -81,9 +81,9 @@ export const useContentUrls = () => {
     let slug = ''
 
     switch (contentType) {
-      case 'claim':
-        slug = createSlug(item.claim || item.title || '')
-        return `${baseUrl}/#claim-${slug}`
+      case 'grift':
+        slug = createSlug(item.grift || item.title || '')
+        return `${baseUrl}/#grift-${slug}`
 
       case 'quote':
         const author = (item.attribution || 'unknown')

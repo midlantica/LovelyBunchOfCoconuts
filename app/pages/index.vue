@@ -37,7 +37,7 @@
   // Simple SSR-safe search/filter state
   const searchTerm = useState('searchTerm', () => '')
   const contentFilters = useState('contentFilters', () => ({
-    claims: true,
+    grifts: true,
     quotes: true,
     memes: true,
   }))
@@ -57,7 +57,7 @@
     const handleHashChange = () => {
       const hash = window.location.hash
       if (!hash || (isModalOpen && isModalOpen.value)) return
-      const match = hash.match(/^(#)(claim|quote|meme)[\/-](.+)$/)
+      const match = hash.match(/^(#)(grift|quote|meme)[\/-](.+)$/)
       if (match) {
         const [, , contentType, slug] = match
         try {
@@ -158,8 +158,8 @@
   }
 
   // Count tracking
-  const wallCounts = ref({ claims: 0, quotes: 0, memes: 0, total: 0 })
-  const totalCounts = ref({ claims: 0, quotes: 0, memes: 0 })
+  const wallCounts = ref({ grifts: 0, quotes: 0, memes: 0, total: 0 })
+  const totalCounts = ref({ grifts: 0, quotes: 0, memes: 0 })
   const liveCounts = computed(() => ({
     wall: wallCounts.value,
     total: totalCounts.value,
@@ -170,20 +170,20 @@
   const openContentFromSlug = async (contentType, slug) => {
     try {
       const { useContentCache } = await import('~/composables/useContentCache')
-      const { claims, quotes, memes, loadAllContent, slugMaps } =
+      const { grifts, quotes, memes, loadAllContent, slugMaps } =
         useContentCache()
 
       await nextTick()
 
       if (
-        !claims?.value?.length ||
+        !grifts?.value?.length ||
         !quotes?.value?.length ||
         !memes?.value?.length
       ) {
         await loadAllContent()
         await nextTick()
         if (
-          !claims?.value?.length ||
+          !grifts?.value?.length ||
           !quotes?.value?.length ||
           !memes?.value?.length
         ) {
@@ -193,7 +193,7 @@
       }
 
       let item = null
-      if (contentType === 'claim') item = slugMaps.claims.get(slug)
+      if (contentType === 'grift') item = slugMaps.grifts.get(slug)
       else if (contentType === 'quote') item = slugMaps.quotes.get(slug)
       else if (contentType === 'meme') item = slugMaps.memes.get(slug)
 

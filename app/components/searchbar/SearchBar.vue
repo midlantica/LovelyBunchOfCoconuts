@@ -139,13 +139,13 @@
       type: Object,
       required: true,
       default: () => ({
-        wall: { claims: 0, quotes: 0, memes: 0, total: 0 },
-        total: { claims: 0, quotes: 0, memes: 0, total: 0 },
+        wall: { grifts: 0, quotes: 0, memes: 0, total: 0 },
+        total: { grifts: 0, quotes: 0, memes: 0, total: 0 },
       }),
     },
     filters: {
       type: Object,
-      default: () => ({ claims: true, quotes: true, memes: true }),
+      default: () => ({ grifts: true, quotes: true, memes: true }),
     },
   })
   const emit = defineEmits(['update:search', 'update:filters'])
@@ -187,7 +187,7 @@
     updateUrlWithTokens()
   }, 250)
 
-  const pillClaimCount = computed(() => props.counts.wall.claims || 0)
+  const pillGriftCount = computed(() => props.counts.wall.grifts || 0)
   const pillQuoteCount = computed(() => props.counts.wall.quotes || 0)
   const pillMemeCount = computed(() => props.counts.wall.memes || 0)
   const totalDisplay = computed(() => props.counts.wall.total || 0)
@@ -215,7 +215,7 @@
   function ensureFilterKeys(obj) {
     obj = obj && typeof obj === 'object' ? obj : {}
     return {
-      claims: typeof obj.claims === 'boolean' ? obj.claims : true,
+      grifts: typeof obj.grifts === 'boolean' ? obj.grifts : true,
       quotes: typeof obj.quotes === 'boolean' ? obj.quotes : true,
       memes: typeof obj.memes === 'boolean' ? obj.memes : true,
     }
@@ -244,7 +244,7 @@
   }
 
   function resetFilters() {
-    emit('update:filters', { claims: true, quotes: true, memes: true })
+    emit('update:filters', { grifts: true, quotes: true, memes: true })
   }
 
   function clearSearch() {

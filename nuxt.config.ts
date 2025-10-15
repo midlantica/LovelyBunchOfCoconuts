@@ -144,12 +144,12 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'WakeUpNPC - Political Claims, Quotes & Memes',
+      title: 'WakeUpNPC - Political Grifts, Quotes & Memes',
       meta: [
         {
           name: 'description',
           content:
-            'A curated wall of political claims, insightful quotes, and thought-provoking memes. Explore diverse perspectives and challenge your thinking.',
+            'A curated wall of political grifts, insightful quotes, and thought-provoking memes. Explore diverse perspectives and challenge your thinking.',
         },
         { name: 'theme-color', content: '#68D2FF' },
 
@@ -157,12 +157,12 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         {
           property: 'og:title',
-          content: 'WakeUpNPC - Political Claims, Quotes & Memes',
+          content: 'WakeUpNPC - Political Grifts, Quotes & Memes',
         },
         {
           property: 'og:description',
           content:
-            'A curated wall of political claims, insightful quotes, and thought-provoking memes. Explore diverse perspectives and challenge your thinking.',
+            'A curated wall of political grifts, insightful quotes, and thought-provoking memes. Explore diverse perspectives and challenge your thinking.',
         },
         { property: 'og:url', content: 'https://wakeupnpc.com' },
         { property: 'og:site_name', content: 'WakeUpNPC' },
@@ -178,12 +178,12 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' },
         {
           name: 'twitter:title',
-          content: 'WakeUpNPC - Political Claims, Quotes & Memes',
+          content: 'WakeUpNPC - Political Grifts, Quotes & Memes',
         },
         {
           name: 'twitter:description',
           content:
-            'A curated wall of political claims, insightful quotes, and thought-provoking memes.',
+            'A curated wall of political grifts, insightful quotes, and thought-provoking memes.',
         },
         {
           name: 'twitter:image',
@@ -194,7 +194,7 @@ export default defineNuxtConfig({
         {
           name: 'keywords',
           content:
-            'politics, quotes, memes, claims, political discourse, critical thinking',
+            'politics, quotes, memes, grifts, political discourse, critical thinking',
         },
         { name: 'author', content: 'WakeUpNPC' },
         { name: 'robots', content: 'index, follow' },

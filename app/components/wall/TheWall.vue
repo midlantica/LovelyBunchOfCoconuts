@@ -48,42 +48,42 @@
             />
           </div>
 
-          <!-- Claim pairs (2 columns on md+, stacked on smaller) - or Small Ads -->
+          <!-- Grift pairs (2 columns on md+, stacked on smaller) - or Small Ads -->
           <div
-            v-else-if="item.type === 'claimPair'"
+            v-else-if="item.type === 'griftPair'"
             class="gap-3 grid grid-cols-1 md:grid-cols-2"
           >
             <div
-              v-for="(claimItem, idx) in item.data"
-              :key="claimItem?._path || claimItem?.path || claimItem?.id || idx"
+              v-for="(griftItem, idx) in item.data"
+              :key="griftItem?._path || griftItem?.path || griftItem?.id || idx"
               class="cursor-pointer"
               role="button"
               tabindex="0"
               @click.capture="
-                claimItem?.isAd
+                griftItem?.isAd
                   ? null
                   : maybeOpenModal($event, () =>
-                      openModal(claimItem, 'claim', true)
+                      openModal(griftItem, 'grift', true)
                     )
               "
               @keydown.enter.prevent="
-                claimItem?.isAd ? null : openModal(claimItem, 'claim', true)
+                griftItem?.isAd ? null : openModal(griftItem, 'grift', true)
               "
               @keydown.space.prevent="
-                claimItem?.isAd ? null : openModal(claimItem, 'claim', true)
+                griftItem?.isAd ? null : openModal(griftItem, 'grift', true)
               "
             >
               <!-- Ad Panel for square ads -->
               <WallPanelAd
-                v-if="claimItem?.isAd"
-                :ad="claimItem"
-                :size="claimItem.size || 'square'"
+                v-if="griftItem?.isAd"
+                :ad="griftItem"
+                :size="griftItem.size || 'square'"
               />
-              <!-- Regular Claim Panel -->
-              <WallPanelClaim
+              <!-- Regular Grift Panel -->
+              <WallPanelGrift
                 v-else
-                :claim="claimItem"
-                :slug="claimItem?.path || claimItem?._path || ''"
+                :grift="griftItem"
+                :slug="griftItem?.path || griftItem?._path || ''"
               />
             </div>
           </div>
@@ -174,7 +174,7 @@
   const injectedFilters = inject('contentFilters', null)
   const globalSearch = useState('searchTerm', () => '')
   const globalFilters = useState('contentFilters', () => ({
-    claims: true,
+    grifts: true,
     quotes: true,
     memes: true,
   }))
@@ -192,8 +192,8 @@
     const base = injectedFilters ? injectedFilters.value : globalFilters.value
     // Ensure keys exist
     return {
-      claims:
-        typeof base?.claims === 'boolean' ? base.claims : props.filters.claims,
+      grifts:
+        typeof base?.grifts === 'boolean' ? base.grifts : props.filters.grifts,
       quotes:
         typeof base?.quotes === 'boolean' ? base.quotes : props.filters.quotes,
       memes:
@@ -212,7 +212,7 @@
 
   // Clear search and reset filters (triggered from WallNoContent button)
   function onClearSearch() {
-    const defaults = { claims: true, quotes: true, memes: true }
+    const defaults = { grifts: true, quotes: true, memes: true }
     if (injectedSearch) injectedSearch.value = ''
     else globalSearch.value = ''
     if (injectedFilters) injectedFilters.value = { ...defaults }
@@ -244,7 +244,7 @@
         .filter(Boolean)
         .join('|') || idx
 
-    if (item.type === 'claimPair') return `cp-${joinIds(item.data, idx)}`
+    if (item.type === 'griftPair') return `gp-${joinIds(item.data, idx)}`
     if (item.type === 'memeRow') return `mr-${joinIds(item.data, idx)}`
     return idx
   }
@@ -272,25 +272,25 @@
   // Built once after initial load; later growth triggers an idle rebuild (non-blocking).
   const baselineState = useState('wallBaselinePattern', () => ({
     seed: null,
-    claims: 0,
+    grifts: 0,
     quotes: 0,
     memes: 0,
     pattern: [],
-    order: { claims: [], quotes: [], memes: [] },
+    order: { grifts: [], quotes: [], memes: [] },
     rebuilding: false,
   }))
 
   function deriveBaselineOrder(pattern) {
-    const order = { claims: [], quotes: [], memes: [] }
-    const seen = { claims: new Set(), quotes: new Set(), memes: new Set() }
+    const order = { grifts: [], quotes: [], memes: [] }
+    const seen = { grifts: new Set(), quotes: new Set(), memes: new Set() }
     for (const item of pattern) {
       if (!item) continue
-      if (item.type === 'claimPair') {
+      if (item.type === 'griftPair') {
         for (const c of item.data || []) {
           const p = c?._path || c?.path || ''
-          if (p && !seen.claims.has(p)) {
-            seen.claims.add(p)
-            order.claims.push(p)
+          if (p && !seen.grifts.has(p)) {
+            seen.grifts.add(p)
+            order.grifts.push(p)
           }
         }
       } else if (item.type === 'memeRow') {
@@ -334,7 +334,7 @@
         : 0
 
       const pattern = interleaveContent(
-        cache.claims,
+        cache.grifts,
         cache.quotes,
         cache.memes,
         {
@@ -347,7 +347,7 @@
       const order = deriveBaselineOrder(pattern)
       baselineState.value = {
         seed: wallSeed.value,
-        claims: cache.claims.length,
+        grifts: cache.grifts.length,
         quotes: cache.quotes.length,
         memes: cache.memes.length,
         pattern,
@@ -378,10 +378,10 @@
   }
 
   const interleavedContent = computed(() => {
-    const { claims, quotes, memes } = filteredContent.value
+    const { grifts, quotes, memes } = filteredContent.value
     const emptySearch = !effectiveSearch.value?.trim()
     const allFiltersActive =
-      effectiveFilters.value.claims &&
+      effectiveFilters.value.grifts &&
       effectiveFilters.value.quotes &&
       effectiveFilters.value.memes
 
@@ -391,7 +391,7 @@
       const baselineEmpty = !bs.pattern.length
       const countsChanged =
         bs.seed !== wallSeed.value ||
-        bs.claims !== cache.claims.length ||
+        bs.grifts !== cache.grifts.length ||
         bs.quotes !== cache.quotes.length ||
         bs.memes !== cache.memes.length
       if (baselineEmpty) {
@@ -405,13 +405,13 @@
 
     // Filtered / searched path: impose baseline ordering for stability, no shuffle.
     const baseOrder = baselineState.value.order
-    let orderedClaims = claims
+    let orderedGrifts = grifts
     let orderedQuotes = quotes
     let orderedMemes = memes
-    if (baseOrder && baseOrder.claims?.length) {
-      orderedClaims = reorderByBaseline(
-        claims,
-        new Map(baseOrder.claims.map((p, i) => [p, i]))
+    if (baseOrder && baseOrder.grifts?.length) {
+      orderedGrifts = reorderByBaseline(
+        grifts,
+        new Map(baseOrder.grifts.map((p, i) => [p, i]))
       )
     }
     if (baseOrder && baseOrder.quotes?.length) {
@@ -426,7 +426,7 @@
         new Map(baseOrder.memes.map((p, i) => [p, i]))
       )
     }
-    return interleaveContent(orderedClaims, orderedQuotes, orderedMemes, {
+    return interleaveContent(orderedGrifts, orderedQuotes, orderedMemes, {
       seed: wallSeed.value,
       enableShuffle: false,
     })
@@ -459,7 +459,7 @@
         const adId = item.data.id || 'unknown'
         adCounts[adId] = (adCounts[adId] || 0) + 1
         totalAds++
-      } else if (item.type === 'claimPair' || item.type === 'memeRow') {
+      } else if (item.type === 'griftPair' || item.type === 'memeRow') {
         item.data?.forEach((d) => {
           if (d?.isAd) {
             const adId = d.id || 'unknown'
@@ -486,7 +486,7 @@
   function isBaselineView() {
     return (
       !effectiveSearch.value?.trim() &&
-      effectiveFilters.value.claims &&
+      effectiveFilters.value.grifts &&
       effectiveFilters.value.quotes &&
       effectiveFilters.value.memes
     )
@@ -610,7 +610,7 @@
   // Detect content growth after background load and schedule a rebuild (idle) if user is on baseline view.
   watch(
     () => [
-      cache.claims.length,
+      cache.grifts.length,
       cache.quotes.length,
       cache.memes.length,
       wallSeed.value,
@@ -620,7 +620,7 @@
       if (!bs.pattern.length) return // nothing yet
       const emptySearch = !effectiveSearch.value?.trim()
       const allFiltersActive =
-        effectiveFilters.value.claims &&
+        effectiveFilters.value.grifts &&
         effectiveFilters.value.quotes &&
         effectiveFilters.value.memes
       if (emptySearch && allFiltersActive) scheduleBaselineRebuild()
@@ -647,7 +647,7 @@
 
   // If cache already populated (e.g. SPA nav), skip spinner entirely
   if (
-    (cache.claims?.length || cache.quotes?.length || cache.memes?.length) &&
+    (cache.grifts?.length || cache.quotes?.length || cache.memes?.length) &&
     wallHasLoadedOnce.value
   ) {
     isLoaded.value = true
@@ -680,7 +680,7 @@
       }
 
       if (
-        cache.claims.length === 0 &&
+        cache.grifts.length === 0 &&
         cache.quotes.length === 0 &&
         cache.memes.length === 0
       ) {
@@ -693,7 +693,7 @@
         setTimeout(() => showAdSummary(), 500)
 
         // Schedule background pre-computation for instant refreshes
-        schedulePrecomputation(cache.claims, cache.quotes, cache.memes, {
+        schedulePrecomputation(cache.grifts, cache.quotes, cache.memes, {
           adsEnabled: adsEnabled.value,
           adInterval: adInterval.value,
         })

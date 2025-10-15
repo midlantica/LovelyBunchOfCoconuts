@@ -35,7 +35,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
 
   // Raw pools (reactive via cacheRef)
   const rawPools = computed(() => ({
-    claims: normalizeArray(cacheRef.claims),
+    grifts: normalizeArray(cacheRef.grifts),
     quotes: normalizeArray(cacheRef.quotes),
     memes: normalizeArray(cacheRef.memes),
   }))
@@ -47,8 +47,8 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     const expanded = expandSearchTerms(query)
 
     // Check if any expanded terms match content type keywords
-    const hasClaimsKeyword = expanded.some((term) =>
-      ['claims', 'claim', 'statement', 'assertion', 'position'].includes(term)
+    const hasGriftsKeyword = expanded.some((term) =>
+      ['grifts', 'grift', 'statement', 'assertion', 'position'].includes(term)
     )
     const hasQuotesKeyword = expanded.some((term) =>
       ['quotes', 'quote', 'quotation', 'saying', 'citation'].includes(term)
@@ -58,9 +58,9 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     )
 
     // If searching for specific content types, return filter
-    if (hasClaimsKeyword || hasQuotesKeyword || hasMemesKeyword) {
+    if (hasGriftsKeyword || hasQuotesKeyword || hasMemesKeyword) {
       return {
-        claims: hasClaimsKeyword,
+        grifts: hasGriftsKeyword,
         quotes: hasQuotesKeyword,
         memes: hasMemesKeyword,
       }
@@ -77,7 +77,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     if (contentTypeFilter) {
       // Filter by content type only
       return {
-        claims: contentTypeFilter.claims ? groups.claims : [],
+        grifts: contentTypeFilter.grifts ? groups.grifts : [],
         quotes: contentTypeFilter.quotes ? groups.quotes : [],
         memes: contentTypeFilter.memes ? groups.memes : [],
       }
@@ -102,7 +102,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
   const filteredContent = computed(() => {
     const f = effectiveFilters.value
     const base = {
-      claims: f.claims ? rawPools.value.claims : [],
+      grifts: f.grifts ? rawPools.value.grifts : [],
       quotes: f.quotes ? rawPools.value.quotes : [],
       memes: f.memes ? rawPools.value.memes : [],
     }
@@ -114,19 +114,19 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     const rp = rawPools.value
     const f = effectiveFilters.value
     const wallCounts = {
-      claims: sf.claims.length,
+      grifts: sf.grifts.length,
       quotes: sf.quotes.length,
       memes: sf.memes.length,
       total:
-        (f.claims ? sf.claims.length : 0) +
+        (f.grifts ? sf.grifts.length : 0) +
         (f.quotes ? sf.quotes.length : 0) +
         (f.memes ? sf.memes.length : 0),
     }
     const totalCounts = {
-      claims: rp.claims.length,
+      grifts: rp.grifts.length,
       quotes: rp.quotes.length,
       memes: rp.memes.length,
-      total: rp.claims.length + rp.quotes.length + rp.memes.length,
+      total: rp.grifts.length + rp.quotes.length + rp.memes.length,
     }
     return { wallCounts, totalCounts }
   })

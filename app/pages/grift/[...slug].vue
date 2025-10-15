@@ -1,7 +1,7 @@
-<!-- Dynamic route for individual claims -->
+<!-- Dynamic route for individual grifts -->
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div :key="`claim-${route.path}`">
+  <div :key="`grift-${route.path}`">
     <!-- Background Wall (keeps index experience visible) -->
     <section
       class="gap-3 grid grid-rows-[auto_1fr] px-0 h-full overflow-hidden"
@@ -17,11 +17,11 @@
       </div>
     </section>
 
-    <!-- Local modal overlay so URL remains /claim/... -->
-    <ModalsModalClaim
-      v-if="claim"
+    <!-- Local modal overlay so URL remains /grift/... -->
+    <ModalsModalGrift
+      v-if="grift"
       :show="modalVisible"
-      :modal-data="claim"
+      :modal-data="grift"
       @close="navigateHome"
     />
   </div>
@@ -35,7 +35,7 @@
   const router = useRouter()
 
   const modalVisible = ref(true)
-  const { claims, ensureContentLoaded, loadAllContent, slugMaps } =
+  const { grifts, ensureContentLoaded, loadAllContent, slugMaps } =
     useContentCache()
   const contentReady = ref(false)
   onServerPrefetch(async () => {
@@ -56,18 +56,18 @@
     return slug
   })
 
-  // Claim referenced in template - only look in slug maps after content is loaded
-  const claim = computed(() => {
+  // Grift referenced in template - only look in slug maps after content is loaded
+  const grift = computed(() => {
     if (!contentReady.value) return null
 
     // First try slug map lookup
-    let foundClaim = slugMaps.claims.get(slugPath.value)
+    let foundGrift = slugMaps.grifts.get(slugPath.value)
 
-    // If not found, try fallback search through claims array
-    if (!foundClaim && claims.value?.length) {
+    // If not found, try fallback search through grifts array
+    if (!foundGrift && grifts.value?.length) {
       const slug = slugPath.value.toLowerCase()
-      foundClaim = claims.value.find((claim) => {
-        const filename = (claim.id || claim._path || '')
+      foundGrift = grifts.value.find((grift) => {
+        const filename = (grift.id || grift._path || '')
           .split('/')
           .pop()
           ?.replace(/\.md$/, '')
@@ -80,7 +80,7 @@
       })
     }
 
-    return foundClaim
+    return foundGrift
   })
 
   function navigateHome() {
@@ -93,10 +93,10 @@
   const loadingTimeout = ref(null)
 
   onMounted(async () => {
-    console.log('🔍 Claim page mounted, looking for:', slugPath.value)
+    console.log('🔍 Grift page mounted, looking for:', slugPath.value)
 
     // Ensure content is loaded first
-    if (!claims?.value?.length || !contentReady.value) {
+    if (!grifts?.value?.length || !contentReady.value) {
       console.log('📥 Loading content...')
 
       // Set a timeout to prevent infinite loading
@@ -127,13 +127,13 @@
     // Wait for next tick to ensure reactive updates have processed
     await nextTick()
 
-    console.log('🗺️ Slug maps claims size:', slugMaps.claims.size)
+    console.log('🗺️ Slug maps grifts size:', slugMaps.grifts.size)
     console.log('🔍 Looking for slug:', slugPath.value)
-    console.log('✅ Found claim:', !!slugMaps.claims.get(slugPath.value))
+    console.log('✅ Found grift:', !!slugMaps.grifts.get(slugPath.value))
 
-    // Debug: show all available claim slugs
+    // Debug: show all available grift slugs
     if (import.meta.dev) {
-      console.log('Available claim slugs:', Array.from(slugMaps.claims.keys()))
+      console.log('Available grift slugs:', Array.from(slugMaps.grifts.keys()))
     }
 
     // Restore wall scroll if available
@@ -142,9 +142,9 @@
       scrollContainer.scrollTo({ top: wallScrollTop.value })
     }
 
-    // Don't redirect - just stay on the claim URL even if not found
-    if (contentReady.value && !claim.value) {
-      console.log('❌ Claim not found, but staying on URL')
+    // Don't redirect - just stay on the grift URL even if not found
+    if (contentReady.value && !grift.value) {
+      console.log('❌ Grift not found, but staying on URL')
     }
   })
 
@@ -154,13 +154,13 @@
     }
   })
 
-  // Watch for content loading completion and check claim availability
+  // Watch for content loading completion and check grift availability
   watch(contentReady, async (ready) => {
     if (ready) {
       await nextTick()
-      // Don't redirect - just stay on the claim URL even if not found
-      if (!claim.value) {
-        console.log('❌ Claim not found in watcher, but staying on URL')
+      // Don't redirect - just stay on the grift URL even if not found
+      if (!grift.value) {
+        console.log('❌ Grift not found in watcher, but staying on URL')
       }
     }
   })

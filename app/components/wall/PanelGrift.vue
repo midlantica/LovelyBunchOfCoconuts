@@ -1,15 +1,15 @@
-<!-- components/wall/ClaimPanel.vue -->
+<!-- components/wall/GriftPanel.vue -->
 <template>
   <div
-    v-if="claim && claim.claim && claim.translation && slug"
+    v-if="grift && grift.grift && grift.decode && slug"
     class="group isolate relative shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-4 py-3 border hover:border hover:border-seagull-400/50 border-transparent rounded-lg h-full text-white transition-colors cursor-pointer"
     @click="openModal"
   >
     <!-- Like button only -->
     <div class="top-1 right-1 z-[20] absolute">
       <UiLikeButton
-        :id="claim?._path || claim?.path || slug"
-        :title="claim?.claim || 'claim'"
+        :id="grift?._path || grift?.path || slug"
+        :title="grift?.grift || 'grift'"
         :count-inside="true"
         :hide-zero="true"
         :faded-unliked="true"
@@ -17,14 +17,14 @@
       />
     </div>
     <div class="my-auto">
-      <!-- Original paired structure: claim + translation -->
+      <!-- Original paired structure: grift + decode -->
       <div class="flex items-center gap-3">
         <img src="~/assets/icons/npc_icon.svg" alt="NPC" class="w-8" />
         <h2
           class="text-shadow-xs font-100 text-xl line-clamp-1 tracking-wide"
-          v-if="claim.claim"
+          v-if="grift.grift"
         >
-          {{ claim.claim }}
+          {{ grift.grift }}
         </h2>
       </div>
       <UiDividerArrow wrapper-class="my-2" />
@@ -32,9 +32,9 @@
         <img src="~/assets/icons/player_icon.svg" alt="Player" class="w-8" />
         <h2
           class="text-shadow-xs font-100 text-xl line-clamp-1 tracking-wide"
-          v-if="claim.translation"
+          v-if="grift.decode"
         >
-          {{ claim.translation }}
+          {{ grift.decode }}
         </h2>
       </div>
     </div>
@@ -47,14 +47,14 @@
       <div class="flex items-center gap-3">
         <img src="~/assets/icons/npc_icon.svg" alt="NPC" class="w-8" />
         <h2 class="line-clamp-1">
-          {{ claim && claim.claim ? claim.claim : 'Missing claim' }}
+          {{ grift && grift.grift ? grift.grift : 'Missing grift' }}
         </h2>
       </div>
       <hr class="my-2 border-white/10 border-t" />
       <div class="flex items-center gap-3">
         <img src="~/assets/icons/player_icon.svg" alt="Player" class="w-8" />
-        <h2 class="line-clamp-1" v-if="claim && claim.translation">
-          {{ claim.translation }}
+        <h2 class="line-clamp-1" v-if="grift && grift.decode">
+          {{ grift.decode }}
         </h2>
       </div>
     </div>
@@ -63,22 +63,22 @@
 
 <script setup>
   const props = defineProps({
-    claim: Object,
+    grift: Object,
     slug: String,
   })
 
-  const contentType = computed(() => 'political claim')
+  const contentType = computed(() => 'political grift')
 
   function openModal() {
     // Emit event to parent to open modal
     // This will be handled by the parent component
-    console.log('Opening modal for claim:', props.slug)
+    console.log('Opening modal for grift:', props.slug)
   }
 
   function shareContent() {
     const url = `${window.location.origin}/${props.slug}`
-    const title = props.claim?.claim || 'Political Claim'
-    const description = `Check out this political claim from WakeUpNPC - Political Claims, Quotes & Memes`
+    const title = props.grift?.grift || 'Political Grift'
+    const description = `Check out this political grift from WakeUpNPC - Political Grifts, Quotes & Memes`
 
     // Use Web Share API if available (mobile)
     if (navigator.share) {

@@ -1,4 +1,4 @@
-<!-- components/ModalClaim.vue -->
+<!-- components/ModalGrift.vue -->
 <template>
   <client-only>
     <ModalsModalFrame v-if="modalData" :show="show" @close="emit('close')">
@@ -18,7 +18,7 @@
               <h1
                 class="text-shadow-xs mb-0 font-100 text-white text-2xl leading-tight"
               >
-                {{ modalData?.claim || modalData?.title }}
+                {{ modalData?.grift || modalData?.title }}
               </h1>
             </div>
             <UiDividerArrow wrapper-class="my-4" />
@@ -32,7 +32,7 @@
               <h1
                 class="text-shadow-xs mb-0 font-100 text-white text-2xl leading-tight"
               >
-                {{ modalData?.translation }}
+                {{ modalData?.decode }}
               </h1>
             </div>
           </div>
@@ -74,15 +74,15 @@
         <!-- Share Buttons Shelf - positioned relative to this panel -->
         <UiShareButton
           v-if="modalData"
-          :title="modalData?.claim || modalData?.title"
-          :text="`${modalData?.claim || modalData?.title} - ${
-            modalData?.translation
+          :title="modalData?.grift || modalData?.title"
+          :text="`${modalData?.grift || modalData?.title} - ${
+            modalData?.decode
           }`"
           :url="shareUrl"
           :like-id="modalData?._path || modalData?.path || ''"
           :generated-image-blob="shareImageBlob"
           :show="showShareShelf"
-          content-type="claim"
+          content-type="grift"
         />
       </template>
     </ModalsModalFrame>
@@ -104,7 +104,7 @@
   // Create shareable URL
   const shareUrl = computed(() => {
     if (!props.modalData) return window.location.href
-    return generateContentUrl(props.modalData, 'claim')
+    return generateContentUrl(props.modalData, 'grift')
   })
 
   // Handle share shelf animation timing
@@ -172,15 +172,15 @@
     async (data) => {
       // Only generate images on client-side
       if (import.meta.server) return
-      // Don’t block first render/open; schedule for idle time
-      if (data && data.claim && data.translation) {
+      // Don't block first render/open; schedule for idle time
+      if (data && data.grift && data.decode) {
         const run = async () => {
           try {
             const { useShareImageGenerator } = await import(
               '~/composables/useShareImageGenerator'
             )
-            const { generateClaimImage } = useShareImageGenerator()
-            const blob = await generateClaimImage(data.claim, data.translation)
+            const { generateGriftImage } = useShareImageGenerator()
+            const blob = await generateGriftImage(data.grift, data.decode)
             // Only apply if modal is still showing same item
             if (props.modalData === data) {
               shareImageBlob.value = blob
@@ -205,7 +205,7 @@
     () => props.modalData,
     (data) => {
       if (data && import.meta.dev) {
-        console.log('Claim modal data received:', data)
+        console.log('Grift modal data received:', data)
         console.log('Available properties:', Object.keys(data))
       }
     },

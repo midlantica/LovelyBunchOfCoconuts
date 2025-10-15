@@ -33,16 +33,16 @@
         <button
           type="button"
           class="px-3.5 py-1 w-auto font-normal text-[13px] text-center uppercase tracking-wider whitespace-nowrap transition cursor-pointer"
-          :class="[btnClass('claims'), radiusClass('top')]"
+          :class="[btnClass('grifts'), radiusClass('top')]"
           :style="
             btnWidthPx
               ? { width: btnWidthPx + 'px', maxWidth: MAX_BTN_PX + 'px' }
               : { maxWidth: MAX_BTN_PX + 'px' }
           "
-          :ref="(el) => (btnRefs.claims = el)"
-          @click.stop="onPress('claims')"
+          :ref="(el) => (btnRefs.grifts = el)"
+          @click.stop="onPress('grifts')"
         >
-          Claims
+          Grifts
         </button>
         <button
           type="button"
@@ -81,7 +81,7 @@
   const props = defineProps({
     filters: {
       type: Object,
-      default: () => ({ claims: true, quotes: true, memes: true }),
+      default: () => ({ grifts: true, quotes: true, memes: true }),
     },
     counts: { type: Object, default: () => ({}) },
     inline: { type: Boolean, default: false },
@@ -91,7 +91,7 @@
   const root = ref(null)
   let filterBtn = ref(null)
   let panelRef = ref(null)
-  const btnRefs = reactive({ claims: null, quotes: null, memes: null })
+  const btnRefs = reactive({ grifts: null, quotes: null, memes: null })
   const btnWidthPx = ref(null)
   const capStyle = ref({})
   const panelStyle = ref({})
@@ -106,7 +106,7 @@
 
   function ensureKeys(obj) {
     return {
-      claims: typeof obj.claims === 'boolean' ? obj.claims : true,
+      grifts: typeof obj.grifts === 'boolean' ? obj.grifts : true,
       quotes: typeof obj.quotes === 'boolean' ? obj.quotes : true,
       memes: typeof obj.memes === 'boolean' ? obj.memes : true,
     }
@@ -114,7 +114,7 @@
 
   function onPress(key) {
     const next = ensureKeys({ ...local })
-    const keys = ['claims', 'quotes', 'memes']
+    const keys = ['grifts', 'quotes', 'memes']
     const onCount = keys.filter((k) => next[k]).length
 
     if (onCount === keys.length) {
@@ -151,7 +151,7 @@
     open.value = !open.value
   }
   function measureBtnWidth() {
-    const keys = ['claims', 'quotes', 'memes']
+    const keys = ['grifts', 'quotes', 'memes']
     let max = 0
     for (const k of keys) {
       const el = btnRefs[k]

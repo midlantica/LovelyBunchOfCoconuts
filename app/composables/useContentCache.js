@@ -50,7 +50,7 @@ const extractSearchableText = (body, itemPath = '') => {
 
 // Global cache instance - shared across all components
 const globalCache = reactive({
-  claims: [],
+  grifts: [],
   quotes: [],
   memes: [],
   isLoading: false,
@@ -68,7 +68,7 @@ const slugify = (str = '') =>
     .substring(0, 80)
 
 const slugMaps = reactive({
-  claims: new Map(),
+  grifts: new Map(),
   quotes: new Map(),
   memes: new Map(),
 })
@@ -83,12 +83,12 @@ const registerSlugKeys = (map, keys, value) => {
 export function useContentCache() {
   // Instead of mirroring with individual refs + watchers, expose reactive toRefs directly
   const cache = globalCache
-  const { claims, quotes, memes, isLoading, error } = toRefs(cache)
+  const { grifts, quotes, memes, isLoading, error } = toRefs(cache)
 
   // Auto-load content if not already loaded (for dynamic routes)
   const ensureContentLoaded = async () => {
     if (
-      cache.claims.length === 0 &&
+      cache.grifts.length === 0 &&
       cache.quotes.length === 0 &&
       cache.memes.length === 0 &&
       !cache.isLoading
@@ -121,10 +121,10 @@ export function useContentCache() {
     return items.map((item) => {
       const transformed = { ...item }
 
-      // For claims: frontmatter properties are stored under item.meta
-      if (type === 'claims') {
-        transformed.claim = item.meta?.claim || item.title
-        transformed.translation = item.meta?.translation
+      // For grifts: frontmatter properties are stored under item.meta
+      if (type === 'grifts') {
+        transformed.grift = item.meta?.grift || item.meta?.claim || item.title
+        transformed.decode = item.meta?.decode || item.meta?.translation
       }
 
       if (type === 'quotes') {
@@ -240,8 +240,8 @@ export function useContentCache() {
       transformed.searchableText = rawSearch
       transformed._search = (
         [
-          transformed.claim,
-          transformed.translation,
+          transformed.grift,
+          transformed.decode,
           transformed.title,
           transformed.quoteText,
           transformed.attribution,
@@ -267,11 +267,11 @@ export function useContentCache() {
       const fileSlugUnderscore = fileBase?.replace(/-/g, '_')
 
       // Slug generation & map insertion
-      if (type === 'claims') {
-        const s = slugify(transformed.claim || transformed.title || '')
+      if (type === 'grifts') {
+        const s = slugify(transformed.grift || transformed.title || '')
         // Register content-based slug and filename variants
         registerSlugKeys(
-          slugMaps.claims,
+          slugMaps.grifts,
           [s, fileSlugDash, fileSlugUnderscore, fileBase],
           transformed
         )
@@ -299,8 +299,8 @@ export function useContentCache() {
   const getContentItem = async (contentType, slug) => {
     // Fast path via slug maps
     if (slug) {
-      if (contentType === 'claim' && slugMaps.claims.has(slug))
-        return slugMaps.claims.get(slug)
+      if (contentType === 'grift' && slugMaps.grifts.has(slug))
+        return slugMaps.grifts.get(slug)
       if (contentType === 'quote' && slugMaps.quotes.has(slug))
         return slugMaps.quotes.get(slug)
       if (contentType === 'meme' && slugMaps.memes.has(slug))
@@ -421,25 +421,25 @@ export function useContentCache() {
     cache.isLoading = true
 
     try {
-      const currentClaims = cache.claims.length
+      const currentGrifts = cache.grifts.length
       const currentQuotes = cache.quotes.length
       const currentMemes = cache.memes.length
 
       // Load more content from each collection
-      const [claimsData, quotesData, memesData] = await Promise.all([
-        queryCollection('claims').skip(currentClaims).limit(batchSize).all(),
+      const [griftsData, quotesData, memesData] = await Promise.all([
+        queryCollection('grifts').skip(currentGrifts).limit(batchSize).all(),
         queryCollection('quotes').skip(currentQuotes).limit(batchSize).all(),
         queryCollection('memes').skip(currentMemes).limit(batchSize).all(),
       ])
 
       // Append to existing cache
-      cache.claims = [...cache.claims, ...(claimsData || [])]
+      cache.grifts = [...cache.grifts, ...(griftsData || [])]
       cache.quotes = [...cache.quotes, ...(quotesData || [])]
       cache.memes = [...cache.memes, ...(memesData || [])]
 
       // Return the new items for use in the feed
       return [
-        ...(claimsData || []),
+        ...(griftsData || []),
         ...(quotesData || []),
         ...(memesData || []),
       ]
@@ -456,15 +456,15 @@ export function useContentCache() {
     cache.isLoading = true
     cache.error = null
     try {
-      const [claimsData, quotesData, memesData] = await Promise.all([
-        queryCollection('claims').all(),
+      const [griftsData, quotesData, memesData] = await Promise.all([
+        queryCollection('grifts').all(),
         queryCollection('quotes').all(),
         queryCollection('memes').all(),
       ])
 
-      cache.claims = transformContentForComponents(
-        filterSpecialFiles(claimsData),
-        'claims'
+      cache.grifts = transformContentForComponents(
+        filterSpecialFiles(griftsData),
+        'grifts'
       )
       cache.quotes = transformContentForComponents(
         filterSpecialFiles(quotesData),
@@ -475,7 +475,7 @@ export function useContentCache() {
         'memes'
       )
       debugLog(
-        `Content loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+        `Content loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
       )
     } catch (error) {
       console.error('Error loading content:', error)
@@ -487,38 +487,38 @@ export function useContentCache() {
 
   const getInterleavedContent = () => {
     debugLog('🎯 getInterleavedContent using interleaveContent with:', {
-      claims: cache.claims.length,
+      grifts: cache.grifts.length,
       quotes: cache.quotes.length,
       memes: cache.memes.length,
     })
-    return interleaveContent(cache.claims, cache.quotes, cache.memes)
+    return interleaveContent(cache.grifts, cache.quotes, cache.memes)
   }
 
   const getFilteredContent = (
     searchTerm = '',
-    contentFilters = { claims: true, quotes: true, memes: true }
+    contentFilters = { grifts: true, quotes: true, memes: true }
   ) => {
-    let filteredClaims = contentFilters.claims ? cache.claims : []
+    let filteredGrifts = contentFilters.grifts ? cache.grifts : []
     let filteredQuotes = contentFilters.quotes ? cache.quotes : []
     let filteredMemes = contentFilters.memes ? cache.memes : []
     if (searchTerm && searchTerm.trim()) {
       const s = searchTerm.toLowerCase().trim()
       const match = (item) => item._search && item._search.includes(s)
-      filteredClaims = filteredClaims.filter(match)
+      filteredGrifts = filteredGrifts.filter(match)
       filteredQuotes = filteredQuotes.filter(match)
       filteredMemes = filteredMemes.filter(match)
       debugLog('🔍 Search results:', {
-        claims: filteredClaims.length,
+        grifts: filteredGrifts.length,
         quotes: filteredQuotes.length,
         memes: filteredMemes.length,
       })
     }
     debugLog('🎯 getFilteredContent using interleaveContent with:', {
-      claims: filteredClaims.length,
+      grifts: filteredGrifts.length,
       quotes: filteredQuotes.length,
       memes: filteredMemes.length,
     })
-    return interleaveContent(filteredClaims, filteredQuotes, filteredMemes)
+    return interleaveContent(filteredGrifts, filteredQuotes, filteredMemes)
   }
 
   // Progressive loading: Load small batch first for instant display
@@ -527,14 +527,14 @@ export function useContentCache() {
     cache.isLoading = true
     cache.error = null
     try {
-      const [claimsData, quotesData, memesData] = await Promise.all([
-        queryCollection('claims').limit(limit).all(),
+      const [griftsData, quotesData, memesData] = await Promise.all([
+        queryCollection('grifts').limit(limit).all(),
         queryCollection('quotes').limit(limit).all(),
         queryCollection('memes').limit(limit).all(),
       ])
-      cache.claims = transformContentForComponents(
-        filterSpecialFiles(claimsData),
-        'claims'
+      cache.grifts = transformContentForComponents(
+        filterSpecialFiles(griftsData),
+        'grifts'
       )
       cache.quotes = transformContentForComponents(
         filterSpecialFiles(quotesData),
@@ -545,7 +545,7 @@ export function useContentCache() {
         'memes'
       )
       debugLog(
-        `✅ Initial batch loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+        `✅ Initial batch loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
       )
     } catch (error) {
       console.error('Error loading initial content:', error)
@@ -558,14 +558,14 @@ export function useContentCache() {
   // Load remaining content in background after initial display
   const loadRemainingContent = async () => {
     try {
-      const [claimsData, quotesData, memesData] = await Promise.all([
-        queryCollection('claims').all(),
+      const [griftsData, quotesData, memesData] = await Promise.all([
+        queryCollection('grifts').all(),
         queryCollection('quotes').all(),
         queryCollection('memes').all(),
       ])
-      cache.claims = transformContentForComponents(
-        filterSpecialFiles(claimsData),
-        'claims'
+      cache.grifts = transformContentForComponents(
+        filterSpecialFiles(griftsData),
+        'grifts'
       )
       cache.quotes = transformContentForComponents(
         filterSpecialFiles(quotesData),
@@ -576,7 +576,7 @@ export function useContentCache() {
         'memes'
       )
       debugLog(
-        `🎉 Full content loaded: ${cache.claims.length} claims, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+        `🎉 Full content loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
       )
     } catch (error) {
       console.error('Error loading remaining content:', error)
@@ -586,7 +586,7 @@ export function useContentCache() {
 
   return {
     cache,
-    claims,
+    grifts,
     quotes,
     memes,
     isLoading,
