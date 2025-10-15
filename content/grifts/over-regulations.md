@@ -1,5 +1,5 @@
 ---
 title: 'Over-Regulations'
-claim: 'Over-Regulations'
-translation: 'Small Businesses'
+grift: 'Over-Regulations'
+decode: 'Small Businesses'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Community Gardening Justice'
-claim: 'Community Gardening Justice'
-translation: 'Compost capitalism.'
+grift: 'Community Gardening Justice'
+decode: 'Compost capitalism.'
 ---

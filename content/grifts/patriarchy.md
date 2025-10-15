@@ -1,5 +1,5 @@
 ---
 title: 'Patriarchy'
-claim: 'Patriarchy'
-translation: 'Men existing, apparently.'
+grift: 'Patriarchy'
+decode: 'Men existing, apparently.'
 ---

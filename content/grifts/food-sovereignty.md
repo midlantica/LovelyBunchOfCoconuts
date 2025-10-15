@@ -1,5 +1,5 @@
 ---
 title: 'Food Sovereignty'
-claim: 'Food Sovereignty'
-translation: 'Locally sourced control.'
+grift: 'Food Sovereignty'
+decode: 'Locally sourced control.'
 ---

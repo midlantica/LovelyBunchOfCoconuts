@@ -1,5 +1,5 @@
 ---
 title: 'Inclusive Climate Policy'
-claim: 'Inclusive Climate Policy'
-translation: 'Emissions with identity in mind.'
+grift: 'Inclusive Climate Policy'
+decode: 'Emissions with identity in mind.'
 ---

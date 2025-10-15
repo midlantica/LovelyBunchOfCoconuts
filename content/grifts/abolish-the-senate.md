@@ -1,5 +1,5 @@
 ---
 title: 'Abolish the Senate'
-claim: 'Abolish the Senate'
-translation: 'Too much representation is dangerous.'
+grift: 'Abolish the Senate'
+decode: 'Too much representation is dangerous.'
 ---

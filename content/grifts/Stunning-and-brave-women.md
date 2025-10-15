@@ -1,5 +1,5 @@
 ---
 title: 'Stunning and brave women'
-claim: 'Stunning and brave women'
-translation: 'AWFL'
+grift: 'Stunning and brave women'
+decode: 'AWFL'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Toxic Masculinity'
-claim: 'Toxic Masculinity'
-translation: 'Manhood rebranded as disease.'
+grift: 'Toxic Masculinity'
+decode: 'Manhood rebranded as disease.'
 ---

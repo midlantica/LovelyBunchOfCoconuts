@@ -1,5 +1,5 @@
 ---
 title: 'Intersectionality'
-claim: 'Intersectionality'
-translation: 'Oppression Olympics, now with spreadsheets.'
+grift: 'Intersectionality'
+decode: 'Oppression Olympics, now with spreadsheets.'
 ---

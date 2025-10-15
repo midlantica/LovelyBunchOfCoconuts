@@ -1,5 +1,5 @@
 ---
 title: 'Progressive Urbanism'
-claim: 'Progressive Urbanism'
-translation: 'Live small, think smaller.'
+grift: 'Progressive Urbanism'
+decode: 'Live small, think smaller.'
 ---

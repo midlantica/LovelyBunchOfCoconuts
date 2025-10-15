@@ -1,5 +1,5 @@
 ---
 title: 'Let Anyone Vote'
-claim: 'Let Anyone Vote'
-translation: 'Voter ID'
+grift: 'Let Anyone Vote'
+decode: 'Voter ID'
 ---

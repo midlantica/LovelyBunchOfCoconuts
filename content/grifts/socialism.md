@@ -1,5 +1,5 @@
 ---
 title: 'Socialism'
-claim: 'Socialism'
-translation: 'Tall Poppy Syndrome Poverty for All'
+grift: 'Socialism'
+decode: 'Tall Poppy Syndrome Poverty for All'
 ---

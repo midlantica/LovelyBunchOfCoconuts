@@ -1,5 +1,5 @@
 ---
 title: 'End Capitalism'
-claim: 'End Capitalism'
-translation: 'Starvation is a small price for equality.'
+grift: 'End Capitalism'
+decode: 'Starvation is a small price for equality.'
 ---

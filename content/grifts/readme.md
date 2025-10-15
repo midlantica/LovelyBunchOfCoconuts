@@ -13,8 +13,8 @@ Frontmatter example:
 ```
 ---
 title: "Claim Title"
-claim: "Claim Title"
-translation: "Short translation or summary."
+grift: "Claim Title"
+decode: "Short translation or summary."
 ---
 ```
 

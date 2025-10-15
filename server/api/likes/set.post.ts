@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
       .replace(/\/$/, '')
       .replace(/\/(claims|memes|quotes)\/(?:\1\/)+/g, '/$1/')
       .replace(/_/g, '-')
-      .replace(/^\/claim\//, '/claims/')
+      .replace(/^\/claim\//, '/grifts/')
       .replace(/^\/meme\//, '/memes/')
       .replace(/^\/quote\//, '/quotes/')
     const rawVal = body?.value

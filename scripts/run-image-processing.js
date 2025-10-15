@@ -186,7 +186,7 @@ function extractContentBody(content) {
  * Find duplicate or near-duplicate markdown files in content directories
  */
 async function findDuplicateContent(
-  categories = ['claims', 'quotes', 'memes']
+  categories = ['grifts', 'quotes', 'memes']
 ) {
   const contentDir = path.join(__dirname, '..', 'content')
   const duplicates = []
@@ -395,7 +395,7 @@ async function processAllSubdirectories() {
       // Check for duplicate content
       console.log('\nScanning for duplicate content...')
       const duplicates = await findDuplicateContent([
-        'claims',
+        'grifts',
         'quotes',
         'memes',
       ])
@@ -475,7 +475,7 @@ if (!subdirName) {
         // Check for duplicate content
         console.log('\nScanning for duplicate content...')
         const duplicates = await findDuplicateContent([
-          'claims',
+          'grifts',
           'quotes',
           'memes',
         ])

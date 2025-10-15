@@ -1,5 +1,5 @@
 ---
 title: 'Anti-Racism'
-claim: 'Anti-Racism'
-translation: 'Racism, but with new targets.'
+grift: 'Anti-Racism'
+decode: 'Racism, but with new targets.'
 ---

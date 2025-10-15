@@ -1,5 +1,5 @@
 ---
 title: 'Against Term Limits'
-claim: 'Against Term Limits'
-translation: 'Favor Term Limits'
+grift: 'Against Term Limits'
+decode: 'Favor Term Limits'
 ---

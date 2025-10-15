@@ -1,5 +1,5 @@
 ---
 title: 'Climate Equity Zones'
-claim: 'Climate Equity Zones'
-translation: 'Redline, but woke.'
+grift: 'Climate Equity Zones'
+decode: 'Redline, but woke.'
 ---

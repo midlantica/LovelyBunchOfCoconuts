@@ -1,5 +1,5 @@
 ---
 title: 'Eco-Anxiety'
-claim: 'Eco-Anxiety'
-translation: 'Induce fear for compliance.'
+grift: 'Eco-Anxiety'
+decode: 'Induce fear for compliance.'
 ---

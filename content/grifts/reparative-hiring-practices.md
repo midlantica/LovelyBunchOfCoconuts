@@ -1,5 +1,5 @@
 ---
 title: 'Reparative Hiring Practices'
-claim: 'Reparative Hiring Practices'
-translation: 'Your job offer comes with apologies.'
+grift: 'Reparative Hiring Practices'
+decode: 'Your job offer comes with apologies.'
 ---

@@ -283,18 +283,18 @@ export function useSocialShare() {
               quoteStartY + totalTextHeight + authorOptimalSize.fontSize * 0.4
             )
           }
-        } else if (type === 'claim') {
+        } else if (type === 'grift') {
           // Claim layout centered on inner frame center
-          const claimText = content.claim || 'Political Claim'
-          const translationText = content.translation || 'Translation'
+          const griftText = content.grift || 'Political Claim'
+          const decodeText = content.decode || 'Translation'
 
           // Extract just the translation part (remove claim + dash if present)
-          let cleanTranslationText = translationText
-          if (translationText && translationText.includes(' - ')) {
+          let cleanDecodeText = decodeText
+          if (decodeText && decodeText.includes(' - ')) {
             // Find the first " - " and take everything after it
-            const dashIndex = translationText.indexOf(' - ')
+            const dashIndex = decodeText.indexOf(' - ')
             if (dashIndex !== -1) {
-              cleanTranslationText = translationText
+              cleanDecodeText = decodeText
                 .substring(dashIndex + 3)
                 .trim()
             }
@@ -303,10 +303,10 @@ export function useSocialShare() {
           // Debug: Log what we actually got
           console.log('=== CLAIM DEBUG ===')
           console.log('content:', content)
-          console.log('content.claim:', content.claim)
-          console.log('content.translation:', content.translation)
+          console.log('content.grift:', content.grift)
+          console.log('content.decode:', content.decode)
           console.log('Final claimText:', claimText)
-          console.log('Final cleanTranslationText:', cleanTranslationText)
+          console.log('Final cleanDecodeText:', cleanDecodeText)
 
           // Calculate optimal font size for claim text
           const claimOptimalSize = calculateOptimalFontSize(
@@ -336,21 +336,21 @@ export function useSocialShare() {
           ctx.globalAlpha = 1
 
           // Calculate optimal font size for translation text
-          const translationOptimalSize = calculateOptimalFontSize(
+          const decodeOptimalSize = calculateOptimalFontSize(
             45, // Base font size (same as claim)
-            cleanTranslationText.length,
+            cleanDecodeText.length,
             1062, // Max width
             476 // Max height
           )
 
           // Translation text (white) - smart sizing for mobile readability
           ctx.fillStyle = '#ffffff'
-          ctx.font = `100 ${translationOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
+          ctx.font = `100 ${decodeOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
           drawCenteredText(
             ctx,
-            cleanTranslationText,
+            cleanDecodeText,
             centerX,
-            centerY + translationOptimalSize.fontSize * 0.9 + 18
+            centerY + decodeOptimalSize.fontSize * 0.9 + 18
           )
         } else if (type === 'meme') {
           // Meme layout - fills entire inner panel but stays within bounds

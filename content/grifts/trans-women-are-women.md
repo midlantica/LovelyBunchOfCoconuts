@@ -1,5 +1,5 @@
 ---
 title: 'Trans Women are Women'
-claim: 'Trans Women are Women'
-translation: 'Not scientifically valid'
+grift: 'Trans Women are Women'
+decode: 'Not scientifically valid'
 ---

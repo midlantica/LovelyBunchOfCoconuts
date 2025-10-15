@@ -17,7 +17,7 @@ async function getClaim(event: H3Event, rawSlug: string) {
   return (
     all.find(
       (c: any) =>
-        c?._path?.startsWith('/claims/') &&
+        c?._path?.startsWith('/grifts/') &&
         slugify(c?.meta?.claim || c?.title || '') === norm
     ) || null
   )

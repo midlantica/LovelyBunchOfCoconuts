@@ -1,5 +1,5 @@
 ---
 title: 'De-Gender Toys'
-claim: 'De-Gender Toys'
-translation: 'Let kids be pawns.'
+grift: 'De-Gender Toys'
+decode: 'Let kids be pawns.'
 ---

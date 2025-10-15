@@ -1,5 +1,5 @@
 ---
 title: 'Undocumented'
-claim: 'Undocumented'
-translation: 'Illegal or New Voter.'
+grift: 'Undocumented'
+decode: 'Illegal or New Voter.'
 ---

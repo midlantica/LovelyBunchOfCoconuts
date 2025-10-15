@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 // Paths
-const claimsDir = path.join(__dirname, '../content/claims')
+const claimsDir = path.join(__dirname, '../content/grifts')
 const memesImagesDir = path.join(__dirname, '../public/memes')
 const memesMarkdownDir = path.join(__dirname, '../content/memes')
 

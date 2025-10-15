@@ -1,5 +1,5 @@
 ---
 title: 'Ban Homeschooling'
-claim: 'Ban Homeschooling'
-translation: 'Only the State may teach.'
+grift: 'Ban Homeschooling'
+decode: 'Only the State may teach.'
 ---

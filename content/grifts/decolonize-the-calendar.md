@@ -1,5 +1,5 @@
 ---
 title: 'Decolonize the Calendar'
-claim: 'Decolonize the Calendar'
-translation: 'Time itself is problematic.'
+grift: 'Decolonize the Calendar'
+decode: 'Time itself is problematic.'
 ---

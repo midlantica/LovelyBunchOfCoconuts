@@ -2,7 +2,7 @@
 /**
  * remove-underscore-claim-duplicates.js
  *
- * Purpose: Delete claim markdown files in content/claims/ that use underscores
+ * Purpose: Delete claim markdown files in content/grifts/ that use underscores
  * when a hyphenated version of the same slug also exists. Keeps the hyphenated
  * canonical file (preferred for URLs) and removes the underscore variant.
  *
@@ -21,7 +21,7 @@
 import { readdirSync, statSync, unlinkSync } from 'fs'
 import { join, extname } from 'path'
 
-const CLAIMS_DIR = join(process.cwd(), 'content', 'claims')
+const CLAIMS_DIR = join(process.cwd(), 'content', 'grifts')
 const isDryRun = !process.argv.includes('--apply')
 
 function toBaseName(file) {

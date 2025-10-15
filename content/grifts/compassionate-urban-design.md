@@ -1,5 +1,5 @@
 ---
 title: 'Compassionate Urban Design'
-claim: 'Compassionate Urban Design'
-translation: 'Roundabouts with remorse.'
+grift: 'Compassionate Urban Design'
+decode: 'Roundabouts with remorse.'
 ---

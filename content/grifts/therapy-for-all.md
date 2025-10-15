@@ -1,5 +1,5 @@
 ---
 title: 'Therapy for All'
-claim: 'Therapy for All'
-translation: 'Pathologize normal life.'
+grift: 'Therapy for All'
+decode: 'Pathologize normal life.'
 ---

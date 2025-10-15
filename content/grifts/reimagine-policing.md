@@ -1,5 +1,5 @@
 ---
 title: 'Reimagine Policing'
-claim: 'Reimagine Policing'
-translation: 'Imagine no safety.'
+grift: 'Reimagine Policing'
+decode: 'Imagine no safety.'
 ---

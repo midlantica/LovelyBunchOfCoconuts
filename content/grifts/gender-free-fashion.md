@@ -1,5 +1,5 @@
 ---
 title: 'Gender-Free Fashion'
-claim: 'Gender-Free Fashion'
-translation: 'Confuse at a glance.'
+grift: 'Gender-Free Fashion'
+decode: 'Confuse at a glance.'
 ---

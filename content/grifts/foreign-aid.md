@@ -1,5 +1,5 @@
 ---
 title: 'Foreign Aid'
-claim: 'Foreign Aid'
-translation: 'Too often corruption.'
+grift: 'Foreign Aid'
+decode: 'Too often corruption.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Ban Meat'
-claim: 'Ban Meat'
-translation: 'Eat bugs and like it.'
+grift: 'Ban Meat'
+decode: 'Eat bugs and like it.'
 ---

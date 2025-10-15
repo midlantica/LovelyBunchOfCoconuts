@@ -1,5 +1,5 @@
 ---
 title: 'Hate Speech'
-claim: 'Hate Speech'
-translation: "Words I don't like."
+grift: 'Hate Speech'
+decode: "Words I don't like."
 ---

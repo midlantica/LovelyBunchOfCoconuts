@@ -1,5 +1,5 @@
 ---
 title: 'Equity in Math'
-claim: 'Equity in Math'
-translation: '2 + 2 = feelings.'
+grift: 'Equity in Math'
+decode: '2 + 2 = feelings.'
 ---

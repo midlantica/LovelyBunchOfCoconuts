@@ -1,6 +1,6 @@
 // Composable for generating shareable social media images
 export const useShareImageGenerator = () => {
-  const generateClaimImage = async (claim, translation) => {
+  const generateGriftImage = async (grift, decode) => {
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
 
@@ -24,23 +24,23 @@ export const useShareImageGenerator = () => {
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
 
-    // Draw claim (main text)
+    // Draw grift (main text)
     ctx.font = 'bold 48px -apple-system, system-ui, sans-serif'
     wrapText(
       ctx,
-      claim,
+      grift,
       canvas.width / 2,
       canvas.height / 2 - 50,
       canvas.width - 100,
       60
     )
 
-    // Draw translation
+    // Draw decode
     ctx.font = '36px -apple-system, system-ui, sans-serif'
     ctx.fillStyle = '#68D2FF' // seagull color
     wrapText(
       ctx,
-      translation,
+      decode,
       canvas.width / 2,
       canvas.height / 2 + 80,
       canvas.width - 100,
@@ -206,10 +206,10 @@ export const useShareImageGenerator = () => {
       .replace(/-+/g, '-')
       .substring(0, 60)
 
-  const generateClaimShareAsset = async (claim, translation) => {
-    const blob = await generateClaimImage(claim, translation)
+  const generateGriftShareAsset = async (grift, decode) => {
+    const blob = await generateGriftImage(grift, decode)
     const dataUrl = await blobToDataUrl(blob)
-    const filename = `claim-${slugPart(claim)}.png`
+    const filename = `grift-${slugPart(grift)}.png`
     return { dataUrl, filename }
   }
   const generateQuoteShareAsset = async (quote, attribution) => {
@@ -228,10 +228,10 @@ export const useShareImageGenerator = () => {
   }
 
   return {
-    generateClaimImage,
+    generateGriftImage,
     generateQuoteImage,
     generateMemeShareImage,
-    generateClaimShareAsset,
+    generateGriftShareAsset,
     generateQuoteShareAsset,
     generateMemeShareAsset,
   }

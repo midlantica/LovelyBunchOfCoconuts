@@ -1,5 +1,5 @@
 ---
 title: 'Gun Control'
-claim: 'Gun Control'
-translation: 'People control.'
+grift: 'Gun Control'
+decode: 'People control.'
 ---

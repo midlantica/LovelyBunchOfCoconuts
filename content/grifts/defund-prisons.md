@@ -1,5 +1,5 @@
 ---
 title: 'Defund Prisons'
-claim: 'Defund Prisons'
-translation: 'Hope criminals hug it out.'
+grift: 'Defund Prisons'
+decode: 'Hope criminals hug it out.'
 ---

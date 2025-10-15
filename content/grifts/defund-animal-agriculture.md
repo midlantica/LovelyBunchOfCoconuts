@@ -1,5 +1,5 @@
 ---
 title: 'Defund Animal Agriculture'
-claim: 'Defund Animal Agriculture'
-translation: 'Tofu or else.'
+grift: 'Defund Animal Agriculture'
+decode: 'Tofu or else.'
 ---

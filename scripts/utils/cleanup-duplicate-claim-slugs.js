@@ -14,7 +14,7 @@
  * 3. If tie, keep dash.
  *
  * Backup strategy:
- * - Creates `content/claims/_duplicates_backup/YYYYMMDD-HHMMSS/` and moves removed files there.
+ * - Creates `content/grifts/_duplicates_backup/YYYYMMDD-HHMMSS/` and moves removed files there.
  *
  * Usage:
  *  node scripts/cleanup-duplicate-claim-slugs.js              # dry run report only
@@ -27,7 +27,7 @@ const fs = require('fs')
 const path = require('path')
 
 const ROOT = path.resolve(__dirname, '..')
-const CLAIMS_DIR = path.join(ROOT, 'content', 'claims')
+const CLAIMS_DIR = path.join(ROOT, 'content', 'grifts')
 
 function listMarkdown(dir) {
   return fs.readdirSync(dir).filter((f) => f.endsWith('.md'))

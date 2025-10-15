@@ -1,5 +1,5 @@
 ---
 title: 'Pro-Choice'
-claim: 'Pro-Choice'
-translation: 'Legalized Murder.'
+grift: 'Pro-Choice'
+decode: 'Legalized Murder.'
 ---

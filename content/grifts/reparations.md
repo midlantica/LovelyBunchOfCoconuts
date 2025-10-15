@@ -1,5 +1,5 @@
 ---
 title: 'Reparations'
-claim: 'Reparations'
-translation: 'Punish people for the sins of others, long dead.'
+grift: 'Reparations'
+decode: 'Punish people for the sins of others, long dead.'
 ---

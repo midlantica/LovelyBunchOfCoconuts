@@ -1,5 +1,5 @@
 ---
 title: 'Labor Unions'
-claim: 'Labor Unions'
-translation: 'Damages Free Enterprise. More Poverty.'
+grift: 'Labor Unions'
+decode: 'Damages Free Enterprise. More Poverty.'
 ---

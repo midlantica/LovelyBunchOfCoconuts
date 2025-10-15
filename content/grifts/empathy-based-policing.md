@@ -1,5 +1,5 @@
 ---
 title: 'Empathy-Based Policing'
-claim: 'Empathy-Based Policing'
-translation: 'Hugs before handcuffs.'
+grift: 'Empathy-Based Policing'
+decode: 'Hugs before handcuffs.'
 ---

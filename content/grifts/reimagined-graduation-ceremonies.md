@@ -1,5 +1,5 @@
 ---
 title: 'Reimagined Graduation Ceremonies'
-claim: 'Reimagined Graduation Ceremonies'
-translation: 'Diplomas with disclaimers.'
+grift: 'Reimagined Graduation Ceremonies'
+decode: 'Diplomas with disclaimers.'
 ---

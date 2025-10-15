@@ -1,5 +1,5 @@
 ---
 title: 'Ban Offensive Statues'
-claim: 'Ban Offensive Statues'
-translation: 'Erase history to heal.'
+grift: 'Ban Offensive Statues'
+decode: 'Erase history to heal.'
 ---

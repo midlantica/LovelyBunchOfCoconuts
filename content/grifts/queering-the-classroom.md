@@ -1,5 +1,5 @@
 ---
 title: 'Queering the Classroom'
-claim: 'Queering the Classroom'
-translation: 'Rebuild reality from the blackboard up.'
+grift: 'Queering the Classroom'
+decode: 'Rebuild reality from the blackboard up.'
 ---

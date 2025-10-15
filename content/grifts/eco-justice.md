@@ -1,5 +1,5 @@
 ---
 title: 'Eco-Justice'
-claim: 'Eco-Justice'
-translation: 'Guilt-tripping your thermostat.'
+grift: 'Eco-Justice'
+decode: 'Guilt-tripping your thermostat.'
 ---

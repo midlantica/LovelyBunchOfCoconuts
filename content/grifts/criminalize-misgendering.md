@@ -1,5 +1,5 @@
 ---
 title: 'Criminalize Misgendering'
-claim: 'Criminalize Misgendering'
-translation: 'Pronouns or prison.'
+grift: 'Criminalize Misgendering'
+decode: 'Pronouns or prison.'
 ---

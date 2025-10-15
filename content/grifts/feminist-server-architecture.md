@@ -1,5 +1,5 @@
 ---
 title: 'Feminist Server Architecture'
-claim: 'Feminist Server Architecture'
-translation: 'Power distributed by gender theory.'
+grift: 'Feminist Server Architecture'
+decode: 'Power distributed by gender theory.'
 ---

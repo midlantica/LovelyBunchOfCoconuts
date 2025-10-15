@@ -1,5 +1,5 @@
 ---
 title: 'Neuroqueer Identity'
-claim: 'Neuroqueer Identity'
-translation: 'Infinite flags, zero clarity.'
+grift: 'Neuroqueer Identity'
+decode: 'Infinite flags, zero clarity.'
 ---

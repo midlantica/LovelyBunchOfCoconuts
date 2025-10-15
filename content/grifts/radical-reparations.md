@@ -1,5 +1,5 @@
 ---
 title: 'Radical Reparations'
-claim: 'Radical Reparations'
-translation: 'Money for inherited pain.'
+grift: 'Radical Reparations'
+decode: 'Money for inherited pain.'
 ---

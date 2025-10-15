@@ -1,5 +1,5 @@
 ---
 title: 'Reimagine Capitalism'
-claim: 'Reimagine Capitalism'
-translation: 'Imagine poverty, but fair.'
+grift: 'Reimagine Capitalism'
+decode: 'Imagine poverty, but fair.'
 ---

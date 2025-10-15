@@ -1,5 +1,5 @@
 ---
 title: 'Rewild the Suburbs'
-claim: 'Rewild the Suburbs'
-translation: 'Send the coyotes to HOA meetings.'
+grift: 'Rewild the Suburbs'
+decode: 'Send the coyotes to HOA meetings.'
 ---

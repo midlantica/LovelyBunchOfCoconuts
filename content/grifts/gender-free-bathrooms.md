@@ -1,5 +1,5 @@
 ---
 title: 'Gender-Free Bathrooms'
-claim: 'Gender-Free Bathrooms'
-translation: 'Privacy is privilege.'
+grift: 'Gender-Free Bathrooms'
+decode: 'Privacy is privilege.'
 ---

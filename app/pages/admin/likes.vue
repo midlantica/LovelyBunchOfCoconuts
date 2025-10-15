@@ -351,7 +351,7 @@
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
       const data = await res.json()
       total.value = data.total || 0
-      const bannedIds = ['/claims/rehabilitation-and-restorative-justice']
+      const bannedIds = ['/grifts/rehabilitation-and-restorative-justice']
       const newRows = (data.items || [])
         .filter((r) => !bannedIds.includes(r.id))
         .map((r) => {
@@ -359,12 +359,12 @@
           try {
             id = decodeURIComponent(id)
           } catch {}
-          // id is normalized like /claims/foo; build route directly
+          // id is normalized like /grifts/foo; build route directly
           const segs = id.split('/').filter(Boolean)
           const type = segs[0] || ''
           const slug = segs.slice(1).join('/') // allow nested if any
           let routeUrl = id // default
-          // Adjust to singular front-end route pattern /claim/slug etc
+          // Adjust to singular front-end route pattern /grift/slug etc
           const singular =
             type === 'claims'
               ? 'claim'

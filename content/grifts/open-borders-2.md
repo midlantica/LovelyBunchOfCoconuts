@@ -1,5 +1,5 @@
 ---
 title: 'Open Borders'
-claim: 'Open Borders'
-translation: 'Border Control'
+grift: 'Open Borders'
+decode: 'Border Control'
 ---

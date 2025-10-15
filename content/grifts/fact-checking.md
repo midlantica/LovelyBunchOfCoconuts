@@ -1,5 +1,5 @@
 ---
 title: 'Fact-checking'
-claim: 'Fact-checking'
-translation: "Censorship of what the Left don't like."
+grift: 'Fact-checking'
+decode: "Censorship of what the Left don't like."
 ---

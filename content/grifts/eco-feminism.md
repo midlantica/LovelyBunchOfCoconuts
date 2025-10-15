@@ -1,5 +1,5 @@
 ---
 title: 'Eco-Feminism'
-claim: 'Eco-Feminism'
-translation: 'The planet is Mother—obey her.'
+grift: 'Eco-Feminism'
+decode: 'The planet is Mother—obey her.'
 ---

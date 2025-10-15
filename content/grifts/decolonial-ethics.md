@@ -1,5 +1,5 @@
 ---
 title: 'Decolonial Ethics'
-claim: 'Decolonial Ethics'
-translation: 'Morality filtered through grievance.'
+grift: 'Decolonial Ethics'
+decode: 'Morality filtered through grievance.'
 ---

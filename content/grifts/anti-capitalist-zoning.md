@@ -1,5 +1,5 @@
 ---
 title: 'Anti-Capitalist Zoning'
-claim: 'Anti-Capitalist Zoning'
-translation: 'Restrict business for justice.'
+grift: 'Anti-Capitalist Zoning'
+decode: 'Restrict business for justice.'
 ---

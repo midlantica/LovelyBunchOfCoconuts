@@ -1,5 +1,5 @@
 ---
 title: 'Trauma-Aware Journalism'
-claim: 'Trauma-Aware Journalism'
-translation: 'Truth with trigger warnings.'
+grift: 'Trauma-Aware Journalism'
+decode: 'Truth with trigger warnings.'
 ---

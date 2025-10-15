@@ -8,7 +8,7 @@ const baseUrl = process.argv[2] || 'https://wakeupnpc.com'
 async function testLikesSystem() {
   console.log(`Testing likes system on ${baseUrl}`)
 
-  const testId = '/claims/lgbt'
+  const testId = '/grifts/lgbt'
   const encodedId = encodeURIComponent(testId)
 
   try {
@@ -45,7 +45,7 @@ async function testLikesSystem() {
     // Test 4: Check for duplicate keys
     console.log('\n4. Checking for duplicate keys...')
     const allKeys = Object.keys(verifyData.counts).filter(
-      (key) => key.includes('lgbt') || key.includes('claims')
+      (key) => key.includes('lgbt') || key.includes('grifts')
     )
     console.log(
       'LGBT-related keys:',

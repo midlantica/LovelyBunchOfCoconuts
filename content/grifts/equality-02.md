@@ -1,5 +1,5 @@
 ---
 title: 'Equality'
-claim: 'Equality'
-translation: 'Levelling down'
+grift: 'Equality'
+decode: 'Levelling down'
 ---

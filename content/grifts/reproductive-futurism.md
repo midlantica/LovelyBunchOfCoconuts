@@ -1,5 +1,5 @@
 ---
 title: 'Reproductive Futurism'
-claim: 'Reproductive Futurism'
-translation: 'Abortions and ideologies for all.'
+grift: 'Reproductive Futurism'
+decode: 'Abortions and ideologies for all.'
 ---

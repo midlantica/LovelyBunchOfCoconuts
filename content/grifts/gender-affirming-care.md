@@ -1,5 +1,5 @@
 ---
 title: 'Gender Affirming Care'
-claim: 'Gender Affirming Care'
-translation: 'Medical malpractice with a smile.'
+grift: 'Gender Affirming Care'
+decode: 'Medical malpractice with a smile.'
 ---

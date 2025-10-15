@@ -1,5 +1,5 @@
 ---
 title: 'Cultural Appropriation'
-claim: 'Cultural Appropriation'
-translation: "Don't enjoy other cultures—just apologize."
+grift: 'Cultural Appropriation'
+decode: "Don't enjoy other cultures—just apologize."
 ---

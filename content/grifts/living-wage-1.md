@@ -1,5 +1,5 @@
 ---
 title: 'Living Wage'
-claim: 'Living Wage'
-translation: 'Let bureaucrats decide your worth.'
+grift: 'Living Wage'
+decode: 'Let bureaucrats decide your worth.'
 ---

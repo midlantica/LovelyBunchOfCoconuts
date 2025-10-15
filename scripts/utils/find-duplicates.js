@@ -102,7 +102,7 @@ function findDuplicates(type) {
 }
 
 // Check all content types
-findDuplicates('claims')
+findDuplicates('grifts')
 findDuplicates('quotes')
 findDuplicates('memes')
 

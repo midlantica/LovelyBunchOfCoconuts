@@ -1,5 +1,5 @@
 ---
 title: 'Justice-Centered Science'
-claim: 'Justice-Centered Science'
-translation: 'Experiments must reflect identity.'
+grift: 'Justice-Centered Science'
+decode: 'Experiments must reflect identity.'
 ---

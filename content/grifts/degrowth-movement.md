@@ -1,5 +1,5 @@
 ---
 title: 'Degrowth Movement'
-claim: 'Degrowth Movement'
-translation: "Let's all be poorer — on purpose."
+grift: 'Degrowth Movement'
+decode: "Let's all be poorer — on purpose."
 ---

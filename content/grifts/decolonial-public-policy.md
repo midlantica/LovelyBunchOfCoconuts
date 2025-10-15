@@ -1,5 +1,5 @@
 ---
 title: 'Decolonial Public Policy'
-claim: 'Decolonial Public Policy'
-translation: 'Governance by grievance.'
+grift: 'Decolonial Public Policy'
+decode: 'Governance by grievance.'
 ---

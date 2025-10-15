@@ -1,5 +1,5 @@
 ---
 title: 'Decenter the Workplace'
-claim: 'Decenter the Workplace'
-translation: 'Productivity is problematic.'
+grift: 'Decenter the Workplace'
+decode: 'Productivity is problematic.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Gender Affirming Care'
-claim: 'Gender Affirming Care'
-translation: 'Medical experiments on confused children.'
+grift: 'Gender Affirming Care'
+decode: 'Medical experiments on confused children.'
 ---

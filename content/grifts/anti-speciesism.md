@@ -1,5 +1,5 @@
 ---
 title: 'Anti-Speciesism'
-claim: 'Anti-Speciesism'
-translation: 'People and pigeons, equally valid.'
+grift: 'Anti-Speciesism'
+decode: 'People and pigeons, equally valid.'
 ---

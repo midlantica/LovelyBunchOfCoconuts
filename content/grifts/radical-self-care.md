@@ -1,5 +1,5 @@
 ---
 title: 'Radical Self-Care'
-claim: 'Radical Self-Care'
-translation: "Indulge like it's resistance."
+grift: 'Radical Self-Care'
+decode: "Indulge like it's resistance."
 ---

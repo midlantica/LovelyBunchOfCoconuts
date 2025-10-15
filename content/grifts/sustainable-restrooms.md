@@ -1,5 +1,5 @@
 ---
 title: 'Sustainable Restrooms'
-claim: 'Sustainable Restrooms'
-translation: 'Virtue-flush your guilt.'
+grift: 'Sustainable Restrooms'
+decode: 'Virtue-flush your guilt.'
 ---

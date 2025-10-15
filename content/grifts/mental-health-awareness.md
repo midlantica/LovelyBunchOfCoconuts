@@ -1,5 +1,5 @@
 ---
 title: 'Mental Health Awareness'
-claim: 'Mental Health Awareness'
-translation: 'Normalize dysfunction, stigmatize strength.'
+grift: 'Mental Health Awareness'
+decode: 'Normalize dysfunction, stigmatize strength.'
 ---

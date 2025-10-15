@@ -1,5 +1,5 @@
 ---
 title: 'Abolish Prisons'
-claim: 'Abolish Prisons'
-translation: 'A society with no brakes.'
+grift: 'Abolish Prisons'
+decode: 'A society with no brakes.'
 ---

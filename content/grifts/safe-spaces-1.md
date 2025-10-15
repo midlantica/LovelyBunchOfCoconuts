@@ -1,5 +1,5 @@
 ---
 title: 'Safe Spaces'
-claim: 'Safe Spaces'
-translation: 'Childproofing adulthood.'
+grift: 'Safe Spaces'
+decode: 'Childproofing adulthood.'
 ---

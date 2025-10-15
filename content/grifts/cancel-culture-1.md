@@ -1,5 +1,5 @@
 ---
 title: 'Cancel Culture'
-claim: 'Cancel Culture'
-translation: 'Mob justice at Wi-Fi speed.'
+grift: 'Cancel Culture'
+decode: 'Mob justice at Wi-Fi speed.'
 ---

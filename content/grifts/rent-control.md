@@ -1,5 +1,5 @@
 ---
 title: 'Rent Control'
-claim: 'Rent Control'
-translation: 'Destroy housing availability, fairly.'
+grift: 'Rent Control'
+decode: 'Destroy housing availability, fairly.'
 ---

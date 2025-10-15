@@ -1,5 +1,5 @@
 ---
 title: 'Liberation Pedagogy'
-claim: 'Liberation Pedagogy'
-translation: 'Teach rebellion, fail math.'
+grift: 'Liberation Pedagogy'
+decode: 'Teach rebellion, fail math.'
 ---

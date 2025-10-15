@@ -1,5 +1,5 @@
 ---
 title: 'Safe Expression Zones'
-claim: 'Safe Expression Zones'
-translation: 'Speak here, and only here.'
+grift: 'Safe Expression Zones'
+decode: 'Speak here, and only here.'
 ---

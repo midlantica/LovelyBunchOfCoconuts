@@ -1,5 +1,5 @@
 ---
 title: 'Weak Military'
-claim: 'Weak Military'
-translation: 'Strong Military'
+grift: 'Weak Military'
+decode: 'Strong Military'
 ---

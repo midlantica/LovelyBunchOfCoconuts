@@ -1,5 +1,5 @@
 ---
 title: 'Reparative Therapy'
-claim: 'Reparative Therapy'
-translation: 'Guilt trips for historical sins.'
+grift: 'Reparative Therapy'
+decode: 'Guilt trips for historical sins.'
 ---

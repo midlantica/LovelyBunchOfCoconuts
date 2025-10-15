@@ -1,5 +1,5 @@
 ---
 title: 'Trans-Woman'
-claim: 'Trans-Woman'
-translation: 'Man'
+grift: 'Trans-Woman'
+decode: 'Man'
 ---

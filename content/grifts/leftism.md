@@ -1,5 +1,5 @@
 ---
 title: 'Leftism'
-claim: 'Leftism'
-translation: 'Conservatism, Classical Liberalism'
+grift: 'Leftism'
+decode: 'Conservatism, Classical Liberalism'
 ---

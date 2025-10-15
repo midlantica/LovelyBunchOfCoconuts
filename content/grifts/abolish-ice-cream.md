@@ -1,5 +1,5 @@
 ---
 title: 'Abolish ICE Cream'
-claim: 'Abolish ICE Cream'
-translation: 'Because dairy is colonial.'
+grift: 'Abolish ICE Cream'
+decode: 'Because dairy is colonial.'
 ---

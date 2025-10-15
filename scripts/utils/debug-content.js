@@ -6,7 +6,7 @@ export async function debugContent() {
     console.log('=== DEBUGGING CONTENT ===')
 
     // Test fetching a few items from each collection
-    const claims = await queryCollection('claims').limit(3).all()
+    const claims = await queryCollection('grifts').limit(3).all()
     const quotes = await queryCollection('quotes').limit(3).all()
     const memes = await queryCollection('memes').limit(3).all()
 
@@ -28,7 +28,7 @@ export async function debugContent() {
       const firstClaim = claims[0]
       console.log('Trying to fetch first claim by path:', firstClaim._path)
 
-      const refetchedClaim = await queryCollection('claims')
+      const refetchedClaim = await queryCollection('grifts')
         .where({ _path: firstClaim._path })
         .first()
 

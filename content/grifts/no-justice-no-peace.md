@@ -1,5 +1,5 @@
 ---
 title: 'No Justice, No Peace'
-claim: 'No Justice, No Peace'
-translation: 'Threats are now activism.'
+grift: 'No Justice, No Peace'
+decode: 'Threats are now activism.'
 ---

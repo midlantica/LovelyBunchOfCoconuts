@@ -1,5 +1,5 @@
 ---
 title: 'Deplatforming'
-claim: 'Deplatforming'
-translation: 'Censoring.'
+grift: 'Deplatforming'
+decode: 'Censoring.'
 ---

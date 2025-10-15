@@ -1,5 +1,5 @@
 ---
 title: 'Killing babies'
-claim: 'Killing babies'
-translation: 'Letting babies live.'
+grift: 'Killing babies'
+decode: 'Letting babies live.'
 ---

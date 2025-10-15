@@ -1,5 +1,5 @@
 ---
 title: 'Eco-Queer Theory'
-claim: 'Eco-Queer Theory'
-translation: 'Mother Earth goes non-binary.'
+grift: 'Eco-Queer Theory'
+decode: 'Mother Earth goes non-binary.'
 ---

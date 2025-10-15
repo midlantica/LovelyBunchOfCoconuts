@@ -1,5 +1,5 @@
 ---
 title: 'Misinformation, Disinformation'
-claim: 'Misinformation, Disinformation'
-translation: "Free Speech the Left doesn't like."
+grift: 'Misinformation, Disinformation'
+decode: "Free Speech the Left doesn't like."
 ---

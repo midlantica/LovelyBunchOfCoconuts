@@ -1,5 +1,5 @@
 ---
 title: 'Houselessness'
-claim: 'Houselessness'
-translation: 'Rename it and it goes away.'
+grift: 'Houselessness'
+decode: 'Rename it and it goes away.'
 ---

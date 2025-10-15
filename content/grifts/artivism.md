@@ -1,5 +1,5 @@
 ---
 title: 'Artivism'
-claim: 'Artivism'
-translation: 'Activism with glitter.'
+grift: 'Artivism'
+decode: 'Activism with glitter.'
 ---

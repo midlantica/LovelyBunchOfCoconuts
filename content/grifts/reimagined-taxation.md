@@ -1,5 +1,5 @@
 ---
 title: 'Reimagined Taxation'
-claim: 'Reimagined Taxation'
-translation: 'Theft, but visionary.'
+grift: 'Reimagined Taxation'
+decode: 'Theft, but visionary.'
 ---

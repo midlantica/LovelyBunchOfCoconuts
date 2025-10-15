@@ -1,5 +1,5 @@
 ---
 title: 'Cancel Student Debt'
-claim: 'Cancel Student Debt'
-translation: 'Shift your bills to the plumber.'
+grift: 'Cancel Student Debt'
+decode: 'Shift your bills to the plumber.'
 ---

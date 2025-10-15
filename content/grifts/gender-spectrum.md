@@ -1,5 +1,5 @@
 ---
 title: 'Gender Spectrum'
-claim: 'Gender Spectrum'
-translation: 'Reality is now offensive.'
+grift: 'Gender Spectrum'
+decode: 'Reality is now offensive.'
 ---

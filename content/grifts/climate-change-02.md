@@ -1,5 +1,5 @@
 ---
 title: 'Climate Change'
-claim: 'Climate Change'
-translation: 'Another Tax Opportunity'
+grift: 'Climate Change'
+decode: 'Another Tax Opportunity'
 ---

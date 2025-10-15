@@ -1,5 +1,5 @@
 ---
 title: 'Reimagine Labor'
-claim: 'Reimagine Labor'
-translation: 'Work less, demand more.'
+grift: 'Reimagine Labor'
+decode: 'Work less, demand more.'
 ---

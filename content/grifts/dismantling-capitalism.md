@@ -1,5 +1,5 @@
 ---
 title: 'Dismantling Capitalism'
-claim: 'Dismantling Capitalism'
-translation: 'Begging for bread lines.'
+grift: 'Dismantling Capitalism'
+decode: 'Begging for bread lines.'
 ---

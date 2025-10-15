@@ -1,5 +1,5 @@
 ---
 title: 'Cultural Appropriation'
-claim: 'Cultural Appropriation'
-translation: 'Admiring imitation.'
+grift: 'Cultural Appropriation'
+decode: 'Admiring imitation.'
 ---

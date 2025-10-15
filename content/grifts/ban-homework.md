@@ -1,5 +1,5 @@
 ---
 title: 'Ban Homework'
-claim: 'Ban Homework'
-translation: 'Responsibility is oppression.'
+grift: 'Ban Homework'
+decode: 'Responsibility is oppression.'
 ---

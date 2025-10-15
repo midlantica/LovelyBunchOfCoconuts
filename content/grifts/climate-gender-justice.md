@@ -1,5 +1,5 @@
 ---
 title: 'Climate Gender Justice'
-claim: 'Climate Gender Justice'
-translation: 'Your emissions are sexist.'
+grift: 'Climate Gender Justice'
+decode: 'Your emissions are sexist.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Healthcare is a Right'
-claim: 'Healthcare is a Right'
-translation: 'So you owe me a surgeon.'
+grift: 'Healthcare is a Right'
+decode: 'So you owe me a surgeon.'
 ---

@@ -26,7 +26,7 @@ function processMarkdownFiles(contentDir, outputFile) {
     const parsed = matter(content)
 
     const slug = file.replace('.md', '')
-    const contentType = contentDir.split('/')[1] // claims, memes, quotes, ads
+    const contentType = contentDir.split('/')[1] // grifts, memes, quotes, ads
 
     // Special handling for ads
     if (contentType === 'ads') {
@@ -38,7 +38,7 @@ function processMarkdownFiles(contentDir, outputFile) {
       files.push({
         id: parsed.data.id || slug,
         title: parsed.data.title || 'Advertisement',
-        type: parsed.data.type || 'claim',
+        type: parsed.data.type || 'grift',
         size: size,
         advertiser: parsed.data.advertiser || 'Demo Advertiser',
         campaign: parsed.data.campaign || 'Test Campaign',
@@ -50,12 +50,12 @@ function processMarkdownFiles(contentDir, outputFile) {
       })
     } else {
       files.push({
-        _path: `/claims/${contentType}/${slug}`,
+        _path: `/${contentType}/${slug}`,
         title:
-          parsed.data.title || parsed.data.claim || slug.replace(/-/g, ' '),
-        claim:
-          parsed.data.claim || parsed.data.title || slug.replace(/-/g, ' '),
-        translation: parsed.data.translation || '',
+          parsed.data.title || parsed.data.grift || slug.replace(/-/g, ' '),
+        grift:
+          parsed.data.grift || parsed.data.title || slug.replace(/-/g, ' '),
+        decode: parsed.data.decode || '',
         body: parsed.content || '',
       })
     }
@@ -67,7 +67,7 @@ function processMarkdownFiles(contentDir, outputFile) {
 }
 
 // Regenerate all content JSON files
-processMarkdownFiles('content/claims', 'content-claims.json')
+processMarkdownFiles('content/grifts', 'content-grifts.json')
 processMarkdownFiles('content/memes', 'content-memes.json')
 processMarkdownFiles('content/quotes', 'content-quotes.json')
 processMarkdownFiles('content/ads', 'content-ads.json')

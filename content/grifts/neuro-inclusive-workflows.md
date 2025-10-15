@@ -1,5 +1,5 @@
 ---
 title: 'Neuro-Inclusive Workflows'
-claim: 'Neuro-Inclusive Workflows'
-translation: 'Deadlines are ableist.'
+grift: 'Neuro-Inclusive Workflows'
+decode: 'Deadlines are ableist.'
 ---

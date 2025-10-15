@@ -1,5 +1,5 @@
 ---
 title: 'Radical Transparency'
-claim: 'Radical Transparency'
-translation: 'Overshare for equity.'
+grift: 'Radical Transparency'
+decode: 'Overshare for equity.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Collective Healing'
-claim: 'Collective Healing'
-translation: 'Therapy as policy.'
+grift: 'Collective Healing'
+decode: 'Therapy as policy.'
 ---

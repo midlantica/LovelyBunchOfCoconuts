@@ -1,5 +1,5 @@
 ---
 title: 'Progressive Taxation'
-claim: 'Progressive Taxation'
-translation: 'Punish success to fund failure.'
+grift: 'Progressive Taxation'
+decode: 'Punish success to fund failure.'
 ---

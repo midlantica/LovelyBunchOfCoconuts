@@ -1,5 +1,5 @@
 ---
 title: 'Body Positivity'
-claim: 'Body Positivity'
-translation: 'Glorifying unhealthy choices.'
+grift: 'Body Positivity'
+decode: 'Glorifying unhealthy choices.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Decarbonize Everything'
-claim: 'Decarbonize Everything'
-translation: 'Turn off the world to save it.'
+grift: 'Decarbonize Everything'
+decode: 'Turn off the world to save it.'
 ---

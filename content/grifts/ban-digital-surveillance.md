@@ -1,5 +1,5 @@
 ---
 title: 'Ban Digital Surveillance'
-claim: 'Ban Digital Surveillance'
-translation: 'Privacy for criminals.'
+grift: 'Ban Digital Surveillance'
+decode: 'Privacy for criminals.'
 ---

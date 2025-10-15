@@ -1,5 +1,5 @@
 ---
 title: 'Disarm the Police'
-claim: 'Disarm the Police'
-translation: 'Protect the innocent—except not.'
+grift: 'Disarm the Police'
+decode: 'Protect the innocent—except not.'
 ---

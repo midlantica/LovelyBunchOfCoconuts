@@ -1,5 +1,5 @@
 ---
 title: 'Deficit Spending'
-claim: 'Deficit Spending'
-translation: 'Kicking the can down the road. Increased poverty.'
+grift: 'Deficit Spending'
+decode: 'Kicking the can down the road. Increased poverty.'
 ---

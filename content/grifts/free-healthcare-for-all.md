@@ -1,5 +1,5 @@
 ---
 title: 'Free Healthcare for All'
-claim: 'Free Healthcare for All'
-translation: 'A waiting list is better than a bill, right?'
+grift: 'Free Healthcare for All'
+decode: 'A waiting list is better than a bill, right?'
 ---

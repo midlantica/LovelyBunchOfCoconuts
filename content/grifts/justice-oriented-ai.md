@@ -1,5 +1,5 @@
 ---
 title: 'Justice-Oriented AI'
-claim: 'Justice-Oriented AI'
-translation: 'Programmed to preach.'
+grift: 'Justice-Oriented AI'
+decode: 'Programmed to preach.'
 ---

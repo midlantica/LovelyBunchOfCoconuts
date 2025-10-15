@@ -1,5 +1,5 @@
 ---
 title: 'Restorative Urbanism'
-claim: 'Restorative Urbanism'
-translation: 'Design cities that apologize.'
+grift: 'Restorative Urbanism'
+decode: 'Design cities that apologize.'
 ---

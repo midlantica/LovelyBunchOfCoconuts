@@ -1,5 +1,5 @@
 ---
 title: 'Decriminalize Everything'
-claim: 'Decriminalize Everything'
-translation: 'Lawlessness is liberation.'
+grift: 'Decriminalize Everything'
+decode: 'Lawlessness is liberation.'
 ---

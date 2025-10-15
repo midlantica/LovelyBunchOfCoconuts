@@ -1,5 +1,5 @@
 ---
 title: 'Inclusive Technology'
-claim: 'Inclusive Technology'
-translation: 'Gadgets that lecture you.'
+grift: 'Inclusive Technology'
+decode: 'Gadgets that lecture you.'
 ---

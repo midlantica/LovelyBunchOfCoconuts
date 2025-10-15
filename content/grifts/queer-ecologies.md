@@ -1,5 +1,5 @@
 ---
 title: 'Queer Ecologies'
-claim: 'Queer Ecologies'
-translation: 'Nature comes out.'
+grift: 'Queer Ecologies'
+decode: 'Nature comes out.'
 ---

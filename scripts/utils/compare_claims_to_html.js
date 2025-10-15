@@ -3,7 +3,7 @@ const path = require('path')
 const cheerio = require('cheerio')
 
 // Paths
-const claimsDir = path.join(__dirname, '../content/claims')
+const claimsDir = path.join(__dirname, '../content/grifts')
 const htmlFilePath = path.join(__dirname, 'claims.html')
 
 // Helper function to get all files in a directory recursively

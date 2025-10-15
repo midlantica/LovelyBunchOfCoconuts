@@ -1,5 +1,5 @@
 ---
 title: 'Cultural Sensitivity'
-claim: 'Cultural Sensitivity'
-translation: 'Walking on eggshells forever.'
+grift: 'Cultural Sensitivity'
+decode: 'Walking on eggshells forever.'
 ---

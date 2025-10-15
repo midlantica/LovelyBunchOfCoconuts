@@ -1,5 +1,5 @@
 ---
 title: 'Queer-Centered Public Health'
-claim: 'Queer-Centered Public Health'
-translation: 'Science, now with pronouns.'
+grift: 'Queer-Centered Public Health'
+decode: 'Science, now with pronouns.'
 ---

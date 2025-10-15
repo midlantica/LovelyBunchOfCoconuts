@@ -1,5 +1,5 @@
 ---
 title: 'Globalism'
-claim: 'Globalism'
-translation: 'National Sovereignty.'
+grift: 'Globalism'
+decode: 'National Sovereignty.'
 ---

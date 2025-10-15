@@ -1,5 +1,5 @@
 ---
 title: 'Radical Inclusion Policies'
-claim: 'Radical Inclusion Policies'
-translation: 'Belonging by bureaucratic force.'
+grift: 'Radical Inclusion Policies'
+decode: 'Belonging by bureaucratic force.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Mandatory Equity Statements'
-claim: 'Mandatory Equity Statements'
-translation: 'Loyalty oaths for the woke age.'
+grift: 'Mandatory Equity Statements'
+decode: 'Loyalty oaths for the woke age.'
 ---

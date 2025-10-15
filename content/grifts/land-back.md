@@ -1,5 +1,5 @@
 ---
 title: 'Land Back'
-claim: 'Land Back'
-translation: 'Evict everyone, selectively.'
+grift: 'Land Back'
+decode: 'Evict everyone, selectively.'
 ---

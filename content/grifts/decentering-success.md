@@ -1,5 +1,5 @@
 ---
 title: 'Decentering Success'
-claim: 'Decentering Success'
-translation: 'Achievement is supremacy.'
+grift: 'Decentering Success'
+decode: 'Achievement is supremacy.'
 ---

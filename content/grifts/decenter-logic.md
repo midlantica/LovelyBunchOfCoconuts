@@ -1,5 +1,5 @@
 ---
 title: 'Decenter Logic'
-claim: 'Decenter Logic'
-translation: 'Reason is colonial now.'
+grift: 'Decenter Logic'
+decode: 'Reason is colonial now.'
 ---

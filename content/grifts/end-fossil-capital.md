@@ -1,5 +1,5 @@
 ---
 title: 'End Fossil Capital'
-claim: 'End Fossil Capital'
-translation: 'Shut down your standard of living.'
+grift: 'End Fossil Capital'
+decode: 'Shut down your standard of living.'
 ---

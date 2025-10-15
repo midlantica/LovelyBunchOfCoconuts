@@ -1,5 +1,5 @@
 ---
 title: 'Emancipatory Pedagogy'
-claim: 'Emancipatory Pedagogy'
-translation: 'Lesson plans with a manifesto.'
+grift: 'Emancipatory Pedagogy'
+decode: 'Lesson plans with a manifesto.'
 ---

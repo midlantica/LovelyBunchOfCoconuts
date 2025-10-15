@@ -1,5 +1,5 @@
 ---
 title: 'Reproductive Equity'
-claim: 'Reproductive Equity'
-translation: 'Abortion, subsidized and sanctified.'
+grift: 'Reproductive Equity'
+decode: 'Abortion, subsidized and sanctified.'
 ---

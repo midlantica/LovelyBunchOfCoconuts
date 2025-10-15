@@ -1,5 +1,5 @@
 ---
 title: 'Social Justice'
-claim: 'Social Justice'
-translation: 'Revenge dressed up as fairness.'
+grift: 'Social Justice'
+decode: 'Revenge dressed up as fairness.'
 ---

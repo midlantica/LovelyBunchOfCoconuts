@@ -1,5 +1,5 @@
 ---
 title: 'Ban Private Schools'
-claim: 'Ban Private Schools'
-translation: 'All must suffer equally.'
+grift: 'Ban Private Schools'
+decode: 'All must suffer equally.'
 ---

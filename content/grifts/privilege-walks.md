@@ -1,5 +1,5 @@
 ---
 title: 'Privilege Walks'
-claim: 'Privilege Walks'
-translation: 'March for your guilt.'
+grift: 'Privilege Walks'
+decode: 'March for your guilt.'
 ---

@@ -395,7 +395,7 @@ export function useLikes() {
     }
     // Remove trailing slashes (except root)
     raw = raw.replace(/\/$/, '')
-    // Collapse accidental double content-type segments (e.g. /claims/claims/foo)
+    // Collapse accidental double content-type segments (e.g. /grifts/claims/foo)
     raw = raw.replace(/\/(claims|memes|quotes)\/(?:\1\/)+/g, '/$1/')
     // Convert underscores to hyphens to match actual _path values
     raw = raw.replace(/_/g, '-')
@@ -403,7 +403,7 @@ export function useLikes() {
     raw = raw.replace(/\/+/g, '/')
     // Normalize singular route variants to plural content folder form
     raw = raw
-      .replace(/^\/claim\//, '/claims/')
+      .replace(/^\/claim\//, '/grifts/')
       .replace(/^\/meme\//, '/memes/')
       .replace(/^\/quote\//, '/quotes/')
     // Ensure leading slash for consistency with server keys

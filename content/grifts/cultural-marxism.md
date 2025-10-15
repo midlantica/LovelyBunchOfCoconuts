@@ -1,5 +1,5 @@
 ---
 title: 'Cultural Marxism'
-claim: 'Cultural Marxism'
-translation: 'Society Destruction.'
+grift: 'Cultural Marxism'
+decode: 'Society Destruction.'
 ---

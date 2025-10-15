@@ -1,5 +1,5 @@
 ---
 title: 'Green Justice Zones'
-claim: 'Green Justice Zones'
-translation: 'Poverty with solar panels.'
+grift: 'Green Justice Zones'
+decode: 'Poverty with solar panels.'
 ---

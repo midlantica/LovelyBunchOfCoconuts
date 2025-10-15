@@ -1,5 +1,5 @@
 ---
 title: 'Open Borders'
-claim: 'Open Borders'
-translation: 'Sovereignty is optional.'
+grift: 'Open Borders'
+decode: 'Sovereignty is optional.'
 ---

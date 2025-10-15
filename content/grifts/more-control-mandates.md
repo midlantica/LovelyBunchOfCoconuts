@@ -1,5 +1,5 @@
 ---
 title: 'More Control/Mandates'
-claim: 'More Control/Mandates'
-translation: 'Less Control/Mandates'
+grift: 'More Control/Mandates'
+decode: 'Less Control/Mandates'
 ---

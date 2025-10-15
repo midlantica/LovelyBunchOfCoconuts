@@ -1,5 +1,5 @@
 ---
 title: 'Gender Inclusive Choirs'
-claim: 'Gender Inclusive Choirs'
-translation: 'Sing your identity.'
+grift: 'Gender Inclusive Choirs'
+decode: 'Sing your identity.'
 ---

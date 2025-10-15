@@ -1,5 +1,5 @@
 ---
 title: 'Climate Reparations'
-claim: 'Climate Reparations'
-translation: 'Pay developing dictators to feel guilty.'
+grift: 'Climate Reparations'
+decode: 'Pay developing dictators to feel guilty.'
 ---

@@ -30,7 +30,7 @@ const DRY_RUN = !process.argv.includes('--apply')
 const VERBOSE = process.argv.includes('--verbose')
 
 // Content types to check for duplicates
-const CONTENT_TYPES = ['claims', 'quotes', 'memes']
+const CONTENT_TYPES = ['grifts', 'quotes', 'memes']
 
 async function extractContentText(filePath) {
   try {

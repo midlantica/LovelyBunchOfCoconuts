@@ -1,5 +1,5 @@
 ---
 title: 'Evil profit'
-claim: 'Evil profit'
-translation: 'Wealth creation, jobs.'
+grift: 'Evil profit'
+decode: 'Wealth creation, jobs.'
 ---

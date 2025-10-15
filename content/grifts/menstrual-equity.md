@@ -1,5 +1,5 @@
 ---
 title: 'Menstrual Equity'
-claim: 'Menstrual Equity'
-translation: 'Subsidized hygiene for social justice.'
+grift: 'Menstrual Equity'
+decode: 'Subsidized hygiene for social justice.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Ban Fireworks'
-claim: 'Ban Fireworks'
-translation: 'Too loud for liberation.'
+grift: 'Ban Fireworks'
+decode: 'Too loud for liberation.'
 ---

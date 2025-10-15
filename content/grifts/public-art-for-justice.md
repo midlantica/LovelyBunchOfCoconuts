@@ -1,5 +1,5 @@
 ---
 title: 'Public Art for Justice'
-claim: 'Public Art for Justice'
-translation: 'Graffiti as gospel.'
+grift: 'Public Art for Justice'
+decode: 'Graffiti as gospel.'
 ---

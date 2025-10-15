@@ -1,5 +1,5 @@
 ---
 title: 'Assault Weapon'
-claim: 'Assault Weapon'
-translation: 'Any Gun'
+grift: 'Assault Weapon'
+decode: 'Any Gun'
 ---

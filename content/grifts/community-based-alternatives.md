@@ -1,5 +1,5 @@
 ---
 title: 'Community-Based Alternatives'
-claim: 'Community-Based Alternatives'
-translation: 'Let activists run the courts.'
+grift: 'Community-Based Alternatives'
+decode: 'Let activists run the courts.'
 ---

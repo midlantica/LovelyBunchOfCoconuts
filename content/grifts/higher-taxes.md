@@ -1,5 +1,5 @@
 ---
 title: 'Higher Taxes'
-claim: 'Higher Taxes'
-translation: 'Keep more of your earned income'
+grift: 'Higher Taxes'
+decode: 'Keep more of your earned income'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Eco-Conscious Mourning'
-claim: 'Eco-Conscious Mourning'
-translation: 'Grieve with compostable tissues.'
+grift: 'Eco-Conscious Mourning'
+decode: 'Grieve with compostable tissues.'
 ---

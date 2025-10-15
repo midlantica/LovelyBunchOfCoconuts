@@ -1,5 +1,5 @@
 ---
 title: 'Net Neutrality'
-claim: 'Net Neutrality'
-translation: 'Government throttling your internet.'
+grift: 'Net Neutrality'
+decode: 'Government throttling your internet.'
 ---

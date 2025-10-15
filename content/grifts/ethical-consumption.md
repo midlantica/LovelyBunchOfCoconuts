@@ -1,5 +1,5 @@
 ---
 title: 'Ethical Consumption'
-claim: 'Ethical Consumption'
-translation: 'Buy guilt-free illusions.'
+grift: 'Ethical Consumption'
+decode: 'Buy guilt-free illusions.'
 ---

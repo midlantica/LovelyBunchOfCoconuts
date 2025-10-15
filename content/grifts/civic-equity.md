@@ -1,5 +1,5 @@
 ---
 title: 'Civic Equity'
-claim: 'Civic Equity'
-translation: 'Government quotas for your neighborhood.'
+grift: 'Civic Equity'
+decode: 'Government quotas for your neighborhood.'
 ---

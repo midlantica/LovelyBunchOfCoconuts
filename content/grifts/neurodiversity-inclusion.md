@@ -1,5 +1,5 @@
 ---
 title: 'Neurodiversity Inclusion'
-claim: 'Neurodiversity Inclusion'
-translation: 'Make competence optional.'
+grift: 'Neurodiversity Inclusion'
+decode: 'Make competence optional.'
 ---

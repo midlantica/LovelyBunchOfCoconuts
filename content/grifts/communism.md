@@ -1,5 +1,5 @@
 ---
 title: 'Communism'
-claim: 'Communism'
-translation: 'Totalitarian Poverty for All'
+grift: 'Communism'
+decode: 'Totalitarian Poverty for All'
 ---

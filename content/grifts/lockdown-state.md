@@ -1,5 +1,5 @@
 ---
 title: 'Lockdown State'
-claim: 'Lockdown State'
-translation: 'Working Economy'
+grift: 'Lockdown State'
+decode: 'Working Economy'
 ---

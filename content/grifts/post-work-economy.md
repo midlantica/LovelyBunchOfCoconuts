@@ -1,5 +1,5 @@
 ---
 title: 'Post-Work Economy'
-claim: 'Post-Work Economy'
-translation: 'Jobs are oppression.'
+grift: 'Post-Work Economy'
+decode: 'Jobs are oppression.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Anti-Car Urbanism'
-claim: 'Anti-Car Urbanism'
-translation: 'Walk to work or stay home.'
+grift: 'Anti-Car Urbanism'
+decode: 'Walk to work or stay home.'
 ---

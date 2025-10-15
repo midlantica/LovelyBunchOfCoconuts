@@ -1,5 +1,5 @@
 ---
 title: 'Excessive military spending'
-claim: 'Excessive military spending'
-translation: 'Decreased military readiness.'
+grift: 'Excessive military spending'
+decode: 'Decreased military readiness.'
 ---

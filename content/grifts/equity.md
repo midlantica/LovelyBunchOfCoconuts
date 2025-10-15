@@ -1,5 +1,5 @@
 ---
 title: 'Equity'
-claim: 'Equity'
-translation: 'Equal outcomes, unequal effort.'
+grift: 'Equity'
+decode: 'Equal outcomes, unequal effort.'
 ---

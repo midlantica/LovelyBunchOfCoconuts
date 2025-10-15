@@ -1,5 +1,5 @@
 ---
 title: 'Reproductive Justice'
-claim: 'Reproductive Justice'
-translation: 'No limits, no questions, all funded.'
+grift: 'Reproductive Justice'
+decode: 'No limits, no questions, all funded.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Defund Military'
-claim: 'Defund Military'
-translation: 'Because peace comes from weakness.'
+grift: 'Defund Military'
+decode: 'Because peace comes from weakness.'
 ---

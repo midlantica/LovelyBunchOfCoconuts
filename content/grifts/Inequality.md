@@ -1,5 +1,5 @@
 ---
 title: 'Inequality'
-claim: 'Inequality'
-translation: 'Your money should be theirs.'
+grift: 'Inequality'
+decode: 'Your money should be theirs.'
 ---

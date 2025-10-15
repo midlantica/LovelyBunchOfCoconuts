@@ -1,5 +1,5 @@
 ---
 title: 'Political Correctness'
-claim: 'Political Correctness'
-translation: 'Free Speech'
+grift: 'Political Correctness'
+decode: 'Free Speech'
 ---

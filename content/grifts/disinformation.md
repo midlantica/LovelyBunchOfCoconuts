@@ -1,5 +1,5 @@
 ---
 title: 'Disinformation'
-claim: 'Disinformation'
-translation: 'Truth we don’t approve.'
+grift: 'Disinformation'
+decode: 'Truth we don’t approve.'
 ---

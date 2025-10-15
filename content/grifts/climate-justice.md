@@ -1,5 +1,5 @@
 ---
 title: 'Climate Justice'
-claim: 'Climate Justice'
-translation: 'Shakedown under a green banner.'
+grift: 'Climate Justice'
+decode: 'Shakedown under a green banner.'
 ---

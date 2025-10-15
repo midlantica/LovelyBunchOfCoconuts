@@ -1,5 +1,5 @@
 ---
 title: 'Ethical Tech'
-claim: 'Ethical Tech'
-translation: 'Code with a conscience leash.'
+grift: 'Ethical Tech'
+decode: 'Code with a conscience leash.'
 ---

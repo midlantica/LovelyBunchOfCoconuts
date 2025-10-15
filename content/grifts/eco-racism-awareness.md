@@ -1,5 +1,5 @@
 ---
 title: 'Eco-Racism Awareness'
-claim: 'Eco-Racism Awareness'
-translation: 'Climate guilt meets race shame.'
+grift: 'Eco-Racism Awareness'
+decode: 'Climate guilt meets race shame.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'No Borders'
-claim: 'No Borders'
-translation: 'No country.'
+grift: 'No Borders'
+decode: 'No country.'
 ---

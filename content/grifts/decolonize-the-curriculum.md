@@ -1,5 +1,5 @@
 ---
 title: 'Decolonize the Curriculum'
-claim: 'Decolonize the Curriculum'
-translation: 'Erase Western thought to promote ideological conformity.'
+grift: 'Decolonize the Curriculum'
+decode: 'Erase Western thought to promote ideological conformity.'
 ---

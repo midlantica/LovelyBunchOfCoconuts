@@ -1,5 +1,5 @@
 ---
 title: 'Environmental Racism'
-claim: 'Environmental Racism'
-translation: 'Pollution is now prejudiced.'
+grift: 'Environmental Racism'
+decode: 'Pollution is now prejudiced.'
 ---

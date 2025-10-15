@@ -1,5 +1,5 @@
 ---
 title: 'Systemic Racism'
-claim: 'Systemic Racism'
-translation: 'Blame everyone but yourself.'
+grift: 'Systemic Racism'
+decode: 'Blame everyone but yourself.'
 ---

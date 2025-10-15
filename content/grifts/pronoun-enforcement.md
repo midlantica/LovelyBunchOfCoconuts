@@ -1,5 +1,5 @@
 ---
 title: 'Pronoun Enforcement'
-claim: 'Pronoun Enforcement'
-translation: 'Compelled speech, with a rainbow sticker.'
+grift: 'Pronoun Enforcement'
+decode: 'Compelled speech, with a rainbow sticker.'
 ---

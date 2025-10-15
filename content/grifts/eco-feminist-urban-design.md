@@ -1,5 +1,5 @@
 ---
 title: 'Eco-Feminist Urban Design'
-claim: 'Eco-Feminist Urban Design'
-translation: 'Crosswalks that dismantle patriarchy.'
+grift: 'Eco-Feminist Urban Design'
+decode: 'Crosswalks that dismantle patriarchy.'
 ---

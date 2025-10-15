@@ -1,5 +1,5 @@
 ---
 title: 'Social Welfare'
-claim: 'Social Welfare'
-translation: 'Increased poverty.'
+grift: 'Social Welfare'
+decode: 'Increased poverty.'
 ---

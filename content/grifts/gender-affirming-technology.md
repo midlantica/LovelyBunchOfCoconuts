@@ -1,5 +1,5 @@
 ---
 title: 'Gender-Affirming Technology'
-claim: 'Gender-Affirming Technology'
-translation: 'Devices with pronoun fields.'
+grift: 'Gender-Affirming Technology'
+decode: 'Devices with pronoun fields.'
 ---

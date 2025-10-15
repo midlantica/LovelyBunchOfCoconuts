@@ -1,5 +1,5 @@
 ---
 title: 'Reparations'
-claim: 'Reparations'
-translation: 'Punishing people for history they didn’t make.'
+grift: 'Reparations'
+decode: 'Punishing people for history they didn’t make.'
 ---

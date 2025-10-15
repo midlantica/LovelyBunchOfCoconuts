@@ -1,5 +1,5 @@
 ---
 title: 'Inclusive Capitalism'
-claim: 'Inclusive Capitalism'
-translation: 'Profit with penance.'
+grift: 'Inclusive Capitalism'
+decode: 'Profit with penance.'
 ---

@@ -31,7 +31,7 @@ export default defineEventHandler(async (event) => {
           x = x.replace(/_/g, '-')
           // singular route variants
           x = x
-            .replace(/^\/claim\//, '/claims/')
+            .replace(/^\/claim\//, '/grifts/')
             .replace(/^\/meme\//, '/memes/')
             .replace(/^\/quote\//, '/quotes/')
           // collapse duplicate slashes

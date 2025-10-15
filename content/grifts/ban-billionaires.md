@@ -1,5 +1,5 @@
 ---
 title: 'Ban Billionaires'
-claim: 'Ban Billionaires'
-translation: 'Cap success, praise mediocrity.'
+grift: 'Ban Billionaires'
+decode: 'Cap success, praise mediocrity.'
 ---

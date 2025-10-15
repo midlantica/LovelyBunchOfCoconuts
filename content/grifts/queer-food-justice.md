@@ -1,5 +1,5 @@
 ---
 title: 'Queer Food Justice'
-claim: 'Queer Food Justice'
-translation: 'Organic outrage with a twist.'
+grift: 'Queer Food Justice'
+decode: 'Organic outrage with a twist.'
 ---

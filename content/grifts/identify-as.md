@@ -1,5 +1,5 @@
 ---
 title: 'Identify as'
-claim: 'Identify as'
-translation: 'Pretending to be'
+grift: 'Identify as'
+decode: 'Pretending to be'
 ---

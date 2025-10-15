@@ -1,5 +1,5 @@
 ---
 title: 'Equity-Focused Grading'
-claim: 'Equity-Focused Grading'
-translation: 'Pass everyone to prove fairness.'
+grift: 'Equity-Focused Grading'
+decode: 'Pass everyone to prove fairness.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Abolish Traffic Enforcement'
-claim: 'Abolish Traffic Enforcement'
-translation: 'Speeding for justice.'
+grift: 'Abolish Traffic Enforcement'
+decode: 'Speeding for justice.'
 ---

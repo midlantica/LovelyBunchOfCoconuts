@@ -1,5 +1,5 @@
 ---
 title: 'Queer Liberation'
-claim: 'Queer Liberation'
-translation: 'Identity politics, now with glitter.'
+grift: 'Queer Liberation'
+decode: 'Identity politics, now with glitter.'
 ---

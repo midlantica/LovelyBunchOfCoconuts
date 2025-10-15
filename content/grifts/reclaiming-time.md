@@ -1,5 +1,5 @@
 ---
 title: 'Reclaiming Time'
-claim: 'Reclaiming Time'
-translation: 'Slacking is revolutionary.'
+grift: 'Reclaiming Time'
+decode: 'Slacking is revolutionary.'
 ---

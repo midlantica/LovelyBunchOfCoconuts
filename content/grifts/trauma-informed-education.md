@@ -1,5 +1,5 @@
 ---
 title: 'Trauma-Informed Education'
-claim: 'Trauma-Informed Education'
-translation: 'Coddle first, teach later.'
+grift: 'Trauma-Informed Education'
+decode: 'Coddle first, teach later.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Decenter Whiteness'
-claim: 'Decenter Whiteness'
-translation: 'Shame as a curriculum.'
+grift: 'Decenter Whiteness'
+decode: 'Shame as a curriculum.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Welfare State'
-claim: 'Welfare State'
-translation: 'Permanent underclass.'
+grift: 'Welfare State'
+decode: 'Permanent underclass.'
 ---

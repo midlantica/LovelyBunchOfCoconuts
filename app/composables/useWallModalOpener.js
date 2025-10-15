@@ -30,7 +30,7 @@ export function useWallModalOpener({
   function buildSlug(data, type) {
     let slug = deriveFileBase(data)
     if (!slug) {
-      if (type === 'claim') slug = slugify(data?.claim || data?.title || '')
+      if (type === 'grift') slug = slugify(data?.claim || data?.title || '')
       else if (type === 'quote')
         slug = slugify(data?.title || data?.quoteText || '')
       else if (type === 'meme')

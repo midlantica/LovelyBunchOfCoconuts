@@ -1,5 +1,5 @@
 ---
 title: 'Taxation'
-claim: 'Taxation'
-translation: 'Theft.'
+grift: 'Taxation'
+decode: 'Theft.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Illegal Immigration'
-claim: 'Illegal Immigration'
-translation: 'Legal Immigration'
+grift: 'Illegal Immigration'
+decode: 'Legal Immigration'
 ---

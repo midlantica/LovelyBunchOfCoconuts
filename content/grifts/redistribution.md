@@ -1,5 +1,5 @@
 ---
 title: 'Redistribution'
-claim: 'Redistribution'
-translation: 'Social Engineering, Increased Poverty.'
+grift: 'Redistribution'
+decode: 'Social Engineering, Increased Poverty.'
 ---

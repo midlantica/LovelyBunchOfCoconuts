@@ -1,5 +1,5 @@
 ---
 title: 'Public Transportation for All'
-claim: 'Public Transportation for All'
-translation: 'Freedom of movement, brought to you by delays.'
+grift: 'Public Transportation for All'
+decode: 'Freedom of movement, brought to you by delays.'
 ---

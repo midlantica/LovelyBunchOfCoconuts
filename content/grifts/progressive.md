@@ -1,5 +1,5 @@
 ---
 title: 'Progressive'
-claim: 'Progressive'
-translation: 'Regressive.'
+grift: 'Progressive'
+decode: 'Regressive.'
 ---

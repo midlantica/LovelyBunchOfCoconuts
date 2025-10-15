@@ -1,5 +1,5 @@
 ---
 title: 'Public Ownership'
-claim: 'Public Ownership'
-translation: 'Make Industries worse, Cronyism job posting.'
+grift: 'Public Ownership'
+decode: 'Make Industries worse, Cronyism job posting.'
 ---

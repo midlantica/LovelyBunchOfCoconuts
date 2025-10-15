@@ -1,5 +1,5 @@
 ---
 title: 'Reparative Urban Planning'
-claim: 'Reparative Urban Planning'
-translation: 'Zoning by historical guilt.'
+grift: 'Reparative Urban Planning'
+decode: 'Zoning by historical guilt.'
 ---

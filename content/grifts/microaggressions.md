@@ -1,5 +1,5 @@
 ---
 title: 'Microaggressions'
-claim: 'Microaggressions'
-translation: 'Imaginary slights, maximum drama.'
+grift: 'Microaggressions'
+decode: 'Imaginary slights, maximum drama.'
 ---

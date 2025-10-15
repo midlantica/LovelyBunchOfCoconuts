@@ -1,5 +1,5 @@
 ---
 title: 'End the Nuclear Family'
-claim: 'End the Nuclear Family'
-translation: 'Dissolve roots, grow dependence.'
+grift: 'End the Nuclear Family'
+decode: 'Dissolve roots, grow dependence.'
 ---

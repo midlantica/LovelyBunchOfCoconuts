@@ -1,5 +1,5 @@
 ---
 title: 'Gender-Inclusive Menus'
-claim: 'Gender-Inclusive Menus'
-translation: 'Eat woke, not well.'
+grift: 'Gender-Inclusive Menus'
+decode: 'Eat woke, not well.'
 ---

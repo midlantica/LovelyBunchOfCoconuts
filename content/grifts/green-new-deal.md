@@ -1,5 +1,5 @@
 ---
 title: 'Green New Deal'
-claim: 'Green New Deal'
-translation: 'Central planning in a fresh wrapper.'
+grift: 'Green New Deal'
+decode: 'Central planning in a fresh wrapper.'
 ---

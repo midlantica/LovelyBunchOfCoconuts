@@ -1,5 +1,5 @@
 ---
 title: 'Tax the Rich'
-claim: 'Tax the Rich'
-translation: 'Punish success to fund inefficiency.'
+grift: 'Tax the Rich'
+decode: 'Punish success to fund inefficiency.'
 ---

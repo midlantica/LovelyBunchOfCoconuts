@@ -1,5 +1,5 @@
 ---
 title: 'Community-Led Budgeting'
-claim: 'Community-Led Budgeting'
-translation: 'Mob-funded governance.'
+grift: 'Community-Led Budgeting'
+decode: 'Mob-funded governance.'
 ---

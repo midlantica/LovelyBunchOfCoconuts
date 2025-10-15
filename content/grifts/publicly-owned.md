@@ -1,5 +1,5 @@
 ---
 title: 'Publicly owned'
-claim: 'Publicly owned'
-translation: 'Levelling down'
+grift: 'Publicly owned'
+decode: 'Levelling down'
 ---

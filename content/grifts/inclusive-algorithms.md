@@ -1,5 +1,5 @@
 ---
 title: 'Inclusive Algorithms'
-claim: 'Inclusive Algorithms'
-translation: 'Let ideology override logic.'
+grift: 'Inclusive Algorithms'
+decode: 'Let ideology override logic.'
 ---

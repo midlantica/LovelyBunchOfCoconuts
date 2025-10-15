@@ -1,5 +1,5 @@
 ---
 title: 'Composting Human Remains'
-claim: 'Composting Human Remains'
-translation: 'Recycling, taken literally.'
+grift: 'Composting Human Remains'
+decode: 'Recycling, taken literally.'
 ---

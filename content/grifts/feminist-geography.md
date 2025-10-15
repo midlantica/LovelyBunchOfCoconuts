@@ -1,5 +1,5 @@
 ---
 title: 'Feminist Geography'
-claim: 'Feminist Geography'
-translation: 'Where patriarchy hides on the map.'
+grift: 'Feminist Geography'
+decode: 'Where patriarchy hides on the map.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Radical Rest Economy'
-claim: 'Radical Rest Economy'
-translation: 'Laziness as currency.'
+grift: 'Radical Rest Economy'
+decode: 'Laziness as currency.'
 ---

@@ -5,104 +5,100 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const claims = [
+const grifts = [
   {
     filename: 'democratic-socialism.md',
     title: 'Democratic Socialism',
-    claim: 'Democratic Socialism',
-    translation: 'Socialism',
+    grift: 'Democratic Socialism',
+    decode: 'Socialism',
   },
   {
     filename: 'toxic-masculinity.md',
     title: 'Toxic Masculinity',
-    claim: 'Toxic Masculinity',
-    translation: 'Straight White Male',
+    grift: 'Toxic Masculinity',
+    decode: 'Straight White Male',
   },
   {
     filename: 'political-correctness.md',
     title: 'Political Correctness',
-    claim: 'Political Correctness',
-    translation: 'Controlling Speech',
+    grift: 'Political Correctness',
+    decode: 'Controlling Speech',
   },
   {
     filename: 'assault-weapon.md',
     title: 'Assault Weapon',
-    claim: 'Assault Weapon',
-    translation: 'Any Gun',
+    grift: 'Assault Weapon',
+    decode: 'Any Gun',
   },
   {
     filename: 'identify-as.md',
     title: 'Identify as',
-    claim: 'Identify as',
-    translation: 'Pretending to be',
+    grift: 'Identify as',
+    decode: 'Pretending to be',
   },
   {
     filename: 'pro-choice.md',
     title: 'Pro-Choice',
-    claim: 'Pro-Choice',
-    translation: 'Legalized Murder',
+    grift: 'Pro-Choice',
+    decode: 'Legalized Murder',
   },
   {
     filename: 'undocumented.md',
     title: 'Undocumented',
-    claim: 'Undocumented',
-    translation: 'Illegal or New Voter',
+    grift: 'Undocumented',
+    decode: 'Illegal or New Voter',
   },
   {
     filename: 'news-reporting.md',
     title: 'News Reporting',
-    claim: 'News Reporting',
-    translation: 'Leftist Talking Points',
+    grift: 'News Reporting',
+    decode: 'Leftist Talking Points',
   },
   {
     filename: 'climate-change.md',
     title: 'Climate Change',
-    claim: 'Climate Change',
-    translation: 'Another Tax Opportunity',
+    grift: 'Climate Change',
+    decode: 'Another Tax Opportunity',
   },
   {
     filename: 'inequality.md',
     title: 'Inequality',
-    claim: 'Inequality',
-    translation: 'Your money should be theirs',
+    grift: 'Inequality',
+    decode: 'Your money should be theirs',
   },
   {
     filename: 'racist-fascist-nazi.md',
     title: 'Racist, Fascist, Nazi',
-    claim: 'Racist, Fascist, Nazi',
-    translation: 'Anybody who disagrees with leftists',
+    grift: 'Racist, Fascist, Nazi',
+    decode: 'Anybody who disagrees with leftists',
   },
 ]
 
-function createMarkdownContent(claim, translation, title) {
+function createMarkdownContent(grift, decode, title) {
   return `---
 title: '${title}'
-claim: '${claim}'
-translation: '${translation}'
+grift: '${grift}'
+decode: '${decode}'
 ---
-## "${claim}"
-## ${translation}
+## "${grift}"
+## ${decode}
 `
 }
 
 // Create output directory if it doesn't exist
-const outputDir = path.join(__dirname, '../content/claims')
+const outputDir = path.join(__dirname, '../content/grifts')
 if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true })
 }
 
 // Generate all markdown files
-claims.forEach((item) => {
-  const content = createMarkdownContent(
-    item.claim,
-    item.translation,
-    item.title
-  )
+grifts.forEach((item) => {
+  const content = createMarkdownContent(item.grift, item.decode, item.title)
   const filepath = path.join(outputDir, item.filename)
   fs.writeFileSync(filepath, content, 'utf8')
   console.log(`✓ Created: ${item.filename}`)
 })
 
 console.log(
-  `\n✓ Successfully generated all ${claims.length} markdown files in 'content/claims/' directory!`
+  `\n✓ Successfully generated all ${grifts.length} markdown files in 'content/grifts/' directory!`
 )

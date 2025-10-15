@@ -26,7 +26,7 @@
 
   // Format text based on content type
   const formattedText = computed(() => {
-    if (props.contentType === 'claim') {
+    if (props.contentType === 'grift') {
       const parts = props.text.split(' - ')
       if (parts.length >= 2) return `🤡 ${parts[0]}\n😎 ${parts[1]}`
       return `🤡 ${props.text}`

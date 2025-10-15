@@ -1,5 +1,5 @@
 ---
 title: 'Inclusive Infrastructure'
-claim: 'Inclusive Infrastructure'
-translation: 'Potholes, but virtuous.'
+grift: 'Inclusive Infrastructure'
+decode: 'Potholes, but virtuous.'
 ---

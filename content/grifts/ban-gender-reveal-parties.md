@@ -1,5 +1,5 @@
 ---
 title: 'Ban Gender Reveal Parties'
-claim: 'Ban Gender Reveal Parties'
-translation: 'Stop assuming reality.'
+grift: 'Ban Gender Reveal Parties'
+decode: 'Stop assuming reality.'
 ---

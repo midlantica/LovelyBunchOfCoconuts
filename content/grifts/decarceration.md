@@ -1,5 +1,5 @@
 ---
 title: 'Decarceration'
-claim: 'Decarceration'
-translation: 'Criminals deserve a hug.'
+grift: 'Decarceration'
+decode: 'Criminals deserve a hug.'
 ---

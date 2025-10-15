@@ -1,5 +1,5 @@
 ---
 title: 'Inclusive Coding Standards'
-claim: 'Inclusive Coding Standards'
-translation: 'JavaScript that checks its privilege.'
+grift: 'Inclusive Coding Standards'
+decode: 'JavaScript that checks its privilege.'
 ---

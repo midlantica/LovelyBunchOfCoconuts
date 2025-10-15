@@ -1,5 +1,5 @@
 ---
 title: 'Reproductive Rights'
-claim: 'Reproductive Rights'
-translation: 'Euphemism for ending life.'
+grift: 'Reproductive Rights'
+decode: 'Euphemism for ending life.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Free Public College'
-claim: 'Free Public College'
-translation: 'Subsidize ideology at scale.'
+grift: 'Free Public College'
+decode: 'Subsidize ideology at scale.'
 ---

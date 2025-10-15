@@ -1,5 +1,5 @@
 ---
 title: 'Intersectional Curriculum'
-claim: 'Intersectional Curriculum'
-translation: 'Every subject must confess.'
+grift: 'Intersectional Curriculum'
+decode: 'Every subject must confess.'
 ---

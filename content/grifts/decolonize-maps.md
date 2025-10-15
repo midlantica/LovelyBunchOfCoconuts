@@ -1,5 +1,5 @@
 ---
 title: 'Decolonize Maps'
-claim: 'Decolonize Maps'
-translation: 'Geography is now offensive.'
+grift: 'Decolonize Maps'
+decode: 'Geography is now offensive.'
 ---

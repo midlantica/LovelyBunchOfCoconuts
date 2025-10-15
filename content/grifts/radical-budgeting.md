@@ -1,5 +1,5 @@
 ---
 title: 'Radical Budgeting'
-claim: 'Radical Budgeting'
-translation: 'Math that feels fair.'
+grift: 'Radical Budgeting'
+decode: 'Math that feels fair.'
 ---

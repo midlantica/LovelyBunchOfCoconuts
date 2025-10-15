@@ -1,5 +1,5 @@
 ---
 title: 'Corporate Greed'
-claim: 'Corporate Greed'
-translation: 'Mind your business tyrant.'
+grift: 'Corporate Greed'
+decode: 'Mind your business tyrant.'
 ---

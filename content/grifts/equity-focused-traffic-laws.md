@@ -1,5 +1,5 @@
 ---
 title: 'Equity-Focused Traffic Laws'
-claim: 'Equity-Focused Traffic Laws'
-translation: 'Tickets for justice.'
+grift: 'Equity-Focused Traffic Laws'
+decode: 'Tickets for justice.'
 ---

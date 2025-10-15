@@ -1,5 +1,5 @@
 ---
 title: 'Cancel Culture'
-claim: 'Cancel Culture'
-translation: 'Mob tantrums over hurt feelings.'
+grift: 'Cancel Culture'
+decode: 'Mob tantrums over hurt feelings.'
 ---

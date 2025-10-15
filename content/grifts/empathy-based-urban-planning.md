@@ -1,5 +1,5 @@
 ---
 title: 'Empathy-Based Urban Planning'
-claim: 'Empathy-Based Urban Planning'
-translation: 'Sidewalks that feel your pain.'
+grift: 'Empathy-Based Urban Planning'
+decode: 'Sidewalks that feel your pain.'
 ---

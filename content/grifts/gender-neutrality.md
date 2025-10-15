@@ -1,5 +1,5 @@
 ---
 title: 'Gender Neutrality'
-claim: 'Gender Neutrality'
-translation: 'Erasing biology for feelings.'
+grift: 'Gender Neutrality'
+decode: 'Erasing biology for feelings.'
 ---

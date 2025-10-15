@@ -1,5 +1,5 @@
 ---
 title: 'LGBT+'
-claim: 'LGBT+'
-translation: 'Increased division.'
+grift: 'LGBT+'
+decode: 'Increased division.'
 ---

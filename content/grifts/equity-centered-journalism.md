@@ -1,5 +1,5 @@
 ---
 title: 'Equity-Centered Journalism'
-claim: 'Equity-Centered Journalism'
-translation: 'Facts through a filter.'
+grift: 'Equity-Centered Journalism'
+decode: 'Facts through a filter.'
 ---

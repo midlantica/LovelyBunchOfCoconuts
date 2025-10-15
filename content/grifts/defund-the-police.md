@@ -1,5 +1,5 @@
 ---
 title: 'Defund the Police'
-claim: 'Defund the Police'
-translation: 'Make chaos your neighbor.'
+grift: 'Defund the Police'
+decode: 'Make chaos your neighbor.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Progressive Banking'
-claim: 'Progressive Banking'
-translation: 'Woke wallets with fees.'
+grift: 'Progressive Banking'
+decode: 'Woke wallets with fees.'
 ---

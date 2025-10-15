@@ -1,5 +1,5 @@
 ---
 title: 'Feminist Foreign Policy'
-claim: 'Feminist Foreign Policy'
-translation: 'Feelings first, defense later.'
+grift: 'Feminist Foreign Policy'
+decode: 'Feelings first, defense later.'
 ---

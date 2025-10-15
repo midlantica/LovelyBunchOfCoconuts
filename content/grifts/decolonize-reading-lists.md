@@ -1,5 +1,5 @@
 ---
 title: 'Decolonize Reading Lists'
-claim: 'Decolonize Reading Lists'
-translation: 'Goodbye classics.'
+grift: 'Decolonize Reading Lists'
+decode: 'Goodbye classics.'
 ---

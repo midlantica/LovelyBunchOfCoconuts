@@ -1,5 +1,5 @@
 ---
 title: 'Ban Lawn Mowers'
-claim: 'Ban Lawn Mowers'
-translation: 'Grow weeds for the revolution.'
+grift: 'Ban Lawn Mowers'
+decode: 'Grow weeds for the revolution.'
 ---

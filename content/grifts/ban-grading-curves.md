@@ -1,5 +1,5 @@
 ---
 title: 'Ban Grading Curves'
-claim: 'Ban Grading Curves'
-translation: 'Level down, not up.'
+grift: 'Ban Grading Curves'
+decode: 'Level down, not up.'
 ---

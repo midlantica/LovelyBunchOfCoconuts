@@ -1,5 +1,5 @@
 ---
 title: 'Community Reparations'
-claim: 'Community Reparations'
-translation: 'Your neighbor owes you—forever.'
+grift: 'Community Reparations'
+decode: 'Your neighbor owes you—forever.'
 ---

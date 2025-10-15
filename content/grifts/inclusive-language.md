@@ -1,5 +1,5 @@
 ---
 title: 'Inclusive Language'
-claim: 'Inclusive Language'
-translation: 'Censoring speech to control thought.'
+grift: 'Inclusive Language'
+decode: 'Censoring speech to control thought.'
 ---

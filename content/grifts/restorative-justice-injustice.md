@@ -1,5 +1,5 @@
 ---
 title: 'Restorative Justice'
-claim: 'Restorative Justice'
-translation: 'Injustice.'
+grift: 'Restorative Justice'
+decode: 'Injustice.'
 ---

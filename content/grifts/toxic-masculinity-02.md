@@ -1,5 +1,5 @@
 ---
 title: 'Toxic Masculinity'
-claim: 'Toxic Masculinity'
-translation: 'Straight White Male'
+grift: 'Toxic Masculinity'
+decode: 'Straight White Male'
 ---

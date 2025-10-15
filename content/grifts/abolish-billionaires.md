@@ -1,5 +1,5 @@
 ---
 title: 'Abolish Billionaires'
-claim: 'Abolish Billionaires'
-translation: 'Punish ambition, celebrate envy.'
+grift: 'Abolish Billionaires'
+decode: 'Punish ambition, celebrate envy.'
 ---

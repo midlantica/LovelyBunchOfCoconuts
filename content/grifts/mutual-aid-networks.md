@@ -1,5 +1,5 @@
 ---
 title: 'Mutual Aid Networks'
-claim: 'Mutual Aid Networks'
-translation: 'Socialism with a smile.'
+grift: 'Mutual Aid Networks'
+decode: 'Socialism with a smile.'
 ---

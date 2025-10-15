@@ -1,5 +1,5 @@
 ---
 title: 'Equity in Hiring'
-claim: 'Equity in Hiring'
-translation: 'Merit is now problematic.'
+grift: 'Equity in Hiring'
+decode: 'Merit is now problematic.'
 ---

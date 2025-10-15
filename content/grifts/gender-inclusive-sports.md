@@ -1,5 +1,5 @@
 ---
 title: 'Gender Inclusive Sports'
-claim: 'Gender Inclusive Sports'
-translation: 'Fairness optional.'
+grift: 'Gender Inclusive Sports'
+decode: 'Fairness optional.'
 ---

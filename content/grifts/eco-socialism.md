@@ -1,5 +1,5 @@
 ---
 title: 'Eco-Socialism'
-claim: 'Eco-Socialism'
-translation: 'Poverty for the planet.'
+grift: 'Eco-Socialism'
+decode: 'Poverty for the planet.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Redistribute Wealth'
-claim: 'Redistribute Wealth'
-translation: 'Loot, but legally.'
+grift: 'Redistribute Wealth'
+decode: 'Loot, but legally.'
 ---

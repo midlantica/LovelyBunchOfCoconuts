@@ -1,5 +1,5 @@
 ---
 title: 'Criminal Justice Reform'
-claim: 'Criminal Justice Reform'
-translation: 'Make crime less illegal.'
+grift: 'Criminal Justice Reform'
+decode: 'Make crime less illegal.'
 ---

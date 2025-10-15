@@ -1,5 +1,5 @@
 ---
 title: 'Restorative Justice'
-claim: 'Restorative Justice'
-translation: 'Let the victim apologize.'
+grift: 'Restorative Justice'
+decode: 'Let the victim apologize.'
 ---

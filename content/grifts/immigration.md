@@ -1,5 +1,5 @@
 ---
 title: 'Immigration'
-claim: 'Immigration'
-translation: 'Increased poverty. Increased division. Increased crime. Destroy native culture.'
+grift: 'Immigration'
+decode: 'Increased poverty. Increased division. Increased crime. Destroy native culture.'
 ---

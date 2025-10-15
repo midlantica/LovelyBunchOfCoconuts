@@ -1,5 +1,5 @@
 ---
 title: 'Reclaim Crafting'
-claim: 'Reclaim Crafting'
-translation: 'Knitting as revolution.'
+grift: 'Reclaim Crafting'
+decode: 'Knitting as revolution.'
 ---

@@ -1,5 +1,5 @@
 ---
 title: 'Digital Intersectionality'
-claim: 'Digital Intersectionality'
-translation: 'Oppression scored by algorithm.'
+grift: 'Digital Intersectionality'
+decode: 'Oppression scored by algorithm.'
 ---

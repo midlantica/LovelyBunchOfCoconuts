@@ -1,5 +1,5 @@
 ---
 title: 'Decriminalize Sex Work'
-claim: 'Decriminalize Sex Work'
-translation: 'Pimping rebranded as empowerment.'
+grift: 'Decriminalize Sex Work'
+decode: 'Pimping rebranded as empowerment.'
 ---

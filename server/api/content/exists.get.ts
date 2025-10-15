@@ -1,4 +1,4 @@
-// GET /api/content/exists?ids=/claims/foo,/memes/bar
+// GET /api/content/exists?ids=/grifts/foo,/memes/bar
 // Returns { exists: string[], missing: string[] }
 // Lazy import of @nuxt/content runtime to avoid Vite resolve warning during dev build
 import { getQueryContent } from '../../utils/queryContentRuntime'
@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
         .replace(/\/$/, '')
         .replace(/\/(claims|memes|quotes)\/(?:\1\/)+/g, '/$1/')
         .replace(/_/g, '-')
-        .replace(/^\/claim\//, '/claims/')
+        .replace(/^\/claim\//, '/grifts/')
         .replace(/^\/meme\//, '/memes/')
         .replace(/^\/quote\//, '/quotes/')
         .replace(/\/+/, '/')

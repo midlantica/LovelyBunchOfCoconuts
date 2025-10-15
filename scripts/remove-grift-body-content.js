@@ -3,15 +3,15 @@
 import fs from 'fs'
 import path from 'path'
 
-const claimsDir = path.join(process.cwd(), 'content/claims')
+const griftsDir = path.join(process.cwd(), 'content/grifts')
 
-if (!fs.existsSync(claimsDir)) {
-  console.log('Claims directory does not exist')
+if (!fs.existsSync(griftsDir)) {
+  console.log('Grifts directory does not exist')
   process.exit(1)
 }
 
 const files = fs
-  .readdirSync(claimsDir)
+  .readdirSync(griftsDir)
   .filter((file) => file.endsWith('.md'))
   .filter((file) => !file.startsWith('_'))
   .filter((file) => !file.toLowerCase().includes('readme'))
@@ -20,7 +20,7 @@ let processedCount = 0
 let errorCount = 0
 
 for (const file of files) {
-  const filePath = path.join(claimsDir, file)
+  const filePath = path.join(griftsDir, file)
 
   try {
     const content = fs.readFileSync(filePath, 'utf8')

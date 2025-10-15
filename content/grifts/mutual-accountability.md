@@ -1,5 +1,5 @@
 ---
 title: 'Mutual Accountability'
-claim: 'Mutual Accountability'
-translation: 'Everyone’s to blame—except us.'
+grift: 'Mutual Accountability'
+decode: 'Everyone’s to blame—except us.'
 ---

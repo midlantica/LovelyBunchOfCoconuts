@@ -1,5 +1,5 @@
 ---
 title: 'Decolonial Mindfulness'
-claim: 'Decolonial Mindfulness'
-translation: 'Meditate on your guilt.'
+grift: 'Decolonial Mindfulness'
+decode: 'Meditate on your guilt.'
 ---

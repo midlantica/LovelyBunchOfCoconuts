@@ -1,5 +1,5 @@
 ---
 title: 'Ban Gas Stoves'
-claim: 'Ban Gas Stoves'
-translation: 'Micromanaging your kitchen for the climate.'
+grift: 'Ban Gas Stoves'
+decode: 'Micromanaging your kitchen for the climate.'
 ---

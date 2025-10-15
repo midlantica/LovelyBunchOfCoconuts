@@ -1,5 +1,5 @@
 ---
 title: 'Reparations in Education'
-claim: 'Reparations in Education'
-translation: 'Pay for past sins with present ignorance.'
+grift: 'Reparations in Education'
+decode: 'Pay for past sins with present ignorance.'
 ---

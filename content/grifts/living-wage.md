@@ -1,5 +1,5 @@
 ---
 title: 'Living Wage'
-claim: 'Living Wage'
-translation: 'Pay me more than I’m worth.'
+grift: 'Living Wage'
+decode: 'Pay me more than I’m worth.'
 ---

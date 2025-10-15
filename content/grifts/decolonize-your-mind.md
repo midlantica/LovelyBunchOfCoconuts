@@ -1,5 +1,5 @@
 ---
 title: 'Decolonize Your Mind'
-claim: 'Decolonize Your Mind'
-translation: 'Replace reason with resentment.'
+grift: 'Decolonize Your Mind'
+decode: 'Replace reason with resentment.'
 ---

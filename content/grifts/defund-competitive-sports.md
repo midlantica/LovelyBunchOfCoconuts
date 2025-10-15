@@ -1,5 +1,5 @@
 ---
 title: 'Defund Competitive Sports'
-claim: 'Defund Competitive Sports'
-translation: 'Because winning is problematic.'
+grift: 'Defund Competitive Sports'
+decode: 'Because winning is problematic.'
 ---

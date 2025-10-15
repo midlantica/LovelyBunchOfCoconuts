@@ -1,5 +1,5 @@
 ---
 title: 'Socialized Medicine'
-claim: 'Socialized Medicine'
-translation: 'Waitlists for everyone.'
+grift: 'Socialized Medicine'
+decode: 'Waitlists for everyone.'
 ---

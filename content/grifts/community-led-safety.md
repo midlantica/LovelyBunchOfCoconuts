@@ -1,5 +1,5 @@
 ---
 title: 'Community-Led Safety'
-claim: 'Community-Led Safety'
-translation: 'Let the mob patrol your street.'
+grift: 'Community-Led Safety'
+decode: 'Let the mob patrol your street.'
 ---

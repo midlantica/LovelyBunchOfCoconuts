@@ -1,5 +1,5 @@
 ---
 title: 'Harmful speech should be restricted'
-claim: 'Harmful speech should be restricted'
-translation: 'The Left owns the Narrative.'
+grift: 'Harmful speech should be restricted'
+decode: 'The Left owns the Narrative.'
 ---

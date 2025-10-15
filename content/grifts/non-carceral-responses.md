@@ -1,5 +1,5 @@
 ---
 title: 'Non-Carceral Responses'
-claim: 'Non-Carceral Responses'
-translation: 'Consequences are oppressive.'
+grift: 'Non-Carceral Responses'
+decode: 'Consequences are oppressive.'
 ---

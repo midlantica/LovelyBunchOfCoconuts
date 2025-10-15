@@ -1,8 +1,8 @@
 // Central list of permanently banned like IDs that must never appear in admin or API responses.
 // Add any legacy / renamed paths here. If a replacement target exists, map it below.
 export const BANNED_LIKE_IDS: Record<string, string | null> = {
-  '/claims/rehabilitation-and-restorative-justice':
-    '/claims/restorative-justice',
+  '/grifts/rehabilitation-and-restorative-justice':
+    '/grifts/restorative-justice',
 }
 
 export function isBanned(id: string) {

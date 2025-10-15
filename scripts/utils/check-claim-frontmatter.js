@@ -37,5 +37,5 @@ function checkClaimFrontmatter(directory) {
 }
 
 // Run the script
-const claimsDirectory = path.join(__dirname, '../../content/claims')
+const claimsDirectory = path.join(__dirname, '../../content/grifts')
 checkClaimFrontmatter(claimsDirectory)

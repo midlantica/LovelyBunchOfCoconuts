@@ -113,8 +113,8 @@
 
       // Create content object based on type
       const content = {
-        claim: props.contentType === 'claim' ? props.title : null,
-        translation: props.contentType === 'claim' ? props.text : null,
+        claim: props.contentType === 'grift' ? props.title : null,
+        translation: props.contentType === 'grift' ? props.text : null,
         headings: props.contentType === 'quote' ? [props.title] : null,
         attribution: props.contentType === 'quote' ? props.text : null,
         title: props.contentType === 'meme' ? props.title : null,

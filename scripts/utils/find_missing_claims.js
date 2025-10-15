@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 // Path to claims directory
-const claimsDir = path.join(__dirname, '../content/claims')
+const claimsDir = path.join(__dirname, '../content/grifts')
 
 // Helper function to get all files in a directory recursively
 function getFilesRecursively(dir) {

@@ -1,5 +1,5 @@
 ---
 title: 'Gender Affirming Care'
-claim: 'Gender Affirming Care'
-translation: 'Child castration, mediaveal butchery.'
+grift: 'Gender Affirming Care'
+decode: 'Child castration, mediaveal butchery.'
 ---

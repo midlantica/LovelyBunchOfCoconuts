@@ -1,5 +1,5 @@
 ---
 title: 'Public Education'
-claim: 'Public Education'
-translation: 'Left wing Indoctrination.'
+grift: 'Public Education'
+decode: 'Left wing Indoctrination.'
 ---

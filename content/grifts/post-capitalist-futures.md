@@ -1,5 +1,5 @@
 ---
 title: 'Post-Capitalist Futures'
-claim: 'Post-Capitalist Futures'
-translation: 'Poverty, but visionary.'
+grift: 'Post-Capitalist Futures'
+decode: 'Poverty, but visionary.'
 ---

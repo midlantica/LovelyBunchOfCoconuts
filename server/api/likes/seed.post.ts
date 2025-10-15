@@ -58,7 +58,7 @@ export default defineEventHandler(async (event) => {
       .replace(/\/(claims|memes|quotes)\/(?:\1\/)+/g, '/$1/')
       .replace(/_/g, '-')
       .replace(/\/$/, '')
-      .replace(/^\/claim\//, '/claims/')
+      .replace(/^\/claim\//, '/grifts/')
       .replace(/^\/meme\//, '/memes/')
       .replace(/^\/quote\//, '/quotes/')
     const existed = existing[id] !== undefined && existing[id] > 0

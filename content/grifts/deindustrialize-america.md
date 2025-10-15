@@ -1,5 +1,5 @@
 ---
 title: 'Deindustrialize America'
-claim: 'Deindustrialize America'
-translation: 'Rust as a virtue.'
+grift: 'Deindustrialize America'
+decode: 'Rust as a virtue.'
 ---

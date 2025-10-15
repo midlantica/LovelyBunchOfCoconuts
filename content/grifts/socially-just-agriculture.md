@@ -1,5 +1,5 @@
 ---
 title: 'Socially Just Agriculture'
-claim: 'Socially Just Agriculture'
-translation: 'Farm equity, not food.'
+grift: 'Socially Just Agriculture'
+decode: 'Farm equity, not food.'
 ---

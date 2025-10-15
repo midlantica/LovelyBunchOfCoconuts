@@ -1,5 +1,5 @@
 ---
 title: 'Compassionate Code of Conduct'
-claim: 'Compassionate Code of Conduct'
-translation: 'Free speech with a muzzle.'
+grift: 'Compassionate Code of Conduct'
+decode: 'Free speech with a muzzle.'
 ---

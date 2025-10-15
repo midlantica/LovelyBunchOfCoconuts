@@ -1,5 +1,5 @@
 ---
 title: 'Cis Privilege'
-claim: 'Cis Privilege'
-translation: 'Born normal, now problematic.'
+grift: 'Cis Privilege'
+decode: 'Born normal, now problematic.'
 ---

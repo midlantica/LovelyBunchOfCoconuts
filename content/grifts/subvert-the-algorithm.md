@@ -1,5 +1,5 @@
 ---
 title: 'Subvert the Algorithm'
-claim: 'Subvert the Algorithm'
-translation: 'Shadowban everyone you dislike.'
+grift: 'Subvert the Algorithm'
+decode: 'Shadowban everyone you dislike.'
 ---

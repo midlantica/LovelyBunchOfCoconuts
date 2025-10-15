@@ -1,5 +1,5 @@
 ---
 title: 'Climate Conscious Fashion'
-claim: 'Climate Conscious Fashion'
-translation: 'Virtue stitched into fabric.'
+grift: 'Climate Conscious Fashion'
+decode: 'Virtue stitched into fabric.'
 ---

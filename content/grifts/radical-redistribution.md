@@ -1,5 +1,5 @@
 ---
 title: 'Radical Redistribution'
-claim: 'Radical Redistribution'
-translation: 'Forceful charity, minus consent.'
+grift: 'Radical Redistribution'
+decode: 'Forceful charity, minus consent.'
 ---

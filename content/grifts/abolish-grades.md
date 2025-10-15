@@ -1,5 +1,5 @@
 ---
 title: 'Abolish Grades'
-claim: 'Abolish Grades'
-translation: 'Failure is now inclusive.'
+grift: 'Abolish Grades'
+decode: 'Failure is now inclusive.'
 ---

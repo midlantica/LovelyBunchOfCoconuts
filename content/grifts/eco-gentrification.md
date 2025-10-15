@@ -1,5 +1,5 @@
 ---
 title: 'Eco-Gentrification'
-claim: 'Eco-Gentrification'
-translation: 'Green the city, displace the poor.'
+grift: 'Eco-Gentrification'
+decode: 'Green the city, displace the poor.'
 ---

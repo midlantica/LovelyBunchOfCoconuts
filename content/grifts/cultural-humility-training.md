@@ -1,5 +1,5 @@
 ---
 title: 'Cultural Humility Training'
-claim: 'Cultural Humility Training'
-translation: 'Self-flagellation for HR credit.'
+grift: 'Cultural Humility Training'
+decode: 'Self-flagellation for HR credit.'
 ---

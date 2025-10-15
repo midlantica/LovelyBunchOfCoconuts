@@ -1,5 +1,5 @@
 ---
 title: 'Deconstruct Whiteness'
-claim: 'Deconstruct Whiteness'
-translation: 'Racial essentialism with a progressive twist.'
+grift: 'Deconstruct Whiteness'
+decode: 'Racial essentialism with a progressive twist.'
 ---

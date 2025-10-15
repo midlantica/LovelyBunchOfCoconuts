@@ -1,5 +1,5 @@
 ---
 title: 'Equity-Centered HR'
-claim: 'Equity-Centered HR'
-translation: 'Promotions for the most offended.'
+grift: 'Equity-Centered HR'
+decode: 'Promotions for the most offended.'
 ---

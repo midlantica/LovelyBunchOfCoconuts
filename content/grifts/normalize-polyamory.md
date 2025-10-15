@@ -1,5 +1,5 @@
 ---
 title: 'Normalize Polyamory'
-claim: 'Normalize Polyamory'
-translation: 'Stability is oppressive.'
+grift: 'Normalize Polyamory'
+decode: 'Stability is oppressive.'
 ---

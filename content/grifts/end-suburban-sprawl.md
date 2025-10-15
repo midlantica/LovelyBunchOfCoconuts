@@ -1,5 +1,5 @@
 ---
 title: 'End Suburban Sprawl'
-claim: 'End Suburban Sprawl'
-translation: 'Stack and pack humanity.'
+grift: 'End Suburban Sprawl'
+decode: 'Stack and pack humanity.'
 ---

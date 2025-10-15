@@ -1,5 +1,5 @@
 ---
 title: 'Hate'
-claim: 'Hate'
-translation: "Anything the Left doesn't like."
+grift: 'Hate'
+decode: "Anything the Left doesn't like."
 ---

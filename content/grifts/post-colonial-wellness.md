@@ -1,5 +1,5 @@
 ---
 title: 'Post-Colonial Wellness'
-claim: 'Post-Colonial Wellness'
-translation: 'Chakras aligned with outrage.'
+grift: 'Post-Colonial Wellness'
+decode: 'Chakras aligned with outrage.'
 ---

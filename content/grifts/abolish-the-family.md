@@ -1,5 +1,5 @@
 ---
 title: 'Abolish the Family'
-claim: 'Abolish the Family'
-translation: 'Turn kinship into bureaucracy.'
+grift: 'Abolish the Family'
+decode: 'Turn kinship into bureaucracy.'
 ---

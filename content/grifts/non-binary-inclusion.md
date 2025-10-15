@@ -1,5 +1,5 @@
 ---
 title: 'Non-Binary Inclusion'
-claim: 'Non-Binary Inclusion'
-translation: 'Rewrite language for niche ideology.'
+grift: 'Non-Binary Inclusion'
+decode: 'Rewrite language for niche ideology.'
 ---

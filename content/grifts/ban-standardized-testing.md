@@ -1,5 +1,5 @@
 ---
 title: 'Ban Standardized Testing'
-claim: 'Ban Standardized Testing'
-translation: 'Measure feelings, not facts.'
+grift: 'Ban Standardized Testing'
+decode: 'Measure feelings, not facts.'
 ---

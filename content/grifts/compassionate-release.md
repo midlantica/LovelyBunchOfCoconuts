@@ -1,5 +1,5 @@
 ---
 title: 'Compassionate Release'
-claim: 'Compassionate Release'
-translation: 'Let convicts go—justice served.'
+grift: 'Compassionate Release'
+decode: 'Let convicts go—justice served.'
 ---

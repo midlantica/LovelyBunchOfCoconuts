@@ -1,5 +1,5 @@
 ---
 title: 'Student-Led Justice'
-claim: 'Student-Led Justice'
-translation: 'Mob rule with a GPA.'
+grift: 'Student-Led Justice'
+decode: 'Mob rule with a GPA.'
 ---

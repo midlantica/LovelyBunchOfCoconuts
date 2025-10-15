@@ -1,5 +1,5 @@
 ---
 title: 'Riots & Violence'
-claim: 'Riots & Violence'
-translation: 'Law & Order'
+grift: 'Riots & Violence'
+decode: 'Law & Order'
 ---

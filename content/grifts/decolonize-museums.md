@@ -1,5 +1,5 @@
 ---
 title: 'Decolonize Museums'
-claim: 'Decolonize Museums'
-translation: 'History must now apologize.'
+grift: 'Decolonize Museums'
+decode: 'History must now apologize.'
 ---

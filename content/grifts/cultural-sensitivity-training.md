@@ -1,5 +1,5 @@
 ---
 title: 'Cultural Sensitivity Training'
-claim: 'Cultural Sensitivity Training'
-translation: 'Assume guilt, avoid eye contact.'
+grift: 'Cultural Sensitivity Training'
+decode: 'Assume guilt, avoid eye contact.'
 ---

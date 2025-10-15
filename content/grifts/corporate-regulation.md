@@ -1,5 +1,5 @@
 ---
 title: 'Corporate Regulation'
-claim: 'Corporate Regulation'
-translation: 'Cronyism, corruption.'
+grift: 'Corporate Regulation'
+decode: 'Cronyism, corruption.'
 ---

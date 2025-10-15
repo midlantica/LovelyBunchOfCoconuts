@@ -1,5 +1,5 @@
 ---
 title: 'Love'
-claim: 'Love'
-translation: 'Self-Love.'
+grift: 'Love'
+decode: 'Self-Love.'
 ---

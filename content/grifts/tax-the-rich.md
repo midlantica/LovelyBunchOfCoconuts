@@ -1,5 +1,5 @@
 ---
 title: 'Tax the rich'
-claim: 'Tax the rich'
-translation: 'Increased poverty.'
+grift: 'Tax the rich'
+decode: 'Increased poverty.'
 ---

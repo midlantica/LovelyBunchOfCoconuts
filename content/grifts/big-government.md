@@ -1,5 +1,5 @@
 ---
 title: 'Big Government'
-claim: 'Big Government'
-translation: 'Small Individual'
+grift: 'Big Government'
+decode: 'Small Individual'
 ---

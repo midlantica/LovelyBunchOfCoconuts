@@ -1,5 +1,5 @@
 ---
 title: 'Intersectional Feminism'
-claim: 'Intersectional Feminism'
-translation: 'Grievance stacking for clout.'
+grift: 'Intersectional Feminism'
+decode: 'Grievance stacking for clout.'
 ---

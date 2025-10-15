@@ -1,5 +1,5 @@
 ---
 title: 'Feminist Economics'
-claim: 'Feminist Economics'
-translation: 'Math with a victim complex.'
+grift: 'Feminist Economics'
+decode: 'Math with a victim complex.'
 ---

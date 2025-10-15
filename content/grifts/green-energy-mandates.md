@@ -1,5 +1,5 @@
 ---
 title: 'Green Energy Mandates'
-claim: 'Green Energy Mandates'
-translation: 'Unplug reality to feel virtuous.'
+grift: 'Green Energy Mandates'
+decode: 'Unplug reality to feel virtuous.'
 ---

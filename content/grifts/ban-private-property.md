@@ -1,5 +1,5 @@
 ---
 title: 'Ban Private Property'
-claim: 'Ban Private Property'
-translation: 'You’ll own nothing and be surveilled.'
+grift: 'Ban Private Property'
+decode: 'You’ll own nothing and be surveilled.'
 ---

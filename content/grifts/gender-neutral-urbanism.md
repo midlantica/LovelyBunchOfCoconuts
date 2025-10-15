@@ -1,5 +1,5 @@
 ---
 title: 'Gender-Neutral Urbanism'
-claim: 'Gender-Neutral Urbanism'
-translation: 'Cities without stereotypes.'
+grift: 'Gender-Neutral Urbanism'
+decode: 'Cities without stereotypes.'
 ---

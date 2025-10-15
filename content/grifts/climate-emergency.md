@@ -1,5 +1,5 @@
 ---
 title: 'Climate Emergency'
-claim: 'Climate Emergency'
-translation: 'Justification for permanent control.'
+grift: 'Climate Emergency'
+decode: 'Justification for permanent control.'
 ---

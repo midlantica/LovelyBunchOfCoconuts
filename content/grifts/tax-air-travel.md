@@ -1,5 +1,5 @@
 ---
 title: 'Tax Air Travel'
-claim: 'Tax Air Travel'
-translation: 'Ground the poor.'
+grift: 'Tax Air Travel'
+decode: 'Ground the poor.'
 ---

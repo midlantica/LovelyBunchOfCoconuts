@@ -1,5 +1,5 @@
 ---
 title: 'Ban SUVs'
-claim: 'Ban SUVs'
-translation: 'No freedom without permission.'
+grift: 'Ban SUVs'
+decode: 'No freedom without permission.'
 ---

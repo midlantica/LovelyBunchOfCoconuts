@@ -1,5 +1,5 @@
 ---
 title: 'Disrupt Whiteness'
-claim: 'Disrupt Whiteness'
-translation: 'Cultural demolition by decree.'
+grift: 'Disrupt Whiteness'
+decode: 'Cultural demolition by decree.'
 ---

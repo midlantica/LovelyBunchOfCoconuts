@@ -1,5 +1,5 @@
 ---
 title: 'Oppression Olympics'
-claim: 'Oppression Olympics'
-translation: 'Gold medals in grievance.'
+grift: 'Oppression Olympics'
+decode: 'Gold medals in grievance.'
 ---

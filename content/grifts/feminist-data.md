@@ -1,5 +1,5 @@
 ---
 title: 'Feminist Data'
-claim: 'Feminist Data'
-translation: 'Facts with a gender agenda.'
+grift: 'Feminist Data'
+decode: 'Facts with a gender agenda.'
 ---

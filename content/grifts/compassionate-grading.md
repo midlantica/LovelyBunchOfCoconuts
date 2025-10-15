@@ -1,5 +1,5 @@
 ---
 title: 'Compassionate Grading'
-claim: 'Compassionate Grading'
-translation: 'Pass them all and feel good.'
+grift: 'Compassionate Grading'
+decode: 'Pass them all and feel good.'
 ---

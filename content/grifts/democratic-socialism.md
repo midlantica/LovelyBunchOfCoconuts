@@ -1,5 +1,5 @@
 ---
 title: 'Democratic Socialism'
-claim: 'Democratic Socialism'
-translation: 'Socialism'
+grift: 'Democratic Socialism'
+decode: 'Socialism'
 ---
