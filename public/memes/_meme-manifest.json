@@ -2191,6 +2191,30 @@
       "updated": "2025-10-14T18:41:21.193Z",
       "width": 1080,
       "height": 972
+    },
+    "capitalism/what-our-generation-has-forgotten.jpg": {
+      "optimized": true,
+      "hash": "e1b3f6dc1e090b00c7bae6ed1389dda755cca6c2",
+      "action": "strip-profiles",
+      "updated": "2025-10-16T16:58:11.942Z",
+      "width": 1080,
+      "height": 1080
+    },
+    "politics/venezuela-timeline.jpg": {
+      "optimized": true,
+      "hash": "c3acb2ecfc01b460cc1c62d0df39f9dd285378b5",
+      "action": "upscale→800",
+      "updated": "2025-10-16T16:58:12.287Z",
+      "width": 800,
+      "height": 732
+    },
+    "thomas-sowell/if-you-believe-in-equal-rights-then-the.jpg": {
+      "optimized": true,
+      "hash": "b2380d7b7da0f08955d34271083c5440bd4a0d49",
+      "action": "strip-profiles",
+      "updated": "2025-10-16T16:58:12.595Z",
+      "width": 1057,
+      "height": 1080
     }
   }
 }

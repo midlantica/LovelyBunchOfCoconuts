@@ -164,36 +164,38 @@ export function useSocialShare() {
   }
   const generateShareImage = async (content, type) => {
     return new Promise((resolve) => {
+      // RENDER AT 2X RESOLUTION to eliminate text anti-aliasing artifacts
+      const scale = 2
+      const finalWidth = 1600 // 16:9 ratio - OPTIMAL for Twitter/Facebook!
+      const finalHeight = 900
+
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
 
-      // Set canvas size for social media (1200x630 is ideal for most platforms)
-      canvas.width = 1200
-      canvas.height = 630
+      // Set canvas to 2x size for high-res rendering
+      canvas.width = finalWidth * scale
+      canvas.height = finalHeight * scale
 
-      // Create the background programmatically (no diagonal streaks)
-      const createBackground = () => {
-        // Draw gradient background
-        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
-        gradient.addColorStop(0, '#1e2d42')
-        gradient.addColorStop(0.4306, '#1e2d42')
-        gradient.addColorStop(1.0, '#0e1620')
-        ctx.fillStyle = gradient
-        ctx.fillRect(0, 0, canvas.width, canvas.height)
+      // Enable high-quality rendering
+      ctx.imageSmoothingEnabled = true
+      ctx.imageSmoothingQuality = 'high'
 
-        // Draw inner panel (rounded rectangle)
-        ctx.fillStyle = '#1a2332'
-        roundRect(ctx, 30, 30, 1140, 476, 16)
+      // Load and use YOUR prepared share-frame.png
+      const backgroundImg = new Image()
+      backgroundImg.crossOrigin = 'anonymous'
+      backgroundImg.onload = () => {
+        // Draw your prepared background image at 2x size
+        ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height)
 
-        // Inner frame specifications: 30px from top-left, 1140px width × 476px height
-        const innerFrameX = 30
-        const innerFrameY = 30
-        const innerFrameWidth = 1140
-        const innerFrameHeight = 476
+        // No inner frame - use full canvas with padding
+        const paddingX = 80 * scale // Padding from left/right edges
+        const paddingY = 60 * scale // Padding from top/bottom edges (extra bottom for logo)
+        const textAreaWidth = canvas.width - paddingX * 2
+        const textAreaHeight = canvas.height - paddingY * 2
 
-        // Calculate the center point of the inner frame
-        const centerX = innerFrameX + innerFrameWidth / 2
-        const centerY = innerFrameY + innerFrameHeight / 2
+        // Calculate the center point of the full canvas
+        const centerX = canvas.width / 2
+        const centerY = (canvas.height - 60 * scale) / 2 // Slightly higher to account for logo space
 
         // Content specifications based on type - centered on inner frame center point
         if (type === 'quote') {
@@ -223,12 +225,12 @@ export function useSocialShare() {
             }
           }
 
-          // Calculate optimal font size for quote text
+          // Calculate optimal font size for quote text - MUCH BIGGER for 16:9
           const quoteOptimalSize = calculateOptimalFontSize(
-            40.7, // Base font size
+            90 * scale, // Base font size - INCREASED for wider format
             quoteText.length,
-            1062, // Max width
-            476 // Max height
+            textAreaWidth, // Use full text area width
+            textAreaHeight // Use full text area height
           )
 
           // Quote text (all white as requested) - smart sizing for mobile readability
@@ -236,11 +238,11 @@ export function useSocialShare() {
           ctx.font = `100 ${quoteOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
           ctx.textAlign = 'center'
 
-          // Word wrap for quote - max width 1062 as requested
+          // Word wrap for quote - use full width
           const words = quoteText.split(' ')
           const lines = []
           let currentLine = words[0]
-          const maxWidth = 1062 // Text area should not exceed 1062 width
+          const maxWidth = textAreaWidth
 
           for (let i = 1; i < words.length; i++) {
             const word = words[i]
@@ -273,12 +275,12 @@ export function useSocialShare() {
             authorName !== 'Author' &&
             authorName.trim() !== ''
           ) {
-            // Calculate optimal size for author (smaller than quote text)
+            // Calculate optimal size for author (smaller than quote text) - BIGGER
             const authorOptimalSize = calculateOptimalFontSize(
-              31.74, // Base author font size
+              65 * scale, // Base author font size - INCREASED
               authorName.length,
-              1062, // Max width
-              476 // Max height
+              textAreaWidth, // Use full text area width
+              textAreaHeight // Use full text area height
             )
 
             ctx.fillStyle = '#6DD3FF'
@@ -325,65 +327,192 @@ export function useSocialShare() {
           console.log('Final griftText:', griftText)
           console.log('Final cleanDecodeText:', cleanDecodeText)
 
-          // Calculate optimal font size for grift text
+          // EQUAL SIZING: Calculate for longest text, use for both
+          // Goal: Fill about 2/3 of vertical space with text (4 lines total: 2 grift + 2 decode)
+          // Layout: grift (2 lines) + gap + line + gap + decode (2 lines)
+          // Calculate maximum usable height (leaving margin for logo at bottom)
+          const logoSafetyMargin = 100 * scale // Extra margin from bottom to avoid logo
+          const maxUsableHeight = textAreaHeight - logoSafetyMargin
+          const targetHeight = (maxUsableHeight * 2) / 3 // Target 2/3 of available space
+
+          // For 4 lines of text with gaps and line:
+          // visualHeight ≈ fontSize * 5.125 (calculated from ascent + 3*lineHeight + descent)
+          // plus gaps and line height
+          // Estimate: fontSize * 5.5 (accounting for gaps and line)
+          const estimatedFontSize = targetHeight / 5.5
+          const baseFontSize = Math.max(
+            80 * scale,
+            Math.floor(estimatedFontSize)
+          )
+
+          // Calculate optimal size for GRIFT text
           const griftOptimalSize = calculateOptimalFontSize(
-            45, // Base font size
+            baseFontSize,
             griftText.length,
-            1062, // Max width
-            476 // Max height
+            textAreaWidth, // Full width
+            maxUsableHeight // Full available height
           )
 
-          // Grift text (white) - smart sizing for mobile readability
-          ctx.fillStyle = '#ffffff'
-          ctx.font = `100 ${griftOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
-          ctx.textAlign = 'center'
-          drawCenteredText(
-            ctx,
-            griftText,
-            centerX,
-            centerY - griftOptimalSize.fontSize * 0.6
-          )
-
-          // Horizontal rule (#6DD3FF at 50% opacity, 820px wide)
-          ctx.fillStyle = '#6DD3FF'
-          ctx.globalAlpha = 0.5
-          const ruleY = centerY
-          const ruleWidth = 820
-          ctx.fillRect(centerX - ruleWidth / 2, ruleY, ruleWidth, 2)
-          ctx.globalAlpha = 1
-
-          // Calculate optimal font size for translation text
+          // Calculate optimal size for DECODE text
           const decodeOptimalSize = calculateOptimalFontSize(
-            45, // Base font size (same as claim)
+            baseFontSize,
             cleanDecodeText.length,
-            1062, // Max width
-            476 // Max height
+            textAreaWidth, // Full width
+            maxUsableHeight // Full available height
           )
 
-          // Translation text (white) - smart sizing for mobile readability
-          ctx.fillStyle = '#ffffff'
-          ctx.font = `100 ${decodeOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
-          drawCenteredText(
-            ctx,
-            cleanDecodeText,
-            centerX,
-            centerY + decodeOptimalSize.fontSize * 0.9 + 18
+          // Use the SMALLER of the two sizes for BOTH texts (so both fit)
+          const unifiedFontSize = Math.min(
+            griftOptimalSize.fontSize,
+            decodeOptimalSize.fontSize
           )
+          const unifiedLineHeight = Math.min(
+            griftOptimalSize.lineHeight,
+            decodeOptimalSize.lineHeight
+          )
+
+          // WORD WRAP for Grift text
+          ctx.fillStyle = '#ffffff'
+          ctx.font = `100 ${unifiedFontSize}px Barlow Condensed, Arial, sans-serif`
+          ctx.textAlign = 'center'
+
+          const griftWords = griftText.split(' ')
+          const griftLines = []
+          let currentGriftLine = griftWords[0]
+
+          for (let i = 1; i < griftWords.length; i++) {
+            const word = griftWords[i]
+            const width = ctx.measureText(currentGriftLine + ' ' + word).width
+            if (width < textAreaWidth) {
+              currentGriftLine += ' ' + word
+            } else {
+              griftLines.push(currentGriftLine)
+              currentGriftLine = word
+            }
+          }
+          griftLines.push(currentGriftLine)
+
+          // WORD WRAP for Decode text (do this BEFORE calculating heights)
+          const decodeWords = cleanDecodeText.split(' ')
+          const decodeLines = []
+          let currentDecodeLine = decodeWords[0]
+
+          for (let i = 1; i < decodeWords.length; i++) {
+            const word = decodeWords[i]
+            const width = ctx.measureText(currentDecodeLine + ' ' + word).width
+            if (width < textAreaWidth) {
+              currentDecodeLine += ' ' + word
+            } else {
+              decodeLines.push(currentDecodeLine)
+              currentDecodeLine = word
+            }
+          }
+          decodeLines.push(currentDecodeLine)
+
+          // Gap between the two text blocks (1rem equivalent - doubled for more breathing room)
+          const textGap = unifiedFontSize * 1.0
+
+          // For positioning: calculate actual visual bounds accounting for ascenders/descenders
+          // First line visual top: baseline - ascender (≈ fontSize * 0.75)
+          // Last line visual bottom: baseline + descender (≈ fontSize * 0.25)
+          const ascentHeight = unifiedFontSize * 0.75
+          const descentHeight = unifiedFontSize * 0.25
+
+          // Actual visual height of N lines = ascent + (N-1)*lineHeight + descent
+          const griftVisualHeight =
+            ascentHeight +
+            (griftLines.length - 1) * unifiedLineHeight +
+            descentHeight
+          const decodeVisualHeight =
+            ascentHeight +
+            (decodeLines.length - 1) * unifiedLineHeight +
+            descentHeight
+
+          // Total content height including gap
+          const totalContentHeight =
+            griftVisualHeight + textGap + decodeVisualHeight
+
+          // Center the content block vertically
+          // blockStartY is the visual TOP of the grift text block (not baseline, but actual top)
+          const blockStartY = centerY - totalContentHeight / 2
+
+          // POSITION THE TEXTS
+          // blockStartY is visual top, so first line baseline is offset by ascent
+          const griftStartY = blockStartY + ascentHeight
+
+          // Calculate where grift text visually ends
+          const griftVisualEnd = blockStartY + griftVisualHeight
+
+          // Decode starts after the gap
+          const decodeStartY = griftVisualEnd + textGap + ascentHeight
+
+          // Line centered in the gap
+          const lineY = griftVisualEnd + textGap / 2
+
+          // Debug positioning
+          console.log('Grift positioning debug:')
+          console.log('  blockStartY:', blockStartY)
+          console.log('  griftStartY:', griftStartY)
+          console.log('  griftVisualEnd:', griftVisualEnd)
+          console.log('  lineY:', lineY)
+          console.log('  decodeStartY:', decodeStartY)
+          console.log('  canvas.height:', canvas.height)
+          console.log('  textGap:', textGap)
+
+          // Draw grift lines
+          griftLines.forEach((line, index) => {
+            drawCenteredText(
+              ctx,
+              line,
+              centerX,
+              griftStartY + index * unifiedLineHeight
+            )
+          })
+
+          // Draw horizontal rule at the calculated line position
+          const ruleHeight = 3 * scale
+
+          // Ensure line is within canvas bounds
+          if (lineY > 0 && lineY < canvas.height) {
+            ctx.fillStyle = '#6DD3FF'
+            ctx.globalAlpha = 0.5
+            const ruleWidth = textAreaWidth * 0.8
+            ctx.fillRect(
+              centerX - ruleWidth / 2,
+              lineY - ruleHeight / 2,
+              ruleWidth,
+              ruleHeight
+            )
+            ctx.globalAlpha = 1
+          } else {
+            console.warn('Line Y position out of bounds:', lineY)
+          }
+
+          // Draw decode lines - WHITE color!
+          ctx.fillStyle = '#ffffff'
+          decodeLines.forEach((line, index) => {
+            drawCenteredText(
+              ctx,
+              line,
+              centerX,
+              decodeStartY + index * unifiedLineHeight
+            )
+          })
         } else if (type === 'meme') {
           // Meme layout - fills entire inner panel but stays within bounds
           const memeText =
             content.title || content.description || 'Political Meme'
 
-          // For now, just show text - we can enhance with actual image later
+          // For now, just show text - scaled by 2x
           ctx.fillStyle = '#ffffff'
-          ctx.font = '100 48px Barlow Condensed, Arial, sans-serif'
+          ctx.font = `100 ${70 * scale}px Barlow Condensed, Arial, sans-serif`
           ctx.textAlign = 'center'
 
-          // Word wrap for meme text - ensure it fits within 1062 width
+          // Word wrap for meme text - use full width
           const words = memeText.split(' ')
           const lines = []
           let currentLine = words[0]
-          const maxWidth = 1062 // Text area should not exceed 1062 width
+          const maxWidth = textAreaWidth
 
           for (let i = 1; i < words.length; i++) {
             const word = words[i]
@@ -397,8 +526,8 @@ export function useSocialShare() {
           }
           lines.push(currentLine)
 
-          // Draw meme text centered on inner frame center
-          const lineHeight = 60
+          // Draw meme text centered on inner frame center - scaled by 2x
+          const lineHeight = 60 * scale
           const totalTextHeight = lines.length * lineHeight
           const memeStartY = centerY - totalTextHeight / 2
 
@@ -412,43 +541,30 @@ export function useSocialShare() {
           })
         }
 
-        // Load and draw logo at the bottom
-        const logoImg = new Image()
-        logoImg.crossOrigin = 'anonymous'
-        logoImg.onload = () => {
-          // Draw logo centered at bottom (158px width × 19px height)
-          const logoWidth = 158
-          const logoHeight = 19
-          const logoX = (canvas.width - logoWidth) / 2
-          const logoY = canvas.height - logoHeight - 15
-          ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight)
+        // Scale down the high-res canvas to final size for smooth anti-aliasing
+        const finalCanvas = document.createElement('canvas')
+        const finalCtx = finalCanvas.getContext('2d')
+        finalCanvas.width = finalWidth
+        finalCanvas.height = finalHeight
 
-          // Convert to blob
-          canvas.toBlob(
-            (blob) => {
-              resolve(blob)
-            },
-            'image/jpeg',
-            0.95
-          )
-        }
+        // Enable smoothing for the scale-down operation
+        finalCtx.imageSmoothingEnabled = true
+        finalCtx.imageSmoothingQuality = 'high'
 
-        logoImg.onerror = () => {
-          // If logo fails to load, just return without it
-          canvas.toBlob(
-            (blob) => {
-              resolve(blob)
-            },
-            'image/jpeg',
-            0.95
-          )
-        }
+        // Draw the 2x canvas scaled down to 1x
+        finalCtx.drawImage(canvas, 0, 0, finalWidth, finalHeight)
 
-        logoImg.src = '/wakeupnpc-mini.png'
+        // Export the final 1080x1080 image
+        finalCanvas.toBlob(
+          (blob) => {
+            resolve(blob)
+          },
+          'image/png',
+          1.0
+        )
       }
 
-      // Start by creating the background
-      createBackground()
+      backgroundImg.src = '/share-frame.png'
     })
   }
 
@@ -708,7 +824,7 @@ export function useSocialShare() {
               new ClipboardItem({
                 'text/html': new Blob([htmlContent], { type: 'text/html' }),
                 'text/plain': new Blob([url], { type: 'text/plain' }),
-                'image/jpeg': imageBlob,
+                'image/png': imageBlob,
               }),
             ])
 
@@ -724,9 +840,7 @@ export function useSocialShare() {
               const clipboardItems = []
 
               // Add the image
-              clipboardItems.push(
-                new ClipboardItem({ 'image/jpeg': imageBlob })
-              )
+              clipboardItems.push(new ClipboardItem({ 'image/png': imageBlob }))
 
               // Add the URL text (if available)
               if (url) {
@@ -749,7 +863,7 @@ export function useSocialShare() {
               try {
                 // Fallback: try to copy just the image
                 await navigator.clipboard.write([
-                  new ClipboardItem({ 'image/jpeg': imageBlob }),
+                  new ClipboardItem({ 'image/png': imageBlob }),
                 ])
                 showToast('Image copied')
               } catch (imageError) {
@@ -776,7 +890,7 @@ export function useSocialShare() {
           const downloadUrl = URL.createObjectURL(imageBlob)
           const a = document.createElement('a')
           a.href = downloadUrl
-          a.download = `wakeupnpc-${type}-${Date.now()}.jpg`
+          a.download = `wakeupnpc-${type}-${Date.now()}.png`
           document.body.appendChild(a)
           a.click()
           document.body.removeChild(a)

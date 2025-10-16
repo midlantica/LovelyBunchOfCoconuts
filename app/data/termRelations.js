@@ -72,6 +72,7 @@ export const TERM_RELATIONS = {
     'fascist',
     'nazism',
     'nazi',
+    'welfare',
   ],
   maoism: [
     'collectivism',
