@@ -171,12 +171,19 @@ export function useSocialShare() {
       canvas.width = 1200
       canvas.height = 630
 
-      // Load the pre-designed background frame
-      const backgroundImg = new Image()
-      backgroundImg.crossOrigin = 'anonymous'
-      backgroundImg.onload = () => {
-        // Draw the complete background frame (includes background, panel, and logo)
-        ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height)
+      // Create the background programmatically (no diagonal streaks)
+      const createBackground = () => {
+        // Draw gradient background
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
+        gradient.addColorStop(0, '#1e2d42')
+        gradient.addColorStop(0.4306, '#1e2d42')
+        gradient.addColorStop(1.0, '#0e1620')
+        ctx.fillStyle = gradient
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+        // Draw inner panel (rounded rectangle)
+        ctx.fillStyle = '#1a2332'
+        roundRect(ctx, 30, 30, 1140, 476, 16)
 
         // Inner frame specifications: 30px from top-left, 1140px width × 476px height
         const innerFrameX = 30
@@ -284,9 +291,21 @@ export function useSocialShare() {
             )
           }
         } else if (type === 'grift') {
-          // Claim layout centered on inner frame center
-          const griftText = content.grift || 'Political Claim'
-          const decodeText = content.decode || 'Translation'
+          // Grift layout centered on inner frame center
+          // Check multiple possible locations for grift/decode data
+          const griftText =
+            content.grift ||
+            content.meta?.grift ||
+            content.claim ||
+            content.meta?.claim ||
+            content.title ||
+            'Political Grift'
+          const decodeText =
+            content.decode ||
+            content.meta?.decode ||
+            content.translation ||
+            content.meta?.translation ||
+            'Decode'
 
           // Extract just the translation part (remove claim + dash if present)
           let cleanDecodeText = decodeText
@@ -294,37 +313,35 @@ export function useSocialShare() {
             // Find the first " - " and take everything after it
             const dashIndex = decodeText.indexOf(' - ')
             if (dashIndex !== -1) {
-              cleanDecodeText = decodeText
-                .substring(dashIndex + 3)
-                .trim()
+              cleanDecodeText = decodeText.substring(dashIndex + 3).trim()
             }
           }
 
           // Debug: Log what we actually got
-          console.log('=== CLAIM DEBUG ===')
+          console.log('=== GRIFT DEBUG ===')
           console.log('content:', content)
           console.log('content.grift:', content.grift)
           console.log('content.decode:', content.decode)
-          console.log('Final claimText:', claimText)
+          console.log('Final griftText:', griftText)
           console.log('Final cleanDecodeText:', cleanDecodeText)
 
-          // Calculate optimal font size for claim text
-          const claimOptimalSize = calculateOptimalFontSize(
+          // Calculate optimal font size for grift text
+          const griftOptimalSize = calculateOptimalFontSize(
             45, // Base font size
-            claimText.length,
+            griftText.length,
             1062, // Max width
             476 // Max height
           )
 
-          // Claim text (white) - smart sizing for mobile readability
+          // Grift text (white) - smart sizing for mobile readability
           ctx.fillStyle = '#ffffff'
-          ctx.font = `100 ${claimOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
+          ctx.font = `100 ${griftOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
           ctx.textAlign = 'center'
           drawCenteredText(
             ctx,
-            claimText,
+            griftText,
             centerX,
-            centerY - claimOptimalSize.fontSize * 0.6
+            centerY - griftOptimalSize.fontSize * 0.6
           )
 
           // Horizontal rule (#6DD3FF at 50% opacity, 820px wide)
@@ -395,19 +412,43 @@ export function useSocialShare() {
           })
         }
 
-        // Logo is already included in the background frame image
+        // Load and draw logo at the bottom
+        const logoImg = new Image()
+        logoImg.crossOrigin = 'anonymous'
+        logoImg.onload = () => {
+          // Draw logo centered at bottom (158px width × 19px height)
+          const logoWidth = 158
+          const logoHeight = 19
+          const logoX = (canvas.width - logoWidth) / 2
+          const logoY = canvas.height - logoHeight - 15
+          ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight)
 
-        // Convert to blob
-        canvas.toBlob(
-          (blob) => {
-            resolve(blob)
-          },
-          'image/jpeg',
-          0.95
-        )
+          // Convert to blob
+          canvas.toBlob(
+            (blob) => {
+              resolve(blob)
+            },
+            'image/jpeg',
+            0.95
+          )
+        }
+
+        logoImg.onerror = () => {
+          // If logo fails to load, just return without it
+          canvas.toBlob(
+            (blob) => {
+              resolve(blob)
+            },
+            'image/jpeg',
+            0.95
+          )
+        }
+
+        logoImg.src = '/wakeupnpc-mini.png'
       }
 
-      backgroundImg.src = '/share-frame.png'
+      // Start by creating the background
+      createBackground()
     })
   }
 
@@ -748,14 +789,14 @@ export function useSocialShare() {
     }
   }
 
-  const shareClaim = (claim) => shareToPlatform(claim, 'claim', 'social')
+  const shareGrift = (grift) => shareToPlatform(grift, 'grift', 'social')
   const shareQuote = (quote) => shareToPlatform(quote, 'quote', 'social')
   const shareMeme = (meme) => shareToPlatform(meme, 'meme', 'social')
 
   return {
     generateShareImage,
     shareToPlatform,
-    shareClaim,
+    shareGrift,
     shareQuote,
     shareMeme,
   }

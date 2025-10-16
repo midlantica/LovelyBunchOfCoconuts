@@ -1,5 +1,5 @@
 ---
 title: 'Abolish ICE'
 grift: 'Abolish ICE'
-decode: 'Let drug cartels handle immigration.'
+decode: 'Let Drug Cartels handle Immigration.'
 ---
