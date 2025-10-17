@@ -23,11 +23,6 @@
             label="Advertising"
             @click="closeMenu"
           />
-          <LayoutNavigationMenuItem
-            to="/contact"
-            label="Contact"
-            @click="closeMenu"
-          />
         </ul>
 
         <!-- Social Links Section -->
@@ -97,22 +92,14 @@
 
   /* Barlow Condensed font classes */
   .font-100 {
-    font-family:
-      'Barlow Condensed',
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      sans-serif;
+    font-family: 'Barlow Condensed', -apple-system, BlinkMacSystemFont,
+      'Segoe UI', sans-serif;
     font-weight: 300;
   }
 
   .font-300 {
-    font-family:
-      'Barlow Condensed',
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      sans-serif;
+    font-family: 'Barlow Condensed', -apple-system, BlinkMacSystemFont,
+      'Segoe UI', sans-serif;
     font-weight: 500;
   }
 </style>

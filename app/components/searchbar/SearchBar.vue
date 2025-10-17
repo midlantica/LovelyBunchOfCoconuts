@@ -31,13 +31,13 @@
               >
               <button
                 type="button"
-                class="flex justify-center items-center -mr-1 p-0 w-[1.15rem] h-[1.15rem] text-white/50 hover:text-white group-hover:text-white cursor-pointer"
+                class="flex justify-center items-center -mr-1 ml-0.5 p-0 w-[1.25rem] h-[1.25rem] text-white/70 hover:text-white group-hover:text-white transition-colors cursor-pointer"
                 :aria-label="`Remove ${t}`"
                 @click.stop="removeToken(idx)"
               >
                 <Icon
                   name="mdi:close"
-                  class="block text-[1rem] align-middle leading-none"
+                  class="block text-[1.1rem] align-middle leading-none"
                 />
               </button>
             </span>

@@ -11,26 +11,47 @@
 </template>
 
 <script setup>
-  // Welcome modal state for first-time visitors
+  const route = useRoute()
+
+  // Welcome modal state - show on index page if not yet visited
   const showWelcomeModal = ref(false)
 
-  // TEMPORARY: Always show modal on refresh for editing purposes
   if (import.meta.client) {
+    const checkAndShowModal = () => {
+      // Only show modal on the index page (the Wall)
+      if (route.path === '/') {
+        const hasVisited = localStorage.getItem('wakeupnpc_wall_visited')
+        if (!hasVisited) {
+          showWelcomeModal.value = true
+        }
+      } else {
+        // When navigating away from index page, reset the visited flag
+        // so they see the modal again when they return
+        if (showWelcomeModal.value === false) {
+          localStorage.removeItem('wakeupnpc_wall_visited')
+        }
+      }
+    }
+
+    // Check on mount
     onMounted(() => {
-      showWelcomeModal.value = true
-      // const hasVisited = localStorage.getItem('wakeupnpc_has_visited')
-      // if (!hasVisited) {
-      //   showWelcomeModal.value = true
-      // }
+      checkAndShowModal()
     })
+
+    // Watch for route changes
+    watch(
+      () => route.path,
+      () => {
+        checkAndShowModal()
+      }
+    )
   }
 
   const closeWelcomeModal = () => {
     showWelcomeModal.value = false
-    // TEMPORARY: Don't save to localStorage while editing
-    // if (import.meta.client) {
-    //   localStorage.setItem('wakeupnpc_has_visited', 'true')
-    // }
+    if (import.meta.client) {
+      localStorage.setItem('wakeupnpc_wall_visited', 'true')
+    }
   }
 
   // Production-specific loading recovery
