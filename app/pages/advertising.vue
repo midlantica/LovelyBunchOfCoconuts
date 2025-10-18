@@ -1,31 +1,31 @@
 <template>
   <div class="mx-auto px-2 md:px-0 py-0 w-full max-w-screen-md">
-    <div class="pb-4">
-      <h1 class="mt-2 mb-3 font-300 text-2xl">Advertising Rates</h1>
-      <p class="mb-8 font-100 text-slate-300 text-base">
+    <div class="px-3 pb-4">
+      <h1 class="mb-3 font-300 text-3xl uppercase">Advertising Rates</h1>
+      <p class="mb-8 font-100 text-seagull-100 text-lg leading-relaxed">
         Reach engaged conservatives who get the joke
       </p>
     </div>
 
     <!-- Stats Overview -->
-    <div class="gap-4 grid grid-cols-1 md:grid-cols-3 mb-8">
-      <div class="bg-slate-800 shadow-lg p-4 rounded-lg text-center">
+    <div class="gap-4 grid grid-cols-1 md:grid-cols-3 mb-8 px-3">
+      <div class="bg-slate-800/60 shadow-xl p-4 rounded-md text-center">
         <div class="mb-1 font-300 text-slate-400 text-2xl">50K+</div>
         <div class="font-100 text-slate-300 text-sm">Monthly Visitors</div>
       </div>
-      <div class="bg-slate-800 shadow-lg p-4 rounded-lg text-center">
+      <div class="bg-slate-800/60 shadow-xl p-4 rounded-md text-center">
         <div class="mb-1 font-300 text-slate-400 text-2xl">4.2 min</div>
         <div class="font-100 text-slate-300 text-sm">Avg. Session</div>
       </div>
-      <div class="bg-slate-800 shadow-lg p-4 rounded-lg text-center">
+      <div class="bg-slate-800/60 shadow-xl p-4 rounded-md text-center">
         <div class="mb-1 font-300 text-slate-400 text-2xl">72%</div>
         <div class="font-100 text-slate-300 text-sm">Return Rate</div>
       </div>
     </div>
 
     <!-- Ad Specifications -->
-    <div class="bg-slate-800 shadow-xl mb-8 p-6 rounded-lg">
-      <h2 class="mb-4 font-300 text-lg">Ad Specifications</h2>
+    <div class="bg-slate-800/60 shadow-xl mb-8 p-6 px-3 md:px-6 rounded-md">
+      <h2 class="mb-4 font-300 text-2xl uppercase">Ad Specifications</h2>
 
       <div class="gap-6 grid grid-cols-1 md:grid-cols-2">
         <!-- Square Ads -->
@@ -53,13 +53,15 @@
     </div>
 
     <!-- Pricing Tiers -->
-    <div class="mb-8">
-      <h2 class="mb-4 font-300 text-lg text-center">Pricing Tiers</h2>
+    <div class="mb-8 px-3">
+      <h2 class="mb-6 font-300 text-2xl text-center uppercase">
+        Pricing Tiers
+      </h2>
 
       <div class="gap-4 grid grid-cols-1 md:grid-cols-3">
         <!-- Basic -->
         <div
-          class="bg-slate-800 shadow-lg p-5 border-2 border-slate-700 rounded-lg"
+          class="bg-slate-800/60 shadow-xl p-5 border-2 border-slate-700 rounded-md"
         >
           <h3 class="mb-1 font-300">Basic</h3>
           <div class="mb-2 font-300 text-slate-400 text-2xl">$150</div>
@@ -80,7 +82,7 @@
 
         <!-- Standard -->
         <div
-          class="bg-slate-800 shadow-xl p-5 border-2 border-slate-500 rounded-lg scale-105 transform"
+          class="bg-slate-800/60 shadow-xl p-5 border-2 border-slate-500 rounded-md scale-105 transform"
         >
           <div
             class="top-0 right-0 absolute bg-slate-500 px-2 py-1 rounded-tr-lg rounded-bl-lg font-300 text-xs"
@@ -107,7 +109,7 @@
 
         <!-- Premium -->
         <div
-          class="bg-slate-800 shadow-lg p-5 border-2 border-slate-700 rounded-lg"
+          class="bg-slate-800/60 shadow-xl p-5 border-2 border-slate-700 rounded-md"
         >
           <h3 class="mb-1 font-300">Premium</h3>
           <div class="mb-2 font-300 text-slate-400 text-2xl">$500</div>
@@ -142,8 +144,10 @@
     </div>
 
     <!-- Why Advertise -->
-    <div class="bg-slate-800 shadow-xl mb-8 p-6 rounded-lg">
-      <h2 class="mb-4 font-300 text-lg">Why Advertise on WakeUpNPC?</h2>
+    <div class="bg-slate-800/60 shadow-xl mb-8 p-6 px-3 md:px-6 rounded-md">
+      <h2 class="mb-6 font-300 text-2xl uppercase">
+        Why Advertise on WakeUpNPC?
+      </h2>
       <div class="gap-4 grid grid-cols-1 md:grid-cols-2">
         <div>
           <h3 class="mb-2 font-300 text-slate-400">Native Integration</h3>
@@ -179,8 +183,10 @@
     </div>
 
     <!-- CTA -->
-    <div class="bg-slate-600 shadow-xl p-6 rounded-lg text-center">
-      <h2 class="mb-3 font-300 text-lg">Ready to Get Started?</h2>
+    <div
+      class="bg-slate-600/80 shadow-xl p-6 px-3 md:px-6 rounded-md text-center"
+    >
+      <h2 class="mb-3 font-300 text-2xl uppercase">Ready to Get Started?</h2>
       <p class="mb-4 font-100 text-slate-100 text-base">
         Founding advertisers get 50% off their first month
       </p>

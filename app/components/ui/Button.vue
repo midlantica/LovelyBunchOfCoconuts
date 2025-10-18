@@ -97,7 +97,7 @@
       case 'primary':
         return '!bg-seagull-400 hover:!bg-seagull-500 !text-seagull-900 hover:!text-seagull-950 !border-0 !font-300'
       case 'secondary':
-        return '!bg-seagull-900 hover:!bg-seagull-800 !text-seagull-50 !border-0 !font-300'
+        return '!bg-seagull-800 hover:!bg-seagull-900 !text-seagull-50 hover:!text-white !border-0 !font-300'
       case 'tertiary':
         return '!bg-slate-300 hover:!bg-slate-400 !text-slate-950 hover:!text-slate-900 !border-0 !font-300'
       case 'outline':
