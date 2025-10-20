@@ -5,7 +5,7 @@
         v-for="i in visibleTags"
         :key="i.term"
         type="button"
-        class="px-2 pt-[3px] pb-[4px] rounded-sm focus:outline-none text-xs leading-tight tracking-[0.025rem] whitespace-nowrap transition cursor-pointer"
+        class="px-2 pt-[3px] pb-[4px] rounded-sm focus:outline-none font-300 text-[.85rem] leading-tight tracking-wider whitespace-nowrap transition cursor-pointer"
         :class="classesFor(i)"
         @click="emit('select', i.term)"
       >
@@ -27,11 +27,11 @@
   // Visual theme by group; add new groups here. Keeps template free of hard-coded names.
   const groupStyles = {
     Freedom: {
-      base: 'bg-seagull-600/20 text-slate-200 hover:bg-seagull-600/30',
-      active: 'bg-seagull-500 text-slate-950',
+      base: 'bg-seagull-300/20 text-slate-200 hover:bg-seagull-600/30',
+      active: 'bg-seagull-300/90 text-slate-950',
     },
     Collectivism: {
-      base: 'bg-slate-500/20 text-slate-200 hover:bg-slate-500/30',
+      base: 'bg-slate-200/20 text-slate-200 hover:bg-slate-500/30',
       active: 'bg-slate-300 text-slate-900',
     },
   }

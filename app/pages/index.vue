@@ -4,7 +4,7 @@
   <div class="gap-3 grid grid-rows-[auto_1fr] px-0 h-full overflow-hidden">
     <!-- Search Bar -->
     <div class="flex justify-center">
-      <div class="mx-auto px-4 md:px-0 w-full max-w-screen-md">
+      <div class="mx-auto px-4 md:px-0 w-full max-w-3xl">
         <SearchbarSearchBar
           v-model:search="searchTerm"
           v-model:filters="contentFilters"
@@ -18,7 +18,7 @@
     <div
       class="rounded-xl h-full min-h-0 overflow-y-auto scroll-container-stable"
     >
-      <div class="mx-auto md:px-0 pr-3 pl-2 w-full max-w-screen-md">
+      <div class="mx-auto md:px-0 pr-3 pl-2 w-full max-w-3xl">
         <main class="pb-8">
           <WallTheWall
             :search="searchTerm"

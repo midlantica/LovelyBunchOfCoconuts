@@ -9,7 +9,7 @@
       />
       <!-- Tokenized input with pills -->
       <div
-        class="bg-transparent focus-within:bg-transparent px-[2.25rem] py-[0.2rem] border-[thin] border-seagull-400/40 rounded-[20px] outline-none w-full font-100 text-[1.02rem] text-slate-200 sm:text-[0.935rem] leading-none tracking-wider"
+        class="bg-transparent focus-within:bg-transparent px-9 py-[0.2rem] border-[thin] border-seagull-400/40 rounded-[20px] outline-none w-full font-100 text-[1.02rem] text-slate-200 sm:text-[0.935rem] leading-none tracking-wider"
         @click="focusInnerInput"
       >
         <div
@@ -31,7 +31,7 @@
               >
               <button
                 type="button"
-                class="flex justify-center items-center -mr-1 ml-0.5 p-0 w-[1.25rem] h-[1.25rem] text-white/70 hover:text-white group-hover:text-white transition-colors cursor-pointer"
+                class="flex justify-center items-center -mr-1 ml-0.5 p-0 w-5 h-5 text-white/70 hover:text-white group-hover:text-white transition-colors cursor-pointer"
                 :aria-label="`Remove ${t}`"
                 @click.stop="removeToken(idx)"
               >
@@ -63,7 +63,7 @@
       <!-- Search suggestions dropdown -->
       <div
         v-if="showSuggestions && suggestions.length > 0"
-        class="top-full right-0 left-0 z-[5] absolute bg-slate-800 shadow-lg mt-1 border border-seagull-400/40 rounded-lg max-h-64 overflow-y-auto"
+        class="top-full right-0 left-0 z-5 absolute bg-slate-800 shadow-lg mt-1 border border-seagull-400/40 rounded-lg max-h-64 overflow-y-auto"
       >
         <div
           v-for="(suggestion, idx) in suggestions"
