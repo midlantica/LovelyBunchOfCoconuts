@@ -37,10 +37,10 @@
             <p class="relative welcome-modal-paragraph">
               WakeUpNPC is a gold mine of anti&#8209;Leftist Memes, Quotes,
               and&nbsp;<span class="underlined-text"
-                >Grift<Icon
+                >Leftist Grift<Icon
                   name="i-heroicons:arrow-right-20-solid"
                   class="top-0.5 relative mx-0.5 text-slate-100 text-xl"
-                />Decodes</span
+                />Decoded</span
               >.
             </p>
           </div>

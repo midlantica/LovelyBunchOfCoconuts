@@ -1,72 +1,65 @@
 <template>
   <div class="mx-auto px-2 md:px-0 py-0 w-full max-w-screen-md">
     <div class="px-3 pb-4">
-      <h1 class="mb-3 font-300 text-3xl uppercase">Advertising Rates</h1>
-      <p class="mb-8 font-100 text-seagull-100 text-lg leading-relaxed">
-        Reach engaged conservatives who get the joke
-      </p>
-    </div>
-
-    <!-- Stats Overview -->
-    <div class="gap-4 grid grid-cols-1 md:grid-cols-3 mb-8 px-3">
-      <div class="bg-slate-800/60 shadow-xl p-4 rounded-md text-center">
-        <div class="mb-1 font-300 text-slate-400 text-2xl">50K+</div>
-        <div class="font-100 text-slate-300 text-sm">Monthly Visitors</div>
-      </div>
-      <div class="bg-slate-800/60 shadow-xl p-4 rounded-md text-center">
-        <div class="mb-1 font-300 text-slate-400 text-2xl">4.2 min</div>
-        <div class="font-100 text-slate-300 text-sm">Avg. Session</div>
-      </div>
-      <div class="bg-slate-800/60 shadow-xl p-4 rounded-md text-center">
-        <div class="mb-1 font-300 text-slate-400 text-2xl">72%</div>
-        <div class="font-100 text-slate-300 text-sm">Return Rate</div>
-      </div>
+      <h1 class="mb-3 font-300 text-3xl">Advertising</h1>
     </div>
 
     <!-- Ad Specifications -->
-    <div class="bg-slate-800/60 shadow-xl mb-8 p-6 px-3 md:px-6 rounded-md">
-      <h2 class="mb-4 font-300 text-2xl uppercase">Ad Specifications</h2>
-
-      <div class="gap-6 grid grid-cols-1 md:grid-cols-2">
+    <div class="mb-8 px-3">
+      <div class="flex sm:flex-row flex-col items-stretch gap-4">
         <!-- Square Ads -->
-        <div class="p-4 border border-slate-700 rounded-lg">
-          <h3 class="mb-3 font-300 text-slate-400">Square Ads</h3>
-          <ul class="space-y-1 font-100 text-slate-300 text-base">
-            <li>• Size: 378x378px</li>
-            <li>• Format: JPG or PNG</li>
-            <li>• Max file size: 500KB</li>
-            <li>• Placement: Meme slots in content wall</li>
-          </ul>
+        <div
+          class="flex flex-col flex-1 gap-2 bg-slate-900 hover:shadow-xl p-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+        >
+          <h3 class="text-xl uppercase leading-tight">Square Ads</h3>
+          <ol
+            class="space-y-1 font-100 text-seagull-100 text-base list-decimal list-inside"
+          >
+            <li>Size: 378x378px</li>
+            <li>Format: JPG or PNG</li>
+            <li>Max file size: 500KB</li>
+            <li>Placement: Meme slots in content wall</li>
+          </ol>
         </div>
 
         <!-- Horizontal Ads -->
-        <div class="p-4 border border-slate-700 rounded-lg">
-          <h3 class="mb-3 font-300 text-slate-400">Horizontal Ads</h3>
-          <ul class="space-y-1 font-100 text-slate-300 text-base">
-            <li>• Size: 768x100px (max height)</li>
-            <li>• Format: JPG or PNG</li>
-            <li>• Max file size: 500KB</li>
-            <li>• Placement: Quote slots in content wall</li>
-          </ul>
+        <div
+          class="flex flex-col flex-1 gap-2 bg-slate-900 hover:shadow-xl p-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+        >
+          <h3 class="text-xl uppercase leading-tight">Horizontal Ads</h3>
+          <ol
+            class="space-y-1 font-100 text-seagull-100 text-base list-decimal list-inside"
+          >
+            <li>Size: 768x100px (max height)</li>
+            <li>Format: JPG or PNG</li>
+            <li>Max file size: 500KB</li>
+            <li>Placement: Quote slots in content wall</li>
+          </ol>
         </div>
       </div>
     </div>
 
     <!-- Pricing Tiers -->
     <div class="mb-8 px-3">
-      <h2 class="mb-6 font-300 text-2xl text-center uppercase">
-        Pricing Tiers
-      </h2>
+      <h2 class="mb-6 font-300 text-2xl text-center">Pricing Tiers</h2>
 
       <div class="gap-4 grid grid-cols-1 md:grid-cols-3">
         <!-- Basic -->
         <div
           class="bg-slate-800/60 shadow-xl p-5 border-2 border-slate-700 rounded-md"
         >
-          <h3 class="mb-1 font-300">Basic</h3>
-          <div class="mb-2 font-300 text-slate-400 text-2xl">$150</div>
-          <div class="mb-4 font-100 text-slate-400 text-xs">per month</div>
-          <ul class="space-y-2 mb-4 font-100 text-slate-300 text-base">
+          <h3 class="mb-1 font-300 text-2xl text-center uppercase">Basic</h3>
+          <div class="mb-2 font-300 text-seagull-100 text-5xl text-center">
+            $150
+          </div>
+          <div
+            class="mb-4 font-100 text-slate-200 text-lg text-center uppercase tracking-wider"
+          >
+            per month
+          </div>
+          <ul
+            class="space-y-2 mb-4 font-100 text-slate-300 *:text-base text-center"
+          >
             <li>✓ Square ads (378x378px)</li>
             <li>✓ Weight: 5-14</li>
             <li>✓ ~6-12% visibility</li>
@@ -89,10 +82,18 @@
           >
             Popular
           </div>
-          <h3 class="mb-1 font-300">Standard</h3>
-          <div class="mb-2 font-300 text-slate-400 text-2xl">$300</div>
-          <div class="mb-4 font-100 text-slate-400 text-xs">per month</div>
-          <ul class="space-y-2 mb-4 font-100 text-slate-300 text-base">
+          <h3 class="mb-1 font-300 text-2xl text-center uppercase">Standard</h3>
+          <div class="mb-2 font-300 text-seagull-100 text-5xl text-center">
+            $300
+          </div>
+          <div
+            class="mb-4 font-100 text-slate-200 text-lg text-center uppercase tracking-wider"
+          >
+            per month
+          </div>
+          <ul
+            class="space-y-2 mb-4 font-100 text-slate-300 *:text-base text-center"
+          >
             <li>✓ Square ads (378x378px)</li>
             <li>✓ Weight: 15-29</li>
             <li>✓ ~12-25% visibility</li>
@@ -111,10 +112,19 @@
         <div
           class="bg-slate-800/60 shadow-xl p-5 border-2 border-slate-700 rounded-md"
         >
-          <h3 class="mb-1 font-300">Premium</h3>
-          <div class="mb-2 font-300 text-slate-400 text-2xl">$500</div>
-          <div class="mb-4 font-100 text-slate-400 text-xs">per month</div>
-          <ul class="space-y-2 mb-4 font-100 text-slate-300 text-base">
+          <h3 class="mb-1 font-300 text-2xl text-center uppercase">Premium</h3>
+          <div class="mb-2 font-300 text-seagull1300 text-5xl text-center">
+            $500
+          </div>
+          <div
+            class="mb-4 font-100 text-slate-200 text-lg text-center uppercase tracking-wide"
+            r
+          >
+            per month
+          </div>
+          <ul
+            class="space-y-2 mb-4 font-100 text-slate-300 *:text-base text-center"
+          >
             <li>✓ Square ads (378x378px)</li>
             <li>✓ Weight: 30+</li>
             <li>✓ 25-40% visibility</li>
@@ -145,26 +155,26 @@
 
     <!-- Why Advertise -->
     <div class="bg-slate-800/60 shadow-xl mb-8 p-6 px-3 md:px-6 rounded-md">
-      <h2 class="mb-6 font-300 text-2xl uppercase">
-        Why Advertise on WakeUpNPC?
-      </h2>
+      <h2 class="mb-6 font-300 text-2xl">Why Advertise on WakeUpNPC?</h2>
       <div class="gap-4 grid grid-cols-1 md:grid-cols-2">
         <div>
-          <h3 class="mb-2 font-300 text-slate-400">Native Integration</h3>
+          <h3 class="mb-2 font-300 text-slate-400 text-lg">
+            Native Integration
+          </h3>
           <p class="font-100 text-slate-300 text-base">
             Ads seamlessly blend into the content wall, maintaining user
             experience while maximizing visibility.
           </p>
         </div>
         <div>
-          <h3 class="mb-2 font-300 text-slate-400">Engaged Audience</h3>
+          <h3 class="mb-2 font-300 text-slate-400 text-lg">Engaged Audience</h3>
           <p class="font-100 text-slate-300 text-base">
             High session duration and return rate indicate an audience that
             actively engages with content.
           </p>
         </div>
         <div>
-          <h3 class="mb-2 font-300 text-slate-400">
+          <h3 class="mb-2 font-300 text-slate-400 text-lg">
             Conservative Demographics
           </h3>
           <p class="font-100 text-slate-300 text-base">
@@ -173,7 +183,9 @@
           </p>
         </div>
         <div>
-          <h3 class="mb-2 font-300 text-slate-400">Performance Tracking</h3>
+          <h3 class="mb-2 font-300 text-slate-400 text-lg">
+            Performance Tracking
+          </h3>
           <p class="font-100 text-slate-300 text-base">
             Detailed analytics and reporting to measure your campaign's
             effectiveness and ROI.
@@ -184,13 +196,13 @@
 
     <!-- CTA -->
     <div
-      class="bg-slate-600/80 shadow-xl p-6 px-3 md:px-6 rounded-md text-center"
+      class="bg-slate-800/60 shadow-xl p-6 px-3 md:px-6 rounded-md text-center"
     >
-      <h2 class="mb-3 font-300 text-2xl uppercase">Ready to Get Started?</h2>
+      <h2 class="mb-3 font-300 text-2xl">Ready to Get Started?</h2>
       <p class="mb-4 font-100 text-slate-100 text-base">
         Founding advertisers get 50% off their first month
       </p>
-      <div class="flex justify-center">
+      <div class="flex justify-center mt-4">
         <UiButton
           to="/contact"
           text="Contact Us Today"
