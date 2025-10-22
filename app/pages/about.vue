@@ -1,11 +1,8 @@
 <template>
   <div class="mx-auto px-2 md:px-0 py-0 w-full max-w-screen-md">
     <AboutWakeUpNPC />
-
-    <div class="space-y-6 px-3 pb-8">
-      <WhatWeDo />
-      <ContactForm />
-    </div>
+    <WhatWeDo />
+    <ContactForm />
   </div>
 </template>
 

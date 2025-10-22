@@ -1,17 +1,15 @@
 <template>
-  <div class="mx-auto px-2 md:px-0 py-0 w-full max-w-screen-md">
-    <div class="px-3 pb-4">
-      <h1 class="mb-3 font-300 text-3xl">Advertising</h1>
-    </div>
+  <div class="mx-auto px-2 md:px-0 py-0 w-full max-w-3xl">
+    <h1 class="mb-6 text-3xl text-center">Advertising</h1>
 
     <!-- Ad Specifications -->
     <div class="mb-8 px-3">
-      <div class="flex sm:flex-row flex-col items-stretch gap-4">
+      <div class="flex sm:flex-row flex-col items-stretch gap-8">
         <!-- Square Ads -->
         <div
-          class="flex flex-col flex-1 gap-2 bg-slate-900 hover:shadow-xl p-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+          class="flex flex-col flex-1 gap-6 bg-slate-900 hover:shadow-xl p-8 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
         >
-          <h3 class="text-xl uppercase leading-tight">Square Ads</h3>
+          <h2 class="text-2xl uppercase leading-tight">Square Ads</h2>
           <ol
             class="space-y-1 font-100 text-seagull-100 text-base list-decimal list-inside"
           >
@@ -24,9 +22,9 @@
 
         <!-- Horizontal Ads -->
         <div
-          class="flex flex-col flex-1 gap-2 bg-slate-900 hover:shadow-xl p-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+          class="flex flex-col flex-1 gap-2 bg-slate-900 hover:shadow-xl p-8 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
         >
-          <h3 class="text-xl uppercase leading-tight">Horizontal Ads</h3>
+          <h2 class="text-2xl uppercase leading-tight">Horizontal Ads</h2>
           <ol
             class="space-y-1 font-100 text-seagull-100 text-base list-decimal list-inside"
           >
@@ -41,13 +39,11 @@
 
     <!-- Pricing Tiers -->
     <div class="mb-8 px-3">
-      <h2 class="mb-6 font-300 text-2xl text-center">Pricing Tiers</h2>
+      <h2 class="mb-6 !text-seagull-100 text-3xl text-center">Pricing Tiers</h2>
 
-      <div class="gap-4 grid grid-cols-1 md:grid-cols-3">
+      <div class="gap-4 grid grid-cols-1 md:grid-cols-3 mb-6">
         <!-- Basic -->
-        <div
-          class="bg-slate-800/60 shadow-xl p-5 border-2 border-slate-700 rounded-md"
-        >
+        <div class="bg-slate-800/60 shadow-xl p-5 rounded-md">
           <h3 class="mb-1 font-300 text-2xl text-center uppercase">Basic</h3>
           <div class="mb-2 font-300 text-seagull-100 text-5xl text-center">
             $150
@@ -58,27 +54,29 @@
             per month
           </div>
           <ul
-            class="space-y-2 mb-4 font-100 text-slate-300 *:text-base text-center"
+            class="space-y-2 mb-4 font-100 text-slate-300 *:text-lg text-center"
           >
             <li>✓ Square ads (378x378px)</li>
             <li>✓ Weight: 5-14</li>
             <li>✓ ~6-12% visibility</li>
             <li>✓ Performance reports</li>
           </ul>
-          <NuxtLink
-            to="/contact"
-            class="block bg-slate-600 hover:bg-slate-700 px-4 py-2 rounded-lg font-300 text-sm text-center transition-colors"
-          >
-            Get Started
-          </NuxtLink>
+          <div class="flex justify-center">
+            <UiButton
+              to="/about"
+              text="Get Started"
+              size="lg"
+              variant="primary"
+            />
+          </div>
         </div>
 
         <!-- Standard -->
         <div
-          class="bg-slate-800/60 shadow-xl p-5 border-2 border-slate-500 rounded-md scale-105 transform"
+          class="bg-slate-800/60 shadow-xl p-5 rounded-md scale-105 transform"
         >
           <div
-            class="top-0 right-0 absolute bg-slate-500 px-2 py-1 rounded-tr-lg rounded-bl-lg font-300 text-xs"
+            class="top-0 right-0 absolute bg-slate-500 px-2 py-1 rounded-tr-sm rounded-bl-md font-300 text-xs uppercase tracking-wider"
           >
             Popular
           </div>
@@ -92,7 +90,7 @@
             per month
           </div>
           <ul
-            class="space-y-2 mb-4 font-100 text-slate-300 *:text-base text-center"
+            class="space-y-2 mb-4 font-100 text-slate-300 *:text-lg text-center"
           >
             <li>✓ Square ads (378x378px)</li>
             <li>✓ Weight: 15-29</li>
@@ -100,18 +98,18 @@
             <li>✓ Priority placement</li>
             <li>✓ Detailed analytics</li>
           </ul>
-          <NuxtLink
-            to="/contact"
-            class="block bg-slate-600 hover:bg-slate-700 px-4 py-2 rounded-lg font-300 text-sm text-center transition-colors"
-          >
-            Get Started
-          </NuxtLink>
+          <div class="flex justify-center">
+            <UiButton
+              to="/about"
+              text="Get Started"
+              size="lg"
+              variant="primary"
+            />
+          </div>
         </div>
 
         <!-- Premium -->
-        <div
-          class="bg-slate-800/60 shadow-xl p-5 border-2 border-slate-700 rounded-md"
-        >
+        <div class="bg-slate-800/60 shadow-xl p-5 rounded-md">
           <h3 class="mb-1 font-300 text-2xl text-center uppercase">Premium</h3>
           <div class="mb-2 font-300 text-seagull1300 text-5xl text-center">
             $500
@@ -123,7 +121,7 @@
             per month
           </div>
           <ul
-            class="space-y-2 mb-4 font-100 text-slate-300 *:text-base text-center"
+            class="space-y-2 mb-4 font-100 text-slate-300 *:text-lg text-center"
           >
             <li>✓ Square ads (378x378px)</li>
             <li>✓ Weight: 30+</li>
@@ -132,31 +130,49 @@
             <li>✓ Real-time analytics</li>
             <li>✓ Dedicated support</li>
           </ul>
-          <NuxtLink
-            to="/contact"
-            class="block bg-slate-600 hover:bg-slate-700 px-4 py-2 rounded-lg font-300 text-sm text-center transition-colors"
-          >
-            Get Started
-          </NuxtLink>
+          <div class="flex justify-center">
+            <UiButton
+              to="/about"
+              text="Get Started"
+              size="lg"
+              variant="primary"
+            />
+          </div>
         </div>
       </div>
 
       <!-- Horizontal Ads Pricing -->
-      <div class="mt-6 font-100 text-slate-300 text-base text-center">
-        <p class="mb-1">
-          <strong class="font-300 text-slate-400">Horizontal Ads:</strong>
-          Add 50% to any tier price
-        </p>
-        <p class="text-slate-400 text-xs">
-          (Basic: $225/mo, Standard: $450/mo, Premium: $750/mo)
-        </p>
+      <div class="flex justify-center">
+        <div
+          class="inline-block bg-slate-800/60 shadow-xl px-8 py-6 rounded-md"
+        >
+          <div class="font-100 text-slate-300 text-base text-center">
+            <h1 class="space-y-4 mb-1 font-300 text-2xl text-center uppercase">
+              Horizontal Ads:
+            </h1>
+            <p class="mb-1">Add 50% to any tier price</p>
+            <p
+              class="space-y-2 mb-4 font-100 text-slate-300 *:text-base text-center"
+            >
+              Basic: $225/mo, Standard: $450/mo, Premium: $750/mo
+            </p>
+            <div class="flex justify-center mt-4">
+              <UiButton
+                to="/about"
+                text="Get Started"
+                size="lg"
+                variant="primary"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Why Advertise -->
-    <div class="bg-slate-800/60 shadow-xl mb-8 p-6 px-3 md:px-6 rounded-md">
+    <div class="bg-slate-800/60 shadow-xl mb-8 px-6 py-4 rounded-md">
       <h2 class="mb-6 font-300 text-2xl">Why Advertise on WakeUpNPC?</h2>
-      <div class="gap-4 grid grid-cols-1 md:grid-cols-2">
+      <div class="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <h3 class="mb-2 font-300 text-slate-400 text-lg">
             Native Integration
@@ -204,7 +220,7 @@
       </p>
       <div class="flex justify-center mt-4">
         <UiButton
-          to="/contact"
+          to="/about"
           text="Contact Us Today"
           size="lg"
           variant="tertiary"
