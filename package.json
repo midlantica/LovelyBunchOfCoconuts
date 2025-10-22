@@ -29,7 +29,7 @@
     "@napi-rs/canvas": "^0.1.80",
     "@nuxt/content": "3.7.1",
     "@nuxt/eslint": "1.9.0",
-    "@nuxt/icon": "2.0.0",
+    "@nuxt/icon": "2.1.0",
     "@nuxtjs/mdc": "0.18.0",
     "better-sqlite3": "12.4.1",
     "gray-matter": "^4.0.3",
@@ -43,7 +43,7 @@
   "devDependencies": {
     "@eslint/css": "^0.13.0",
     "@eslint/json": "^0.13.2",
-    "@eslint/markdown": "^7.4.1",
+    "@eslint/markdown": "^7.5.0",
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/heroicons-outline": "^1.2.1",
     "@iconify-json/mdi": "^1.2.3",

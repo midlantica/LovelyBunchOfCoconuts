@@ -1,10 +1,10 @@
 <template>
   <div class="mt-10 mb-12">
-    <h2 class="mb-6 !text-seagull-100 text-3xl text-center">What We Do</h2>
+    <h2 class="mb-6 text-seagull-200! text-3xl text-center">What We Do</h2>
 
     <div class="flex sm:flex-row flex-col items-stretch gap-6">
       <div
-        class="flex flex-col flex-1 gap-2 bg-slate-800 hover:shadow-xl p-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+        class="flex flex-col flex-1 gap-2 bg-slate-800/10 hover:shadow-xl p-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
       >
         <h3 class="text-2xl uppercase leading-tight">Memes</h3>
         <p
@@ -17,12 +17,12 @@
       </div>
 
       <div
-        class="flex flex-col flex-1 gap-2 bg-slate-700 hover:shadow-xl p-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+        class="flex flex-col flex-1 gap-2 bg-slate-800 hover:shadow-xl p-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
       >
         <h3 class="text-2xl uppercase leading-tight">
           Grift<Icon
             name="i-heroicons:arrow-right-20-solid"
-            class="top-0.75 relative mr-0.5 ml-0.25 text-xl 100"
+            class="top-0.5 relative mr-0.5 ml-0.25 text-xl 100"
           />Decodes
         </h3>
         <p
@@ -35,7 +35,7 @@
       </div>
 
       <div
-        class="flex flex-col flex-1 gap-2 bg-slate-600 hover:shadow-xl p-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+        class="flex flex-col flex-1 gap-2 bg-slate-800 hover:shadow-xl p-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
       >
         <h3 class="text-2xl uppercase leading-tight">Quotes</h3>
         <p

@@ -5,7 +5,7 @@
     :to="to ? resolveRoute(to) : undefined"
     :type="to ? undefined : 'button'"
     @click="to ? undefined : $emit('click')"
-    class="flex gap-1 !font-300 uppercase tracking-wider transition-all duration-200"
+    class="flex justify-center items-center gap-1 !font-300 uppercase tracking-wider transition-all duration-200"
     :class="[
       sizeClasses,
       variantClasses,

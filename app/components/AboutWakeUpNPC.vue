@@ -1,8 +1,10 @@
 <template>
   <div class="flex max-md:flex-col flex-wrap items-center gap-8 mt-6 mb-6 px-3">
     <!-- About WakeUpNPC -->
-    <div class="flex-1 sm:m-0 md:ml-6">
-      <h1 class="mb-3 font-300 text-3xl">About Wake&hairsp;Up&hairsp;NPC</h1>
+    <div class="flex-1">
+      <h1 class="mb-3 font-300 text-seagull-200! text-3xl">
+        About Wake&hairsp;Up&hairsp;NPC
+      </h1>
       <p
         class="mb-3 last:pb-0 font-100 text-seagull-100 text-lg leading-relaxed"
       >

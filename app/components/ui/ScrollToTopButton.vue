@@ -12,13 +12,22 @@
 <script setup>
   // Scroll to top function
   function scrollToTop() {
-    // Target the main scroll container first
-    const scrollContainer = document.querySelector('.scroll-container-stable')
-    if (scrollContainer) {
-      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
-    } else {
-      // Fallback to window scroll
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+    // Try different scroll containers in order of priority:
+    // 1. Wall-specific container (index page)
+    const wallContainer = document.querySelector('.scroll-container-stable')
+    if (wallContainer && wallContainer.scrollTop > 0) {
+      wallContainer.scrollTo({ top: 0, behavior: 'smooth' })
+      return
     }
+
+    // 2. Main layout scroll container (other pages)
+    const mainContainer = document.querySelector('main.overflow-y-auto')
+    if (mainContainer && mainContainer.scrollTop > 0) {
+      mainContainer.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+
+    // 3. Fallback to window scroll
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto px-2 md:px-0 py-0 w-full max-w-screen-md">
+  <div class="mx-auto px-2 md:px-0 py-0 w-full max-w-3xl">
     <AboutWakeUpNPC />
     <WhatWeDo />
     <ContactForm />
