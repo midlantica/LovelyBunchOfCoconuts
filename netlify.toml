@@ -3,12 +3,12 @@
 
 [build]
 # Use Nitro Netlify preset (auto-detected). This builds SSR with Functions.
-command = "pnpm run build"
+command = "pnpm install --no-optional=false && pnpm run build"
 publish = "dist"
 
 [build.environment]
 NODE_VERSION = "22.11.0"
-PNPM_FLAGS = "--shamefully-hoist"
+PNPM_FLAGS = "--shamefully-hoist --no-optional=false"
 
 # Pro Plan: Build plugins removed - using built-in optimizations instead
 
