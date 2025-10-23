@@ -1,5 +1,6 @@
 // @ts-nocheck
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-06-27',
@@ -19,14 +20,9 @@ export default defineNuxtConfig({
     './modules/hide-system-files',
   ],
   css: ['./app/assets/css/main.css'],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
-  // Tailwind v3 configuration
+  // Use Tailwind v4 via official Vite plugin
   vite: {
+    plugins: [tailwindcss()],
     // Reduce Vite verbosity; set SILENT_VITE=1 to only show errors
     logLevel: (process.env.SILENT_VITE === '1' ? 'error' : 'warn') as any,
     build: {
