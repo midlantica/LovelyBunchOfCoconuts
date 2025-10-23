@@ -85,6 +85,7 @@ export default defineNuxtConfig({
     externals: {
       inline: ['@nuxt/content'],
       external: [
+        '@oxc-minify/binding-linux-x64-gnu',
         '@oxc-parser/binding-linux-x64-gnu',
         '@oxc-transform/binding-linux-x64-gnu',
       ],
