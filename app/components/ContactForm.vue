@@ -150,11 +150,8 @@
     submitStatus.value = null
 
     try {
-      // Get the form element
-      const formElement = event.target.closest('form') || event.target
-
-      // Create FormData from the form
-      const formData = new FormData(formElement)
+      // event.target is the form element when using @submit
+      const formData = new FormData(event.target)
 
       // LOCAL DEVELOPMENT: Mock the submission
       if (import.meta.dev) {
