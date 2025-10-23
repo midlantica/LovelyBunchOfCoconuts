@@ -17,6 +17,7 @@ export default {
       fontWeight: {
         100: 100,
         300: 300,
+        400: 400,
         500: 500,
       },
       boxShadow: {
@@ -52,5 +53,15 @@ export default {
       },
     },
   },
-  plugins: [typography],
+  plugins: [
+    typography,
+    function ({ addComponents }) {
+      addComponents({
+        '.card': {
+          '@apply bg-slate-900/60 shadow-xl border-t border-seagull-600/30 rounded-md':
+            {},
+        },
+      })
+    },
+  ],
 }

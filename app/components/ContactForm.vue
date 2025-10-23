@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-800/60 shadow-xl px-6 py-5 rounded-md">
+  <div class="mb-12 px-6 py-5 card">
     <h2 class="mb-6 text-3xl">Contact Us</h2>
 
     <form
@@ -37,7 +37,7 @@
             type="text"
             autocomplete="given-name"
             required
-            class="bg-slate-900 px-3 pt-1 pb-2 border-[0.5px] border-seagull-100 rounded-md focus:outline-none focus:ring-1 focus:ring-seagull-100 w-full font-300 text-white tracking-wider placeholder-slate-400/50"
+            class="bg-slate-950/30 px-3 pt-1 pb-2 border border-seagull-600/30 focus:border-seagull-600/50 rounded-md focus:outline-none w-full font-300 text-white tracking-wider placeholder-slate-400/50"
             style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5)"
             placeholder="First Name"
           />
@@ -57,7 +57,7 @@
             type="text"
             autocomplete="family-name"
             required
-            class="bg-slate-900 px-3 pt-1 pb-2 border-[0.5px] border-seagull-100 rounded-md focus:outline-none focus:ring-1 focus:ring-seagull-100 w-full font-300 text-white tracking-wider placeholder-slate-400/50"
+            class="bg-slate-950/30 px-3 pt-1 pb-2 border border-seagull-600/30 focus:border-seagull-600/50 rounded-md focus:outline-none w-full font-300 text-white tracking-wider placeholder-slate-400/50"
             style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5)"
             placeholder="Last Name"
           />
@@ -76,7 +76,7 @@
           type="email"
           autocomplete="email"
           required
-          class="bg-slate-900 px-3 pt-1 pb-2 border-[0.5px] border-seagull-100 rounded-md focus:outline-none focus:ring-1 focus:ring-seagull-100 w-full font-300 text-white tracking-wider placeholder-slate-400/50"
+          class="bg-slate-950/30 px-3 pt-1 pb-2 border border-seagull-600/30 focus:border-seagull-600/50 rounded-md focus:outline-none w-full font-300 text-white tracking-wider placeholder-slate-400/50"
           style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5)"
           placeholder="you@yourcompany.com"
         />
@@ -96,7 +96,7 @@
           v-model="form.message"
           required
           rows="6"
-          class="bg-slate-950/30 px-3 py-2 border-[0.5px] border-seagull-100 rounded-md focus:outline-none focus:ring-1 focus:ring-seagull-100 w-full font-300 text-white tracking-wider resize-none placeholder-slate-400/50"
+          class="bg-slate-950/30 px-3 py-2 border border-seagull-600/30 focus:border-seagull-600/50 rounded-md focus:outline-none w-full font-300 text-white tracking-wider resize-none placeholder-slate-400/50"
           style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5)"
           placeholder="Leave a message..."
         ></textarea>

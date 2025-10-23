@@ -5,12 +5,12 @@
     :to="to ? resolveRoute(to) : undefined"
     :type="to ? undefined : 'button'"
     @click="to ? undefined : $emit('click')"
-    class="flex justify-center items-center gap-1 !font-300 uppercase tracking-wider transition-all duration-200"
+    class="flex justify-center items-center gap-1 font-400! uppercase tracking-wider transition-all duration-200"
     :class="[
       sizeClasses,
       variantClasses,
       props.variant === 'default'
-        ? 'bg-white hover:bg-seagull-200 border border-seagull-950 text-seagull-950'
+        ? 'bg-white hoverbg-seagull-200: border border-seagull-950 text-seagull-950'
         : '',
       disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
       $attrs.class,
@@ -95,19 +95,19 @@
   const variantClasses = computed(() => {
     switch (props.variant) {
       case 'primary':
-        return '!bg-seagull-400 hover:!bg-seagull-500 !text-seagull-900 hover:!text-seagull-950 !border-0 !font-300'
+        return 'bg-seagull-400! hover:bg-seagull-600! text-seagull-900! hover:text-white! border-0! font-400!'
       case 'secondary':
-        return '!bg-seagull-800 hover:!bg-seagull-900 !text-seagull-50 hover:!text-white !border-0 !font-300'
+        return 'bg-seagull-800! hover:bg-seagull-900! !text-seagull-50 hover:text-white! border-0! font-400!'
       case 'tertiary':
-        return '!bg-slate-300 hover:!bg-slate-400 !text-slate-950 hover:!text-slate-900 !border-0 !font-300'
+        return 'bg-slate-300! hover:bg-slate-400! !text-slate-950 hover:!text-slate-900 border-0! font-400!'
       case 'outline':
-        return '!bg-transparent hover:!bg-white/20 !text-black !border-0 ring-1 ring-black/50 hover:ring-2 hover:ring-black !font-300'
+        return '!bg-transparent hover:!bg-white/20 text-black! border-0! ring-1 ring-black/50 hover:ring-2 hover:ring-black font-400!'
       case 'outline-dark':
-        return '!bg-transparent hover:!bg-white/20 !text-white !border-0 ring-1 ring-white/50 hover:ring-2 hover:ring-white !font-300'
+        return '!bg-transparent hover:!bg-white/20 text-white! border-0! ring-1 ring-white/50 hover:ring-2 hover:ring-white font-400!'
       case 'custom':
-        return '!font-300 !border-0' // Custom variant: only structural styles, parent controls colors
+        return 'font-400! border-0!' // Custom variant: only structural styles, parent controls colors
       default:
-        return '!font-300' // Explicit font-300 for default variant
+        return 'font-400!' // Explicit font-400 for default variant
     }
   })
 

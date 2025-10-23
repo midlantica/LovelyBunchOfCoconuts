@@ -4,7 +4,7 @@
 
     <div class="flex sm:flex-row flex-col items-stretch gap-6">
       <div
-        class="flex flex-col flex-1 gap-2 bg-slate-800/10 hover:shadow-xl p-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+        class="flex flex-col flex-1 gap-2 p-4 hover:scale-105 transition-all duration-300 cursor-pointer card"
       >
         <h3 class="text-2xl uppercase leading-tight">Memes</h3>
         <p
@@ -17,7 +17,7 @@
       </div>
 
       <div
-        class="flex flex-col flex-1 gap-2 bg-slate-800 hover:shadow-xl p-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+        class="flex flex-col flex-1 gap-2 p-4 hover:scale-105 transition-all duration-300 cursor-pointer card"
       >
         <h3 class="text-2xl uppercase leading-tight">
           Grift<Icon
@@ -35,7 +35,7 @@
       </div>
 
       <div
-        class="flex flex-col flex-1 gap-2 bg-slate-800 hover:shadow-xl p-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+        class="flex flex-col flex-1 gap-2 p-4 hover:scale-105 transition-all duration-300 cursor-pointer card"
       >
         <h3 class="text-2xl uppercase leading-tight">Quotes</h3>
         <p
