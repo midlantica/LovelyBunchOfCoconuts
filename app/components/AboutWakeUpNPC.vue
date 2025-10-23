@@ -1,19 +1,19 @@
 <template>
-  <div class="flex max-md:flex-col flex-wrap items-center gap-8 mt-6 mb-6 px-3">
+  <div class="mt-6 mb-6 flex flex-wrap items-center gap-8 px-3 max-md:flex-col">
     <!-- About WakeUpNPC -->
     <div class="flex-1">
-      <h1 class="mb-3 font-300 text-seagull-200! text-3xl">
+      <h1 class="font-300 text-seagull-200! mb-3 text-3xl">
         About Wake&hairsp;Up&hairsp;NPC
       </h1>
       <p
-        class="mb-3 last:pb-0 font-100 text-seagull-100 text-lg leading-relaxed"
+        class="font-100 text-seagull-100 mb-3 text-xl leading-relaxed last:pb-0"
       >
-        We highlight the Woke Left's insanity wreaking hovoc in our civilization
-        that took a thousand years to build. We make fun of the Left's madness.
-        We see their Guilt Grift machine and decode it. We expose their empty
-        rhetoric, their regressive dogma, and their epic Big Lie gaslighting. We
-        provide responses to every Leftist gaslighting argument. Try it, type in
-        your favorite Leftist talking point in our search bar!
+        It took millennia to build the West—Greeks to cathedrals to locomotives
+        to microchips. Day Zero Woke Left barbarians would burn it to the
+        ground. We lay out the receipts, translate the jargon, and decode the
+        guilt‑grift—arming you with devastating replies. Type any talking
+        point—we’ll expose the Left’s grift. Everything the Left touches, it
+        destroys.
       </p>
     </div>
     <!-- Image wrapper div -->
@@ -23,13 +23,16 @@
       tabindex="0"
       @keydown.enter="showImageModal = true"
       @keydown.space.prevent="showImageModal = true"
-      class="flex-1 cursor-pointer"
+      class="group flex-1 cursor-pointer"
     >
       <img
         src="/modern-woke-barbarians.jpg"
         alt="modern woke barbarians"
-        class="border-2 border-white rounded-lg w-full h-auto hover:scale-105 transition-all duration-300"
-        :class="{ 'border-4': showImageModal }"
+        class="h-auto w-full rounded-lg border-2 border-white transition-all duration-300 hover:scale-105"
+        :class="{
+          'border-4': showImageModal,
+          'duotone-blue': !hasBeenViewed,
+        }"
       />
     </div>
 
@@ -37,7 +40,7 @@
     <div
       v-if="showImageModal"
       @click="showImageModal = false"
-      class="z-50 fixed inset-0 flex justify-center items-center bg-black/90 cursor-pointer"
+      class="fixed inset-0 z-50 flex cursor-pointer items-center justify-center bg-black/90"
       role="dialog"
       aria-modal="true"
       tabindex="0"
@@ -45,7 +48,7 @@
       <img
         src="/modern-woke-barbarians.jpg"
         alt="modern woke barbarians full size"
-        class="border-4 border-white rounded-xl max-w-[90vw] max-h-[90vh] object-contain"
+        class="max-h-[90vh] max-w-[90vw] rounded-xl border-4 border-white object-contain"
       />
     </div>
   </div>
@@ -54,6 +57,14 @@
 <script setup>
   // Image modal state
   const showImageModal = ref(false)
+  const hasBeenViewed = ref(false)
+
+  // Watch for modal opening to mark as viewed
+  watch(showImageModal, (newValue) => {
+    if (newValue === true) {
+      hasBeenViewed.value = true
+    }
+  })
 
   // Close modal on escape key
   if (import.meta.client) {
@@ -68,3 +79,15 @@
     })
   }
 </script>
+
+<style scoped>
+  .duotone-blue {
+    filter: grayscale(100%) contrast(1.2) sepia(100%) hue-rotate(210deg)
+      saturate(150%);
+    transition: filter 0.3s ease;
+  }
+
+  .duotone-blue:hover {
+    filter: none;
+  }
+</style>
