@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-12 px-6 py-5 card">
+  <div class="card mb-12 px-6 py-5">
     <h2 class="mb-6 text-3xl">Contact Us</h2>
 
     <form
@@ -22,11 +22,11 @@
       </div>
 
       <!-- First and Last Name Row -->
-      <div class="gap-4 grid grid-cols-1 md:grid-cols-2">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div class="flex flex-col gap-2">
           <label
             for="firstName"
-            class="font-300 text-base uppercase tracking-wider"
+            class="font-300 text-base tracking-wider uppercase"
           >
             First name
           </label>
@@ -37,7 +37,7 @@
             type="text"
             autocomplete="given-name"
             required
-            class="bg-slate-950/30 px-3 pt-1 pb-2 border border-seagull-600/30 focus:border-seagull-600/50 rounded-md focus:outline-none w-full font-300 text-white tracking-wider placeholder-slate-400/50"
+            class="border-seagull-600/30 focus:border-seagull-600/50 font-300 w-full rounded-md border bg-slate-950/30 px-3 pt-1 pb-2 tracking-wider text-white placeholder-slate-400/50 focus:outline-none"
             style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5)"
             placeholder="First Name"
           />
@@ -46,7 +46,7 @@
         <div class="flex flex-col gap-2">
           <label
             for="lastName"
-            class="font-300 text-base uppercase tracking-wider"
+            class="font-300 text-base tracking-wider uppercase"
           >
             Last name
           </label>
@@ -57,7 +57,7 @@
             type="text"
             autocomplete="family-name"
             required
-            class="bg-slate-950/30 px-3 pt-1 pb-2 border border-seagull-600/30 focus:border-seagull-600/50 rounded-md focus:outline-none w-full font-300 text-white tracking-wider placeholder-slate-400/50"
+            class="border-seagull-600/30 focus:border-seagull-600/50 font-300 w-full rounded-md border bg-slate-950/30 px-3 pt-1 pb-2 tracking-wider text-white placeholder-slate-400/50 focus:outline-none"
             style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5)"
             placeholder="Last Name"
           />
@@ -66,7 +66,7 @@
 
       <!-- Email -->
       <div class="flex flex-col gap-2">
-        <label for="email" class="font-300 text-base uppercase tracking-wider">
+        <label for="email" class="font-300 text-base tracking-wider uppercase">
           Email
         </label>
         <input
@@ -76,7 +76,7 @@
           type="email"
           autocomplete="email"
           required
-          class="bg-slate-950/30 px-3 pt-1 pb-2 border border-seagull-600/30 focus:border-seagull-600/50 rounded-md focus:outline-none w-full font-300 text-white tracking-wider placeholder-slate-400/50"
+          class="border-seagull-600/30 focus:border-seagull-600/50 font-300 w-full rounded-md border bg-slate-950/30 px-3 pt-1 pb-2 tracking-wider text-white placeholder-slate-400/50 focus:outline-none"
           style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5)"
           placeholder="you@yourcompany.com"
         />
@@ -86,7 +86,7 @@
       <div class="flex flex-col gap-2">
         <label
           for="message"
-          class="font-300 text-base uppercase tracking-wider"
+          class="font-300 text-base tracking-wider uppercase"
         >
           Message
         </label>
@@ -96,38 +96,38 @@
           v-model="form.message"
           required
           rows="6"
-          class="bg-slate-950/30 px-3 py-2 border border-seagull-600/30 focus:border-seagull-600/50 rounded-md focus:outline-none w-full font-300 text-white tracking-wider resize-none placeholder-slate-400/50"
+          class="border-seagull-600/30 focus:border-seagull-600/50 font-300 w-full resize-none rounded-md border bg-slate-950/30 px-3 py-2 tracking-wider text-white placeholder-slate-400/50 focus:outline-none"
           style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5)"
           placeholder="Leave a message..."
         ></textarea>
       </div>
 
       <!-- Submit Button and Messages -->
-      <div class="flex justify-between items-center gap-4">
+      <div class="flex items-center justify-between gap-4">
         <!-- Success/Error Messages -->
         <div class="flex-1">
           <div
             v-if="submitStatus === 'success'"
-            class="font-300 text-green-400 text-sm tracking-wider"
+            class="font-300 text-sm tracking-wider text-green-400"
           >
             ✓ Message sent successfully! We'll get back to you soon.
           </div>
           <div
             v-if="submitStatus === 'error'"
-            class="font-300 text-red-400 text-sm tracking-wider"
+            class="font-300 text-sm tracking-wider text-red-400"
           >
             ✗ Something went wrong. Please try again or email us directly.
           </div>
         </div>
 
         <!-- Submit Button -->
-        <UiButton
-          @click="handleSubmit"
-          :text="isSubmitting ? 'Sending...' : 'Send Message'"
-          variant="primary"
-          size="lg"
+        <button
+          type="submit"
           :disabled="isSubmitting"
-        />
+          class="bg-seagull-600 font-500 hover:bg-seagull-500 rounded-md px-6 py-3 tracking-wider text-slate-950 transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+        </button>
       </div>
     </form>
   </div>
@@ -145,12 +145,16 @@
   const submitStatus = ref(null) // 'success' | 'error' | null
 
   async function handleSubmit(event) {
+    event.preventDefault()
     isSubmitting.value = true
     submitStatus.value = null
 
     try {
+      // Get the form element
+      const formElement = event.target.closest('form') || event.target
+
       // Create FormData from the form
-      const formData = new FormData(event.target)
+      const formData = new FormData(formElement)
 
       // LOCAL DEVELOPMENT: Mock the submission
       if (import.meta.dev) {
