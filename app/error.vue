@@ -1,17 +1,17 @@
 <!-- error.vue -->
 <template>
   <div
-    class="flex flex-col justify-center items-center px-4 py-16 min-h-screen text-white"
+    class="flex min-h-screen flex-col items-center justify-center px-4 py-16 text-white"
   >
     <div class="text-center">
-      <h1 class="mb-4 font-100 text-4xl">Page Not Found</h1>
+      <h1 class="font-100 mb-4 text-4xl">Page Not Found</h1>
       <p class="mb-8 text-xl">
         The page you're looking for doesn't exist or has been moved.
       </p>
 
       <NuxtLink
         to="/"
-        class="bg-seagull-600 hover:bg-seagull-700 px-6 py-3 rounded-lg font-100 text-white transition-colors"
+        class="bg-seagull-600 hover:bg-seagull-700 font-100 rounded-lg px-6 py-3 text-white transition-colors"
         @click="handleError"
       >
         Return to Home

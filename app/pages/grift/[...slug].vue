@@ -4,12 +4,12 @@
   <div :key="`grift-${route.path}`">
     <!-- Background Wall (keeps index experience visible) -->
     <section
-      class="gap-3 grid grid-rows-[auto_1fr] px-0 h-full overflow-hidden"
+      class="grid h-full grid-rows-[auto_1fr] gap-3 overflow-hidden px-0"
     >
       <div
-        class="rounded-xl h-full min-h-0 overflow-y-auto scroll-container-stable"
+        class="scroll-container-stable h-full min-h-0 overflow-y-auto rounded-xl"
       >
-        <div class="mx-auto md:px-0 pr-3 pl-2 w-full max-w-screen-md">
+        <div class="mx-auto w-full max-w-3xl pr-3 pl-2 md:px-0">
           <main class="pb-8">
             <WallTheWall :hide-no-content="true" />
           </main>

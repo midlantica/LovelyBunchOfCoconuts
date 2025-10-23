@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto px-4 py-2 max-w-5xl font-100">
+  <div class="font-100 mx-auto max-w-5xl px-4 py-2">
     <div class="mb-4 text-sm" v-if="!allowed">
       <p class="text-amber-300">
         Admin view is disabled in production. Append <code>?dev=1</code> to the
@@ -10,7 +10,7 @@
     <div v-if="allowed" class="space-y-4">
       <div class="flex flex-wrap items-center gap-3">
         <button
-          class="inline-flex justify-center items-center opacity-75 hover:opacity-100 disabled:opacity-50 transition-opacity cursor-pointer"
+          class="inline-flex cursor-pointer items-center justify-center opacity-75 transition-opacity hover:opacity-100 disabled:opacity-50"
           @click="handleRefresh"
           :disabled="loading"
           aria-label="Refresh"
@@ -19,7 +19,7 @@
           <Icon
             name="tdesign:refresh"
             :class="[
-              'w-6 h-6',
+              'h-6 w-6',
               refreshing
                 ? 'animate-spin drop-shadow-[0_0_10px_rgba(94,234,212,0.7)]'
                 : '',
@@ -27,38 +27,38 @@
             aria-hidden="true"
           />
         </button>
-        <span class="text-slate-300 text-base">Total IDs: {{ total }}</span>
-        <span class="text-slate-300 text-base">Loaded: {{ items.length }}</span>
-        <span class="text-slate-300 text-base"
+        <span class="text-base text-slate-300">Total IDs: {{ total }}</span>
+        <span class="text-base text-slate-300">Loaded: {{ items.length }}</span>
+        <span class="text-base text-slate-300"
           >Sum (loaded): {{ sumCounts }}</span
         >
-        <label class="flex items-center gap-2 ml-2 text-slate-300 text-base">
+        <label class="ml-2 flex items-center gap-2 text-base text-slate-300">
           <input type="checkbox" v-model="live" class="accent-seagull-500" />
           Live
         </label>
-        <div class="flex items-center gap-2 ml-4">
+        <div class="ml-4 flex items-center gap-2">
           <button
-            class="bg-green-600 hover:bg-green-500 px-3 py-1 rounded text-white text-sm"
+            class="rounded bg-green-600 px-3 py-1 text-sm text-white hover:bg-green-500"
             @click="showTestingTools = !showTestingTools"
           >
             {{ showTestingTools ? 'Hide' : 'Show' }} Testing Tools
           </button>
         </div>
-        <div class="flex items-center gap-2 ml-auto">
+        <div class="ml-auto flex items-center gap-2">
           <div class="inline-flex items-stretch gap-0">
             <input
               v-model="query"
               placeholder="Search for…"
-              class="bg-slate-800 px-2 py-1 border border-slate-700 rounded-r-none rounded-l-md outline-0 text-slate-100"
+              class="rounded-l-md rounded-r-none border border-slate-700 bg-slate-800 px-2 py-1 text-slate-100 outline-0"
             />
             <button
-              class="inline-flex justify-center items-center bg-slate-700 hover:bg-slate-600 -ml-px rounded-r-md rounded-l-none w-8 h-8 text-slate-200"
+              class="-ml-px inline-flex h-8 w-8 items-center justify-center rounded-l-none rounded-r-md bg-slate-700 text-slate-200 hover:bg-slate-600"
               @click="refresh(true)"
               type="button"
               aria-label="Search"
               title="Search"
             >
-              <Icon name="heroicons:magnifying-glass" class="w-5 h-5" />
+              <Icon name="heroicons:magnifying-glass" class="h-5 w-5" />
             </button>
           </div>
         </div>
@@ -66,14 +66,14 @@
 
       <div
         v-if="orphanIds.length"
-        class="flex items-center gap-3 bg-amber-900/30 p-2 border border-amber-700/40 rounded text-xs"
+        class="flex items-center gap-3 rounded border border-amber-700/40 bg-amber-900/30 p-2 text-xs"
       >
         <span class="text-amber-300"
           >{{ orphanIds.length }} orphan
           {{ orphanIds.length === 1 ? 'ID' : 'IDs' }} detected</span
         >
         <button
-          class="bg-amber-500/90 hover:bg-amber-400 disabled:opacity-40 px-2 py-1 rounded text-slate-900 disabled:cursor-not-allowed"
+          class="rounded bg-amber-500/90 px-2 py-1 text-slate-900 hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-40"
           :disabled="cleaningOrphans"
           @click="cleanupOrphans"
         >
@@ -81,40 +81,40 @@
         </button>
       </div>
 
-      <div v-if="error" class="bg-red-900/40 p-3 rounded text-red-200 text-sm">
+      <div v-if="error" class="rounded bg-red-900/40 p-3 text-sm text-red-200">
         {{ error }}
       </div>
 
       <!-- Testing Tools Panel -->
       <div
         v-if="showTestingTools"
-        class="space-y-4 bg-slate-800/50 p-4 border border-slate-600 rounded-lg"
+        class="space-y-4 rounded-lg border border-slate-600 bg-slate-800/50 p-4"
       >
-        <h3 class="mb-3 font-300 text-slate-200 text-lg">
+        <h3 class="font-300 mb-3 text-lg text-slate-200">
           🧪 Likes Testing Tools
         </h3>
 
-        <div class="gap-4 grid grid-cols-1 md:grid-cols-2">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
           <!-- Quick Test Buttons -->
           <div class="space-y-3">
-            <h4 class="font-300 text-slate-300 text-sm">Quick Actions</h4>
+            <h4 class="font-300 text-sm text-slate-300">Quick Actions</h4>
             <div class="flex flex-wrap gap-2">
               <button
-                class="bg-slate-600 hover:bg-slate-500 px-3 py-1.5 rounded text-white text-sm"
+                class="rounded bg-slate-600 px-3 py-1.5 text-sm text-white hover:bg-slate-500"
                 @click="addRandomLikes(5)"
                 :disabled="addingLikes"
               >
                 {{ addingLikes ? 'Adding...' : 'Add 5 Random Likes' }}
               </button>
               <button
-                class="bg-purple-600 hover:bg-purple-500 px-3 py-1.5 rounded text-white text-sm"
+                class="rounded bg-purple-600 px-3 py-1.5 text-sm text-white hover:bg-purple-500"
                 @click="simulateMultiUser()"
                 :disabled="simulatingUsers"
               >
                 {{ simulatingUsers ? 'Simulating...' : 'Simulate Multi-User' }}
               </button>
               <button
-                class="bg-orange-600 hover:bg-orange-500 px-3 py-1.5 rounded text-white text-sm"
+                class="rounded bg-orange-600 px-3 py-1.5 text-sm text-white hover:bg-orange-500"
                 @click="testModalPerformance()"
               >
                 Test Modal Speed
@@ -124,8 +124,8 @@
 
           <!-- Performance Info -->
           <div class="space-y-3">
-            <h4 class="font-300 text-slate-300 text-sm">Performance Status</h4>
-            <div class="space-y-1 text-slate-400 text-xs">
+            <h4 class="font-300 text-sm text-slate-300">Performance Status</h4>
+            <div class="space-y-1 text-xs text-slate-400">
               <div>
                 Live Poll:
                 <span class="text-red-400">DISABLED</span> (performance)
@@ -148,12 +148,12 @@
 
         <!-- Test Results -->
         <div v-if="testResults.length" class="mt-4">
-          <h4 class="mb-2 font-300 text-slate-300 text-sm">Test Results</h4>
-          <div class="bg-slate-900/50 p-3 rounded max-h-32 overflow-y-auto">
+          <h4 class="font-300 mb-2 text-sm text-slate-300">Test Results</h4>
+          <div class="max-h-32 overflow-y-auto rounded bg-slate-900/50 p-3">
             <div
               v-for="result in testResults"
               :key="result.id"
-              class="mb-1 text-slate-300 text-xs"
+              class="mb-1 text-xs text-slate-300"
             >
               <span class="text-slate-500">{{ result.time }}</span> -
               {{ result.message }}
@@ -163,28 +163,28 @@
       </div>
 
       <div
-        class="border border-slate-700 rounded overflow-hidden"
+        class="overflow-hidden rounded border border-slate-700"
         style="max-height: 80vh; overflow: auto"
         data-likes-table-container
       >
-        <table class="w-full font-100 text-lg">
-          <thead class="top-0 z-10 sticky bg-slate-800 font-100 text-slate-300">
+        <table class="font-100 w-full text-lg">
+          <thead class="font-100 sticky top-0 z-10 bg-slate-800 text-slate-300">
             <tr>
-              <th class="px-3 py-2 font-100 text-left uppercase">
+              <th class="font-100 px-3 py-2 text-left uppercase">
                 ID (decoded)
               </th>
               <th
-                class="px-3 py-2 w-20 font-100 text-right uppercase cursor-pointer select-none"
+                class="font-100 w-20 cursor-pointer px-3 py-2 text-right uppercase select-none"
                 @click="toggleSortDir()"
               >
                 Count&nbsp;<span
-                  class="inline-block ml-1 text-seagull-400"
+                  class="text-seagull-400 ml-1 inline-block"
                   aria-hidden="true"
                 >
                   {{ sortDir === 'desc' ? '▾' : '▴' }}
                 </span>
               </th>
-              <th class="px-3 py-2 w-36 font-100 text-left uppercase">
+              <th class="font-100 w-36 px-3 py-2 text-left uppercase">
                 Set Count
               </th>
             </tr>
@@ -193,7 +193,7 @@
             <tr
               v-for="row in rows"
               :key="row.key"
-              class="border-slate-800 border-t"
+              class="border-t border-slate-800"
             >
               <td class="px-3 py-2">
                 <div class="flex items-center gap-2">
@@ -205,34 +205,34 @@
                     {{ row.id }}
                   </NuxtLink>
                   <button
-                    class="inline-flex justify-center items-center opacity-50 hover:opacity-100 rounded text-slate-400 transition-opacity cursor-pointer"
+                    class="inline-flex cursor-pointer items-center justify-center rounded text-slate-400 opacity-50 transition-opacity hover:opacity-100"
                     @click="copy(row.id)"
                     title="Copy id"
                     aria-label="Copy id"
                   >
                     <Icon
                       name="heroicons:document-duplicate"
-                      class="w-5 h-5"
+                      class="h-5 w-5"
                       aria-hidden="true"
                     />
                   </button>
                 </div>
               </td>
               <td
-                class="px-3 py-2 tabular-nums text-right align-middle leading-none"
+                class="px-3 py-2 text-right align-middle leading-none tabular-nums"
               >
                 {{ row.count }}
               </td>
               <td class="px-3 py-2 text-left">
-                <div class="inline-flex justify-start items-stretch gap-0">
+                <div class="inline-flex items-stretch justify-start gap-0">
                   <input
                     v-model.number="customValues[row.id]"
                     type="number"
                     min="0"
-                    class="bg-slate-800 px-2 py-0 border border-slate-700 rounded-r-none rounded-l-md focus:outline-none focus:ring-1 focus:ring-seagull-500 w-[4.8rem] text-slate-100 text-base text-right"
+                    class="focus:ring-seagull-500 w-[4.8rem] rounded-l-md rounded-r-none border border-slate-700 bg-slate-800 px-2 py-0 text-right text-base text-slate-100 focus:ring-1 focus:outline-none"
                   />
                   <button
-                    class="inline-flex justify-center items-center bg-seagull-600 hover:bg-seagull-500 disabled:opacity-40 -ml-px rounded-r-md rounded-l-none w-7 h-7 text-[20px] text-slate-950 disabled:cursor-not-allowed"
+                    class="bg-seagull-600 hover:bg-seagull-500 -ml-px inline-flex h-7 w-7 items-center justify-center rounded-l-none rounded-r-md text-[20px] text-slate-950 disabled:cursor-not-allowed disabled:opacity-40"
                     :disabled="
                       pending[row.id] ||
                       customValues[row.id] == null ||
@@ -242,24 +242,24 @@
                     title="Apply set count"
                     aria-label="Apply set count"
                   >
-                    <Icon name="material-symbols-light:input" class="w-5 h-5" />
+                    <Icon name="material-symbols-light:input" class="h-5 w-5" />
                   </button>
                 </div>
               </td>
             </tr>
             <tr v-if="!rows.length">
-              <td colspan="3" class="px-3 py-6 text-slate-400 text-center">
+              <td colspan="3" class="px-3 py-6 text-center text-slate-400">
                 No results
               </td>
             </tr>
           </tbody>
         </table>
-        <div v-if="loading" class="p-3 text-slate-400 text-xs text-center">
+        <div v-if="loading" class="p-3 text-center text-xs text-slate-400">
           Loading…
         </div>
         <div v-if="!loading && items.length < total" class="p-3 text-center">
           <button
-            class="bg-seagull-600 hover:bg-seagull-500 px-3 py-1.5 rounded text-slate-950 text-sm"
+            class="bg-seagull-600 hover:bg-seagull-500 rounded px-3 py-1.5 text-sm text-slate-950"
             @click="refresh(false)"
           >
             Load More ({{ items.length }}/{{ total }})

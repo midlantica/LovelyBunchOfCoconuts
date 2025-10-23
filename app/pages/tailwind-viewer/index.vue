@@ -1,15 +1,15 @@
 <template>
   <div
-    class="prose-invert px-6 py-8 w-full max-w-none h-full min-h-0 overflow-y-auto prose scrollbar-thin"
+    class="prose-invert prose scrollbar-thin h-full min-h-0 w-full max-w-none overflow-y-auto px-6 py-8"
   >
     <h1 class="!mt-0 text-2xl">Design Tokens (Tailwind)</h1>
-    <p v-if="!isDev" class="font-300 text-amber-400 text-base">
+    <p v-if="!isDev" class="font-300 text-base text-amber-400">
       Run pnpm dev to view live config (hidden in prod).
     </p>
     <div v-else>
       <!-- Button Showcase -->
       <section class="mt-6">
-        <div class="flex justify-between items-center mb-4">
+        <div class="mb-4 flex items-center justify-between">
           <h2 class="!mt-0 text-xl">Button Components</h2>
           <NuxtLink
             to="/tailwind-viewer/buttons"
@@ -20,8 +20,8 @@
         </div>
 
         <!-- Basic Variants Preview (LG size only) -->
-        <div class="bg-slate-950 mb-2 rounded-lg">
-          <h3 class="!mt-0 mb-4 text-slate-300 text-base">
+        <div class="mb-2 rounded-lg bg-slate-950">
+          <h3 class="!mt-0 mb-4 text-base text-slate-300">
             Button Variants Preview
           </h3>
           <div class="flex flex-wrap gap-3">
@@ -34,39 +34,39 @@
         </div>
 
         <!-- Custom Variant Example -->
-        <div class="bg-slate-950 mb-6 rounded-lg">
-          <h3 class="!mt-0 mb-4 text-slate-300 text-base">
+        <div class="mb-6 rounded-lg bg-slate-950">
+          <h3 class="!mt-0 mb-4 text-base text-slate-300">
             Custom Variant (New!)
           </h3>
-          <p class="mb-6 text-slate-400 text-sm">
+          <p class="mb-6 text-sm text-slate-400">
             Structural styles only - add your own colors without !important
             conflicts
           </p>
-          <div class="flex flex-wrap gap-3 mt-2">
+          <div class="mt-2 flex flex-wrap gap-3">
             <UiButton
               text="Fuchsia Button"
               variant="custom"
               size="lg"
-              class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white"
+              class="bg-fuchsia-600 text-white hover:bg-fuchsia-700"
             />
             <UiButton
               text="Purple & Yellow"
               variant="custom"
               size="lg"
-              class="bg-purple-600 hover:bg-purple-500 text-yellow-300 hover:text-yellow-200"
+              class="bg-purple-600 text-yellow-300 hover:bg-purple-500 hover:text-yellow-200"
             />
             <UiButton
               text="Pink Gradient"
               variant="custom"
               size="lg"
-              class="bg-gradient-to-r from-pink-500 hover:from-pink-600 to-violet-600 hover:to-violet-700 text-white"
+              class="bg-gradient-to-r from-pink-500 to-violet-600 text-white hover:from-pink-600 hover:to-violet-700"
             />
           </div>
         </div>
 
         <!-- Light Background Sample -->
-        <div class="bg-white mb-2 p-4 rounded-lg">
-          <h3 class="!mt-0 mb-4 text-slate-800 text-base">
+        <div class="mb-2 rounded-lg bg-white p-4">
+          <h3 class="!mt-0 mb-4 text-base text-slate-800">
             On Light Background
           </h3>
           <div class="flex flex-wrap gap-3">
@@ -80,7 +80,7 @@
       <section class="mt-6">
         <h2 class="mt-0 text-xl">CSS Root Variables</h2>
         <ul
-          class="gap-4 grid sm:grid-cols-2 lg:grid-cols-3 font-mono text-base"
+          class="grid gap-4 font-mono text-base sm:grid-cols-2 lg:grid-cols-3"
         >
           <li
             v-for="v in rootVars"
@@ -88,13 +88,13 @@
             class="flex items-center gap-3"
           >
             <div
-              class="border border-slate-600/70 rounded-sm w-10 h-10 shrink-0"
+              class="h-10 w-10 shrink-0 rounded-sm border border-slate-600/70"
               :style="{ background: v.value }"
               :title="v.value"
             />
             <div class="min-w-0">
               <div class="text-accent leading-tight">{{ v.name }}</div>
-              <div class="max-w-[10rem] text-[11px] text-slate-400 truncate">
+              <div class="max-w-[10rem] truncate text-[11px] text-slate-400">
                 {{ v.value }}
               </div>
             </div>
@@ -102,14 +102,14 @@
         </ul>
       </section>
       <!-- Two-column zone: Breakpoints (left) and Colors (right) -->
-      <div class="items-start gap-3 grid grid-cols-1 lg:grid-cols-2 mt-1">
+      <div class="mt-1 grid grid-cols-1 items-start gap-3 lg:grid-cols-2">
         <section v-if="screenList.length" class="mt-0">
           <h2 id="screens" class="mt-0">Screens / Breakpoints</h2>
-          <ul class="gap-2 grid grid-cols-1 font-mono text-xs">
+          <ul class="grid grid-cols-1 gap-2 font-mono text-xs">
             <li
               v-for="s in screenList"
               :key="s.name"
-              class="flex justify-between items-center bg-slate-800/60 m-0 px-3 py-2 rounded"
+              class="m-0 flex items-center justify-between rounded bg-slate-800/60 px-3 py-2"
             >
               <span :class="{ 'text-accent': isCustomScreen(s.name) }">{{
                 s.name
@@ -128,10 +128,10 @@
             <div
               v-for="c in mainColors"
               :key="c.name"
-              class="border border-slate-700 rounded-md overflow-hidden"
+              class="overflow-hidden rounded-md border border-slate-700"
             >
               <div
-                class="flex justify-between items-center bg-slate-800/70 px-3 py-3"
+                class="flex items-center justify-between bg-slate-800/70 px-3 py-3"
               >
                 <span class="flex items-center gap-3 font-mono text-base">
                   <span
@@ -140,40 +140,40 @@
                   >
                   <span
                     v-if="customColorNames.has(c.name)"
-                    class="font-semibold text-accent text-base tracking-wide"
+                    class="text-accent text-base font-semibold tracking-wide"
                     >CUSTOM</span
                   >
                 </span>
                 <span
-                  class="text-slate-300 text-base uppercase tracking-wide"
+                  class="text-base tracking-wide text-slate-300 uppercase"
                   >{{ c.shades ? 'Scale' : 'Color' }}</span
                 >
               </div>
-              <div v-if="c.shades" class="gap-1 grid grid-cols-5 p-2">
+              <div v-if="c.shades" class="grid grid-cols-5 gap-1 p-2">
                 <div
                   v-for="(hex, shade) in c.shades"
                   :key="shade"
                   :style="{ background: hex }"
-                  class="relative flex justify-center items-center rounded-sm ring-0 hover:ring-2 hover:ring-accent/60 h-12 transition cursor-pointer select-none"
+                  class="hover:ring-accent/60 relative flex h-12 cursor-pointer items-center justify-center rounded-sm ring-0 transition select-none hover:ring-2"
                   :title="`Click to copy ${c.name}-${shade}`"
                   role="button"
                   tabindex="0"
                   @click="copyColorShade(c.name, shade)"
                 >
                   <span
-                    class="font-300 text-white text-base mix-blend-difference"
+                    class="font-300 text-base text-white mix-blend-difference"
                     >{{ shade }}</span
                   >
                   <span
                     v-if="copied === `${c.name}-${shade}`"
-                    class="absolute inset-0 flex justify-center items-center bg-black/30 font-mono text-[11px] text-white"
+                    class="absolute inset-0 flex items-center justify-center bg-black/30 font-mono text-[11px] text-white"
                     >copied</span
                   >
                 </div>
               </div>
               <div
                 v-else
-                class="relative hover:ring-2 hover:ring-accent/60 h-16 transition cursor-pointer select-none"
+                class="hover:ring-accent/60 relative h-16 cursor-pointer transition select-none hover:ring-2"
                 :style="{ background: c.value }"
                 :title="`Click to copy ${c.name}`"
                 role="button"
@@ -182,13 +182,13 @@
               >
                 <span
                   v-if="copied === c.name"
-                  class="absolute inset-0 flex justify-center items-center bg-black/30 font-mono text-[11px] text-white"
+                  class="absolute inset-0 flex items-center justify-center bg-black/30 font-mono text-[11px] text-white"
                   >copied</span
                 >
               </div>
               <div
                 v-if="c.value"
-                class="bg-slate-900/60 px-3 py-3 border-slate-700 border-t font-mono text-base truncate"
+                class="truncate border-t border-slate-700 bg-slate-900/60 px-3 py-3 font-mono text-base"
               >
                 {{ c.value }}
               </div>
@@ -198,22 +198,22 @@
       </div>
       <section v-if="shadowsList.length" class="mt-10">
         <h2 id="shadows" class="mt-0 text-xl">Shadows</h2>
-        <div class="gap-4 grid sm:grid-cols-2 lg:grid-cols-3">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div
             v-for="s in shadowsList"
             :key="s.name"
-            class="bg-slate-800/70 p-4 border border-slate-700 rounded-md"
+            class="rounded-md border border-slate-700 bg-slate-800/70 p-4"
           >
-            <div class="mb-2 font-mono font-semibold text-accent text-base">
+            <div class="text-accent mb-2 font-mono text-base font-semibold">
               {{ s.name }}
             </div>
             <div
-              class="flex justify-center items-center bg-slate-900 rounded h-20 text-base uppercase tracking-wide"
+              class="flex h-20 items-center justify-center rounded bg-slate-900 text-base tracking-wide uppercase"
               :style="{ boxShadow: s.value }"
             >
               preview
             </div>
-            <div class="mt-2 font-mono text-base break-all leading-tight">
+            <div class="mt-2 font-mono text-base leading-tight break-all">
               {{ s.value }}
             </div>
           </div>
@@ -224,14 +224,14 @@
         <div
           v-for="f in fontFamilies"
           :key="f.name"
-          class="bg-slate-800/40 p-3 border border-slate-700 rounded max-w-md"
+          class="max-w-md rounded border border-slate-700 bg-slate-800/40 p-3"
         >
-          <div class="flex justify-between items-center mb-2">
-            <span class="font-mono font-semibold text-accent text-base">{{
+          <div class="mb-2 flex items-center justify-between">
+            <span class="text-accent font-mono text-base font-semibold">{{
               f.name
             }}</span>
             <span
-              class="max-w-[55%] font-mono text-slate-400 text-base truncate"
+              class="max-w-[55%] truncate font-mono text-base text-slate-400"
               >{{ f.stack }}</span
             >
           </div>
@@ -242,20 +242,20 @@
       </section>
       <section class="mt-12" v-if="otherCustom.length">
         <h2 class="mt-0 text-xl">Other Custom Tokens</h2>
-        <ul class="gap-3 grid md:grid-cols-2 font-mono text-base">
+        <ul class="grid gap-3 font-mono text-base md:grid-cols-2">
           <li
             v-for="t in otherCustom"
             :key="t.key"
-            class="bg-slate-800/40 p-4 border border-slate-700 rounded break-all"
+            class="rounded border border-slate-700 bg-slate-800/40 p-4 break-all"
           >
-            <span class="font-semibold text-accent">{{ t.key }}</span>
+            <span class="text-accent font-semibold">{{ t.key }}</span>
             <pre class="mt-3 text-base leading-snug whitespace-pre-wrap">{{
               t.json
             }}</pre>
           </li>
         </ul>
       </section>
-      <p class="mt-12 text-slate-500 text-base">
+      <p class="mt-12 text-base text-slate-500">
         Loaded from tailwind.config.js (dev only). Run
         <code class="font-mono text-base">pnpm tw:config</code>.
       </p>

@@ -1,13 +1,13 @@
 <template>
-  <div class="mx-auto px-6 pt-6 pb-8 w-full max-w-7xl">
+  <div class="mx-auto w-full max-w-7xl px-6 pt-6 pb-8">
     <div class="mb-8">
       <NuxtLink
         to="/tailwind-viewer"
-        class="inline-flex items-center gap-2 mb-4 text-accent hover:underline"
+        class="text-accent mb-4 inline-flex items-center gap-2 hover:underline"
       >
         ← Back to Design Tokens
       </NuxtLink>
-      <h1 class="mb-2 font-300 text-3xl">Button Component Grid</h1>
+      <h1 class="font-300 mb-2 text-3xl">Button Component Grid</h1>
       <p class="text-slate-400">
         Complete showcase of all button variants, sizes, and states
       </p>
@@ -15,35 +15,35 @@
 
     <!-- Custom Variant Demo -->
     <section class="mb-12">
-      <h2 class="mb-6 font-300 text-2xl">Custom Variant (New!)</h2>
-      <div class="bg-slate-900 p-4 rounded-lg">
+      <h2 class="font-300 mb-6 text-2xl">Custom Variant (New!)</h2>
+      <div class="rounded-lg bg-slate-900 p-4">
         <p class="text-slate-300">
           The custom variant provides only structural styles (padding, layout,
           typography) without any color/background styles, allowing you to
           easily set custom colors without !important conflicts.
         </p>
-        <div class="flex flex-wrap items-center gap-4 mt-4">
+        <div class="mt-4 flex flex-wrap items-center gap-4">
           <UiButton
             text="Fuchsia Button"
             variant="custom"
             size="lg"
-            class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white"
+            class="bg-fuchsia-600 text-white hover:bg-fuchsia-700"
           />
           <UiButton
             text="Purple & Yellow"
             variant="custom"
             size="lg"
-            class="bg-purple-600 hover:bg-purple-500 text-yellow-300 hover:text-yellow-200"
+            class="bg-purple-600 text-yellow-300 hover:bg-purple-500 hover:text-yellow-200"
           />
           <UiButton
             text="Pink Gradient"
             variant="custom"
             size="lg"
-            class="bg-gradient-to-r from-pink-500 hover:from-pink-600 to-violet-600 hover:to-violet-700 text-white"
+            class="bg-gradient-to-r from-pink-500 to-violet-600 text-white hover:from-pink-600 hover:to-violet-700"
           />
         </div>
-        <div class="bg-slate-800 mt-4 p-3 rounded">
-          <code class="text-slate-300 text-sm">
+        <div class="mt-4 rounded bg-slate-800 p-3">
+          <code class="text-sm text-slate-300">
             &lt;UiButton variant="custom" class="bg-fuchsia-600 text-orange-400"
             /&gt;
           </code>
@@ -53,38 +53,38 @@
 
     <!-- Variants Section -->
     <section class="mb-12">
-      <h2 class="mb-6 font-300 text-2xl">Variants (Large Size)</h2>
+      <h2 class="font-300 mb-6 text-2xl">Variants (Large Size)</h2>
 
       <!-- Dark Background -->
-      <div class="bg-slate-900 mb-4 p-4 rounded-lg">
-        <h3 class="mb-4 text-slate-300 text-lg">On Dark Background</h3>
+      <div class="mb-4 rounded-lg bg-slate-900 p-4">
+        <h3 class="mb-4 text-lg text-slate-300">On Dark Background</h3>
         <div class="flex flex-wrap gap-4">
           <div class="flex flex-col gap-2">
-            <span class="text-slate-400 text-sm uppercase tracking-wider"
+            <span class="text-sm tracking-wider text-slate-400 uppercase"
               >Default</span
             >
             <UiButton text="Default Button" size="lg" />
           </div>
           <div class="flex flex-col gap-2">
-            <span class="text-slate-400 text-sm uppercase tracking-wider"
+            <span class="text-sm tracking-wider text-slate-400 uppercase"
               >Primary</span
             >
             <UiButton text="Primary Button" variant="primary" size="lg" />
           </div>
           <div class="flex flex-col gap-2">
-            <span class="text-slate-400 text-sm uppercase tracking-wider"
+            <span class="text-sm tracking-wider text-slate-400 uppercase"
               >Secondary</span
             >
             <UiButton text="Secondary Button" variant="secondary" size="lg" />
           </div>
           <div class="flex flex-col gap-2">
-            <span class="text-slate-400 text-sm uppercase tracking-wider"
+            <span class="text-sm tracking-wider text-slate-400 uppercase"
               >Tertiary</span
             >
             <UiButton text="Tertiary Button" variant="tertiary" size="lg" />
           </div>
           <div class="flex flex-col gap-2">
-            <span class="text-slate-400 text-sm uppercase tracking-wider"
+            <span class="text-sm tracking-wider text-slate-400 uppercase"
               >Outline</span
             >
             <UiButton text="Outline Button" variant="outline-dark" size="lg" />
@@ -93,35 +93,35 @@
       </div>
 
       <!-- Light Background -->
-      <div class="bg-white p-4 rounded-lg">
-        <h3 class="mb-4 text-slate-800 text-lg">On Light Background</h3>
+      <div class="rounded-lg bg-white p-4">
+        <h3 class="mb-4 text-lg text-slate-800">On Light Background</h3>
         <div class="flex flex-wrap gap-4">
           <div class="flex flex-col gap-2">
-            <span class="text-slate-600 text-sm uppercase tracking-wider"
+            <span class="text-sm tracking-wider text-slate-600 uppercase"
               >Default</span
             >
             <UiButton text="Default Button" size="lg" />
           </div>
           <div class="flex flex-col gap-2">
-            <span class="text-slate-600 text-sm uppercase tracking-wider"
+            <span class="text-sm tracking-wider text-slate-600 uppercase"
               >Primary</span
             >
             <UiButton text="Primary Button" variant="primary" size="lg" />
           </div>
           <div class="flex flex-col gap-2">
-            <span class="text-slate-600 text-sm uppercase tracking-wider"
+            <span class="text-sm tracking-wider text-slate-600 uppercase"
               >Secondary</span
             >
             <UiButton text="Secondary Button" variant="secondary" size="lg" />
           </div>
           <div class="flex flex-col gap-2">
-            <span class="text-slate-600 text-sm uppercase tracking-wider"
+            <span class="text-sm tracking-wider text-slate-600 uppercase"
               >Tertiary</span
             >
             <UiButton text="Tertiary Button" variant="tertiary" size="lg" />
           </div>
           <div class="flex flex-col gap-2">
-            <span class="text-slate-600 text-sm uppercase tracking-wider"
+            <span class="text-sm tracking-wider text-slate-600 uppercase"
               >Outline</span
             >
             <UiButton text="Outline Button" variant="outline" size="lg" />
@@ -132,30 +132,30 @@
 
     <!-- Full Size × Variant Grid -->
     <section class="mb-12">
-      <h2 class="mb-6 font-300 text-2xl">
+      <h2 class="font-300 mb-6 text-2xl">
         Complete Grid: All Sizes × All Variants
       </h2>
-      <h3 class="mb-4 text-slate-300 text-lg">On Dark Background</h3>
-      <div class="bg-slate-900 mb-8 p-0 rounded-lg overflow-x-auto">
+      <h3 class="mb-4 text-lg text-slate-300">On Dark Background</h3>
+      <div class="mb-8 overflow-x-auto rounded-lg bg-slate-900 p-0">
         <table class="w-full border-collapse">
           <thead>
             <tr>
-              <th class="p-4 text-slate-400 text-sm text-left uppercase">
+              <th class="p-4 text-left text-sm text-slate-400 uppercase">
                 Size
               </th>
-              <th class="p-4 text-slate-400 text-sm text-left uppercase">
+              <th class="p-4 text-left text-sm text-slate-400 uppercase">
                 Default
               </th>
-              <th class="p-4 text-slate-400 text-sm text-left uppercase">
+              <th class="p-4 text-left text-sm text-slate-400 uppercase">
                 Primary
               </th>
-              <th class="p-4 text-slate-400 text-sm text-left uppercase">
+              <th class="p-4 text-left text-sm text-slate-400 uppercase">
                 Secondary
               </th>
-              <th class="p-4 text-slate-400 text-sm text-left uppercase">
+              <th class="p-4 text-left text-sm text-slate-400 uppercase">
                 Tertiary
               </th>
-              <th class="p-4 text-slate-400 text-sm text-left uppercase">
+              <th class="p-4 text-left text-sm text-slate-400 uppercase">
                 Outline Dark
               </th>
             </tr>
@@ -164,7 +164,7 @@
             <tr
               v-for="size in sizes"
               :key="size.value"
-              class="border-slate-800 border-t"
+              class="border-t border-slate-800"
             >
               <td class="p-6 font-mono text-slate-300">{{ size.label }}</td>
               <td class="px-4 text-center">
@@ -206,27 +206,27 @@
         </table>
       </div>
 
-      <h3 class="mb-4 text-white text-lg">On Light Background</h3>
-      <div class="bg-white p-0 rounded-lg overflow-x-auto">
+      <h3 class="mb-4 text-lg text-white">On Light Background</h3>
+      <div class="overflow-x-auto rounded-lg bg-white p-0">
         <table class="w-full border-collapse">
           <thead>
             <tr>
-              <th class="p-4 text-slate-700 text-sm text-left uppercase">
+              <th class="p-4 text-left text-sm text-slate-700 uppercase">
                 Size
               </th>
-              <th class="p-4 text-slate-700 text-sm text-left uppercase">
+              <th class="p-4 text-left text-sm text-slate-700 uppercase">
                 Default
               </th>
-              <th class="p-4 text-slate-700 text-sm text-left uppercase">
+              <th class="p-4 text-left text-sm text-slate-700 uppercase">
                 Primary
               </th>
-              <th class="p-4 text-slate-700 text-sm text-left uppercase">
+              <th class="p-4 text-left text-sm text-slate-700 uppercase">
                 Secondary
               </th>
-              <th class="p-4 text-slate-700 text-sm text-left uppercase">
+              <th class="p-4 text-left text-sm text-slate-700 uppercase">
                 Tertiary
               </th>
-              <th class="p-4 text-slate-700 text-sm text-left uppercase">
+              <th class="p-4 text-left text-sm text-slate-700 uppercase">
                 Outline
               </th>
             </tr>
@@ -235,7 +235,7 @@
             <tr
               v-for="size in sizes"
               :key="size.value + '-light'"
-              class="border-slate-200 border-t"
+              class="border-t border-slate-200"
             >
               <td class="p-6 font-mono text-slate-700">{{ size.label }}</td>
               <td class="px-4 text-center">
@@ -280,11 +280,11 @@
 
     <!-- States Section -->
     <section class="mb-12">
-      <h2 class="mb-6 font-300 text-2xl">Button States</h2>
-      <div class="bg-slate-900 p-4 rounded-lg">
-        <div class="gap-8 grid grid-cols-1 md:grid-cols-2">
+      <h2 class="font-300 mb-6 text-2xl">Button States</h2>
+      <div class="rounded-lg bg-slate-900 p-4">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
           <div>
-            <h3 class="mb-4 text-slate-300 text-lg">Normal State</h3>
+            <h3 class="mb-4 text-lg text-slate-300">Normal State</h3>
             <div class="flex flex-wrap gap-3">
               <UiButton text="Default" size="lg" />
               <UiButton text="Primary" variant="primary" size="lg" />
@@ -292,7 +292,7 @@
             </div>
           </div>
           <div>
-            <h3 class="mb-4 text-slate-300 text-lg">Disabled State</h3>
+            <h3 class="mb-4 text-lg text-slate-300">Disabled State</h3>
             <div class="flex flex-wrap gap-3">
               <UiButton text="Default" size="lg" disabled />
               <UiButton text="Primary" variant="primary" size="lg" disabled />
@@ -310,8 +310,8 @@
 
     <!-- With Icons Section -->
     <section class="mb-12">
-      <h2 class="mb-6 font-300 text-2xl">Buttons with Icons</h2>
-      <div class="bg-slate-900 p-4 rounded-lg">
+      <h2 class="font-300 mb-6 text-2xl">Buttons with Icons</h2>
+      <div class="rounded-lg bg-slate-900 p-4">
         <div class="flex flex-wrap gap-4">
           <UiButton
             text="Left Icon"
@@ -338,10 +338,10 @@
 
     <!-- Usage Examples -->
     <section class="mb-12">
-      <h2 class="mb-6 font-300 text-2xl">Code Examples</h2>
-      <div class="bg-slate-900 p-6 rounded-lg">
+      <h2 class="font-300 mb-6 text-2xl">Code Examples</h2>
+      <div class="rounded-lg bg-slate-900 p-6">
         <pre
-          class="overflow-x-auto text-slate-300 text-sm"
+          class="overflow-x-auto text-sm text-slate-300"
         ><code>&lt;!-- Default button --&gt;
 &lt;UiButton text="Click Me" /&gt;
 
@@ -365,10 +365,10 @@
 
     <!-- Props Reference -->
     <section>
-      <h2 class="mb-6 font-300 text-2xl">Props Reference</h2>
-      <div class="bg-slate-900 p-6 rounded-lg overflow-x-auto">
+      <h2 class="font-300 mb-6 text-2xl">Props Reference</h2>
+      <div class="overflow-x-auto rounded-lg bg-slate-900 p-6">
         <table class="w-full text-left">
-          <thead class="border-slate-700 border-b">
+          <thead class="border-b border-slate-700">
             <tr>
               <th class="p-3 text-slate-300">Prop</th>
               <th class="p-3 text-slate-300">Type</th>
@@ -376,14 +376,14 @@
               <th class="p-3 text-slate-300">Options</th>
             </tr>
           </thead>
-          <tbody class="font-mono text-slate-400 text-sm">
-            <tr class="border-slate-800 border-b">
+          <tbody class="font-mono text-sm text-slate-400">
+            <tr class="border-b border-slate-800">
               <td class="p-3">text</td>
               <td class="p-3">String</td>
               <td class="p-3">''</td>
               <td class="p-3">Button text content</td>
             </tr>
-            <tr class="border-slate-800 border-b">
+            <tr class="border-b border-slate-800">
               <td class="p-3">variant</td>
               <td class="p-3">String</td>
               <td class="p-3">'default'</td>
@@ -392,31 +392,31 @@
                 outline-dark | custom
               </td>
             </tr>
-            <tr class="border-slate-800 border-b">
+            <tr class="border-b border-slate-800">
               <td class="p-3">size</td>
               <td class="p-3">String</td>
               <td class="p-3">'' (base)</td>
               <td class="p-3">xl | lg | '' / base | sm | xs | badge</td>
             </tr>
-            <tr class="border-slate-800 border-b">
+            <tr class="border-b border-slate-800">
               <td class="p-3">to</td>
               <td class="p-3">String | Object</td>
               <td class="p-3">null</td>
               <td class="p-3">Route path or object (converts to NuxtLink)</td>
             </tr>
-            <tr class="border-slate-800 border-b">
+            <tr class="border-b border-slate-800">
               <td class="p-3">icon-left</td>
               <td class="p-3">String</td>
               <td class="p-3">''</td>
               <td class="p-3">Icon name for left side</td>
             </tr>
-            <tr class="border-slate-800 border-b">
+            <tr class="border-b border-slate-800">
               <td class="p-3">icon-right</td>
               <td class="p-3">String</td>
               <td class="p-3">''</td>
               <td class="p-3">Icon name for right side</td>
             </tr>
-            <tr class="border-slate-800 border-b">
+            <tr class="border-b border-slate-800">
               <td class="p-3">disabled</td>
               <td class="p-3">Boolean</td>
               <td class="p-3">false</td>

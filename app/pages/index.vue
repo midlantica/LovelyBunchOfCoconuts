@@ -1,24 +1,24 @@
 <!-- pages/index.vue -->
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="gap-3 grid grid-rows-[auto_1fr] px-0 h-full overflow-hidden">
+  <div class="grid h-full grid-rows-[auto_1fr] gap-3 overflow-hidden px-0">
     <!-- Search Bar -->
     <div class="flex justify-center">
-      <div class="mx-auto px-4 md:px-0 w-full max-w-3xl">
+      <div class="mx-auto w-full max-w-3xl px-4 md:px-0">
         <SearchbarSearchBar
           v-model:search="searchTerm"
           v-model:filters="contentFilters"
           :counts="liveCounts"
-          class="top-0 z-5 sticky w-full"
+          class="sticky top-0 z-5 w-full"
         />
       </div>
     </div>
 
     <!-- Content Wall -->
     <div
-      class="rounded-xl h-full min-h-0 overflow-y-auto scroll-container-stable"
+      class="scroll-container-stable h-full min-h-0 overflow-y-auto rounded-xl"
     >
-      <div class="mx-auto md:px-0 pr-3 pl-2 w-full max-w-3xl">
+      <div class="mx-auto w-full max-w-3xl pr-3 pl-2 md:px-0">
         <main class="pb-8">
           <WallTheWall
             :search="searchTerm"
