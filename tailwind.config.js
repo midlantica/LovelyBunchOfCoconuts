@@ -58,7 +58,7 @@ export default {
     function ({ addComponents }) {
       addComponents({
         '.card': {
-          '@apply bg-slate-900/60 shadow-xl border-t border-seagull-600/30 rounded-md':
+          '@apply bg-slate-900/90 shadow-xl border-t border-seagull-600/30 rounded-md':
             {},
         },
       })

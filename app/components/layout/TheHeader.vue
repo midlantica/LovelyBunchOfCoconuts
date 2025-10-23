@@ -8,7 +8,7 @@
         <div class="hidden sm:block w-10"></div>
 
         <!-- Center logo on desktop, left-aligned on mobile -->
-        <div class="flex flex-1 sm:justify-center">
+        <div class="flex flex-1 justify-center">
           <button
             type="button"
             class="focus:outline-none no-underline hover:cursor-pointer"

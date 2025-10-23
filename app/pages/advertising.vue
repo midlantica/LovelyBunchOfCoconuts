@@ -50,7 +50,7 @@
 
     <!-- Pricing Tiers -->
     <div class="mb-8 px-3">
-      <h2 class="mb-6 text-seagull-100! text-3xl text-center">Pricing Tiers</h2>
+      <h2 class="mb-3 text-seagull-100! text-3xl text-center">Pricing Tiers</h2>
 
       <!-- Square Ads Section -->
       <div class="mb-8">
