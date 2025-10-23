@@ -1,0 +1,2886 @@
+[
+  {
+    "_path": "/claims/claims/Inequality",
+    "title": "Inequality",
+    "claim": "Inequality",
+    "translation": "Your money should be theirs.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/Stunning-and-brave-women",
+    "title": "Stunning and brave women",
+    "claim": "Stunning and brave women",
+    "translation": "AWFL",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/abolish-billionaires",
+    "title": "Abolish Billionaires",
+    "claim": "Abolish Billionaires",
+    "translation": "Punish ambition, celebrate envy.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/abolish-grades",
+    "title": "Abolish Grades",
+    "claim": "Abolish Grades",
+    "translation": "Failure is now inclusive.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/abolish-ice-cream",
+    "title": "Abolish ICE Cream",
+    "claim": "Abolish ICE Cream",
+    "translation": "Because dairy is colonial.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/abolish-ice",
+    "title": "Abolish ICE",
+    "claim": "Abolish ICE",
+    "translation": "Let drug cartels handle immigration.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/abolish-prisons",
+    "title": "Abolish Prisons",
+    "claim": "Abolish Prisons",
+    "translation": "A society with no brakes.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/abolish-the-family",
+    "title": "Abolish the Family",
+    "claim": "Abolish the Family",
+    "translation": "Turn kinship into bureaucracy.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/abolish-the-senate",
+    "title": "Abolish the Senate",
+    "claim": "Abolish the Senate",
+    "translation": "Too much representation is dangerous.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/abolish-traffic-enforcement",
+    "title": "Abolish Traffic Enforcement",
+    "claim": "Abolish Traffic Enforcement",
+    "translation": "Speeding for justice.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/activist-banking",
+    "title": "Activist Banking",
+    "claim": "Activist Banking",
+    "translation": "Finance meets finger-wagging.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/affirmative-actiona",
+    "title": "Affirmative Action",
+    "claim": "Affirmative Action",
+    "translation": "The soft bigotry of low expectations.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/affirmative-art",
+    "title": "Affirmative Art",
+    "claim": "Affirmative Art",
+    "translation": "Aesthetic diversity over talent.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/against-term-limits",
+    "title": "Against Term Limits",
+    "claim": "Against Term Limits",
+    "translation": "Favor Term Limits",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/anti-capitalist-zoning",
+    "title": "Anti-Capitalist Zoning",
+    "claim": "Anti-Capitalist Zoning",
+    "translation": "Restrict business for justice.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/anti-car-urbanism",
+    "title": "Anti-Car Urbanism",
+    "claim": "Anti-Car Urbanism",
+    "translation": "Walk to work or stay home.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/anti-fascist-milkshaking",
+    "title": "Anti-Fascist Milkshaking",
+    "claim": "Anti-Fascist Milkshaking",
+    "translation": "Assault is now performance art.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/anti-racism",
+    "title": "Anti-Racism",
+    "claim": "Anti-Racism",
+    "translation": "Racism, but with new targets.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/anti-speciesism",
+    "title": "Anti-Speciesism",
+    "claim": "Anti-Speciesism",
+    "translation": "People and pigeons, equally valid.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/artivism",
+    "title": "Artivism",
+    "claim": "Artivism",
+    "translation": "Activism with glitter.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/assault-weapon",
+    "title": "Assault Weapon",
+    "claim": "Assault Weapon",
+    "translation": "Any Gun",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-billionaires",
+    "title": "Ban Billionaires",
+    "claim": "Ban Billionaires",
+    "translation": "Cap success, praise mediocrity.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-cash-bail",
+    "title": "Ban Cash Bail",
+    "claim": "Ban Cash Bail",
+    "translation": "Crime without collateral.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-digital-surveillance",
+    "title": "Ban Digital Surveillance",
+    "claim": "Ban Digital Surveillance",
+    "translation": "Privacy for criminals.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-fireworks",
+    "title": "Ban Fireworks",
+    "claim": "Ban Fireworks",
+    "translation": "Too loud for liberation.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-fossil-fuels",
+    "title": "Ban Fossil Fuels",
+    "claim": "Ban Fossil Fuels",
+    "translation": "Freeze in winter, bake in summer.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-gas-stoves",
+    "title": "Ban Gas Stoves",
+    "claim": "Ban Gas Stoves",
+    "translation": "Micromanaging your kitchen for the climate.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-gender-reveal-parties",
+    "title": "Ban Gender Reveal Parties",
+    "claim": "Ban Gender Reveal Parties",
+    "translation": "Stop assuming reality.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-gifted-programs",
+    "title": "Ban Gifted Programs",
+    "claim": "Ban Gifted Programs",
+    "translation": "Excellence offends equity.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-grading-curves",
+    "title": "Ban Grading Curves",
+    "claim": "Ban Grading Curves",
+    "translation": "Level down, not up.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-homeschooling",
+    "title": "Ban Homeschooling",
+    "claim": "Ban Homeschooling",
+    "translation": "Only the State may teach.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-homework",
+    "title": "Ban Homework",
+    "claim": "Ban Homework",
+    "translation": "Responsibility is oppression.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-landlords",
+    "title": "Ban Landlords",
+    "claim": "Ban Landlords",
+    "translation": "Who needs housing when you have slogans?",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-lawn-mowers",
+    "title": "Ban Lawn Mowers",
+    "claim": "Ban Lawn Mowers",
+    "translation": "Grow weeds for the revolution.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-meat",
+    "title": "Ban Meat",
+    "claim": "Ban Meat",
+    "translation": "Eat bugs and like it.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-offensive-statues",
+    "title": "Ban Offensive Statues",
+    "claim": "Ban Offensive Statues",
+    "translation": "Erase history to heal.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-plastic",
+    "title": "Ban Plastic",
+    "claim": "Ban Plastic",
+    "translation": "Paper straws that collapse on impact.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-private-property",
+    "title": "Ban Private Property",
+    "claim": "Ban Private Property",
+    "translation": "You’ll own nothing and be surveilled.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-private-schools",
+    "title": "Ban Private Schools",
+    "claim": "Ban Private Schools",
+    "translation": "All must suffer equally.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-single-family-homes",
+    "title": "Ban Single-Family Homes",
+    "claim": "Ban Single-Family Homes",
+    "translation": "No space for your freedom.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-standardized-testing",
+    "title": "Ban Standardized Testing",
+    "claim": "Ban Standardized Testing",
+    "translation": "Measure feelings, not facts.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ban-suvs",
+    "title": "Ban SUVs",
+    "claim": "Ban SUVs",
+    "translation": "No freedom without permission.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/banned-books-week",
+    "title": "Banned Books Week",
+    "claim": "Banned Books Week",
+    "translation": "Promote the fringe with flair.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/big-government",
+    "title": "Big Government",
+    "claim": "Big Government",
+    "translation": "Small Individual",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/billionaires-shouldnt-exist",
+    "title": "Billionaires Shouldn't Exist",
+    "claim": "Billionaires Shouldn't Exist",
+    "translation": "Envy dressed as morality.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/body-positivity",
+    "title": "Body Positivity",
+    "claim": "Body Positivity",
+    "translation": "Glorifying unhealthy choices.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/cancel-culture-1",
+    "title": "Cancel Culture",
+    "claim": "Cancel Culture",
+    "translation": "Mob justice at Wi-Fi speed.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/cancel-culture",
+    "title": "Cancel Culture",
+    "claim": "Cancel Culture",
+    "translation": "Mob tantrums over hurt feelings.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/cancel-student-debt",
+    "title": "Cancel Student Debt",
+    "claim": "Cancel Student Debt",
+    "translation": "Shift your bills to the plumber.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/cis-privilege",
+    "title": "Cis Privilege",
+    "claim": "Cis Privilege",
+    "translation": "Born normal, now problematic.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/civic-disobedience",
+    "title": "Civic Disobedience",
+    "claim": "Civic Disobedience",
+    "translation": "Break laws for likes.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/civic-equity",
+    "title": "Civic Equity",
+    "claim": "Civic Equity",
+    "translation": "Government quotas for your neighborhood.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/climate-change-02",
+    "title": "Climate Change",
+    "claim": "Climate Change",
+    "translation": "Another Tax Opportunity",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/climate-change",
+    "title": "Climate Change",
+    "claim": "Climate Change",
+    "translation": "Another Tax Opportunity",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/climate-conscious-fashion",
+    "title": "Climate Conscious Fashion",
+    "claim": "Climate Conscious Fashion",
+    "translation": "Virtue stitched into fabric.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/climate-conscious-storytelling",
+    "title": "Climate-Conscious Storytelling",
+    "claim": "Climate-Conscious Storytelling",
+    "translation": "Fables with a carbon filter.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/climate-emergency",
+    "title": "Climate Emergency",
+    "claim": "Climate Emergency",
+    "translation": "Justification for permanent control.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/climate-equity-zones",
+    "title": "Climate Equity Zones",
+    "claim": "Climate Equity Zones",
+    "translation": "Redline, but woke.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/climate-gender-justice",
+    "title": "Climate Gender Justice",
+    "claim": "Climate Gender Justice",
+    "translation": "Your emissions are sexist.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/climate-grief-circles",
+    "title": "Climate Grief Circles",
+    "claim": "Climate Grief Circles",
+    "translation": "Group therapy for weather panic.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/climate-grief-education",
+    "title": "Climate Grief Education",
+    "claim": "Climate Grief Education",
+    "translation": "Teach sadness as a subject.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/climate-justice",
+    "title": "Climate Justice",
+    "claim": "Climate Justice",
+    "translation": "Shakedown under a green banner.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/climate-reparations",
+    "title": "Climate Reparations",
+    "claim": "Climate Reparations",
+    "translation": "Pay developing dictators to feel guilty.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/collective-healing",
+    "title": "Collective Healing",
+    "claim": "Collective Healing",
+    "translation": "Therapy as policy.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/communism",
+    "title": "Communism",
+    "claim": "Communism",
+    "translation": "Constitutional Republic",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/community-based-alternatives",
+    "title": "Community-Based Alternatives",
+    "claim": "Community-Based Alternatives",
+    "translation": "Let activists run the courts.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/community-gardening-justice",
+    "title": "Community Gardening Justice",
+    "claim": "Community Gardening Justice",
+    "translation": "Compost capitalism.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/community-healing-sessions",
+    "title": "Community Healing Sessions",
+    "claim": "Community Healing Sessions",
+    "translation": "Sit in a circle and blame the system.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/community-led-budgeting",
+    "title": "Community-Led Budgeting",
+    "claim": "Community-Led Budgeting",
+    "translation": "Mob-funded governance.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/community-led-safety",
+    "title": "Community-Led Safety",
+    "claim": "Community-Led Safety",
+    "translation": "Let the mob patrol your street.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/community-reparations",
+    "title": "Community Reparations",
+    "claim": "Community Reparations",
+    "translation": "Your neighbor owes you—forever.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/compassionate-code-of-conduct",
+    "title": "Compassionate Code of Conduct",
+    "claim": "Compassionate Code of Conduct",
+    "translation": "Free speech with a muzzle.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/compassionate-grading",
+    "title": "Compassionate Grading",
+    "claim": "Compassionate Grading",
+    "translation": "Pass them all and feel good.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/compassionate-release",
+    "title": "Compassionate Release",
+    "claim": "Compassionate Release",
+    "translation": "Let convicts go—justice served.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/compassionate-urban-design",
+    "title": "Compassionate Urban Design",
+    "claim": "Compassionate Urban Design",
+    "translation": "Roundabouts with remorse.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/composting-human-remains",
+    "title": "Composting Human Remains",
+    "claim": "Composting Human Remains",
+    "translation": "Recycling, taken literally.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/consent-based-classrooms",
+    "title": "Consent-Based Classrooms",
+    "claim": "Consent-Based Classrooms",
+    "translation": "The kids are in charge.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/corporate-greed",
+    "title": "Corporate Greed",
+    "claim": "Corporate Greed",
+    "translation": "Mind your business tyrant.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/corporate-regulation",
+    "title": "Corporate Regulation",
+    "claim": "Corporate Regulation",
+    "translation": "Cronyism, corruption.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/corporate-welfare",
+    "title": "Corporate Welfare",
+    "claim": "Corporate Welfare",
+    "translation": "Govt plundering Private sphere.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/criminal-justice-reform",
+    "title": "Criminal Justice Reform",
+    "claim": "Criminal Justice Reform",
+    "translation": "Make crime less illegal.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/criminalize-misgendering",
+    "title": "Criminalize Misgendering",
+    "claim": "Criminalize Misgendering",
+    "translation": "Pronouns or prison.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/critical-race-theory",
+    "title": "Critical Race Theory",
+    "claim": "Critical Race Theory",
+    "translation": "Racism repackaged as scholarship.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/critical-wellness",
+    "title": "Critical Wellness",
+    "claim": "Critical Wellness",
+    "translation": "Mindfulness meets Marx.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/cultural-appropriation-1",
+    "title": "Cultural Appropriation",
+    "claim": "Cultural Appropriation",
+    "translation": "Don't enjoy other cultures—just apologize.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/cultural-appropriation",
+    "title": "Cultural Appropriation",
+    "claim": "Cultural Appropriation",
+    "translation": "Admiring imitation.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/cultural-humility-training",
+    "title": "Cultural Humility Training",
+    "claim": "Cultural Humility Training",
+    "translation": "Self-flagellation for HR credit.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/cultural-marxism",
+    "title": "Cultural Marxism",
+    "claim": "Cultural Marxism",
+    "translation": "Society Destruction.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/cultural-sensitivity-training",
+    "title": "Cultural Sensitivity Training",
+    "claim": "Cultural Sensitivity Training",
+    "translation": "Assume guilt, avoid eye contact.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/cultural-sensitivity",
+    "title": "Cultural Sensitivity",
+    "claim": "Cultural Sensitivity",
+    "translation": "Walking on eggshells forever.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/culturally-responsive-metrics",
+    "title": "Culturally Responsive Metrics",
+    "claim": "Culturally Responsive Metrics",
+    "translation": "Measure feelings, not results.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/de-gender-toys",
+    "title": "De-Gender Toys",
+    "claim": "De-Gender Toys",
+    "translation": "Let kids be pawns.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/de-gendered-language",
+    "title": "De-Gendered Language",
+    "claim": "De-Gendered Language",
+    "translation": "Speak newspeak.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/de-gendered-pronouns",
+    "title": "De-Gendered Pronouns",
+    "claim": "De-Gendered Pronouns",
+    "translation": "Grammar as activism.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decarbonize-everything",
+    "title": "Decarbonize Everything",
+    "claim": "Decarbonize Everything",
+    "translation": "Turn off the world to save it.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decarceration-now",
+    "title": "Decarceration Now",
+    "claim": "Decarceration Now",
+    "translation": "Let criminals walk free—justice!",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decarceration",
+    "title": "Decarceration",
+    "claim": "Decarceration",
+    "translation": "Criminals deserve a hug.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decenter-logic",
+    "title": "Decenter Logic",
+    "claim": "Decenter Logic",
+    "translation": "Reason is colonial now.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decenter-the-workplace",
+    "title": "Decenter the Workplace",
+    "claim": "Decenter the Workplace",
+    "translation": "Productivity is problematic.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decenter-whiteness",
+    "title": "Decenter Whiteness",
+    "claim": "Decenter Whiteness",
+    "translation": "Shame as a curriculum.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decentering-success",
+    "title": "Decentering Success",
+    "claim": "Decentering Success",
+    "translation": "Achievement is supremacy.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonial-dance",
+    "title": "Decolonial Dance",
+    "claim": "Decolonial Dance",
+    "translation": "Choreograph the revolution.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonial-ethics",
+    "title": "Decolonial Ethics",
+    "claim": "Decolonial Ethics",
+    "translation": "Morality filtered through grievance.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonial-mindfulness",
+    "title": "Decolonial Mindfulness",
+    "claim": "Decolonial Mindfulness",
+    "translation": "Meditate on your guilt.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonial-public-policy",
+    "title": "Decolonial Public Policy",
+    "claim": "Decolonial Public Policy",
+    "translation": "Governance by grievance.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonization",
+    "title": "Decolonization",
+    "claim": "Decolonization",
+    "translation": "Erasing history to feel righteous.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonize-education-systems",
+    "title": "Decolonize Education Systems",
+    "claim": "Decolonize Education Systems",
+    "translation": "Replace facts with feels.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonize-fitness",
+    "title": "Decolonize Fitness",
+    "claim": "Decolonize Fitness",
+    "translation": "Exercise is privilege now.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonize-maps",
+    "title": "Decolonize Maps",
+    "claim": "Decolonize Maps",
+    "translation": "Geography is now offensive.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonize-museums",
+    "title": "Decolonize Museums",
+    "claim": "Decolonize Museums",
+    "translation": "History must now apologize.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonize-reading-lists",
+    "title": "Decolonize Reading Lists",
+    "claim": "Decolonize Reading Lists",
+    "translation": "Goodbye classics.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonize-technology",
+    "title": "Decolonize Technology",
+    "claim": "Decolonize Technology",
+    "translation": "Smash the patriarchy with apps.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonize-the-calendar",
+    "title": "Decolonize the Calendar",
+    "claim": "Decolonize the Calendar",
+    "translation": "Time itself is problematic.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonize-the-curriculum",
+    "title": "Decolonize the Curriculum",
+    "claim": "Decolonize the Curriculum",
+    "translation": "Erase Western thought to promote ideological conformity.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonize-the-supply-chain",
+    "title": "Decolonize the Supply Chain",
+    "claim": "Decolonize the Supply Chain",
+    "translation": "Logistics with a guilt surcharge.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decolonize-your-mind",
+    "title": "Decolonize Your Mind",
+    "claim": "Decolonize Your Mind",
+    "translation": "Replace reason with resentment.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/deconstruct-parenting-norms",
+    "title": "Deconstruct Parenting Norms",
+    "claim": "Deconstruct Parenting Norms",
+    "translation": "Let the village confuse your child.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/deconstruct-whiteness",
+    "title": "Deconstruct Whiteness",
+    "claim": "Deconstruct Whiteness",
+    "translation": "Racial essentialism with a progressive twist.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decriminalize-everything",
+    "title": "Decriminalize Everything",
+    "claim": "Decriminalize Everything",
+    "translation": "Lawlessness is liberation.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/decriminalize-sex-work",
+    "title": "Decriminalize Sex Work",
+    "claim": "Decriminalize Sex Work",
+    "translation": "Pimping rebranded as empowerment.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/deficit-spending",
+    "title": "Deficit Spending",
+    "claim": "Deficit Spending",
+    "translation": "Kicking the can down the road. Increased poverty.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/defund-animal-agriculture",
+    "title": "Defund Animal Agriculture",
+    "claim": "Defund Animal Agriculture",
+    "translation": "Tofu or else.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/defund-competitive-sports",
+    "title": "Defund Competitive Sports",
+    "claim": "Defund Competitive Sports",
+    "translation": "Because winning is problematic.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/defund-military",
+    "title": "Defund Military",
+    "claim": "Defund Military",
+    "translation": "Because peace comes from weakness.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/defund-prisons",
+    "title": "Defund Prisons",
+    "claim": "Defund Prisons",
+    "translation": "Hope criminals hug it out.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/defund-surveillance",
+    "title": "Defund Surveillance",
+    "claim": "Defund Surveillance",
+    "translation": "Hide from accountability.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/defund-the-police-1",
+    "title": "Defund the Police",
+    "claim": "Defund the Police",
+    "translation": "Remove the last line of defense between criminals and the vulnerable.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/defund-the-police",
+    "title": "Defund the Police",
+    "claim": "Defund the Police",
+    "translation": "Make chaos your neighbor.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/degrowth-movement",
+    "title": "Degrowth Movement",
+    "claim": "Degrowth Movement",
+    "translation": "Let’s all be poorer—on purpose.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/dei-diversity-equity-inclusion",
+    "title": "DEI - Diversity Equity Inclusion",
+    "claim": "DEI - Diversity Equity Inclusion",
+    "translation": "Increased Poverty and Division, or Didn't Earn It.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/deindustrialize-america",
+    "title": "Deindustrialize America",
+    "claim": "Deindustrialize America",
+    "translation": "Rust as a virtue.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/democratic-socialism",
+    "title": "Democratic Socialism",
+    "claim": "Democratic Socialism",
+    "translation": "Capitalism",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/deplatform-misinformation",
+    "title": "Deplatform Misinformation",
+    "claim": "Deplatform Misinformation",
+    "translation": "Censor what we can’t debate.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/deplatforming",
+    "title": "Deplatforming",
+    "claim": "Deplatforming",
+    "translation": "Debate is violence.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/digital-detox-for-equity",
+    "title": "Digital Detox for Equity",
+    "claim": "Digital Detox for Equity",
+    "translation": "Unplug the privileged.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/digital-equity-act",
+    "title": "Digital Equity Act",
+    "claim": "Digital Equity Act",
+    "translation": "Regulate tech with ideology.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/digital-equity",
+    "title": "Digital Equity",
+    "claim": "Digital Equity",
+    "translation": "Internet access as moral imperative.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/digital-intersectionality",
+    "title": "Digital Intersectionality",
+    "claim": "Digital Intersectionality",
+    "translation": "Oppression scored by algorithm.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/digital-reparations",
+    "title": "Digital Reparations",
+    "claim": "Digital Reparations",
+    "translation": "Give your bandwidth to justice.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/disarm-the-police",
+    "title": "Disarm the Police",
+    "claim": "Disarm the Police",
+    "translation": "Protect the innocent—except not.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/disinformation",
+    "title": "Disinformation",
+    "claim": "Disinformation",
+    "translation": "Truth we don’t approve.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/dismantling-capitalism",
+    "title": "Dismantling Capitalism",
+    "claim": "Dismantling Capitalism",
+    "translation": "Begging for bread lines.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/disrupt-whiteness",
+    "title": "Disrupt Whiteness",
+    "claim": "Disrupt Whiteness",
+    "translation": "Cultural demolition by decree.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/diversity-is-our-strength",
+    "title": "Diversity is Our Strength",
+    "claim": "Diversity is Our Strength",
+    "translation": "Forced conformity under a rainbow flag.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/diversity-training",
+    "title": "Diversity Training",
+    "claim": "Diversity Training",
+    "translation": "Ideological re-education with a corporate HR badge.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/drag-queen-story-hour",
+    "title": "Drag Queen Story Hour",
+    "claim": "Drag Queen Story Hour",
+    "translation": "Adult performance art for your toddler.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/eco-anxiety",
+    "title": "Eco-Anxiety",
+    "claim": "Eco-Anxiety",
+    "translation": "Induce fear for compliance.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/eco-conscious-mourning",
+    "title": "Eco-Conscious Mourning",
+    "claim": "Eco-Conscious Mourning",
+    "translation": "Grieve with compostable tissues.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/eco-feminism",
+    "title": "Eco-Feminism",
+    "claim": "Eco-Feminism",
+    "translation": "The planet is Mother—obey her.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/eco-feminist-urban-design",
+    "title": "Eco-Feminist Urban Design",
+    "claim": "Eco-Feminist Urban Design",
+    "translation": "Crosswalks that dismantle patriarchy.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/eco-gentrification",
+    "title": "Eco-Gentrification",
+    "claim": "Eco-Gentrification",
+    "translation": "Green the city, displace the poor.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/eco-justice",
+    "title": "Eco-Justice",
+    "claim": "Eco-Justice",
+    "translation": "Guilt-tripping your thermostat.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/eco-queer-theory",
+    "title": "Eco-Queer Theory",
+    "claim": "Eco-Queer Theory",
+    "translation": "Mother Earth goes non-binary.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/eco-racism-awareness",
+    "title": "Eco-Racism Awareness",
+    "claim": "Eco-Racism Awareness",
+    "translation": "Climate guilt meets race shame.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/eco-socialism",
+    "title": "Eco-Socialism",
+    "claim": "Eco-Socialism",
+    "translation": "Poverty for the planet.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/emancipatory-pedagogy",
+    "title": "Emancipatory Pedagogy",
+    "claim": "Emancipatory Pedagogy",
+    "translation": "Lesson plans with a manifesto.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/empathy-based-policing",
+    "title": "Empathy-Based Policing",
+    "claim": "Empathy-Based Policing",
+    "translation": "Hugs before handcuffs.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/empathy-based-urban-planning",
+    "title": "Empathy-Based Urban Planning",
+    "claim": "Empathy-Based Urban Planning",
+    "translation": "Sidewalks that feel your pain.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/end-capitalism",
+    "title": "End Capitalism",
+    "claim": "End Capitalism",
+    "translation": "Starvation is a small price for equality.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/end-fossil-capital",
+    "title": "End Fossil Capital",
+    "claim": "End Fossil Capital",
+    "translation": "Shut down your standard of living.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/end-suburban-sprawl",
+    "title": "End Suburban Sprawl",
+    "claim": "End Suburban Sprawl",
+    "translation": "Stack and pack humanity.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/end-the-nuclear-family",
+    "title": "End the Nuclear Family",
+    "claim": "End the Nuclear Family",
+    "translation": "Dissolve roots, grow dependence.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/environmental-racism",
+    "title": "Environmental Racism",
+    "claim": "Environmental Racism",
+    "translation": "Pollution is now prejudiced.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/equality-02",
+    "title": "Equality",
+    "claim": "Equality",
+    "translation": "Levelling down",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/equality",
+    "title": "Equality",
+    "claim": "Equality",
+    "translation": "Everyone poorer.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/equity-centered-hr",
+    "title": "Equity-Centered HR",
+    "claim": "Equity-Centered HR",
+    "translation": "Promotions for the most offended.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/equity-centered-journalism",
+    "title": "Equity-Centered Journalism",
+    "claim": "Equity-Centered Journalism",
+    "translation": "Facts through a filter.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/equity-driven-algorithms",
+    "title": "Equity-Driven Algorithms",
+    "claim": "Equity-Driven Algorithms",
+    "translation": "Let bias choose your outcome.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/equity-focused-grading",
+    "title": "Equity-Focused Grading",
+    "claim": "Equity-Focused Grading",
+    "translation": "Pass everyone to prove fairness.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/equity-focused-traffic-laws",
+    "title": "Equity-Focused Traffic Laws",
+    "claim": "Equity-Focused Traffic Laws",
+    "translation": "Tickets for justice.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/equity-in-hiring",
+    "title": "Equity in Hiring",
+    "claim": "Equity in Hiring",
+    "translation": "Merit is now problematic.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/equity-in-math",
+    "title": "Equity in Math",
+    "claim": "Equity in Math",
+    "translation": "2 + 2 = feelings.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/equity-over-equality",
+    "title": "Equity Over Equality",
+    "claim": "Equity Over Equality",
+    "translation": "Equal outcomes, unequal freedoms.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/equity",
+    "title": "Equity",
+    "claim": "Equity",
+    "translation": "Equal outcomes, unequal effort.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ethical-consumption",
+    "title": "Ethical Consumption",
+    "claim": "Ethical Consumption",
+    "translation": "Buy guilt-free illusions.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/ethical-tech",
+    "title": "Ethical Tech",
+    "claim": "Ethical Tech",
+    "translation": "Code with a conscience leash.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/evil-profit",
+    "title": "Evil profit",
+    "claim": "Evil profit",
+    "translation": "Wealth creation, jobs.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/excessive-military-spending",
+    "title": "Excessive military spending",
+    "claim": "Excessive military spending",
+    "translation": "Decreased military readiness.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/fact-checking",
+    "title": "Fact-checking",
+    "claim": "Fact-checking",
+    "translation": "Censorship of what the Left don't like.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/fat-liberation",
+    "title": "Fat Liberation",
+    "claim": "Fat Liberation",
+    "translation": "Demand health without effort.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/feminist-architecture",
+    "title": "Feminist Architecture",
+    "claim": "Feminist Architecture",
+    "translation": "Design buildings that dismantle patriarchy.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/feminist-data",
+    "title": "Feminist Data",
+    "claim": "Feminist Data",
+    "translation": "Facts with a gender agenda.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/feminist-economics-1",
+    "title": "Feminist Economics",
+    "claim": "Feminist Economics",
+    "translation": "Subsidize grievance and call it policy.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/feminist-economics",
+    "title": "Feminist Economics",
+    "claim": "Feminist Economics",
+    "translation": "Math with a victim complex.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/feminist-foreign-policy",
+    "title": "Feminist Foreign Policy",
+    "claim": "Feminist Foreign Policy",
+    "translation": "Feelings first, defense later.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/feminist-geography",
+    "title": "Feminist Geography",
+    "claim": "Feminist Geography",
+    "translation": "Where patriarchy hides on the map.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/feminist-investment-funds",
+    "title": "Feminist Investment Funds",
+    "claim": "Feminist Investment Funds",
+    "translation": "Returns optional.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/feminist-server-architecture",
+    "title": "Feminist Server Architecture",
+    "claim": "Feminist Server Architecture",
+    "translation": "Power distributed by gender theory.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/feminist-urban-planning",
+    "title": "Feminist Urban Planning",
+    "claim": "Feminist Urban Planning",
+    "translation": "No roads without an agenda.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/food-deserts",
+    "title": "Food Deserts",
+    "claim": "Food Deserts",
+    "translation": "Blame capitalism for bad choices.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/food-is-a-right",
+    "title": "Food is a Right",
+    "claim": "Food is a Right",
+    "translation": "Central planning for your dinner plate.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/food-justice",
+    "title": "Food Justice",
+    "claim": "Food Justice",
+    "translation": "Ban the Big Mac to save the planet.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/food-sovereignty",
+    "title": "Food Sovereignty",
+    "claim": "Food Sovereignty",
+    "translation": "Locally sourced control.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/foreign-aid",
+    "title": "Foreign Aid",
+    "claim": "Foreign Aid",
+    "translation": "Too often corruption.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/free-college-education",
+    "title": "Free College Education",
+    "claim": "Free College Education",
+    "translation": "Left wing indoctrination to create dependency and for new Leftist elite.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/free-college",
+    "title": "Free College",
+    "claim": "Free College",
+    "translation": "Degrees for everyone, value for no one.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/free-healthcare-for-all",
+    "title": "Free Healthcare for All",
+    "claim": "Free Healthcare for All",
+    "translation": "A waiting list is better than a bill, right?",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/free-public-college",
+    "title": "Free Public College",
+    "claim": "Free Public College",
+    "translation": "Subsidize ideology at scale.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/free-transit",
+    "title": "Free Transit",
+    "claim": "Free Transit",
+    "translation": "Who needs reliability when it's free?",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-affirming-care-02",
+    "title": "Gender Affirming Care",
+    "claim": "Gender Affirming Care",
+    "translation": "Child castration, mediaveal butchery.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-affirming-care-1",
+    "title": "Gender Affirming Care",
+    "claim": "Gender Affirming Care",
+    "translation": "Medical experiments on confused children.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-affirming-care",
+    "title": "Gender Affirming Care",
+    "claim": "Gender Affirming Care",
+    "translation": "Medical malpractice with a smile.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-affirming-technology",
+    "title": "Gender-Affirming Technology",
+    "claim": "Gender-Affirming Technology",
+    "translation": "Devices with pronoun fields.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-aware-ai",
+    "title": "Gender-Aware AI",
+    "claim": "Gender-Aware AI",
+    "translation": "Wokebots online.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-equality",
+    "title": "Gender Equality",
+    "claim": "Gender Equality",
+    "translation": "Women get more benefits, Men made out to be evil.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-expansive-curriculum",
+    "title": "Gender Expansive Curriculum",
+    "claim": "Gender Expansive Curriculum",
+    "translation": "Teach identity, forget math.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-free-bathrooms",
+    "title": "Gender-Free Bathrooms",
+    "claim": "Gender-Free Bathrooms",
+    "translation": "Privacy is privilege.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-free-fashion",
+    "title": "Gender-Free Fashion",
+    "claim": "Gender-Free Fashion",
+    "translation": "Confuse at a glance.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-inclusive-bathrooms",
+    "title": "Gender Inclusive Bathrooms",
+    "claim": "Gender Inclusive Bathrooms",
+    "translation": "Privacy is privilege.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-inclusive-choirs",
+    "title": "Gender Inclusive Choirs",
+    "claim": "Gender Inclusive Choirs",
+    "translation": "Sing your identity.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-inclusive-menus",
+    "title": "Gender-Inclusive Menus",
+    "claim": "Gender-Inclusive Menus",
+    "translation": "Eat woke, not well.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-inclusive-sports",
+    "title": "Gender Inclusive Sports",
+    "claim": "Gender Inclusive Sports",
+    "translation": "Fairness optional.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-neutral-parenting",
+    "title": "Gender Neutral Parenting",
+    "claim": "Gender Neutral Parenting",
+    "translation": "Confuse early, confuse often.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-neutral-urbanism",
+    "title": "Gender-Neutral Urbanism",
+    "claim": "Gender-Neutral Urbanism",
+    "translation": "Cities without stereotypes.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-neutrality",
+    "title": "Gender Neutrality",
+    "claim": "Gender Neutrality",
+    "translation": "Erasing biology for feelings.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gender-spectrum",
+    "title": "Gender Spectrum",
+    "claim": "Gender Spectrum",
+    "translation": "Reality is now offensive.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/globalism",
+    "title": "Globalism",
+    "claim": "Globalism",
+    "translation": "National Sovereignty.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/green-energy-mandates",
+    "title": "Green Energy Mandates",
+    "claim": "Green Energy Mandates",
+    "translation": "Unplug reality to feel virtuous.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/green-infrastructure",
+    "title": "Green Infrastructure",
+    "claim": "Green Infrastructure",
+    "translation": "Bureaucracy with solar panels.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/green-justice-zones",
+    "title": "Green Justice Zones",
+    "claim": "Green Justice Zones",
+    "translation": "Poverty with solar panels.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/green-new-deal",
+    "title": "Green New Deal",
+    "claim": "Green New Deal",
+    "translation": "Central planning in a fresh wrapper.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gun-buybacks",
+    "title": "Gun Buybacks",
+    "claim": "Gun Buybacks",
+    "translation": "Surrender your rights for a gift card.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gun-control-02",
+    "title": "Gun Control",
+    "claim": "Gun Control",
+    "translation": "Disarm the law-abiding.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/gun-control",
+    "title": "Gun Control",
+    "claim": "Gun Control",
+    "translation": "People control.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/harmful-speech-should-be-restricted",
+    "title": "Harmful speech should be restricted",
+    "claim": "Harmful speech should be restricted",
+    "translation": "The Left owns the Narrative.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/hate-speech-laws",
+    "title": "Hate Speech Laws",
+    "claim": "Hate Speech Laws",
+    "translation": "Free speech for me, but not for thee.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/hate-speech",
+    "title": "Hate Speech",
+    "claim": "Hate Speech",
+    "translation": "Words I don't like.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/hate",
+    "title": "Hate",
+    "claim": "Hate",
+    "translation": "Anything the Left doesn't like.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/healthcare-is-a-human-right",
+    "title": "Healthcare is a human right",
+    "claim": "Healthcare is a human right",
+    "translation": "Worse Healthcare for all.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/healthcare-is-a-right",
+    "title": "Healthcare is a Right",
+    "claim": "Healthcare is a Right",
+    "translation": "So you owe me a surgeon.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/higher-taxes",
+    "title": "Higher Taxes",
+    "claim": "Higher Taxes",
+    "translation": "Keep more of your earned income",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/houselessness",
+    "title": "Houselessness",
+    "claim": "Houselessness",
+    "translation": "Rename it and it goes away.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/housing-and-rent-control",
+    "title": "Housing and Rent Control",
+    "claim": "Housing and Rent Control",
+    "translation": "Destroy Housing and Rental Market.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/housing-is-a-human-right",
+    "title": "Housing is a Human Right",
+    "claim": "Housing is a Human Right",
+    "translation": "Government decides where you live.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/identify-as",
+    "title": "Identify as",
+    "claim": "Identify as",
+    "translation": "Pretending to be",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/illegal-immigration",
+    "title": "Illegal Immigration",
+    "claim": "Illegal Immigration",
+    "translation": "Legal Immigration",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/immigration",
+    "title": "Immigration",
+    "claim": "Immigration",
+    "translation": "Increased poverty. Increased division. Increased crime. Destroy native culture.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/inclusive-algorithms",
+    "title": "Inclusive Algorithms",
+    "claim": "Inclusive Algorithms",
+    "translation": "Let ideology override logic.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/inclusive-astrology",
+    "title": "Inclusive Astrology",
+    "claim": "Inclusive Astrology",
+    "translation": "Star signs for all genders.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/inclusive-capitalism",
+    "title": "Inclusive Capitalism",
+    "claim": "Inclusive Capitalism",
+    "translation": "Profit with penance.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/inclusive-climate-policy",
+    "title": "Inclusive Climate Policy",
+    "claim": "Inclusive Climate Policy",
+    "translation": "Emissions with identity in mind.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/inclusive-coding-standards",
+    "title": "Inclusive Coding Standards",
+    "claim": "Inclusive Coding Standards",
+    "translation": "JavaScript that checks its privilege.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/inclusive-infrastructure",
+    "title": "Inclusive Infrastructure",
+    "claim": "Inclusive Infrastructure",
+    "translation": "Potholes, but virtuous.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/inclusive-language-1",
+    "title": "Inclusive Language",
+    "claim": "Inclusive Language",
+    "translation": "Say what we say—or else.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/inclusive-language",
+    "title": "Inclusive Language",
+    "claim": "Inclusive Language",
+    "translation": "Censoring speech to control thought.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/inclusive-technology",
+    "title": "Inclusive Technology",
+    "claim": "Inclusive Technology",
+    "translation": "Gadgets that lecture you.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/intersectional-curriculum",
+    "title": "Intersectional Curriculum",
+    "claim": "Intersectional Curriculum",
+    "translation": "Every subject must confess.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/intersectional-feminism",
+    "title": "Intersectional Feminism",
+    "claim": "Intersectional Feminism",
+    "translation": "Grievance stacking for clout.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/intersectionality",
+    "title": "Intersectionality",
+    "claim": "Intersectionality",
+    "translation": "Oppression Olympics, now with spreadsheets.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/judge-by-the-color-of-their-skin",
+    "title": "Judge by the color of their skin",
+    "claim": "Judge by the color of their skin",
+    "translation": "No, judge by the content of their character.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/justice-based-hiring",
+    "title": "Justice-Based Hiring",
+    "claim": "Justice-Based Hiring",
+    "translation": "Check your résumé's ideology.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/justice-centered-design",
+    "title": "Justice-Centered Design",
+    "claim": "Justice-Centered Design",
+    "translation": "Activism with a UX badge.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/justice-centered-science",
+    "title": "Justice-Centered Science",
+    "claim": "Justice-Centered Science",
+    "translation": "Experiments must reflect identity.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/justice-in-design",
+    "title": "Justice in Design",
+    "claim": "Justice in Design",
+    "translation": "Architecture that checks its privilege.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/justice-oriented-ai",
+    "title": "Justice-Oriented AI",
+    "claim": "Justice-Oriented AI",
+    "translation": "Programmed to preach.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/killing-babies",
+    "title": "Killing babies",
+    "claim": "Killing babies",
+    "translation": "Letting babies live.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/labor-unions",
+    "title": "Labor Unions",
+    "claim": "Labor Unions",
+    "translation": "Damages Free Enterprise. More Poverty.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/land-back",
+    "title": "Land Back",
+    "claim": "Land Back",
+    "translation": "Evict everyone, selectively.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/leftism",
+    "title": "Leftism",
+    "claim": "Leftism",
+    "translation": "Conservatism, Classical Liberalism",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/let-anyone-vote",
+    "title": "Let Anyone Vote",
+    "claim": "Let Anyone Vote",
+    "translation": "Voter ID",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/lgbt",
+    "title": "LGBT+",
+    "claim": "LGBT+",
+    "translation": "Increased division.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/liberated-learning-spaces",
+    "title": "Liberated Learning Spaces",
+    "claim": "Liberated Learning Spaces",
+    "translation": "Chaos in the name of equity.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/liberated-transit-systems",
+    "title": "Liberated Transit Systems",
+    "claim": "Liberated Transit Systems",
+    "translation": "Buses that boycott fossil fuels.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/liberation-pedagogy",
+    "title": "Liberation Pedagogy",
+    "claim": "Liberation Pedagogy",
+    "translation": "Teach rebellion, fail math.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/liberatory-education",
+    "title": "Liberatory Education",
+    "claim": "Liberatory Education",
+    "translation": "Unlearn everything and start with slogans.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/living-wage-1",
+    "title": "Living Wage",
+    "claim": "Living Wage",
+    "translation": "Let bureaucrats decide your worth.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/living-wage",
+    "title": "Living Wage",
+    "claim": "Living Wage",
+    "translation": "Pay me more than I’m worth.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/lockdown-state",
+    "title": "Lockdown State",
+    "claim": "Lockdown State",
+    "translation": "Working Economy",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/love",
+    "title": "Love",
+    "claim": "Love",
+    "translation": "Self-Love.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/mandatory-diversity-quotas",
+    "title": "Mandatory Diversity Quotas",
+    "claim": "Mandatory Diversity Quotas",
+    "translation": "Merit is now discriminatory.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/mandatory-equity-statements",
+    "title": "Mandatory Equity Statements",
+    "claim": "Mandatory Equity Statements",
+    "translation": "Loyalty oaths for the woke age.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/menstrual-equity",
+    "title": "Menstrual Equity",
+    "claim": "Menstrual Equity",
+    "translation": "Subsidized hygiene for social justice.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/mental-health-awareness",
+    "title": "Mental Health Awareness",
+    "claim": "Mental Health Awareness",
+    "translation": "Normalize dysfunction, stigmatize strength.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/microaggressions",
+    "title": "Microaggressions",
+    "claim": "Microaggressions",
+    "translation": "Imaginary slights, maximum drama.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/minimum-wage",
+    "title": "Minimum Wage",
+    "claim": "Minimum Wage",
+    "translation": "Increased Poverty.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/misinformation-disinformation",
+    "title": "Misinformation, Disinformation",
+    "claim": "Misinformation, Disinformation",
+    "translation": "Free Speech the Left doesn't like.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/more-control-mandates",
+    "title": "More Control/Mandates",
+    "claim": "More Control/Mandates",
+    "translation": "Less Control/Mandates",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/mutual-accountability",
+    "title": "Mutual Accountability",
+    "claim": "Mutual Accountability",
+    "translation": "Everyone’s to blame—except us.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/mutual-aid-networks",
+    "title": "Mutual Aid Networks",
+    "claim": "Mutual Aid Networks",
+    "translation": "Socialism with a smile.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/nationalization",
+    "title": "Nationalism",
+    "claim": "Nationalism",
+    "translation": "Communism, Socialism, Fascism, Big State. Increased poverty.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/needs-investment",
+    "title": "Needs Investment",
+    "claim": "Needs Investment",
+    "translation": "More taxes.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/neopronouns",
+    "title": "Neopronouns",
+    "claim": "Neopronouns",
+    "translation": "Invent your truth, enforce mine.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/net-neutrality",
+    "title": "Net Neutrality",
+    "claim": "Net Neutrality",
+    "translation": "Government throttling your internet.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/neuro-inclusive-workflows",
+    "title": "Neuro-Inclusive Workflows",
+    "claim": "Neuro-Inclusive Workflows",
+    "translation": "Deadlines are ableist.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/neurodiversity-inclusion",
+    "title": "Neurodiversity Inclusion",
+    "claim": "Neurodiversity Inclusion",
+    "translation": "Make competence optional.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/neuroqueer-identity",
+    "title": "Neuroqueer Identity",
+    "claim": "Neuroqueer Identity",
+    "translation": "Infinite flags, zero clarity.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/news-reporting",
+    "title": "News Reporting",
+    "claim": "News Reporting",
+    "translation": "Leftist Talking Points.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/no-borders",
+    "title": "No Borders",
+    "claim": "No Borders",
+    "translation": "No country.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/no-justice-no-peace",
+    "title": "No Justice, No Peace",
+    "claim": "No Justice, No Peace",
+    "translation": "Threats are now activism.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/non-binary-inclusion",
+    "title": "Non-Binary Inclusion",
+    "claim": "Non-Binary Inclusion",
+    "translation": "Rewrite language for niche ideology.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/non-carceral-responses",
+    "title": "Non-Carceral Responses",
+    "claim": "Non-Carceral Responses",
+    "translation": "Consequences are oppressive.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/normalize-emotional-labor",
+    "title": "Normalize Emotional Labor",
+    "claim": "Normalize Emotional Labor",
+    "translation": "Everyone owes you empathy.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/normalize-mental-illness",
+    "title": "Normalize Mental Illness",
+    "claim": "Normalize Mental Illness",
+    "translation": "Glorify struggle, ignore resilience.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/normalize-polyamory",
+    "title": "Normalize Polyamory",
+    "claim": "Normalize Polyamory",
+    "translation": "Stability is oppressive.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/open-borders-2",
+    "title": "Open Borders",
+    "claim": "Open Borders",
+    "translation": "Border Control",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/open-borders",
+    "title": "Open Borders",
+    "claim": "Open Borders",
+    "translation": "Sovereignty is optional.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/oppression-olympics",
+    "title": "Oppression Olympics",
+    "claim": "Oppression Olympics",
+    "translation": "Gold medals in grievance.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/over-regulations",
+    "title": "Over-Regulations",
+    "claim": "Over-Regulations",
+    "translation": "Small Businesses",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/patriarchy",
+    "title": "Patriarchy",
+    "claim": "Patriarchy",
+    "translation": "Men existing, apparently.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/plant-based-mandates",
+    "title": "Plant-Based Mandates",
+    "claim": "Plant-Based Mandates",
+    "translation": "Your plate, their choice.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/police-free-schools",
+    "title": "Police-Free Schools",
+    "claim": "Police-Free Schools",
+    "translation": "Safety is a colonial concept.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/political-correctness-2",
+    "title": "Political Correctness",
+    "claim": "Political Correctness",
+    "translation": "Free Speech",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/political-correctness",
+    "title": "Political Correctness",
+    "claim": "Political Correctness",
+    "translation": "Controlling speech.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/post-capitalist-futures",
+    "title": "Post-Capitalist Futures",
+    "claim": "Post-Capitalist Futures",
+    "translation": "Poverty, but visionary.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/post-capitalist-urban-planning",
+    "title": "Post-Capitalist Urban Planning",
+    "claim": "Post-Capitalist Urban Planning",
+    "translation": "A skyline of shared failure.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/post-colonial-wellness",
+    "title": "Post-Colonial Wellness",
+    "claim": "Post-Colonial Wellness",
+    "translation": "Chakras aligned with outrage.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/post-work-economy",
+    "title": "Post-Work Economy",
+    "claim": "Post-Work Economy",
+    "translation": "Jobs are oppression.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/privilege-walks",
+    "title": "Privilege Walks",
+    "claim": "Privilege Walks",
+    "translation": "March for your guilt.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/pro-choice",
+    "title": "Pro-Choice",
+    "claim": "Pro-Choice",
+    "translation": "Legalized Murder.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/progressive-banking",
+    "title": "Progressive Banking",
+    "claim": "Progressive Banking",
+    "translation": "Woke wallets with fees.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/progressive-taxation-1",
+    "title": "Progressive Taxation",
+    "claim": "Progressive Taxation",
+    "translation": "Punish effort, reward complaint.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/progressive-taxation",
+    "title": "Progressive Taxation",
+    "claim": "Progressive Taxation",
+    "translation": "Punish success to fund failure.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/progressive-urbanism",
+    "title": "Progressive Urbanism",
+    "claim": "Progressive Urbanism",
+    "translation": "Live small, think smaller.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/progressive",
+    "title": "Progressive",
+    "claim": "Progressive",
+    "translation": "Regressive.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/pronoun-enforcement",
+    "title": "Pronoun Enforcement",
+    "claim": "Pronoun Enforcement",
+    "translation": "Compelled speech, with a rainbow sticker.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/pronoun-mandates",
+    "title": "Pronoun Mandates",
+    "claim": "Pronoun Mandates",
+    "translation": "Forced speech for fantasy land.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/public-art-for-justice",
+    "title": "Public Art for Justice",
+    "claim": "Public Art for Justice",
+    "translation": "Graffiti as gospel.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/public-education",
+    "title": "Public Education",
+    "claim": "Public Education",
+    "translation": "Left wing Indoctrination.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/public-healthcare",
+    "title": "Public Healthcare",
+    "claim": "Public Healthcare",
+    "translation": "The DMV, but with needles.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/public-ownership",
+    "title": "Public Ownership",
+    "claim": "Public Ownership",
+    "translation": "Make Industries worse, Cronyism job posting.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/public-transportation-for-all",
+    "title": "Public Transportation for All",
+    "claim": "Public Transportation for All",
+    "translation": "Freedom of movement, brought to you by delays.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/publicly-owned",
+    "title": "Publicly owned",
+    "claim": "Publicly owned",
+    "translation": "Levelling down",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/queer-centered-public-health",
+    "title": "Queer-Centered Public Health",
+    "claim": "Queer-Centered Public Health",
+    "translation": "Science, now with pronouns.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/queer-ecologies",
+    "title": "Queer Ecologies",
+    "claim": "Queer Ecologies",
+    "translation": "Nature comes out.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/queer-food-justice",
+    "title": "Queer Food Justice",
+    "claim": "Queer Food Justice",
+    "translation": "Organic outrage with a twist.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/queer-informed-infrastructure",
+    "title": "Queer Informed Infrastructure",
+    "claim": "Queer Informed Infrastructure",
+    "translation": "Bridges built with feelings.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/queer-liberation",
+    "title": "Queer Liberation",
+    "claim": "Queer Liberation",
+    "translation": "Identity politics, now with glitter.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/queer-theory-in-schools",
+    "title": "Queer Theory in Schools",
+    "claim": "Queer Theory in Schools",
+    "translation": "Confuse kids for the cause.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/queering-the-classroom",
+    "title": "Queering the Classroom",
+    "claim": "Queering the Classroom",
+    "translation": "Rebuild reality from the blackboard up.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/racist-fascist-nazi",
+    "title": "Racist, Fascist, Nazi",
+    "claim": "Racist, Fascist, Nazi",
+    "translation": "Anybody who disagrees with leftists.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/radical-budgeting",
+    "title": "Radical Budgeting",
+    "claim": "Radical Budgeting",
+    "translation": "Math that feels fair.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/radical-empathy",
+    "title": "Radical Empathy",
+    "claim": "Radical Empathy",
+    "translation": "Feel for all, think for none.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/radical-inclusion-policies",
+    "title": "Radical Inclusion Policies",
+    "claim": "Radical Inclusion Policies",
+    "translation": "Belonging by bureaucratic force.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/radical-redistribution",
+    "title": "Radical Redistribution",
+    "claim": "Radical Redistribution",
+    "translation": "Forceful charity, minus consent.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/radical-reparations",
+    "title": "Radical Reparations",
+    "claim": "Radical Reparations",
+    "translation": "Money for inherited pain.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/radical-rest-economy",
+    "title": "Radical Rest Economy",
+    "claim": "Radical Rest Economy",
+    "translation": "Laziness as currency.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/radical-self-care",
+    "title": "Radical Self-Care",
+    "claim": "Radical Self-Care",
+    "translation": "Indulge like it's resistance.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/radical-transparency",
+    "title": "Radical Transparency",
+    "claim": "Radical Transparency",
+    "translation": "Overshare for equity.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/raise-the-minimum-wage",
+    "title": "Raise the Minimum Wage",
+    "claim": "Raise the Minimum Wage",
+    "translation": "Price young workers out of the market.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reclaim-crafting",
+    "title": "Reclaim Crafting",
+    "claim": "Reclaim Crafting",
+    "translation": "Knitting as revolution.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reclaim-fatness",
+    "title": "Reclaim Fatness",
+    "claim": "Reclaim Fatness",
+    "translation": "Health is a social construct now.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reclaim-public-rest",
+    "title": "Reclaim Public Rest",
+    "claim": "Reclaim Public Rest",
+    "translation": "Nap time as protest.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reclaim-public-transport",
+    "title": "Reclaim Public Transport",
+    "claim": "Reclaim Public Transport",
+    "translation": "Smell the justice.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reclaiming-public-space",
+    "title": "Reclaiming Public Space",
+    "claim": "Reclaiming Public Space",
+    "translation": "Camping is protest, not trespassing.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reclaiming-time",
+    "title": "Reclaiming Time",
+    "claim": "Reclaiming Time",
+    "translation": "Slacking is revolutionary.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/redistribute-wealth",
+    "title": "Redistribute Wealth",
+    "claim": "Redistribute Wealth",
+    "translation": "Loot, but legally.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/redistribution",
+    "title": "Redistribution",
+    "claim": "Redistribution",
+    "translation": "Social Engineering, Increased Poverty.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reimagine-capitalism",
+    "title": "Reimagine Capitalism",
+    "claim": "Reimagine Capitalism",
+    "translation": "Imagine poverty, but fair.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reimagine-labor",
+    "title": "Reimagine Labor",
+    "claim": "Reimagine Labor",
+    "translation": "Work less, demand more.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reimagine-policing",
+    "title": "Reimagine Policing",
+    "claim": "Reimagine Policing",
+    "translation": "Imagine no safety.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reimagined-graduation-ceremonies",
+    "title": "Reimagined Graduation Ceremonies",
+    "claim": "Reimagined Graduation Ceremonies",
+    "translation": "Diplomas with disclaimers.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reimagined-taxation",
+    "title": "Reimagined Taxation",
+    "claim": "Reimagined Taxation",
+    "translation": "Theft, but visionary.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/rent-control",
+    "title": "Rent Control",
+    "claim": "Rent Control",
+    "translation": "Destroy housing availability, fairly.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reparations-2",
+    "title": "Reparations",
+    "claim": "Reparations",
+    "translation": "Punishing people for history they didn’t make.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reparations-for-climate-change",
+    "title": "Reparations for Climate Change",
+    "claim": "Reparations for Climate Change",
+    "translation": "Pay twice for bad policy.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reparations-in-education",
+    "title": "Reparations in Education",
+    "claim": "Reparations in Education",
+    "translation": "Pay for past sins with present ignorance.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reparations",
+    "title": "Reparations",
+    "claim": "Reparations",
+    "translation": "Punish people for the sins of others, long dead.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reparative-climate-policy",
+    "title": "Reparative Climate Policy",
+    "claim": "Reparative Climate Policy",
+    "translation": "More taxes, fewer degrees.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reparative-hiring-practices",
+    "title": "Reparative Hiring Practices",
+    "claim": "Reparative Hiring Practices",
+    "translation": "Your job offer comes with apologies.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reparative-history",
+    "title": "Reparative History",
+    "claim": "Reparative History",
+    "translation": "Rewrite the past to control the present.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reparative-therapy",
+    "title": "Reparative Therapy",
+    "claim": "Reparative Therapy",
+    "translation": "Guilt trips for historical sins.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reparative-urban-planning",
+    "title": "Reparative Urban Planning",
+    "claim": "Reparative Urban Planning",
+    "translation": "Zoning by historical guilt.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reproductive-equity",
+    "title": "Reproductive Equity",
+    "claim": "Reproductive Equity",
+    "translation": "Abortion, subsidized and sanctified.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reproductive-futurism",
+    "title": "Reproductive Futurism",
+    "claim": "Reproductive Futurism",
+    "translation": "Abortions and ideologies for all.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reproductive-justice",
+    "title": "Reproductive Justice",
+    "claim": "Reproductive Justice",
+    "translation": "No limits, no questions, all funded.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/reproductive-rights",
+    "title": "Reproductive Rights",
+    "claim": "Reproductive Rights",
+    "translation": "Euphemism for ending life.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/rest-is-resistance",
+    "title": "Rest is Resistance",
+    "claim": "Rest is Resistance",
+    "translation": "Laziness as virtue.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/restorative-justice-1",
+    "title": "Restorative Justice",
+    "claim": "Restorative Justice",
+    "translation": "Let the victim apologize.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/restorative-justice-injustice",
+    "title": "Restorative Justice",
+    "claim": "Restorative Justice",
+    "translation": "Injustice.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/restorative-justice",
+    "title": "Restorative Justice",
+    "claim": "Restorative Justice",
+    "translation": "Letting criminals off easy.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/restorative-urbanism",
+    "title": "Restorative Urbanism",
+    "claim": "Restorative Urbanism",
+    "translation": "Design cities that apologize.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/rewild-the-suburbs",
+    "title": "Rewild the Suburbs",
+    "claim": "Rewild the Suburbs",
+    "translation": "Send the coyotes to HOA meetings.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/rewilding-cities",
+    "title": "Rewilding Cities",
+    "claim": "Rewilding Cities",
+    "translation": "Let nature and crime run free.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/riots-violence",
+    "title": "Riots & Violence",
+    "claim": "Riots & Violence",
+    "translation": "Law & Order",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/safe-expression-zones",
+    "title": "Safe Expression Zones",
+    "claim": "Safe Expression Zones",
+    "translation": "Speak here, and only here.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/safe-injection-sites-1",
+    "title": "Safe Injection Sites",
+    "claim": "Safe Injection Sites",
+    "translation": "Enable addiction to feel compassionate.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/safe-injection-sites",
+    "title": "Safe Injection Sites",
+    "claim": "Safe Injection Sites",
+    "translation": "Enabling addiction with a roof.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/safe-spaces-1",
+    "title": "Safe Spaces",
+    "claim": "Safe Spaces",
+    "translation": "Childproofing adulthood.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/safe-spaces",
+    "title": "Safe Spaces",
+    "claim": "Safe Spaces",
+    "translation": "Echo chambers for fragile egos.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/safe-zones-on-campus",
+    "title": "Safe Zones on Campus",
+    "claim": "Safe Zones on Campus",
+    "translation": "Free inquiry prohibited here.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/sanctuary-cities",
+    "title": "Sanctuary Cities",
+    "claim": "Sanctuary Cities",
+    "translation": "Lawlessness with a welcome mat.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/silence-is-violence",
+    "title": "Silence is Violence",
+    "claim": "Silence is Violence",
+    "translation": "Speak, comply, or be complicit.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/social-insert-any-word",
+    "title": "Social insert any word",
+    "claim": "Social insert any word",
+    "translation": "Increased poverty. Increased division. Destroy native culture.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/social-justice-1",
+    "title": "Social Justice",
+    "claim": "Social Justice",
+    "translation": "Mob rule wrapped in moral language.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/social-justice",
+    "title": "Social Justice",
+    "claim": "Social Justice",
+    "translation": "Revenge dressed up as fairness.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/social-welfare",
+    "title": "Social Welfare",
+    "claim": "Social Welfare",
+    "translation": "Increased poverty.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/socialism",
+    "title": "Socialism",
+    "claim": "Socialism",
+    "translation": "Poverty for all",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/socialized-medicine-1",
+    "title": "Socialized Medicine",
+    "claim": "Socialized Medicine",
+    "translation": "The efficiency of the DMV, now with scalpels.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/socialized-medicine",
+    "title": "Socialized Medicine",
+    "claim": "Socialized Medicine",
+    "translation": "Waitlists for everyone.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/socially-just-agriculture",
+    "title": "Socially Just Agriculture",
+    "claim": "Socially Just Agriculture",
+    "translation": "Farm equity, not food.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/student-led-justice",
+    "title": "Student-Led Justice",
+    "claim": "Student-Led Justice",
+    "translation": "Mob rule with a GPA.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/subvert-the-algorithm",
+    "title": "Subvert the Algorithm",
+    "claim": "Subvert the Algorithm",
+    "translation": "Shadowban everyone you dislike.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/sustainable-masculinity",
+    "title": "Sustainable Masculinity",
+    "claim": "Sustainable Masculinity",
+    "translation": "Neuter it with buzzwords.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/sustainable-restrooms",
+    "title": "Sustainable Restrooms",
+    "claim": "Sustainable Restrooms",
+    "translation": "Virtue-flush your guilt.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/systemic-patriarchy",
+    "title": "Systemic Patriarchy",
+    "claim": "Systemic Patriarchy",
+    "translation": "Civilization. Division of labor up to individual choice.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/systemic-racism",
+    "title": "Systemic Racism",
+    "claim": "Systemic Racism",
+    "translation": "Blame everyone but yourself.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/tax-air-travel",
+    "title": "Tax Air Travel",
+    "claim": "Tax Air Travel",
+    "translation": "Ground the poor.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/tax-carbon",
+    "title": "Tax Carbon",
+    "claim": "Tax Carbon",
+    "translation": "Pay more to breathe.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/tax-the-rich-1",
+    "title": "Tax the Rich",
+    "claim": "Tax the Rich",
+    "translation": "Punish success to fund inefficiency.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/tax-the-rich",
+    "title": "Tax the rich",
+    "claim": "Tax the rich",
+    "translation": "Increased poverty.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/taxation",
+    "title": "Taxation",
+    "claim": "Taxation",
+    "translation": "Theft.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/therapy-for-all",
+    "title": "Therapy for All",
+    "claim": "Therapy for All",
+    "translation": "Pathologize normal life.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/toxic-masculinity-02",
+    "title": "Toxic Masculinity",
+    "claim": "Toxic Masculinity",
+    "translation": "Straight White Male",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/toxic-masculinity-1",
+    "title": "Toxic Masculinity",
+    "claim": "Toxic Masculinity",
+    "translation": "Manhood rebranded as disease.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/trans-women-are-women",
+    "title": "Trans Women are Women",
+    "claim": "Trans Women are Women",
+    "translation": "Biology is hate speech now.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/trauma-aware-journalism",
+    "title": "Trauma-Aware Journalism",
+    "claim": "Trauma-Aware Journalism",
+    "translation": "Truth with trigger warnings.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/trauma-informed-education",
+    "title": "Trauma-Informed Education",
+    "claim": "Trauma-Informed Education",
+    "translation": "Coddle first, teach later.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/trauma-informed-policing",
+    "title": "Trauma-Informed Policing",
+    "claim": "Trauma-Informed Policing",
+    "translation": "Whispers instead of warrants.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/tyrannical-government",
+    "title": "Tyrannical Government",
+    "claim": "Tyrannical Government",
+    "translation": "Free Constitutional Republic",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/undocumented",
+    "title": "Undocumented",
+    "claim": "Undocumented",
+    "translation": "Illegal or New Voter.",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/weak-military",
+    "title": "Weak Military",
+    "claim": "Weak Military",
+    "translation": "Strong Military",
+    "body": ""
+  },
+  {
+    "_path": "/claims/claims/welfare-state",
+    "title": "Welfare State",
+    "claim": "Welfare State",
+    "translation": "Working Class",
+    "body": ""
+  }
+]

@@ -1,0 +1,30 @@
+/* CSS Layer Order Definition
+ *
+ * Defines the stacking context priority for the application.
+ * Layers declared first have LOWEST priority.
+ *
+ * All z-index values are now set using Tailwind classes directly on components.
+ *
+ * ISOLATION STRATEGY:
+ * Components use `isolate` class to create isolated stacking contexts.
+ * This prevents child elements from interfering with global layers and
+ * provides clean boundaries between component hierarchies.
+ *
+ * Base Layer (z-0 to z-5):
+ *   - TheWall content (no z-index, defaults to 0)
+ *   - Wall panels (PanelClaim, PanelQuote, PanelMeme) use `isolate` class
+ *     - Like buttons inside panels (z-[20] within isolated context)
+ *   - SearchBar wrapper (z-5 in index.vue)
+ *   - SearchBar suggestions dropdown (z-[5])
+ *
+ * Mid Layer (z-10 to z-20):
+ *   - TheHeader (z-10)
+ *
+ * Top Layer (z-1000+):
+ *   - NavigationMenu uses `isolate` class for its own stacking context
+ *     - Dropdown nav (z-[1500] within isolated context)
+ *   - Modal overlays (z-50, defined in modal.css @layer top)
+ *   - Toast notifications (z-2000, future use)
+ */
+
+@layer base, mid, top;
