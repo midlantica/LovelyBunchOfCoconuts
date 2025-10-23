@@ -84,6 +84,7 @@ export default defineNuxtConfig({
     },
     externals: {
       inline: ['@nuxt/content'],
+      external: ['@oxc-parser/binding-linux-x64-gnu'],
     },
     // Persist likes in production using Netlify Blobs; use FS locally
     storage: {
