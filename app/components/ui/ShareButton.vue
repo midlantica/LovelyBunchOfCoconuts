@@ -18,25 +18,35 @@
           <div class="flex items-center gap-2">
             <button
               type="button"
-              :disabled="isLoading"
+              :disabled="isLoading || disableCopyImage"
               @click="copyImageOnly"
-              class="group inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition-all duration-150 disabled:cursor-not-allowed"
+              class="group inline-flex h-8 w-8 items-center justify-center rounded-full transition-all duration-150"
               :class="[
-                isLoading ? '' : 'hover:scale-105',
-                !isCopying && 'disabled:opacity-50',
+                disableCopyImage || isLoading
+                  ? 'cursor-not-allowed'
+                  : 'cursor-pointer hover:scale-105',
+                (disableCopyImage || (!isCopying && isLoading)) && 'opacity-50',
               ]"
-              aria-label="Copy image to clipboard"
+              :aria-label="
+                disableCopyImage
+                  ? 'Quote too long to copy as image'
+                  : 'Copy image to clipboard'
+              "
             >
               <Icon
                 name="lucide:image-plus"
                 size="1.62rem"
                 class="transition-all duration-200"
                 :class="
-                  isCopying
-                    ? 'brightness-125 drop-shadow-[0_0_12px_#33c3fd]'
-                    : 'group-hover:brightness-125 group-hover:drop-shadow-[0_0_12px_#33c3fd]'
+                  disableCopyImage
+                    ? 'opacity-40'
+                    : isCopying
+                      ? 'brightness-125 drop-shadow-[0_0_12px_#33c3fd]'
+                      : 'group-hover:brightness-125 group-hover:drop-shadow-[0_0_12px_#33c3fd]'
                 "
-                style="color: oklch(0.7 0 0)"
+                :style="
+                  disableCopyImage ? 'color: #6b7280' : 'color: oklch(0.7 0 0)'
+                "
               />
             </button>
 
@@ -89,6 +99,7 @@
     contentType: { type: String, default: 'general' },
     show: { type: Boolean, default: true },
     likeId: { type: String, default: null },
+    disableCopyImage: { type: Boolean, default: false },
   })
 
   // Loading and feedback state
@@ -106,7 +117,7 @@
 
   // Copy image only - must complete synchronously to preserve user gesture
   const copyImageOnly = async () => {
-    if (isLoading.value) return // Prevent multiple clicks
+    if (isLoading.value || props.disableCopyImage) return // Prevent multiple clicks or disabled action
 
     // Start copying process
     isCopying.value = true

@@ -1,26 +1,42 @@
-<!-- components/ModalQuote.vue -->
+<!-- components/ModalGrift.vue -->
 <template>
   <client-only>
     <ModalsModalFrame v-if="modalData" :show="show" @close="emit('close')">
       <template #mainPanel>
-        <!-- Main Content Panel -->
+        <!-- Main Content Panel - completely independent -->
         <div
-          class="card shadow-modal relative z-10 rounded-none p-0 sm:rounded-lg sm:px-7 sm:py-6"
+          class="z-10 relative bg-slate-800 shadow-modal p-0 sm:px-7 sm:py-6 rounded-none sm:rounded-lg"
         >
-          <div class="p-4 sm:p-0">
-            <h1
-              class="font-100 mb-2 text-2xl leading-9 text-white text-shadow-xs"
-            >
-              {{
-                modalData?.quoteText ||
-                (modalData?.headings && modalData.headings[0]) ||
-                modalData?.title
-              }}
-            </h1>
-            <p class="font-100 text-seagull-300 mb-2 text-xl text-shadow-xs">
-              — {{ modalData?.attribution }}
-            </p>
+          <div class="mb-0 p-4 sm:p-0">
+            <div class="flex gap-3">
+              <img
+                src="~/assets/icons/npc_icon.svg"
+                alt="NPC"
+                title="NPC"
+                class="self-start w-8"
+              />
+              <h1
+                class="text-shadow-xs mb-0 font-100 text-white text-2xl leading-tight"
+              >
+                {{ modalData?.grift || modalData?.title }}
+              </h1>
+            </div>
+            <UiDividerArrow wrapper-class="my-4" />
+            <div class="flex gap-3">
+              <img
+                src="~/assets/icons/player_icon.svg"
+                alt="Player"
+                title="Player"
+                class="self-start w-8"
+              />
+              <h1
+                class="text-shadow-xs mb-0 font-100 text-white text-2xl leading-tight"
+              >
+                {{ modalData?.decode }}
+              </h1>
+            </div>
           </div>
+          <!-- Only show body content if it exists and has actual content -->
           <div
             v-if="
               modalData?.body &&
@@ -28,9 +44,9 @@
               modalData.body.value.length > 0
             "
             ref="bodyRef"
-            class="scroll-area relative max-h-[50vh] max-w-none overflow-y-auto"
+            class="relative max-w-none max-h-[50vh] overflow-y-auto scroll-area"
           >
-            <div class="prose-invert prose pr-3">
+            <div class="prose-invert pr-3 prose">
               <div v-html="modalData?.bodyHtml"></div>
             </div>
             <div
@@ -42,32 +58,31 @@
               <Icon
                 name="tabler:chevron-compact-down"
                 :class="[
-                  'text-seagull-200 chevron chevron-wide text-[2.5rem]',
+                  'text-[2.5rem] text-seagull-200 chevron chevron-wide',
                   isBottom ? 'rotate-180' : '',
                 ]"
               />
             </div>
             <div
-              class="pointer-events-none absolute right-0 bottom-0 left-0 h-2 bg-linear-to-t from-slate-800 to-transparent"
+              class="right-0 bottom-0 left-0 absolute bg-gradient-to-t from-slate-800 to-transparent h-2 pointer-events-none"
             ></div>
           </div>
         </div>
       </template>
 
       <template #sharePanel>
-        <!-- Share Buttons Shelf -->
+        <!-- Share Buttons Shelf - positioned relative to this panel -->
         <UiShareButton
           v-if="modalData"
-          :title="modalData?.quoteText || modalData?.title"
-          :text="`${modalData?.quoteText || modalData?.title} — ${
-            modalData?.attribution
+          :title="modalData?.grift || modalData?.title"
+          :text="`${modalData?.grift || modalData?.title} - ${
+            modalData?.decode
           }`"
           :url="shareUrl"
           :like-id="modalData?._path || modalData?.path || ''"
           :generated-image-blob="shareImageBlob"
           :show="showShareShelf"
-          :disable-copy-image="isQuoteTooLong"
-          content-type="quote"
+          content-type="grift"
         />
       </template>
     </ModalsModalFrame>
@@ -84,13 +99,12 @@
   const { generateContentUrl } = useContentUrls()
 
   const shareImageBlob = ref(null)
-  const isQuoteTooLong = ref(false)
-  const { showShareShelf, onToggle } = useShareShelf(500)
+  const { showShareShelf, onToggle } = useShareShelf(25)
 
   // Create shareable URL
   const shareUrl = computed(() => {
     if (!props.modalData) return window.location.href
-    return generateContentUrl(props.modalData, 'quote')
+    return generateContentUrl(props.modalData, 'grift')
   })
 
   // Handle share shelf animation timing
@@ -100,7 +114,7 @@
     { immediate: true }
   )
 
-  // Scroll cue (double-blink chevron) state
+  // Scroll cue (double-blink chevron)
   const bodyRef = ref(null)
   const showCue = ref(false)
   const cueKey = ref(0)
@@ -158,25 +172,22 @@
     async (data) => {
       // Only generate images on client-side
       if (import.meta.server) return
-
-      if (data && (data.quoteText || data.title) && data.attribution) {
+      // Don't block first render/open; schedule for idle time
+      if (data && data.grift && data.decode) {
         const run = async () => {
           try {
             const { useShareImageGenerator } = await import(
               '~/composables/useShareImageGenerator'
             )
-            const { generateQuoteImage } = useShareImageGenerator()
-            const blob = await generateQuoteImage(
-              data.quoteText || data.title,
-              data.attribution
-            )
+            const { generateGriftImage } = useShareImageGenerator()
+            const blob = await generateGriftImage(data.grift, data.decode)
+            // Only apply if modal is still showing same item
             if (props.modalData === data) {
               shareImageBlob.value = blob
-              isQuoteTooLong.value = blob === null
             }
           } catch (e) {
             if (import.meta.dev)
-              console.warn('quote share image generation failed', e)
+              console.warn('share image generation failed', e)
           }
         }
         const idle = (cb) =>
@@ -184,6 +195,18 @@
             ? window.requestIdleCallback(cb, { timeout: 2500 })
             : setTimeout(cb, 200)
         idle(run)
+      }
+    },
+    { immediate: true }
+  )
+
+  // Debug the modal data
+  watch(
+    () => props.modalData,
+    (data) => {
+      if (data && import.meta.dev) {
+        console.log('Grift modal data received:', data)
+        console.log('Available properties:', Object.keys(data))
       }
     },
     { immediate: true }

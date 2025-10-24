@@ -56,104 +56,118 @@ export const useShareImageGenerator = () => {
   }
 
   const generateQuoteImage = async (quote, attribution) => {
-    const canvas = document.createElement('canvas')
-    const ctx = canvas.getContext('2d')
-
-    canvas.width = 1200
-    canvas.height = 630
-
-    // Background
-    ctx.fillStyle = '#1e293b'
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-    // Quote styling
-    ctx.fillStyle = '#ffffff'
-    ctx.textAlign = 'center'
-    ctx.textBaseline = 'middle'
-
-    // MICROSCOPIC FONTS - GUARANTEE FIT
-    const quoteLength = quote.length
-    let fontSize, lineHeight, quoteMarkSize
-
-    if (quoteLength > 1200) {
-      fontSize = 3
-      lineHeight = 6
-      quoteMarkSize = 50
-    } else if (quoteLength > 1000) {
-      fontSize = 3.5
-      lineHeight = 6.5
-      quoteMarkSize = 60
-    } else if (quoteLength > 900) {
-      fontSize = 4
-      lineHeight = 7
-      quoteMarkSize = 70
-    } else if (quoteLength > 800) {
-      fontSize = 4.5
-      lineHeight = 7.5
-      quoteMarkSize = 70
-    } else if (quoteLength > 700) {
-      fontSize = 5
-      lineHeight = 8
-      quoteMarkSize = 80
-    } else if (quoteLength > 600) {
-      fontSize = 6
-      lineHeight = 9
-      quoteMarkSize = 90
-    } else if (quoteLength > 500) {
-      fontSize = 8
-      lineHeight = 12
-      quoteMarkSize = 100
-    } else if (quoteLength > 400) {
-      fontSize = 11
-      lineHeight = 16
-      quoteMarkSize = 110
-    } else if (quoteLength > 300) {
-      fontSize = 15
-      lineHeight = 22
-      quoteMarkSize = 120
-    } else if (quoteLength > 200) {
-      fontSize = 21
-      lineHeight = 29
-      quoteMarkSize = 120
-    } else if (quoteLength > 150) {
-      fontSize = 27
-      lineHeight = 37
-      quoteMarkSize = 120
-    } else {
-      fontSize = 42
-      lineHeight = 55
-      quoteMarkSize = 120
+    // Character limit check - return null if quote is too long
+    // Allow quotes up to 800 chars to match Figma design capacity
+    if (quote.length > 800) {
+      return null
     }
 
-    // Smaller quote marks for long quotes to save space
-    ctx.font = `bold ${quoteMarkSize}px serif`
-    ctx.fillStyle = '#68D2FF'
-    ctx.fillText('"', 100, 200)
-    ctx.fillText('"', canvas.width - 100, 430)
+    return new Promise((resolve, reject) => {
+      const canvas = document.createElement('canvas')
+      const ctx = canvas.getContext('2d')
 
-    // Quote text with dynamic sizing
-    ctx.font = `italic ${fontSize}px -apple-system, system-ui, sans-serif`
-    ctx.fillStyle = '#ffffff'
-    wrapText(
-      ctx,
-      quote,
-      canvas.width / 2,
-      canvas.height / 2 - 20,
-      canvas.width - 200,
-      lineHeight
-    )
+      // Set canvas size to match share-frame.png
+      canvas.width = 1600
+      canvas.height = 900
 
-    // Attribution
-    ctx.font = '32px -apple-system, system-ui, sans-serif'
-    ctx.fillStyle = '#68D2FF'
-    ctx.fillText(`— ${attribution}`, canvas.width / 2, canvas.height / 2 + 120)
+      // Load share-frame.png as background
+      const bgImage = new Image()
+      bgImage.crossOrigin = 'anonymous'
 
-    // Branding
-    ctx.font = '24px -apple-system, system-ui, sans-serif'
-    ctx.fillStyle = '#94a3b8'
-    ctx.fillText('WakeUpNPC.com', canvas.width / 2, canvas.height - 40)
+      bgImage.onload = () => {
+        // Draw background image
+        ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height)
 
-    return canvasToBlob(canvas)
+        // Text area specifications
+        const textX = 25
+        const textY = 27
+        const textWidth = 1550
+        const textHeight = 768
+
+        // Calculate font size based on character count
+        // MUCH smaller sizes for long quotes so they actually FIT in the text area (1550×768)
+        const quoteLength = quote.length
+        let fontSize, lineHeight, letterSpacing
+
+        if (quoteLength > 650) {
+          // Very long quotes like Chesterton - MUCH smaller to fit
+          fontSize = 45
+          lineHeight = 54
+          letterSpacing = 0.45
+        } else if (quoteLength > 580) {
+          fontSize = 50
+          lineHeight = 60
+          letterSpacing = 0.5
+        } else if (quoteLength > 500) {
+          fontSize = 56
+          lineHeight = 67
+          letterSpacing = 0.56
+        } else if (quoteLength > 420) {
+          fontSize = 64
+          lineHeight = 77
+          letterSpacing = 0.64
+        } else if (quoteLength > 350) {
+          fontSize = 72
+          lineHeight = 86
+          letterSpacing = 0.72
+        } else if (quoteLength > 280) {
+          fontSize = 82
+          lineHeight = 98
+          letterSpacing = 0.82
+        } else if (quoteLength > 220) {
+          fontSize = 94
+          lineHeight = 113
+          letterSpacing = 0.94
+        } else if (quoteLength > 160) {
+          fontSize = 108
+          lineHeight = 130
+          letterSpacing = 1.08
+        } else {
+          // Short quotes get the largest size
+          fontSize = 124
+          lineHeight = 149
+          letterSpacing = 1.24
+        }
+
+        // Quote text with Barlow Condensed Light - RED COLOR TO TEST
+        ctx.font = `300 ${fontSize}px "Barlow Condensed", sans-serif`
+        ctx.fillStyle = '#ff0000'
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'top'
+
+        // Apply letter spacing (canvas doesn't have native letter-spacing, so we'll use the font as-is)
+        // The letter-spacing will need to be handled in the wrapText function if precision is critical
+
+        // Center the text vertically in the text area
+        const centerY = textY + textHeight / 2
+        wrapTextCentered(
+          ctx,
+          quote,
+          textX + textWidth / 2,
+          centerY,
+          textWidth,
+          lineHeight
+        )
+
+        // Attribution - positioned below quote with some spacing
+        ctx.font = `300 ${Math.max(fontSize * 0.7, 48)}px "Barlow Condensed", sans-serif`
+        ctx.fillStyle = '#68D2FF'
+        ctx.textAlign = 'center'
+        ctx.fillText(
+          `— ${attribution}`,
+          canvas.width / 2,
+          textY + textHeight - 80
+        )
+
+        resolve(canvasToBlob(canvas))
+      }
+
+      bgImage.onerror = () => {
+        reject(new Error('Failed to load share-frame.png'))
+      }
+
+      bgImage.src = '/share-frame.png'
+    })
   }
 
   const generateMemeShareImage = async (imageUrl, title) => {
@@ -237,6 +251,37 @@ export const useShareImageGenerator = () => {
     })
   }
 
+  // Helper function to wrap text and center vertically
+  const wrapTextCentered = (ctx, text, x, centerY, maxWidth, lineHeight) => {
+    const words = text.split(' ')
+    let line = ''
+    let lines = []
+
+    for (let n = 0; n < words.length; n++) {
+      const testLine = line + words[n] + ' '
+      const metrics = ctx.measureText(testLine)
+      const testWidth = metrics.width
+
+      if (testWidth > maxWidth && n > 0) {
+        lines.push(line)
+        line = words[n] + ' '
+      } else {
+        line = testLine
+      }
+    }
+    lines.push(line)
+
+    // Calculate total height of text block
+    const totalHeight = lines.length * lineHeight
+    // Start Y position to center the block vertically
+    const startY = centerY - totalHeight / 2
+
+    // Draw lines
+    lines.forEach((line, index) => {
+      ctx.fillText(line, x, startY + index * lineHeight)
+    })
+  }
+
   // Helper to convert canvas to blob
   const canvasToBlob = (canvas) => {
     return new Promise((resolve) => {
@@ -268,6 +313,10 @@ export const useShareImageGenerator = () => {
   }
   const generateQuoteShareAsset = async (quote, attribution) => {
     const blob = await generateQuoteImage(quote, attribution)
+    // If blob is null (quote too long), return null
+    if (!blob) {
+      return null
+    }
     const dataUrl = await blobToDataUrl(blob)
     const filename =
       `quote-${slugPart(attribution)}-${slugPart(quote)}`.substring(0, 80) +

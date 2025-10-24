@@ -225,15 +225,15 @@ export function useSocialShare() {
             }
           }
 
-          // Calculate optimal font size for quote text - MUCH BIGGER for 16:9
+          // Calculate optimal font size for quote text - matches Figma spec (61px)
           const quoteOptimalSize = calculateOptimalFontSize(
-            90 * scale, // Base font size - INCREASED for wider format
+            61 * scale, // Base font size - 61px from Figma specs
             quoteText.length,
             textAreaWidth, // Use full text area width
             textAreaHeight // Use full text area height
           )
 
-          // Quote text (all white as requested) - smart sizing for mobile readability
+          // Quote text (white) - smart sizing for mobile readability
           ctx.fillStyle = '#ffffff'
           ctx.font = `100 ${quoteOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
           ctx.textAlign = 'center'
@@ -269,27 +269,19 @@ export function useSocialShare() {
             )
           })
 
-          // Author name (light blue #6DD3FF as requested) - smart sizing for mobile readability
+          // Author name (light blue #6DD3FF) - SAME SIZE AS QUOTE TEXT
           if (
             authorName &&
             authorName !== 'Author' &&
             authorName.trim() !== ''
           ) {
-            // Calculate optimal size for author (smaller than quote text) - BIGGER
-            const authorOptimalSize = calculateOptimalFontSize(
-              65 * scale, // Base author font size - INCREASED
-              authorName.length,
-              textAreaWidth, // Use full text area width
-              textAreaHeight // Use full text area height
-            )
-
             ctx.fillStyle = '#6DD3FF'
-            ctx.font = `100 ${authorOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
+            ctx.font = `100 ${quoteOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
             drawCenteredText(
               ctx,
               `— ${authorName}`,
               centerX,
-              quoteStartY + totalTextHeight + authorOptimalSize.fontSize * 0.4
+              quoteStartY + totalTextHeight + quoteOptimalSize.fontSize * 0.4
             )
           }
         } else if (type === 'grift') {
