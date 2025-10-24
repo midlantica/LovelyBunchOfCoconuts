@@ -1,2886 +1,2844 @@
 [
   {
-    "_path": "/claims/claims/Inequality",
+    "_path": "/grifts/Inequality",
     "title": "Inequality",
-    "claim": "Inequality",
-    "translation": "Your money should be theirs.",
+    "grift": "Inequality",
+    "decode": "Your money should be theirs.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/Stunning-and-brave-women",
+    "_path": "/grifts/Stunning-and-brave-women",
     "title": "Stunning and brave women",
-    "claim": "Stunning and brave women",
-    "translation": "AWFL",
+    "grift": "Stunning and brave women",
+    "decode": "AWFL",
     "body": ""
   },
   {
-    "_path": "/claims/claims/abolish-billionaires",
+    "_path": "/grifts/abolish-billionaires",
     "title": "Abolish Billionaires",
-    "claim": "Abolish Billionaires",
-    "translation": "Punish ambition, celebrate envy.",
+    "grift": "Abolish Billionaires",
+    "decode": "Punish ambition, celebrate envy.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/abolish-grades",
+    "_path": "/grifts/abolish-grades",
     "title": "Abolish Grades",
-    "claim": "Abolish Grades",
-    "translation": "Failure is now inclusive.",
+    "grift": "Abolish Grades",
+    "decode": "Failure is now inclusive.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/abolish-ice-cream",
-    "title": "Abolish ICE Cream",
-    "claim": "Abolish ICE Cream",
-    "translation": "Because dairy is colonial.",
-    "body": ""
-  },
-  {
-    "_path": "/claims/claims/abolish-ice",
+    "_path": "/grifts/abolish-ice",
     "title": "Abolish ICE",
-    "claim": "Abolish ICE",
-    "translation": "Let drug cartels handle immigration.",
+    "grift": "Abolish ICE",
+    "decode": "Let Drug Cartels handle Immigration.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/abolish-prisons",
+    "_path": "/grifts/abolish-prisons",
     "title": "Abolish Prisons",
-    "claim": "Abolish Prisons",
-    "translation": "A society with no brakes.",
+    "grift": "Abolish Prisons",
+    "decode": "A society with no brakes.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/abolish-the-family",
+    "_path": "/grifts/abolish-the-family",
     "title": "Abolish the Family",
-    "claim": "Abolish the Family",
-    "translation": "Turn kinship into bureaucracy.",
+    "grift": "Abolish the Family",
+    "decode": "Turn kinship into bureaucracy.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/abolish-the-senate",
+    "_path": "/grifts/abolish-the-senate",
     "title": "Abolish the Senate",
-    "claim": "Abolish the Senate",
-    "translation": "Too much representation is dangerous.",
+    "grift": "Abolish the Senate",
+    "decode": "Too much representation is dangerous.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/abolish-traffic-enforcement",
+    "_path": "/grifts/abolish-traffic-enforcement",
     "title": "Abolish Traffic Enforcement",
-    "claim": "Abolish Traffic Enforcement",
-    "translation": "Speeding for justice.",
+    "grift": "Abolish Traffic Enforcement",
+    "decode": "Speeding for justice.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/activist-banking",
+    "_path": "/grifts/activist-banking",
     "title": "Activist Banking",
-    "claim": "Activist Banking",
-    "translation": "Finance meets finger-wagging.",
+    "grift": "Activist Banking",
+    "decode": "Finance meets finger-wagging.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/affirmative-actiona",
+    "_path": "/grifts/affirmative-actiona",
     "title": "Affirmative Action",
-    "claim": "Affirmative Action",
-    "translation": "The soft bigotry of low expectations.",
+    "grift": "Affirmative Action",
+    "decode": "The soft bigotry of low expectations.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/affirmative-art",
+    "_path": "/grifts/affirmative-art",
     "title": "Affirmative Art",
-    "claim": "Affirmative Art",
-    "translation": "Aesthetic diversity over talent.",
+    "grift": "Affirmative Art",
+    "decode": "Aesthetic diversity over talent.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/against-term-limits",
+    "_path": "/grifts/against-term-limits",
     "title": "Against Term Limits",
-    "claim": "Against Term Limits",
-    "translation": "Favor Term Limits",
+    "grift": "Against Term Limits",
+    "decode": "Favor Term Limits",
     "body": ""
   },
   {
-    "_path": "/claims/claims/anti-capitalist-zoning",
+    "_path": "/grifts/anti-capitalist-zoning",
     "title": "Anti-Capitalist Zoning",
-    "claim": "Anti-Capitalist Zoning",
-    "translation": "Restrict business for justice.",
+    "grift": "Anti-Capitalist Zoning",
+    "decode": "Restrict business for justice.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/anti-car-urbanism",
+    "_path": "/grifts/anti-car-urbanism",
     "title": "Anti-Car Urbanism",
-    "claim": "Anti-Car Urbanism",
-    "translation": "Walk to work or stay home.",
+    "grift": "Anti-Car Urbanism",
+    "decode": "Walk to work or stay home.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/anti-fascist-milkshaking",
+    "_path": "/grifts/anti-fascist-milkshaking",
     "title": "Anti-Fascist Milkshaking",
-    "claim": "Anti-Fascist Milkshaking",
-    "translation": "Assault is now performance art.",
+    "grift": "Anti-Fascist Milkshaking",
+    "decode": "Assault is now performance art.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/anti-racism",
+    "_path": "/grifts/anti-racism",
     "title": "Anti-Racism",
-    "claim": "Anti-Racism",
-    "translation": "Racism, but with new targets.",
+    "grift": "Anti-Racism",
+    "decode": "Racism, but with new targets.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/anti-speciesism",
+    "_path": "/grifts/anti-speciesism",
     "title": "Anti-Speciesism",
-    "claim": "Anti-Speciesism",
-    "translation": "People and pigeons, equally valid.",
+    "grift": "Anti-Speciesism",
+    "decode": "People and pigeons, equally valid.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/artivism",
+    "_path": "/grifts/artivism",
     "title": "Artivism",
-    "claim": "Artivism",
-    "translation": "Activism with glitter.",
+    "grift": "Artivism",
+    "decode": "Activism with glitter.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/assault-weapon",
+    "_path": "/grifts/assault-weapon",
     "title": "Assault Weapon",
-    "claim": "Assault Weapon",
-    "translation": "Any Gun",
+    "grift": "Assault Weapon",
+    "decode": "Any Gun",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-billionaires",
+    "_path": "/grifts/ban-billionaires",
     "title": "Ban Billionaires",
-    "claim": "Ban Billionaires",
-    "translation": "Cap success, praise mediocrity.",
+    "grift": "Ban Billionaires",
+    "decode": "Cap success, praise mediocrity.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-cash-bail",
+    "_path": "/grifts/ban-cash-bail",
     "title": "Ban Cash Bail",
-    "claim": "Ban Cash Bail",
-    "translation": "Crime without collateral.",
+    "grift": "Ban Cash Bail",
+    "decode": "Crime without collateral.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-digital-surveillance",
+    "_path": "/grifts/ban-digital-surveillance",
     "title": "Ban Digital Surveillance",
-    "claim": "Ban Digital Surveillance",
-    "translation": "Privacy for criminals.",
+    "grift": "Ban Digital Surveillance",
+    "decode": "Privacy for criminals.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-fireworks",
+    "_path": "/grifts/ban-fireworks",
     "title": "Ban Fireworks",
-    "claim": "Ban Fireworks",
-    "translation": "Too loud for liberation.",
+    "grift": "Ban Fireworks",
+    "decode": "Too loud for liberation.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-fossil-fuels",
+    "_path": "/grifts/ban-fossil-fuels",
     "title": "Ban Fossil Fuels",
-    "claim": "Ban Fossil Fuels",
-    "translation": "Freeze in winter, bake in summer.",
+    "grift": "Ban Fossil Fuels",
+    "decode": "Freeze in winter, bake in summer.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-gas-stoves",
+    "_path": "/grifts/ban-gas-stoves",
     "title": "Ban Gas Stoves",
-    "claim": "Ban Gas Stoves",
-    "translation": "Micromanaging your kitchen for the climate.",
+    "grift": "Ban Gas Stoves",
+    "decode": "Micromanaging your kitchen for the climate.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-gender-reveal-parties",
+    "_path": "/grifts/ban-gender-reveal-parties",
     "title": "Ban Gender Reveal Parties",
-    "claim": "Ban Gender Reveal Parties",
-    "translation": "Stop assuming reality.",
+    "grift": "Ban Gender Reveal Parties",
+    "decode": "Stop assuming reality.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-gifted-programs",
+    "_path": "/grifts/ban-gifted-programs",
     "title": "Ban Gifted Programs",
-    "claim": "Ban Gifted Programs",
-    "translation": "Excellence offends equity.",
+    "grift": "Ban Gifted Programs",
+    "decode": "Excellence offends equity.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-grading-curves",
+    "_path": "/grifts/ban-grading-curves",
     "title": "Ban Grading Curves",
-    "claim": "Ban Grading Curves",
-    "translation": "Level down, not up.",
+    "grift": "Ban Grading Curves",
+    "decode": "Level down, not up.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-homeschooling",
+    "_path": "/grifts/ban-homeschooling",
     "title": "Ban Homeschooling",
-    "claim": "Ban Homeschooling",
-    "translation": "Only the State may teach.",
+    "grift": "Ban Homeschooling",
+    "decode": "Only the State may teach.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-homework",
+    "_path": "/grifts/ban-homework",
     "title": "Ban Homework",
-    "claim": "Ban Homework",
-    "translation": "Responsibility is oppression.",
+    "grift": "Ban Homework",
+    "decode": "Responsibility is oppression.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-landlords",
+    "_path": "/grifts/ban-landlords",
     "title": "Ban Landlords",
-    "claim": "Ban Landlords",
-    "translation": "Who needs housing when you have slogans?",
+    "grift": "Ban Landlords",
+    "decode": "Who needs housing when you have slogans?",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-lawn-mowers",
+    "_path": "/grifts/ban-lawn-mowers",
     "title": "Ban Lawn Mowers",
-    "claim": "Ban Lawn Mowers",
-    "translation": "Grow weeds for the revolution.",
+    "grift": "Ban Lawn Mowers",
+    "decode": "Grow weeds for the revolution.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-meat",
+    "_path": "/grifts/ban-meat",
     "title": "Ban Meat",
-    "claim": "Ban Meat",
-    "translation": "Eat bugs and like it.",
+    "grift": "Ban Meat",
+    "decode": "Eat bugs and like it.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-offensive-statues",
+    "_path": "/grifts/ban-offensive-statues",
     "title": "Ban Offensive Statues",
-    "claim": "Ban Offensive Statues",
-    "translation": "Erase history to heal.",
+    "grift": "Ban Offensive Statues",
+    "decode": "Erase history to heal.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-plastic",
+    "_path": "/grifts/ban-plastic",
     "title": "Ban Plastic",
-    "claim": "Ban Plastic",
-    "translation": "Paper straws that collapse on impact.",
+    "grift": "Ban Plastic",
+    "decode": "Paper straws that collapse on impact.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-private-property",
+    "_path": "/grifts/ban-private-property",
     "title": "Ban Private Property",
-    "claim": "Ban Private Property",
-    "translation": "You’ll own nothing and be surveilled.",
+    "grift": "Ban Private Property",
+    "decode": "You’ll own nothing and be surveilled.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-private-schools",
+    "_path": "/grifts/ban-private-schools",
     "title": "Ban Private Schools",
-    "claim": "Ban Private Schools",
-    "translation": "All must suffer equally.",
+    "grift": "Ban Private Schools",
+    "decode": "All must suffer equally.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-single-family-homes",
+    "_path": "/grifts/ban-single-family-homes",
     "title": "Ban Single-Family Homes",
-    "claim": "Ban Single-Family Homes",
-    "translation": "No space for your freedom.",
+    "grift": "Ban Single-Family Homes",
+    "decode": "No space for your freedom.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-standardized-testing",
+    "_path": "/grifts/ban-standardized-testing",
     "title": "Ban Standardized Testing",
-    "claim": "Ban Standardized Testing",
-    "translation": "Measure feelings, not facts.",
+    "grift": "Ban Standardized Testing",
+    "decode": "Measure feelings, not facts.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ban-suvs",
+    "_path": "/grifts/ban-suvs",
     "title": "Ban SUVs",
-    "claim": "Ban SUVs",
-    "translation": "No freedom without permission.",
+    "grift": "Ban SUVs",
+    "decode": "No freedom without permission.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/banned-books-week",
+    "_path": "/grifts/banned-books-week",
     "title": "Banned Books Week",
-    "claim": "Banned Books Week",
-    "translation": "Promote the fringe with flair.",
+    "grift": "Banned Books Week",
+    "decode": "Promote the fringe with flair.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/big-government",
+    "_path": "/grifts/big-government",
     "title": "Big Government",
-    "claim": "Big Government",
-    "translation": "Small Individual",
+    "grift": "Big Government",
+    "decode": "Small Individual",
     "body": ""
   },
   {
-    "_path": "/claims/claims/billionaires-shouldnt-exist",
+    "_path": "/grifts/billionaires-shouldnt-exist",
     "title": "Billionaires Shouldn't Exist",
-    "claim": "Billionaires Shouldn't Exist",
-    "translation": "Envy dressed as morality.",
+    "grift": "Billionaires Shouldn't Exist",
+    "decode": "Envy dressed as morality.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/body-positivity",
+    "_path": "/grifts/body-positivity",
     "title": "Body Positivity",
-    "claim": "Body Positivity",
-    "translation": "Glorifying unhealthy choices.",
+    "grift": "Body Positivity",
+    "decode": "Glorifying unhealthy choices.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/cancel-culture-1",
+    "_path": "/grifts/cancel-culture-1",
     "title": "Cancel Culture",
-    "claim": "Cancel Culture",
-    "translation": "Mob justice at Wi-Fi speed.",
+    "grift": "Cancel Culture",
+    "decode": "Mob justice at Wi-Fi speed.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/cancel-culture",
+    "_path": "/grifts/cancel-culture",
     "title": "Cancel Culture",
-    "claim": "Cancel Culture",
-    "translation": "Mob tantrums over hurt feelings.",
+    "grift": "Cancel Culture",
+    "decode": "Mob tantrums over hurt feelings.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/cancel-student-debt",
+    "_path": "/grifts/cancel-student-debt",
     "title": "Cancel Student Debt",
-    "claim": "Cancel Student Debt",
-    "translation": "Shift your bills to the plumber.",
+    "grift": "Cancel Student Debt",
+    "decode": "Shift your bills to the plumber.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/cis-privilege",
+    "_path": "/grifts/cis-privilege",
     "title": "Cis Privilege",
-    "claim": "Cis Privilege",
-    "translation": "Born normal, now problematic.",
+    "grift": "Cis Privilege",
+    "decode": "Born normal, now problematic.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/civic-disobedience",
+    "_path": "/grifts/civic-disobedience",
     "title": "Civic Disobedience",
-    "claim": "Civic Disobedience",
-    "translation": "Break laws for likes.",
+    "grift": "Civic Disobedience",
+    "decode": "Break laws for likes.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/civic-equity",
+    "_path": "/grifts/civic-equity",
     "title": "Civic Equity",
-    "claim": "Civic Equity",
-    "translation": "Government quotas for your neighborhood.",
+    "grift": "Civic Equity",
+    "decode": "Government quotas for your neighborhood.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/climate-change-02",
+    "_path": "/grifts/climate-change-02",
     "title": "Climate Change",
-    "claim": "Climate Change",
-    "translation": "Another Tax Opportunity",
+    "grift": "Climate Change",
+    "decode": "Another Tax Opportunity",
     "body": ""
   },
   {
-    "_path": "/claims/claims/climate-change",
+    "_path": "/grifts/climate-change",
     "title": "Climate Change",
-    "claim": "Climate Change",
-    "translation": "Another Tax Opportunity",
+    "grift": "Climate Change",
+    "decode": "Another Tax Opportunity",
     "body": ""
   },
   {
-    "_path": "/claims/claims/climate-conscious-fashion",
+    "_path": "/grifts/climate-conscious-fashion",
     "title": "Climate Conscious Fashion",
-    "claim": "Climate Conscious Fashion",
-    "translation": "Virtue stitched into fabric.",
+    "grift": "Climate Conscious Fashion",
+    "decode": "Virtue stitched into fabric.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/climate-conscious-storytelling",
+    "_path": "/grifts/climate-conscious-storytelling",
     "title": "Climate-Conscious Storytelling",
-    "claim": "Climate-Conscious Storytelling",
-    "translation": "Fables with a carbon filter.",
+    "grift": "Climate-Conscious Storytelling",
+    "decode": "Fables with a carbon filter.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/climate-emergency",
+    "_path": "/grifts/climate-emergency",
     "title": "Climate Emergency",
-    "claim": "Climate Emergency",
-    "translation": "Justification for permanent control.",
+    "grift": "Climate Emergency",
+    "decode": "Justification for permanent control.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/climate-equity-zones",
+    "_path": "/grifts/climate-equity-zones",
     "title": "Climate Equity Zones",
-    "claim": "Climate Equity Zones",
-    "translation": "Redline, but woke.",
+    "grift": "Climate Equity Zones",
+    "decode": "Redline, but woke.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/climate-gender-justice",
+    "_path": "/grifts/climate-gender-justice",
     "title": "Climate Gender Justice",
-    "claim": "Climate Gender Justice",
-    "translation": "Your emissions are sexist.",
+    "grift": "Climate Gender Justice",
+    "decode": "Your emissions are sexist.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/climate-grief-circles",
+    "_path": "/grifts/climate-grief-circles",
     "title": "Climate Grief Circles",
-    "claim": "Climate Grief Circles",
-    "translation": "Group therapy for weather panic.",
+    "grift": "Climate Grief Circles",
+    "decode": "Group therapy for weather panic.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/climate-grief-education",
+    "_path": "/grifts/climate-grief-education",
     "title": "Climate Grief Education",
-    "claim": "Climate Grief Education",
-    "translation": "Teach sadness as a subject.",
+    "grift": "Climate Grief Education",
+    "decode": "Teach sadness as a subject.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/climate-justice",
+    "_path": "/grifts/climate-justice",
     "title": "Climate Justice",
-    "claim": "Climate Justice",
-    "translation": "Shakedown under a green banner.",
+    "grift": "Climate Justice",
+    "decode": "Shakedown under a green banner.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/climate-reparations",
+    "_path": "/grifts/climate-reparations",
     "title": "Climate Reparations",
-    "claim": "Climate Reparations",
-    "translation": "Pay developing dictators to feel guilty.",
+    "grift": "Climate Reparations",
+    "decode": "Pay developing dictators to feel guilty.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/collective-healing",
+    "_path": "/grifts/collective-healing",
     "title": "Collective Healing",
-    "claim": "Collective Healing",
-    "translation": "Therapy as policy.",
+    "grift": "Collective Healing",
+    "decode": "Therapy as policy.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/communism",
+    "_path": "/grifts/communism",
     "title": "Communism",
-    "claim": "Communism",
-    "translation": "Constitutional Republic",
+    "grift": "Communism",
+    "decode": "Totalitarian Poverty for All",
     "body": ""
   },
   {
-    "_path": "/claims/claims/community-based-alternatives",
+    "_path": "/grifts/community-based-alternatives",
     "title": "Community-Based Alternatives",
-    "claim": "Community-Based Alternatives",
-    "translation": "Let activists run the courts.",
+    "grift": "Community-Based Alternatives",
+    "decode": "Let activists run the courts.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/community-gardening-justice",
+    "_path": "/grifts/community-gardening-justice",
     "title": "Community Gardening Justice",
-    "claim": "Community Gardening Justice",
-    "translation": "Compost capitalism.",
+    "grift": "Community Gardening Justice",
+    "decode": "Compost capitalism.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/community-healing-sessions",
+    "_path": "/grifts/community-healing-sessions",
     "title": "Community Healing Sessions",
-    "claim": "Community Healing Sessions",
-    "translation": "Sit in a circle and blame the system.",
+    "grift": "Community Healing Sessions",
+    "decode": "Sit in a circle and blame the system.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/community-led-budgeting",
+    "_path": "/grifts/community-led-budgeting",
     "title": "Community-Led Budgeting",
-    "claim": "Community-Led Budgeting",
-    "translation": "Mob-funded governance.",
+    "grift": "Community-Led Budgeting",
+    "decode": "Mob-funded governance.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/community-led-safety",
+    "_path": "/grifts/community-led-safety",
     "title": "Community-Led Safety",
-    "claim": "Community-Led Safety",
-    "translation": "Let the mob patrol your street.",
+    "grift": "Community-Led Safety",
+    "decode": "Let the mob patrol your street.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/community-reparations",
+    "_path": "/grifts/community-reparations",
     "title": "Community Reparations",
-    "claim": "Community Reparations",
-    "translation": "Your neighbor owes you—forever.",
+    "grift": "Community Reparations",
+    "decode": "Your neighbor owes you—forever.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/compassionate-code-of-conduct",
+    "_path": "/grifts/compassionate-code-of-conduct",
     "title": "Compassionate Code of Conduct",
-    "claim": "Compassionate Code of Conduct",
-    "translation": "Free speech with a muzzle.",
+    "grift": "Compassionate Code of Conduct",
+    "decode": "Free speech with a muzzle.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/compassionate-grading",
+    "_path": "/grifts/compassionate-grading",
     "title": "Compassionate Grading",
-    "claim": "Compassionate Grading",
-    "translation": "Pass them all and feel good.",
+    "grift": "Compassionate Grading",
+    "decode": "Pass them all and feel good.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/compassionate-release",
+    "_path": "/grifts/compassionate-release",
     "title": "Compassionate Release",
-    "claim": "Compassionate Release",
-    "translation": "Let convicts go—justice served.",
+    "grift": "Compassionate Release",
+    "decode": "Let convicts go—justice served.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/compassionate-urban-design",
+    "_path": "/grifts/compassionate-urban-design",
     "title": "Compassionate Urban Design",
-    "claim": "Compassionate Urban Design",
-    "translation": "Roundabouts with remorse.",
+    "grift": "Compassionate Urban Design",
+    "decode": "Roundabouts with remorse.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/composting-human-remains",
+    "_path": "/grifts/composting-human-remains",
     "title": "Composting Human Remains",
-    "claim": "Composting Human Remains",
-    "translation": "Recycling, taken literally.",
+    "grift": "Composting Human Remains",
+    "decode": "Recycling, taken literally.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/consent-based-classrooms",
+    "_path": "/grifts/consent-based-classrooms",
     "title": "Consent-Based Classrooms",
-    "claim": "Consent-Based Classrooms",
-    "translation": "The kids are in charge.",
+    "grift": "Consent-Based Classrooms",
+    "decode": "The kids are in charge.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/corporate-greed",
+    "_path": "/grifts/corporate-greed",
     "title": "Corporate Greed",
-    "claim": "Corporate Greed",
-    "translation": "Mind your business tyrant.",
+    "grift": "Corporate Greed",
+    "decode": "Mind your business tyrant.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/corporate-regulation",
+    "_path": "/grifts/corporate-regulation",
     "title": "Corporate Regulation",
-    "claim": "Corporate Regulation",
-    "translation": "Cronyism, corruption.",
+    "grift": "Corporate Regulation",
+    "decode": "Cronyism, corruption.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/corporate-welfare",
+    "_path": "/grifts/corporate-welfare",
     "title": "Corporate Welfare",
-    "claim": "Corporate Welfare",
-    "translation": "Govt plundering Private sphere.",
+    "grift": "Corporate Welfare",
+    "decode": "Govt plundering Private sphere.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/criminal-justice-reform",
+    "_path": "/grifts/criminal-justice-reform",
     "title": "Criminal Justice Reform",
-    "claim": "Criminal Justice Reform",
-    "translation": "Make crime less illegal.",
+    "grift": "Criminal Justice Reform",
+    "decode": "Make crime less illegal.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/criminalize-misgendering",
+    "_path": "/grifts/criminalize-misgendering",
     "title": "Criminalize Misgendering",
-    "claim": "Criminalize Misgendering",
-    "translation": "Pronouns or prison.",
+    "grift": "Criminalize Misgendering",
+    "decode": "Pronouns or prison.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/critical-race-theory",
+    "_path": "/grifts/critical-race-theory",
     "title": "Critical Race Theory",
-    "claim": "Critical Race Theory",
-    "translation": "Racism repackaged as scholarship.",
+    "grift": "Critical Race Theory",
+    "decode": "Racism repackaged as scholarship.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/critical-wellness",
-    "title": "Critical Wellness",
-    "claim": "Critical Wellness",
-    "translation": "Mindfulness meets Marx.",
-    "body": ""
-  },
-  {
-    "_path": "/claims/claims/cultural-appropriation-1",
+    "_path": "/grifts/cultural-appropriation-1",
     "title": "Cultural Appropriation",
-    "claim": "Cultural Appropriation",
-    "translation": "Don't enjoy other cultures—just apologize.",
+    "grift": "Cultural Appropriation",
+    "decode": "Don't enjoy other cultures—just apologize.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/cultural-appropriation",
+    "_path": "/grifts/cultural-appropriation",
     "title": "Cultural Appropriation",
-    "claim": "Cultural Appropriation",
-    "translation": "Admiring imitation.",
+    "grift": "Cultural Appropriation",
+    "decode": "Admiring imitation.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/cultural-humility-training",
+    "_path": "/grifts/cultural-humility-training",
     "title": "Cultural Humility Training",
-    "claim": "Cultural Humility Training",
-    "translation": "Self-flagellation for HR credit.",
+    "grift": "Cultural Humility Training",
+    "decode": "Self-flagellation for HR credit.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/cultural-marxism",
+    "_path": "/grifts/cultural-marxism",
     "title": "Cultural Marxism",
-    "claim": "Cultural Marxism",
-    "translation": "Society Destruction.",
+    "grift": "Cultural Marxism",
+    "decode": "Society Destruction.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/cultural-sensitivity-training",
+    "_path": "/grifts/cultural-sensitivity-training",
     "title": "Cultural Sensitivity Training",
-    "claim": "Cultural Sensitivity Training",
-    "translation": "Assume guilt, avoid eye contact.",
+    "grift": "Cultural Sensitivity Training",
+    "decode": "Assume guilt, avoid eye contact.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/cultural-sensitivity",
+    "_path": "/grifts/cultural-sensitivity",
     "title": "Cultural Sensitivity",
-    "claim": "Cultural Sensitivity",
-    "translation": "Walking on eggshells forever.",
+    "grift": "Cultural Sensitivity",
+    "decode": "Walking on eggshells forever.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/culturally-responsive-metrics",
+    "_path": "/grifts/culturally-responsive-metrics",
     "title": "Culturally Responsive Metrics",
-    "claim": "Culturally Responsive Metrics",
-    "translation": "Measure feelings, not results.",
+    "grift": "Culturally Responsive Metrics",
+    "decode": "Measure feelings, not results.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/de-gender-toys",
+    "_path": "/grifts/de-gender-toys",
     "title": "De-Gender Toys",
-    "claim": "De-Gender Toys",
-    "translation": "Let kids be pawns.",
+    "grift": "De-Gender Toys",
+    "decode": "Let kids be pawns.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/de-gendered-language",
+    "_path": "/grifts/de-gendered-language",
     "title": "De-Gendered Language",
-    "claim": "De-Gendered Language",
-    "translation": "Speak newspeak.",
+    "grift": "De-Gendered Language",
+    "decode": "Speak newspeak.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/de-gendered-pronouns",
+    "_path": "/grifts/de-gendered-pronouns",
     "title": "De-Gendered Pronouns",
-    "claim": "De-Gendered Pronouns",
-    "translation": "Grammar as activism.",
+    "grift": "De-Gendered Pronouns",
+    "decode": "Grammar as activism.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decarbonize-everything",
+    "_path": "/grifts/decarbonize-everything",
     "title": "Decarbonize Everything",
-    "claim": "Decarbonize Everything",
-    "translation": "Turn off the world to save it.",
+    "grift": "Decarbonize Everything",
+    "decode": "Turn off the world to save it.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decarceration-now",
+    "_path": "/grifts/decarceration-now",
     "title": "Decarceration Now",
-    "claim": "Decarceration Now",
-    "translation": "Let criminals walk free—justice!",
+    "grift": "Decarceration Now",
+    "decode": "Let criminals walk free—justice!",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decarceration",
+    "_path": "/grifts/decarceration",
     "title": "Decarceration",
-    "claim": "Decarceration",
-    "translation": "Criminals deserve a hug.",
+    "grift": "Decarceration",
+    "decode": "Criminals deserve a hug.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decenter-logic",
+    "_path": "/grifts/decenter-logic",
     "title": "Decenter Logic",
-    "claim": "Decenter Logic",
-    "translation": "Reason is colonial now.",
+    "grift": "Decenter Logic",
+    "decode": "Reason is colonial now.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decenter-the-workplace",
+    "_path": "/grifts/decenter-the-workplace",
     "title": "Decenter the Workplace",
-    "claim": "Decenter the Workplace",
-    "translation": "Productivity is problematic.",
+    "grift": "Decenter the Workplace",
+    "decode": "Productivity is problematic.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decenter-whiteness",
+    "_path": "/grifts/decenter-whiteness",
     "title": "Decenter Whiteness",
-    "claim": "Decenter Whiteness",
-    "translation": "Shame as a curriculum.",
+    "grift": "Decenter Whiteness",
+    "decode": "Shame as a curriculum.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decentering-success",
+    "_path": "/grifts/decentering-success",
     "title": "Decentering Success",
-    "claim": "Decentering Success",
-    "translation": "Achievement is supremacy.",
+    "grift": "Decentering Success",
+    "decode": "Achievement is supremacy.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonial-dance",
+    "_path": "/grifts/decolonial-dance",
     "title": "Decolonial Dance",
-    "claim": "Decolonial Dance",
-    "translation": "Choreograph the revolution.",
+    "grift": "Decolonial Dance",
+    "decode": "Choreograph the revolution.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonial-ethics",
+    "_path": "/grifts/decolonial-ethics",
     "title": "Decolonial Ethics",
-    "claim": "Decolonial Ethics",
-    "translation": "Morality filtered through grievance.",
+    "grift": "Decolonial Ethics",
+    "decode": "Morality filtered through grievance.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonial-mindfulness",
-    "title": "Decolonial Mindfulness",
-    "claim": "Decolonial Mindfulness",
-    "translation": "Meditate on your guilt.",
-    "body": ""
-  },
-  {
-    "_path": "/claims/claims/decolonial-public-policy",
+    "_path": "/grifts/decolonial-public-policy",
     "title": "Decolonial Public Policy",
-    "claim": "Decolonial Public Policy",
-    "translation": "Governance by grievance.",
+    "grift": "Decolonial Public Policy",
+    "decode": "Governance by grievance.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonization",
+    "_path": "/grifts/decolonization",
     "title": "Decolonization",
-    "claim": "Decolonization",
-    "translation": "Erasing history to feel righteous.",
+    "grift": "Decolonization",
+    "decode": "Erasing history to feel righteous.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonize-education-systems",
+    "_path": "/grifts/decolonize-education-systems",
     "title": "Decolonize Education Systems",
-    "claim": "Decolonize Education Systems",
-    "translation": "Replace facts with feels.",
+    "grift": "Decolonize Education Systems",
+    "decode": "Replace facts with feels.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonize-fitness",
+    "_path": "/grifts/decolonize-fitness",
     "title": "Decolonize Fitness",
-    "claim": "Decolonize Fitness",
-    "translation": "Exercise is privilege now.",
+    "grift": "Decolonize Fitness",
+    "decode": "Exercise is privilege now.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonize-maps",
+    "_path": "/grifts/decolonize-maps",
     "title": "Decolonize Maps",
-    "claim": "Decolonize Maps",
-    "translation": "Geography is now offensive.",
+    "grift": "Decolonize Maps",
+    "decode": "Geography is now offensive.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonize-museums",
+    "_path": "/grifts/decolonize-museums",
     "title": "Decolonize Museums",
-    "claim": "Decolonize Museums",
-    "translation": "History must now apologize.",
+    "grift": "Decolonize Museums",
+    "decode": "History must now apologize.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonize-reading-lists",
+    "_path": "/grifts/decolonize-reading-lists",
     "title": "Decolonize Reading Lists",
-    "claim": "Decolonize Reading Lists",
-    "translation": "Goodbye classics.",
+    "grift": "Decolonize Reading Lists",
+    "decode": "Goodbye classics.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonize-technology",
+    "_path": "/grifts/decolonize-technology",
     "title": "Decolonize Technology",
-    "claim": "Decolonize Technology",
-    "translation": "Smash the patriarchy with apps.",
+    "grift": "Decolonize Technology",
+    "decode": "Smash the patriarchy with apps.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonize-the-calendar",
+    "_path": "/grifts/decolonize-the-calendar",
     "title": "Decolonize the Calendar",
-    "claim": "Decolonize the Calendar",
-    "translation": "Time itself is problematic.",
+    "grift": "Decolonize the Calendar",
+    "decode": "Time itself is problematic.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonize-the-curriculum",
+    "_path": "/grifts/decolonize-the-curriculum",
     "title": "Decolonize the Curriculum",
-    "claim": "Decolonize the Curriculum",
-    "translation": "Erase Western thought to promote ideological conformity.",
+    "grift": "Decolonize the Curriculum",
+    "decode": "Erase Western thought to promote ideological conformity.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonize-the-supply-chain",
+    "_path": "/grifts/decolonize-the-supply-chain",
     "title": "Decolonize the Supply Chain",
-    "claim": "Decolonize the Supply Chain",
-    "translation": "Logistics with a guilt surcharge.",
+    "grift": "Decolonize the Supply Chain",
+    "decode": "Logistics with a guilt surcharge.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decolonize-your-mind",
+    "_path": "/grifts/decolonize-your-mind",
     "title": "Decolonize Your Mind",
-    "claim": "Decolonize Your Mind",
-    "translation": "Replace reason with resentment.",
+    "grift": "Decolonize Your Mind",
+    "decode": "Replace reason with resentment.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/deconstruct-parenting-norms",
+    "_path": "/grifts/deconstruct-parenting-norms",
     "title": "Deconstruct Parenting Norms",
-    "claim": "Deconstruct Parenting Norms",
-    "translation": "Let the village confuse your child.",
+    "grift": "Deconstruct Parenting Norms",
+    "decode": "Let the village confuse your child.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/deconstruct-whiteness",
+    "_path": "/grifts/deconstruct-whiteness",
     "title": "Deconstruct Whiteness",
-    "claim": "Deconstruct Whiteness",
-    "translation": "Racial essentialism with a progressive twist.",
+    "grift": "Deconstruct Whiteness",
+    "decode": "Racial essentialism with a progressive twist.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decriminalize-everything",
+    "_path": "/grifts/decriminalize-everything",
     "title": "Decriminalize Everything",
-    "claim": "Decriminalize Everything",
-    "translation": "Lawlessness is liberation.",
+    "grift": "Decriminalize Everything",
+    "decode": "Lawlessness is liberation.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/decriminalize-sex-work",
+    "_path": "/grifts/decriminalize-sex-work",
     "title": "Decriminalize Sex Work",
-    "claim": "Decriminalize Sex Work",
-    "translation": "Pimping rebranded as empowerment.",
+    "grift": "Decriminalize Sex Work",
+    "decode": "Pimping rebranded as empowerment.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/deficit-spending",
+    "_path": "/grifts/deficit-spending",
     "title": "Deficit Spending",
-    "claim": "Deficit Spending",
-    "translation": "Kicking the can down the road. Increased poverty.",
+    "grift": "Deficit Spending",
+    "decode": "Kicking the can down the road. Increased poverty.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/defund-animal-agriculture",
+    "_path": "/grifts/defund-animal-agriculture",
     "title": "Defund Animal Agriculture",
-    "claim": "Defund Animal Agriculture",
-    "translation": "Tofu or else.",
+    "grift": "Defund Animal Agriculture",
+    "decode": "Tofu or else.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/defund-competitive-sports",
+    "_path": "/grifts/defund-competitive-sports",
     "title": "Defund Competitive Sports",
-    "claim": "Defund Competitive Sports",
-    "translation": "Because winning is problematic.",
+    "grift": "Defund Competitive Sports",
+    "decode": "Because winning is problematic.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/defund-military",
+    "_path": "/grifts/defund-military",
     "title": "Defund Military",
-    "claim": "Defund Military",
-    "translation": "Because peace comes from weakness.",
+    "grift": "Defund Military",
+    "decode": "Because peace comes from weakness.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/defund-prisons",
+    "_path": "/grifts/defund-prisons",
     "title": "Defund Prisons",
-    "claim": "Defund Prisons",
-    "translation": "Hope criminals hug it out.",
+    "grift": "Defund Prisons",
+    "decode": "Hope criminals hug it out.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/defund-surveillance",
+    "_path": "/grifts/defund-surveillance",
     "title": "Defund Surveillance",
-    "claim": "Defund Surveillance",
-    "translation": "Hide from accountability.",
+    "grift": "Defund Surveillance",
+    "decode": "Hide from accountability.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/defund-the-police-1",
+    "_path": "/grifts/defund-the-police-1",
     "title": "Defund the Police",
-    "claim": "Defund the Police",
-    "translation": "Remove the last line of defense between criminals and the vulnerable.",
+    "grift": "Defund the Police",
+    "decode": "Remove the last line of defense between criminals and the vulnerable.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/defund-the-police",
+    "_path": "/grifts/defund-the-police",
     "title": "Defund the Police",
-    "claim": "Defund the Police",
-    "translation": "Make chaos your neighbor.",
+    "grift": "Defund the Police",
+    "decode": "Make chaos your neighbor.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/degrowth-movement",
+    "_path": "/grifts/degrowth-movement",
     "title": "Degrowth Movement",
-    "claim": "Degrowth Movement",
-    "translation": "Let’s all be poorer—on purpose.",
+    "grift": "Degrowth Movement",
+    "decode": "Let's all be poorer — on purpose.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/dei-diversity-equity-inclusion",
+    "_path": "/grifts/dei-diversity-equity-inclusion",
     "title": "DEI - Diversity Equity Inclusion",
-    "claim": "DEI - Diversity Equity Inclusion",
-    "translation": "Increased Poverty and Division, or Didn't Earn It.",
+    "grift": "DEI - Diversity Equity Inclusion",
+    "decode": "Increased Poverty and Division, or Didn't Earn It.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/deindustrialize-america",
+    "_path": "/grifts/deindustrialize-america",
     "title": "Deindustrialize America",
-    "claim": "Deindustrialize America",
-    "translation": "Rust as a virtue.",
+    "grift": "Deindustrialize America",
+    "decode": "Rust as a virtue.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/democratic-socialism",
+    "_path": "/grifts/democratic-socialism",
     "title": "Democratic Socialism",
-    "claim": "Democratic Socialism",
-    "translation": "Capitalism",
+    "grift": "Democratic Socialism",
+    "decode": "Socialism",
     "body": ""
   },
   {
-    "_path": "/claims/claims/deplatform-misinformation",
+    "_path": "/grifts/deplatform-misinformation",
     "title": "Deplatform Misinformation",
-    "claim": "Deplatform Misinformation",
-    "translation": "Censor what we can’t debate.",
+    "grift": "Deplatform Misinformation",
+    "decode": "Censor what we can't debate.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/deplatforming",
+    "_path": "/grifts/deplatforming",
     "title": "Deplatforming",
-    "claim": "Deplatforming",
-    "translation": "Debate is violence.",
+    "grift": "Deplatforming",
+    "decode": "Censoring.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/digital-detox-for-equity",
-    "title": "Digital Detox for Equity",
-    "claim": "Digital Detox for Equity",
-    "translation": "Unplug the privileged.",
-    "body": ""
-  },
-  {
-    "_path": "/claims/claims/digital-equity-act",
+    "_path": "/grifts/digital-equity-act",
     "title": "Digital Equity Act",
-    "claim": "Digital Equity Act",
-    "translation": "Regulate tech with ideology.",
+    "grift": "Digital Equity Act",
+    "decode": "Regulate tech with ideology.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/digital-equity",
-    "title": "Digital Equity",
-    "claim": "Digital Equity",
-    "translation": "Internet access as moral imperative.",
-    "body": ""
-  },
-  {
-    "_path": "/claims/claims/digital-intersectionality",
+    "_path": "/grifts/digital-intersectionality",
     "title": "Digital Intersectionality",
-    "claim": "Digital Intersectionality",
-    "translation": "Oppression scored by algorithm.",
+    "grift": "Digital Intersectionality",
+    "decode": "Oppression scored by algorithm.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/digital-reparations",
-    "title": "Digital Reparations",
-    "claim": "Digital Reparations",
-    "translation": "Give your bandwidth to justice.",
-    "body": ""
-  },
-  {
-    "_path": "/claims/claims/disarm-the-police",
+    "_path": "/grifts/disarm-the-police",
     "title": "Disarm the Police",
-    "claim": "Disarm the Police",
-    "translation": "Protect the innocent—except not.",
+    "grift": "Disarm the Police",
+    "decode": "Protect the innocent—except not.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/disinformation",
+    "_path": "/grifts/disinformation",
     "title": "Disinformation",
-    "claim": "Disinformation",
-    "translation": "Truth we don’t approve.",
+    "grift": "Disinformation",
+    "decode": "Truth we don’t approve.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/dismantling-capitalism",
+    "_path": "/grifts/dismantling-capitalism",
     "title": "Dismantling Capitalism",
-    "claim": "Dismantling Capitalism",
-    "translation": "Begging for bread lines.",
+    "grift": "Dismantling Capitalism",
+    "decode": "Begging for bread lines.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/disrupt-whiteness",
+    "_path": "/grifts/disrupt-whiteness",
     "title": "Disrupt Whiteness",
-    "claim": "Disrupt Whiteness",
-    "translation": "Cultural demolition by decree.",
+    "grift": "Disrupt Whiteness",
+    "decode": "Cultural demolition by decree.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/diversity-is-our-strength",
+    "_path": "/grifts/diversity-is-our-strength",
     "title": "Diversity is Our Strength",
-    "claim": "Diversity is Our Strength",
-    "translation": "Forced conformity under a rainbow flag.",
+    "grift": "Diversity is Our Strength",
+    "decode": "Forced conformity under a rainbow flag.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/diversity-training",
+    "_path": "/grifts/diversity-training",
     "title": "Diversity Training",
-    "claim": "Diversity Training",
-    "translation": "Ideological re-education with a corporate HR badge.",
+    "grift": "Diversity Training",
+    "decode": "Ideological re-education with a corporate HR badge.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/drag-queen-story-hour",
+    "_path": "/grifts/drag-queen-story-hour",
     "title": "Drag Queen Story Hour",
-    "claim": "Drag Queen Story Hour",
-    "translation": "Adult performance art for your toddler.",
+    "grift": "Drag Queen Story Hour",
+    "decode": "Adult performance art for your toddler.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/eco-anxiety",
+    "_path": "/grifts/eco-anxiety",
     "title": "Eco-Anxiety",
-    "claim": "Eco-Anxiety",
-    "translation": "Induce fear for compliance.",
+    "grift": "Eco-Anxiety",
+    "decode": "Induce fear for compliance.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/eco-conscious-mourning",
+    "_path": "/grifts/eco-conscious-mourning",
     "title": "Eco-Conscious Mourning",
-    "claim": "Eco-Conscious Mourning",
-    "translation": "Grieve with compostable tissues.",
+    "grift": "Eco-Conscious Mourning",
+    "decode": "Grieve with compostable tissues.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/eco-feminism",
+    "_path": "/grifts/eco-feminism",
     "title": "Eco-Feminism",
-    "claim": "Eco-Feminism",
-    "translation": "The planet is Mother—obey her.",
+    "grift": "Eco-Feminism",
+    "decode": "The planet is Mother—obey her.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/eco-feminist-urban-design",
+    "_path": "/grifts/eco-feminist-urban-design",
     "title": "Eco-Feminist Urban Design",
-    "claim": "Eco-Feminist Urban Design",
-    "translation": "Crosswalks that dismantle patriarchy.",
+    "grift": "Eco-Feminist Urban Design",
+    "decode": "Crosswalks that dismantle patriarchy.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/eco-gentrification",
+    "_path": "/grifts/eco-gentrification",
     "title": "Eco-Gentrification",
-    "claim": "Eco-Gentrification",
-    "translation": "Green the city, displace the poor.",
+    "grift": "Eco-Gentrification",
+    "decode": "Green the city, displace the poor.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/eco-justice",
+    "_path": "/grifts/eco-justice",
     "title": "Eco-Justice",
-    "claim": "Eco-Justice",
-    "translation": "Guilt-tripping your thermostat.",
+    "grift": "Eco-Justice",
+    "decode": "Guilt-tripping your thermostat.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/eco-queer-theory",
+    "_path": "/grifts/eco-queer-theory",
     "title": "Eco-Queer Theory",
-    "claim": "Eco-Queer Theory",
-    "translation": "Mother Earth goes non-binary.",
+    "grift": "Eco-Queer Theory",
+    "decode": "Mother Earth goes non-binary.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/eco-racism-awareness",
+    "_path": "/grifts/eco-racism-awareness",
     "title": "Eco-Racism Awareness",
-    "claim": "Eco-Racism Awareness",
-    "translation": "Climate guilt meets race shame.",
+    "grift": "Eco-Racism Awareness",
+    "decode": "Climate guilt meets race shame.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/eco-socialism",
+    "_path": "/grifts/eco-socialism",
     "title": "Eco-Socialism",
-    "claim": "Eco-Socialism",
-    "translation": "Poverty for the planet.",
+    "grift": "Eco-Socialism",
+    "decode": "Poverty for the planet.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/emancipatory-pedagogy",
+    "_path": "/grifts/emancipatory-pedagogy",
     "title": "Emancipatory Pedagogy",
-    "claim": "Emancipatory Pedagogy",
-    "translation": "Lesson plans with a manifesto.",
+    "grift": "Emancipatory Pedagogy",
+    "decode": "Lesson plans with a manifesto.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/empathy-based-policing",
+    "_path": "/grifts/empathy-based-policing",
     "title": "Empathy-Based Policing",
-    "claim": "Empathy-Based Policing",
-    "translation": "Hugs before handcuffs.",
+    "grift": "Empathy-Based Policing",
+    "decode": "Hugs before handcuffs.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/empathy-based-urban-planning",
+    "_path": "/grifts/empathy-based-urban-planning",
     "title": "Empathy-Based Urban Planning",
-    "claim": "Empathy-Based Urban Planning",
-    "translation": "Sidewalks that feel your pain.",
+    "grift": "Empathy-Based Urban Planning",
+    "decode": "Sidewalks that feel your pain.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/end-capitalism",
+    "_path": "/grifts/end-capitalism",
     "title": "End Capitalism",
-    "claim": "End Capitalism",
-    "translation": "Starvation is a small price for equality.",
+    "grift": "End Capitalism",
+    "decode": "Starvation is a small price for equality.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/end-fossil-capital",
+    "_path": "/grifts/end-fossil-capital",
     "title": "End Fossil Capital",
-    "claim": "End Fossil Capital",
-    "translation": "Shut down your standard of living.",
+    "grift": "End Fossil Capital",
+    "decode": "Shut down your standard of living.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/end-suburban-sprawl",
+    "_path": "/grifts/end-suburban-sprawl",
     "title": "End Suburban Sprawl",
-    "claim": "End Suburban Sprawl",
-    "translation": "Stack and pack humanity.",
+    "grift": "End Suburban Sprawl",
+    "decode": "Stack and pack humanity.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/end-the-nuclear-family",
+    "_path": "/grifts/end-the-nuclear-family",
     "title": "End the Nuclear Family",
-    "claim": "End the Nuclear Family",
-    "translation": "Dissolve roots, grow dependence.",
+    "grift": "End the Nuclear Family",
+    "decode": "Dissolve roots, grow dependence.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/environmental-racism",
+    "_path": "/grifts/environmental-racism",
     "title": "Environmental Racism",
-    "claim": "Environmental Racism",
-    "translation": "Pollution is now prejudiced.",
+    "grift": "Environmental Racism",
+    "decode": "Pollution is now prejudiced.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/equality-02",
+    "_path": "/grifts/equality-02",
     "title": "Equality",
-    "claim": "Equality",
-    "translation": "Levelling down",
+    "grift": "Equality",
+    "decode": "Levelling down",
     "body": ""
   },
   {
-    "_path": "/claims/claims/equality",
+    "_path": "/grifts/equality",
     "title": "Equality",
-    "claim": "Equality",
-    "translation": "Everyone poorer.",
+    "grift": "Equality",
+    "decode": "Everyone poorer.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/equity-centered-hr",
+    "_path": "/grifts/equity-centered-hr",
     "title": "Equity-Centered HR",
-    "claim": "Equity-Centered HR",
-    "translation": "Promotions for the most offended.",
+    "grift": "Equity-Centered HR",
+    "decode": "Promotions for the most offended.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/equity-centered-journalism",
+    "_path": "/grifts/equity-centered-journalism",
     "title": "Equity-Centered Journalism",
-    "claim": "Equity-Centered Journalism",
-    "translation": "Facts through a filter.",
+    "grift": "Equity-Centered Journalism",
+    "decode": "Facts through a filter.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/equity-driven-algorithms",
+    "_path": "/grifts/equity-driven-algorithms",
     "title": "Equity-Driven Algorithms",
-    "claim": "Equity-Driven Algorithms",
-    "translation": "Let bias choose your outcome.",
+    "grift": "Equity-Driven Algorithms",
+    "decode": "Let bias choose your outcome.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/equity-focused-grading",
+    "_path": "/grifts/equity-focused-grading",
     "title": "Equity-Focused Grading",
-    "claim": "Equity-Focused Grading",
-    "translation": "Pass everyone to prove fairness.",
+    "grift": "Equity-Focused Grading",
+    "decode": "Pass everyone to prove fairness.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/equity-focused-traffic-laws",
+    "_path": "/grifts/equity-focused-traffic-laws",
     "title": "Equity-Focused Traffic Laws",
-    "claim": "Equity-Focused Traffic Laws",
-    "translation": "Tickets for justice.",
+    "grift": "Equity-Focused Traffic Laws",
+    "decode": "Tickets for justice.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/equity-in-hiring",
+    "_path": "/grifts/equity-in-hiring",
     "title": "Equity in Hiring",
-    "claim": "Equity in Hiring",
-    "translation": "Merit is now problematic.",
+    "grift": "Equity in Hiring",
+    "decode": "Merit is now problematic.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/equity-in-math",
+    "_path": "/grifts/equity-in-math",
     "title": "Equity in Math",
-    "claim": "Equity in Math",
-    "translation": "2 + 2 = feelings.",
+    "grift": "Equity in Math",
+    "decode": "2 + 2 = feelings.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/equity-over-equality",
+    "_path": "/grifts/equity-over-equality",
     "title": "Equity Over Equality",
-    "claim": "Equity Over Equality",
-    "translation": "Equal outcomes, unequal freedoms.",
+    "grift": "Equity Over Equality",
+    "decode": "Equal outcomes, unequal freedoms.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/equity",
+    "_path": "/grifts/equity",
     "title": "Equity",
-    "claim": "Equity",
-    "translation": "Equal outcomes, unequal effort.",
+    "grift": "Equity",
+    "decode": "Equal outcomes, unequal effort.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ethical-consumption",
+    "_path": "/grifts/ethical-consumption",
     "title": "Ethical Consumption",
-    "claim": "Ethical Consumption",
-    "translation": "Buy guilt-free illusions.",
+    "grift": "Ethical Consumption",
+    "decode": "Buy guilt-free illusions.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/ethical-tech",
+    "_path": "/grifts/ethical-tech",
     "title": "Ethical Tech",
-    "claim": "Ethical Tech",
-    "translation": "Code with a conscience leash.",
+    "grift": "Ethical Tech",
+    "decode": "Code with a conscience leash.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/evil-profit",
+    "_path": "/grifts/evil-profit",
     "title": "Evil profit",
-    "claim": "Evil profit",
-    "translation": "Wealth creation, jobs.",
+    "grift": "Evil profit",
+    "decode": "Wealth creation, jobs.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/excessive-military-spending",
+    "_path": "/grifts/excessive-military-spending",
     "title": "Excessive military spending",
-    "claim": "Excessive military spending",
-    "translation": "Decreased military readiness.",
+    "grift": "Excessive military spending",
+    "decode": "Decreased military readiness.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/fact-checking",
+    "_path": "/grifts/fact-checking",
     "title": "Fact-checking",
-    "claim": "Fact-checking",
-    "translation": "Censorship of what the Left don't like.",
+    "grift": "Fact-checking",
+    "decode": "Censorship of what the Left don't like.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/fat-liberation",
+    "_path": "/grifts/fat-liberation",
     "title": "Fat Liberation",
-    "claim": "Fat Liberation",
-    "translation": "Demand health without effort.",
+    "grift": "Fat Liberation",
+    "decode": "Demand health without effort.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/feminist-architecture",
+    "_path": "/grifts/feminist-architecture",
     "title": "Feminist Architecture",
-    "claim": "Feminist Architecture",
-    "translation": "Design buildings that dismantle patriarchy.",
+    "grift": "Feminist Architecture",
+    "decode": "Design buildings that dismantle patriarchy.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/feminist-data",
+    "_path": "/grifts/feminist-data",
     "title": "Feminist Data",
-    "claim": "Feminist Data",
-    "translation": "Facts with a gender agenda.",
+    "grift": "Feminist Data",
+    "decode": "Facts with a gender agenda.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/feminist-economics-1",
+    "_path": "/grifts/feminist-economics-1",
     "title": "Feminist Economics",
-    "claim": "Feminist Economics",
-    "translation": "Subsidize grievance and call it policy.",
+    "grift": "Feminist Economics",
+    "decode": "Subsidize grievance and call it policy.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/feminist-economics",
+    "_path": "/grifts/feminist-economics",
     "title": "Feminist Economics",
-    "claim": "Feminist Economics",
-    "translation": "Math with a victim complex.",
+    "grift": "Feminist Economics",
+    "decode": "Math with a victim complex.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/feminist-foreign-policy",
+    "_path": "/grifts/feminist-foreign-policy",
     "title": "Feminist Foreign Policy",
-    "claim": "Feminist Foreign Policy",
-    "translation": "Feelings first, defense later.",
+    "grift": "Feminist Foreign Policy",
+    "decode": "Feelings first, defense later.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/feminist-geography",
+    "_path": "/grifts/feminist-geography",
     "title": "Feminist Geography",
-    "claim": "Feminist Geography",
-    "translation": "Where patriarchy hides on the map.",
+    "grift": "Feminist Geography",
+    "decode": "Where patriarchy hides on the map.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/feminist-investment-funds",
+    "_path": "/grifts/feminist-investment-funds",
     "title": "Feminist Investment Funds",
-    "claim": "Feminist Investment Funds",
-    "translation": "Returns optional.",
+    "grift": "Feminist Investment Funds",
+    "decode": "Returns optional.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/feminist-server-architecture",
+    "_path": "/grifts/feminist-server-architecture",
     "title": "Feminist Server Architecture",
-    "claim": "Feminist Server Architecture",
-    "translation": "Power distributed by gender theory.",
+    "grift": "Feminist Server Architecture",
+    "decode": "Power distributed by gender theory.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/feminist-urban-planning",
+    "_path": "/grifts/feminist-urban-planning",
     "title": "Feminist Urban Planning",
-    "claim": "Feminist Urban Planning",
-    "translation": "No roads without an agenda.",
+    "grift": "Feminist Urban Planning",
+    "decode": "No roads without an agenda.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/food-deserts",
+    "_path": "/grifts/food-deserts",
     "title": "Food Deserts",
-    "claim": "Food Deserts",
-    "translation": "Blame capitalism for bad choices.",
+    "grift": "Food Deserts",
+    "decode": "Blame capitalism for bad choices.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/food-is-a-right",
+    "_path": "/grifts/food-is-a-right",
     "title": "Food is a Right",
-    "claim": "Food is a Right",
-    "translation": "Central planning for your dinner plate.",
+    "grift": "Food is a Right",
+    "decode": "Central planning for your dinner plate.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/food-justice",
+    "_path": "/grifts/food-justice",
     "title": "Food Justice",
-    "claim": "Food Justice",
-    "translation": "Ban the Big Mac to save the planet.",
+    "grift": "Food Justice",
+    "decode": "Ban the Big Mac to save the planet.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/food-sovereignty",
+    "_path": "/grifts/food-sovereignty",
     "title": "Food Sovereignty",
-    "claim": "Food Sovereignty",
-    "translation": "Locally sourced control.",
+    "grift": "Food Sovereignty",
+    "decode": "Locally sourced control.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/foreign-aid",
+    "_path": "/grifts/foreign-aid",
     "title": "Foreign Aid",
-    "claim": "Foreign Aid",
-    "translation": "Too often corruption.",
+    "grift": "Foreign Aid",
+    "decode": "Too often corruption.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/free-college-education",
+    "_path": "/grifts/free-college-education",
     "title": "Free College Education",
-    "claim": "Free College Education",
-    "translation": "Left wing indoctrination to create dependency and for new Leftist elite.",
+    "grift": "Free College Education",
+    "decode": "Left wing indoctrination to create dependency and for new Leftist elite.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/free-college",
+    "_path": "/grifts/free-college",
     "title": "Free College",
-    "claim": "Free College",
-    "translation": "Degrees for everyone, value for no one.",
+    "grift": "Free College",
+    "decode": "Degrees for everyone, value for no one.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/free-healthcare-for-all",
+    "_path": "/grifts/free-healthcare-for-all",
     "title": "Free Healthcare for All",
-    "claim": "Free Healthcare for All",
-    "translation": "A waiting list is better than a bill, right?",
+    "grift": "Free Healthcare for All",
+    "decode": "A waiting list is better than a bill, right?",
     "body": ""
   },
   {
-    "_path": "/claims/claims/free-public-college",
+    "_path": "/grifts/free-public-college",
     "title": "Free Public College",
-    "claim": "Free Public College",
-    "translation": "Subsidize ideology at scale.",
+    "grift": "Free Public College",
+    "decode": "Subsidize ideology at scale.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/free-transit",
+    "_path": "/grifts/free-transit",
     "title": "Free Transit",
-    "claim": "Free Transit",
-    "translation": "Who needs reliability when it's free?",
+    "grift": "Free Transit",
+    "decode": "Who needs reliability when it's free?",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-affirming-care-02",
+    "_path": "/grifts/gender-affirming-care-02",
     "title": "Gender Affirming Care",
-    "claim": "Gender Affirming Care",
-    "translation": "Child castration, mediaveal butchery.",
+    "grift": "Gender Affirming Care",
+    "decode": "Child castration, mediaveal butchery.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-affirming-care-1",
+    "_path": "/grifts/gender-affirming-care-1",
     "title": "Gender Affirming Care",
-    "claim": "Gender Affirming Care",
-    "translation": "Medical experiments on confused children.",
+    "grift": "Gender Affirming Care",
+    "decode": "Medical experiments on confused children.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-affirming-care",
+    "_path": "/grifts/gender-affirming-care",
     "title": "Gender Affirming Care",
-    "claim": "Gender Affirming Care",
-    "translation": "Medical malpractice with a smile.",
+    "grift": "Gender Affirming Care",
+    "decode": "Medical malpractice with a smile.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-affirming-technology",
+    "_path": "/grifts/gender-affirming-technology",
     "title": "Gender-Affirming Technology",
-    "claim": "Gender-Affirming Technology",
-    "translation": "Devices with pronoun fields.",
+    "grift": "Gender-Affirming Technology",
+    "decode": "Devices with pronoun fields.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-aware-ai",
+    "_path": "/grifts/gender-aware-ai",
     "title": "Gender-Aware AI",
-    "claim": "Gender-Aware AI",
-    "translation": "Wokebots online.",
+    "grift": "Gender-Aware AI",
+    "decode": "Wokebots online.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-equality",
+    "_path": "/grifts/gender-equality",
     "title": "Gender Equality",
-    "claim": "Gender Equality",
-    "translation": "Women get more benefits, Men made out to be evil.",
+    "grift": "Gender Equality",
+    "decode": "Women get more benefits, Men made out to be evil.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-expansive-curriculum",
+    "_path": "/grifts/gender-expansive-curriculum",
     "title": "Gender Expansive Curriculum",
-    "claim": "Gender Expansive Curriculum",
-    "translation": "Teach identity, forget math.",
+    "grift": "Gender Expansive Curriculum",
+    "decode": "Teach identity, forget math.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-free-bathrooms",
+    "_path": "/grifts/gender-free-bathrooms",
     "title": "Gender-Free Bathrooms",
-    "claim": "Gender-Free Bathrooms",
-    "translation": "Privacy is privilege.",
+    "grift": "Gender-Free Bathrooms",
+    "decode": "Privacy is privilege.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-free-fashion",
+    "_path": "/grifts/gender-free-fashion",
     "title": "Gender-Free Fashion",
-    "claim": "Gender-Free Fashion",
-    "translation": "Confuse at a glance.",
+    "grift": "Gender-Free Fashion",
+    "decode": "Confuse at a glance.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-inclusive-bathrooms",
+    "_path": "/grifts/gender-inclusive-bathrooms",
     "title": "Gender Inclusive Bathrooms",
-    "claim": "Gender Inclusive Bathrooms",
-    "translation": "Privacy is privilege.",
+    "grift": "Gender Inclusive Bathrooms",
+    "decode": "Privacy is privilege.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-inclusive-choirs",
+    "_path": "/grifts/gender-inclusive-choirs",
     "title": "Gender Inclusive Choirs",
-    "claim": "Gender Inclusive Choirs",
-    "translation": "Sing your identity.",
+    "grift": "Gender Inclusive Choirs",
+    "decode": "Sing your identity.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-inclusive-menus",
+    "_path": "/grifts/gender-inclusive-menus",
     "title": "Gender-Inclusive Menus",
-    "claim": "Gender-Inclusive Menus",
-    "translation": "Eat woke, not well.",
+    "grift": "Gender-Inclusive Menus",
+    "decode": "Eat woke, not well.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-inclusive-sports",
+    "_path": "/grifts/gender-inclusive-sports",
     "title": "Gender Inclusive Sports",
-    "claim": "Gender Inclusive Sports",
-    "translation": "Fairness optional.",
+    "grift": "Gender Inclusive Sports",
+    "decode": "Fairness optional.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-neutral-parenting",
+    "_path": "/grifts/gender-neutral-parenting",
     "title": "Gender Neutral Parenting",
-    "claim": "Gender Neutral Parenting",
-    "translation": "Confuse early, confuse often.",
+    "grift": "Gender Neutral Parenting",
+    "decode": "Confuse early, confuse often.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-neutral-urbanism",
+    "_path": "/grifts/gender-neutral-urbanism",
     "title": "Gender-Neutral Urbanism",
-    "claim": "Gender-Neutral Urbanism",
-    "translation": "Cities without stereotypes.",
+    "grift": "Gender-Neutral Urbanism",
+    "decode": "Cities without stereotypes.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-neutrality",
+    "_path": "/grifts/gender-neutrality",
     "title": "Gender Neutrality",
-    "claim": "Gender Neutrality",
-    "translation": "Erasing biology for feelings.",
+    "grift": "Gender Neutrality",
+    "decode": "Erasing biology for feelings.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gender-spectrum",
+    "_path": "/grifts/gender-spectrum",
     "title": "Gender Spectrum",
-    "claim": "Gender Spectrum",
-    "translation": "Reality is now offensive.",
+    "grift": "Gender Spectrum",
+    "decode": "Reality is now offensive.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/globalism",
+    "_path": "/grifts/globalism",
     "title": "Globalism",
-    "claim": "Globalism",
-    "translation": "National Sovereignty.",
+    "grift": "Globalism",
+    "decode": "National Sovereignty.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/green-energy-mandates",
+    "_path": "/grifts/green-energy-mandates",
     "title": "Green Energy Mandates",
-    "claim": "Green Energy Mandates",
-    "translation": "Unplug reality to feel virtuous.",
+    "grift": "Green Energy Mandates",
+    "decode": "Unplug reality to feel virtuous.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/green-infrastructure",
+    "_path": "/grifts/green-infrastructure",
     "title": "Green Infrastructure",
-    "claim": "Green Infrastructure",
-    "translation": "Bureaucracy with solar panels.",
+    "grift": "Green Infrastructure",
+    "decode": "Bureaucracy with solar panels.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/green-justice-zones",
+    "_path": "/grifts/green-justice-zones",
     "title": "Green Justice Zones",
-    "claim": "Green Justice Zones",
-    "translation": "Poverty with solar panels.",
+    "grift": "Green Justice Zones",
+    "decode": "Poverty with solar panels.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/green-new-deal",
+    "_path": "/grifts/green-new-deal",
     "title": "Green New Deal",
-    "claim": "Green New Deal",
-    "translation": "Central planning in a fresh wrapper.",
+    "grift": "Green New Deal",
+    "decode": "Central planning in a fresh wrapper.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gun-buybacks",
+    "_path": "/grifts/gun-buybacks",
     "title": "Gun Buybacks",
-    "claim": "Gun Buybacks",
-    "translation": "Surrender your rights for a gift card.",
+    "grift": "Gun Buybacks",
+    "decode": "Surrender your rights for a gift card.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gun-control-02",
+    "_path": "/grifts/gun-control-02",
     "title": "Gun Control",
-    "claim": "Gun Control",
-    "translation": "Disarm the law-abiding.",
+    "grift": "Gun Control",
+    "decode": "Disarm the law-abiding.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/gun-control",
+    "_path": "/grifts/gun-control",
     "title": "Gun Control",
-    "claim": "Gun Control",
-    "translation": "People control.",
+    "grift": "Gun Control",
+    "decode": "People control.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/harmful-speech-should-be-restricted",
+    "_path": "/grifts/harmful-speech-should-be-restricted",
     "title": "Harmful speech should be restricted",
-    "claim": "Harmful speech should be restricted",
-    "translation": "The Left owns the Narrative.",
+    "grift": "Harmful speech should be restricted",
+    "decode": "The Left owns the Narrative.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/hate-speech-laws",
+    "_path": "/grifts/hate-speech-laws",
     "title": "Hate Speech Laws",
-    "claim": "Hate Speech Laws",
-    "translation": "Free speech for me, but not for thee.",
+    "grift": "Hate Speech Laws",
+    "decode": "Free speech for me, but not for thee.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/hate-speech",
+    "_path": "/grifts/hate-speech",
     "title": "Hate Speech",
-    "claim": "Hate Speech",
-    "translation": "Words I don't like.",
+    "grift": "Hate Speech",
+    "decode": "Words I don't like.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/hate",
+    "_path": "/grifts/hate",
     "title": "Hate",
-    "claim": "Hate",
-    "translation": "Anything the Left doesn't like.",
+    "grift": "Hate",
+    "decode": "Anything the Left doesn't like.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/healthcare-is-a-human-right",
+    "_path": "/grifts/healthcare-is-a-human-right",
     "title": "Healthcare is a human right",
-    "claim": "Healthcare is a human right",
-    "translation": "Worse Healthcare for all.",
+    "grift": "Healthcare is a human right",
+    "decode": "Worse Healthcare for all.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/healthcare-is-a-right",
+    "_path": "/grifts/healthcare-is-a-right",
     "title": "Healthcare is a Right",
-    "claim": "Healthcare is a Right",
-    "translation": "So you owe me a surgeon.",
+    "grift": "Healthcare is a Right",
+    "decode": "So you owe me a surgeon.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/higher-taxes",
+    "_path": "/grifts/higher-taxes",
     "title": "Higher Taxes",
-    "claim": "Higher Taxes",
-    "translation": "Keep more of your earned income",
+    "grift": "Higher Taxes",
+    "decode": "Keep more of your earned income",
     "body": ""
   },
   {
-    "_path": "/claims/claims/houselessness",
+    "_path": "/grifts/houselessness",
     "title": "Houselessness",
-    "claim": "Houselessness",
-    "translation": "Rename it and it goes away.",
+    "grift": "Houselessness",
+    "decode": "Rename it and it goes away.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/housing-and-rent-control",
+    "_path": "/grifts/housing-and-rent-control",
     "title": "Housing and Rent Control",
-    "claim": "Housing and Rent Control",
-    "translation": "Destroy Housing and Rental Market.",
+    "grift": "Housing and Rent Control",
+    "decode": "Destroy Housing and Rental Market.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/housing-is-a-human-right",
+    "_path": "/grifts/housing-is-a-human-right",
     "title": "Housing is a Human Right",
-    "claim": "Housing is a Human Right",
-    "translation": "Government decides where you live.",
+    "grift": "Housing is a Human Right",
+    "decode": "Government decides where you live.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/identify-as",
+    "_path": "/grifts/identify-as",
     "title": "Identify as",
-    "claim": "Identify as",
-    "translation": "Pretending to be",
+    "grift": "Identify as",
+    "decode": "Pretending to be",
     "body": ""
   },
   {
-    "_path": "/claims/claims/illegal-immigration",
+    "_path": "/grifts/illegal-immigration",
     "title": "Illegal Immigration",
-    "claim": "Illegal Immigration",
-    "translation": "Legal Immigration",
+    "grift": "Illegal Immigration",
+    "decode": "Legal Immigration",
     "body": ""
   },
   {
-    "_path": "/claims/claims/immigration",
+    "_path": "/grifts/immigration",
     "title": "Immigration",
-    "claim": "Immigration",
-    "translation": "Increased poverty. Increased division. Increased crime. Destroy native culture.",
+    "grift": "Immigration",
+    "decode": "Increased poverty. Increased division. Increased crime. Destroy native culture.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/inclusive-algorithms",
+    "_path": "/grifts/inclusive-algorithms",
     "title": "Inclusive Algorithms",
-    "claim": "Inclusive Algorithms",
-    "translation": "Let ideology override logic.",
+    "grift": "Inclusive Algorithms",
+    "decode": "Let ideology override logic.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/inclusive-astrology",
+    "_path": "/grifts/inclusive-astrology",
     "title": "Inclusive Astrology",
-    "claim": "Inclusive Astrology",
-    "translation": "Star signs for all genders.",
+    "grift": "Inclusive Astrology",
+    "decode": "Star signs for all genders.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/inclusive-capitalism",
+    "_path": "/grifts/inclusive-capitalism",
     "title": "Inclusive Capitalism",
-    "claim": "Inclusive Capitalism",
-    "translation": "Profit with penance.",
+    "grift": "Inclusive Capitalism",
+    "decode": "Profit with penance.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/inclusive-climate-policy",
+    "_path": "/grifts/inclusive-climate-policy",
     "title": "Inclusive Climate Policy",
-    "claim": "Inclusive Climate Policy",
-    "translation": "Emissions with identity in mind.",
+    "grift": "Inclusive Climate Policy",
+    "decode": "Emissions with identity in mind.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/inclusive-coding-standards",
+    "_path": "/grifts/inclusive-coding-standards",
     "title": "Inclusive Coding Standards",
-    "claim": "Inclusive Coding Standards",
-    "translation": "JavaScript that checks its privilege.",
+    "grift": "Inclusive Coding Standards",
+    "decode": "JavaScript that checks its privilege.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/inclusive-infrastructure",
+    "_path": "/grifts/inclusive-infrastructure",
     "title": "Inclusive Infrastructure",
-    "claim": "Inclusive Infrastructure",
-    "translation": "Potholes, but virtuous.",
+    "grift": "Inclusive Infrastructure",
+    "decode": "Potholes, but virtuous.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/inclusive-language-1",
+    "_path": "/grifts/inclusive-language-1",
     "title": "Inclusive Language",
-    "claim": "Inclusive Language",
-    "translation": "Say what we say—or else.",
+    "grift": "Inclusive Language",
+    "decode": "Say what we say—or else.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/inclusive-language",
+    "_path": "/grifts/inclusive-language",
     "title": "Inclusive Language",
-    "claim": "Inclusive Language",
-    "translation": "Censoring speech to control thought.",
+    "grift": "Inclusive Language",
+    "decode": "Censoring speech to control thought.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/inclusive-technology",
+    "_path": "/grifts/inclusive-technology",
     "title": "Inclusive Technology",
-    "claim": "Inclusive Technology",
-    "translation": "Gadgets that lecture you.",
+    "grift": "Inclusive Technology",
+    "decode": "Gadgets that lecture you.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/intersectional-curriculum",
+    "_path": "/grifts/intersectional-curriculum",
     "title": "Intersectional Curriculum",
-    "claim": "Intersectional Curriculum",
-    "translation": "Every subject must confess.",
+    "grift": "Intersectional Curriculum",
+    "decode": "Every subject must confess.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/intersectional-feminism",
+    "_path": "/grifts/intersectional-feminism",
     "title": "Intersectional Feminism",
-    "claim": "Intersectional Feminism",
-    "translation": "Grievance stacking for clout.",
+    "grift": "Intersectional Feminism",
+    "decode": "Grievance stacking for clout.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/intersectionality",
+    "_path": "/grifts/intersectionality",
     "title": "Intersectionality",
-    "claim": "Intersectionality",
-    "translation": "Oppression Olympics, now with spreadsheets.",
+    "grift": "Intersectionality",
+    "decode": "Oppression Olympics, now with spreadsheets.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/judge-by-the-color-of-their-skin",
+    "_path": "/grifts/judge-by-the-color-of-their-skin",
     "title": "Judge by the color of their skin",
-    "claim": "Judge by the color of their skin",
-    "translation": "No, judge by the content of their character.",
+    "grift": "Judge by the color of their skin",
+    "decode": "No, judge by the content of their character.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/justice-based-hiring",
+    "_path": "/grifts/justice-based-hiring",
     "title": "Justice-Based Hiring",
-    "claim": "Justice-Based Hiring",
-    "translation": "Check your résumé's ideology.",
+    "grift": "Justice-Based Hiring",
+    "decode": "Check your résumé's ideology.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/justice-centered-design",
+    "_path": "/grifts/justice-centered-design",
     "title": "Justice-Centered Design",
-    "claim": "Justice-Centered Design",
-    "translation": "Activism with a UX badge.",
+    "grift": "Justice-Centered Design",
+    "decode": "Activism with a UX badge.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/justice-centered-science",
+    "_path": "/grifts/justice-centered-science",
     "title": "Justice-Centered Science",
-    "claim": "Justice-Centered Science",
-    "translation": "Experiments must reflect identity.",
+    "grift": "Justice-Centered Science",
+    "decode": "Experiments must reflect identity.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/justice-in-design",
+    "_path": "/grifts/justice-in-design",
     "title": "Justice in Design",
-    "claim": "Justice in Design",
-    "translation": "Architecture that checks its privilege.",
+    "grift": "Justice in Design",
+    "decode": "Architecture that checks its privilege.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/justice-oriented-ai",
+    "_path": "/grifts/justice-oriented-ai",
     "title": "Justice-Oriented AI",
-    "claim": "Justice-Oriented AI",
-    "translation": "Programmed to preach.",
+    "grift": "Justice-Oriented AI",
+    "decode": "Programmed to preach.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/killing-babies",
+    "_path": "/grifts/killing-babies",
     "title": "Killing babies",
-    "claim": "Killing babies",
-    "translation": "Letting babies live.",
+    "grift": "Killing babies",
+    "decode": "Letting babies live.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/labor-unions",
+    "_path": "/grifts/labor-unions",
     "title": "Labor Unions",
-    "claim": "Labor Unions",
-    "translation": "Damages Free Enterprise. More Poverty.",
+    "grift": "Labor Unions",
+    "decode": "Damages Free Enterprise. More Poverty.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/land-back",
+    "_path": "/grifts/land-back",
     "title": "Land Back",
-    "claim": "Land Back",
-    "translation": "Evict everyone, selectively.",
+    "grift": "Land Back",
+    "decode": "Evict everyone, selectively.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/leftism",
+    "_path": "/grifts/leftism",
     "title": "Leftism",
-    "claim": "Leftism",
-    "translation": "Conservatism, Classical Liberalism",
+    "grift": "Leftism",
+    "decode": "Conservatism, Classical Liberalism",
     "body": ""
   },
   {
-    "_path": "/claims/claims/let-anyone-vote",
+    "_path": "/grifts/let-anyone-vote",
     "title": "Let Anyone Vote",
-    "claim": "Let Anyone Vote",
-    "translation": "Voter ID",
+    "grift": "Let Anyone Vote",
+    "decode": "Voter ID",
     "body": ""
   },
   {
-    "_path": "/claims/claims/lgbt",
+    "_path": "/grifts/lgbt",
     "title": "LGBT+",
-    "claim": "LGBT+",
-    "translation": "Increased division.",
+    "grift": "LGBT+",
+    "decode": "Increased division.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/liberated-learning-spaces",
+    "_path": "/grifts/liberated-learning-spaces",
     "title": "Liberated Learning Spaces",
-    "claim": "Liberated Learning Spaces",
-    "translation": "Chaos in the name of equity.",
+    "grift": "Liberated Learning Spaces",
+    "decode": "Chaos in the name of equity.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/liberated-transit-systems",
+    "_path": "/grifts/liberated-transit-systems",
     "title": "Liberated Transit Systems",
-    "claim": "Liberated Transit Systems",
-    "translation": "Buses that boycott fossil fuels.",
+    "grift": "Liberated Transit Systems",
+    "decode": "Buses that boycott fossil fuels.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/liberation-pedagogy",
+    "_path": "/grifts/liberation-pedagogy",
     "title": "Liberation Pedagogy",
-    "claim": "Liberation Pedagogy",
-    "translation": "Teach rebellion, fail math.",
+    "grift": "Liberation Pedagogy",
+    "decode": "Teach rebellion, fail math.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/liberatory-education",
+    "_path": "/grifts/liberatory-education",
     "title": "Liberatory Education",
-    "claim": "Liberatory Education",
-    "translation": "Unlearn everything and start with slogans.",
+    "grift": "Liberatory Education",
+    "decode": "Unlearn everything and start with slogans.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/living-wage-1",
+    "_path": "/grifts/living-wage-1",
     "title": "Living Wage",
-    "claim": "Living Wage",
-    "translation": "Let bureaucrats decide your worth.",
+    "grift": "Living Wage",
+    "decode": "Let bureaucrats decide your worth.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/living-wage",
+    "_path": "/grifts/living-wage",
     "title": "Living Wage",
-    "claim": "Living Wage",
-    "translation": "Pay me more than I’m worth.",
+    "grift": "Living Wage",
+    "decode": "Pay me more than I’m worth.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/lockdown-state",
+    "_path": "/grifts/lockdown-state",
     "title": "Lockdown State",
-    "claim": "Lockdown State",
-    "translation": "Working Economy",
+    "grift": "Lockdown State",
+    "decode": "Working Economy",
     "body": ""
   },
   {
-    "_path": "/claims/claims/love",
+    "_path": "/grifts/love",
     "title": "Love",
-    "claim": "Love",
-    "translation": "Self-Love.",
+    "grift": "Love",
+    "decode": "Self-Love.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/mandatory-diversity-quotas",
+    "_path": "/grifts/mandatory-diversity-quotas",
     "title": "Mandatory Diversity Quotas",
-    "claim": "Mandatory Diversity Quotas",
-    "translation": "Merit is now discriminatory.",
+    "grift": "Mandatory Diversity Quotas",
+    "decode": "Merit is now discriminatory.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/mandatory-equity-statements",
+    "_path": "/grifts/mandatory-equity-statements",
     "title": "Mandatory Equity Statements",
-    "claim": "Mandatory Equity Statements",
-    "translation": "Loyalty oaths for the woke age.",
+    "grift": "Mandatory Equity Statements",
+    "decode": "Loyalty oaths for the woke age.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/menstrual-equity",
+    "_path": "/grifts/menstrual-equity",
     "title": "Menstrual Equity",
-    "claim": "Menstrual Equity",
-    "translation": "Subsidized hygiene for social justice.",
+    "grift": "Menstrual Equity",
+    "decode": "Subsidized hygiene for social justice.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/mental-health-awareness",
+    "_path": "/grifts/mental-health-awareness",
     "title": "Mental Health Awareness",
-    "claim": "Mental Health Awareness",
-    "translation": "Normalize dysfunction, stigmatize strength.",
+    "grift": "Mental Health Awareness",
+    "decode": "Normalize dysfunction, stigmatize strength.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/microaggressions",
+    "_path": "/grifts/microaggressions",
     "title": "Microaggressions",
-    "claim": "Microaggressions",
-    "translation": "Imaginary slights, maximum drama.",
+    "grift": "Microaggressions",
+    "decode": "Imaginary slights, maximum drama.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/minimum-wage",
+    "_path": "/grifts/minimum-wage",
     "title": "Minimum Wage",
-    "claim": "Minimum Wage",
-    "translation": "Increased Poverty.",
+    "grift": "Minimum Wage",
+    "decode": "Increased Poverty.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/misinformation-disinformation",
+    "_path": "/grifts/misinformation-disinformation",
     "title": "Misinformation, Disinformation",
-    "claim": "Misinformation, Disinformation",
-    "translation": "Free Speech the Left doesn't like.",
+    "grift": "Misinformation, Disinformation",
+    "decode": "Free Speech the Left doesn't like.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/more-control-mandates",
+    "_path": "/grifts/more-control-mandates",
     "title": "More Control/Mandates",
-    "claim": "More Control/Mandates",
-    "translation": "Less Control/Mandates",
+    "grift": "More Control/Mandates",
+    "decode": "Less Control/Mandates",
     "body": ""
   },
   {
-    "_path": "/claims/claims/mutual-accountability",
+    "_path": "/grifts/mutual-accountability",
     "title": "Mutual Accountability",
-    "claim": "Mutual Accountability",
-    "translation": "Everyone’s to blame—except us.",
+    "grift": "Mutual Accountability",
+    "decode": "Everyone’s to blame—except us.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/mutual-aid-networks",
+    "_path": "/grifts/mutual-aid-networks",
     "title": "Mutual Aid Networks",
-    "claim": "Mutual Aid Networks",
-    "translation": "Socialism with a smile.",
+    "grift": "Mutual Aid Networks",
+    "decode": "Socialism with a smile.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/nationalization",
-    "title": "Nationalism",
-    "claim": "Nationalism",
-    "translation": "Communism, Socialism, Fascism, Big State. Increased poverty.",
-    "body": ""
-  },
-  {
-    "_path": "/claims/claims/needs-investment",
+    "_path": "/grifts/needs-investment",
     "title": "Needs Investment",
-    "claim": "Needs Investment",
-    "translation": "More taxes.",
+    "grift": "Needs Investment",
+    "decode": "More taxes.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/neopronouns",
+    "_path": "/grifts/neopronouns",
     "title": "Neopronouns",
-    "claim": "Neopronouns",
-    "translation": "Invent your truth, enforce mine.",
-    "body": ""
+    "grift": "Neopronouns",
+    "decode": "Invent your truth, enforce mine.",
+    "body": "\n## \"Neopronouns\"\n\n## Invent your truth, enforce mine.\n"
   },
   {
-    "_path": "/claims/claims/net-neutrality",
+    "_path": "/grifts/net-neutrality",
     "title": "Net Neutrality",
-    "claim": "Net Neutrality",
-    "translation": "Government throttling your internet.",
+    "grift": "Net Neutrality",
+    "decode": "Government throttling your internet.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/neuro-inclusive-workflows",
+    "_path": "/grifts/neuro-inclusive-workflows",
     "title": "Neuro-Inclusive Workflows",
-    "claim": "Neuro-Inclusive Workflows",
-    "translation": "Deadlines are ableist.",
+    "grift": "Neuro-Inclusive Workflows",
+    "decode": "Deadlines are ableist.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/neurodiversity-inclusion",
+    "_path": "/grifts/neurodiversity-inclusion",
     "title": "Neurodiversity Inclusion",
-    "claim": "Neurodiversity Inclusion",
-    "translation": "Make competence optional.",
+    "grift": "Neurodiversity Inclusion",
+    "decode": "Make competence optional.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/neuroqueer-identity",
+    "_path": "/grifts/neuroqueer-identity",
     "title": "Neuroqueer Identity",
-    "claim": "Neuroqueer Identity",
-    "translation": "Infinite flags, zero clarity.",
+    "grift": "Neuroqueer Identity",
+    "decode": "Infinite flags, zero clarity.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/news-reporting",
+    "_path": "/grifts/news-reporting",
     "title": "News Reporting",
-    "claim": "News Reporting",
-    "translation": "Leftist Talking Points.",
+    "grift": "News Reporting",
+    "decode": "Leftist Talking Points.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/no-borders",
+    "_path": "/grifts/no-borders",
     "title": "No Borders",
-    "claim": "No Borders",
-    "translation": "No country.",
+    "grift": "No Borders",
+    "decode": "No country.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/no-justice-no-peace",
+    "_path": "/grifts/no-justice-no-peace",
     "title": "No Justice, No Peace",
-    "claim": "No Justice, No Peace",
-    "translation": "Threats are now activism.",
+    "grift": "No Justice, No Peace",
+    "decode": "Threats are now activism.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/non-binary-inclusion",
+    "_path": "/grifts/non-binary-inclusion",
     "title": "Non-Binary Inclusion",
-    "claim": "Non-Binary Inclusion",
-    "translation": "Rewrite language for niche ideology.",
+    "grift": "Non-Binary Inclusion",
+    "decode": "Rewrite language for niche ideology.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/non-carceral-responses",
+    "_path": "/grifts/non-carceral-responses",
     "title": "Non-Carceral Responses",
-    "claim": "Non-Carceral Responses",
-    "translation": "Consequences are oppressive.",
+    "grift": "Non-Carceral Responses",
+    "decode": "Consequences are oppressive.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/normalize-emotional-labor",
+    "_path": "/grifts/normalize-emotional-labor",
     "title": "Normalize Emotional Labor",
-    "claim": "Normalize Emotional Labor",
-    "translation": "Everyone owes you empathy.",
+    "grift": "Normalize Emotional Labor",
+    "decode": "Everyone owes you empathy.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/normalize-mental-illness",
+    "_path": "/grifts/normalize-mental-illness",
     "title": "Normalize Mental Illness",
-    "claim": "Normalize Mental Illness",
-    "translation": "Glorify struggle, ignore resilience.",
+    "grift": "Normalize Mental Illness",
+    "decode": "Glorify struggle, ignore resilience.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/normalize-polyamory",
+    "_path": "/grifts/normalize-polyamory",
     "title": "Normalize Polyamory",
-    "claim": "Normalize Polyamory",
-    "translation": "Stability is oppressive.",
+    "grift": "Normalize Polyamory",
+    "decode": "Stability is oppressive.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/open-borders-2",
+    "_path": "/grifts/open-borders-2",
     "title": "Open Borders",
-    "claim": "Open Borders",
-    "translation": "Border Control",
+    "grift": "Open Borders",
+    "decode": "Border Control",
     "body": ""
   },
   {
-    "_path": "/claims/claims/open-borders",
+    "_path": "/grifts/open-borders",
     "title": "Open Borders",
-    "claim": "Open Borders",
-    "translation": "Sovereignty is optional.",
+    "grift": "Open Borders",
+    "decode": "Sovereignty is optional.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/oppression-olympics",
+    "_path": "/grifts/oppression-olympics",
     "title": "Oppression Olympics",
-    "claim": "Oppression Olympics",
-    "translation": "Gold medals in grievance.",
+    "grift": "Oppression Olympics",
+    "decode": "Gold medals in grievance.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/over-regulations",
+    "_path": "/grifts/over-regulations",
     "title": "Over-Regulations",
-    "claim": "Over-Regulations",
-    "translation": "Small Businesses",
+    "grift": "Over-Regulations",
+    "decode": "Small Businesses",
     "body": ""
   },
   {
-    "_path": "/claims/claims/patriarchy",
+    "_path": "/grifts/patriarchy",
     "title": "Patriarchy",
-    "claim": "Patriarchy",
-    "translation": "Men existing, apparently.",
+    "grift": "Patriarchy",
+    "decode": "Men existing, apparently.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/plant-based-mandates",
+    "_path": "/grifts/plant-based-mandates",
     "title": "Plant-Based Mandates",
-    "claim": "Plant-Based Mandates",
-    "translation": "Your plate, their choice.",
+    "grift": "Plant-Based Mandates",
+    "decode": "Your plate, their choice.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/police-free-schools",
+    "_path": "/grifts/police-free-schools",
     "title": "Police-Free Schools",
-    "claim": "Police-Free Schools",
-    "translation": "Safety is a colonial concept.",
+    "grift": "Police-Free Schools",
+    "decode": "Safety is a colonial concept.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/political-correctness-2",
+    "_path": "/grifts/political-correctness-2",
     "title": "Political Correctness",
-    "claim": "Political Correctness",
-    "translation": "Free Speech",
+    "grift": "Political Correctness",
+    "decode": "Free Speech",
     "body": ""
   },
   {
-    "_path": "/claims/claims/political-correctness",
+    "_path": "/grifts/political-correctness",
     "title": "Political Correctness",
-    "claim": "Political Correctness",
-    "translation": "Controlling speech.",
+    "grift": "Political Correctness",
+    "decode": "Controlling speech.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/post-capitalist-futures",
+    "_path": "/grifts/post-capitalist-futures",
     "title": "Post-Capitalist Futures",
-    "claim": "Post-Capitalist Futures",
-    "translation": "Poverty, but visionary.",
+    "grift": "Post-Capitalist Futures",
+    "decode": "Poverty, but visionary.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/post-capitalist-urban-planning",
+    "_path": "/grifts/post-capitalist-urban-planning",
     "title": "Post-Capitalist Urban Planning",
-    "claim": "Post-Capitalist Urban Planning",
-    "translation": "A skyline of shared failure.",
+    "grift": "Post-Capitalist Urban Planning",
+    "decode": "A skyline of shared failure.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/post-colonial-wellness",
+    "_path": "/grifts/post-colonial-wellness",
     "title": "Post-Colonial Wellness",
-    "claim": "Post-Colonial Wellness",
-    "translation": "Chakras aligned with outrage.",
+    "grift": "Post-Colonial Wellness",
+    "decode": "Chakras aligned with outrage.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/post-work-economy",
+    "_path": "/grifts/post-work-economy",
     "title": "Post-Work Economy",
-    "claim": "Post-Work Economy",
-    "translation": "Jobs are oppression.",
+    "grift": "Post-Work Economy",
+    "decode": "Jobs are oppression.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/privilege-walks",
+    "_path": "/grifts/privilege-walks",
     "title": "Privilege Walks",
-    "claim": "Privilege Walks",
-    "translation": "March for your guilt.",
+    "grift": "Privilege Walks",
+    "decode": "March for your guilt.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/pro-choice",
+    "_path": "/grifts/pro-choice",
     "title": "Pro-Choice",
-    "claim": "Pro-Choice",
-    "translation": "Legalized Murder.",
+    "grift": "Pro-Choice",
+    "decode": "Legalized Murder.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/progressive-banking",
+    "_path": "/grifts/progressive-banking",
     "title": "Progressive Banking",
-    "claim": "Progressive Banking",
-    "translation": "Woke wallets with fees.",
+    "grift": "Progressive Banking",
+    "decode": "Woke wallets with fees.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/progressive-taxation-1",
+    "_path": "/grifts/progressive-taxation-1",
     "title": "Progressive Taxation",
-    "claim": "Progressive Taxation",
-    "translation": "Punish effort, reward complaint.",
+    "grift": "Progressive Taxation",
+    "decode": "Punish effort, reward complaint.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/progressive-taxation",
+    "_path": "/grifts/progressive-taxation",
     "title": "Progressive Taxation",
-    "claim": "Progressive Taxation",
-    "translation": "Punish success to fund failure.",
+    "grift": "Progressive Taxation",
+    "decode": "Punish success to fund failure.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/progressive-urbanism",
+    "_path": "/grifts/progressive-urbanism",
     "title": "Progressive Urbanism",
-    "claim": "Progressive Urbanism",
-    "translation": "Live small, think smaller.",
+    "grift": "Progressive Urbanism",
+    "decode": "Live small, think smaller.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/progressive",
+    "_path": "/grifts/progressive",
     "title": "Progressive",
-    "claim": "Progressive",
-    "translation": "Regressive.",
+    "grift": "Progressive",
+    "decode": "Regressive.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/pronoun-enforcement",
+    "_path": "/grifts/pronoun-enforcement",
     "title": "Pronoun Enforcement",
-    "claim": "Pronoun Enforcement",
-    "translation": "Compelled speech, with a rainbow sticker.",
+    "grift": "Pronoun Enforcement",
+    "decode": "Compelled speech, with a rainbow sticker.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/pronoun-mandates",
+    "_path": "/grifts/pronoun-mandates",
     "title": "Pronoun Mandates",
-    "claim": "Pronoun Mandates",
-    "translation": "Forced speech for fantasy land.",
+    "grift": "Pronoun Mandates",
+    "decode": "Forced speech for fantasy land.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/public-art-for-justice",
+    "_path": "/grifts/public-art-for-justice",
     "title": "Public Art for Justice",
-    "claim": "Public Art for Justice",
-    "translation": "Graffiti as gospel.",
+    "grift": "Public Art for Justice",
+    "decode": "Graffiti as gospel.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/public-education",
+    "_path": "/grifts/public-education",
     "title": "Public Education",
-    "claim": "Public Education",
-    "translation": "Left wing Indoctrination.",
+    "grift": "Public Education",
+    "decode": "Left wing Indoctrination.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/public-healthcare",
+    "_path": "/grifts/public-healthcare",
     "title": "Public Healthcare",
-    "claim": "Public Healthcare",
-    "translation": "The DMV, but with needles.",
+    "grift": "Public Healthcare",
+    "decode": "The DMV, but with needles.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/public-ownership",
+    "_path": "/grifts/public-ownership",
     "title": "Public Ownership",
-    "claim": "Public Ownership",
-    "translation": "Make Industries worse, Cronyism job posting.",
+    "grift": "Public Ownership",
+    "decode": "Make Industries worse, Cronyism job posting.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/public-transportation-for-all",
+    "_path": "/grifts/public-transportation-for-all",
     "title": "Public Transportation for All",
-    "claim": "Public Transportation for All",
-    "translation": "Freedom of movement, brought to you by delays.",
+    "grift": "Public Transportation for All",
+    "decode": "Freedom of movement, brought to you by delays.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/publicly-owned",
+    "_path": "/grifts/publicly-owned",
     "title": "Publicly owned",
-    "claim": "Publicly owned",
-    "translation": "Levelling down",
+    "grift": "Publicly owned",
+    "decode": "Levelling down",
     "body": ""
   },
   {
-    "_path": "/claims/claims/queer-centered-public-health",
+    "_path": "/grifts/queer-centered-public-health",
     "title": "Queer-Centered Public Health",
-    "claim": "Queer-Centered Public Health",
-    "translation": "Science, now with pronouns.",
+    "grift": "Queer-Centered Public Health",
+    "decode": "Science, now with pronouns.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/queer-ecologies",
+    "_path": "/grifts/queer-ecologies",
     "title": "Queer Ecologies",
-    "claim": "Queer Ecologies",
-    "translation": "Nature comes out.",
+    "grift": "Queer Ecologies",
+    "decode": "Nature comes out.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/queer-food-justice",
+    "_path": "/grifts/queer-food-justice",
     "title": "Queer Food Justice",
-    "claim": "Queer Food Justice",
-    "translation": "Organic outrage with a twist.",
+    "grift": "Queer Food Justice",
+    "decode": "Organic outrage with a twist.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/queer-informed-infrastructure",
+    "_path": "/grifts/queer-informed-infrastructure",
     "title": "Queer Informed Infrastructure",
-    "claim": "Queer Informed Infrastructure",
-    "translation": "Bridges built with feelings.",
+    "grift": "Queer Informed Infrastructure",
+    "decode": "Bridges built with feelings.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/queer-liberation",
+    "_path": "/grifts/queer-liberation",
     "title": "Queer Liberation",
-    "claim": "Queer Liberation",
-    "translation": "Identity politics, now with glitter.",
+    "grift": "Queer Liberation",
+    "decode": "Identity politics, now with glitter.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/queer-theory-in-schools",
+    "_path": "/grifts/queer-theory-in-schools",
     "title": "Queer Theory in Schools",
-    "claim": "Queer Theory in Schools",
-    "translation": "Confuse kids for the cause.",
+    "grift": "Queer Theory in Schools",
+    "decode": "Confuse kids for the cause.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/queering-the-classroom",
+    "_path": "/grifts/queering-the-classroom",
     "title": "Queering the Classroom",
-    "claim": "Queering the Classroom",
-    "translation": "Rebuild reality from the blackboard up.",
+    "grift": "Queering the Classroom",
+    "decode": "Rebuild reality from the blackboard up.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/racist-fascist-nazi",
+    "_path": "/grifts/racist-fascist-nazi",
     "title": "Racist, Fascist, Nazi",
-    "claim": "Racist, Fascist, Nazi",
-    "translation": "Anybody who disagrees with leftists.",
+    "grift": "Racist, Fascist, Nazi",
+    "decode": "Anybody who disagrees with leftists.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/radical-budgeting",
+    "_path": "/grifts/radical-budgeting",
     "title": "Radical Budgeting",
-    "claim": "Radical Budgeting",
-    "translation": "Math that feels fair.",
+    "grift": "Radical Budgeting",
+    "decode": "Math that feels fair.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/radical-empathy",
+    "_path": "/grifts/radical-empathy",
     "title": "Radical Empathy",
-    "claim": "Radical Empathy",
-    "translation": "Feel for all, think for none.",
+    "grift": "Radical Empathy",
+    "decode": "Feel for all, think for none.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/radical-inclusion-policies",
+    "_path": "/grifts/radical-inclusion-policies",
     "title": "Radical Inclusion Policies",
-    "claim": "Radical Inclusion Policies",
-    "translation": "Belonging by bureaucratic force.",
+    "grift": "Radical Inclusion Policies",
+    "decode": "Belonging by bureaucratic force.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/radical-redistribution",
+    "_path": "/grifts/radical-redistribution",
     "title": "Radical Redistribution",
-    "claim": "Radical Redistribution",
-    "translation": "Forceful charity, minus consent.",
+    "grift": "Radical Redistribution",
+    "decode": "Forceful charity, minus consent.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/radical-reparations",
+    "_path": "/grifts/radical-reparations",
     "title": "Radical Reparations",
-    "claim": "Radical Reparations",
-    "translation": "Money for inherited pain.",
+    "grift": "Radical Reparations",
+    "decode": "Money for inherited pain.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/radical-rest-economy",
+    "_path": "/grifts/radical-rest-economy",
     "title": "Radical Rest Economy",
-    "claim": "Radical Rest Economy",
-    "translation": "Laziness as currency.",
+    "grift": "Radical Rest Economy",
+    "decode": "Laziness as currency.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/radical-self-care",
+    "_path": "/grifts/radical-self-care",
     "title": "Radical Self-Care",
-    "claim": "Radical Self-Care",
-    "translation": "Indulge like it's resistance.",
+    "grift": "Radical Self-Care",
+    "decode": "Indulge like it's resistance.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/radical-transparency",
+    "_path": "/grifts/radical-transparency",
     "title": "Radical Transparency",
-    "claim": "Radical Transparency",
-    "translation": "Overshare for equity.",
+    "grift": "Radical Transparency",
+    "decode": "Overshare for equity.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/raise-the-minimum-wage",
+    "_path": "/grifts/raise-the-minimum-wage",
     "title": "Raise the Minimum Wage",
-    "claim": "Raise the Minimum Wage",
-    "translation": "Price young workers out of the market.",
+    "grift": "Raise the Minimum Wage",
+    "decode": "Price young workers out of the market.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reclaim-crafting",
+    "_path": "/grifts/reclaim-crafting",
     "title": "Reclaim Crafting",
-    "claim": "Reclaim Crafting",
-    "translation": "Knitting as revolution.",
+    "grift": "Reclaim Crafting",
+    "decode": "Knitting as revolution.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reclaim-fatness",
+    "_path": "/grifts/reclaim-fatness",
     "title": "Reclaim Fatness",
-    "claim": "Reclaim Fatness",
-    "translation": "Health is a social construct now.",
+    "grift": "Reclaim Fatness",
+    "decode": "Health is a social construct now.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reclaim-public-rest",
+    "_path": "/grifts/reclaim-public-rest",
     "title": "Reclaim Public Rest",
-    "claim": "Reclaim Public Rest",
-    "translation": "Nap time as protest.",
+    "grift": "Reclaim Public Rest",
+    "decode": "Nap time as protest.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reclaim-public-transport",
+    "_path": "/grifts/reclaim-public-transport",
     "title": "Reclaim Public Transport",
-    "claim": "Reclaim Public Transport",
-    "translation": "Smell the justice.",
+    "grift": "Reclaim Public Transport",
+    "decode": "Smell the justice.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reclaiming-public-space",
+    "_path": "/grifts/reclaiming-public-space",
     "title": "Reclaiming Public Space",
-    "claim": "Reclaiming Public Space",
-    "translation": "Camping is protest, not trespassing.",
+    "grift": "Reclaiming Public Space",
+    "decode": "Camping is protest, not trespassing.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reclaiming-time",
+    "_path": "/grifts/reclaiming-time",
     "title": "Reclaiming Time",
-    "claim": "Reclaiming Time",
-    "translation": "Slacking is revolutionary.",
+    "grift": "Reclaiming Time",
+    "decode": "Slacking is revolutionary.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/redistribute-wealth",
+    "_path": "/grifts/redistribute-wealth",
     "title": "Redistribute Wealth",
-    "claim": "Redistribute Wealth",
-    "translation": "Loot, but legally.",
+    "grift": "Redistribute Wealth",
+    "decode": "Loot, but legally.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/redistribution",
+    "_path": "/grifts/redistribution",
     "title": "Redistribution",
-    "claim": "Redistribution",
-    "translation": "Social Engineering, Increased Poverty.",
+    "grift": "Redistribution",
+    "decode": "Social Engineering, Increased Poverty.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reimagine-capitalism",
+    "_path": "/grifts/reimagine-capitalism",
     "title": "Reimagine Capitalism",
-    "claim": "Reimagine Capitalism",
-    "translation": "Imagine poverty, but fair.",
+    "grift": "Reimagine Capitalism",
+    "decode": "Imagine poverty, but fair.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reimagine-labor",
+    "_path": "/grifts/reimagine-labor",
     "title": "Reimagine Labor",
-    "claim": "Reimagine Labor",
-    "translation": "Work less, demand more.",
+    "grift": "Reimagine Labor",
+    "decode": "Work less, demand more.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reimagine-policing",
+    "_path": "/grifts/reimagine-policing",
     "title": "Reimagine Policing",
-    "claim": "Reimagine Policing",
-    "translation": "Imagine no safety.",
+    "grift": "Reimagine Policing",
+    "decode": "Imagine no safety.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reimagined-graduation-ceremonies",
+    "_path": "/grifts/reimagined-graduation-ceremonies",
     "title": "Reimagined Graduation Ceremonies",
-    "claim": "Reimagined Graduation Ceremonies",
-    "translation": "Diplomas with disclaimers.",
+    "grift": "Reimagined Graduation Ceremonies",
+    "decode": "Diplomas with disclaimers.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reimagined-taxation",
+    "_path": "/grifts/reimagined-taxation",
     "title": "Reimagined Taxation",
-    "claim": "Reimagined Taxation",
-    "translation": "Theft, but visionary.",
+    "grift": "Reimagined Taxation",
+    "decode": "Theft, but visionary.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/rent-control",
+    "_path": "/grifts/rent-control",
     "title": "Rent Control",
-    "claim": "Rent Control",
-    "translation": "Destroy housing availability, fairly.",
+    "grift": "Rent Control",
+    "decode": "Destroy housing availability, fairly.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reparations-2",
+    "_path": "/grifts/reparations-2",
     "title": "Reparations",
-    "claim": "Reparations",
-    "translation": "Punishing people for history they didn’t make.",
+    "grift": "Reparations",
+    "decode": "Punishing people for history they didn’t make.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reparations-for-climate-change",
+    "_path": "/grifts/reparations-for-climate-change",
     "title": "Reparations for Climate Change",
-    "claim": "Reparations for Climate Change",
-    "translation": "Pay twice for bad policy.",
+    "grift": "Reparations for Climate Change",
+    "decode": "Pay twice for bad policy.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reparations-in-education",
+    "_path": "/grifts/reparations-in-education",
     "title": "Reparations in Education",
-    "claim": "Reparations in Education",
-    "translation": "Pay for past sins with present ignorance.",
+    "grift": "Reparations in Education",
+    "decode": "Pay for past sins with present ignorance.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reparations",
+    "_path": "/grifts/reparations",
     "title": "Reparations",
-    "claim": "Reparations",
-    "translation": "Punish people for the sins of others, long dead.",
+    "grift": "Reparations",
+    "decode": "Punish people for the sins of others, long dead.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reparative-climate-policy",
+    "_path": "/grifts/reparative-climate-policy",
     "title": "Reparative Climate Policy",
-    "claim": "Reparative Climate Policy",
-    "translation": "More taxes, fewer degrees.",
+    "grift": "Reparative Climate Policy",
+    "decode": "More taxes, fewer degrees.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reparative-hiring-practices",
+    "_path": "/grifts/reparative-hiring-practices",
     "title": "Reparative Hiring Practices",
-    "claim": "Reparative Hiring Practices",
-    "translation": "Your job offer comes with apologies.",
+    "grift": "Reparative Hiring Practices",
+    "decode": "Your job offer comes with apologies.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reparative-history",
+    "_path": "/grifts/reparative-history",
     "title": "Reparative History",
-    "claim": "Reparative History",
-    "translation": "Rewrite the past to control the present.",
+    "grift": "Reparative History",
+    "decode": "Rewrite the past to control the present.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reparative-therapy",
+    "_path": "/grifts/reparative-therapy",
     "title": "Reparative Therapy",
-    "claim": "Reparative Therapy",
-    "translation": "Guilt trips for historical sins.",
+    "grift": "Reparative Therapy",
+    "decode": "Guilt trips for historical sins.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reparative-urban-planning",
+    "_path": "/grifts/reparative-urban-planning",
     "title": "Reparative Urban Planning",
-    "claim": "Reparative Urban Planning",
-    "translation": "Zoning by historical guilt.",
+    "grift": "Reparative Urban Planning",
+    "decode": "Zoning by historical guilt.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reproductive-equity",
+    "_path": "/grifts/reproductive-equity",
     "title": "Reproductive Equity",
-    "claim": "Reproductive Equity",
-    "translation": "Abortion, subsidized and sanctified.",
+    "grift": "Reproductive Equity",
+    "decode": "Abortion, subsidized and sanctified.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reproductive-futurism",
+    "_path": "/grifts/reproductive-futurism",
     "title": "Reproductive Futurism",
-    "claim": "Reproductive Futurism",
-    "translation": "Abortions and ideologies for all.",
+    "grift": "Reproductive Futurism",
+    "decode": "Abortions and ideologies for all.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reproductive-justice",
+    "_path": "/grifts/reproductive-justice",
     "title": "Reproductive Justice",
-    "claim": "Reproductive Justice",
-    "translation": "No limits, no questions, all funded.",
+    "grift": "Reproductive Justice",
+    "decode": "No limits, no questions, all funded.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/reproductive-rights",
+    "_path": "/grifts/reproductive-rights",
     "title": "Reproductive Rights",
-    "claim": "Reproductive Rights",
-    "translation": "Euphemism for ending life.",
+    "grift": "Reproductive Rights",
+    "decode": "Euphemism for ending life.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/rest-is-resistance",
+    "_path": "/grifts/rest-is-resistance",
     "title": "Rest is Resistance",
-    "claim": "Rest is Resistance",
-    "translation": "Laziness as virtue.",
+    "grift": "Rest is Resistance",
+    "decode": "Laziness as virtue.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/restorative-justice-1",
+    "_path": "/grifts/restorative-justice-1",
     "title": "Restorative Justice",
-    "claim": "Restorative Justice",
-    "translation": "Let the victim apologize.",
+    "grift": "Restorative Justice",
+    "decode": "Let the victim apologize.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/restorative-justice-injustice",
+    "_path": "/grifts/restorative-justice-injustice",
     "title": "Restorative Justice",
-    "claim": "Restorative Justice",
-    "translation": "Injustice.",
+    "grift": "Restorative Justice",
+    "decode": "Injustice.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/restorative-justice",
+    "_path": "/grifts/restorative-justice",
     "title": "Restorative Justice",
-    "claim": "Restorative Justice",
-    "translation": "Letting criminals off easy.",
+    "grift": "Restorative Justice",
+    "decode": "Letting criminals off easy.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/restorative-urbanism",
+    "_path": "/grifts/restorative-urbanism",
     "title": "Restorative Urbanism",
-    "claim": "Restorative Urbanism",
-    "translation": "Design cities that apologize.",
+    "grift": "Restorative Urbanism",
+    "decode": "Design cities that apologize.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/rewild-the-suburbs",
+    "_path": "/grifts/rewild-the-suburbs",
     "title": "Rewild the Suburbs",
-    "claim": "Rewild the Suburbs",
-    "translation": "Send the coyotes to HOA meetings.",
+    "grift": "Rewild the Suburbs",
+    "decode": "Send the coyotes to HOA meetings.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/rewilding-cities",
+    "_path": "/grifts/rewilding-cities",
     "title": "Rewilding Cities",
-    "claim": "Rewilding Cities",
-    "translation": "Let nature and crime run free.",
+    "grift": "Rewilding Cities",
+    "decode": "Let nature and crime run free.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/riots-violence",
+    "_path": "/grifts/riots-violence",
     "title": "Riots & Violence",
-    "claim": "Riots & Violence",
-    "translation": "Law & Order",
+    "grift": "Riots & Violence",
+    "decode": "Law & Order",
     "body": ""
   },
   {
-    "_path": "/claims/claims/safe-expression-zones",
+    "_path": "/grifts/safe-expression-zones",
     "title": "Safe Expression Zones",
-    "claim": "Safe Expression Zones",
-    "translation": "Speak here, and only here.",
+    "grift": "Safe Expression Zones",
+    "decode": "Speak here, and only here.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/safe-injection-sites-1",
+    "_path": "/grifts/safe-injection-sites-1",
     "title": "Safe Injection Sites",
-    "claim": "Safe Injection Sites",
-    "translation": "Enable addiction to feel compassionate.",
+    "grift": "Safe Injection Sites",
+    "decode": "Enable addiction to feel compassionate.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/safe-injection-sites",
+    "_path": "/grifts/safe-injection-sites",
     "title": "Safe Injection Sites",
-    "claim": "Safe Injection Sites",
-    "translation": "Enabling addiction with a roof.",
+    "grift": "Safe Injection Sites",
+    "decode": "Enabling addiction with a roof.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/safe-spaces-1",
+    "_path": "/grifts/safe-spaces-1",
     "title": "Safe Spaces",
-    "claim": "Safe Spaces",
-    "translation": "Childproofing adulthood.",
+    "grift": "Safe Spaces",
+    "decode": "Childproofing adulthood.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/safe-spaces",
+    "_path": "/grifts/safe-spaces",
     "title": "Safe Spaces",
-    "claim": "Safe Spaces",
-    "translation": "Echo chambers for fragile egos.",
+    "grift": "Safe Spaces",
+    "decode": "Echo chambers for fragile egos.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/safe-zones-on-campus",
+    "_path": "/grifts/safe-zones-on-campus",
     "title": "Safe Zones on Campus",
-    "claim": "Safe Zones on Campus",
-    "translation": "Free inquiry prohibited here.",
+    "grift": "Safe Zones on Campus",
+    "decode": "Free inquiry prohibited here.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/sanctuary-cities",
+    "_path": "/grifts/sanctuary-cities",
     "title": "Sanctuary Cities",
-    "claim": "Sanctuary Cities",
-    "translation": "Lawlessness with a welcome mat.",
+    "grift": "Sanctuary Cities",
+    "decode": "Lawlessness with a welcome mat.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/silence-is-violence",
+    "_path": "/grifts/silence-is-violence",
     "title": "Silence is Violence",
-    "claim": "Silence is Violence",
-    "translation": "Speak, comply, or be complicit.",
+    "grift": "Silence is Violence",
+    "decode": "Speak, comply, or be complicit.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/social-insert-any-word",
+    "_path": "/grifts/social-insert-any-word",
     "title": "Social insert any word",
-    "claim": "Social insert any word",
-    "translation": "Increased poverty. Increased division. Destroy native culture.",
+    "grift": "Social insert any word",
+    "decode": "Increased poverty. Increased division. Destroy native culture.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/social-justice-1",
+    "_path": "/grifts/social-justice-1",
     "title": "Social Justice",
-    "claim": "Social Justice",
-    "translation": "Mob rule wrapped in moral language.",
+    "grift": "Social Justice",
+    "decode": "Mob rule wrapped in moral language.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/social-justice",
+    "_path": "/grifts/social-justice",
     "title": "Social Justice",
-    "claim": "Social Justice",
-    "translation": "Revenge dressed up as fairness.",
+    "grift": "Social Justice",
+    "decode": "Revenge dressed up as fairness.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/social-welfare",
+    "_path": "/grifts/social-welfare",
     "title": "Social Welfare",
-    "claim": "Social Welfare",
-    "translation": "Increased poverty.",
+    "grift": "Social Welfare",
+    "decode": "Increased poverty.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/socialism",
+    "_path": "/grifts/socialism",
     "title": "Socialism",
-    "claim": "Socialism",
-    "translation": "Poverty for all",
+    "grift": "Socialism",
+    "decode": "Tall Poppy Syndrome Poverty for All",
     "body": ""
   },
   {
-    "_path": "/claims/claims/socialized-medicine-1",
+    "_path": "/grifts/socialized-medicine-1",
     "title": "Socialized Medicine",
-    "claim": "Socialized Medicine",
-    "translation": "The efficiency of the DMV, now with scalpels.",
+    "grift": "Socialized Medicine",
+    "decode": "The efficiency of the DMV, now with scalpels.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/socialized-medicine",
+    "_path": "/grifts/socialized-medicine",
     "title": "Socialized Medicine",
-    "claim": "Socialized Medicine",
-    "translation": "Waitlists for everyone.",
+    "grift": "Socialized Medicine",
+    "decode": "Waitlists for everyone.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/socially-just-agriculture",
+    "_path": "/grifts/socially-just-agriculture",
     "title": "Socially Just Agriculture",
-    "claim": "Socially Just Agriculture",
-    "translation": "Farm equity, not food.",
+    "grift": "Socially Just Agriculture",
+    "decode": "Farm equity, not food.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/student-led-justice",
+    "_path": "/grifts/student-led-justice",
     "title": "Student-Led Justice",
-    "claim": "Student-Led Justice",
-    "translation": "Mob rule with a GPA.",
+    "grift": "Student-Led Justice",
+    "decode": "Mob rule with a GPA.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/subvert-the-algorithm",
+    "_path": "/grifts/subvert-the-algorithm",
     "title": "Subvert the Algorithm",
-    "claim": "Subvert the Algorithm",
-    "translation": "Shadowban everyone you dislike.",
+    "grift": "Subvert the Algorithm",
+    "decode": "Shadowban everyone you dislike.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/sustainable-masculinity",
+    "_path": "/grifts/sustainable-masculinity",
     "title": "Sustainable Masculinity",
-    "claim": "Sustainable Masculinity",
-    "translation": "Neuter it with buzzwords.",
+    "grift": "Sustainable Masculinity",
+    "decode": "Neuter it with buzzwords.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/sustainable-restrooms",
+    "_path": "/grifts/sustainable-restrooms",
     "title": "Sustainable Restrooms",
-    "claim": "Sustainable Restrooms",
-    "translation": "Virtue-flush your guilt.",
+    "grift": "Sustainable Restrooms",
+    "decode": "Virtue-flush your guilt.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/systemic-patriarchy",
+    "_path": "/grifts/systemic-patriarchy",
     "title": "Systemic Patriarchy",
-    "claim": "Systemic Patriarchy",
-    "translation": "Civilization. Division of labor up to individual choice.",
+    "grift": "Systemic Patriarchy",
+    "decode": "Civilization. Division of labor up to individual choice.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/systemic-racism",
+    "_path": "/grifts/systemic-racism",
     "title": "Systemic Racism",
-    "claim": "Systemic Racism",
-    "translation": "Blame everyone but yourself.",
+    "grift": "Systemic Racism",
+    "decode": "Blame everyone but yourself.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/tax-air-travel",
+    "_path": "/grifts/tax-air-travel",
     "title": "Tax Air Travel",
-    "claim": "Tax Air Travel",
-    "translation": "Ground the poor.",
+    "grift": "Tax Air Travel",
+    "decode": "Ground the poor.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/tax-carbon",
+    "_path": "/grifts/tax-carbon",
     "title": "Tax Carbon",
-    "claim": "Tax Carbon",
-    "translation": "Pay more to breathe.",
+    "grift": "Tax Carbon",
+    "decode": "Pay more to breathe.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/tax-the-rich-1",
+    "_path": "/grifts/tax-the-rich-1",
     "title": "Tax the Rich",
-    "claim": "Tax the Rich",
-    "translation": "Punish success to fund inefficiency.",
+    "grift": "Tax the Rich",
+    "decode": "Punish success to fund inefficiency.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/tax-the-rich",
+    "_path": "/grifts/tax-the-rich",
     "title": "Tax the rich",
-    "claim": "Tax the rich",
-    "translation": "Increased poverty.",
+    "grift": "Tax the rich",
+    "decode": "Increased poverty.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/taxation",
+    "_path": "/grifts/taxation",
     "title": "Taxation",
-    "claim": "Taxation",
-    "translation": "Theft.",
+    "grift": "Taxation",
+    "decode": "Theft.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/therapy-for-all",
+    "_path": "/grifts/therapy-for-all",
     "title": "Therapy for All",
-    "claim": "Therapy for All",
-    "translation": "Pathologize normal life.",
+    "grift": "Therapy for All",
+    "decode": "Pathologize normal life.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/toxic-masculinity-02",
+    "_path": "/grifts/toxic-masculinity-02",
     "title": "Toxic Masculinity",
-    "claim": "Toxic Masculinity",
-    "translation": "Straight White Male",
+    "grift": "Toxic Masculinity",
+    "decode": "Straight White Male",
     "body": ""
   },
   {
-    "_path": "/claims/claims/toxic-masculinity-1",
+    "_path": "/grifts/toxic-masculinity-1",
     "title": "Toxic Masculinity",
-    "claim": "Toxic Masculinity",
-    "translation": "Manhood rebranded as disease.",
+    "grift": "Toxic Masculinity",
+    "decode": "Manhood rebranded as disease.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/trans-women-are-women",
+    "_path": "/grifts/trans-man",
+    "title": "Trans-Man",
+    "grift": "Trans-Man",
+    "decode": "Woman",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/trans-woman",
+    "title": "Trans-Woman",
+    "grift": "Trans-Woman",
+    "decode": "Man",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/trans-women-are-women",
     "title": "Trans Women are Women",
-    "claim": "Trans Women are Women",
-    "translation": "Biology is hate speech now.",
+    "grift": "Trans Women are Women",
+    "decode": "Not scientifically valid",
     "body": ""
   },
   {
-    "_path": "/claims/claims/trauma-aware-journalism",
+    "_path": "/grifts/trauma-aware-journalism",
     "title": "Trauma-Aware Journalism",
-    "claim": "Trauma-Aware Journalism",
-    "translation": "Truth with trigger warnings.",
+    "grift": "Trauma-Aware Journalism",
+    "decode": "Truth with trigger warnings.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/trauma-informed-education",
+    "_path": "/grifts/trauma-informed-education",
     "title": "Trauma-Informed Education",
-    "claim": "Trauma-Informed Education",
-    "translation": "Coddle first, teach later.",
+    "grift": "Trauma-Informed Education",
+    "decode": "Coddle first, teach later.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/trauma-informed-policing",
+    "_path": "/grifts/trauma-informed-policing",
     "title": "Trauma-Informed Policing",
-    "claim": "Trauma-Informed Policing",
-    "translation": "Whispers instead of warrants.",
+    "grift": "Trauma-Informed Policing",
+    "decode": "Whispers instead of warrants.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/tyrannical-government",
-    "title": "Tyrannical Government",
-    "claim": "Tyrannical Government",
-    "translation": "Free Constitutional Republic",
-    "body": ""
-  },
-  {
-    "_path": "/claims/claims/undocumented",
+    "_path": "/grifts/undocumented",
     "title": "Undocumented",
-    "claim": "Undocumented",
-    "translation": "Illegal or New Voter.",
+    "grift": "Undocumented",
+    "decode": "Illegal or New Voter.",
     "body": ""
   },
   {
-    "_path": "/claims/claims/weak-military",
+    "_path": "/grifts/weak-military",
     "title": "Weak Military",
-    "claim": "Weak Military",
-    "translation": "Strong Military",
+    "grift": "Weak Military",
+    "decode": "Strong Military",
     "body": ""
   },
   {
-    "_path": "/claims/claims/welfare-state",
+    "_path": "/grifts/welfare-state",
     "title": "Welfare State",
-    "claim": "Welfare State",
-    "translation": "Working Class",
+    "grift": "Welfare State",
+    "decode": "Permanent underclass.",
     "body": ""
   }
 ]
