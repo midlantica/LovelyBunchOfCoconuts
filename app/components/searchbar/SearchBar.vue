@@ -1,23 +1,23 @@
 <!-- components/SearchBar.vue -->
 <template>
-  <div class="flex flex-col items-center gap-2 w-full h-auto text-seagull-950">
-    <div class="relative flex flex-row gap-2 w-full overflow-visible">
+  <div class="text-seagull-950 flex h-auto w-full flex-col items-center gap-2">
+    <div class="relative flex w-full flex-row gap-2 overflow-visible">
       <Icon
         name="mdi:magnify"
         size="1.4rem"
-        class="top-1/2 left-[.5rem] absolute text-slate-200/60 -translate-y-1/2"
+        class="absolute top-1/2 left-[.5rem] -translate-y-1/2 text-slate-200/60"
       />
       <!-- Tokenized input with pills -->
       <div
-        class="bg-transparent focus-within:bg-transparent px-9 py-[0.2rem] border-[thin] border-seagull-400/40 rounded-[20px] outline-none w-full font-100 text-[1.02rem] text-slate-200 sm:text-[0.935rem] leading-none tracking-wider"
+        class="border-seagull-400/40 font-100 w-full rounded-[20px] border-[thin] bg-transparent px-9 py-[0.2rem] text-[1.02rem] leading-none tracking-wider text-slate-200 outline-none focus-within:bg-transparent sm:text-[0.935rem]"
         @click="focusInnerInput"
       >
         <div
-          class="flex flex-wrap items-center content-center gap-1 leading-none"
+          class="flex flex-wrap content-center items-center gap-1 leading-none"
         >
           <template v-for="(t, idx) in tokens" :key="t + ':' + idx">
             <span
-              class="group inline-flex items-center gap-0.5 bg-white/15 hover:bg-white/25 py-0.5 pr-2 pl-2.5 rounded-full focus:outline-none text-[.825rem] text-white/80 leading-none transition-colors cursor-pointer select-none"
+              class="group inline-flex cursor-pointer items-center gap-0.5 rounded-full bg-white/15 py-0.5 pr-2 pl-2.5 text-[.825rem] leading-none text-white/80 transition-colors select-none hover:bg-white/25 focus:outline-none"
               :class="{ 'pill-flash': isFlashing(t) }"
               role="button"
               tabindex="0"
@@ -26,18 +26,18 @@
               @keydown.space.prevent="removeToken(idx)"
             >
               <span
-                class="block group-hover:text-white align-middle leading-none whitespace-nowrap"
+                class="block align-middle leading-none whitespace-nowrap group-hover:text-white"
                 >{{ t }}</span
               >
               <button
                 type="button"
-                class="flex justify-center items-center -mr-1 ml-0.5 p-0 w-5 h-5 text-white/70 hover:text-white group-hover:text-white transition-colors cursor-pointer"
+                class="-mr-1 ml-0.5 flex h-5 w-5 cursor-pointer items-center justify-center p-0 text-white/70 transition-colors group-hover:text-white hover:text-white"
                 :aria-label="`Remove ${t}`"
                 @click.stop="removeToken(idx)"
               >
                 <Icon
                   name="mdi:close"
-                  class="block text-[1.1rem] align-middle leading-none"
+                  class="block align-middle text-[1.1rem] leading-none"
                 />
               </button>
             </span>
@@ -48,7 +48,7 @@
             id="search-input"
             name="q"
             aria-label="Search terms"
-            class="flex-1 bg-transparent focus:bg-transparent pb-0.5 outline-none min-w-[6ch] h-[1.6rem] placeholder:text-seagull-200/50 leading-[1.6rem]"
+            class="placeholder:text-seagull-200/50 h-[1.6rem] min-w-[6ch] flex-1 bg-transparent pb-0.5 leading-[1.6rem] outline-none focus:bg-transparent"
             :placeholder="tokens.length ? '' : 'Search...'"
             @keydown.enter.prevent="handleEnterKey()"
             @blur="commitInputAsToken()"
@@ -63,12 +63,12 @@
       <!-- Search suggestions dropdown -->
       <div
         v-if="showSuggestions && suggestions.length > 0"
-        class="top-full right-0 left-0 z-5 absolute bg-slate-800 shadow-lg mt-1 border border-seagull-400/40 rounded-lg max-h-64 overflow-y-auto"
+        class="border-seagull-400/40 absolute top-full right-0 left-0 z-5 mt-1 max-h-64 overflow-y-auto rounded-lg border bg-slate-800 shadow-lg"
       >
         <div
           v-for="(suggestion, idx) in suggestions"
           :key="suggestion.term + idx"
-          class="px-4 py-2 text-slate-200 transition-colors cursor-pointer"
+          class="cursor-pointer px-4 py-2 text-slate-200 transition-colors"
           :class="{
             'bg-slate-700': selectedSuggestionIndex === idx,
             'hover:bg-slate-600': selectedSuggestionIndex !== idx,
@@ -76,9 +76,9 @@
           @click="selectSuggestion(suggestion)"
           @mouseenter="selectedSuggestionIndex = idx"
         >
-          <div class="flex justify-between items-center">
+          <div class="flex items-center justify-between">
             <span class="font-100">{{ suggestion.term }}</span>
-            <span class="text-slate-400 text-xs capitalize">{{
+            <span class="text-xs text-slate-400 capitalize">{{
               suggestion.type
             }}</span>
           </div>
@@ -87,11 +87,11 @@
 
       <!-- Right control group: Filter, ESC, X -->
       <div
-        class="top-1/2 right-3 absolute flex items-center gap-1 overflow-visible -translate-y-1/2"
+        class="absolute top-1/2 right-3 flex -translate-y-1/2 items-center gap-1 overflow-visible"
       >
         <client-only>
           <span
-            class="font-100 text-[.95rem] text-slate-300 tracking-wider"
+            class="font-100 text-[.95rem] tracking-wider text-slate-300"
             aria-label="Total results"
           >
             {{ totalDisplay }}
@@ -107,7 +107,7 @@
         <button
           v-if="hasSearch"
           @click="clearSearch"
-          class="flex items-center gap-1 bg-transparent rounded-full w-auto transition-colors cursor-pointer"
+          class="flex w-auto cursor-pointer items-center gap-1 rounded-full bg-transparent transition-colors"
           type="button"
           aria-label="Clear search"
         >
@@ -118,7 +118,7 @@
         </button>
       </div>
     </div>
-    <div class="flex flex-row items-center gap-2 px-0 w-full">
+    <div class="flex w-full flex-row items-center gap-2 px-0">
       <div class="flex-1">
         <SearchbarIdeologyTagCloud
           :active-term="tokens"
@@ -248,12 +248,10 @@
   }
 
   function clearSearch() {
-    if (import.meta.dev) console.log('🔍 SearchBar clearSearch called')
     tokens.value = []
     inputText.value = ''
     resetFilters()
     // Immediately emit the search change instead of waiting for debounce
-    if (import.meta.dev) console.log('🔍 SearchBar emitting clear search')
     emit('update:search', '')
     // Ensure focus stays on search input to prevent pill focus ring
     nextTick(() => searchInputRef.value?.focus())
@@ -264,8 +262,6 @@
   }
 
   function handleSearchInput() {
-    if (import.meta.dev)
-      console.log('🔍 SearchBar immediate input change - scrolling to top')
     // Immediately scroll to top on any input change
     const scrollContainer = document.querySelector('.scroll-container-stable')
     if (scrollContainer) {
@@ -278,14 +274,8 @@
   // When escape is pressed within the input, always clear if there's text/tokens
   function handleInputEscape() {
     if (inputText.value.trim() !== '' || tokens.value.length > 0) {
-      if (import.meta.dev)
-        console.log('🔍 Input escape pressed - clearing search')
       clearSearch()
     } else {
-      if (import.meta.dev)
-        console.log(
-          '🔍 Input escape pressed - no search to clear, blurring input'
-        )
       // If no text, just blur the input
       searchInputRef.value?.blur()
     }
@@ -295,12 +285,7 @@
     if (e.key === 'Escape') {
       // Only clear search if there's actually something in the search input
       if (inputText.value.trim() !== '' || tokens.value.length > 0) {
-        if (import.meta.dev)
-          console.log('🔍 Escape key pressed - clearing search')
         clearSearch()
-      } else {
-        if (import.meta.dev)
-          console.log('🔍 Escape key pressed - no search to clear')
       }
     }
   }

@@ -167,7 +167,7 @@ export function useUniversalClipboard() {
               }
             }
 
-            onSuccess?.('Image copied!')
+            onSuccess?.('Image copied 😀')
             return true
           } catch (clipboardError) {
             console.warn(

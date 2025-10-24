@@ -78,7 +78,7 @@
   // Track ad clicks (for analytics)
   const trackClick = () => {
     if (import.meta.client) {
-      console.log('Ad clicked:', props.ad.id, props.ad.advertiser)
+
       // Here you could send analytics events
     }
   }

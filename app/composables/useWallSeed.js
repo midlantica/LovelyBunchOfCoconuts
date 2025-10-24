@@ -25,7 +25,6 @@ export function useWallSeed() {
   const reseedWall = (reason = '') => {
     wallSeed.value = generateSeed()
     if (import.meta.dev && reason) {
-      console.log(`🔁 Wall reseeded: ${wallSeed.value} (${reason})`)
     }
   }
 

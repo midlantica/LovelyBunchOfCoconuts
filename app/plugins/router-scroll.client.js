@@ -10,7 +10,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     router.options.scrollBehavior = function (to, from, savedPosition) {
       // Don't scroll to hash elements since we use hashes for content navigation
       if (to.hash && to.hash.match(/^#(claim|quote|meme)-/)) {
-        console.log('🚫 Prevented scroll to content hash:', to.hash)
+
         return { top: 0 }
       }
 

@@ -283,7 +283,6 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
   if (import.meta?.env?.DEV && seed) {
     // Lightweight debug hook, safe in dev only
     try {
-      console.debug('🧪 interleave seed meta:', output._meta)
     } catch (_) {}
   }
 

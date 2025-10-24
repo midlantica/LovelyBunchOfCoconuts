@@ -5,23 +5,23 @@
       <template #mainPanel>
         <!-- Main Content Panel -->
         <div
-          class="z-10 relative flex flex-col bg-slate-800 shadow-modal rounded-none sm:rounded-lg w-full max-w-full sm:max-w-[min(1000px,calc(100vw-4rem))] h-full max-h-[calc(100vh-8rem)]"
+          class="card shadow-modal relative z-10 flex h-full max-h-[calc(100vh-8rem)] w-full max-w-full flex-col rounded-none sm:max-w-[min(1000px,calc(100vw-4rem))] sm:rounded-lg"
         >
           <!-- Image + Text container -->
           <div
-            class="flex flex-col justify-center items-center p-0 sm:p-6 pb-2 h-full min-h-0"
+            class="flex h-full min-h-0 flex-col items-center justify-center p-0 pb-2 sm:p-6"
           >
             <img
               v-if="modalData?.image"
               :src="modalData.image"
               alt=""
-              class="w-full sm:w-auto max-w-full h-auto max-h-[60vh] object-contain"
+              class="h-auto max-h-[60vh] w-full max-w-full object-contain sm:w-auto"
               loading="lazy"
               decoding="async"
             />
             <div
               v-if="modalData?.bodyText"
-              class="flex-1 mt-2 px-2 sm:px-0 w-full min-h-0 overflow-y-auto font-100 text-gray-300 text-base sm:text-lg text-center leading-normal scroll-area"
+              class="font-100 scroll-area mt-2 min-h-0 w-full flex-1 overflow-y-auto px-2 text-center text-base leading-normal text-gray-300 sm:px-0 sm:text-lg"
             >
               <div class="whitespace-pre-line">
                 {{ modalData.bodyText }}
@@ -119,8 +119,6 @@
       () => props.modalData,
       (data) => {
         if (data && import.meta.dev) {
-          console.log('Meme modal data received:', data)
-          console.log('Keys:', Object.keys(data))
         }
       },
       { immediate: true }

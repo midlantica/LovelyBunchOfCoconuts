@@ -17,18 +17,6 @@ export const useContentUrls = () => {
       ? window.location.origin
       : 'https://wakeupnpc.com'
 
-    console.log('🔗 generateContentUrl called:', {
-      contentType,
-      hasPath: !!item._path,
-      path: item._path,
-      hasId: !!item.id,
-      id: item.id,
-      hasPathProp: !!item.path,
-      pathProp: item.path,
-      title: item.title || item.grift || item.quoteText,
-      allKeys: Object.keys(item),
-    })
-
     // If item already has a path (from Nuxt Content), transform it to route format
     if (item._path) {
       // Transform "/grifts/some-grift" to "/grift/some-grift"
@@ -40,7 +28,7 @@ export const useContentUrls = () => {
         .replace(/^\/memes\//, '/meme/')
 
       const finalUrl = `${baseUrl}${routePath}`
-      console.log('🎯 Generated route URL:', finalUrl)
+
       return finalUrl
     }
 
@@ -52,7 +40,7 @@ export const useContentUrls = () => {
         .replace(/^\/memes\//, '/meme/')
 
       const finalUrl = `${baseUrl}${routePath}`
-      console.log('🎯 Generated route URL from path:', finalUrl)
+
       return finalUrl
     }
 
@@ -66,10 +54,10 @@ export const useContentUrls = () => {
         .replace(/^\/memes\//, '/meme/')
 
       const finalUrl = `${baseUrl}${routePath}`
-      console.log('🎯 Generated route URL from id:', finalUrl)
+
       return finalUrl
     } // Fallback to hash URLs only if we don't have path
-    console.log('⚠️ No _path found, falling back to hash URL')
+
     return generateHashUrl(item, contentType)
   }
 

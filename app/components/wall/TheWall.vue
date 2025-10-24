@@ -51,7 +51,7 @@
           <!-- Grift pairs (2 columns on md+, stacked on smaller) - or Small Ads -->
           <div
             v-else-if="item.type === 'griftPair'"
-            class="gap-3 grid grid-cols-1 md:grid-cols-2"
+            class="grid grid-cols-1 gap-3 md:grid-cols-2"
           >
             <div
               v-for="(griftItem, idx) in item.data"
@@ -91,7 +91,7 @@
           <!-- Meme pairs (2 columns on >=460px using custom 'meme2' breakpoint, stacked below) - or Small Ads -->
           <div
             v-else-if="item.type === 'memeRow'"
-            class="gap-3 grid grid-cols-1 meme2:grid-cols-2"
+            class="meme2:grid-cols-2 grid grid-cols-1 gap-3"
           >
             <div
               v-for="(memeItem, idx) in item.data"
@@ -472,13 +472,10 @@
 
     // Log ad summary only when there are ads
     if (Object.keys(adCounts).length > 0) {
-      console.log('📊 Ad Display Summary:')
       Object.entries(adCounts)
         .sort((a, b) => b[1] - a[1]) // Sort by count descending
-        .forEach(([id, count]) => {
-          console.log(`  ${id}: ${count}`)
-        })
-      console.log(`Total Ads: ${totalAds}`)
+        .forEach(([id, count]) => {})
+
       adSummaryShown.value = true
     }
   }
@@ -656,11 +653,6 @@
   onMounted(async () => {
     if (isLoaded.value) return // already ready
     try {
-      if (import.meta.dev)
-        console.log('TheWall mount (progressive load start)', {
-          hasLoadedOnce: wallHasLoadedOnce.value,
-        })
-
       // Load ads if enabled - fetch from API endpoint
       if (adsEnabled.value) {
         try {
@@ -672,7 +664,6 @@
           if (adContent.length > 0) {
             await loadAds(null, adContent)
           } else {
-            console.log('No ads returned from API')
           }
         } catch (e) {
           console.warn('Could not load ads:', e)

@@ -51,11 +51,7 @@ export function useWallPrecomputation() {
       })
 
       if (import.meta.dev) {
-        console.log('🚀 Pre-computed wall layout ready:', {
-          seed: newSeed,
-          items: precomputedLayout.length,
-          key: layoutKey,
-        })
+
       }
 
       precomputationReady.value = true
@@ -128,10 +124,7 @@ export function useWallPrecomputation() {
       wallSeed.value = cached.seed
 
       if (import.meta.dev) {
-        console.log(
-          '⚡ Using pre-computed layout for instant refresh:',
-          cached.seed
-        )
+
       }
 
       // Schedule next pre-computation

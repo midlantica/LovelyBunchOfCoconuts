@@ -6,29 +6,27 @@
     <!-- Modal root for teleport -->
     <div id="modal-root"></div>
     <!-- Welcome modal for first-time visitors -->
-    <ModalsWelcomeModal :show="showWelcomeModal" @close="closeWelcomeModal" />
+    <ClientOnly>
+      <ModalsWelcomeModal :show="showWelcomeModal" @close="closeWelcomeModal" />
+    </ClientOnly>
   </div>
 </template>
 
 <script setup>
   const route = useRoute()
 
-  // Welcome modal state - show on index page if not yet visited
+  // Welcome modal state - show on index page once per session
   const showWelcomeModal = ref(false)
 
   if (import.meta.client) {
     const checkAndShowModal = () => {
       // Only show modal on the index page (the Wall)
       if (route.path === '/') {
-        const hasVisited = localStorage.getItem('wakeupnpc_wall_visited')
-        if (!hasVisited) {
+        const hasVisitedThisSession = sessionStorage.getItem(
+          'wakeupnpc_wall_visited'
+        )
+        if (!hasVisitedThisSession) {
           showWelcomeModal.value = true
-        }
-      } else {
-        // When navigating away from index page, reset the visited flag
-        // so they see the modal again when they return
-        if (showWelcomeModal.value === false) {
-          localStorage.removeItem('wakeupnpc_wall_visited')
         }
       }
     }
@@ -50,7 +48,7 @@
   const closeWelcomeModal = () => {
     showWelcomeModal.value = false
     if (import.meta.client) {
-      localStorage.setItem('wakeupnpc_wall_visited', 'true')
+      sessionStorage.setItem('wakeupnpc_wall_visited', 'true')
     }
   }
 

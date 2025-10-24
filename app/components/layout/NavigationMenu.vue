@@ -1,5 +1,5 @@
 <template>
-  <div ref="menuContainer" class="isolate relative">
+  <div ref="menuContainer" class="relative isolate">
     <!-- Hamburger Button -->
     <LayoutHamburgerButton @click="toggleMenu" class="cursor-pointer" />
 
@@ -8,10 +8,10 @@
       <nav
         v-if="isMenuOpen"
         @click.stop
-        class="top-full right-0 z-[1500] absolute bg-slate-800/95 shadow-[0_8px_30px_rgb(0,0,0,0.6)] backdrop-blur-md mt-[.25rem] py-0 border border-slate-600/50 rounded-md"
+        class="absolute top-full right-0 z-1500 mt-1 rounded-md border border-slate-600/50 bg-slate-900 py-0 shadow-[0_8px_30px_rgb(0,0,0,0.6)] backdrop-blur-md"
       >
         <!-- Navigation Links -->
-        <ul class="py-0.5 font-100">
+        <ul class="font-100 py-0.5">
           <LayoutNavigationMenuItem to="/" label="Home" @click="closeMenu" />
           <LayoutNavigationMenuItem
             to="/about"
@@ -92,14 +92,22 @@
 
   /* Barlow Condensed font classes */
   .font-100 {
-    font-family: 'Barlow Condensed', -apple-system, BlinkMacSystemFont,
-      'Segoe UI', sans-serif;
+    font-family:
+      'Barlow Condensed',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      sans-serif;
     font-weight: 300;
   }
 
   .font-300 {
-    font-family: 'Barlow Condensed', -apple-system, BlinkMacSystemFont,
-      'Segoe UI', sans-serif;
+    font-family:
+      'Barlow Condensed',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      sans-serif;
     font-weight: 500;
   }
 </style>

@@ -5,7 +5,7 @@
       <template #mainPanel>
         <!-- Main Content Panel - completely independent -->
         <div
-          class="z-10 relative bg-slate-800 shadow-modal p-0 sm:px-7 sm:py-6 rounded-none sm:rounded-lg"
+          class="card shadow-modal relative z-10 rounded-none p-0 sm:rounded-lg sm:px-7 sm:py-6"
         >
           <div class="mb-0 p-4 sm:p-0">
             <div class="flex gap-3">
@@ -13,10 +13,10 @@
                 src="~/assets/icons/npc_icon.svg"
                 alt="NPC"
                 title="NPC"
-                class="self-start w-8"
+                class="w-8 self-start"
               />
               <h1
-                class="text-shadow-xs mb-0 font-100 text-white text-2xl leading-tight"
+                class="font-100 mb-0 text-2xl leading-tight text-white text-shadow-xs"
               >
                 {{ modalData?.grift || modalData?.title }}
               </h1>
@@ -27,10 +27,10 @@
                 src="~/assets/icons/player_icon.svg"
                 alt="Player"
                 title="Player"
-                class="self-start w-8"
+                class="w-8 self-start"
               />
               <h1
-                class="text-shadow-xs mb-0 font-100 text-white text-2xl leading-tight"
+                class="font-100 mb-0 text-2xl leading-tight text-white text-shadow-xs"
               >
                 {{ modalData?.decode }}
               </h1>
@@ -44,9 +44,9 @@
               modalData.body.value.length > 0
             "
             ref="bodyRef"
-            class="relative max-w-none max-h-[50vh] overflow-y-auto scroll-area"
+            class="scroll-area relative max-h-[50vh] max-w-none overflow-y-auto"
           >
-            <div class="prose-invert pr-3 prose">
+            <div class="prose-invert prose pr-3">
               <div v-html="modalData?.bodyHtml"></div>
             </div>
             <div
@@ -58,13 +58,13 @@
               <Icon
                 name="tabler:chevron-compact-down"
                 :class="[
-                  'text-[2.5rem] text-seagull-200 chevron chevron-wide',
+                  'text-seagull-200 chevron chevron-wide text-[2.5rem]',
                   isBottom ? 'rotate-180' : '',
                 ]"
               />
             </div>
             <div
-              class="right-0 bottom-0 left-0 absolute bg-gradient-to-t from-slate-800 to-transparent h-2 pointer-events-none"
+              class="pointer-events-none absolute right-0 bottom-0 left-0 h-2 bg-linear-to-t from-slate-800 to-transparent"
             ></div>
           </div>
         </div>
@@ -195,18 +195,6 @@
             ? window.requestIdleCallback(cb, { timeout: 2500 })
             : setTimeout(cb, 200)
         idle(run)
-      }
-    },
-    { immediate: true }
-  )
-
-  // Debug the modal data
-  watch(
-    () => props.modalData,
-    (data) => {
-      if (data && import.meta.dev) {
-        console.log('Grift modal data received:', data)
-        console.log('Available properties:', Object.keys(data))
       }
     },
     { immediate: true }

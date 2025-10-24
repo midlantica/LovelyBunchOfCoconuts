@@ -27,7 +27,7 @@ export default defineNuxtPlugin(() => {
         import.meta.dev &&
         import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
       ) {
-        console.info('[likes][global-poll] fetching from:', url)
+
       }
 
       const res = await fetch(url).catch(() => null as any)
@@ -51,12 +51,7 @@ export default defineNuxtPlugin(() => {
         import.meta.dev &&
         import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
       ) {
-        console.info('[likes][global-poll] response:', {
-          totalKeys: data?.totalKeys,
-          environment: data?.environment,
-          restricted: data?.restricted,
-          error: data?.error,
-        })
+
       }
 
       if (data?.restricted) {
@@ -87,7 +82,7 @@ export default defineNuxtPlugin(() => {
           import.meta.dev &&
           import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
         ) {
-          console.info(`[likes][global-poll] updated ${updatedCount} counts`)
+
         }
         // Persist the updated counts to localStorage
         try {

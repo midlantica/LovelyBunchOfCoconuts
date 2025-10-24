@@ -52,7 +52,6 @@
   })
 
   const shareToTwitter = async () => {
-    console.log('🐦 Twitter share clicked')
 
     let shareUrl = props.url.trim()
     // In development, keep localhost URLs as-is

@@ -38,11 +38,6 @@ export function useAds() {
         )
         ads.value.loaded = true
 
-        console.log('✅ Ads loaded from content/ads/:', {
-          square: ads.value.square.length,
-          horizontal: ads.value.horizontal.length,
-        })
-
         // Debug: Show which ads were loaded with their frequencies
         console.log(
           'Square ads loaded:',
@@ -59,9 +54,7 @@ export function useAds() {
           }))
         )
       } else {
-        console.log(
-          'No ads found in content/ads/ - add markdown files to enable ads'
-        )
+
         ads.value.loaded = true // Mark as loaded even if empty
       }
     } catch (error) {

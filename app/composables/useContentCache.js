@@ -329,8 +329,6 @@ export function useContentCache() {
         pathVariations.push(`${contentType}/${slug.replace(/^\/+/, '')}`)
       }
 
-      console.log(`Trying path variations for ${contentType}:`, pathVariations)
-
       // Try each path variation
       for (const pathVar of pathVariations) {
         try {

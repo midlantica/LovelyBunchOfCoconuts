@@ -2,11 +2,11 @@
 <template>
   <div
     v-if="quote && quote.headings && quote.headings.length > 0 && slug"
-    class="group isolate relative shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-6 py-4 border hover:border hover:border-seagull-400/50 border-transparent rounded-lg text-white cursor-pointer quotePanel"
+    class="card group shadow-inset-card hover:border-seagull-400/50 quotePanel relative isolate flex cursor-pointer flex-col gap-2 rounded-lg border border-transparent px-6 py-4 text-white hover:border hover:bg-slate-900"
     @click="openModal"
   >
     <!-- Like button only -->
-    <div class="top-1 right-1 z-[20] absolute">
+    <div class="absolute top-1 right-1 z-20">
       <UiLikeButton
         :id="quote?._path || quote?.path || slug"
         :title="quote?.headings?.[0] || 'quote'"
@@ -16,13 +16,15 @@
         @click.stop
       />
     </div>
-    <div class="flex flex-col flex-wrap gap-0.5 my-auto">
+    <div class="my-auto flex flex-col flex-wrap gap-0.5">
       <h1
-        class="inline-block text-shadow-xs font-100 text-xl align-baseline tracking-wide"
+        class="font-100 inline-block align-baseline tracking-wide text-shadow-xs"
+        :style="{ fontSize: quoteFontSize, lineHeight: quoteLineHeight }"
         v-html="formatQuote(quote.headings[0])"
       ></h1>
       <p
-        class="inline-block text-shadow-xs font-100 text-seagull-200 text-xl align-baseline tracking-wide"
+        class="font-100 text-seagull-200 inline-block align-baseline tracking-wide text-shadow-xs"
+        :style="{ fontSize: attributionFontSize, lineHeight: '1.4' }"
         v-if="quote.attribution"
       >
         — {{ quote.attribution }}
@@ -31,7 +33,7 @@
   </div>
   <div
     v-else
-    class="relative shadow-inset-card flex flex-col gap-2 bg-slate-800 px-5 py-4 rounded-lg text-white quotePanel"
+    class="card shadow-inset-card quotePanel relative flex flex-col gap-2 rounded-lg px-5 py-4 text-white"
   >
     <div class="my-auto">
       <h2 class="inline-block align-baseline">
@@ -42,7 +44,7 @@
         }}
       </h2>
       <p
-        class="inline-block font-100 text-seagull-200 text-xl align-baseline"
+        class="font-100 text-seagull-200 inline-block align-baseline text-xl"
         v-if="quote && quote.attribution"
       >
         — {{ quote.attribution }}
@@ -59,10 +61,43 @@
 
   const contentType = computed(() => 'political quote')
 
+  // Calculate font size based on text length - MUCH smaller for long quotes
+  const quoteFontSize = computed(() => {
+    const text = props.quote?.headings?.[0] || ''
+    const length = text.length
+
+    if (length > 600) return '0.5rem' // 8px - VERY SMALL for very long quotes
+    if (length > 500) return '0.5625rem' // 9px
+    if (length > 400) return '0.625rem' // 10px
+    if (length > 300) return '0.6875rem' // 11px
+    if (length > 200) return '0.75rem' // 12px
+    if (length > 150) return '0.875rem' // 14px
+    if (length > 100) return '1rem' // 16px
+    return '1.25rem' // 20px
+  })
+
+  const attributionFontSize = computed(() => {
+    const text = props.quote?.attribution || ''
+    const length = text.length
+
+    if (length > 150) return '0.75rem'
+    if (length > 100) return '0.875rem'
+    if (length > 50) return '1rem'
+    return '1.25rem'
+  })
+
+  const quoteLineHeight = computed(() => {
+    const text = props.quote?.headings?.[0] || ''
+    const length = text.length
+
+    if (length > 400) return '1.15'
+    if (length > 200) return '1.25'
+    return '1.4'
+  })
+
   function openModal() {
     // Emit event to parent to open modal
     // This will be handled by the parent component
-    console.log('Opening modal for quote:', props.slug)
   }
 
   function formatQuote(text) {
@@ -107,6 +142,5 @@
     }
 
     // Show toast notification (you could add a toast system)
-    console.log('Link copied to clipboard!')
   }
 </script>

@@ -319,14 +319,6 @@ export function useSocialShare() {
             }
           }
 
-          // Debug: Log what we actually got
-          console.log('=== GRIFT DEBUG ===')
-          console.log('content:', content)
-          console.log('content.grift:', content.grift)
-          console.log('content.decode:', content.decode)
-          console.log('Final griftText:', griftText)
-          console.log('Final cleanDecodeText:', cleanDecodeText)
-
           // EQUAL SIZING: Calculate for longest text, use for both
           // Goal: Fill about 2/3 of vertical space with text (4 lines total: 2 grift + 2 decode)
           // Layout: grift (2 lines) + gap + line + gap + decode (2 lines)
@@ -448,16 +440,6 @@ export function useSocialShare() {
 
           // Line centered in the gap
           const lineY = griftVisualEnd + textGap / 2
-
-          // Debug positioning
-          console.log('Grift positioning debug:')
-          console.log('  blockStartY:', blockStartY)
-          console.log('  griftStartY:', griftStartY)
-          console.log('  griftVisualEnd:', griftVisualEnd)
-          console.log('  lineY:', lineY)
-          console.log('  decodeStartY:', decodeStartY)
-          console.log('  canvas.height:', canvas.height)
-          console.log('  textGap:', textGap)
 
           // Draw grift lines
           griftLines.forEach((line, index) => {
@@ -865,7 +847,7 @@ export function useSocialShare() {
                 await navigator.clipboard.write([
                   new ClipboardItem({ 'image/png': imageBlob }),
                 ])
-                showToast('Image copied')
+                showToast('Image copied 😀')
               } catch (imageError) {
                 console.warn(
                   'Image clipboard not supported, trying text only:',

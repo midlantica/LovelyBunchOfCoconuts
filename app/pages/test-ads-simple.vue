@@ -1,6 +1,8 @@
 <template>
-  <div class="p-8">
-    <h1 class="mb-4 text-2xl font-bold">Ad System Test Page (Simple)</h1>
+  <div v-if="isDev" class="p-8">
+    <h1 class="mb-4 text-2xl font-bold">
+      Ad System Test Page (Simple - Dev Only)
+    </h1>
 
     <div class="mb-8">
       <h2 class="mb-2 text-xl font-semibold">Ad Status</h2>
@@ -37,6 +39,9 @@
 </template>
 
 <script setup>
+  // Only show this page in development
+  const isDev = import.meta.dev
+
   const adsLoaded = ref(false)
   const smallAdsCount = ref(0)
   const largeAdsCount = ref(0)
@@ -49,11 +54,6 @@
       // Query ads directly using Nuxt Content
       const { data: adContent } = await useAsyncData('ads', () =>
         queryContent('ads').find()
-      )
-
-      console.log(
-        'Test page - Loading ads, found:',
-        adContent.value?.length || 0
       )
 
       if (adContent.value && adContent.value.length > 0) {
@@ -70,13 +70,6 @@
 
         smallAdsCount.value = smallAds.length
         largeAdsCount.value = largeAds.length
-
-        console.log(
-          'Test page - Small ads:',
-          smallAds.length,
-          'Large ads:',
-          largeAds.length
-        )
 
         // Get sample ads for display
         if (smallAds.length > 0) {

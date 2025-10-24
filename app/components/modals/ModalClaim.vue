@@ -5,7 +5,7 @@
       <template #mainPanel>
         <!-- Main Content Panel - completely independent -->
         <div
-          class="shadow-modal relative z-10 rounded-none bg-slate-800 p-0 sm:rounded-lg sm:px-7 sm:py-6"
+          class="card shadow-modal relative z-10 rounded-none p-0 sm:rounded-lg sm:px-7 sm:py-6"
         >
           <div class="mb-0 p-4 sm:p-0">
             <div class="flex gap-3">
@@ -64,7 +64,7 @@
               />
             </div>
             <div
-              class="pointer-events-none absolute right-0 bottom-0 left-0 h-2 bg-gradient-to-t from-slate-800 to-transparent"
+              class="pointer-events-none absolute right-0 bottom-0 left-0 h-2 bg-linear-to-t from-slate-800 to-transparent"
             ></div>
           </div>
         </div>
@@ -205,8 +205,6 @@
     () => props.modalData,
     (data) => {
       if (data && import.meta.dev) {
-        console.log('Claim modal data received:', data)
-        console.log('Available properties:', Object.keys(data))
       }
     },
     { immediate: true }

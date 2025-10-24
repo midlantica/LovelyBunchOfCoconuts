@@ -1,6 +1,8 @@
 <template>
-  <div class="p-8">
-    <h1 class="mb-4 text-2xl font-bold">Ad System Test Page (Direct JSON)</h1>
+  <div v-if="isDev" class="p-8">
+    <h1 class="mb-4 text-2xl font-bold">
+      Ad System Test Page (Direct JSON - Dev Only)
+    </h1>
 
     <div class="mb-8">
       <h2 class="mb-2 text-xl font-semibold">Ad Status</h2>
@@ -40,6 +42,9 @@
 </template>
 
 <script setup>
+  // Only show this page in development
+  const isDev = import.meta.dev
+
   const adsLoaded = ref(false)
   const smallAdsCount = ref(0)
   const largeAdsCount = ref(0)
@@ -52,11 +57,6 @@
       // Load ads directly from the JSON file
       const response = await fetch('/content-ads.json')
       const adData = await response.json()
-
-      console.log(
-        'Test page - Loading ads from JSON, found:',
-        adData?.length || 0
-      )
 
       if (adData && adData.length > 0) {
         // Ads are now properly structured from the JSON
@@ -73,13 +73,6 @@
 
         smallAdsCount.value = smallAds.length
         largeAdsCount.value = largeAds.length
-
-        console.log(
-          'Test page - Small ads:',
-          smallAds.length,
-          'Large ads:',
-          largeAds.length
-        )
 
         // Get sample ads for display
         if (smallAds.length > 0) {

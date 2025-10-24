@@ -5,11 +5,11 @@
       <template #mainPanel>
         <!-- Main Content Panel -->
         <div
-          class="z-10 relative bg-slate-800 shadow-modal p-0 sm:px-7 sm:py-6 rounded-none sm:rounded-lg"
+          class="card shadow-modal relative z-10 rounded-none p-0 sm:rounded-lg sm:px-7 sm:py-6"
         >
           <div class="p-4 sm:p-0">
             <h1
-              class="text-shadow-xs mb-2 font-100 text-white text-2xl leading-9"
+              class="font-100 mb-2 text-2xl leading-9 text-white text-shadow-xs"
             >
               {{
                 modalData?.quoteText ||
@@ -17,7 +17,7 @@
                 modalData?.title
               }}
             </h1>
-            <p class="text-shadow-xs mb-2 font-100 text-seagull-300 text-xl">
+            <p class="font-100 text-seagull-300 mb-2 text-xl text-shadow-xs">
               — {{ modalData?.attribution }}
             </p>
           </div>
@@ -28,9 +28,9 @@
               modalData.body.value.length > 0
             "
             ref="bodyRef"
-            class="relative max-w-none max-h-[50vh] overflow-y-auto scroll-area"
+            class="scroll-area relative max-h-[50vh] max-w-none overflow-y-auto"
           >
-            <div class="prose-invert pr-3 prose">
+            <div class="prose-invert prose pr-3">
               <div v-html="modalData?.bodyHtml"></div>
             </div>
             <div
@@ -42,13 +42,13 @@
               <Icon
                 name="tabler:chevron-compact-down"
                 :class="[
-                  'text-[2.5rem] text-seagull-200 chevron chevron-wide',
+                  'text-seagull-200 chevron chevron-wide text-[2.5rem]',
                   isBottom ? 'rotate-180' : '',
                 ]"
               />
             </div>
             <div
-              class="right-0 bottom-0 left-0 absolute bg-gradient-to-t from-slate-800 to-transparent h-2 pointer-events-none"
+              class="pointer-events-none absolute right-0 bottom-0 left-0 h-2 bg-linear-to-t from-slate-800 to-transparent"
             ></div>
           </div>
         </div>

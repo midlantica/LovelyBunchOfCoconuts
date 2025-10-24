@@ -56,12 +56,8 @@
   })
 
   onMounted(async () => {
-    console.log('🔍 Quote page mounted, looking for:', routeSlug.value)
-
     // Ensure content is loaded first
     if (!quotes?.value?.length || !contentReady.value) {
-      console.log('📥 loading content...')
-
       // Set a timeout to prevent infinite loading
       loadingTimeout.value = setTimeout(() => {
         console.warn('Content loading timeout - redirecting to home')
@@ -90,24 +86,10 @@
     // Wait for next tick to ensure reactive updates have processed
     await nextTick()
 
-    console.log('🗺️ Slug maps quotes size:', slugMaps.quotes.size)
-    console.log('🔍 Looking for slug:', routeSlug.value)
-    console.log('✅ Found quote:', !!slugMaps.quotes.get(routeSlug.value))
-
-    // Debug: show all available quote slugs
-    if (import.meta.dev) {
-      console.log('Available quote slugs:', Array.from(slugMaps.quotes.keys()))
-    }
-
     // Restore wall scroll if available
     const scrollContainer = document.querySelector('.scroll-container-stable')
     if (scrollContainer && wallScrollTop.value > 0) {
       scrollContainer.scrollTo({ top: wallScrollTop.value })
-    }
-
-    // Don't redirect - just stay on the quote URL even if not found
-    if (contentReady.value && !quote.value) {
-      console.log('❌ Quote not found, but staying on URL')
     }
   })
 
@@ -172,10 +154,6 @@
   watch(contentReady, async (ready) => {
     if (ready) {
       await nextTick()
-      // Don't redirect - just stay on the quote URL even if not found
-      if (!quote.value) {
-        console.log('❌ Quote not found in watcher, but staying on URL')
-      }
     }
   })
 

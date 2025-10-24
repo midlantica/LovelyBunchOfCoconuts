@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto w-full max-w-7xl px-6 pt-6 pb-8">
+  <div v-if="isDev" class="mx-auto w-full max-w-7xl px-6 pt-6 pb-8">
     <div class="mb-8">
       <NuxtLink
         to="/tailwind-viewer"
@@ -39,7 +39,7 @@
             text="Pink Gradient"
             variant="custom"
             size="lg"
-            class="bg-gradient-to-r from-pink-500 to-violet-600 text-white hover:from-pink-600 hover:to-violet-700"
+            class="bg-linear-to-r from-pink-500 to-violet-600 text-white hover:from-pink-600 hover:to-violet-700"
           />
         </div>
         <div class="mt-4 rounded bg-slate-800 p-3">
@@ -430,6 +430,9 @@
 </template>
 
 <script setup>
+  // Only show this page in development
+  const isDev = import.meta.dev
+
   const sizes = [
     { label: 'XL', value: 'xl', text: 'Button' },
     { label: 'LG', value: 'lg', text: 'Button' },

@@ -3,11 +3,11 @@
   <div>
     <template v-if="meme && meme.image && slug">
       <div
-        class="group isolate relative shadow-inset-card bg-slate-800 hover:bg-slate-900 mx-auto p-3 border hover:border hover:border-seagull-400/50 border-transparent rounded-md w-full h-full overflow-hidden cursor-pointer"
+        class="card group shadow-inset-card hover:border-seagull-400/50 relative isolate mx-auto h-full w-full cursor-pointer overflow-hidden rounded-md border border-transparent p-3 hover:border hover:bg-slate-900"
         @click="openModal"
       >
         <!-- Like button only -->
-        <div class="top-1 right-1 z-[20] absolute">
+        <div class="absolute top-1 right-1 z-20">
           <UiLikeButton
             :id="meme?._path || meme?.path || slug"
             :title="imageAlt"
@@ -23,13 +23,13 @@
           :alt="imageAlt"
           decoding="async"
           loading="lazy"
-          class="bg-black/40 rounded-md w-full min-w-0 max-w-full h-full min-h-0 max-h-full object-contain aspect-square"
+          class="aspect-square h-full max-h-full min-h-0 w-full max-w-full min-w-0 rounded-md bg-black/40 object-contain"
         />
       </div>
     </template>
     <template v-else-if="meme && meme.image">
       <div
-        class="relative shadow-inset-card bg-slate-800 mx-auto p-3 rounded-md w-full h-full overflow-hidden"
+        class="card shadow-inset-card relative mx-auto h-full w-full overflow-hidden rounded-md p-3"
       >
         <img
           ref="lazyImg"
@@ -37,18 +37,18 @@
           :alt="imageAlt"
           decoding="async"
           loading="lazy"
-          class="bg-black/40 rounded-md w-full min-w-0 max-w-full h-full min-h-0 max-h-full object-contain aspect-square"
+          class="aspect-square h-full max-h-full min-h-0 w-full max-w-full min-w-0 rounded-md bg-black/40 object-contain"
         />
       </div>
     </template>
     <template v-else>
       <div
-        class="shadow-inset-card bg-slate-800 mx-auto p-3 rounded-md w-full h-full overflow-hidden"
+        class="card shadow-inset-card mx-auto h-full w-full overflow-hidden rounded-md p-3"
       >
-        <p class="text-shadow-xs text-white text-center">
+        <p class="text-center text-white text-shadow-xs">
           🚨 Meme image not found!
         </p>
-        <p class="text-shadow-xs mt-1 text-red-400 text-xs text-center">
+        <p class="mt-1 text-center text-xs text-red-400 text-shadow-xs">
           {{ getFileName(meme) }}
         </p>
       </div>
@@ -71,7 +71,6 @@
   function openModal() {
     // Emit event to parent to open modal
     // This will be handled by the parent component
-    console.log('Opening modal for meme:', props.slug)
   }
 
   // Get the image filename for alt text
@@ -170,6 +169,5 @@
     }
 
     // Show toast notification (you could add a toast system)
-    console.log('Link copied to clipboard!')
   }
 </script>

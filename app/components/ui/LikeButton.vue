@@ -2,7 +2,7 @@
   <button
     :aria-label="ariaLabel"
     :aria-pressed="liked ? 'true' : 'false'"
-    class="group inline-flex relative items-center px-0 py-0 rounded-md focus:outline-none cursor-pointer select-none"
+    class="group relative inline-flex cursor-pointer items-center rounded-md px-0 py-0 select-none focus:outline-none"
     :class="outerClass"
     type="button"
     data-like-button="true"
@@ -14,7 +14,7 @@
     <!-- Outside count (reversed order) -->
     <span
       v-if="!countInside && isReversed && showCount && displayCount > 0"
-      class="pr-1 pl-0.5 min-w-[1ch] font-300 tabular-nums text-xs transition-colors"
+      class="font-300 min-w-[1ch] pr-1 pl-0.5 text-xs tabular-nums transition-colors"
       :class="
         isSolid
           ? 'text-seagull-700'
@@ -23,7 +23,7 @@
       >{{ abbreviated }}</span
     >
     <span
-      class="inline-flex justify-center items-center rounded-full transition-all duration-150"
+      class="inline-flex items-center justify-center rounded-full transition-all duration-150"
       :class="[
         'h-8',
         isSolid
@@ -38,20 +38,14 @@
       <Icon
         :key="isSolid ? 'heart-solid' : 'heart-outline'"
         :name="isSolid ? 'heroicons:heart-20-solid' : 'heroicons:heart'"
-        class="transition-transform duration-200"
-        :class="[
-          isSolid ? 'scale-105' : 'scale-100',
-          isSolid
-            ? 'text-seagull-700'
-            : fadedUnliked
-              ? 'text-seagull-700/50'
-              : 'text-white/40',
-        ]"
+        class="transition-all duration-200 group-hover:brightness-125 group-hover:drop-shadow-[0_0_12px_#33c3fd]"
+        :class="[isSolid ? 'text-seagull-700 scale-105' : 'scale-100']"
+        :style="isSolid ? {} : { color: 'oklch(0.7 0 0)' }"
         :size="iconSize"
       />
       <span
         v-if="countInside && displayCount > 0 && showCount"
-        class="top-1/2 left-1/2 absolute drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] font-300 text-[0.8rem] text-white tracking-tight -translate-x-1/2 -translate-y-1/2 select-none"
+        class="font-300 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[0.8rem] tracking-tight text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] select-none"
         style="font-weight: 300"
         >{{ abbreviated }}</span
       >
@@ -59,7 +53,7 @@
     <!-- Outside count (normal order) -->
     <span
       v-if="!countInside && !isReversed && showCount && displayCount > 0"
-      class="pr-1 pl-0.5 min-w-[1ch] font-300 tabular-nums text-xs transition-colors"
+      class="font-300 min-w-[1ch] pr-1 pl-0.5 text-xs tabular-nums transition-colors"
       :class="
         isSolid
           ? 'text-seagull-700'

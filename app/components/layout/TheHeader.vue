@@ -62,7 +62,7 @@
       if (precomputedLayout) {
         // Instant refresh using pre-computed layout!
         if (import.meta.dev) {
-          console.log('⚡ Instant refresh using pre-computed layout!')
+
         }
 
         // Clear search and filters
@@ -79,9 +79,7 @@
       } else {
         // Fallback to full page reload if no pre-computed layout available
         if (import.meta.dev) {
-          console.log(
-            '🔄 No pre-computed layout available, using page reload fallback'
-          )
+
         }
 
         const currentUrl = new URL(window.location)

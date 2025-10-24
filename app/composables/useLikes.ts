@@ -327,7 +327,6 @@ export function useLikes() {
           import.meta.dev &&
           import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
         ) {
-          console.info('[likes] hydrated', Object.entries(counts))
         }
         persistToStorage()
       }
@@ -354,11 +353,7 @@ export function useLikes() {
           if (!import.meta.dev) {
             // In production, only log on first retry
             if (retryCount === 0) {
-              console.info(
-                `[likes] API request failed, retrying in ${
-                  retryDelay / 1000
-                }s...`
-              )
+
             }
           }
 
@@ -431,7 +426,7 @@ export function useLikes() {
     if (migrated) {
       delete likedMap.value[oldKey]
       delete countMap.value[oldKey]
-      console.info('[likes] migrated key', { from: oldKey, to: newKey })
+
     }
     return migrated
   }
@@ -447,7 +442,7 @@ export function useLikes() {
     }
     if (changed) {
       persistToStorage()
-      console.info('[likes] pre-migration complete')
+
     }
   }
 

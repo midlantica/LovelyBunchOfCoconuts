@@ -93,12 +93,8 @@
   const loadingTimeout = ref(null)
 
   onMounted(async () => {
-    console.log('🔍 Grift page mounted, looking for:', slugPath.value)
-
     // Ensure content is loaded first
     if (!grifts?.value?.length || !contentReady.value) {
-      console.log('📥 Loading content...')
-
       // Set a timeout to prevent infinite loading
       loadingTimeout.value = setTimeout(() => {
         console.warn('Content loading timeout - redirecting to home')
@@ -127,24 +123,10 @@
     // Wait for next tick to ensure reactive updates have processed
     await nextTick()
 
-    console.log('🗺️ Slug maps grifts size:', slugMaps.grifts.size)
-    console.log('🔍 Looking for slug:', slugPath.value)
-    console.log('✅ Found grift:', !!slugMaps.grifts.get(slugPath.value))
-
-    // Debug: show all available grift slugs
-    if (import.meta.dev) {
-      console.log('Available grift slugs:', Array.from(slugMaps.grifts.keys()))
-    }
-
     // Restore wall scroll if available
     const scrollContainer = document.querySelector('.scroll-container-stable')
     if (scrollContainer && wallScrollTop.value > 0) {
       scrollContainer.scrollTo({ top: wallScrollTop.value })
-    }
-
-    // Don't redirect - just stay on the grift URL even if not found
-    if (contentReady.value && !grift.value) {
-      console.log('❌ Grift not found, but staying on URL')
     }
   })
 
@@ -158,10 +140,6 @@
   watch(contentReady, async (ready) => {
     if (ready) {
       await nextTick()
-      // Don't redirect - just stay on the grift URL even if not found
-      if (!grift.value) {
-        console.log('❌ Grift not found in watcher, but staying on URL')
-      }
     }
   })
 </script>

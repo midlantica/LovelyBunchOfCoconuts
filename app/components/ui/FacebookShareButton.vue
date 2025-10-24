@@ -61,7 +61,7 @@
     try {
       await navigator.clipboard.writeText(shareText)
     } catch (err) {
-      console.log('❌ Copy failed:', err)
+
     }
   }
 

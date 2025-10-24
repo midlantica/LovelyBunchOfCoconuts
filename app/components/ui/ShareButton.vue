@@ -9,23 +9,39 @@
   >
     <div
       v-if="show"
-      class="-top-2 absolute bg-slate-900 px-3 sm:px-3.5 pt-4 pb-2 rounded-b-lg w-full"
+      class="absolute -top-2 w-full rounded-b-lg bg-[#1b1b1b] px-3 pt-4 pb-2 sm:px-3.5"
     >
       <div class="flex items-center gap-4">
         <!-- Share cluster flush left -->
         <div class="flex flex-1 items-center gap-3">
-          <!-- Copy image button using Button.vue -->
+          <!-- Copy image icon button -->
           <div class="flex items-center gap-2">
-            <UiButton
-              text="Copy Image"
-              variant="custom"
+            <button
+              type="button"
               :disabled="isLoading"
               @click="copyImageOnly"
-              class="bg-[#243349] hover:bg-[#2c3e58] text-[#ffffffbd] hover:text-white"
-            />
+              class="group inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition-all duration-150 disabled:cursor-not-allowed"
+              :class="[
+                isLoading ? '' : 'hover:scale-105',
+                !isCopying && 'disabled:opacity-50',
+              ]"
+              aria-label="Copy image to clipboard"
+            >
+              <Icon
+                name="lucide:image-plus"
+                size="1.62rem"
+                class="transition-all duration-200"
+                :class="
+                  isCopying
+                    ? 'brightness-125 drop-shadow-[0_0_12px_#33c3fd]'
+                    : 'group-hover:brightness-125 group-hover:drop-shadow-[0_0_12px_#33c3fd]'
+                "
+                style="color: oklch(0.7 0 0)"
+              />
+            </button>
 
-            <!-- Spinner positioned 0.5rem to the right of button -->
-            <div v-if="isLoading" class="ml-2">
+            <!-- Spinner positioned to the right of icon -->
+            <div v-if="isLoading" class="ml-1 flex items-center">
               <Icon
                 name="svg-spinners:ring-resize"
                 size="1.25rem"
@@ -36,9 +52,9 @@
             <!-- Inline feedback message with blinking animation -->
             <div
               v-if="feedbackMessage"
-              class="mb-1 ml-1 text-slate-200 text-base"
+              class="font-300 mb-1 ml-1 text-base tracking-wider text-slate-200"
               :class="
-                feedbackMessage === 'Image copied'
+                feedbackMessage === 'Image copied 😀'
                   ? 'animate-blink-success'
                   : 'animate-pulse'
               "
@@ -78,6 +94,7 @@
   // Loading and feedback state
   const isLoading = ref(false)
   const feedbackMessage = ref('')
+  const isCopying = ref(false) // Track entire copy process
 
   // Button refs for coordination
   const copyButton = ref(null)
@@ -91,7 +108,8 @@
   const copyImageOnly = async () => {
     if (isLoading.value) return // Prevent multiple clicks
 
-    // Start loading immediately
+    // Start copying process
+    isCopying.value = true
     isLoading.value = true
     feedbackMessage.value = ''
 
@@ -131,6 +149,7 @@
           feedbackMessage.value = message
           setTimeout(() => {
             feedbackMessage.value = ''
+            isCopying.value = false
           }, 3000)
         }
       )
@@ -139,6 +158,7 @@
       feedbackMessage.value = error.message || 'Error copying image'
       setTimeout(() => {
         feedbackMessage.value = ''
+        isCopying.value = false
       }, 3000)
     } finally {
       clearTimeout(loadingTimeout)

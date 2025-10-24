@@ -22,7 +22,7 @@ export default {
       },
       boxShadow: {
         // Frequently used custom shadows
-        modal: '0 4px 20px -10px black',
+        modal: '0 6px 10px -3px black',
         'inset-card': 'inset 0 0 12px 0 #0f1e24',
       },
       fontFamily: {
@@ -58,7 +58,7 @@ export default {
     function ({ addComponents }) {
       addComponents({
         '.card': {
-          '@apply bg-slate-900/90 shadow-xl border-t border-seagull-600/30 rounded-md':
+          '@apply bg-slate-900 shadow-xl border-t border-seagull-600/30 rounded-md':
             {},
         },
       })

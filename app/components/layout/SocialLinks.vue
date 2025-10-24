@@ -1,8 +1,8 @@
 <template>
-  <div class="mt-0 pt-0 border-slate-700 border-t">
+  <div class="mt-0 border-t border-slate-700 pt-0">
     <div class="px-3 py-3">
       <div
-        class="flex justify-end gap-[.75rem] text-slate-100 *:text-[1.5rem] text-xs cursor-pointer"
+        class="flex cursor-pointer justify-end gap-3 text-xs text-slate-100 *:text-[1.5rem]"
       >
         <Icon
           name="streamline-logos:x-twitter-logo-block"

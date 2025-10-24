@@ -156,12 +156,6 @@
       // LOCAL DEVELOPMENT: Mock the submission
       if (import.meta.dev) {
         console.log('🧪 LOCAL DEV: Form submission (not sent to Netlify)')
-        console.log('Form data:', {
-          firstName: form.value.firstName,
-          lastName: form.value.lastName,
-          email: form.value.email,
-          message: form.value.message,
-        })
 
         // Simulate network delay
         await new Promise((resolve) => setTimeout(resolve, 1000))

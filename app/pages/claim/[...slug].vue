@@ -93,12 +93,8 @@
   const loadingTimeout = ref(null)
 
   onMounted(async () => {
-    console.log('🔍 Claim page mounted, looking for:', slugPath.value)
-
     // Ensure content is loaded first
     if (!claims?.value?.length || !contentReady.value) {
-      console.log('📥 Loading content...')
-
       // Set a timeout to prevent infinite loading
       loadingTimeout.value = setTimeout(() => {
         console.warn('Content loading timeout - redirecting to home')
@@ -127,24 +123,10 @@
     // Wait for next tick to ensure reactive updates have processed
     await nextTick()
 
-    console.log('🗺️ Slug maps claims size:', slugMaps.claims.size)
-    console.log('🔍 Looking for slug:', slugPath.value)
-    console.log('✅ Found claim:', !!slugMaps.claims.get(slugPath.value))
-
-    // Debug: show all available claim slugs
-    if (import.meta.dev) {
-      console.log('Available claim slugs:', Array.from(slugMaps.claims.keys()))
-    }
-
     // Restore wall scroll if available
     const scrollContainer = document.querySelector('.scroll-container-stable')
     if (scrollContainer && wallScrollTop.value > 0) {
       scrollContainer.scrollTo({ top: wallScrollTop.value })
-    }
-
-    // Don't redirect - just stay on the claim URL even if not found
-    if (contentReady.value && !claim.value) {
-      console.log('❌ Claim not found, but staying on URL')
     }
   })
 
@@ -158,10 +140,6 @@
   watch(contentReady, async (ready) => {
     if (ready) {
       await nextTick()
-      // Don't redirect - just stay on the claim URL even if not found
-      if (!claim.value) {
-        console.log('❌ Claim not found in watcher, but staying on URL')
-      }
     }
   })
 </script>

@@ -3,9 +3,9 @@
     <NuxtLink
       :to="to"
       @click="$emit('click')"
-      class="flex items-center gap-2 hover:bg-slate-900 py-1.5 pr-4 pl-5 rounded-md hover:text-seagull-200/80 text-base transition-colors"
+      class="flex items-center gap-2 rounded-none py-1.5 pr-4 pl-5 text-base transition-colors hover:bg-slate-800 hover:text-white"
     >
-      <span class="ml-auto uppercase tracking-widest">{{ label }}</span>
+      <span class="ml-auto tracking-widest uppercase">{{ label }}</span>
     </NuxtLink>
   </li>
 </template>

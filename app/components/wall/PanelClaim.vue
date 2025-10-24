@@ -2,11 +2,11 @@
 <template>
   <div
     v-if="claim && claim.claim && claim.translation && slug"
-    class="group isolate relative shadow-inset-card flex flex-col gap-2 bg-slate-800 hover:bg-slate-900 px-4 py-3 border hover:border hover:border-seagull-400/50 border-transparent rounded-lg h-full text-white transition-colors cursor-pointer"
+    class="card group shadow-inset-card hover:border-seagull-400/50 relative isolate flex h-full cursor-pointer flex-col gap-2 rounded-lg border border-transparent px-4 py-3 text-white transition-colors hover:border hover:bg-slate-900"
     @click="openModal"
   >
     <!-- Like button only -->
-    <div class="top-1 right-1 z-[20] absolute">
+    <div class="absolute top-1 right-1 z-20">
       <UiLikeButton
         :id="claim?._path || claim?.path || slug"
         :title="claim?.claim || 'claim'"
@@ -21,7 +21,8 @@
       <div class="flex items-center gap-3">
         <img src="~/assets/icons/npc_icon.svg" alt="NPC" class="w-8" />
         <h2
-          class="text-shadow-xs font-100 text-xl line-clamp-1 tracking-wide"
+          class="font-100 line-clamp-1 tracking-wide text-shadow-xs"
+          :style="{ fontSize: claimFontSize, lineHeight: '1.4' }"
           v-if="claim.claim"
         >
           {{ claim.claim }}
@@ -31,7 +32,8 @@
       <div class="flex items-center gap-3">
         <img src="~/assets/icons/player_icon.svg" alt="Player" class="w-8" />
         <h2
-          class="text-shadow-xs font-100 text-xl line-clamp-1 tracking-wide"
+          class="font-100 line-clamp-1 tracking-wide text-shadow-xs"
+          :style="{ fontSize: translationFontSize, lineHeight: '1.4' }"
           v-if="claim.translation"
         >
           {{ claim.translation }}
@@ -41,7 +43,7 @@
   </div>
   <div
     v-else
-    class="relative shadow-inset-card flex flex-col gap-2 bg-slate-800 px-4 py-3 rounded-lg h-full text-white"
+    class="card shadow-inset-card relative flex h-full flex-col gap-2 rounded-lg px-4 py-3 text-white"
   >
     <div class="my-auto">
       <div class="flex items-center gap-3">
@@ -50,7 +52,7 @@
           {{ claim && claim.claim ? claim.claim : 'Missing claim' }}
         </h2>
       </div>
-      <hr class="my-2 border-white/10 border-t" />
+      <hr class="my-2 border-t border-white/10" />
       <div class="flex items-center gap-3">
         <img src="~/assets/icons/player_icon.svg" alt="Player" class="w-8" />
         <h2 class="line-clamp-1" v-if="claim && claim.translation">
@@ -69,10 +71,30 @@
 
   const contentType = computed(() => 'political claim')
 
+  // Calculate font size based on text length
+  const claimFontSize = computed(() => {
+    const text = props.claim?.claim || ''
+    const length = text.length
+
+    if (length > 300) return '0.75rem' // 12px for very long text
+    if (length > 200) return '0.875rem' // 14px for long text
+    if (length > 100) return '1rem' // 16px for medium text
+    return '1.25rem' // 20px for normal text
+  })
+
+  const translationFontSize = computed(() => {
+    const text = props.claim?.translation || ''
+    const length = text.length
+
+    if (length > 300) return '0.75rem'
+    if (length > 200) return '0.875rem'
+    if (length > 100) return '1rem'
+    return '1.25rem'
+  })
+
   function openModal() {
     // Emit event to parent to open modal
     // This will be handled by the parent component
-    console.log('Opening modal for claim:', props.slug)
   }
 
   function shareContent() {
@@ -111,6 +133,5 @@
     }
 
     // Show toast notification (you could add a toast system)
-    console.log('Link copied to clipboard!')
   }
 </script>
