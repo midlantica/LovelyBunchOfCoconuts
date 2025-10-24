@@ -71,14 +71,68 @@ export const useShareImageGenerator = () => {
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
 
-    // Large quote marks
-    ctx.font = 'bold 120px serif'
+    // MICROSCOPIC FONTS - GUARANTEE FIT
+    const quoteLength = quote.length
+    let fontSize, lineHeight, quoteMarkSize
+
+    if (quoteLength > 1200) {
+      fontSize = 3
+      lineHeight = 6
+      quoteMarkSize = 50
+    } else if (quoteLength > 1000) {
+      fontSize = 3.5
+      lineHeight = 6.5
+      quoteMarkSize = 60
+    } else if (quoteLength > 900) {
+      fontSize = 4
+      lineHeight = 7
+      quoteMarkSize = 70
+    } else if (quoteLength > 800) {
+      fontSize = 4.5
+      lineHeight = 7.5
+      quoteMarkSize = 70
+    } else if (quoteLength > 700) {
+      fontSize = 5
+      lineHeight = 8
+      quoteMarkSize = 80
+    } else if (quoteLength > 600) {
+      fontSize = 6
+      lineHeight = 9
+      quoteMarkSize = 90
+    } else if (quoteLength > 500) {
+      fontSize = 8
+      lineHeight = 12
+      quoteMarkSize = 100
+    } else if (quoteLength > 400) {
+      fontSize = 11
+      lineHeight = 16
+      quoteMarkSize = 110
+    } else if (quoteLength > 300) {
+      fontSize = 15
+      lineHeight = 22
+      quoteMarkSize = 120
+    } else if (quoteLength > 200) {
+      fontSize = 21
+      lineHeight = 29
+      quoteMarkSize = 120
+    } else if (quoteLength > 150) {
+      fontSize = 27
+      lineHeight = 37
+      quoteMarkSize = 120
+    } else {
+      fontSize = 42
+      lineHeight = 55
+      quoteMarkSize = 120
+    }
+
+    // Smaller quote marks for long quotes to save space
+    ctx.font = `bold ${quoteMarkSize}px serif`
     ctx.fillStyle = '#68D2FF'
     ctx.fillText('"', 100, 200)
     ctx.fillText('"', canvas.width - 100, 430)
 
-    // Quote text
-    ctx.font = 'italic 42px -apple-system, system-ui, sans-serif'
+    // Quote text with dynamic sizing
+    ctx.font = `italic ${fontSize}px -apple-system, system-ui, sans-serif`
     ctx.fillStyle = '#ffffff'
     wrapText(
       ctx,
@@ -86,7 +140,7 @@ export const useShareImageGenerator = () => {
       canvas.width / 2,
       canvas.height / 2 - 20,
       canvas.width - 200,
-      55
+      lineHeight
     )
 
     // Attribution
