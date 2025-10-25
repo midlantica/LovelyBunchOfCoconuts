@@ -2335,6 +2335,22 @@
       "updated": "2025-10-24T23:59:28.450Z",
       "width": 800,
       "height": 460
+    },
+    "cartoons/do-you-remember-back-when-the-evening-1.jpg": {
+      "optimized": true,
+      "hash": "0439c5d181e502ce3b5bf6444da75f8f65d62c9f",
+      "action": "upscale→800",
+      "updated": "2025-10-25T04:22:08.092Z",
+      "width": 800,
+      "height": 577
+    },
+    "data/birthplace-of-u-s-immigrants-1850-2017-1.jpg": {
+      "optimized": true,
+      "hash": "09508cf07c35c0cb21783fda99774bddb67f9aab",
+      "action": "strip-profiles",
+      "updated": "2025-10-25T04:22:08.507Z",
+      "width": 1080,
+      "height": 1026
     }
   }
 }

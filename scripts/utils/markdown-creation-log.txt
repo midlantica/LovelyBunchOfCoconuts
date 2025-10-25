@@ -1,7 +1,7 @@
-Starting markdown file creation at 2025-10-24T23:59:28.496Z
-Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes
-Created markdown file for islamophobia-a-word-created-by-fascists.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/islamophobia-a-word-created-by-fascists.md
+Starting markdown file creation at 2025-10-25T04:22:08.547Z
+Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data
+Created markdown file for birthplace-of-u-s-immigrants-1850-2017-1.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/data/birthplace-of-u-s-immigrants-1850-2017-1.md
 
-Markdown file creation complete at 2025-10-24T23:59:28.503Z
-1 markdown files created, 88 files skipped
+Markdown file creation complete at 2025-10-25T04:22:08.555Z
+1 markdown files created, 134 files skipped
 Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/utils/markdown-creation-log.txt

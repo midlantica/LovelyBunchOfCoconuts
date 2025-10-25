@@ -1,7 +1,7 @@
 ---
-title: "G29ppnfbgaaji1"
+title: 'Hey look celebrity opinions'
 ---
 
-![G29ppnfbgaaji1](/memes/cartoons/g29ppnfbgaaji1.jpg)
+![Hey look celebrity opinions](/memes/cartoons/hey-look-celebrity-opinions.jpg)
 
-G29ppnfbgaaji1
+Hey look celebrity opinions

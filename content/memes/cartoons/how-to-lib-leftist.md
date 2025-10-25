@@ -1,7 +1,7 @@
 ---
-title: 'How to lib... Leftist'
+title: 'How to Leftist'
 ---
 
-![How to lib... Leftist 1](/memes/cartoons/how-to-lib-leftist.jpg)
+![How to Leftist](/memes/cartoons/how-to-lib-leftist.jpg)
 
-How to lib... Leftist
+How to Leftist

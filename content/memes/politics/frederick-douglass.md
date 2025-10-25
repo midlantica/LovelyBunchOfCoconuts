@@ -1,7 +1,7 @@
 ---
-title: 'Frederick douglass'
+title: 'Frederick Douglass'
 ---
 
-![Frederick douglass](/memes/politics/frederick-douglass.jpg)
+![Frederick Douglass](/memes/politics/frederick-douglass.jpg)
 
-Frederick douglass
+Frederick Douglass

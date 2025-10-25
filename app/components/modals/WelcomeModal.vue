@@ -10,10 +10,10 @@
     >
       <div
         v-if="show"
-        class="z-50 fixed inset-0 flex justify-center items-center overscroll-contain modal-overlay"
+        class="modal-overlay fixed inset-0 z-50 flex items-center justify-center overscroll-contain"
         @click.self="handleBackdropClick"
       >
-        <div class="welcome-modal-background">
+        <div class="welcome-modal-background" @click="handleClose">
           <!-- Close button -->
           <UiCloseButton
             class="welcome-modal-close-button"
@@ -34,12 +34,12 @@
               Leftist echo chamber. It's time to wake them up!
             </p>
 
-            <p class="relative welcome-modal-paragraph">
+            <p class="welcome-modal-paragraph relative">
               WakeUpNPC is a gold mine of anti&#8209;Leftist Memes, Quotes,
               and&nbsp;<span class="underlined-text"
                 >Leftist Grift<Icon
                   name="i-heroicons:arrow-right-20-solid"
-                  class="top-0.5 relative mx-0.5 text-slate-100 text-xl"
+                  class="relative top-0.5 mx-0.5 text-xl text-slate-100"
                 />Decoded</span
               >.
             </p>
