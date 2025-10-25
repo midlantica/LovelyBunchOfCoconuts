@@ -2215,6 +2215,126 @@
       "updated": "2025-10-16T16:58:12.595Z",
       "width": 1057,
       "height": 1080
+    },
+    "capitalism/what-our-generation-has-forgotten-1.jpg": {
+      "optimized": true,
+      "hash": "e1b3f6dc1e090b00c7bae6ed1389dda755cca6c2",
+      "action": "strip-profiles",
+      "updated": "2025-10-24T23:59:25.382Z",
+      "width": 1080,
+      "height": 1080
+    },
+    "cartoons/capitalism-vs-socialism-free-and-empty.jpg": {
+      "optimized": true,
+      "hash": "ff1762be9cbe1728c8cccf5190aee0ff6a6334c6",
+      "action": "upscale→800",
+      "updated": "2025-10-24T23:59:25.655Z",
+      "width": 800,
+      "height": 800
+    },
+    "cartoons/democrats-hands-off-our-criminals.jpg": {
+      "optimized": true,
+      "hash": "a55221c9d470467118986bc4b19beb0a489727f7",
+      "action": "strip-profiles",
+      "updated": "2025-10-24T23:59:25.786Z",
+      "width": 957,
+      "height": 626
+    },
+    "cartoons/do-you-remember-back-when-the-evening.jpg": {
+      "optimized": true,
+      "hash": "0439c5d181e502ce3b5bf6444da75f8f65d62c9f",
+      "action": "upscale→800",
+      "updated": "2025-10-24T23:59:25.979Z",
+      "width": 800,
+      "height": 577
+    },
+    "cartoons/g2-mbhbwoaaut-x.jpg": {
+      "optimized": true,
+      "hash": "eddb5aff1b9ff70d9a4cd2e30f4f09b00c6d6af9",
+      "action": "upscale→800",
+      "updated": "2025-10-24T23:59:26.169Z",
+      "width": 800,
+      "height": 760
+    },
+    "cartoons/g29ppnfbgaaji1.jpg": {
+      "optimized": true,
+      "hash": "f750d2469822c656b66780199a543b58cad2e45f",
+      "action": "strip-profiles",
+      "updated": "2025-10-24T23:59:26.305Z",
+      "width": 864,
+      "height": 1080
+    },
+    "cartoons/g3altu-baaawud.jpg": {
+      "optimized": true,
+      "hash": "a98cdd0e3c04c3964d5d9e604f015a50985b8b15",
+      "action": "upscale→800",
+      "updated": "2025-10-24T23:59:26.485Z",
+      "width": 633,
+      "height": 800
+    },
+    "cartoons/g3avbzfwuaayilg.jpg": {
+      "optimized": true,
+      "hash": "07ae9830cf7db3292683c116faa129a1d92b8035",
+      "action": "strip-profiles",
+      "updated": "2025-10-24T23:59:26.635Z",
+      "width": 1080,
+      "height": 1036
+    },
+    "data/birthplace-of-u-s-immigrants-1850-2017.jpg": {
+      "optimized": true,
+      "hash": "09508cf07c35c0cb21783fda99774bddb67f9aab",
+      "action": "strip-profiles",
+      "updated": "2025-10-24T23:59:26.987Z",
+      "width": 1080,
+      "height": 1026
+    },
+    "data/g3aucjhxwaaglq3.jpg": {
+      "optimized": true,
+      "hash": "fa016c419a62daaf59282a28565c12e0273e9836",
+      "action": "upscale→800",
+      "updated": "2025-10-24T23:59:27.210Z",
+      "width": 800,
+      "height": 732
+    },
+    "data/gdp-per-capita-ppp-1990-int-dollars.jpg": {
+      "optimized": true,
+      "hash": "cca3d015e714ab5994cfd92a0367e45d56d17482",
+      "action": "strip-profiles",
+      "updated": "2025-10-24T23:59:27.487Z",
+      "width": 1080,
+      "height": 711
+    },
+    "data/percent-of-london-borough-which-is-white.jpg": {
+      "optimized": true,
+      "hash": "24e6604547ab1efb916eff01a9a822a15602eab4",
+      "action": "strip-profiles",
+      "updated": "2025-10-24T23:59:27.638Z",
+      "width": 944,
+      "height": 1024
+    },
+    "politics/venezuela-timeline-1.jpg": {
+      "optimized": true,
+      "hash": "c3acb2ecfc01b460cc1c62d0df39f9dd285378b5",
+      "action": "upscale→800",
+      "updated": "2025-10-24T23:59:28.000Z",
+      "width": 800,
+      "height": 732
+    },
+    "politics/yes-america-was-founded-on-the-principle.jpg": {
+      "optimized": true,
+      "hash": "435228f1fa47daf90204c4e2f775667c12a342be",
+      "action": "strip-profiles",
+      "updated": "2025-10-24T23:59:28.143Z",
+      "width": 1080,
+      "height": 900
+    },
+    "quotes/islamophobia-a-word-created-by-fascists.jpg": {
+      "optimized": true,
+      "hash": "f0b304e2941dab6c46ab7f531455ca2f6e4b574a",
+      "action": "upscale→800",
+      "updated": "2025-10-24T23:59:28.450Z",
+      "width": 800,
+      "height": 460
     }
   }
 }

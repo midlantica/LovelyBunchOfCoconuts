@@ -1,7 +1,7 @@
 ---
-title: "Commiepoly 1"
+title: 'Commiepoly'
 ---
 
-![Commiepoly 1](/memes/capitalism/commiepoly-1.jpg)
+![Commiepoly](/memes/capitalism/commiepoly.jpg)
 
-Commiepoly 1
+Commiepoly

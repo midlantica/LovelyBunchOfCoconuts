@@ -1,7 +1,7 @@
-Starting markdown file creation at 2025-10-16T16:58:12.633Z
-Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell
-Created markdown file for if-you-believe-in-equal-rights-then-the.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/if-you-believe-in-equal-rights-then-the.md
+Starting markdown file creation at 2025-10-24T23:59:28.496Z
+Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes
+Created markdown file for islamophobia-a-word-created-by-fascists.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/islamophobia-a-word-created-by-fascists.md
 
-Markdown file creation complete at 2025-10-16T16:58:12.638Z
-1 markdown files created, 97 files skipped
+Markdown file creation complete at 2025-10-24T23:59:28.503Z
+1 markdown files created, 88 files skipped
 Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/utils/markdown-creation-log.txt
