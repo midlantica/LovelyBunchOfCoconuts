@@ -44,9 +44,7 @@
                       ? 'brightness-125 drop-shadow-[0_0_12px_#33c3fd]'
                       : 'group-hover:brightness-125 group-hover:drop-shadow-[0_0_12px_#33c3fd]'
                 "
-                :style="
-                  disableCopyImage ? 'color: #6b7280' : 'color: oklch(0.7 0 0)'
-                "
+                :style="disableCopyImage ? 'color: #6b7280' : 'color: #b3b3b3'"
               />
             </button>
 

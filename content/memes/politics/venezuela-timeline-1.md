@@ -1,7 +1,7 @@
 ---
-title: "Venezuela timeline 1"
+title: 'Venezuela timeline'
 ---
 
-![Venezuela timeline 1](/memes/politics/venezuela-timeline-1.jpg)
+![Venezuela timeline](/memes/politics/venezuela-timeline.jpg)
 
-Venezuela timeline 1
+Venezuela timeline

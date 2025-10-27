@@ -2351,6 +2351,30 @@
       "updated": "2025-10-25T04:22:08.507Z",
       "width": 1080,
       "height": 1026
+    },
+    "politics/venezuela-timeline-2.jpg": {
+      "optimized": true,
+      "hash": "c3acb2ecfc01b460cc1c62d0df39f9dd285378b5",
+      "action": "upscale→800",
+      "updated": "2025-10-27T17:46:20.019Z",
+      "width": 800,
+      "height": 732
+    },
+    "politics/yes-america-was-founded-on-the-principle-1.jpg": {
+      "optimized": true,
+      "hash": "435228f1fa47daf90204c4e2f775667c12a342be",
+      "action": "strip-profiles",
+      "updated": "2025-10-27T17:46:20.153Z",
+      "width": 1080,
+      "height": 900
+    },
+    "quotes/islamophobia-a-word-created-by-fascists-1.jpg": {
+      "optimized": true,
+      "hash": "f0b304e2941dab6c46ab7f531455ca2f6e4b574a",
+      "action": "upscale→800",
+      "updated": "2025-10-27T17:46:20.437Z",
+      "width": 800,
+      "height": 460
     }
   }
 }

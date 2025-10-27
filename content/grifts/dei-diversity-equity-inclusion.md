@@ -1,5 +1,5 @@
 ---
 title: 'DEI - Diversity Equity Inclusion'
 grift: 'DEI - Diversity Equity Inclusion'
-decode: "Increased Poverty and Division, or Didn't Earn It."
+decode: 'Increased Poverty and Division.'
 ---

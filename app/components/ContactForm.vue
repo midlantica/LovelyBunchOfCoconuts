@@ -124,7 +124,7 @@
         <button
           type="submit"
           :disabled="isSubmitting"
-          class="bg-seagull-600 font-500 hover:bg-seagull-500 rounded-md px-6 py-3 tracking-wider text-slate-950 transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+          class="bg-seagull-600 hover:bg-seagull-500 rounded-md px-6 py-3 text-[1.3rem] font-normal tracking-[0.1rem] text-slate-950 uppercase transition-colors [text-shadow:1px_1px_4px_#00000054] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {{ isSubmitting ? 'Sending...' : 'Send Message' }}
         </button>

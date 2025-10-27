@@ -23,7 +23,7 @@
       >{{ abbreviated }}</span
     >
     <span
-      class="inline-flex items-center justify-center rounded-full transition-all duration-150"
+      class="inline-flex items-center justify-center rounded-full transition-all duration-150 [text-shadow:0_1px_1px_rgba(0,0,0,0.6)]"
       :class="[
         'h-8',
         isSolid
@@ -33,20 +33,24 @@
             : 'text-seagull-700/70 hover:text-seagull-700',
         countInside ? 'relative' : isReversed ? 'ml-1' : 'mr-1',
       ]"
-      style="text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6)"
     >
       <Icon
         :key="isSolid ? 'heart-solid' : 'heart-outline'"
         :name="isSolid ? 'heroicons:heart-20-solid' : 'heroicons:heart'"
         class="transition-all duration-200 group-hover:brightness-125 group-hover:drop-shadow-[0_0_12px_#33c3fd]"
-        :class="[isSolid ? 'text-seagull-700 scale-105' : 'scale-100']"
-        :style="isSolid ? {} : { color: 'oklch(0.7 0 0)' }"
+        :class="[
+          isSolid ? 'heart-gradient scale-105' : 'scale-100',
+          !isSolid && fadedUnliked
+            ? 'text-[#b3b3b3]/50'
+            : !isSolid
+              ? 'text-[#b3b3b3]'
+              : '',
+        ]"
         :size="iconSize"
       />
       <span
         v-if="countInside && displayCount > 0 && showCount"
-        class="font-300 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[0.8rem] tracking-tight text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] select-none"
-        style="font-weight: 300"
+        class="font-300 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[0.8rem] tracking-tight text-white select-none [text-shadow:0px_1px_1px_#000000]"
         >{{ abbreviated }}</span
       >
     </span>
@@ -162,5 +166,12 @@
     button:hover span:first-child {
       transform: scale(1.05);
     }
+  }
+
+  .heart-gradient {
+    background: radial-gradient(circle, #00a5ff, #00649b, #000000) !important;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 </style>
