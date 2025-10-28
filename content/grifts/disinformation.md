@@ -1,5 +1,5 @@
 ---
 title: 'Disinformation'
 grift: 'Disinformation'
-decode: 'Truth we don’t approve.'
+decode: "Truth we don't approve."
 ---

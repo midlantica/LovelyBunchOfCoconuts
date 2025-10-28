@@ -18,7 +18,7 @@
               <h1
                 class="font-100 mb-0 text-2xl leading-tight text-white text-shadow-xs"
               >
-                {{ modalData?.grift || modalData?.title }}
+                {{ `&lsquo;${modalData?.grift || modalData?.title}&rsquo;` }}
               </h1>
             </div>
             <UiDividerArrow wrapper-class="my-4" />

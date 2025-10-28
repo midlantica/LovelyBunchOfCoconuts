@@ -28,7 +28,7 @@ export const useShareImageGenerator = () => {
     ctx.font = 'bold 48px -apple-system, system-ui, sans-serif'
     wrapText(
       ctx,
-      grift,
+      `'${grift}'`,
       canvas.width / 2,
       canvas.height / 2 - 50,
       canvas.width - 100,

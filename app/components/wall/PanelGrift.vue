@@ -25,7 +25,7 @@
           :style="{ fontSize: griftFontSize, lineHeight: '1.4' }"
           v-if="grift.grift"
         >
-          {{ grift.grift }}
+          {{ `&lsquo;${grift.grift}&rsquo;` }}
         </h2>
       </div>
       <UiDividerArrow wrapper-class="my-2" />
@@ -49,7 +49,7 @@
       <div class="flex items-center gap-3">
         <img src="~/assets/icons/npc_icon.svg" alt="NPC" class="w-8" />
         <h2 class="line-clamp-1">
-          {{ grift && grift.grift ? grift.grift : 'Missing grift' }}
+          {{ grift && grift.grift ? `'${grift.grift}'` : 'Missing grift' }}
         </h2>
       </div>
       <hr class="my-2 border-t border-white/10" />

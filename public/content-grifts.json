@@ -255,7 +255,7 @@
     "_path": "/grifts/ban-private-property",
     "title": "Ban Private Property",
     "grift": "Ban Private Property",
-    "decode": "You’ll own nothing and be surveilled.",
+    "decode": "You'll own nothing and be surveilled.",
     "body": ""
   },
   {
@@ -486,7 +486,7 @@
     "_path": "/grifts/community-reparations",
     "title": "Community Reparations",
     "grift": "Community Reparations",
-    "decode": "Your neighbor owes you—forever.",
+    "decode": "Your neighbor owes you - forever.",
     "body": ""
   },
   {
@@ -507,7 +507,7 @@
     "_path": "/grifts/compassionate-release",
     "title": "Compassionate Release",
     "grift": "Compassionate Release",
-    "decode": "Let convicts go—justice served.",
+    "decode": "Let convicts go - justice served.",
     "body": ""
   },
   {
@@ -577,7 +577,7 @@
     "_path": "/grifts/cultural-appropriation-1",
     "title": "Cultural Appropriation",
     "grift": "Cultural Appropriation",
-    "decode": "Don't enjoy other cultures—just apologize.",
+    "decode": "Don't enjoy other cultures - just apologize.",
     "body": ""
   },
   {
@@ -654,7 +654,7 @@
     "_path": "/grifts/decarceration-now",
     "title": "Decarceration Now",
     "grift": "Decarceration Now",
-    "decode": "Let criminals walk free—justice!",
+    "decode": "Let criminals walk free - justice!",
     "body": ""
   },
   {
@@ -878,14 +878,14 @@
     "_path": "/grifts/degrowth-movement",
     "title": "Degrowth Movement",
     "grift": "Degrowth Movement",
-    "decode": "Let's all be poorer — on purpose.",
+    "decode": "Let's all be poorer - on purpose.",
     "body": ""
   },
   {
     "_path": "/grifts/dei-diversity-equity-inclusion",
     "title": "DEI - Diversity Equity Inclusion",
     "grift": "DEI - Diversity Equity Inclusion",
-    "decode": "Increased Poverty and Division, or Didn't Earn It.",
+    "decode": "Increased Poverty and Division.",
     "body": ""
   },
   {
@@ -934,14 +934,14 @@
     "_path": "/grifts/disarm-the-police",
     "title": "Disarm the Police",
     "grift": "Disarm the Police",
-    "decode": "Protect the innocent—except not.",
+    "decode": "Protect the innocent - except not.",
     "body": ""
   },
   {
     "_path": "/grifts/disinformation",
     "title": "Disinformation",
     "grift": "Disinformation",
-    "decode": "Truth we don’t approve.",
+    "decode": "Truth we don't approve.",
     "body": ""
   },
   {
@@ -997,7 +997,7 @@
     "_path": "/grifts/eco-feminism",
     "title": "Eco-Feminism",
     "grift": "Eco-Feminism",
-    "decode": "The planet is Mother—obey her.",
+    "decode": "The planet is Mother - obey her.",
     "body": ""
   },
   {
@@ -1662,7 +1662,7 @@
     "_path": "/grifts/inclusive-language-1",
     "title": "Inclusive Language",
     "grift": "Inclusive Language",
-    "decode": "Say what we say—or else.",
+    "decode": "Say what we say - or else.",
     "body": ""
   },
   {
@@ -1823,7 +1823,7 @@
     "_path": "/grifts/living-wage",
     "title": "Living Wage",
     "grift": "Living Wage",
-    "decode": "Pay me more than I’m worth.",
+    "decode": "Pay me more than I'm worth.",
     "body": ""
   },
   {
@@ -1900,7 +1900,7 @@
     "_path": "/grifts/mutual-accountability",
     "title": "Mutual Accountability",
     "grift": "Mutual Accountability",
-    "decode": "Everyone’s to blame—except us.",
+    "decode": "Everyone's to blame - except us.",
     "body": ""
   },
   {
@@ -2425,7 +2425,7 @@
     "_path": "/grifts/reparations-2",
     "title": "Reparations",
     "grift": "Reparations",
-    "decode": "Punishing people for history they didn’t make.",
+    "decode": "Punishing people for history they didn't make.",
     "body": ""
   },
   {

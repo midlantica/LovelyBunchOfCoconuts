@@ -1,5 +1,5 @@
 ---
 title: 'Inclusive Language'
 grift: 'Inclusive Language'
-decode: 'Say what we say—or else.'
+decode: 'Say what we say - or else.'
 ---
