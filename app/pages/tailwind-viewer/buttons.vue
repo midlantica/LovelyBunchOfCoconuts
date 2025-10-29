@@ -1,12 +1,14 @@
 <template>
   <div v-if="isDev" class="mx-auto w-full max-w-7xl px-6 pt-6 pb-8">
     <div class="mb-8">
-      <NuxtLink
+      <UiButton
         to="/tailwind-viewer"
-        class="text-accent mb-4 inline-flex items-center gap-2 hover:underline"
-      >
-        ← Back to Design Tokens
-      </NuxtLink>
+        text="Back to Design Tokens"
+        icon-left="heroicons:arrow-left"
+        variant="outline-dark"
+        size="sm"
+        class="mb-4"
+      />
       <h1 class="font-300 mb-2 text-3xl">Button Component Grid</h1>
       <p class="text-slate-400">
         Complete showcase of all button variants, sizes, and states
