@@ -3,7 +3,7 @@
   <div>
     <template v-if="meme && meme.image && slug">
       <div
-        class="card group shadow-inset-card hover:border-seagull-400/50 relative isolate mx-auto h-full w-full cursor-pointer overflow-hidden rounded-md border border-transparent p-3 hover:border hover:bg-slate-900"
+        class="card group shadow-inset-card hover:border-seagull-400/50 relative isolate mx-auto h-full w-full cursor-pointer! overflow-hidden rounded-md border border-transparent p-3 hover:border hover:bg-slate-900"
         @click="openModal"
       >
         <!-- Like button only -->

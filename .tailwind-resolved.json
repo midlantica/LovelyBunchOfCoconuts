@@ -553,7 +553,7 @@
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
   }
   .cursor-pointer {
-    cursor: pointer;
+    cursor: pointer!;
   }
   .resize {
     resize: both;
@@ -1139,7 +1139,7 @@
   .hover\:cursor-pointer {
     &:hover {
       @media (hover: hover) {
-        cursor: pointer;
+        cursor: pointer!;
       }
     }
   }
@@ -1582,4 +1582,3 @@
     }
   }
 }
-

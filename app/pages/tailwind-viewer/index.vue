@@ -154,7 +154,7 @@
                   v-for="(hex, shade) in c.shades"
                   :key="shade"
                   :style="{ background: hex }"
-                  class="hover:ring-accent/60 relative flex h-12 cursor-pointer items-center justify-center rounded-sm ring-0 transition select-none hover:ring-2"
+                  class="hover:ring-accent/60 relative flex h-12 cursor-pointer! items-center justify-center rounded-sm ring-0 transition select-none hover:ring-2"
                   :title="`Click to copy ${c.name}-${shade}`"
                   role="button"
                   tabindex="0"
@@ -173,7 +173,7 @@
               </div>
               <div
                 v-else
-                class="hover:ring-accent/60 relative h-16 cursor-pointer transition select-none hover:ring-2"
+                class="hover:ring-accent/60 relative h-16 cursor-pointer! transition select-none hover:ring-2"
                 :style="{ background: c.value }"
                 :title="`Click to copy ${c.name}`"
                 role="button"

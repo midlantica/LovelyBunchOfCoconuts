@@ -57,14 +57,14 @@
         <div class="flex flex-wrap justify-center gap-6">
           <!-- Basic -->
           <div
-            class="card relative flex w-full cursor-pointer flex-col transition-all duration-300 hover:scale-105 hover:border sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+            class="card relative flex w-full cursor-pointer! flex-col transition-all duration-300 hover:scale-105 hover:border sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
           >
             <div class="flex-1 p-4">
               <h3 class="font-300 mb-1 text-center text-2xl uppercase">
                 Basic
               </h3>
               <div
-                class="font-300 text-seagull-100 text-center text-3xl tracking-widest"
+                class="font-300 text-seagull-100 text-center text-4xl tracking-widest"
               >
                 $150
               </div>
@@ -104,7 +104,7 @@
 
           <!-- Standard -->
           <div
-            class="card relative flex w-full cursor-pointer flex-col transition-all duration-300 hover:scale-105 hover:border sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+            class="card relative flex w-full cursor-pointer! flex-col transition-all duration-300 hover:scale-105 hover:border sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
           >
             <div
               class="font-300 absolute top-0 right-0 rounded-tr-md rounded-bl-md bg-slate-700 px-2 py-1 text-xs tracking-wider uppercase"
@@ -116,7 +116,7 @@
                 Standard
               </h3>
               <div
-                class="font-300 text-seagull-100 text-center text-3xl tracking-widest"
+                class="font-300 text-seagull-100 text-center text-4xl tracking-widest"
               >
                 $300
               </div>
@@ -161,14 +161,14 @@
 
           <!-- Premium -->
           <div
-            class="card relative flex w-full cursor-pointer flex-col transition-all duration-300 hover:scale-105 hover:border sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+            class="card relative flex w-full cursor-pointer! flex-col transition-all duration-300 hover:scale-105 hover:border sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
           >
             <div class="flex-1 p-4">
               <h3 class="font-300 mb-1 text-center text-2xl uppercase">
                 Premium
               </h3>
               <div
-                class="font-300 text-seagull-100 text-center text-3xl tracking-widest"
+                class="font-300 text-seagull-100 text-center text-4xl tracking-widest"
               >
                 $500
               </div>
@@ -235,12 +235,12 @@
         <div class="flex flex-wrap justify-center gap-6">
           <!-- Horizontal Basic -->
           <div
-            class="card relative flex w-full cursor-pointer flex-col transition-all duration-300 hover:scale-105 hover:border sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+            class="card relative flex w-full cursor-pointer! flex-col transition-all duration-300 hover:scale-105 hover:border sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
           >
             <div class="flex-1 p-4">
               <h3 class="font-300 text-center text-2xl uppercase">Basic</h3>
               <div
-                class="font-300 text-seagull-100 text-center text-3xl tracking-widest"
+                class="font-300 text-seagull-100 text-center text-4xl tracking-widest"
               >
                 $225
               </div>
@@ -280,12 +280,12 @@
 
           <!-- Horizontal Standard -->
           <div
-            class="card relative flex w-full cursor-pointer flex-col transition-all duration-300 hover:scale-105 hover:border sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+            class="card relative flex w-full cursor-pointer! flex-col transition-all duration-300 hover:scale-105 hover:border sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
           >
             <div class="flex-1 p-4">
               <h3 class="font-300 text-center text-2xl uppercase">Standard</h3>
               <div
-                class="font-300 text-seagull-100 text-center text-3xl tracking-widest"
+                class="font-300 text-seagull-100 text-center text-4xl tracking-widest"
               >
                 $450
               </div>
@@ -330,12 +330,12 @@
 
           <!-- Horizontal Premium -->
           <div
-            class="card relative flex w-full cursor-pointer flex-col transition-all duration-300 hover:scale-105 hover:border sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+            class="card relative flex w-full cursor-pointer! flex-col transition-all duration-300 hover:scale-105 hover:border sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
           >
             <div class="flex-1 p-4">
               <h3 class="font-300 text-center text-2xl uppercase">Premium</h3>
               <div
-                class="font-300 text-seagull-100 text-center text-3xl tracking-widest"
+                class="font-300 text-seagull-100 text-center text-4xl tracking-widest"
               >
                 $750
               </div>
@@ -398,8 +398,8 @@
         <UiButton
           to="/about"
           text="Contact Us Today"
-          size="lg"
-          variant="secondary"
+          size="xl"
+          variant="primary"
         />
       </div>
     </div>

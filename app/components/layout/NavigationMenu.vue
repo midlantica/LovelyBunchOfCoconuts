@@ -1,7 +1,7 @@
 <template>
   <div ref="menuContainer" class="relative isolate">
     <!-- Hamburger Button -->
-    <LayoutHamburgerButton @click="toggleMenu" class="cursor-pointer" />
+    <LayoutHamburgerButton @click="toggleMenu" class="cursor-pointer!" />
 
     <!-- Dropdown Menu -->
     <Transition name="dropdown">

@@ -2,7 +2,7 @@
 <template>
   <div
     v-if="quote && quote.headings && quote.headings.length > 0 && slug"
-    class="card group shadow-inset-card hover:border-seagull-400/50 quotePanel relative isolate flex cursor-pointer flex-col gap-2 rounded-lg border border-transparent px-6 py-4 text-white hover:border hover:bg-slate-900"
+    class="card group shadow-inset-card hover:border-seagull-400/50 quotePanel relative isolate flex cursor-pointer! flex-col gap-2 rounded-lg border border-transparent px-6 py-4 text-white hover:border hover:bg-slate-900"
     @click="openModal"
   >
     <!-- Like button only -->

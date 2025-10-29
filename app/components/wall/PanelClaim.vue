@@ -2,7 +2,7 @@
 <template>
   <div
     v-if="claim && claim.claim && claim.translation && slug"
-    class="card group shadow-inset-card hover:border-seagull-400/50 relative isolate flex h-full cursor-pointer flex-col gap-2 rounded-lg border border-transparent px-4 py-3 text-white transition-colors hover:border hover:bg-slate-900"
+    class="card group shadow-inset-card hover:border-seagull-400/50 relative isolate flex h-full cursor-pointer! flex-col gap-2 rounded-lg border border-transparent px-4 py-3 text-white transition-colors hover:border hover:bg-slate-900"
     @click="openModal"
   >
     <!-- Like button only -->

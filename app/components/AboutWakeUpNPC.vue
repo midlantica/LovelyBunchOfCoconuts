@@ -23,7 +23,7 @@
       tabindex="0"
       @keydown.enter="showImageModal = true"
       @keydown.space.prevent="showImageModal = true"
-      class="group flex-1 cursor-pointer"
+      class="group flex-1 cursor-pointer!"
     >
       <img
         src="/modern-woke-barbarians.jpg"
@@ -40,7 +40,7 @@
     <div
       v-if="showImageModal"
       @click="showImageModal = false"
-      class="fixed inset-0 z-50 flex cursor-pointer items-center justify-center bg-black/90"
+      class="fixed inset-0 z-50 flex cursor-pointer! items-center justify-center bg-black/90"
       role="dialog"
       aria-modal="true"
       tabindex="0"

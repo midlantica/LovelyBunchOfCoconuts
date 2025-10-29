@@ -140,7 +140,7 @@ export function useContentCache() {
             .filter(Boolean)
           transformed.attribution = paragraphs[0] || ''
           if (headings.length > 0) {
-            transformed.quoteText = headings[0]
+            transformed.quoteText = headings.join('\n\n')
           }
         }
       }

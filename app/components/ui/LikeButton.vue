@@ -2,7 +2,7 @@
   <button
     :aria-label="ariaLabel"
     :aria-pressed="liked ? 'true' : 'false'"
-    class="group relative inline-flex cursor-pointer items-center rounded-md px-0 py-0 select-none focus:outline-none"
+    class="group relative inline-flex cursor-pointer! items-center rounded-md px-0 py-0 select-none focus:outline-none"
     :class="outerClass"
     type="button"
     data-like-button="true"

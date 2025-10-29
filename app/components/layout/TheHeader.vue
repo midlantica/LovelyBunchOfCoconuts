@@ -1,17 +1,17 @@
 <!-- components/TheHeader.vue -->
 <template>
-  <header class="top-0 left-0 z-10 sticky bg-slate-900 pt-2 pb-1 w-full">
+  <header class="sticky top-0 left-0 z-10 w-full bg-slate-900 pt-2 pb-1">
     <div class="px-6">
       <!-- Flex container with three sections for balanced layout -->
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <!-- Left spacer (same width as hamburger menu) - hidden on mobile -->
-        <div class="hidden sm:block w-10"></div>
+        <div class="hidden w-10 sm:block"></div>
 
         <!-- Center logo on desktop, left-aligned on mobile -->
         <div class="flex flex-1 justify-center">
           <button
             type="button"
-            class="focus:outline-none no-underline hover:cursor-pointer"
+            class="no-underline hover:cursor-pointer! focus:outline-none"
             @click="handleMastheadClick"
           >
             <LogoComponent />
@@ -62,7 +62,6 @@
       if (precomputedLayout) {
         // Instant refresh using pre-computed layout!
         if (import.meta.dev) {
-
         }
 
         // Clear search and filters
@@ -79,7 +78,6 @@
       } else {
         // Fallback to full page reload if no pre-computed layout available
         if (import.meta.dev) {
-
         }
 
         const currentUrl = new URL(window.location)

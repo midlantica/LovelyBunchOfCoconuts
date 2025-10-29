@@ -17,7 +17,7 @@
           <!-- Quotes (full width) - or Large Ads -->
           <div
             v-if="item.type === 'quote'"
-            class="cursor-pointer"
+            class="cursor-pointer!"
             role="button"
             tabindex="0"
             @click.capture="
@@ -56,7 +56,7 @@
             <div
               v-for="(griftItem, idx) in item.data"
               :key="griftItem?._path || griftItem?.path || griftItem?.id || idx"
-              class="cursor-pointer"
+              class="cursor-pointer!"
               role="button"
               tabindex="0"
               @click.capture="
@@ -96,7 +96,7 @@
             <div
               v-for="(memeItem, idx) in item.data"
               :key="memeItem._path || memeItem.path || memeItem.id || idx"
-              class="cursor-pointer"
+              class="cursor-pointer!"
               role="button"
               tabindex="0"
               @click.capture="

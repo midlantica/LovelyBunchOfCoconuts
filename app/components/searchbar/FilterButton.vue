@@ -1,12 +1,12 @@
 <template>
   <div
     class="relative"
-    :class="!inline ? 'absolute top-1/2 -translate-y-1/2 right-[3.1rem]' : ''"
+    :class="!inline ? 'absolute top-1/2 right-[3.1rem] -translate-y-1/2' : ''"
     ref="root"
   >
     <button
       type="button"
-      class="flex justify-center items-center focus:outline-none text-white/80 hover:text-white"
+      class="flex items-center justify-center text-white/80 hover:text-white focus:outline-none"
       :aria-expanded="open ? 'true' : 'false'"
       aria-haspopup="menu"
       @click.stop="toggle()"
@@ -17,15 +17,15 @@
 
     <div
       v-if="open"
-      class="top-[1.9rem] right-0 z-20 absolute bg-slate-900/95 shadow-lg backdrop-blur px-2.5 py-1.5 border border-slate-700 rounded-md min-w-[200px]"
+      class="absolute top-[1.9rem] right-0 z-20 min-w-[200px] rounded-md border border-slate-700 bg-slate-900/95 px-2.5 py-1.5 shadow-lg backdrop-blur"
       role="menu"
     >
-      <div class="mb-1.5 text-[11px] text-slate-300 uppercase tracking-wide">
+      <div class="mb-1.5 text-[11px] tracking-wide text-slate-300 uppercase">
         Filter by type
       </div>
       <ul class="space-y-[.2rem]">
         <li v-for="opt in opts" :key="opt.key" class="flex items-center gap-2">
-          <label class="flex items-center gap-2 cursor-pointer select-none">
+          <label class="flex cursor-pointer! items-center gap-2 select-none">
             <input
               type="checkbox"
               :checked="local[opt.key]"
@@ -39,15 +39,15 @@
           </label>
         </li>
       </ul>
-      <div class="flex justify-between mt-1.5">
+      <div class="mt-1.5 flex justify-between">
         <button
-          class="bg-slate-800 hover:bg-slate-700 px-1.5 py-0.5 rounded text-[11px] text-slate-200"
+          class="rounded bg-slate-800 px-1.5 py-0.5 text-[11px] text-slate-200 hover:bg-slate-700"
           @click="selectAll()"
         >
           All
         </button>
         <button
-          class="bg-slate-800 hover:bg-slate-700 px-1.5 py-0.5 rounded text-[11px] text-slate-200"
+          class="rounded bg-slate-800 px-1.5 py-0.5 text-[11px] text-slate-200 hover:bg-slate-700"
           @click="selectNoneThenDefault()"
         >
           Default

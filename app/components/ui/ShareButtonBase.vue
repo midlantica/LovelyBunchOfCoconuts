@@ -1,8 +1,8 @@
 <template>
-  <div class="z-10 relative" ref="buttonRef">
+  <div class="relative z-10" ref="buttonRef">
     <button
       @click="handleClick"
-      class="z-10 relative flex justify-center items-center bg-transparent hover:brightness-150 rounded-lg text-gray-400 hover:text-white transition-all duration-200 hover:cursor-pointer"
+      class="relative z-10 flex items-center justify-center rounded-lg bg-transparent text-gray-400 transition-all duration-200 hover:cursor-pointer! hover:text-white hover:brightness-150"
       :aria-label="ariaLabel"
       :style="buttonStyle"
     >
@@ -20,7 +20,7 @@
     >
       <div
         v-if="showToast"
-        class="bottom-full left-1/2 z-[9999] absolute bg-slate-800 shadow-lg mb-2 px-3 py-1.5 border border-slate-600 rounded-lg text-white text-sm whitespace-nowrap -translate-x-1/2 pointer-events-none transform"
+        class="pointer-events-none absolute bottom-full left-1/2 z-[9999] mb-2 -translate-x-1/2 transform rounded-lg border border-slate-600 bg-slate-800 px-3 py-1.5 text-sm whitespace-nowrap text-white shadow-lg"
       >
         {{ toastMessage }}
       </div>

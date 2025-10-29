@@ -24,7 +24,7 @@
               :class="[
                 disableCopyImage || isLoading
                   ? 'cursor-not-allowed'
-                  : 'cursor-pointer hover:scale-105',
+                  : 'cursor-pointer! hover:scale-105',
                 (disableCopyImage || (!isCopying && isLoading)) && 'opacity-50',
               ]"
               :aria-label="

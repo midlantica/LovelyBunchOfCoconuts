@@ -5,7 +5,7 @@
         v-for="i in visibleTags"
         :key="i.term"
         type="button"
-        class="px-2 pt-[3px] pb-[4px] rounded-sm focus:outline-none font-300 text-[.85rem] leading-tight tracking-wider whitespace-nowrap transition cursor-pointer"
+        class="font-300 cursor-pointer! rounded-sm px-2 pt-[3px] pb-1 text-[.85rem] leading-tight tracking-wider whitespace-nowrap transition focus:outline-none"
         :class="classesFor(i)"
         @click="emit('select', i.term)"
       >

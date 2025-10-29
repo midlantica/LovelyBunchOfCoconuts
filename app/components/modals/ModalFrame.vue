@@ -10,29 +10,29 @@
     >
       <div
         v-if="show"
-        class="z-50 fixed inset-0 flex justify-center items-center overscroll-contain modal-overlay"
+        class="modal-overlay fixed inset-0 z-50 flex items-center justify-center overscroll-contain"
         @click.self="handleBackdropClick"
       >
         <div
           ref="modalEl"
-          class="-top-8 relative flex flex-col shadow-lg mx-0 sm:mx-6 rounded-none sm:rounded-lg modal-frame"
+          class="modal-frame relative -top-8 mx-0 flex flex-col rounded-none shadow-lg sm:mx-6 sm:rounded-lg"
           :style="computedModalStyle"
-          :class="[modalStyle ? '' : 'w-full sm:min-w-[60vw] sm:max-w-[500px]']"
+          :class="[modalStyle ? '' : 'w-full sm:max-w-[700px] sm:min-w-[60vw]']"
           @click.stop
         >
           <!-- Close button now always visible (works on all screens) -->
           <UiCloseButton
             v-if="!hideCloseButton"
-            class="block top-2 right-2 z-10 absolute"
+            class="absolute top-2 right-2 z-10 block"
             @click="onCloseClick"
           />
           <div
-            class="relative flex flex-col w-full overflow-x-visible overflow-y-visible"
+            class="relative flex w-full flex-col overflow-x-visible overflow-y-visible"
           >
-            <div class="flex-1 min-h-0">
+            <div class="min-h-0 flex-1">
               <slot name="mainPanel" />
             </div>
-            <div class="relative flex-shrink-0">
+            <div class="relative shrink-0">
               <slot name="sharePanel" />
             </div>
           </div>

@@ -1,10 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <!-- layouts/default.vue -->
 <template>
-  <div class="gap-4 grid grid-rows-[auto_1fr_auto] h-screen overflow-hidden">
-    <LayoutTheHeader class="top-0 left-0 z-10 sticky w-full" />
+  <div class="grid h-screen grid-rows-[auto_1fr_auto] gap-4 overflow-hidden">
+    <LayoutTheHeader class="sticky top-0 left-0 z-10 w-full" />
 
-    <main class="px-4 min-h-0 overflow-y-auto">
+    <main class="min-h-0 overflow-y-auto px-0">
       <slot />
     </main>
 

@@ -9,15 +9,17 @@
         >
           <div class="p-4 sm:p-0">
             <h1
-              class="font-100 mb-2 text-2xl leading-9 text-white text-shadow-xs"
+              class="font-100 mb-0 text-xl leading-normal whitespace-pre-line text-white text-shadow-xs sm:mb-2 sm:text-xl sm:leading-normal md:text-2xl"
             >
               {{
                 modalData?.quoteText ||
-                (modalData?.headings && modalData.headings[0]) ||
+                (modalData?.headings && modalData.headings.join('\n\n')) ||
                 modalData?.title
               }}
             </h1>
-            <p class="font-100 text-seagull-300 mb-2 text-xl text-shadow-xs">
+            <p
+              class="font-100 text-seagull-300 mb-2 text-xl text-shadow-xs sm:text-2xl"
+            >
               — {{ modalData?.attribution }}
             </p>
           </div>

@@ -44,17 +44,17 @@ export default defineEventHandler(async (event) => {
 
     // Set text properties for quote
     ctx.fillStyle = '#ffffff'
-    ctx.font = 'bold 48px -apple-system, system-ui, sans-serif'
+    ctx.font = '300 32px -apple-system, system-ui, sans-serif'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
 
     // Draw quote text
-    const quoteY = wrapText(ctx, `"${text}"`, 600, 250, 1000, 60)
+    const quoteY = wrapText(ctx, `"${text}"`, 600, 250, 1000, 45)
 
     // Draw attribution
-    ctx.font = '36px -apple-system, system-ui, sans-serif'
+    ctx.font = '300 28px -apple-system, system-ui, sans-serif'
     ctx.fillStyle = '#68D2FF'
-    ctx.fillText(`— ${attribution}`, 600, quoteY + 60)
+    ctx.fillText(`— ${attribution}`, 600, quoteY + 50)
 
     // Add branding
     ctx.font = 'bold 24px -apple-system, system-ui, sans-serif'

@@ -5,14 +5,14 @@
     :to="to ? resolveRoute(to) : undefined"
     :type="to ? undefined : 'button'"
     @click="to ? undefined : $emit('click')"
-    class="flex justify-center items-center gap-1 font-400! uppercase tracking-wider transition-all duration-200"
+    class="font-400! flex items-center justify-center gap-1 tracking-wider uppercase transition-all duration-200"
     :class="[
       sizeClasses,
       variantClasses,
       props.variant === 'default'
-        ? 'bg-white hoverbg-seagull-200: border border-seagull-950 text-seagull-950'
+        ? 'hoverbg-seagull-200: border-seagull-950 text-seagull-950 border bg-white'
         : '',
-      disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+      disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer!',
       $attrs.class,
     ]"
     :disabled="disabled"
@@ -114,15 +114,15 @@
   const sizeClasses = computed(() => {
     switch (props.size) {
       case 'xl':
-        return 'px-6 pt-2.5 pb-3 text-lg gap-2 rounded-xl'
+        return 'px-6 pt-2.5 pb-3 text-lg gap-2 rounded-lg'
       case 'lg':
-        return 'px-4 pt-1.5 pb-2 text-base gap-2 rounded-lg'
+        return 'px-4 pt-1.5 pb-2 text-base gap-2 rounded-md'
       case 'sm':
         return 'px-1.5 pt-0.25 pb-0.5 text-xs gap-1 rounded-sm'
       case 'xs':
-        return 'px-1 pt-0.2 pb-0.25 text-xs gap-0.5 rounded-sm'
+        return 'px-1 pt-0.2 pb-0.25 text-xs gap-0.5 rounded-xs'
       case 'badge':
-        return 'px-1 pt-0.25 pb-0.5 text-[10px] gap-0.5 rounded-sm'
+        return 'px-1 pt-0.25 pb-0.5 text-[10px] gap-0.5 rounded-xs'
       case 'base':
       case '':
       default: // base - handles both 'base' and '' (empty string)

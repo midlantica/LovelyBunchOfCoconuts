@@ -19,45 +19,89 @@ export const useShareImageGenerator = () => {
     ctx.fillStyle = gradient
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-    // Text styling
-    ctx.fillStyle = '#ffffff'
-    ctx.textAlign = 'center'
-    ctx.textBaseline = 'middle'
+    // Layout constants - more aggressive
+    const padding = 40 // Reduced from 60
+    const brandingHeight = 50 // Reduced from 60
+    const dividerHeight = 15 // Reduced from 20
+    const maxWidth = canvas.width - padding * 2
 
-    // Draw grift (main text)
-    ctx.font = 'bold 48px -apple-system, system-ui, sans-serif'
-    wrapText(
+    // Available height split between grift and decode
+    const availableHeight = canvas.height - brandingHeight - padding * 2
+    const griftHeight = availableHeight * 0.48 // Increased from 45%
+    const decodeHeight = availableHeight * 0.48 // Increased from 45%
+
+    // Calculate optimal font size for grift - more aggressive
+    const griftOptimal = calculateOptimalFontSize(
       ctx,
       `'${grift}'`,
-      canvas.width / 2,
-      canvas.height / 2 - 50,
-      canvas.width - 100,
-      60
+      maxWidth,
+      griftHeight,
+      40, // min size increased
+      160, // max size increased from 100
+      'bold',
+      '-apple-system, system-ui, sans-serif'
     )
 
-    // Draw decode
-    ctx.font = '36px -apple-system, system-ui, sans-serif'
-    ctx.fillStyle = '#68D2FF' // seagull color
-    wrapText(
+    // Calculate optimal font size for decode - more aggressive
+    const decodeOptimal = calculateOptimalFontSize(
       ctx,
       decode,
-      canvas.width / 2,
-      canvas.height / 2 + 80,
-      canvas.width - 100,
-      50
+      maxWidth,
+      decodeHeight,
+      35, // min size increased
+      130, // max size increased from 80
+      'normal',
+      '-apple-system, system-ui, sans-serif'
     )
 
+    // Calculate positions
+    const griftTotalHeight = griftOptimal.lines.length * griftOptimal.lineHeight
+    const decodeTotalHeight =
+      decodeOptimal.lines.length * decodeOptimal.lineHeight
+    const totalContentHeight =
+      griftTotalHeight + dividerHeight + decodeTotalHeight
+
+    // Center all content vertically
+    let currentY = padding + (availableHeight - totalContentHeight) / 2
+
+    // Draw grift (main text)
+    ctx.font = `bold ${griftOptimal.fontSize}px -apple-system, system-ui, sans-serif`
+    ctx.fillStyle = '#ffffff'
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'top'
+
+    griftOptimal.lines.forEach((line, index) => {
+      ctx.fillText(
+        line,
+        canvas.width / 2,
+        currentY + index * griftOptimal.lineHeight
+      )
+    })
+
+    currentY += griftTotalHeight + dividerHeight
+
+    // Draw decode
+    ctx.font = `normal ${decodeOptimal.fontSize}px -apple-system, system-ui, sans-serif`
+    ctx.fillStyle = '#68D2FF' // seagull color
+
+    decodeOptimal.lines.forEach((line, index) => {
+      ctx.fillText(
+        line,
+        canvas.width / 2,
+        currentY + index * decodeOptimal.lineHeight
+      )
+    })
+
     // Add branding
-    ctx.font = '24px -apple-system, system-ui, sans-serif'
+    ctx.font = '22px -apple-system, system-ui, sans-serif'
     ctx.fillStyle = '#94a3b8' // slate-400
-    ctx.fillText('WakeUpNPC.com', canvas.width / 2, canvas.height - 40)
+    ctx.fillText('WakeUpNPC.com', canvas.width / 2, canvas.height - 30)
 
     return canvasToBlob(canvas)
   }
 
   const generateQuoteImage = async (quote, attribution) => {
     // Character limit check - return null if quote is too long
-    // Allow quotes up to 800 chars to match Figma design capacity
     if (quote.length > 800) {
       return null
     }
@@ -66,7 +110,7 @@ export const useShareImageGenerator = () => {
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
 
-      // Set canvas size to match share-frame.png
+      // Set canvas size to match share-frame.png and Figma design
       canvas.width = 1600
       canvas.height = 900
 
@@ -78,86 +122,73 @@ export const useShareImageGenerator = () => {
         // Draw background image
         ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height)
 
-        // Text area specifications
-        const textX = 25
-        const textY = 27
-        const textWidth = 1550
-        const textHeight = 768
+        // Text area matching Figma design: 1550px wide, generous vertical space
+        const padding = 40 // Padding matching Figma
+        const textWidth = 1550 // Full design width from Figma
+        const logoHeight = 120 // Space reserved for bottom logo
+        const textHeight = canvas.height - logoHeight - padding * 2 // Available height for text
 
-        // Calculate font size based on character count
-        // MUCH smaller sizes for long quotes so they actually FIT in the text area (1550×768)
-        const quoteLength = quote.length
-        let fontSize, lineHeight, letterSpacing
+        // Combine quote and attribution for unified text measurement (inline)
+        const fullText = `${quote}\n— ${attribution}`
 
-        if (quoteLength > 650) {
-          // Very long quotes like Chesterton - MUCH smaller to fit
-          fontSize = 45
-          lineHeight = 54
-          letterSpacing = 0.45
-        } else if (quoteLength > 580) {
-          fontSize = 50
-          lineHeight = 60
-          letterSpacing = 0.5
-        } else if (quoteLength > 500) {
-          fontSize = 56
-          lineHeight = 67
-          letterSpacing = 0.56
-        } else if (quoteLength > 420) {
-          fontSize = 64
-          lineHeight = 77
-          letterSpacing = 0.64
-        } else if (quoteLength > 350) {
-          fontSize = 72
-          lineHeight = 86
-          letterSpacing = 0.72
-        } else if (quoteLength > 280) {
-          fontSize = 82
-          lineHeight = 98
-          letterSpacing = 0.82
-        } else if (quoteLength > 220) {
-          fontSize = 94
-          lineHeight = 113
-          letterSpacing = 0.94
-        } else if (quoteLength > 160) {
-          fontSize = 108
-          lineHeight = 130
-          letterSpacing = 1.08
-        } else {
-          // Short quotes get the largest size
-          fontSize = 124
-          lineHeight = 149
-          letterSpacing = 1.24
+        // Character-count-based font size adjustments
+        const charCount = quote.length
+        let minFontSize = 30
+        let maxFontSize = 81
+
+        // ~130 chars (Hayek "Marxism has led to..."): needs 15% bigger
+        // Hayek quote is exactly 127 characters
+        if (charCount >= 115 && charCount <= 135) {
+          maxFontSize = 93 // 81 * 1.15 = 93.15
         }
 
-        // Quote text with Barlow Condensed Light - RED COLOR TO TEST
-        ctx.font = `300 ${fontSize}px "Barlow Condensed", sans-serif`
-        ctx.fillStyle = '#ff0000'
+        // Calculate optimal font size
+        const optimal = calculateOptimalFontSize(
+          ctx,
+          fullText,
+          textWidth,
+          textHeight,
+          minFontSize,
+          maxFontSize,
+          '300',
+          '"Barlow Condensed", sans-serif'
+        )
+
+        // Set font with optimal size and light weight
+        ctx.font = `300 ${optimal.fontSize}px "Barlow Condensed", sans-serif`
+        ctx.fillStyle = '#FFFFFF' // White text (fixed - was red for debug)
         ctx.textAlign = 'center'
         ctx.textBaseline = 'top'
 
-        // Apply letter spacing (canvas doesn't have native letter-spacing, so we'll use the font as-is)
-        // The letter-spacing will need to be handled in the wrapText function if precision is critical
+        // Calculate vertical centering
+        const totalTextHeight = optimal.lines.length * optimal.lineHeight
+        const startY = padding + (textHeight - totalTextHeight) / 2
 
-        // Center the text vertically in the text area
-        const centerY = textY + textHeight / 2
-        wrapTextCentered(
-          ctx,
-          quote,
-          textX + textWidth / 2,
-          centerY,
-          textWidth,
-          lineHeight
-        )
+        // Find where attribution starts (after blank line)
+        let attributionStartIndex = -1
+        for (let i = 0; i < optimal.lines.length; i++) {
+          if (optimal.lines[i].trim().startsWith('—')) {
+            attributionStartIndex = i
+            break
+          }
+        }
 
-        // Attribution - positioned below quote with some spacing
-        ctx.font = `300 ${Math.max(fontSize * 0.7, 48)}px "Barlow Condensed", sans-serif`
-        ctx.fillStyle = '#68D2FF'
-        ctx.textAlign = 'center'
-        ctx.fillText(
-          `— ${attribution}`,
-          canvas.width / 2,
-          textY + textHeight - 80
-        )
+        // Draw each line with proper styling
+        optimal.lines.forEach((line, index) => {
+          if (index === attributionStartIndex) {
+            // Attribution line - use cyan color
+            ctx.fillStyle = '#68D2FF'
+          }
+
+          if (line.trim()) {
+            // Only draw non-empty lines
+            ctx.fillText(
+              line,
+              canvas.width / 2,
+              startY + index * optimal.lineHeight
+            )
+          }
+        })
 
         resolve(canvasToBlob(canvas))
       }
@@ -222,6 +253,69 @@ export const useShareImageGenerator = () => {
 
       img.src = imageUrl
     })
+  }
+
+  // Calculate optimal font size that maximizes text while fitting in bounds
+  const calculateOptimalFontSize = (
+    ctx,
+    text,
+    maxWidth,
+    maxHeight,
+    minSize = 30,
+    maxSize = 200,
+    fontWeight = '300',
+    fontFamily = '"Barlow Condensed", sans-serif'
+  ) => {
+    let optimalSize = minSize
+    let optimalLines = []
+
+    // Binary search for optimal font size
+    let low = minSize
+    let high = maxSize
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2)
+      const lineHeight = mid * 1.545 // Figma line-height: 102px for 66px font = 1.545
+
+      ctx.font = `${fontWeight} ${mid}px ${fontFamily}`
+
+      // Calculate wrapped lines
+      const words = text.split(' ')
+      let lines = []
+      let line = ''
+
+      for (const word of words) {
+        const testLine = line + (line ? ' ' : '') + word
+        const metrics = ctx.measureText(testLine)
+
+        if (metrics.width > maxWidth && line) {
+          lines.push(line)
+          line = word
+        } else {
+          line = testLine
+        }
+      }
+      if (line) lines.push(line)
+
+      // Check if it fits
+      const totalHeight = lines.length * lineHeight
+
+      if (totalHeight <= maxHeight) {
+        // Fits! Try larger
+        optimalSize = mid
+        optimalLines = lines
+        low = mid + 1
+      } else {
+        // Too big, try smaller
+        high = mid - 1
+      }
+    }
+
+    return {
+      fontSize: optimalSize,
+      lineHeight: optimalSize * 1.545, // Figma: 102px line-height for 66px font
+      lines: optimalLines,
+    }
   }
 
   // Helper function to wrap text

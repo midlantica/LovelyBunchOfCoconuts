@@ -1,12 +1,12 @@
 <template>
   <div
     class="relative"
-    :class="!inline ? 'absolute top-1/2 -translate-y-1/2 right-[3.1rem]' : ''"
+    :class="!inline ? 'absolute top-1/2 right-[3.1rem] -translate-y-1/2' : ''"
     ref="root"
   >
     <button
       type="button"
-      class="z-30 relative flex justify-center items-center focus:outline-none text-white/80 hover:text-white cursor-pointer"
+      class="relative z-30 flex cursor-pointer! items-center justify-center text-white/80 hover:text-white focus:outline-none"
       :aria-expanded="open ? 'true' : 'false'"
       aria-haspopup="menu"
       @click.stop="toggle()"
@@ -18,7 +18,7 @@
 
     <div
       v-if="open"
-      class="top-[1.9rem] right-0 z-20 absolute bg-seagull-950 shadow-[3px_4px_9px_-2px_rgba(0,0,0,1)] backdrop-blur p-2 rounded-lg w-fit"
+      class="bg-seagull-950 absolute top-[1.9rem] right-0 z-20 w-fit rounded-lg p-2 shadow-[3px_4px_9px_-2px_rgba(0,0,0,1)] backdrop-blur"
       role="menu"
       :ref="(el) => (panelRef = el)"
       :style="panelStyle"
@@ -26,13 +26,13 @@
       <!-- Cap behind the filter icon to visually merge button with panel -->
       <div
         aria-hidden="true"
-        class="absolute pointer-events-none"
+        class="pointer-events-none absolute"
         :style="capStyle"
       />
       <div class="flex flex-col gap-[0.15rem]">
         <button
           type="button"
-          class="px-3.5 py-1 w-auto font-normal text-[13px] text-center uppercase tracking-wider whitespace-nowrap transition cursor-pointer"
+          class="w-auto cursor-pointer! px-3.5 py-1 text-center text-[13px] font-normal tracking-wider whitespace-nowrap uppercase transition"
           :class="[btnClass('grifts'), radiusClass('top')]"
           :style="
             btnWidthPx
@@ -46,7 +46,7 @@
         </button>
         <button
           type="button"
-          class="px-3.5 py-1 w-auto font-normal text-[13px] text-center uppercase tracking-wider whitespace-nowrap transition cursor-pointer"
+          class="w-auto cursor-pointer! px-3.5 py-1 text-center text-[13px] font-normal tracking-wider whitespace-nowrap uppercase transition"
           :class="[btnClass('quotes'), radiusClass('middle')]"
           :style="
             btnWidthPx
@@ -60,7 +60,7 @@
         </button>
         <button
           type="button"
-          class="px-3.5 py-1 w-auto font-normal text-[13px] text-center uppercase tracking-wider whitespace-nowrap transition cursor-pointer"
+          class="w-auto cursor-pointer! px-3.5 py-1 text-center text-[13px] font-normal tracking-wider whitespace-nowrap uppercase transition"
           :class="[btnClass('memes'), radiusClass('bottom')]"
           :style="
             btnWidthPx

@@ -75,6 +75,67 @@ export function useSocialShare() {
     }
   }
 
+  // Binary search algorithm for optimal font sizing - matches Figma line-height 1.545
+  function calculateOptimalFontSizeBinarySearch(
+    ctx,
+    text,
+    maxWidth,
+    maxHeight,
+    minSize,
+    maxSize,
+    fontWeight,
+    fontFamily
+  ) {
+    let optimalSize = minSize
+    let optimalLines = []
+
+    let low = minSize
+    let high = maxSize
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2)
+      const lineHeight = mid * 1.47 // Tightened 5% from 1.545 (Figma baseline)
+
+      ctx.font = `${fontWeight} ${mid}px ${fontFamily}`
+
+      // Word wrap
+      const words = text.split(' ')
+      let lines = []
+      let line = ''
+
+      for (const word of words) {
+        const testLine = line + (line ? ' ' : '') + word
+        const metrics = ctx.measureText(testLine)
+
+        if (metrics.width > maxWidth && line) {
+          lines.push(line)
+          line = word
+        } else {
+          line = testLine
+        }
+      }
+      if (line) lines.push(line)
+
+      const totalHeight = lines.length * lineHeight
+
+      if (totalHeight <= maxHeight) {
+        // Fits! Try larger
+        optimalSize = mid
+        optimalLines = lines
+        low = mid + 1
+      } else {
+        // Too big, try smaller
+        high = mid - 1
+      }
+    }
+
+    return {
+      fontSize: optimalSize,
+      lineHeight: optimalSize * 1.47, // Tightened 5% from 1.545
+      lines: optimalLines,
+    }
+  }
+
   // Helper function to convert blob to base64
   function blobToBase64(blob) {
     return new Promise((resolve, reject) => {
@@ -225,17 +286,69 @@ export function useSocialShare() {
             }
           }
 
-          // Calculate optimal font size for quote text - matches Figma spec (61px)
-          const quoteOptimalSize = calculateOptimalFontSize(
-            61 * scale, // Base font size - 61px from Figma specs
-            quoteText.length,
-            textAreaWidth, // Use full text area width
-            textAreaHeight // Use full text area height
+          // Character-count-based font size adjustments
+          // Base range: 30px to 81px
+          // Adjustments based on testing specific character counts
+          const charCount = quoteText.length
+          let minFontSize = 30 * scale
+          let maxFontSize = 81 * scale
+
+          // ~30 chars (Herbert Spencer "All socialism involves slavery."): needs 25% bigger
+          // Spencer quote is approximately 32 characters
+          if (charCount >= 25 && charCount <= 40) {
+            maxFontSize = 101 * scale // 81 * 1.25 = 101.25
+          }
+
+          // ~100 chars (C.S. Lewis "Of all tyrannies..."): needs 21% bigger
+          // C.S. Lewis quote is approximately 106 characters
+          if (charCount >= 95 && charCount <= 115) {
+            maxFontSize = 98 * scale // 89 * 1.10 = 97.9, rounded to 98
+          }
+
+          // ~130 chars (Hayek "Marxism has led to..."): needs 15% bigger
+          // Hayek quote is exactly 127 characters
+          if (charCount >= 116 && charCount <= 135) {
+            maxFontSize = 93 * scale // 81 * 1.15 = 93.15
+          }
+
+          // ~200-270 chars (Burke "It is with infinite caution..."): needs 20% smaller
+          // Long quotes (200-279 chars)
+          if (charCount >= 200 && charCount <= 279) {
+            maxFontSize = 65 * scale // 81 * 0.8 = 64.8, rounded to 65
+          }
+
+          // ~335 chars (Bastiat "If the natural tendencies..."): needs 26% smaller total
+          // Very long quotes (280-379 chars)
+          if (charCount >= 280 && charCount <= 379) {
+            maxFontSize = 60 * scale // 52 * 1.15 = 59.8, rounded to 60
+          }
+
+          // ~400+ chars range (380-449 chars)
+          if (charCount >= 380 && charCount <= 449) {
+            maxFontSize = 52 * scale // 81 * 0.642 = 52
+          }
+
+          // ~500+ chars (Chesterton "In the matter of reforming..."): needs 38% smaller total
+          // Extremely long quotes need significantly reduced font size
+          if (charCount >= 450) {
+            maxFontSize = 50 * scale // 59 * 0.85 = 50.15, or 81 * 0.617 = 50
+          }
+
+          // Calculate optimal font size using binary search - Adaptive
+          const quoteOptimalSize = calculateOptimalFontSizeBinarySearch(
+            ctx,
+            quoteText,
+            textAreaWidth,
+            textAreaHeight,
+            minFontSize,
+            maxFontSize,
+            '300',
+            'Barlow Condensed, Arial, sans-serif'
           )
 
-          // Quote text (white) - smart sizing for mobile readability
-          ctx.fillStyle = '#ffffff'
-          ctx.font = `100 ${quoteOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
+          // Quote text (WHITE) - Barlow Condensed 300
+          ctx.fillStyle = '#FFFFFF'
+          ctx.font = `300 ${quoteOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
           ctx.textAlign = 'center'
 
           // Word wrap for quote - use full width
@@ -269,19 +382,19 @@ export function useSocialShare() {
             )
           })
 
-          // Author name (light blue #6DD3FF) - SAME SIZE AS QUOTE TEXT
+          // Author name (light blue #6DD3FF) - SAME SIZE AS QUOTE TEXT, font-weight 300
           if (
             authorName &&
             authorName !== 'Author' &&
             authorName.trim() !== ''
           ) {
             ctx.fillStyle = '#6DD3FF'
-            ctx.font = `100 ${quoteOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
+            ctx.font = `300 ${quoteOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
             drawCenteredText(
               ctx,
               `— ${authorName}`,
               centerX,
-              quoteStartY + totalTextHeight + quoteOptimalSize.fontSize * 0.4
+              quoteStartY + totalTextHeight + quoteOptimalSize.fontSize * 0.21
             )
           }
         } else if (type === 'grift') {

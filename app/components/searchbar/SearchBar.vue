@@ -17,7 +17,7 @@
         >
           <template v-for="(t, idx) in tokens" :key="t + ':' + idx">
             <span
-              class="group inline-flex cursor-pointer items-center gap-0.5 rounded-full bg-white/15 py-0.5 pr-2 pl-2.5 text-[.825rem] leading-none text-white/80 transition-colors select-none hover:bg-white/25 focus:outline-none"
+              class="group inline-flex cursor-pointer! items-center gap-0.5 rounded-full bg-white/15 py-0.5 pr-2 pl-2.5 text-[.825rem] leading-none text-white/80 transition-colors select-none hover:bg-white/25 focus:outline-none"
               :class="{ 'pill-flash': isFlashing(t) }"
               role="button"
               tabindex="0"
@@ -31,7 +31,7 @@
               >
               <button
                 type="button"
-                class="-mr-1 ml-0.5 flex h-5 w-5 cursor-pointer items-center justify-center p-0 text-white/70 transition-colors group-hover:text-white hover:text-white"
+                class="-mr-1 ml-0.5 flex h-5 w-5 cursor-pointer! items-center justify-center p-0 text-white/70 transition-colors group-hover:text-white hover:text-white"
                 :aria-label="`Remove ${t}`"
                 @click.stop="removeToken(idx)"
               >
@@ -68,7 +68,7 @@
         <div
           v-for="(suggestion, idx) in suggestions"
           :key="suggestion.term + idx"
-          class="cursor-pointer px-4 py-2 text-slate-200 transition-colors"
+          class="cursor-pointer! px-4 py-2 text-slate-200 transition-colors"
           :class="{
             'bg-slate-700': selectedSuggestionIndex === idx,
             'hover:bg-slate-600': selectedSuggestionIndex !== idx,
@@ -107,7 +107,7 @@
         <button
           v-if="hasSearch"
           @click="clearSearch"
-          class="flex w-auto cursor-pointer items-center gap-1 rounded-full bg-transparent transition-colors"
+          class="cursor-pointer!items-center flex w-auto gap-1 rounded-full bg-transparent transition-colors"
           type="button"
           aria-label="Clear search"
         >

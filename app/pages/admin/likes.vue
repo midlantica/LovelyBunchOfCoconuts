@@ -10,7 +10,7 @@
     <div v-if="allowed" class="space-y-4">
       <div class="flex flex-wrap items-center gap-3">
         <button
-          class="inline-flex cursor-pointer items-center justify-center opacity-75 transition-opacity hover:opacity-100 disabled:opacity-50"
+          class="inline-flex cursor-pointer! items-center justify-center opacity-75 transition-opacity hover:opacity-100 disabled:opacity-50"
           @click="handleRefresh"
           :disabled="loading"
           aria-label="Refresh"
@@ -174,7 +174,7 @@
                 ID (decoded)
               </th>
               <th
-                class="font-100 w-20 cursor-pointer px-3 py-2 text-right uppercase select-none"
+                class="font-100 w-20 cursor-pointer! px-3 py-2 text-right uppercase select-none"
                 @click="toggleSortDir()"
               >
                 Count&nbsp;<span
@@ -205,7 +205,7 @@
                     {{ row.id }}
                   </NuxtLink>
                   <button
-                    class="inline-flex cursor-pointer items-center justify-center rounded text-slate-400 opacity-50 transition-opacity hover:opacity-100"
+                    class="inline-flex cursor-pointer! items-center justify-center rounded text-slate-400 opacity-50 transition-opacity hover:opacity-100"
                     @click="copy(row.id)"
                     title="Copy id"
                     aria-label="Copy id"

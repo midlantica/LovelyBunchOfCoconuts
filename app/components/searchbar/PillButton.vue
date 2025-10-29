@@ -23,7 +23,7 @@
 <style scoped>
   @reference '../../assets/css/main.css';
   .pill-btn {
-    @apply flex justify-between items-center gap-1 bg-slate-800 px-3 pt-[.2rem] pb-[0.3rem] rounded-md font-100 text-slate-200 text-base uppercase tracking-wider transition cursor-pointer;
+    @apply font-100 flex cursor-pointer! items-center justify-between gap-1 rounded-md bg-slate-800 px-3 pt-[.2rem] pb-[0.3rem] text-base tracking-wider text-slate-200 uppercase transition;
     outline: none;
   }
   .pill-btn:focus {
