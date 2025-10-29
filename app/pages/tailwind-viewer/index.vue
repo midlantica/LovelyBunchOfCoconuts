@@ -2,7 +2,7 @@
   <div
     class="prose-invert prose scrollbar-thin h-full min-h-0 w-full max-w-none overflow-y-auto px-6 py-8"
   >
-    <h1 class="!mt-0 text-2xl">Design Tokens (Tailwind)</h1>
+    <h1 class="mt-0! text-2xl">Design Tokens (Tailwind)</h1>
     <p v-if="!isDev" class="font-300 text-base text-amber-400">
       Run pnpm dev to view live config (hidden in prod).
     </p>
@@ -10,7 +10,7 @@
       <!-- Button Showcase -->
       <section class="mt-6">
         <div class="mb-4 flex items-center justify-between">
-          <h2 class="!mt-0 text-xl">Button Components</h2>
+          <h2 class="mt-0! text-xl">Button Components</h2>
           <NuxtLink
             to="/tailwind-viewer/buttons"
             class="font-300 text-accent text-sm hover:underline"
@@ -21,7 +21,7 @@
 
         <!-- Basic Variants Preview (LG size only) -->
         <div class="mb-2 rounded-lg bg-slate-950">
-          <h3 class="!mt-0 mb-4 text-base text-slate-300">
+          <h3 class="mt-0! mb-4 text-base text-slate-300">
             Button Variants Preview
           </h3>
           <div class="flex flex-wrap gap-3">
@@ -35,7 +35,7 @@
 
         <!-- Custom Variant Example -->
         <div class="mb-6 rounded-lg bg-slate-950">
-          <h3 class="!mt-0 mb-4 text-base text-slate-300">
+          <h3 class="mt-0! mb-4 text-base text-slate-300">
             Custom Variant (New!)
           </h3>
           <p class="mb-6 text-sm text-slate-400">
@@ -59,14 +59,14 @@
               text="Pink Gradient"
               variant="custom"
               size="lg"
-              class="bg-gradient-to-r from-pink-500 to-violet-600 text-white hover:from-pink-600 hover:to-violet-700"
+              class="bg-linear-to-r from-pink-500 to-violet-600 text-white hover:from-pink-600 hover:to-violet-700"
             />
           </div>
         </div>
 
         <!-- Light Background Sample -->
         <div class="mb-2 rounded-lg bg-white p-4">
-          <h3 class="!mt-0 mb-4 text-base text-slate-800">
+          <h3 class="mt-0! mb-4 text-base text-slate-800">
             On Light Background
           </h3>
           <div class="flex flex-wrap gap-3">
@@ -94,7 +94,7 @@
             />
             <div class="min-w-0">
               <div class="text-accent leading-tight">{{ v.name }}</div>
-              <div class="max-w-[10rem] truncate text-[11px] text-slate-400">
+              <div class="max-w-40 truncate text-[11px] text-slate-400">
                 {{ v.value }}
               </div>
             </div>
@@ -123,7 +123,7 @@
         </section>
 
         <section v-if="mainColors.length" class="mt-0">
-          <h2 id="colors" class="!mt-0 text-xl">Colors (Project)</h2>
+          <h2 id="colors" class="mt-0! text-xl">Colors (Project)</h2>
           <div class="flex flex-col gap-4">
             <div
               v-for="c in mainColors"
