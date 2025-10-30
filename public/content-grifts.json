@@ -981,8 +981,8 @@
   },
   {
     "_path": "/grifts/eco-anxiety",
-    "title": "Eco-Anxiety",
-    "grift": "Eco-Anxiety",
+    "title": "Climate change",
+    "grift": "Climate change",
     "decode": "Induce fear for compliance.",
     "body": ""
   },
@@ -2020,13 +2020,6 @@
     "title": "Open Borders",
     "grift": "Open Borders",
     "decode": "Sovereignty is optional.",
-    "body": ""
-  },
-  {
-    "_path": "/grifts/oppression-olympics",
-    "title": "Oppression Olympics",
-    "grift": "Oppression Olympics",
-    "decode": "Gold medals in grievance.",
     "body": ""
   },
   {

@@ -78,7 +78,7 @@
           required
           class="border-seagull-600/30 focus:border-seagull-600/50 font-300 w-full rounded-md border bg-slate-950/30 px-3 pt-1 pb-2 tracking-wider text-white placeholder-slate-400/50 focus:outline-none"
           style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5)"
-          placeholder="you@yourcompany.com"
+          placeholder="Email"
         />
       </div>
 

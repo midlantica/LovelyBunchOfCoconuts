@@ -4,14 +4,30 @@
       <div
         class="flex cursor-pointer! justify-end gap-3 text-xs text-slate-100 *:text-[1.5rem]"
       >
-        <Icon
-          name="streamline-logos:x-twitter-logo-block"
-          class="hover:text-seagull-300"
-        />
-        <Icon
-          name="streamline-logos:facebook-logo-2-block"
-          class="hover:text-seagull-300"
-        />
+        <a
+          href="https://x.com/WakeUpNPC911"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit WakeUpNPC on X"
+          class="inline-flex"
+        >
+          <Icon
+            name="streamline-logos:x-twitter-logo-block"
+            class="hover:text-seagull-300"
+          />
+        </a>
+        <a
+          href="https://www.facebook.com/profile.php?id=61582910375411"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit WakeUpNPC on Facebook"
+          class="inline-flex"
+        >
+          <Icon
+            name="streamline-logos:facebook-logo-2-block"
+            class="hover:text-seagull-300"
+          />
+        </a>
         <Icon
           name="streamline-logos:instagram-logo-1-solid"
           class="hover:text-seagull-300"
@@ -21,14 +37,4 @@
   </div>
 </template>
 
-<style scoped>
-  .font-100 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 300;
-  }
-
-  .font-300 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 500;
-  }
-</style>
+<style scoped></style>

@@ -10,6 +10,14 @@ publish = "dist"
 NODE_VERSION = "22.11.0"
 PNPM_FLAGS = "--shamefully-hoist --no-optional=false"
 
+# Form notifications configuration
+[[plugins]]
+package = "@netlify/plugin-emails"
+
+[plugins.inputs]
+to = "wakeupnpc911@gmail.com"
+from = "forms@wakeupnpc.com"
+
 # Pro Plan: Build plugins removed - using built-in optimizations instead
 
 # Pro Plan: Advanced caching configuration
