@@ -1,5 +1,5 @@
 ---
 title: 'Weak Military'
 grift: 'Weak Military'
-decode: 'Strong Military'
+decode: 'Decreased national security.'
 ---

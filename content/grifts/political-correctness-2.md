@@ -1,5 +1,5 @@
 ---
 title: 'Political Correctness'
 grift: 'Political Correctness'
-decode: 'Free Speech'
+decode: 'Curtail Free Speech'
 ---
