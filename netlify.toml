@@ -10,13 +10,10 @@ publish = "dist"
 NODE_VERSION = "22.11.0"
 PNPM_FLAGS = "--shamefully-hoist --no-optional=false"
 
-# Form notifications configuration
-[[plugins]]
-package = "@netlify/plugin-emails"
-
-[plugins.inputs]
-to = "wakeupnpc911@gmail.com"
-from = "forms@wakeupnpc.com"
+# Form notifications are configured in Netlify UI:
+# Site Settings > Forms > Form notifications
+# Or add to your form HTML:
+# <form name="contact" method="POST" data-netlify="true" action="/success">
 
 # Pro Plan: Build plugins removed - using built-in optimizations instead
 
