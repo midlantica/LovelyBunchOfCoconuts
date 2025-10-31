@@ -567,6 +567,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/crisis",
+    "title": "Crisis",
+    "grift": "Crisis",
+    "decode": "Usually normalcy",
+    "body": ""
+  },
+  {
     "_path": "/grifts/critical-race-theory",
     "title": "Critical Race Theory",
     "grift": "Critical Race Theory",
@@ -2054,7 +2061,7 @@
     "_path": "/grifts/political-correctness-2",
     "title": "Political Correctness",
     "grift": "Political Correctness",
-    "decode": "Free Speech",
+    "decode": "Curtail Free Speech",
     "body": ""
   },
   {
@@ -2478,24 +2485,10 @@
     "body": ""
   },
   {
-    "_path": "/grifts/reproductive-equity",
-    "title": "Reproductive Equity",
-    "grift": "Reproductive Equity",
-    "decode": "Abortion, subsidized and sanctified.",
-    "body": ""
-  },
-  {
-    "_path": "/grifts/reproductive-futurism",
-    "title": "Reproductive Futurism",
-    "grift": "Reproductive Futurism",
-    "decode": "Abortions and ideologies for all.",
-    "body": ""
-  },
-  {
     "_path": "/grifts/reproductive-justice",
     "title": "Reproductive Justice",
     "grift": "Reproductive Justice",
-    "decode": "No limits, no questions, all funded.",
+    "decode": "Euphemism for ending life.",
     "body": ""
   },
   {
@@ -2503,13 +2496,6 @@
     "title": "Reproductive Rights",
     "grift": "Reproductive Rights",
     "decode": "Euphemism for ending life.",
-    "body": ""
-  },
-  {
-    "_path": "/grifts/rest-is-resistance",
-    "title": "Rest is Resistance",
-    "grift": "Rest is Resistance",
-    "decode": "Laziness as virtue.",
     "body": ""
   },
   {
@@ -2551,21 +2537,14 @@
     "_path": "/grifts/rewilding-cities",
     "title": "Rewilding Cities",
     "grift": "Rewilding Cities",
-    "decode": "Let nature and crime run free.",
+    "decode": "Let Nature and Crime run free.",
     "body": ""
   },
   {
     "_path": "/grifts/riots-violence",
     "title": "Riots & Violence",
     "grift": "Riots & Violence",
-    "decode": "Law & Order",
-    "body": ""
-  },
-  {
-    "_path": "/grifts/safe-expression-zones",
-    "title": "Safe Expression Zones",
-    "grift": "Safe Expression Zones",
-    "decode": "Speak here, and only here.",
+    "decode": "Mostly peaceful looting & fires",
     "body": ""
   },
   {
@@ -2586,14 +2565,14 @@
     "_path": "/grifts/safe-spaces-1",
     "title": "Safe Spaces",
     "grift": "Safe Spaces",
-    "decode": "Childproofing adulthood.",
+    "decode": "Leftists Only.",
     "body": ""
   },
   {
     "_path": "/grifts/safe-spaces",
     "title": "Safe Spaces",
     "grift": "Safe Spaces",
-    "decode": "Echo chambers for fragile egos.",
+    "decode": "Echo chambers for fragile Leftists.",
     "body": ""
   },
   {
@@ -2614,14 +2593,14 @@
     "_path": "/grifts/silence-is-violence",
     "title": "Silence is Violence",
     "grift": "Silence is Violence",
-    "decode": "Speak, comply, or be complicit.",
+    "decode": "Shut up and agree with us.",
     "body": ""
   },
   {
     "_path": "/grifts/social-insert-any-word",
     "title": "Social insert any word",
     "grift": "Social insert any word",
-    "decode": "Increased poverty. Increased division. Destroy native culture.",
+    "decode": "Increased poverty and division.",
     "body": ""
   },
   {
@@ -2670,7 +2649,7 @@
     "_path": "/grifts/socially-just-agriculture",
     "title": "Socially Just Agriculture",
     "grift": "Socially Just Agriculture",
-    "decode": "Farm equity, not food.",
+    "decode": "Impoverish Farmers.",
     "body": ""
   },
   {
@@ -2684,28 +2663,21 @@
     "_path": "/grifts/subvert-the-algorithm",
     "title": "Subvert the Algorithm",
     "grift": "Subvert the Algorithm",
-    "decode": "Shadowban everyone you dislike.",
-    "body": ""
-  },
-  {
-    "_path": "/grifts/sustainable-masculinity",
-    "title": "Sustainable Masculinity",
-    "grift": "Sustainable Masculinity",
-    "decode": "Neuter it with buzzwords.",
-    "body": ""
-  },
-  {
-    "_path": "/grifts/sustainable-restrooms",
-    "title": "Sustainable Restrooms",
-    "grift": "Sustainable Restrooms",
-    "decode": "Virtue-flush your guilt.",
+    "decode": "Shadow ban everyone you dislike.",
     "body": ""
   },
   {
     "_path": "/grifts/systemic-patriarchy",
     "title": "Systemic Patriarchy",
     "grift": "Systemic Patriarchy",
-    "decode": "Civilization. Division of labor up to individual choice.",
+    "decode": "Hate men.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/systemic-racism-2",
+    "title": "Systemic Racism",
+    "grift": "Systemic Racism",
+    "decode": "Hate white people.",
     "body": ""
   },
   {
@@ -2740,7 +2712,7 @@
     "_path": "/grifts/tax-the-rich",
     "title": "Tax the rich",
     "grift": "Tax the rich",
-    "decode": "Increased poverty.",
+    "decode": "Increased poverty for all.",
     "body": ""
   },
   {
@@ -2789,7 +2761,7 @@
     "_path": "/grifts/trans-women-are-women",
     "title": "Trans Women are Women",
     "grift": "Trans Women are Women",
-    "decode": "Not scientifically valid",
+    "decode": "No, they are Men",
     "body": ""
   },
   {
@@ -2824,7 +2796,7 @@
     "_path": "/grifts/weak-military",
     "title": "Weak Military",
     "grift": "Weak Military",
-    "decode": "Strong Military",
+    "decode": "Decreased national security.",
     "body": ""
   },
   {

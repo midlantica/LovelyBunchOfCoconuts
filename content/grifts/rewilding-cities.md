@@ -1,5 +1,5 @@
 ---
 title: 'Rewilding Cities'
 grift: 'Rewilding Cities'
-decode: 'Let nature and crime run free.'
+decode: 'Let Nature and Crime run free.'
 ---

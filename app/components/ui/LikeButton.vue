@@ -2,6 +2,7 @@
   <button
     :aria-label="ariaLabel"
     :aria-pressed="liked ? 'true' : 'false'"
+    :title="liked ? 'Unlike' : 'Like'"
     class="group relative inline-flex cursor-pointer! items-center rounded-md px-0 py-0 select-none focus:outline-none"
     :class="outerClass"
     type="button"

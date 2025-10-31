@@ -108,6 +108,7 @@ export function useUniversalClipboard() {
       onSuccess,
       onError,
       contentType = 'image',
+      filename = null,
       maxRetries = 2,
     } = options
 
@@ -184,14 +185,11 @@ export function useUniversalClipboard() {
         if (isMobile()) {
           try {
             if (navigator.share) {
-              const file = new File(
-                [imageBlob],
-                `wakeupnpc-${contentType}.png`,
-                {
-                  type: 'image/png',
-                  lastModified: Date.now(),
-                }
-              )
+              const fileName = filename || `wakeupnpc-${contentType}.png`
+              const file = new File([imageBlob], fileName, {
+                type: 'image/png',
+                lastModified: Date.now(),
+              })
 
               // Check if sharing files is supported
               if (navigator.canShare && navigator.canShare({ files: [file] })) {
@@ -209,7 +207,8 @@ export function useUniversalClipboard() {
             const url = URL.createObjectURL(imageBlob)
             const a = document.createElement('a')
             a.href = url
-            a.download = `wakeupnpc-${contentType}-${Date.now()}.png`
+            a.download =
+              filename || `wakeupnpc-${contentType}-${Date.now()}.png`
             a.style.display = 'none'
             document.body.appendChild(a)
 
@@ -234,7 +233,7 @@ export function useUniversalClipboard() {
         const url = URL.createObjectURL(imageBlob)
         const a = document.createElement('a')
         a.href = url
-        a.download = `wakeupnpc-${contentType}-${Date.now()}.png`
+        a.download = filename || `wakeupnpc-${contentType}-${Date.now()}.png`
         a.style.display = 'none'
         document.body.appendChild(a)
         a.click()

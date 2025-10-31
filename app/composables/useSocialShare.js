@@ -1,5 +1,20 @@
 // composables/useSocialShare.js
 export function useSocialShare() {
+  // Helper function to extract filename from content path
+  function getFilenameFromContent(content, contentType) {
+    // Try to get the filename from _path or path property
+    const path = content?._path || content?.path
+    if (path) {
+      // Extract the last segment of the path (the filename without extension)
+      const segments = path.split('/')
+      const filename = segments[segments.length - 1]
+      // Return with .png extension
+      return `${filename}.png`
+    }
+    // Fallback to timestamp-based name
+    return `wakeupnpc-${contentType}-${Date.now()}.png`
+  }
+
   // Helper function to draw rounded rectangles
   function roundRect(ctx, x, y, width, height, radius) {
     ctx.beginPath()
@@ -663,7 +678,7 @@ export function useSocialShare() {
     onFeedback = null
   ) => {
     try {
-      // Handle memes differently - copy raw image with logo overlay
+      // Handle memes differently - copy or download raw image with logo overlay
       if (type === 'meme') {
         try {
           // Find the meme image in the DOM with timeout
@@ -754,6 +769,67 @@ export function useSocialShare() {
           const logoImg = new Image()
           logoImg.crossOrigin = 'anonymous'
 
+          const applyLogoAndDownload = async () => {
+            try {
+              const logoWidth = 158
+              const logoHeight = 19
+              const logoX = canvas.width - logoWidth - 5
+              const logoY = canvas.height - logoHeight - 5
+
+              ctx.globalAlpha = 0.9
+              ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight)
+              ctx.globalAlpha = 1.0
+
+              // Convert to blob with timeout
+              const finalBlob = await new Promise((resolve, reject) => {
+                const timeout = setTimeout(() => {
+                  reject(new Error('Canvas to blob timeout'))
+                }, 5000)
+
+                canvas.toBlob(
+                  (blob) => {
+                    clearTimeout(timeout)
+                    if (blob) {
+                      resolve(blob)
+                    } else {
+                      reject(new Error('Failed to create blob from canvas'))
+                    }
+                  },
+                  'image/png',
+                  1.0
+                )
+              })
+
+              // Download the image
+              const downloadUrl = URL.createObjectURL(finalBlob)
+              const a = document.createElement('a')
+              a.href = downloadUrl
+              a.download = getFilenameFromContent(content, 'meme')
+              document.body.appendChild(a)
+              a.click()
+              document.body.removeChild(a)
+              URL.revokeObjectURL(downloadUrl)
+              onFeedback?.('Image downloaded!')
+            } catch (error) {
+              console.error('Logo overlay failed:', error)
+              // Fallback: download without logo
+              try {
+                const downloadUrl = URL.createObjectURL(memeBlob)
+                const a = document.createElement('a')
+                a.href = downloadUrl
+                a.download = getFilenameFromContent(content, 'meme')
+                document.body.appendChild(a)
+                a.click()
+                document.body.removeChild(a)
+                URL.revokeObjectURL(downloadUrl)
+                onFeedback?.('Image downloaded!')
+              } catch (fallbackError) {
+                console.error('Fallback download failed:', fallbackError)
+                onFeedback?.('Error downloading meme')
+              }
+            }
+          }
+
           const applyLogoAndCopy = async () => {
             try {
               const logoWidth = 158
@@ -793,6 +869,7 @@ export function useSocialShare() {
 
               await copyImageToClipboard(finalBlob, {
                 contentType: 'meme',
+                filename: getFilenameFromContent(content, 'meme'),
                 onSuccess: (message) => onFeedback?.(message),
                 onError: (message) => onFeedback?.(message),
               })
@@ -807,6 +884,7 @@ export function useSocialShare() {
 
                 await copyImageToClipboard(memeBlob, {
                   contentType: 'meme',
+                  filename: getFilenameFromContent(content, 'meme'),
                   onSuccess: (message) => onFeedback?.(message),
                   onError: (message) => onFeedback?.(message),
                 })
@@ -837,24 +915,49 @@ export function useSocialShare() {
 
           try {
             await logoLoadPromise
-            await applyLogoAndCopy()
+            // Check if this is a download or copy operation
+            if (platform === 'download') {
+              await applyLogoAndDownload()
+            } else {
+              await applyLogoAndCopy()
+            }
           } catch (logoError) {
-            console.warn('Logo load failed, copying without logo:', logoError)
-            // Logo failed, copy without it
-            try {
-              const { useUniversalClipboard } = await import(
-                '~/composables/useUniversalClipboard'
-              )
-              const { copyImageToClipboard } = useUniversalClipboard()
+            console.warn('Logo load failed:', logoError)
+            // Logo failed, fallback based on operation type
+            if (platform === 'download') {
+              // Download without logo
+              try {
+                const downloadUrl = URL.createObjectURL(memeBlob)
+                const a = document.createElement('a')
+                a.href = downloadUrl
+                a.download = getFilenameFromContent(content, 'meme')
+                document.body.appendChild(a)
+                a.click()
+                document.body.removeChild(a)
+                URL.revokeObjectURL(downloadUrl)
+                onFeedback?.('Image downloaded!')
+              } catch (fallbackError) {
+                console.error('Fallback download failed:', fallbackError)
+                onFeedback?.('Error downloading meme')
+              }
+            } else {
+              // Copy without logo
+              try {
+                const { useUniversalClipboard } = await import(
+                  '~/composables/useUniversalClipboard'
+                )
+                const { copyImageToClipboard } = useUniversalClipboard()
 
-              await copyImageToClipboard(memeBlob, {
-                contentType: 'meme',
-                onSuccess: (message) => onFeedback?.(message),
-                onError: (message) => onFeedback?.(message),
-              })
-            } catch (fallbackError) {
-              console.error('Fallback copy failed:', fallbackError)
-              onFeedback?.('Error copying meme')
+                await copyImageToClipboard(memeBlob, {
+                  contentType: 'meme',
+                  filename: getFilenameFromContent(content, 'meme'),
+                  onSuccess: (message) => onFeedback?.(message),
+                  onError: (message) => onFeedback?.(message),
+                })
+              } catch (fallbackError) {
+                console.error('Fallback copy failed:', fallbackError)
+                onFeedback?.('Error copying meme')
+              }
             }
           }
         } catch (error) {
@@ -868,15 +971,16 @@ export function useSocialShare() {
       const imageBlob = await generateShareImage(content, type)
 
       if (platform === 'download') {
-        // Download the image
+        // Download the image with markdown filename
         const url = URL.createObjectURL(imageBlob)
         const a = document.createElement('a')
         a.href = url
-        a.download = `wakeupnpc-${type}-${Date.now()}.jpg`
+        a.download = getFilenameFromContent(content, type)
         document.body.appendChild(a)
         a.click()
         document.body.removeChild(a)
         URL.revokeObjectURL(url)
+        onFeedback?.('Image downloaded!')
         return
       }
 
@@ -890,6 +994,7 @@ export function useSocialShare() {
 
         await copyImageToClipboard(imageBlob, {
           contentType: type,
+          filename: getFilenameFromContent(content, type),
           onSuccess: (message) => onFeedback?.(message),
           onError: (message) => onFeedback?.(message),
         })

@@ -1,5 +1,5 @@
 ---
 title: 'Redistribution'
 grift: 'Redistribution'
-decode: 'Social Engineering, Increased Poverty.'
+decode: 'Social engineering - freedom, + poverty'
 ---

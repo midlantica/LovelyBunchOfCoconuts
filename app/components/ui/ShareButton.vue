@@ -14,12 +14,18 @@
       <div class="flex items-center gap-4">
         <!-- Share cluster flush left -->
         <div class="flex flex-1 items-center gap-3">
-          <!-- Copy image icon button -->
+          <!-- Copy and Download buttons -->
           <div class="flex items-center gap-2">
+            <!-- Copy image icon button -->
             <button
               type="button"
               :disabled="isLoading || disableCopyImage"
               @click="copyImageOnly"
+              :title="
+                disableCopyImage
+                  ? 'Quote too long to copy as image'
+                  : 'Copy Image'
+              "
               class="group inline-flex h-8 w-8 items-center justify-center rounded-full transition-all duration-150"
               :class="[
                 disableCopyImage || isLoading
@@ -41,6 +47,37 @@
                   disableCopyImage
                     ? 'opacity-40'
                     : isCopying
+                      ? 'brightness-125 drop-shadow-[0_0_12px_#33c3fd]'
+                      : 'group-hover:brightness-125 group-hover:drop-shadow-[0_0_12px_#33c3fd]'
+                "
+                :style="disableCopyImage ? 'color: #6b7280' : 'color: #b3b3b3'"
+              />
+            </button>
+
+            <!-- Download image icon button -->
+            <button
+              type="button"
+              :disabled="isLoading || disableCopyImage"
+              @click="downloadImage"
+              title="Click to download"
+              class="group inline-flex h-8 w-8 items-center justify-center rounded-full transition-all duration-150"
+              :class="[
+                disableCopyImage || isLoading
+                  ? 'cursor-not-allowed'
+                  : 'cursor-pointer! hover:scale-105',
+                (disableCopyImage || (!isDownloading && isLoading)) &&
+                  'opacity-50',
+              ]"
+              aria-label="Download image"
+            >
+              <Icon
+                name="lucide:image-down"
+                size="1.62rem"
+                class="transition-all duration-200"
+                :class="
+                  disableCopyImage
+                    ? 'opacity-40'
+                    : isDownloading
                       ? 'brightness-125 drop-shadow-[0_0_12px_#33c3fd]'
                       : 'group-hover:brightness-125 group-hover:drop-shadow-[0_0_12px_#33c3fd]'
                 "
@@ -104,6 +141,7 @@
   const isLoading = ref(false)
   const feedbackMessage = ref('')
   const isCopying = ref(false) // Track entire copy process
+  const isDownloading = ref(false) // Track download process
 
   // Button refs for coordination
   const copyButton = ref(null)
@@ -140,6 +178,7 @@
 
       // Create content object based on type
       const content = {
+        _path: props.likeId, // Include the path for filename generation
         claim: props.contentType === 'grift' ? props.title : null,
         translation: props.contentType === 'grift' ? props.text : null,
         headings: props.contentType === 'quote' ? [props.title] : null,
@@ -168,6 +207,76 @@
       setTimeout(() => {
         feedbackMessage.value = ''
         isCopying.value = false
+      }, 3000)
+    } finally {
+      clearTimeout(loadingTimeout)
+      isLoading.value = false
+    }
+  }
+
+  // Download image - saves image with markdown filename
+  const downloadImage = async () => {
+    if (isLoading.value || props.disableCopyImage) return // Prevent multiple clicks or disabled action
+
+    // Start download process
+    isDownloading.value = true
+    isLoading.value = true
+    feedbackMessage.value = ''
+
+    // Set timeout to prevent infinite loading state
+    const loadingTimeout = setTimeout(() => {
+      if (isLoading.value) {
+        isLoading.value = false
+        feedbackMessage.value = 'Request timed out'
+        setTimeout(() => {
+          feedbackMessage.value = ''
+        }, 3000)
+      }
+    }, 15000) // 15 second timeout
+
+    try {
+      // Import composable
+      const { useSocialShare } = await import('~/composables/useSocialShare')
+      const { shareToPlatform } = useSocialShare()
+
+      // Create content object based on type
+      const content = {
+        _path: props.likeId, // Include the path for filename generation
+        claim: props.contentType === 'grift' ? props.title : null,
+        translation: props.contentType === 'grift' ? props.text : null,
+        headings: props.contentType === 'quote' ? [props.title] : null,
+        attribution: props.contentType === 'quote' ? props.text : null,
+        title: props.contentType === 'meme' ? props.title : null,
+        description: props.contentType === 'meme' ? props.text : null,
+      }
+
+      // Download the image with proper filename
+      await shareToPlatform(
+        content,
+        props.contentType,
+        'download',
+        null,
+        (message) => {
+          feedbackMessage.value = message || 'Image downloaded!'
+          setTimeout(() => {
+            feedbackMessage.value = ''
+            isDownloading.value = false
+          }, 3000)
+        }
+      )
+
+      // Show success feedback
+      feedbackMessage.value = 'Image downloaded!'
+      setTimeout(() => {
+        feedbackMessage.value = ''
+        isDownloading.value = false
+      }, 3000)
+    } catch (error) {
+      console.error('Error downloading image:', error)
+      feedbackMessage.value = error.message || 'Error downloading image'
+      setTimeout(() => {
+        feedbackMessage.value = ''
+        isDownloading.value = false
       }, 3000)
     } finally {
       clearTimeout(loadingTimeout)

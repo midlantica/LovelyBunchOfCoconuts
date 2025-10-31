@@ -1,5 +1,5 @@
 ---
 title: 'Safe Spaces'
 grift: 'Safe Spaces'
-decode: 'Childproofing adulthood.'
+decode: 'Leftists Only.'
 ---

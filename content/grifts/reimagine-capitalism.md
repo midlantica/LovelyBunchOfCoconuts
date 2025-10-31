@@ -1,5 +1,5 @@
 ---
-title: 'Reimagine Capitalism'
-grift: 'Reimagine Capitalism'
-decode: 'Imagine poverty, but fair.'
+title: 'Reimagined Capitalism'
+grift: 'Reimagined Capitalism'
+decode: 'Poverty & dependency increase'
 ---

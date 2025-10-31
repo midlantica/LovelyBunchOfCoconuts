@@ -2375,6 +2375,94 @@
       "updated": "2025-10-27T17:46:20.437Z",
       "width": 800,
       "height": 460
+    },
+    "capitalism/571187586-1348255533335257.jpg": {
+      "optimized": true,
+      "hash": "cdb120787a7ab14b16bc313977f4824c0a956a03",
+      "action": "strip-profiles",
+      "updated": "2025-10-31T03:14:25.051Z",
+      "width": 720,
+      "height": 1080
+    },
+    "cartoons/ice-should-show-ids-so-should-voters.jpg": {
+      "optimized": true,
+      "hash": "10884ab338f0759b16f29c9fcf9fed3719964699",
+      "action": "strip-profiles",
+      "updated": "2025-10-31T03:14:25.226Z",
+      "width": 965,
+      "height": 904
+    },
+    "cartoons/img.jpg": {
+      "optimized": true,
+      "hash": "6847e45432eaf16feda583562ca459813b79a930",
+      "action": "upscale→800",
+      "updated": "2025-10-31T03:14:25.354Z",
+      "width": 633,
+      "height": 800
+    },
+    "cartoons/the-democrat-party-founded-the-kkk-and.jpg": {
+      "optimized": true,
+      "hash": "d332d02f56f99ce841d840d7377c9d0993b88abf",
+      "action": "upscale→800",
+      "updated": "2025-10-31T03:14:25.520Z",
+      "width": 800,
+      "height": 663
+    },
+    "cartoons/the-lefts-stochastic-terrorism-1.jpg": {
+      "optimized": true,
+      "hash": "d06f20f7b59311c88e65241b79fff5dff289dce7",
+      "action": "upscale→800",
+      "updated": "2025-10-31T03:14:25.655Z",
+      "width": 800,
+      "height": 590
+    },
+    "cartoons/the-lefts-stochastic-terrorism.jpg": {
+      "optimized": true,
+      "hash": "d06f20f7b59311c88e65241b79fff5dff289dce7",
+      "action": "upscale→800",
+      "updated": "2025-10-31T03:14:25.790Z",
+      "width": 800,
+      "height": 590
+    },
+    "data/years-democrats-fund-ice.jpg": {
+      "optimized": true,
+      "hash": "ec404cc4e6a1befc25a066a40165f854b82f345a",
+      "action": "upscale→800",
+      "updated": "2025-10-31T03:14:26.006Z",
+      "width": 599,
+      "height": 800
+    },
+    "thomas-sowell/567657996-1418946940237125.jpg": {
+      "optimized": true,
+      "hash": "327791b10a5811ddf20db00ccb1d3875a094776d",
+      "action": "strip-profiles",
+      "updated": "2025-10-31T03:14:26.466Z",
+      "width": 1080,
+      "height": 1080
+    },
+    "thomas-sowell/if-i-were-rich-i-would-have-a-plaque.jpg": {
+      "optimized": true,
+      "hash": "282af0427023106a0c334db89c463772eb0edd18",
+      "action": "strip-profiles",
+      "updated": "2025-10-31T03:14:26.581Z",
+      "width": 1080,
+      "height": 1080
+    },
+    "thomas-sowell/if-youre-going-to-call-the-negative.jpg": {
+      "optimized": true,
+      "hash": "23c1e2f5a337a3d362818892c4c2712143563c05",
+      "action": "upscale→800",
+      "updated": "2025-10-31T03:14:26.725Z",
+      "width": 800,
+      "height": 800
+    },
+    "thomas-sowell/there-is-no-greater-indictment-of-judges.jpg": {
+      "optimized": true,
+      "hash": "b42b12238057b658ec901bc5265ce38f3b46fe7c",
+      "action": "strip-profiles",
+      "updated": "2025-10-31T03:14:26.830Z",
+      "width": 845,
+      "height": 764
     }
   }
 }

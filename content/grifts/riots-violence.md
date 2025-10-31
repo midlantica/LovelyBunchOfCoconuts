@@ -1,5 +1,5 @@
 ---
 title: 'Riots & Violence'
 grift: 'Riots & Violence'
-decode: 'Law & Order'
+decode: 'Mostly peaceful looting & fires'
 ---

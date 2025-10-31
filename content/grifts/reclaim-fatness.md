@@ -1,5 +1,5 @@
 ---
 title: 'Reclaim Fatness'
 grift: 'Reclaim Fatness'
-decode: 'Health is a social construct now.'
+decode: 'Health is a social construct now'
 ---

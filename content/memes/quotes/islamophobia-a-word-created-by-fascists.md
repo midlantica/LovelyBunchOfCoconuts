@@ -1,7 +1,7 @@
 ---
-title: 'Islamophobia a word created by fascists'
+title: 'Islamophobia a word created by Fascists'
 ---
 
 ![Islamophobia a word created by fascists 1](/memes/quotes/islamophobia-a-word-created-by-fascists.jpg)
 
-ISLAMOPHOBIA, a word created by, FASCISTS and used by COWARDS to manipulate MORONS - Christopher Hitchens
+"Islamophobia, a word created by, Fascists and used by Cowards to manipulate Morons" - Christopher Hitchens

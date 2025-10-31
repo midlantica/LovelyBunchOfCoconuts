@@ -1,5 +1,5 @@
 ---
 title: 'Reparative Climate Policy'
 grift: 'Reparative Climate Policy'
-decode: 'More taxes, fewer degrees.'
+decode: 'More taxes, Expensive energy.'
 ---
