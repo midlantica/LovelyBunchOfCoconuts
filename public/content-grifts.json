@@ -2320,7 +2320,7 @@
     "_path": "/grifts/raise-the-minimum-wage",
     "title": "Raise the Minimum Wage",
     "grift": "Raise the Minimum Wage",
-    "decode": "Price young workers out of the market.",
+    "decode": "Price young workers out of the Market.",
     "body": ""
   },
   {
@@ -2334,56 +2334,42 @@
     "_path": "/grifts/reclaim-fatness",
     "title": "Reclaim Fatness",
     "grift": "Reclaim Fatness",
-    "decode": "Health is a social construct now.",
-    "body": ""
-  },
-  {
-    "_path": "/grifts/reclaim-public-rest",
-    "title": "Reclaim Public Rest",
-    "grift": "Reclaim Public Rest",
-    "decode": "Nap time as protest.",
-    "body": ""
-  },
-  {
-    "_path": "/grifts/reclaim-public-transport",
-    "title": "Reclaim Public Transport",
-    "grift": "Reclaim Public Transport",
-    "decode": "Smell the justice.",
+    "decode": "Health is a social construct now",
     "body": ""
   },
   {
     "_path": "/grifts/reclaiming-public-space",
     "title": "Reclaiming Public Space",
     "grift": "Reclaiming Public Space",
-    "decode": "Camping is protest, not trespassing.",
+    "decode": "Causing public misery.",
     "body": ""
   },
   {
     "_path": "/grifts/reclaiming-time",
     "title": "Reclaiming Time",
     "grift": "Reclaiming Time",
-    "decode": "Slacking is revolutionary.",
+    "decode": "Progressive slacking.",
     "body": ""
   },
   {
     "_path": "/grifts/redistribute-wealth",
     "title": "Redistribute Wealth",
     "grift": "Redistribute Wealth",
-    "decode": "Loot, but legally.",
+    "decode": "Legally Loot + more poverty",
     "body": ""
   },
   {
     "_path": "/grifts/redistribution",
     "title": "Redistribution",
     "grift": "Redistribution",
-    "decode": "Social Engineering, Increased Poverty.",
+    "decode": "Social engineering - freedom, + poverty",
     "body": ""
   },
   {
     "_path": "/grifts/reimagine-capitalism",
-    "title": "Reimagine Capitalism",
-    "grift": "Reimagine Capitalism",
-    "decode": "Imagine poverty, but fair.",
+    "title": "Reimagined Capitalism",
+    "grift": "Reimagined Capitalism",
+    "decode": "Poverty & dependency increase",
     "body": ""
   },
   {
@@ -2395,16 +2381,9 @@
   },
   {
     "_path": "/grifts/reimagine-policing",
-    "title": "Reimagine Policing",
-    "grift": "Reimagine Policing",
-    "decode": "Imagine no safety.",
-    "body": ""
-  },
-  {
-    "_path": "/grifts/reimagined-graduation-ceremonies",
-    "title": "Reimagined Graduation Ceremonies",
-    "grift": "Reimagined Graduation Ceremonies",
-    "decode": "Diplomas with disclaimers.",
+    "title": "Reimagined Policing",
+    "grift": "Reimagined Policing",
+    "decode": "More crime.",
     "body": ""
   },
   {
@@ -2446,14 +2425,14 @@
     "_path": "/grifts/reparations",
     "title": "Reparations",
     "grift": "Reparations",
-    "decode": "Punish people for the sins of others, long dead.",
+    "decode": "Punish people for the sins of long-dead others.",
     "body": ""
   },
   {
     "_path": "/grifts/reparative-climate-policy",
     "title": "Reparative Climate Policy",
     "grift": "Reparative Climate Policy",
-    "decode": "More taxes, fewer degrees.",
+    "decode": "More taxes, Expensive energy.",
     "body": ""
   },
   {

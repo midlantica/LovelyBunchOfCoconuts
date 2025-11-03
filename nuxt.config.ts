@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-06-27',
   components: true,
   devtools: {
-    enabled: true,
+    enabled: false,
     timeline: {
       enabled: true,
     },
