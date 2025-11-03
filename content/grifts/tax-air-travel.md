@@ -1,5 +1,4 @@
 ---
-title: 'Tax Air Travel'
-grift: 'Tax Air Travel'
+grift: 'Tax air travel'
 decode: 'Ground the poor.'
 ---

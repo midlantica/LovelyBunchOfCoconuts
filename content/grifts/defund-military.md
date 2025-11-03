@@ -1,5 +1,4 @@
 ---
-title: 'Defund Military'
 grift: 'Defund Military'
-decode: 'Because peace comes from weakness.'
+decode: 'Because Peace comes from weakness.'
 ---

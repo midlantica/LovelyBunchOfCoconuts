@@ -1,5 +1,4 @@
 ---
-title: 'Trans Women are Women'
 grift: 'Trans Women are Women'
-decode: 'No, they are Men'
+decode: 'No, science is real'
 ---

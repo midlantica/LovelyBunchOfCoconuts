@@ -1,5 +1,4 @@
 ---
-title: 'Systemic Racism'
 grift: 'Systemic Racism'
-decode: 'Hate white people.'
+decode: 'Racism to white people.'
 ---

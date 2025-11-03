@@ -1,5 +1,4 @@
 ---
-title: 'Social Justice'
 grift: 'Social Justice'
-decode: 'Revenge dressed up as fairness.'
+decode: 'Mob rule wrapped in moral language.'
 ---

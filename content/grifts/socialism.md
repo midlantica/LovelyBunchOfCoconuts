@@ -1,5 +1,4 @@
 ---
-title: 'Socialism'
 grift: 'Socialism'
-decode: 'Tall Poppy Syndrome Poverty for All'
+decode: 'Increased poverty for all'
 ---

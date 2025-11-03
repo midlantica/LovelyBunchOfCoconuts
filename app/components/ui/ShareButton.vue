@@ -40,8 +40,8 @@
               "
             >
               <Icon
-                name="lucide:image-plus"
-                size="1.62rem"
+                name="lucide:images"
+                size="1.4rem"
                 class="transition-all duration-200"
                 :class="
                   disableCopyImage
@@ -72,7 +72,7 @@
             >
               <Icon
                 name="lucide:image-down"
-                size="1.62rem"
+                size="1.5rem"
                 class="transition-all duration-200"
                 :class="
                   disableCopyImage
