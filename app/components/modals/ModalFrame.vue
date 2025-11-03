@@ -17,7 +17,6 @@
           ref="modalEl"
           class="modal-frame relative -top-8 mx-0 flex flex-col rounded-none shadow-lg sm:mx-6 sm:rounded-lg"
           :style="computedModalStyle"
-          :class="[modalStyle ? '' : 'w-full sm:max-w-[700px] sm:min-w-[60vw]']"
           @click.stop
         >
           <!-- Close button now always visible (works on all screens) -->
@@ -27,7 +26,7 @@
             @click="onCloseClick"
           />
           <div
-            class="relative flex w-full flex-col overflow-x-visible overflow-y-visible"
+            class="relative flex w-full flex-col overflow-x-visible overflow-y-visible sm:w-auto"
           >
             <div class="min-h-0 flex-1">
               <slot name="mainPanel" />
@@ -157,5 +156,22 @@
   .modal-leave-to {
     opacity: 0;
     transform: scale(0.95);
+  }
+</style>
+
+<style>
+  /* Modal frame sizing - wraps to content width */
+  /* Meme modals can be wider (up to 1000px) to accommodate large images */
+  .modal-frame {
+    max-width: min(1000px, calc(100vw - 4rem)) !important;
+    width: auto !important;
+  }
+
+  /* For smaller screens, use full width */
+  @media (max-width: 640px) {
+    .modal-frame {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
   }
 </style>

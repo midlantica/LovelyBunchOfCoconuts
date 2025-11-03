@@ -1,5 +1,5 @@
 ---
-title: 'Riots & Violence'
-grift: 'Riots & Violence'
-decode: 'Mostly peaceful looting & fires'
+title: 'Mostly peaceful protests'
+grift: 'Mostly peaceful protests'
+decode: 'Riots, looting & fires'
 ---

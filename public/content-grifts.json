@@ -1771,13 +1771,6 @@
     "body": ""
   },
   {
-    "_path": "/grifts/leftism",
-    "title": "Leftism",
-    "grift": "Leftism",
-    "decode": "Conservatism, Classical Liberalism",
-    "body": ""
-  },
-  {
     "_path": "/grifts/let-anyone-vote",
     "title": "Let Anyone Vote",
     "grift": "Let Anyone Vote",
@@ -2521,9 +2514,9 @@
   },
   {
     "_path": "/grifts/riots-violence",
-    "title": "Riots & Violence",
-    "grift": "Riots & Violence",
-    "decode": "Mostly peaceful looting & fires",
+    "title": "Mostly peaceful protests",
+    "grift": "Mostly peaceful protests",
+    "decode": "Riots, looting & fires",
     "body": ""
   },
   {
@@ -2570,8 +2563,8 @@
   },
   {
     "_path": "/grifts/silence-is-violence",
-    "title": "Silence is Violence",
-    "grift": "Silence is Violence",
+    "title": "Silence is violence",
+    "grift": "Silence is violence",
     "decode": "Shut up and agree with us.",
     "body": ""
   },
