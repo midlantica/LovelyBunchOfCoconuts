@@ -71,8 +71,8 @@
       </template>
 
       <template #sharePanel>
-        <!-- Share Buttons Shelf - positioned relative to this panel -->
-        <UiShareButton
+        <!-- Content Action Bar - positioned relative to this panel -->
+        <UiContentActionBar
           v-if="modalData"
           :title="modalData?.grift || modalData?.title"
           :text="`${modalData?.grift || modalData?.title} - ${

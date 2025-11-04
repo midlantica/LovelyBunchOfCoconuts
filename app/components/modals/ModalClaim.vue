@@ -71,8 +71,8 @@
       </template>
 
       <template #sharePanel>
-        <!-- Share Buttons Shelf - positioned relative to this panel -->
-        <UiShareButton
+        <!-- Content Action Bar - positioned relative to this panel -->
+        <UiContentActionBar
           v-if="modalData"
           :title="modalData?.claim || modalData?.title"
           :text="`${modalData?.claim || modalData?.title} - ${

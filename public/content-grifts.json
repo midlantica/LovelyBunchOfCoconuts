@@ -357,6 +357,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/classical-liberalism",
+    "title": "Classical Liberalism",
+    "grift": "Classical Liberalism",
+    "decode": "Liberalism",
+    "body": ""
+  },
+  {
     "_path": "/grifts/climate-change-02",
     "title": "Climate Change",
     "grift": "Climate Change",
@@ -829,7 +836,7 @@
     "_path": "/grifts/deficit-spending",
     "title": "Deficit Spending",
     "grift": "Deficit Spending",
-    "decode": "Kicking the can down the road. Increased poverty.",
+    "decode": "Kicking the can, increased poverty.",
     "body": ""
   },
   {
@@ -843,21 +850,21 @@
     "_path": "/grifts/defund-competitive-sports",
     "title": "Defund Competitive Sports",
     "grift": "Defund Competitive Sports",
-    "decode": "Because winning is problematic.",
+    "decode": "Winning is not fair",
     "body": ""
   },
   {
     "_path": "/grifts/defund-military",
     "title": "Defund Military",
     "grift": "Defund Military",
-    "decode": "Because peace comes from weakness.",
+    "decode": "Because Peace comes from weakness.",
     "body": ""
   },
   {
     "_path": "/grifts/defund-prisons",
     "title": "Defund Prisons",
     "grift": "Defund Prisons",
-    "decode": "Hope criminals hug it out.",
+    "decode": "Endanger Public",
     "body": ""
   },
   {
@@ -868,17 +875,10 @@
     "body": ""
   },
   {
-    "_path": "/grifts/defund-the-police-1",
-    "title": "Defund the Police",
-    "grift": "Defund the Police",
-    "decode": "Remove the last line of defense between criminals and the vulnerable.",
-    "body": ""
-  },
-  {
     "_path": "/grifts/defund-the-police",
     "title": "Defund the Police",
     "grift": "Defund the Police",
-    "decode": "Make chaos your neighbor.",
+    "decode": "Increase crime",
     "body": ""
   },
   {
@@ -889,10 +889,17 @@
     "body": ""
   },
   {
+    "_path": "/grifts/dei-diversity-equity-inclusion-2",
+    "title": "DEI or Diversity Equity Inclusion",
+    "grift": "DEI or Diversity Equity Inclusion",
+    "decode": "Didn't Earn It",
+    "body": ""
+  },
+  {
     "_path": "/grifts/dei-diversity-equity-inclusion",
     "title": "DEI or Diversity Equity Inclusion",
     "grift": "DEI or Diversity Equity Inclusion",
-    "decode": "Increased Poverty and Division.",
+    "decode": "Division Exclusion Insanity",
     "body": ""
   },
   {
@@ -1435,13 +1442,6 @@
     "body": ""
   },
   {
-    "_path": "/grifts/gender-inclusive-menus",
-    "title": "Gender-Inclusive Menus",
-    "grift": "Gender-Inclusive Menus",
-    "decode": "Eat woke, not well.",
-    "body": ""
-  },
-  {
     "_path": "/grifts/gender-inclusive-sports",
     "title": "Gender Inclusive Sports",
     "grift": "Gender Inclusive Sports",
@@ -1453,13 +1453,6 @@
     "title": "Gender Neutral Parenting",
     "grift": "Gender Neutral Parenting",
     "decode": "Confuse early, confuse often.",
-    "body": ""
-  },
-  {
-    "_path": "/grifts/gender-neutral-urbanism",
-    "title": "Gender-Neutral Urbanism",
-    "grift": "Gender-Neutral Urbanism",
-    "decode": "Cities without stereotypes.",
     "body": ""
   },
   {
@@ -1480,7 +1473,7 @@
     "_path": "/grifts/globalism",
     "title": "Globalism",
     "grift": "Globalism",
-    "decode": "National Sovereignty.",
+    "decode": "Give up National Sovereignty.",
     "body": ""
   },
   {
@@ -1785,6 +1778,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/liberalism",
+    "title": "'Liberalism'",
+    "grift": "'Liberalism'",
+    "decode": "Leftism",
+    "body": ""
+  },
+  {
     "_path": "/grifts/liberated-learning-spaces",
     "title": "Liberated Learning Spaces",
     "grift": "Liberated Learning Spaces",
@@ -1855,13 +1855,6 @@
     "body": ""
   },
   {
-    "_path": "/grifts/menstrual-equity",
-    "title": "Menstrual Equity",
-    "grift": "Menstrual Equity",
-    "decode": "Subsidized hygiene for social justice.",
-    "body": ""
-  },
-  {
     "_path": "/grifts/mental-health-awareness",
     "title": "Mental Health Awareness",
     "grift": "Mental Health Awareness",
@@ -1890,13 +1883,6 @@
     "body": ""
   },
   {
-    "_path": "/grifts/more-control-mandates",
-    "title": "More Control/Mandates",
-    "grift": "More Control/Mandates",
-    "decode": "Less Control/Mandates",
-    "body": ""
-  },
-  {
     "_path": "/grifts/mutual-accountability",
     "title": "Mutual Accountability",
     "grift": "Mutual Accountability",
@@ -1914,7 +1900,14 @@
     "_path": "/grifts/needs-investment",
     "title": "Needs Investment",
     "grift": "Needs Investment",
-    "decode": "More taxes.",
+    "decode": "More taxes",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/neo-liberalism",
+    "title": "Neo-liberalism",
+    "grift": "Neo-liberalism",
+    "decode": "Liberalism.",
     "body": ""
   },
   {
@@ -1922,7 +1915,7 @@
     "title": "Neopronouns",
     "grift": "Neopronouns",
     "decode": "Invent your truth, enforce mine.",
-    "body": "\n## \"Neopronouns\"\n\n## Invent your truth, enforce mine.\n"
+    "body": ""
   },
   {
     "_path": "/grifts/net-neutrality",
@@ -2520,24 +2513,10 @@
     "body": ""
   },
   {
-    "_path": "/grifts/safe-injection-sites-1",
-    "title": "Safe Injection Sites",
-    "grift": "Safe Injection Sites",
-    "decode": "Enable addiction to feel compassionate.",
-    "body": ""
-  },
-  {
     "_path": "/grifts/safe-injection-sites",
     "title": "Safe Injection Sites",
     "grift": "Safe Injection Sites",
     "decode": "Enabling addiction with a roof.",
-    "body": ""
-  },
-  {
-    "_path": "/grifts/safe-spaces-1",
-    "title": "Safe Spaces",
-    "grift": "Safe Spaces",
-    "decode": "Leftists Only.",
     "body": ""
   },
   {
@@ -2570,37 +2549,30 @@
   },
   {
     "_path": "/grifts/social-insert-any-word",
-    "title": "Social insert any word",
-    "grift": "Social insert any word",
+    "title": "Social... insert any word",
+    "grift": "Social... insert any word",
     "decode": "Increased poverty and division.",
-    "body": ""
-  },
-  {
-    "_path": "/grifts/social-justice-1",
-    "title": "Social Justice",
-    "grift": "Social Justice",
-    "decode": "Mob rule wrapped in moral language.",
     "body": ""
   },
   {
     "_path": "/grifts/social-justice",
     "title": "Social Justice",
     "grift": "Social Justice",
-    "decode": "Revenge dressed up as fairness.",
+    "decode": "Mob rule wrapped in moral language.",
     "body": ""
   },
   {
     "_path": "/grifts/social-welfare",
     "title": "Social Welfare",
     "grift": "Social Welfare",
-    "decode": "Increased poverty.",
+    "decode": "Increased poverty for all.",
     "body": ""
   },
   {
     "_path": "/grifts/socialism",
     "title": "Socialism",
     "grift": "Socialism",
-    "decode": "Tall Poppy Syndrome Poverty for All",
+    "decode": "Increased poverty for all",
     "body": ""
   },
   {
@@ -2642,14 +2614,14 @@
     "_path": "/grifts/systemic-patriarchy",
     "title": "Systemic Patriarchy",
     "grift": "Systemic Patriarchy",
-    "decode": "Hate men.",
+    "decode": "Diminish men.",
     "body": ""
   },
   {
     "_path": "/grifts/systemic-racism-2",
     "title": "Systemic Racism",
     "grift": "Systemic Racism",
-    "decode": "Hate white people.",
+    "decode": "Racism to white people.",
     "body": ""
   },
   {
@@ -2661,8 +2633,8 @@
   },
   {
     "_path": "/grifts/tax-air-travel",
-    "title": "Tax Air Travel",
-    "grift": "Tax Air Travel",
+    "title": "Tax air travel",
+    "grift": "Tax air travel",
     "decode": "Ground the poor.",
     "body": ""
   },
@@ -2733,7 +2705,7 @@
     "_path": "/grifts/trans-women-are-women",
     "title": "Trans Women are Women",
     "grift": "Trans Women are Women",
-    "decode": "No, they are Men",
+    "decode": "No, science is real",
     "body": ""
   },
   {
@@ -2765,10 +2737,10 @@
     "body": ""
   },
   {
-    "_path": "/grifts/weak-military",
-    "title": "Weak Military",
-    "grift": "Weak Military",
-    "decode": "Decreased national security.",
+    "_path": "/grifts/unfettered-capitalism",
+    "title": "Unfettered Capitalism",
+    "grift": "Unfettered Capitalism",
+    "decode": "Markets not fair unless Govt-run",
     "body": ""
   },
   {

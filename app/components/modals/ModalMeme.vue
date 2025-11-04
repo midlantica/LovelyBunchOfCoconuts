@@ -31,8 +31,8 @@
         </div>
       </template>
       <template #sharePanel>
-        <!-- Share Buttons Shelf (separate slot) -->
-        <UiShareButton
+        <!-- Content Action Bar (separate slot) -->
+        <UiContentActionBar
           v-if="modalData"
           :title="shareTitle"
           :text="shareText"

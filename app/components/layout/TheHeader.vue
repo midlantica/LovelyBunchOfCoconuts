@@ -52,6 +52,9 @@
     try {
       isWallRefreshing.value = true
 
+      // Reseed the wall to get new random content
+      reseedWall()
+
       // Try to use pre-computed layout for instant refresh
       const precomputedLayout = usePrecomputedRefresh(
         cache.claims,

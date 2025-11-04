@@ -59,7 +59,7 @@
               type="button"
               :disabled="isLoading || disableCopyImage"
               @click="downloadImage"
-              title="Click to download"
+              title="Download Image"
               class="group inline-flex h-8 w-8 items-center justify-center rounded-full transition-all duration-150"
               :class="[
                 disableCopyImage || isLoading

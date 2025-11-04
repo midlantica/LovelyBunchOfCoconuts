@@ -57,8 +57,8 @@
       </template>
 
       <template #sharePanel>
-        <!-- Share Buttons Shelf -->
-        <UiShareButton
+        <!-- Content Action Bar -->
+        <UiContentActionBar
           v-if="modalData"
           :title="modalData?.quoteText || modalData?.title"
           :text="`${modalData?.quoteText || modalData?.title} — ${

@@ -12,7 +12,7 @@
       height="72"
       fill="none"
       viewBox="0 0 550 72"
-      class="w-full h-auto WakeUpNPC-logo"
+      class="WakeUpNPC-logo h-auto w-full"
       style="min-height: 72px; display: block; contain: layout"
       @mouseenter="isHovered = true"
       @mouseleave="isHovered = false"
@@ -132,7 +132,7 @@
 
 <style scoped>
   svg {
-    cursor: pointer;
+    cursor: pointer !important;
     min-height: 72px;
     display: block;
     contain: layout;
@@ -154,7 +154,9 @@
   /* Smooth transitions for both text elements */
   .everythingText,
   .npcText {
-    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+    transition:
+      transform 0.6s ease-in-out,
+      opacity 0.6s ease-in-out;
   }
 
   /* Position both text elements absolutely within the byline group */
