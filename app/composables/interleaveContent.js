@@ -53,7 +53,7 @@ function seededShuffle(arr, rng) {
 }
 
 /**
- * Interleave grifts, quotes, memes into strict visual pattern with stable fallbacks.
+ * Interleave grifts, quotes, memes, and profiles into strict visual pattern with stable fallbacks.
  * @param {Array} grifts
  * @param {Array} quotes
  * @param {Array} memes
@@ -62,10 +62,19 @@ function seededShuffle(arr, rng) {
  * @param {number} [options.adInterval=0] - Inject ad placeholder every N pattern items (0 = disabled)
  * @param {Function} [options.adProvider] - () => { id, title, body, size } returns data for ad. If returns falsy, ad skipped.
  * @param {boolean} [options.enableShuffle=true] - Disable to keep original order
- * @returns {Array} pattern items (types: griftPair | quote | memeRow)
+ * @param {Array} [options.profiles] - Array of profile objects to interleave
+ * @param {number} [options.profileInterval=4] - Insert profile after every N complete patterns (0 = disabled)
+ * @returns {Array} pattern items (types: griftPair | quote | memeRow | profile)
  */
 export function interleaveContent(grifts, quotes, memes, options = {}) {
-  const { seed, adInterval = 0, adProvider, enableShuffle = true } = options
+  const {
+    seed,
+    adInterval = 0,
+    adProvider,
+    enableShuffle = true,
+    profiles = [],
+    profileInterval = 4,
+  } = options
 
   const rng = seed ? createSeededRng(seed) : null
 
@@ -73,11 +82,13 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
   const c = enableShuffle ? seededShuffle(grifts, rng) : [...grifts]
   const q = enableShuffle ? seededShuffle(quotes, rng) : [...quotes]
   const m = enableShuffle ? seededShuffle(memes, rng) : [...memes]
+  const p = enableShuffle ? seededShuffle(profiles, rng) : [...profiles]
 
   // Indices instead of splicing (preserves idempotence)
   let ci = 0
   let qi = 0
   let mi = 0
+  let pi = 0
 
   const output = []
   const pattern = ['griftPair', 'quote', 'memeRow', 'quote']
@@ -85,6 +96,7 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
   let producedCoreItems = 0 // counts non‑ad items only
   let lastItemWasAd = false // Track if last item added was an ad
   let itemsSinceLastAd = 0 // Track items since last ad
+  let completedPatterns = 0 // Track number of complete 4-item patterns
 
   const haveGrifts = () => ci < c.length
   const haveMemes = () => mi < m.length
@@ -171,6 +183,15 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
       itemsSinceLastAd = 0
     }
     lastItemWasAd = isAd
+  }
+  const pushProfile = (profileObj) => {
+    output.push({
+      type: 'profile',
+      data: profileObj,
+    })
+    producedCoreItems++
+    itemsSinceLastAd++
+    lastItemWasAd = false
   }
 
   // Main build loop
@@ -259,6 +280,22 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
     }
 
     patternIndex++
+
+    // Check if we just completed a full pattern (4 items: griftPair, quote, memeRow, quote)
+    if (patternIndex % 4 === 0) {
+      completedPatterns++
+
+      // Insert profile after every profileInterval complete patterns
+      const shouldInsert =
+        profileInterval > 0 &&
+        completedPatterns % profileInterval === 0 &&
+        pi < p.length
+
+      if (shouldInsert) {
+        pushProfile(p[pi])
+        pi++
+      }
+    }
   }
 
   // Attach meta (non-enumerable so existing renders over arrays stay safe)
@@ -269,12 +306,14 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
         griftsUsed: ci,
         quotesUsed: qi,
         memesUsed: mi,
+        profilesUsed: pi,
         total: output.length,
       },
       exhausted: {
         grifts: ci >= c.length,
         quotes: qi >= q.length,
         memes: mi >= m.length,
+        profiles: pi >= p.length,
       },
     },
     enumerable: false,

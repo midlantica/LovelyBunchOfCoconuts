@@ -38,11 +38,15 @@
   const ModalsModalQuote = defineAsyncComponent(
     () => import('~/components/modals/ModalQuote.vue')
   )
+  const ModalsModalProfile = defineAsyncComponent(
+    () => import('~/components/modals/ModalProfile.vue')
+  )
 
   const modalMap = {
     meme: ModalsModalMeme,
     grift: ModalsModalGrift,
     quote: ModalsModalQuote,
+    profile: ModalsModalProfile,
   }
 
   // Pre-warm modal component chunks after initial render to avoid first-click delay
@@ -56,6 +60,7 @@
       import('~/components/modals/ModalMeme.vue').catch(() => {})
       import('~/components/modals/ModalGrift.vue').catch(() => {})
       import('~/components/modals/ModalQuote.vue').catch(() => {})
+      import('~/components/modals/ModalProfile.vue').catch(() => {})
     })
   })
 

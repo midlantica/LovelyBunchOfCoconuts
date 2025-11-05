@@ -7,6 +7,7 @@ export default defineContentConfig({
     memes: defineCollection({ source: 'memes/**', type: 'page' }),
     quotes: defineCollection({ source: 'quotes/**', type: 'page' }),
     ads: defineCollection({ source: 'ads/**', type: 'page' }),
+    profiles: defineCollection({ source: 'profiles/**', type: 'page' }),
   },
 })
 // No schemas defined here on purpose — we only declare collections/sources.

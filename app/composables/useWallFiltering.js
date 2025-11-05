@@ -38,6 +38,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     grifts: normalizeArray(cacheRef.grifts),
     quotes: normalizeArray(cacheRef.quotes),
     memes: normalizeArray(cacheRef.memes),
+    profiles: normalizeArray(cacheRef.profiles),
   }))
 
   // Check if search query is targeting specific content types
@@ -56,13 +57,31 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     const hasMemesKeyword = expanded.some((term) =>
       ['memes', 'meme', 'image', 'picture', 'graphic'].includes(term)
     )
+    const hasProfilesKeyword = expanded.some((term) =>
+      [
+        'profiles',
+        'profile',
+        'hero',
+        'heroes',
+        'zero',
+        'zeros',
+        'person',
+        'people',
+      ].includes(term)
+    )
 
     // If searching for specific content types, return filter
-    if (hasGriftsKeyword || hasQuotesKeyword || hasMemesKeyword) {
+    if (
+      hasGriftsKeyword ||
+      hasQuotesKeyword ||
+      hasMemesKeyword ||
+      hasProfilesKeyword
+    ) {
       return {
         grifts: hasGriftsKeyword,
         quotes: hasQuotesKeyword,
         memes: hasMemesKeyword,
+        profiles: hasProfilesKeyword,
       }
     }
 
@@ -80,6 +99,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
         grifts: contentTypeFilter.grifts ? groups.grifts : [],
         quotes: contentTypeFilter.quotes ? groups.quotes : [],
         memes: contentTypeFilter.memes ? groups.memes : [],
+        profiles: contentTypeFilter.profiles ? groups.profiles : [],
       }
     }
 
@@ -117,16 +137,23 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
       grifts: sf.grifts.length,
       quotes: sf.quotes.length,
       memes: sf.memes.length,
+      profiles: sf.profiles?.length || 0,
       total:
         (f.grifts ? sf.grifts.length : 0) +
         (f.quotes ? sf.quotes.length : 0) +
-        (f.memes ? sf.memes.length : 0),
+        (f.memes ? sf.memes.length : 0) +
+        (sf.profiles?.length || 0),
     }
     const totalCounts = {
       grifts: rp.grifts.length,
       quotes: rp.quotes.length,
       memes: rp.memes.length,
-      total: rp.grifts.length + rp.quotes.length + rp.memes.length,
+      profiles: rp.profiles?.length || 0,
+      total:
+        rp.grifts.length +
+        rp.quotes.length +
+        rp.memes.length +
+        (rp.profiles?.length || 0),
     }
     return { wallCounts, totalCounts }
   })

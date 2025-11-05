@@ -52,14 +52,22 @@ export function useWallModalOpener({
     }
   }
 
-  function mutateHistory(type, slug) {
+  function mutateHistory(type, slug, data) {
     if (typeof window === 'undefined' || !slug) return
     const preModalUrl = useState('preModalUrl', () => null)
     if (!preModalUrl.value) {
       preModalUrl.value = `${window.location.pathname}${window.location.search}${window.location.hash}`
     }
+
+    // For profiles, determine the correct route prefix based on status
+    let routeType = type
+    if (type === 'profile') {
+      const status = data?.meta?.status || data?.status
+      routeType = status === 'hero' ? 'hero' : 'zero'
+    }
+
     // Keep path clean (omit query) so share URLs stay tidy.
-    window.history.replaceState({}, '', `/${type}/${slug}`)
+    window.history.replaceState({}, '', `/${routeType}/${slug}`)
   }
 
   function openModal(data, type, userInitiated = false) {
@@ -69,7 +77,7 @@ export function useWallModalOpener({
     const payload = { type, data, slug }
     if (userInitiated) payload.__userClick = true
 
-    mutateHistory(type, slug)
+    mutateHistory(type, slug, data)
 
     if (openGlobalModal) openGlobalModal(payload)
     else emit?.('modal', payload)

@@ -53,6 +53,7 @@ const globalCache = reactive({
   grifts: [],
   quotes: [],
   memes: [],
+  profiles: [],
   isLoading: false,
   error: null,
 })
@@ -71,6 +72,7 @@ const slugMaps = reactive({
   grifts: new Map(),
   quotes: new Map(),
   memes: new Map(),
+  profiles: new Map(),
 })
 
 // Helper to register multiple keys for the same item
@@ -83,7 +85,7 @@ const registerSlugKeys = (map, keys, value) => {
 export function useContentCache() {
   // Instead of mirroring with individual refs + watchers, expose reactive toRefs directly
   const cache = globalCache
-  const { grifts, quotes, memes, isLoading, error } = toRefs(cache)
+  const { grifts, quotes, memes, profiles, isLoading, error } = toRefs(cache)
 
   // Auto-load content if not already loaded (for dynamic routes)
   const ensureContentLoaded = async () => {
@@ -91,6 +93,7 @@ export function useContentCache() {
       cache.grifts.length === 0 &&
       cache.quotes.length === 0 &&
       cache.memes.length === 0 &&
+      cache.profiles.length === 0 &&
       !cache.isLoading
     ) {
       debugLog('🚀 Auto-loading content for dynamic route...')

@@ -127,6 +127,26 @@
               />
             </div>
           </div>
+
+          <!-- Profiles (full width) -->
+          <div
+            v-else-if="item.type === 'profile'"
+            class="cursor-pointer!"
+            role="button"
+            tabindex="0"
+            @click.capture="
+              maybeOpenModal($event, () =>
+                openModal(item.data, 'profile', true)
+              )
+            "
+            @keydown.enter.prevent="openModal(item.data, 'profile', true)"
+            @keydown.space.prevent="openModal(item.data, 'profile', true)"
+          >
+            <WallPanelProfile
+              :profile="item.data"
+              :slug="item.data?.path || item.data?._path || ''"
+            />
+          </div>
         </div>
       </div>
 
@@ -155,6 +175,9 @@
     loadInitialContent,
     loadRemainingContent,
   } = useContentCache()
+
+  // Initialize profiles system
+  const { fetchAllProfiles } = useProfiles()
 
   // Initialize ads system
   const { loadAds, createAdProvider, calculateAdInterval } = useAds()
@@ -206,6 +229,7 @@
   const error = ref(null)
   const adsEnabled = ref(true) // Toggle for ads
   const adInterval = ref(5) // Show ad every N content items (reduced for testing)
+  const profiles = ref([]) // Loaded profiles
 
   // Emit counts for search bar
   const emit = defineEmits(['counts', 'modal', 'content-updated'])
@@ -246,6 +270,10 @@
 
     if (item.type === 'griftPair') return `gp-${joinIds(item.data, idx)}`
     if (item.type === 'memeRow') return `mr-${joinIds(item.data, idx)}`
+    if (item.type === 'profile') {
+      const p = item.data || {}
+      return `prof-${p._path || p.path || p.id || idx}`
+    }
     return idx
   }
 
@@ -342,6 +370,8 @@
           enableShuffle: true,
           adInterval: interval,
           adProvider: adProvider,
+          profiles: profiles.value,
+          profileInterval: 4,
         }
       )
       const order = deriveBaselineOrder(pattern)
@@ -429,6 +459,8 @@
     return interleaveContent(orderedGrifts, orderedQuotes, orderedMemes, {
       seed: wallSeed.value,
       enableShuffle: false,
+      profiles: profiles.value,
+      profileInterval: 4,
     })
   })
 
@@ -611,6 +643,7 @@
       cache.quotes.length,
       cache.memes.length,
       wallSeed.value,
+      profiles.value.length, // Watch for profile changes!
     ],
     () => {
       const bs = baselineState.value
@@ -670,6 +703,21 @@
         }
       }
 
+      // Always load profiles
+      try {
+        const loadedProfiles = await fetchAllProfiles()
+        profiles.value = loadedProfiles || []
+
+        // Also populate cache with profiles for search functionality
+        cache.profiles = loadedProfiles || []
+
+        console.log(`Loaded ${profiles.value.length} profiles`)
+      } catch (e) {
+        console.warn('Could not load profiles:', e)
+        profiles.value = []
+        cache.profiles = []
+      }
+
       if (
         cache.grifts.length === 0 &&
         cache.quotes.length === 0 &&
@@ -677,6 +725,7 @@
       ) {
         // Load all content once instead of progressive loading to avoid double-fetch
         await loadAllContent()
+
         isLoaded.value = true
         wallHasLoadedOnce.value = true
 
