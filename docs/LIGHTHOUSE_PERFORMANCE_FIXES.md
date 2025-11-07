@@ -142,21 +142,38 @@ Created `scripts/convert-images-to-webp.js` to batch convert JPEGs to WebP.
 # Install sharp (if not already installed)
 pnpm add -D sharp
 
-# Dry run to see what would be converted
+# Step 1: Dry run to see what would be converted
 node scripts/convert-images-to-webp.js --dry-run
 
-# Convert images (keeps originals)
+# Step 2: Convert images (keeps originals as .jpg alongside new .webp)
 node scripts/convert-images-to-webp.js
 
-# Convert and replace originals
+# Step 3: Update markdown file references from .jpg to .webp
+node scripts/update-markdown-image-refs.js --dry-run  # Preview changes
+node scripts/update-markdown-image-refs.js            # Apply changes
+
+# Optional: Remove original JPEGs after verifying WebP works
 node scripts/convert-images-to-webp.js --replace
 ```
+
+**What the scripts do:**
+
+1. **convert-images-to-webp.js**: Converts `.jpg`/`.jpeg` files to `.webp` format
+   - Creates `.webp` files alongside originals (by default)
+   - Does NOT modify markdown files
+
+2. **update-markdown-image-refs.js**: Updates markdown file references
+   - Changes `image.jpg` → `image.webp` in markdown files
+   - Updates frontmatter YAML fields (image:, thumbnail:, etc.)
+   - Updates markdown image syntax `![alt](image.jpg)`
+   - Updates HTML img tags
 
 **Expected Results:**
 
 - 25-35% file size reduction
 - 8-10 MB total savings
 - Faster image loading
+- All markdown references automatically updated
 
 #### B. Comprehensive Guide
 
