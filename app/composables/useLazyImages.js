@@ -29,14 +29,17 @@ export function useLazyImages() {
                 img.classList.add('lazy-error')
                 observer.value?.unobserve(img)
               }
+              // Set decoding hint for better performance
+              imageLoader.decoding = 'async'
               imageLoader.src = src
             }
           }
         })
       },
       {
-        // Start loading when image is 200px away from viewport
-        rootMargin: '200px',
+        // Optimized: Start loading when image is 50px away from viewport
+        // Reduced from 200px to improve performance and reduce unnecessary preloading
+        rootMargin: '50px',
         threshold: 0.01,
       }
     )

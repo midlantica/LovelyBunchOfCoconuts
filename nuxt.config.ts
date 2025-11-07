@@ -26,12 +26,21 @@ export default defineNuxtConfig({
     // Reduce Vite verbosity; set SILENT_VITE=1 to only show errors
     logLevel: (process.env.SILENT_VITE === '1' ? 'error' : 'warn') as any,
     build: {
+      cssCodeSplit: true,
+      chunkSizeWarningLimit: 1000,
       rollupOptions: {
         onwarn(warning, handler) {
           const msg = String(warning?.message || '')
           // Hide Tailwind Vite plugin sourcemap warning noise
           if (/Sourcemap is likely to be incorrect/.test(msg)) return
           handler(warning)
+        },
+        output: {
+          manualChunks: {
+            // Split vendor chunks for better caching
+            'vue-vendor': ['vue', 'vue-router'],
+            'content-vendor': ['@nuxt/content'],
+          },
         },
       },
     },
@@ -149,6 +158,9 @@ export default defineNuxtConfig({
 
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'en',
+      },
       title: 'WakeUpNPC - Political Grifts, Quotes & Memes',
       meta: [
         {
