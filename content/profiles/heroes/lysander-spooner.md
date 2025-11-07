@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Lysander Spooner
 
-Spooner's _No Treason_ torched the Constitution as a contract nobody signed, while his private mail company out-delivered the Post Office until Congress outlawed competition. His logic still embarrasses monopoly apologists in every courthouse.
+Spooner's No Treason torched the Constitution as a contract nobody signed, while his private mail company out-delivered the Post Office until Congress outlawed competition. His logic still embarrasses monopoly apologists in every courthouse.

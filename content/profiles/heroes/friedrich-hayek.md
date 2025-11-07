@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Friedrich Hayek
 
-Hayek proved dispersed knowledge fuels spontaneous order; _The Road to Serfdom_ demanded constitutional limits and competitive markets to block planning's tyranny. His warnings went unheeded as regulators colonized every sector.
+Hayek proved dispersed knowledge fuels spontaneous order; The Road to Serfdom demanded constitutional limits and competitive markets to block planning's tyranny. His warnings went unheeded as regulators colonized every sector.

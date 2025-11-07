@@ -8,4 +8,4 @@ status: 'hero'
 
 ## William F. Buckley Jr.
 
-Buckley forged _National Review_ to fuse anti-communism, markets, and constitutionalism, dragging culture toward limited government. The long march through the institutions began the day his influence peaked.
+Buckley forged National Review to fuse anti-communism, markets, and constitutionalism, dragging culture toward limited government. The long march through the institutions began the day his influence peaked.

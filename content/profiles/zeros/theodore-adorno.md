@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Theodore Adorno
 
-Adorno's _Authoritarian Personality_ pathologized tradition and family, giving the Left a pseudoscientific club to smear dissent as mental illness. Patriotism is now a diagnosis.
+Adorno's Authoritarian Personality pathologized tradition and family, giving the Left a pseudoscientific club to smear dissent as mental illness. Patriotism is now a diagnosis.

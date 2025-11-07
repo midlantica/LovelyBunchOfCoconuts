@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Murray Rothbard
 
-Rothbard fused Austrian economics with anarcho-capitalism in _Man, Economy, and State_, proving every state service can run privately—his ethics of liberty still shred welfare-warfare excuses. His heirs expose the Fed's counterfeiting racket that funds endless bloat.
+Rothbard fused Austrian economics with anarcho-capitalism in Man, Economy, and State, proving every state service can run privately—his ethics of liberty still shred welfare-warfare excuses. His heirs expose the Fed's counterfeiting racket that funds endless bloat.

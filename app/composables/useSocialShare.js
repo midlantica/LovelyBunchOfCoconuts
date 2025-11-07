@@ -650,7 +650,7 @@ export function useSocialShare() {
 
           // Profile image area (if available) - 10% bigger
           const profileImageSize = 308 * scale // Was 280, now 308 (10% bigger)
-          const profileImageY = paddingY // Moved to top padding (was +15)
+          const profileImageY = paddingY - 30 * scale // Moved up 30px from top padding
 
           // Load and draw profile image if available - MUST AWAIT
           if (content.imagePath) {
@@ -856,14 +856,19 @@ export function useSocialShare() {
             // Strip ALL HTML tags and markdown formatting from bio text
             // This ensures clean text rendering without italic/bold formatting issues
             let cleanBioText = bioText
-              .replace(/<em>/g, '') // Remove opening <em> tags
-              .replace(/<\/em>/g, '') // Remove closing </em> tags
-              .replace(/<strong>/g, '') // Remove opening <strong> tags
-              .replace(/<\/strong>/g, '') // Remove closing </strong> tags
+              .replace(/<em>/gi, '') // Remove opening <em> tags (case insensitive)
+              .replace(/<\/em>/gi, '') // Remove closing </em> tags (case insensitive)
+              .replace(/<i>/gi, '') // Remove opening <i> tags
+              .replace(/<\/i>/gi, '') // Remove closing </i> tags
+              .replace(/<strong>/gi, '') // Remove opening <strong> tags
+              .replace(/<\/strong>/gi, '') // Remove closing </strong> tags
+              .replace(/<b>/gi, '') // Remove opening <b> tags
+              .replace(/<\/b>/gi, '') // Remove closing </b> tags
               .replace(/<[^>]*>/g, '') // Remove any remaining HTML tags
               .replace(/\*\*([^*]+)\*\*/g, '$1') // Remove bold **text** but keep text
               .replace(/\*([^*]+)\*/g, '$1') // Remove italic *text* but keep text
-              .replace(/_([^_]+)_/g, '$1') // Remove italic _text_ but keep text
+              .replace(/_([^_]+?)_/g, '$1') // Remove italic _text_ but keep text (non-greedy)
+              .replace(/__([^_]+?)__/g, '$1') // Remove bold __text__ but keep text (non-greedy)
               .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1') // Convert links to plain text
               .replace(/&nbsp;/g, ' ') // Replace HTML entities
               .replace(/&amp;/g, '&')
@@ -871,9 +876,10 @@ export function useSocialShare() {
               .replace(/&gt;/g, '>')
               .replace(/&quot;/g, '"')
               .replace(/&#39;/g, "'")
+              .replace(/\s+/g, ' ') // Normalize whitespace
               .trim()
 
-            const bioStartY = textStartY + nameFontSize + 50 * scale // Increased gap (was 40)
+            const bioStartY = textStartY + nameFontSize + 30 * scale // Reduced gap to bring text closer to name (was 50)
             const bioAreaHeight = remainingHeight - (bioStartY - textStartY)
 
             // Calculate optimal font size for bio - 15% smaller total (was 10%)

@@ -8,4 +8,4 @@ status: 'zero'
 
 ## John Maynard Keynes
 
-Keynes peddled deficit spending and central-bank conjuring in _The General Theory_; his disciples turned sound money into confetti and saddled generations with debt. Inflation is now a feature, not a bug.
+Keynes peddled deficit spending and central-bank conjuring in The General Theory; his disciples turned sound money into confetti and saddled generations with debt. Inflation is now a feature, not a bug.

@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Ludwig von Mises
 
-Mises demolished socialist calculation, erecting praxeology for sound money, entrepreneurship, and property rights in _Human Action_. Central planning always fails—yet the Left keeps sneaking it through the back door.
+Mises demolished socialist calculation, erecting praxeology for sound money, entrepreneurship, and property rights in Human Action. Central planning always fails—yet the Left keeps sneaking it through the back door.

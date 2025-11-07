@@ -8,4 +8,4 @@ status: 'hero'
 
 ## H.L. Mencken
 
-Mencken's razor wit in the _American Mercury_ exposed politicians as mountebanks and democracy as a circus—predicting the credentialed clowns now running the show. His ghost laughs every time a PhD demands your papers.
+Mencken's razor wit in the American Mercury exposed politicians as mountebanks and democracy as a circus—predicting the credentialed clowns now running the show. His ghost laughs every time a PhD demands your papers.

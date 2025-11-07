@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Paul Ehrlich
 
-Ehrlich's _Population Bomb_ forecast billions starving by 1980—his Malthusian hysteria birthed coercive sterilization programs and green austerity that still cripple grids. Fear sells carbon credits.
+Ehrlich's Population Bomb forecast billions starving by 1980—his Malthusian hysteria birthed coercive sterilization programs and green austerity that still cripple grids. Fear sells carbon credits.

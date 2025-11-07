@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Saul Alinsky
 
-Alinsky's _Rules for Radicals_ trained community organizers to polarize, freeze, and personalize—tactics now baked into every corporate DEI seminar and NGO grant proposal. The ends justify the means, every time.
+Alinsky's Rules for Radicals trained community organizers to polarize, freeze, and personalize—tactics now baked into every corporate DEI seminar and NGO grant proposal. The ends justify the means, every time.

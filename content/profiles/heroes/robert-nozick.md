@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Robert Nozick
 
-Nozick's _Anarchy, State, and Utopia_ eviscerated redistribution with the Wilt Chamberlain argument, proving entitlement theory is just envy in academic drag. His minimal state blueprint gathers dust while the IRS grows fatter.
+Nozick's Anarchy, State, and Utopia eviscerated redistribution with the Wilt Chamberlain argument, proving entitlement theory is just envy in academic drag. His minimal state blueprint gathers dust while the IRS grows fatter.
