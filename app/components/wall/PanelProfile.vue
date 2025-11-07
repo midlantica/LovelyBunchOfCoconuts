@@ -17,75 +17,39 @@
       />
     </div>
 
-    <!-- Main content: image left, text right -->
-    <div class="flex h-full gap-4 p-4">
+    <!-- Main content: image left, text right (stacks on mobile) -->
+    <div
+      class="flex h-full flex-col gap-3 p-4 text-center sm:flex-row sm:gap-4 sm:text-left"
+    >
       <!-- Image section (left) -->
-      <div class="flex flex-shrink-0 items-center">
-        <img
+      <div class="flex shrink-0 items-center justify-center sm:justify-start">
+        <ProfileImage
           v-if="imagePath"
-          :src="imagePath"
-          :alt="profileName"
-          class="h-32 w-32 rounded-lg object-cover sm:h-40 sm:w-40"
+          :image-path="imagePath"
+          :profile-name="profileName"
+          :status="profileStatus"
+          size="modal"
+          badge-size="small"
         />
       </div>
 
       <!-- Text section (right) -->
       <div class="flex min-w-0 flex-1 flex-col justify-center gap-2">
-        <!-- Name with hero/zero icon -->
-        <div class="flex items-center gap-2">
-          <!-- Hero icon (blue thumbs up) -->
-          <div
-            v-if="profileStatus === 'hero'"
-            class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-500/20"
-            title="Hero"
-          >
-            <svg
-              class="h-4 w-4 text-blue-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"
-              />
-            </svg>
-          </div>
-          <!-- Zero icon (red thumbs down) -->
-          <div
-            v-else-if="profileStatus === 'zero'"
-            class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-red-500/20"
-            title="Zero"
-          >
-            <svg
-              class="h-4 w-4 text-red-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z"
-              />
-            </svg>
-          </div>
-          <h2
-            class="text-seagull-200 line-clamp-1 tracking-wide uppercase"
-            style="
-              font-family: 'Barlow Condensed';
-              font-size: 20.35px;
-              font-weight: 400;
-              line-height: 23px;
-              letter-spacing: 0.407px;
-            "
-          >
-            {{ profileName }}
-          </h2>
-        </div>
+        <!-- Profile Name -->
+        <h2
+          class="line-clamp-1 text-[1.3rem] leading-[1.3rem] font-light tracking-[0.1rem] text-white uppercase"
+          style="font-family: 'Barlow Condensed'"
+        >
+          {{ profileName }}
+        </h2>
 
         <!-- Bio text -->
-        <p
-          class="line-clamp-3 text-white sm:line-clamp-4"
-          style="font-size: 1.25rem; line-height: 1.4"
+        <div
+          v-if="profile?.body"
+          class="prose-bio line-clamp-3 sm:line-clamp-4"
         >
-          {{ bioText }}
-        </p>
+          <ContentRenderer :value="profile.body" />
+        </div>
       </div>
     </div>
   </div>
@@ -106,6 +70,32 @@
   // Extract profile name and status from meta
   const profileName = computed(() => props.profile?.meta?.profile || '')
   const profileStatus = computed(() => props.profile?.meta?.status || '')
+
+  // Create bio content object for ContentRenderer (excluding h2 and images)
+  const bioContent = computed(() => {
+    if (!props.profile?.body?.value) return null
+
+    const bioElements = props.profile.body.value.filter((element) => {
+      if (!Array.isArray(element)) return false
+      const [tag, attrs, content] = element
+
+      // Skip h2 headings
+      if (tag === 'h2') return false
+
+      // Skip image paragraphs
+      if (tag === 'p' && Array.isArray(content)) {
+        const isImageParagraph =
+          content.length > 0 &&
+          Array.isArray(content[0]) &&
+          content[0][0] === 'img'
+        if (isImageParagraph) return false
+      }
+
+      return tag === 'p'
+    })
+
+    return bioElements.length > 0 ? { type: 'root', value: bioElements } : null
+  })
 
   // Extract image path from body.value array (minimark format)
   const imagePath = computed(() => {
@@ -129,22 +119,73 @@
   const bioText = computed(() => {
     if (!props.profile?.body?.value) return ''
 
-    const textParts = []
+    // Recursive function to extract HTML from nested content
+    const extractHTML = (content) => {
+      if (typeof content === 'string') {
+        return content
+      }
+      if (Array.isArray(content)) {
+        if (content[0] === 'em') {
+          // Italic text
+          return `<em>${extractHTML(content[2])}</em>`
+        }
+        if (content[0] === 'strong') {
+          // Bold text
+          return `<strong>${extractHTML(content[2])}</strong>`
+        }
+        // Array of mixed content
+        return content.map(extractHTML).join('')
+      }
+      return ''
+    }
+
+    const htmlParts = []
     for (const element of props.profile.body.value) {
       if (!Array.isArray(element)) continue
 
       const [tag, attrs, content] = element
 
-      // Skip h2 (heading), get paragraph text
-      if (tag === 'p' && typeof content === 'string') {
-        textParts.push(content)
+      // Skip h2 (heading), get paragraph content (but skip image paragraphs)
+      if (tag === 'p' && !Array.isArray(content)) {
+        htmlParts.push(content)
+      } else if (tag === 'p' && Array.isArray(content)) {
+        // Check if it's not an image paragraph
+        if (!(content[0] === 'img')) {
+          htmlParts.push(extractHTML(content))
+        }
       }
     }
 
-    return textParts.join(' ').trim()
+    return htmlParts.join(' ').trim()
   })
 
   function openModal() {
     // Modal opening will be handled by parent component
   }
 </script>
+
+<style scoped>
+  /* Style for bio content with proper markdown rendering */
+  .prose-bio :deep(h2) {
+    display: none; /* Hide h2 headings */
+  }
+
+  .prose-bio :deep(img) {
+    display: none; /* Hide images */
+  }
+
+  .prose-bio :deep(p) {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    color: white;
+    margin: 0; /* Remove default paragraph margins */
+  }
+
+  .prose-bio :deep(em) {
+    font-style: italic;
+  }
+
+  .prose-bio :deep(strong) {
+    font-weight: bold;
+  }
+</style>

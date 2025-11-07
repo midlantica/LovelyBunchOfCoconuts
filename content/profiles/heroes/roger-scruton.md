@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Roger Scruton"
+title: 'Heroes and Zeros'
+profile: 'Roger Scruton'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Roger Scruton
 
-Scruton defended conservatism as love of home, tradition, and responsible liberty, linking beauty to civic order. He stood for nationhood and civil society against ideological abstractions and cultural vandalism.
+Scruton tied beauty, tradition, and nationhood to responsible liberty, battling cultural vandalism and abstraction. The vandals won; museums now apologize for art while subsidizing ugliness.

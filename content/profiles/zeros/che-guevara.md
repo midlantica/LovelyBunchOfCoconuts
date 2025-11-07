@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Che Guevara"
+title: 'Heroes and Zeros'
+profile: 'Che Guevara'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Che Guevara
 
-Che enforced revolutionary justice with show trials and executions, mismanaging economies he tried to command. His iconography disguises coercion over consent.
+Guevara ran kangaroo courts and botched economies, ordering hundreds killed at La Cabaña. His face sells T-shirts while his policies sell starvation.

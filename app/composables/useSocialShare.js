@@ -259,7 +259,7 @@ export function useSocialShare() {
       // Load and use YOUR prepared share-frame.png
       const backgroundImg = new Image()
       backgroundImg.crossOrigin = 'anonymous'
-      backgroundImg.onload = () => {
+      backgroundImg.onload = async () => {
         // Draw your prepared background image at 2x size
         ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height)
 
@@ -641,6 +641,291 @@ export function useSocialShare() {
               memeStartY + index * lineHeight
             )
           })
+        } else if (type === 'profile') {
+          // Profile layout - name at top, bio text below
+          const profileName =
+            content.meta?.profile || content.profile || 'Profile'
+          const bioText = content.bio || content.description || ''
+          const status = content.meta?.status || content.status || ''
+
+          // Profile image area (if available) - 10% bigger
+          const profileImageSize = 308 * scale // Was 280, now 308 (10% bigger)
+          const profileImageY = paddingY // Moved to top padding (was +15)
+
+          // Load and draw profile image if available - MUST AWAIT
+          if (content.imagePath) {
+            try {
+              await new Promise((resolveImage, rejectImage) => {
+                const profileImg = new Image()
+                profileImg.crossOrigin = 'anonymous'
+
+                const imageTimeout = setTimeout(() => {
+                  rejectImage(new Error('Profile image load timeout'))
+                }, 5000)
+
+                profileImg.onload = () => {
+                  clearTimeout(imageTimeout)
+                  try {
+                    // Draw circular profile image without border, with object-fit: cover
+                    ctx.save()
+
+                    // Clip to circular shape for image
+                    ctx.beginPath()
+                    ctx.arc(
+                      centerX,
+                      profileImageY + profileImageSize / 2,
+                      profileImageSize / 2,
+                      0,
+                      Math.PI * 2
+                    )
+                    ctx.closePath()
+                    ctx.clip()
+
+                    // Calculate dimensions for object-fit: cover behavior
+                    const imgAspect = profileImg.width / profileImg.height
+                    const circleAspect = 1 // Circle is always 1:1
+
+                    let drawWidth, drawHeight, drawX, drawY
+
+                    if (imgAspect > circleAspect) {
+                      // Image is wider than circle - fit to height
+                      drawHeight = profileImageSize
+                      drawWidth = drawHeight * imgAspect
+                      drawX = centerX - drawWidth / 2
+                      drawY = profileImageY
+                    } else {
+                      // Image is taller than circle - fit to width
+                      drawWidth = profileImageSize
+                      drawHeight = drawWidth / imgAspect
+                      drawX = centerX - drawWidth / 2
+                      drawY =
+                        profileImageY + (profileImageSize - drawHeight) / 2
+                    }
+
+                    ctx.drawImage(
+                      profileImg,
+                      drawX,
+                      drawY,
+                      drawWidth,
+                      drawHeight
+                    )
+                    ctx.restore()
+
+                    // Draw hero/zero badge at bottom-right of circle
+                    const badgeSize = 48 * scale // Badge diameter
+                    const badgeX =
+                      centerX +
+                      (profileImageSize / 2) * Math.cos(Math.PI / 4) -
+                      badgeSize / 2
+                    const badgeY =
+                      profileImageY +
+                      profileImageSize / 2 +
+                      (profileImageSize / 2) * Math.sin(Math.PI / 4) -
+                      badgeSize / 2
+
+                    // Draw badge background circle with gradient
+                    const gradient = ctx.createRadialGradient(
+                      badgeX + badgeSize / 2,
+                      badgeY + badgeSize / 2,
+                      0,
+                      badgeX + badgeSize / 2,
+                      badgeY + badgeSize / 2,
+                      badgeSize / 2
+                    )
+
+                    if (status === 'hero') {
+                      gradient.addColorStop(0, '#00e300')
+                      gradient.addColorStop(1, '#007800')
+                    } else {
+                      gradient.addColorStop(0, '#ff0a0a')
+                      gradient.addColorStop(1, '#7d0000')
+                    }
+
+                    ctx.fillStyle = gradient
+                    ctx.beginPath()
+                    ctx.arc(
+                      badgeX + badgeSize / 2,
+                      badgeY + badgeSize / 2,
+                      badgeSize / 2,
+                      0,
+                      Math.PI * 2
+                    )
+                    ctx.fill()
+
+                    // Draw check mark or X
+                    ctx.strokeStyle = '#FFFFFF'
+                    ctx.lineWidth = 5 * scale
+                    ctx.lineCap = 'round'
+                    ctx.lineJoin = 'round'
+
+                    const iconSize = badgeSize * 0.5
+                    const iconCenterX = badgeX + badgeSize / 2
+                    const iconCenterY = badgeY + badgeSize / 2
+
+                    if (status === 'hero') {
+                      // Draw check mark
+                      ctx.beginPath()
+                      ctx.moveTo(iconCenterX - iconSize * 0.3, iconCenterY)
+                      ctx.lineTo(
+                        iconCenterX - iconSize * 0.05,
+                        iconCenterY + iconSize * 0.3
+                      )
+                      ctx.lineTo(
+                        iconCenterX + iconSize * 0.35,
+                        iconCenterY - iconSize * 0.3
+                      )
+                      ctx.stroke()
+                    } else {
+                      // Draw X
+                      ctx.beginPath()
+                      ctx.moveTo(
+                        iconCenterX - iconSize * 0.3,
+                        iconCenterY - iconSize * 0.3
+                      )
+                      ctx.lineTo(
+                        iconCenterX + iconSize * 0.3,
+                        iconCenterY + iconSize * 0.3
+                      )
+                      ctx.moveTo(
+                        iconCenterX + iconSize * 0.3,
+                        iconCenterY - iconSize * 0.3
+                      )
+                      ctx.lineTo(
+                        iconCenterX - iconSize * 0.3,
+                        iconCenterY + iconSize * 0.3
+                      )
+                      ctx.stroke()
+                    }
+
+                    resolveImage()
+                  } catch (drawError) {
+                    console.warn('Error drawing profile image:', drawError)
+                    ctx.restore()
+                    resolveImage() // Continue even if drawing fails
+                  }
+                }
+
+                profileImg.onerror = (error) => {
+                  clearTimeout(imageTimeout)
+                  console.warn('Failed to load profile image:', error)
+                  rejectImage(error)
+                }
+
+                profileImg.src = content.imagePath
+              })
+            } catch (error) {
+              console.warn(
+                'Profile image loading failed, continuing without image:',
+                error
+              )
+              // Continue rendering text even if image fails
+            }
+          }
+
+          // Calculate text area below image - tighter spacing
+          const textStartY = profileImageY + profileImageSize + 25 * scale
+          const remainingHeight = canvas.height - textStartY - paddingY
+
+          // Profile Name (WHITE, Barlow Condensed) - 10% smaller, font-weight 300
+          // Remove "img" or "Img" prefix if present in the profile name
+          let cleanProfileName = profileName
+          // Remove "img " or "img" prefix (case insensitive) - check for "img " with space first
+          if (cleanProfileName.toLowerCase().startsWith('img ')) {
+            // Remove "img " (with space)
+            cleanProfileName = cleanProfileName.substring(4).trim()
+          } else if (cleanProfileName.toLowerCase().startsWith('img')) {
+            // Remove "img" (without space)
+            cleanProfileName = cleanProfileName.substring(3).trim()
+          }
+
+          const nameFontSize = 81 * scale // Was 90, now 81 (10% smaller)
+          ctx.fillStyle = '#FFFFFF'
+          ctx.font = `300 ${nameFontSize}px Barlow Condensed, Arial, sans-serif` // Changed to 300
+          ctx.textAlign = 'center'
+          ctx.textBaseline = 'top'
+
+          drawCenteredText(
+            ctx,
+            cleanProfileName.toUpperCase(),
+            centerX,
+            textStartY
+          )
+
+          // Bio text (WHITE, smaller font) - 15% smaller total (was 10%)
+          if (bioText) {
+            // Strip ALL HTML tags and markdown formatting from bio text
+            // This ensures clean text rendering without italic/bold formatting issues
+            let cleanBioText = bioText
+              .replace(/<em>/g, '') // Remove opening <em> tags
+              .replace(/<\/em>/g, '') // Remove closing </em> tags
+              .replace(/<strong>/g, '') // Remove opening <strong> tags
+              .replace(/<\/strong>/g, '') // Remove closing </strong> tags
+              .replace(/<[^>]*>/g, '') // Remove any remaining HTML tags
+              .replace(/\*\*([^*]+)\*\*/g, '$1') // Remove bold **text** but keep text
+              .replace(/\*([^*]+)\*/g, '$1') // Remove italic *text* but keep text
+              .replace(/_([^_]+)_/g, '$1') // Remove italic _text_ but keep text
+              .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1') // Convert links to plain text
+              .replace(/&nbsp;/g, ' ') // Replace HTML entities
+              .replace(/&amp;/g, '&')
+              .replace(/&lt;/g, '<')
+              .replace(/&gt;/g, '>')
+              .replace(/&quot;/g, '"')
+              .replace(/&#39;/g, "'")
+              .trim()
+
+            const bioStartY = textStartY + nameFontSize + 50 * scale // Increased gap (was 40)
+            const bioAreaHeight = remainingHeight - (bioStartY - textStartY)
+
+            // Calculate optimal font size for bio - 15% smaller total (was 10%)
+            const minBioSize = 30 * scale // Was 35, now 30 (15% smaller)
+            const maxBioSize = 51 * scale // Was 60, now 51 (15% smaller)
+
+            const bioOptimalSize = calculateOptimalFontSizeBinarySearch(
+              ctx,
+              cleanBioText,
+              textAreaWidth,
+              bioAreaHeight,
+              minBioSize,
+              maxBioSize,
+              '300',
+              'Barlow Condensed, Arial, sans-serif'
+            )
+
+            ctx.fillStyle = '#E5E5E5'
+            ctx.font = `300 ${bioOptimalSize.fontSize}px Barlow Condensed, Arial, sans-serif`
+
+            // Word wrap for bio (use cleaned text)
+            const bioWords = cleanBioText.split(' ')
+            const bioLines = []
+            let currentBioLine = bioWords[0]
+
+            for (let i = 1; i < bioWords.length; i++) {
+              const word = bioWords[i]
+              const width = ctx.measureText(currentBioLine + ' ' + word).width
+              if (width < textAreaWidth) {
+                currentBioLine += ' ' + word
+              } else {
+                bioLines.push(currentBioLine)
+                currentBioLine = word
+              }
+            }
+            bioLines.push(currentBioLine)
+
+            // Draw bio lines (limit to available space)
+            const maxBioLines = Math.floor(
+              bioAreaHeight / bioOptimalSize.lineHeight
+            )
+            const linesToDraw = bioLines.slice(0, maxBioLines)
+
+            linesToDraw.forEach((line, index) => {
+              drawCenteredText(
+                ctx,
+                line,
+                centerX,
+                bioStartY + index * bioOptimalSize.lineHeight
+              )
+            })
+          }
         }
 
         // Scale down the high-res canvas to final size for smooth anti-aliasing

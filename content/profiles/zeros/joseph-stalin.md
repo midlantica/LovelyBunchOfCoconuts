@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Joseph Stalin"
+title: 'Heroes and Zeros'
+profile: 'Joseph Stalin'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Joseph Stalin
 
-Stalin’s totalitarian regime used purges, famine, and forced labor to enforce command economics. Freedom vanished under surveillance, fear, and central party rule.
+Stalin's purges, Gulag, and Holodomor killed 20–25 million; freedom died under total surveillance. His methods inspire today's social-credit prototypes in Beijing and Brussels.

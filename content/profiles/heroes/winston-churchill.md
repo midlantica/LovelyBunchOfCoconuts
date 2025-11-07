@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Winston Churchill"
+title: 'Heroes and Zeros'
+profile: 'Winston Churchill'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Winston Churchill
 
-Churchill rallied the free world against totalitarianism, preserving parliamentary liberty in Britain’s darkest hour. A defender of markets and national self‑determination, his statesmanship and strategic resolve coexisted with contested views on empire.
+Churchill rallied the free world against totalitarianism, safeguarding parliamentary liberty and markets with strategic steel. He fought the same collectivist rot now rebranded as "stakeholder capitalism."

@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Robert Owen"
+title: 'Heroes and Zeros'
+profile: 'Robert Owen'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Robert Owen
 
-Owen’s paternalist experiments pursued harmony through cooperative communities and social engineering. New Harmony’s collapse exposed the limits of planned utopia over voluntary order.
+Owen's paternalist communes flopped at New Harmony, proving forced harmony crushes voluntary order. His spiritual descendants run failing public housing blocs and "15-minute cities."

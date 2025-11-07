@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Mikhail Bakunin"
+title: 'Heroes and Zeros'
+profile: 'Mikhail Bakunin'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Mikhail Bakunin
 
-Bakunin’s revolutionary anarchism targeted the state but embraced violent upheaval and collectivism. His anti‑institutional fervor risked chaos, not liberty under law.
+Bakunin's collectivist anarchy unleashed violence, trading law for chaos under liberty's stolen banner. Today's masked rioters quote him while torching small businesses.

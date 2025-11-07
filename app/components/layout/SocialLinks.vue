@@ -28,10 +28,6 @@
             class="hover:text-seagull-300"
           />
         </a>
-        <Icon
-          name="streamline-logos:instagram-logo-1-solid"
-          class="hover:text-seagull-300"
-        />
       </div>
     </div>
   </div>

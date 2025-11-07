@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Milton Friedman"
+title: 'Heroes and Zeros'
+profile: 'Milton Friedman'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Milton Friedman
 
-Friedman argued that monetary stability, open markets, and choice—like school vouchers—advance freedom and welfare. His clear empiricism reshaped policy, even as some alliances and outcomes drew controversy.
+Friedman wielded evidence for monetary stability, school choice, and open markets—reshaping policy with freedom's data. His voucher idea still terrifies the teachers' unions that captured public education.

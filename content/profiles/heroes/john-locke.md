@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "John Locke"
+title: 'Heroes and Zeros'
+profile: 'John Locke'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## John Locke
 
-A pioneer of natural rights and consent of the governed, Locke grounded liberty in life, liberty, and property, attacking absolutism in Two Treatises. His defense of religious toleration and rule of law shaped constitutionalism and the American Founding, even as debates over property and empire complicate his legacy.
+Locke forged natural rights to life, liberty, and property—his _Two Treatises_ gutted absolutism and armed the American Founding with consent, toleration, and rule of law. His framework unleashed centuries of prosperity that lifted billions from subsistence.

@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "John Stuart Mill"
+title: 'Heroes and Zeros'
+profile: 'John Stuart Mill'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## John Stuart Mill
 
-Mill’s harm principle asserted that liberty is the default and coercion the exception, pairing free speech with equality under law. A reformer for women’s rights and individual autonomy, he tried to reconcile utilitarianism with robust personal freedom.
+Mill's harm principle declared liberty the default; he fused free speech, women's rights, and individual autonomy into a utilitarianism that still guards personal freedom. He saw coercion's creep long before bureaucracies weaponized "equity."

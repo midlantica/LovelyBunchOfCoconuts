@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Charles Fourier"
+title: 'Heroes and Zeros'
+profile: 'Charles Fourier'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Charles Fourier
 
-Fourier’s phalansteries promised perfect coordination but ignored incentives and scarcity. His intricate utopianism tended toward fantasy rather than workable freedom.
+Fourier's phalansteries ignored scarcity and incentives, peddling coercive fantasy over workable freedom. Modern zoning boards still enforce his spirit, banning corner stores for "equity."

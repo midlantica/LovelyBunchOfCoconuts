@@ -459,7 +459,7 @@
     return interleaveContent(orderedGrifts, orderedQuotes, orderedMemes, {
       seed: wallSeed.value,
       enableShuffle: false,
-      profiles: profiles.value,
+      profiles: filteredContent.value.profiles || [],
       profileInterval: 4,
     })
   })

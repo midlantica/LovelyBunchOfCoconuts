@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Ronald Reagan"
+title: 'Heroes and Zeros'
+profile: 'Ronald Reagan'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Ronald Reagan
 
-Reagan revived confidence in free enterprise, cutting taxes, deregulating, and confronting Soviet tyranny. His reforms spurred growth while provoking debates over deficits and the scope of government.
+Reagan slashed taxes, deregulated, and toppled Soviet tyranny, igniting growth and confidence in free enterprise. His revival is being undone by the same infiltrators who turned HR departments into reeducation camps.

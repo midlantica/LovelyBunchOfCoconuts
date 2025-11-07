@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Rosa Luxemburg"
+title: 'Heroes and Zeros'
+profile: 'Rosa Luxemburg'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Rosa Luxemburg
 
-Luxemburg pressed for revolutionary socialism and mass action, subordinating law to ideology. Her Spartacist push destabilized constitutional order, elevating class conflict over liberty.
+Luxemburg's Spartacist revolt sacrificed law to class war, destabilizing constitutional order. Her "spontaneity" excuse justifies every protest that blocks ambulances.

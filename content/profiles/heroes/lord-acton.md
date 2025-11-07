@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Lord Acton"
+title: 'Heroes and Zeros'
+profile: 'Lord Acton'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Lord Acton
 
-Acton championed liberty as the highest political end and warned that concentrated power corrupts. His historical scholarship defended conscience, federalism, and the perennial struggle to restrain rulers by law.
+Acton nailed power's corruption, exalting liberty through federalism, conscience, and law's restraint on rulers. His maxim rings truer as unelected agencies rewrite rules behind closed doors.

@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Antonio Gramsci"
+title: 'Heroes and Zeros'
+profile: 'Antonio Gramsci'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Antonio Gramsci
 
-Gramsci’s cultural hegemony sought long‑march institutional capture over persuasion. Its legacy often treats dissent as pathology, eroding pluralism and free debate.
+Gramsci plotted cultural capture, weaponizing institutions to silence dissent and pluralism. Mission accomplished: dissent is "hate," merit is "supremacy."

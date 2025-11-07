@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Mao Zedong"
+title: 'Heroes and Zeros'
+profile: 'Mao Zedong'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Mao Zedong
 
-Mao’s Great Leap Forward and Cultural Revolution brought famine, persecution, and mass coercion. Collectivism devastated life and liberty across China.
+Mao's Great Leap and Cultural Revolution starved and persecuted 45–75 million into collectivist ruin. His Red Guards morphed into HR diversity trainers.

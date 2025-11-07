@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Margaret Thatcher"
+title: 'Heroes and Zeros'
+profile: 'Margaret Thatcher'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Margaret Thatcher
 
-Thatcher restored Britain’s economic dynamism through privatization, deregulation, and union reform, defending sovereignty and free markets. Her resolve in the Cold War and Falklands proved decisive, even as her domestic legacy remains fiercely contested.
+Thatcher privatized, deregulated, and broke unions, restoring Britain's sovereignty and free-market spine. Her gains are being clawed back by the same bureaucratic blob she once starved.

@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Eduard Bernstein"
+title: 'Heroes and Zeros'
+profile: 'Eduard Bernstein'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Eduard Bernstein
 
-Bernstein’s “revisionism” softened Marxist revolution into gradual statism, still expanding coercion. Social democracy’s managed economy traded liberty for bureaucratic control.
+Bernstein's "revisionism" crept revolution into bureaucratic statism, swapping liberty for managed coercion. Social democracy delivered Venezuela's blackouts despite oceans of oil.

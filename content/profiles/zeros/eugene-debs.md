@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Eugene Debs"
+title: 'Heroes and Zeros'
+profile: 'Eugene Debs'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Eugene Debs
 
-Debs led labor radicalism and mainstreamed socialism in America, opposing market coordination. His vision prioritized redistribution and political power over voluntary exchange.
+Debs injected socialism into American labor, prioritizing plunder over voluntary exchange. Union bosses still extort dues to bankroll the same party that hollowed out Detroit.

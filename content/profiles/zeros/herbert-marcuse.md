@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Herbert Marcuse"
+title: 'Heroes and Zeros'
+profile: 'Herbert Marcuse'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Herbert Marcuse
 
-Marcuse’s “repressive tolerance” rationalized silencing opponents in the name of liberation. His critical theory fed illiberal activism that treats freedom as a mask for power.
+Marcuse's "repressive tolerance" green-lit silencing opponents, masking power grabs as liberation. His disciples now deplatform grandmothers for pronouns.

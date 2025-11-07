@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Hugo Chávez"
+title: 'Heroes and Zeros'
+profile: 'Hugo Chávez'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Hugo Chávez
 
-Chávez’s Bolivarian socialism centralized power, politicized oil, and expropriated industry. The erosion of institutions led to collapse, scarcity, and curtailed freedoms.
+Chávez looted oil, seized industry, and triggered hyperinflation—scarcity and collapse followed his institutional bonfire. Venezuela sits on the world's largest reserves yet eats zoo animals.

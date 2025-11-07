@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Adolf Hitler"
+title: 'Heroes and Zeros'
+profile: 'Adolf Hitler'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Adolf Hitler
 
-Hitler’s national socialism fused dictatorship, genocidal racism, price controls, and militarized autarky. He annihilated rights and nations, the antithesis of civilized freedom.
+Hitler's national socialism murdered 17 million in camps and sparked WWII's 70–85 million dead—freedom's antithesis. His corporatist fusion now wears ESG branding.

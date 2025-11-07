@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Alexis de Tocqueville"
+title: 'Heroes and Zeros'
+profile: 'Alexis de Tocqueville'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Alexis de Tocqueville
 
-Tocqueville mapped American democracy’s genius in civil associations, local self‑rule, and the habits of liberty, while warning of soft despotism and majority tyranny. His insights remain central to defending pluralism and decentralized power.
+Tocqueville chronicled American genius in associations and local rule, warning of soft despotism and majority tyranny that erode pluralism and decentralized power. His prophecy now haunts captured courts and campuses.

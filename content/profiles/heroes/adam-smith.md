@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Adam Smith"
+title: 'Heroes and Zeros'
+profile: 'Adam Smith'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Adam Smith
 
-Smith explained how voluntary exchange, specialization, and prices create prosperity in The Wealth of Nations, complementing moral responsibility from The Theory of Moral Sentiments. He championed free trade and limited government, while acknowledging the need to check cronyism and monopoly.
+Smith mapped voluntary exchange and specialization in _Wealth of Nations_, proving prices and trade build prosperity; he skewered cronyism while demanding limited government. Free markets turned scarcity into abundance, outpacing all prior human history.

@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Fidel Castro"
+title: 'Heroes and Zeros'
+profile: 'Fidel Castro'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Fidel Castro
 
-Castro’s revolution birthed a one‑party state, expropriations, and political prisons. Decades of central control brought poverty, exile, and suppressed speech.
+Castro's revolution executed 5,000+ dissenters and jailed thousands, delivering decades of centralized poverty. Cuba's doctors flee the system that trained them.

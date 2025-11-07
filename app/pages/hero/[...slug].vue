@@ -2,45 +2,42 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div :key="`hero-${route.path}`">
-    <!-- Background Wall -->
-    <section
-      class="grid h-full grid-rows-[auto_1fr] gap-3 overflow-hidden px-0"
-    >
-      <!-- Search Bar -->
-      <div class="flex justify-center">
-        <div class="mx-auto w-full max-w-3xl px-4 md:px-0">
-          <SearchbarSearchBar
-            v-model:search="searchTerm"
-            v-model:filters="contentFilters"
-            :counts="liveCounts"
-            class="sticky top-0 z-5 w-full"
-          />
-        </div>
-      </div>
-
-      <div
-        class="scroll-container-stable h-full min-h-0 overflow-y-auto rounded-xl"
-      >
-        <div class="mx-auto w-full max-w-3xl pr-3 pl-2 md:px-0">
-          <main class="pb-8">
-            <WallTheWall
-              :search="searchTerm"
-              :filters="contentFilters"
-              :hide-no-content="true"
-              @counts="handleCounts"
-            />
-          </main>
-        </div>
-      </div>
-    </section>
-
-    <!-- Local modal overlay -->
-    <ModalsModalProfile
-      v-if="profile"
-      :show="modalVisible"
-      :modal-data="profile"
-      @close="navigateHome"
+    <!-- Wall in background -->
+    <WallTheWall
+      :search-term="searchTerm"
+      :content-filters="contentFilters"
+      :counts="liveCounts"
+      @update-counts="handleCounts"
     />
+
+    <!-- Modal overlay -->
+    <div class="fixed inset-0 z-50">
+      <ModalsModalProfile
+        v-if="profile && contentReady"
+        :show="modalVisible"
+        :modal-data="profile"
+        @close="navigateHome"
+      />
+
+      <!-- Fallback if profile not found -->
+      <div
+        v-else-if="contentReady"
+        class="flex h-screen items-center justify-center bg-slate-900"
+      >
+        <div class="text-center">
+          <h1 class="mb-4 text-2xl font-bold text-white">Hero Not Found</h1>
+          <p class="mb-6 text-gray-300">
+            The hero profile you are looking for could not be found.
+          </p>
+          <button
+            @click="navigateHome"
+            class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+          >
+            Go Home
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -139,15 +136,36 @@
   const profile = computed(() => {
     if (!contentReady.value || !profiles.value?.length) return null
 
-    const slug = routeSlug.value.toLowerCase()
-    return profiles.value.find((p) => {
-      const filename = (p._path || '')
-        .split('/')
-        .pop()
-        ?.replace(/\.md$/, '')
+    const slug = routeSlug.value.toLowerCase().replace(/-/g, ' ')
+    const found = profiles.value.find((p) => {
+      // Check both p.status and p.meta?.status for compatibility
+      const status = p.status || p.meta?.status
+      // Normalize profile name: remove periods and convert to lowercase
+      const profileName = (p.profile || p.meta?.profile || '')
         .toLowerCase()
-      return filename === slug && p.meta?.status === 'hero'
+        .replace(/\./g, '') // Remove periods for matching
+
+      const normalizedSlug = slug.replace(/\./g, '') // Also remove periods from slug
+
+      return profileName === normalizedSlug && status === 'hero'
     })
+
+    // Debug logging in dev mode
+    if (import.meta.dev && !found) {
+      console.log('Profile not found for slug:', routeSlug.value)
+      console.log('Converted to profile name:', slug)
+      console.log(
+        'Available hero profile names:',
+        profiles.value
+          .filter((p) => {
+            const status = p.status || p.meta?.status
+            return status === 'hero'
+          })
+          .map((p) => p.profile || p.meta?.profile)
+      )
+    }
+
+    return found
   })
 
   const navigateHome = () => {

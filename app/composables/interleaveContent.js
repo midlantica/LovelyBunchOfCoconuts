@@ -298,6 +298,13 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
     }
   }
 
+  // Add any remaining profiles that weren't inserted during normal flow
+  // This ensures profiles show up even when they're the only search results
+  while (pi < p.length) {
+    pushProfile(p[pi])
+    pi++
+  }
+
   // Attach meta (non-enumerable so existing renders over arrays stay safe)
   Object.defineProperty(output, '_meta', {
     value: {

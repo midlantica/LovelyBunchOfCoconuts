@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Edmund Burke"
+title: 'Heroes and Zeros'
+profile: 'Edmund Burke'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Edmund Burke
 
-Burke defended liberty through tradition, prudence, and constitutional balance, warning that radical utopianism breeds tyranny. His critique of the French Revolution and advocacy for representative government framed responsible reform over ideological rupture, even as he wrestled with imperial contradictions.
+Burke exposed the French Revolution's utopian bloodbath, defending tradition, prudence, and constitutional balance to preserve liberty from ideological rupture. He warned against radicals who'd later infiltrate institutions to hollow them from within.

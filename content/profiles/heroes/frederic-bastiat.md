@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Frédéric Bastiat"
+title: 'Heroes and Zeros'
+profile: 'Frédéric Bastiat'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Frédéric Bastiat
 
-Bastiat exposed “legal plunder,” protectionism, and unseen costs, making a moral and economic case for free trade and limited law. His clear satire and principled defense of voluntary cooperation helped generations see how intervention backfires.
+Bastiat branded protectionism "legal plunder," revealing unseen costs and making the iron case for free trade, voluntary cooperation, and law that leaves people alone. His clarity still cuts through the fog of state-enabled theft.

@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Ayn Rand"
+title: 'Heroes and Zeros'
+profile: 'Ayn Rand'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Ayn Rand
 
-Rand’s novels dramatized the moral case for reason, egoism, and laissez‑faire capitalism. Objectivism challenged collectivism and celebrated creators, a bold defense of individual rights that remains culturally polarizing and influential.
+Rand's novels weaponized reason, egoism, and laissez-faire, waging moral war on collectivism and creators' chains. She named the looters who now parade as philanthropists while taxing innovation into the ground.

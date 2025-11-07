@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Friedrich Engels"
+title: 'Heroes and Zeros'
+profile: 'Friedrich Engels'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Friedrich Engels
 
-Engels systematized Marxism, advocating collective ownership and party discipline. His influence entrenched doctrine over empirical freedom, paving the way for illiberal movements.
+Engels hardened Marxism into party doctrine, paving repression's road over empirical freedom. His trust-fund radicalism funds the think tanks that lobby for speech codes.

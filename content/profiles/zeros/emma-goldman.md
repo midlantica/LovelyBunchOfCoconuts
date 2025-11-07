@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Emma Goldman"
+title: 'Heroes and Zeros'
+profile: 'Emma Goldman'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Emma Goldman
 
-Goldman’s anarchism romanticized revolt and rejected constitutional order, excusing coercive means. The resulting turmoil undermined rights and the civic peace liberty needs.
+Goldman's anarchism romanticized revolt, rejecting constitutional order and excusing coercion. Today's campus safe spaces echo her romantic nihilism where feelings trump argument.

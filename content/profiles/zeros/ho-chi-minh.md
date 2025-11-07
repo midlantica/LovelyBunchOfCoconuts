@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Ho Chi Minh"
+title: 'Heroes and Zeros'
+profile: 'Ho Chi Minh'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Ho Chi Minh
 
-Ho imposed communist rule through party control, land seizures, and repression. The planned economy and one‑party state stifled rights and enterprise.
+Ho's land reform executed 50,000–100,000; one-party planning buried rights and enterprise. Vietnam only escaped poverty after ditching his model for markets.

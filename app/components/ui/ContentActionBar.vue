@@ -135,6 +135,7 @@
     show: { type: Boolean, default: true },
     likeId: { type: String, default: null },
     disableCopyImage: { type: Boolean, default: false },
+    profileData: { type: Object, default: null },
   })
 
   // Loading and feedback state
@@ -177,14 +178,20 @@
       const { shareToPlatform } = useSocialShare()
 
       // Create content object based on type
-      const content = {
-        _path: props.likeId, // Include the path for filename generation
-        claim: props.contentType === 'grift' ? props.title : null,
-        translation: props.contentType === 'grift' ? props.text : null,
-        headings: props.contentType === 'quote' ? [props.title] : null,
-        attribution: props.contentType === 'quote' ? props.text : null,
-        title: props.contentType === 'meme' ? props.title : null,
-        description: props.contentType === 'meme' ? props.text : null,
+      let content
+      if (props.contentType === 'profile' && props.profileData) {
+        // Use the profile data directly
+        content = props.profileData
+      } else {
+        content = {
+          _path: props.likeId, // Include the path for filename generation
+          claim: props.contentType === 'grift' ? props.title : null,
+          translation: props.contentType === 'grift' ? props.text : null,
+          headings: props.contentType === 'quote' ? [props.title] : null,
+          attribution: props.contentType === 'quote' ? props.text : null,
+          title: props.contentType === 'meme' ? props.title : null,
+          description: props.contentType === 'meme' ? props.text : null,
+        }
       }
 
       // Copy just the image - pass feedback callback
@@ -240,14 +247,20 @@
       const { shareToPlatform } = useSocialShare()
 
       // Create content object based on type
-      const content = {
-        _path: props.likeId, // Include the path for filename generation
-        claim: props.contentType === 'grift' ? props.title : null,
-        translation: props.contentType === 'grift' ? props.text : null,
-        headings: props.contentType === 'quote' ? [props.title] : null,
-        attribution: props.contentType === 'quote' ? props.text : null,
-        title: props.contentType === 'meme' ? props.title : null,
-        description: props.contentType === 'meme' ? props.text : null,
+      let content
+      if (props.contentType === 'profile' && props.profileData) {
+        // Use the profile data directly
+        content = props.profileData
+      } else {
+        content = {
+          _path: props.likeId, // Include the path for filename generation
+          claim: props.contentType === 'grift' ? props.title : null,
+          translation: props.contentType === 'grift' ? props.text : null,
+          headings: props.contentType === 'quote' ? [props.title] : null,
+          attribution: props.contentType === 'quote' ? props.text : null,
+          title: props.contentType === 'meme' ? props.title : null,
+          description: props.contentType === 'meme' ? props.text : null,
+        }
       }
 
       // Download the image with proper filename

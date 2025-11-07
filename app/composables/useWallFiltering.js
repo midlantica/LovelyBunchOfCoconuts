@@ -125,6 +125,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
       grifts: f.grifts ? rawPools.value.grifts : [],
       quotes: f.quotes ? rawPools.value.quotes : [],
       memes: f.memes ? rawPools.value.memes : [],
+      profiles: rawPools.value.profiles, // Always include profiles
     }
     return applySearch(base, effectiveSearch.value)
   })

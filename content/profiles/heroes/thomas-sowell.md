@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Thomas Sowell"
+title: 'Heroes and Zeros'
+profile: 'Thomas Sowell'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Thomas Sowell
 
-Sowell illuminated how incentives, prices, and cultural capital shape outcomes, testing rhetoric against evidence. His work on knowledge, race, and economic history defends freedom against fashionable fallacies.
+Sowell shredded fallacies on race, knowledge, and economics with incentives and evidence, defending freedom against rhetoric. He documents how "disparate impact" dogma now punishes competence itself.

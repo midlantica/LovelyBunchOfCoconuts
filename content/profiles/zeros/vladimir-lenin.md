@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Vladimir Lenin"
+title: 'Heroes and Zeros'
+profile: 'Vladimir Lenin'
 status: 'zero'
 ---
 
@@ -8,4 +8,4 @@ status: 'zero'
 
 ## Vladimir Lenin
 
-Lenin built a one‑party state through terror, censorship, and seizure of property. War Communism and central control crushed civil society and markets alike.
+Lenin's Red Terror (100,000+ executed) seized property and markets, birthing one-party hell. His playbook—control the press, pack the courts—runs Washington's permanent bureaucracy.

@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Herbert Spencer"
+title: 'Heroes and Zeros'
+profile: 'Herbert Spencer'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Herbert Spencer
 
-Spencer argued for voluntary institutions and limited government, emphasizing social evolution and the dangers of coercive “solutions.” His individualism advanced civil society, even as critics debate later interpretations of “Social Darwinism.”
+Spencer championed voluntary institutions and social evolution, slashing coercive "solutions" to advance individualism and civil society. He foresaw the administrative state devouring the very progress it claims to manage.

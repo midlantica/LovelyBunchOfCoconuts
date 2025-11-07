@@ -1,6 +1,6 @@
 ---
-title: "Heroes and Zeros"
-profile: "Friedrich Hayek"
+title: 'Heroes and Zeros'
+profile: 'Friedrich Hayek'
 status: 'hero'
 ---
 
@@ -8,4 +8,4 @@ status: 'hero'
 
 ## Friedrich Hayek
 
-Hayek showed how dispersed knowledge and spontaneous order make liberty productive, linking rule of law to prosperity. The Road to Serfdom warned that planning erodes freedom, urging constitutional limits and competitive markets.
+Hayek proved dispersed knowledge fuels spontaneous order; _The Road to Serfdom_ demanded constitutional limits and competitive markets to block planning's tyranny. His warnings went unheeded as regulators colonized every sector.
