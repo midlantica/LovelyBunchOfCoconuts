@@ -67,35 +67,34 @@ Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; styl
 
 ---
 
-### 3. ✅ JavaScript Bundle Optimization
+### 3. 📋 JavaScript Bundle Optimization (Recommended)
 
 **Issue:** Large Nuxt bundle (CTqzRMei.js) causing 14.2s main thread blocking and 3.9s Total Blocking Time
 
-**Fixes in `nuxt.config.ts`:**
+**Note:** Manual chunk splitting in Vite config can interfere with Nuxt's internal build process. Instead, consider these approaches:
 
-```typescript
-vite: {
-  build: {
-    cssCodeSplit: true,
-    chunkSizeWarningLimit: 1000,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'vue-vendor': ['vue', 'vue-router'],
-          'content-vendor': ['@nuxt/content'],
-        },
-      },
-    },
-  },
-}
-```
+**Recommended Solutions:**
+
+1. **Use Nuxt's built-in code splitting** (already enabled by default)
+2. **Lazy load components** where appropriate:
+
+   ```vue
+   <script setup>
+     const MyHeavyComponent = defineAsyncComponent(
+       () => import('~/components/MyHeavyComponent.vue')
+     )
+   </script>
+   ```
+
+3. **Split routes with dynamic imports** in pages
+4. **Use `<ClientOnly>` wrapper** for client-only heavy components
+5. **Consider using `@nuxt/image`** module which includes automatic optimization
 
 **Impact:**
 
-- Splits vendor code into separate chunks for better caching
-- Enables CSS code splitting
-- Reduces initial bundle size
-- Improves Time to Interactive (TTI)
+- Nuxt already provides good code splitting by default
+- Further optimization requires careful analysis of bundle composition
+- Use Chrome DevTools Coverage tab to identify unused code
 
 ---
 
