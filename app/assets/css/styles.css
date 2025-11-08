@@ -95,8 +95,12 @@
     aspect-ratio: attr(width) / attr(height);
   }
 
-  /* Fallback aspect-ratio for common image sizes to prevent CLS */
-  img:not([width]):not([height]) {
+  /* Fallback aspect-ratio for content images only (not icons or UI images) */
+  .prose img:not([width]):not([height]),
+  .prose-invert img:not([width]):not([height]),
+  .prose-lg img:not([width]):not([height]),
+  .prose-sm img:not([width]):not([height]),
+  .prose-base img:not([width]):not([height]) {
     aspect-ratio: 16 / 9;
   }
   /*
