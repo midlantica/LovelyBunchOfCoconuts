@@ -17,6 +17,7 @@
     <!-- Content Wall -->
     <div
       class="scroll-container-stable h-full min-h-0 overflow-y-auto rounded-xl"
+      style="min-height: 600px"
     >
       <div class="mx-auto w-full max-w-3xl pr-3 pl-2 md:px-0">
         <main class="pb-8">

@@ -5,7 +5,7 @@
   }
 
   body {
-    @apply bg-slate-950 text-slate-200 font-sans font-100;
+    @apply font-100 bg-slate-950 font-sans text-slate-200;
     color-scheme: dark;
   }
 
@@ -15,7 +15,7 @@
   h4,
   h5,
   h6 {
-    @apply first:mt-0 last:mb-0 font-sans text-pretty leading-normal tracking-wider font-100;
+    @apply font-100 font-sans leading-normal tracking-wider text-pretty first:mt-0 last:mb-0;
   }
   h1 {
     @apply text-2xl;
@@ -40,7 +40,7 @@
   ul,
   li,
   ol {
-    @apply mt-0 mb-0 last:mb-0 last:pb-0 text-xl leading-normal tracking-wider font-100;
+    @apply font-100 mt-0 mb-0 text-xl leading-normal tracking-wider last:mb-0 last:pb-0;
   }
 
   h2 + p {
@@ -49,10 +49,10 @@
 
   /* Global prose overrides for all markdown content */
   .prose h1 {
-    @apply text-3xl font-100;
+    @apply font-100 text-3xl;
   }
   .prose h2 {
-    @apply mt-2 mb-2 text-2xl font-100;
+    @apply font-100 mt-2 mb-2 text-2xl;
   }
   .prose h2 + h2 {
     @apply mb-0;
@@ -91,6 +91,13 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    /* Prevent CLS by reserving space with aspect-ratio */
+    aspect-ratio: attr(width) / attr(height);
+  }
+
+  /* Fallback aspect-ratio for common image sizes to prevent CLS */
+  img:not([width]):not([height]) {
+    aspect-ratio: 16 / 9;
   }
   /*
   .prose-base p > img {
