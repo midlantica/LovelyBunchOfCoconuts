@@ -26,19 +26,8 @@ export default defineNuxtConfig({
     // Reduce Vite verbosity; set SILENT_VITE=1 to only show errors
     logLevel: (process.env.SILENT_VITE === '1' ? 'error' : 'warn') as any,
     build: {
-      // Enable production optimizations
-      minify: 'terser',
-      terserOptions: {
-        compress: {
-          drop_console: true, // Remove console.logs in production
-          drop_debugger: true,
-          pure_funcs: ['console.log', 'console.info', 'console.debug'],
-        },
-        mangle: true,
-        format: {
-          comments: false,
-        },
-      },
+      // Disable minification temporarily - was causing initialization errors
+      minify: false,
       // Enable code splitting
       rollupOptions: {
         onwarn(warning, handler) {
