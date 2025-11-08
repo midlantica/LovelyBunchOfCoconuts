@@ -6,11 +6,15 @@
       v-if="imagePath"
       :src="imagePath"
       :alt="profileName"
+      width="800"
+      height="800"
       :class="[
         'rounded-full object-cover',
         status === 'hero' ? 'filter-hero' : 'filter-zero',
         sizeClasses,
       ]"
+      loading="lazy"
+      decoding="async"
     />
     <!-- Hero/Zero Icon Badge -->
     <div

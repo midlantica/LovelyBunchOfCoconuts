@@ -19,7 +19,13 @@
     <div class="my-auto">
       <!-- Original paired structure: grift + decode -->
       <div class="flex items-center gap-3">
-        <img src="~/assets/icons/npc_icon.svg" alt="NPC" class="w-8" />
+        <img
+          src="~/assets/icons/npc_icon.svg"
+          alt="NPC"
+          width="32"
+          height="32"
+          class="w-8"
+        />
         <h2
           class="font-100 line-clamp-1 tracking-wide text-shadow-xs"
           :style="{ fontSize: griftFontSize, lineHeight: '1.4' }"
@@ -30,7 +36,13 @@
       </div>
       <UiDividerArrow wrapper-class="my-2" />
       <div class="flex items-center gap-3">
-        <img src="~/assets/icons/player_icon.svg" alt="Player" class="w-8" />
+        <img
+          src="~/assets/icons/player_icon.svg"
+          alt="Player"
+          width="32"
+          height="32"
+          class="w-8"
+        />
         <h2
           class="font-100 line-clamp-1 tracking-wide text-shadow-xs"
           :style="{ fontSize: decodeFontSize, lineHeight: '1.4' }"
@@ -47,14 +59,26 @@
   >
     <div class="my-auto">
       <div class="flex items-center gap-3">
-        <img src="~/assets/icons/npc_icon.svg" alt="NPC" class="w-8" />
+        <img
+          src="~/assets/icons/npc_icon.svg"
+          alt="NPC"
+          width="32"
+          height="32"
+          class="w-8"
+        />
         <h2 class="line-clamp-1">
           {{ grift && grift.grift ? `'${grift.grift}'` : 'Missing grift' }}
         </h2>
       </div>
       <hr class="my-2 border-t border-white/10" />
       <div class="flex items-center gap-3">
-        <img src="~/assets/icons/player_icon.svg" alt="Player" class="w-8" />
+        <img
+          src="~/assets/icons/player_icon.svg"
+          alt="Player"
+          width="32"
+          height="32"
+          class="w-8"
+        />
         <h2 class="line-clamp-1" v-if="grift && grift.decode">
           {{ grift.decode }}
         </h2>

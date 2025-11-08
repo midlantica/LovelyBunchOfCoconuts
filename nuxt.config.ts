@@ -235,9 +235,16 @@ export default defineNuxtConfig({
           crossorigin: '',
         },
         {
+          rel: 'preload',
+          href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap',
+          as: 'style',
+          onload: "this.onload=null;this.rel='stylesheet'",
+        },
+        {
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap',
-          // Use font-display: swap to prevent CLS
+          media: 'print',
+          onload: "this.media='all'",
         },
         // Preload key background images used above the fold
         {
