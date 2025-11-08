@@ -4,7 +4,7 @@ profile: 'Ludwig von Mises'
 status: 'hero'
 ---
 
-![Ludwig von Mises](/profiles/heroes/Ludwig-von-Mises.jpg)
+![Ludwig von Mises](/profiles/heroes/Ludwig-von-Mises.webp)
 
 ## Ludwig von Mises
 

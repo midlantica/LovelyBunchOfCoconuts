@@ -4,7 +4,7 @@ profile: 'Eduard Bernstein'
 status: 'zero'
 ---
 
-![Eduard Bernstein](/profiles/zeros/Eduard-Bernstein.jpg)
+![Eduard Bernstein](/profiles/zeros/Eduard-Bernstein.webp)
 
 ## Eduard Bernstein
 

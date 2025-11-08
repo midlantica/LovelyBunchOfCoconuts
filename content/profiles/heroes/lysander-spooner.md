@@ -4,7 +4,7 @@ profile: 'Lysander Spooner'
 status: 'hero'
 ---
 
-![Lysander Spooner](/profiles/heroes/Lysander-Spooner.jpg)
+![Lysander Spooner](/profiles/heroes/Lysander-Spooner.webp)
 
 ## Lysander Spooner
 

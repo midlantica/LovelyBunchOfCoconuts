@@ -4,7 +4,7 @@ profile: 'Emma Goldman'
 status: 'zero'
 ---
 
-![Emma Goldman](/profiles/zeros/Emma-Goldman.jpg)
+![Emma Goldman](/profiles/zeros/Emma-Goldman.webp)
 
 ## Emma Goldman
 

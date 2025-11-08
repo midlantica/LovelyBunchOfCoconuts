@@ -175,10 +175,10 @@ async function createMarkdownFiles() {
     // Get all files in the target directory
     const files = await readdir(targetDir)
 
-    // Filter for image files
+    // Filter for image files (including webp since images may already be converted)
     const imageFiles = files.filter((file) => {
       const ext = path.extname(file).toLowerCase()
-      return ['.jpg', '.jpeg', '.png', '.gif'].includes(ext)
+      return ['.jpg', '.jpeg', '.png', '.gif', '.webp'].includes(ext)
     })
 
     let createdCount = 0
@@ -231,8 +231,9 @@ async function createMarkdownFiles() {
       // Create a title from the filename
       const title = createTitle(basename)
 
-      // Create image path for markdown - USE THE ACTUAL IMAGE FILENAME, NOT THE MARKDOWN BASENAME
-      const imagePathFull = `${imagePath}${file}`
+      // Create image path for markdown - always use .webp extension since images are converted to WebP
+      const webpFilename = basename + '.webp'
+      const imagePathFull = `${imagePath}${webpFilename}`
 
       // Create markdown content: only title in frontmatter, then image and caption in body
       const markdown = `---\ntitle: "${title}"\n---\n\n![${title}](${imagePathFull})\n\n${title}\n`

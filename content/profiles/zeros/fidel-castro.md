@@ -4,7 +4,7 @@ profile: 'Fidel Castro'
 status: 'zero'
 ---
 
-![Fidel Castro](/profiles/zeros/Fidel-Castro.jpg)
+![Fidel Castro](/profiles/zeros/Fidel-Castro.webp)
 
 ## Fidel Castro
 

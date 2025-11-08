@@ -4,7 +4,7 @@ profile: 'Herbert Spencer'
 status: 'hero'
 ---
 
-![Herbert Spencer](/profiles/heroes/Herbert-Spencer.jpg)
+![Herbert Spencer](/profiles/heroes/Herbert-Spencer.webp)
 
 ## Herbert Spencer
 

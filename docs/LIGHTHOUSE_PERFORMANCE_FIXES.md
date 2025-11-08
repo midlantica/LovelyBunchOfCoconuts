@@ -67,38 +67,7 @@ Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; styl
 
 ---
 
-### 3. 📋 JavaScript Bundle Optimization (Recommended)
-
-**Issue:** Large Nuxt bundle (CTqzRMei.js) causing 14.2s main thread blocking and 3.9s Total Blocking Time
-
-**Note:** Manual chunk splitting in Vite config can interfere with Nuxt's internal build process. Instead, consider these approaches:
-
-**Recommended Solutions:**
-
-1. **Use Nuxt's built-in code splitting** (already enabled by default)
-2. **Lazy load components** where appropriate:
-
-   ```vue
-   <script setup>
-     const MyHeavyComponent = defineAsyncComponent(
-       () => import('~/components/MyHeavyComponent.vue')
-     )
-   </script>
-   ```
-
-3. **Split routes with dynamic imports** in pages
-4. **Use `<ClientOnly>` wrapper** for client-only heavy components
-5. **Consider using `@nuxt/image`** module which includes automatic optimization
-
-**Impact:**
-
-- Nuxt already provides good code splitting by default
-- Further optimization requires careful analysis of bundle composition
-- Use Chrome DevTools Coverage tab to identify unused code
-
----
-
-### 4. ✅ Lazy Loading Optimization
+### 3. ✅ Lazy Loading Optimization
 
 **Issue:** Images loading with 200px rootMargin causing unnecessary preloading
 
@@ -122,7 +91,7 @@ imageLoader.decoding = 'async'
 
 ---
 
-### 5. 📋 Image Optimization (Action Required)
+### 4. 📋 Image Optimization (Action Required)
 
 **Issues:**
 
@@ -132,41 +101,37 @@ imageLoader.decoding = 'async'
 
 **Solutions Provided:**
 
-#### A. Image Conversion Script
+#### Two Scripts Created
 
-Created `scripts/convert-images-to-webp.js` to batch convert JPEGs to WebP.
-
-**Usage:**
+**1. `scripts/convert-images-to-webp.js`** - Converts images to WebP
 
 ```bash
-# Install sharp (if not already installed)
+# Install dependency
 pnpm add -D sharp
 
-# Step 1: Dry run to see what would be converted
+# Preview conversion
 node scripts/convert-images-to-webp.js --dry-run
 
-# Step 2: Convert images (keeps originals as .jpg alongside new .webp)
+# Convert images (keeps originals)
 node scripts/convert-images-to-webp.js
-
-# Step 3: Update markdown file references from .jpg to .webp
-node scripts/update-markdown-image-refs.js --dry-run  # Preview changes
-node scripts/update-markdown-image-refs.js            # Apply changes
-
-# Optional: Remove original JPEGs after verifying WebP works
-node scripts/convert-images-to-webp.js --replace
 ```
 
-**What the scripts do:**
+**2. `scripts/update-markdown-image-refs.js`** - Updates markdown files
 
-1. **convert-images-to-webp.js**: Converts `.jpg`/`.jpeg` files to `.webp` format
-   - Creates `.webp` files alongside originals (by default)
-   - Does NOT modify markdown files
+```bash
+# Preview changes
+node scripts/update-markdown-image-refs.js --dry-run
 
-2. **update-markdown-image-refs.js**: Updates markdown file references
-   - Changes `image.jpg` → `image.webp` in markdown files
-   - Updates frontmatter YAML fields (image:, thumbnail:, etc.)
-   - Updates markdown image syntax `![alt](image.jpg)`
-   - Updates HTML img tags
+# Update references
+node scripts/update-markdown-image-refs.js
+```
+
+**What happens:**
+
+1. First script converts `.jpg` → `.webp` (creates new files, keeps originals)
+2. Second script updates markdown files to reference `.webp` instead of `.jpg`
+3. You test to verify everything works
+4. Optionally remove original JPEGs with `--replace` flag
 
 **Expected Results:**
 
@@ -175,95 +140,84 @@ node scripts/convert-images-to-webp.js --replace
 - Faster image loading
 - All markdown references automatically updated
 
-#### B. Comprehensive Guide
+#### Comprehensive Guide
 
-Created `docs/IMAGE_OPTIMIZATION_GUIDE.md` with:
+See `docs/IMAGE_OPTIMIZATION_GUIDE.md` for:
 
 - Step-by-step conversion instructions
-- Responsive image implementation
-- CLS prevention techniques
-- LCP image preloading
+- Troubleshooting tips
+- Additional optimization techniques
 - Alternative solutions (@nuxt/image module)
 
 ---
 
 ## Implementation Status
 
-### ✅ Completed (Immediate Impact)
+### ✅ Completed (Ready to Deploy)
 
 1. Added HTML lang attribute
 2. Enhanced security headers (HSTS, COOP)
-3. Optimized JavaScript bundle splitting
-4. Improved lazy loading configuration
-5. Created image optimization tools and documentation
+3. Improved lazy loading configuration
+4. Created image optimization scripts
+5. Created comprehensive documentation
 
-### 📋 Recommended Next Steps
+### 📋 Next Steps for Image Optimization
 
-#### Phase 1: Image Optimization (High Priority)
+**Phase 1: Image Conversion (High Priority)**
 
 **Estimated Time:** 2-4 hours
 **Expected Performance Gain:** +30-40 points
 
-1. Run image conversion script:
+```bash
+# Step 1: Install sharp
+pnpm add -D sharp
 
-   ```bash
-   pnpm add -D sharp
-   node scripts/convert-images-to-webp.js --dry-run
-   node scripts/convert-images-to-webp.js
-   ```
+# Step 2: Convert images
+node scripts/convert-images-to-webp.js --dry-run
+node scripts/convert-images-to-webp.js
 
-2. Update image references in markdown files to use `.webp` extensions
+# Step 3: Update markdown
+node scripts/update-markdown-image-refs.js --dry-run
+node scripts/update-markdown-image-refs.js
 
-3. Add explicit dimensions to prevent CLS:
+# Step 4: Test
+pnpm dev
+# Verify images load correctly
 
-   ```vue
-   <img
-     src="image.webp"
-     width="800"
-     height="600"
-     loading="lazy"
-     decoding="async"
-   />
-   ```
+# Step 5: Optional - remove originals
+node scripts/convert-images-to-webp.js --replace
+```
 
-4. Identify and preload LCP image in `nuxt.config.ts`
+**Phase 2: Additional Optimizations (Optional)**
 
-#### Phase 2: Advanced Optimizations (Optional)
-
-**Estimated Time:** 4-8 hours
-**Expected Performance Gain:** +5-10 points
-
-1. Install and configure `@nuxt/image` module for automatic optimization
-2. Implement responsive `srcset` for all images
-3. Consider AVIF format for even better compression
-4. Implement nonce-based CSP to remove `unsafe-inline`
-
-#### Phase 3: DOM & Animation Optimization (Optional)
-
-**Estimated Time:** 2-4 hours
-**Expected Performance Gain:** +5-10 points
-
-1. Audit and reduce DOM complexity (currently ~19,000 elements)
-2. Convert non-composited animations to use `transform` and `opacity`
-3. Implement virtual scrolling for long lists if applicable
+- Add explicit image dimensions to prevent CLS
+- Preload LCP image in nuxt.config.ts
+- Implement responsive srcset
+- Consider @nuxt/image module
 
 ---
 
 ## Expected Results
 
-### After Phase 1 (Image Optimization)
+### After Current Changes (Deployed)
 
-- **Performance Score:** 34 → 65-75
-- **CLS:** 0.507 → <0.1
-- **Image Payload:** Reduce by 8-10 MB
-- **LCP:** Maintain or improve from 1.6s
+- Accessibility: 90 → 95+
+- Best Practices: 96 → 100
+- Performance: Minor improvement from lazy loading
 
-### After All Phases
+### After Image Optimization (Phase 1)
 
-- **Performance Score:** 70-85
-- **Accessibility:** 95+
-- **Best Practices:** 100
-- **SEO:** 100
+- Performance: 34 → 65-75
+- CLS: 0.507 → <0.1 (with dimension fixes)
+- Image Payload: -8-10 MB
+- LCP: Maintain or improve from 1.6s
+
+### After All Optimizations
+
+- Performance: 70-85
+- Accessibility: 95+
+- Best Practices: 100
+- SEO: 100
 
 ---
 
@@ -295,50 +249,44 @@ Created `docs/IMAGE_OPTIMIZATION_GUIDE.md` with:
 
 ---
 
-## Additional Recommendations
+## Files Created
 
-### 1. Consider CDN with Image Optimization
+### Scripts
 
-Services like Cloudflare, Cloudinary, or Imgix can automatically:
+- `scripts/convert-images-to-webp.js` - Image conversion utility
+- `scripts/update-markdown-image-refs.js` - Markdown reference updater
 
-- Convert images to optimal formats
-- Resize images based on device
-- Serve from edge locations
-- Implement lazy loading
+### Documentation
 
-### 2. Monitor Performance Over Time
+- `docs/IMAGE_OPTIMIZATION_GUIDE.md` - Comprehensive optimization guide
+- `docs/LIGHTHOUSE_PERFORMANCE_FIXES.md` - This file
 
-- Set up performance budgets
-- Use Lighthouse CI in your deployment pipeline
-- Track Core Web Vitals in Google Search Console
+### Modified Files
 
-### 3. Progressive Enhancement
-
-- Ensure site works without JavaScript
-- Implement service worker for offline support
-- Consider AMP or similar for critical pages
-
----
-
-## Resources
-
-- [Web.dev Performance Guide](https://web.dev/fast/)
-- [Nuxt Performance Best Practices](https://nuxt.com/docs/guide/going-further/performance)
-- [Image Optimization Guide](https://web.dev/fast/#optimize-your-images)
-- [Core Web Vitals](https://web.dev/vitals/)
+- `nuxt.config.ts` - Added HTML lang attribute
+- `netlify.toml` - Enhanced security headers
+- `app/composables/useLazyImages.js` - Optimized lazy loading
 
 ---
 
 ## Conclusion
 
-The immediate fixes implemented address critical accessibility and security issues while laying the groundwork for significant performance improvements. The primary bottleneck remains image optimization, which can be addressed using the provided tools and documentation.
+The immediate fixes are ready to deploy and will improve accessibility and security scores. The primary performance bottleneck is image optimization, which can now be addressed using the provided scripts.
 
-**Priority Actions:**
+**Quick Start:**
 
-1. ✅ Deploy current changes (accessibility, security, JS optimization)
-2. 🔄 Run image conversion script
-3. 🔄 Update image references to WebP
-4. 🔄 Add explicit image dimensions
-5. 🔄 Test and validate improvements
+```bash
+# Deploy current changes first
+git add .
+git commit -m "Add Lighthouse performance fixes"
+git push
+
+# Then run image optimization when ready
+pnpm add -D sharp
+node scripts/convert-images-to-webp.js --dry-run
+node scripts/convert-images-to-webp.js
+node scripts/update-markdown-image-refs.js --dry-run
+node scripts/update-markdown-image-refs.js
+```
 
 With these changes, the site should achieve a Performance score of 65-75, with potential to reach 80+ with additional optimizations.

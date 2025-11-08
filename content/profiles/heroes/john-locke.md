@@ -4,7 +4,7 @@ profile: 'John Locke'
 status: 'hero'
 ---
 
-![John Locke](/profiles/heroes/John-Locke.jpg)
+![John Locke](/profiles/heroes/John-Locke.webp)
 
 ## John Locke
 

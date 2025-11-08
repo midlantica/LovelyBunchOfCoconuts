@@ -4,7 +4,7 @@ profile: 'Adolf Hitler'
 status: 'zero'
 ---
 
-![Adolf Hitler](/profiles/zeros/Adolf-Hitler.jpg)
+![Adolf Hitler](/profiles/zeros/Adolf-Hitler.webp)
 
 ## Adolf Hitler
 

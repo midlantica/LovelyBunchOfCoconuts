@@ -4,7 +4,7 @@ profile: 'Michel Foucault'
 status: 'zero'
 ---
 
-![Michel Foucault](/profiles/zeros/Michel-Foucault.jpg)
+![Michel Foucault](/profiles/zeros/Michel-Foucault.webp)
 
 ## Michel Foucault
 

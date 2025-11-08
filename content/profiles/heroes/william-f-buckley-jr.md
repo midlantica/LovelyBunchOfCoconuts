@@ -4,7 +4,7 @@ profile: 'William F. Buckley Jr.'
 status: 'hero'
 ---
 
-![William F. Buckley Jr.](/profiles/heroes/William-F-Buckley-Jr.jpg)
+![William F. Buckley Jr.](/profiles/heroes/William-F-Buckley-Jr.webp)
 
 ## William F. Buckley Jr.
 

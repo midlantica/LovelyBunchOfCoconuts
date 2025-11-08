@@ -4,7 +4,7 @@ profile: 'Friedrich Engels'
 status: 'zero'
 ---
 
-![Friedrich Engels](/profiles/zeros/Friedrich-Engels.jpg)
+![Friedrich Engels](/profiles/zeros/Friedrich-Engels.webp)
 
 ## Friedrich Engels
 

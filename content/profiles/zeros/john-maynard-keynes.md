@@ -4,7 +4,7 @@ profile: 'John Maynard Keynes'
 status: 'zero'
 ---
 
-![John Maynard Keynes](/profiles/zeros/John-Maynard-Keynes.jpg)
+![John Maynard Keynes](/profiles/zeros/John-Maynard-Keynes.webp)
 
 ## John Maynard Keynes
 

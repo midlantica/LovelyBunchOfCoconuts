@@ -4,7 +4,7 @@ profile: 'Saul Alinsky'
 status: 'zero'
 ---
 
-![Saul Alinsky](/profiles/zeros/Saul-Alinsky.jpg)
+![Saul Alinsky](/profiles/zeros/Saul-Alinsky.webp)
 
 ## Saul Alinsky
 

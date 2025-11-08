@@ -34,15 +34,13 @@
     "@nuxt/eslint": "1.10.0",
     "@nuxt/icon": "2.1.0",
     "@nuxtjs/mdc": "0.18.2",
-    "better-sqlite3": "12.4.1",
     "gray-matter": "^4.0.3",
-    "lodash-es": "^4.17.21",
     "markdown-it": "^14.1.0",
     "nuxt": "^4.2.0",
     "vue": "^3.5.22",
     "vue-router": "^4.6.3"
   },
-  "packageManager": "pnpm@10.18.3+sha512.bbd16e6d7286fd7e01f6b3c0b3c932cda2965c06a908328f74663f10a9aea51f1129eea615134bf992831b009eabe167ecb7008b597f40ff9bc75946aadfb08d",
+  "packageManager": "pnpm@10.20.0+sha512.cf9998222162dd85864d0a8102e7892e7ba4ceadebbf5a31f9c2fce48dfce317a9c53b9f6464d1ef9042cba2e02ae02a9f7c143a2b438cd93c91840f0192b9dd",
   "devDependencies": {
     "@eslint/css": "^0.14.1",
     "@eslint/json": "^0.14.0",
@@ -72,6 +70,7 @@
     "globals": "^16.5.0",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.7.1",
+    "sharp": "^0.34.5",
     "tailwindcss": "4.1.16",
     "typescript": "5.9.3"
   },

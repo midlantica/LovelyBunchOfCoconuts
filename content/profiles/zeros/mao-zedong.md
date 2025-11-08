@@ -4,7 +4,7 @@ profile: 'Mao Zedong'
 status: 'zero'
 ---
 
-![Mao Zedong](/profiles/zeros/Mao-Zedong.jpg)
+![Mao Zedong](/profiles/zeros/Mao-Zedong.webp)
 
 ## Mao Zedong
 

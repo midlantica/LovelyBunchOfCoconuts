@@ -2,7 +2,7 @@
 title: 'Birth of Liberalism and Capitalism United Kingdom abolishes the slave trade'
 ---
 
-![Birth of Liberalism and Capitalism United Kingdom abolishes the slave trade](/memes/politics/birth-of-liberalism-and-capitalism-perio.jpg)
+![Birth of Liberalism and Capitalism United Kingdom abolishes the slave trade](/memes/politics/birth-of-liberalism-and-capitalism-perio.webp)
 
 Birth of Liberalism and Capitalism
 United Kingdom abolishes the slave trade

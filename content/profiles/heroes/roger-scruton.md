@@ -4,7 +4,7 @@ profile: 'Roger Scruton'
 status: 'hero'
 ---
 
-![Roger Scruton](/profiles/heroes/Roger-Scruton.jpg)
+![Roger Scruton](/profiles/heroes/Roger-Scruton.webp)
 
 ## Roger Scruton
 

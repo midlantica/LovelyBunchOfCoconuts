@@ -4,7 +4,7 @@ profile: 'Mikhail Bakunin'
 status: 'zero'
 ---
 
-![Mikhail Bakunin](/profiles/zeros/Mikhail-Bakunin.jpg)
+![Mikhail Bakunin](/profiles/zeros/Mikhail-Bakunin.webp)
 
 ## Mikhail Bakunin
 

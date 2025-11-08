@@ -2,7 +2,7 @@
 title: 'One way to destroy capitalism, said Lenin, was to devalue its currency'
 ---
 
-![One way to destroy capitalism, said Lenin, was to devalue its currency](/memes/margaret-thatcher/one-way-to-destroy-capitalism.jpg)
+![One way to destroy capitalism, said Lenin, was to devalue its currency](/memes/margaret-thatcher/one-way-to-destroy-capitalism.webp)
 
 "One way to destroy capitalism, said Lenin, was to devalue its currency. Another way is to debase its language.
 "Socialists say 'equality.' What they mean is 'levelling down.'

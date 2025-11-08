@@ -4,7 +4,7 @@ profile: 'Paul Ehrlich'
 status: 'zero'
 ---
 
-![Paul Ehrlich](/profiles/zeros/Paul-Ehrlich.jpg)
+![Paul Ehrlich](/profiles/zeros/Paul-Ehrlich.webp)
 
 ## Paul Ehrlich
 

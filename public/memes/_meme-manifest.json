@@ -2463,6 +2463,22 @@
       "updated": "2025-10-31T03:14:26.830Z",
       "width": 845,
       "height": 764
+    },
+    "thomas-sowell/the-vision-of-the-left-full-of-envy.jpeg": {
+      "optimized": true,
+      "hash": "add288796ba5e4f56403daa312c0afe618277f6c",
+      "action": "convert-webp",
+      "updated": "2025-11-08T02:27:52.756Z",
+      "width": 1080,
+      "height": 1080
+    },
+    "cartoons/theyre-all-nazis.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-08T02:58:34.190Z",
+      "width": 871,
+      "height": 1080
     }
   }
 }

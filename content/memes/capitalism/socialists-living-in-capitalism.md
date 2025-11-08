@@ -2,7 +2,7 @@
 title: 'Socialists living in Capitalism'
 ---
 
-![Socialists living in capitalism](/memes/capitalism/socialists-living-in-capitalism.jpg)
+![Socialists living in capitalism](/memes/capitalism/socialists-living-in-capitalism.webp)
 
 Socialists living in Capitalism.
 "This is unbearable."

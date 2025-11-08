@@ -4,7 +4,7 @@ profile: 'Alexis de Tocqueville'
 status: 'hero'
 ---
 
-![Alexis de Tocqueville](/profiles/heroes/Alexis-de-Tocqueville.jpg)
+![Alexis de Tocqueville](/profiles/heroes/Alexis-de-Tocqueville.webp)
 
 ## Alexis de Tocqueville
 

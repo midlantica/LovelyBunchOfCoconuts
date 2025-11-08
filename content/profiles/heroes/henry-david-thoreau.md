@@ -4,7 +4,7 @@ profile: 'Henry David Thoreau'
 status: 'hero'
 ---
 
-![Henry David Thoreau](/profiles/heroes/Henry-David-Thoreau.jpg)
+![Henry David Thoreau](/profiles/heroes/Henry-David-Thoreau.webp)
 
 ## Henry David Thoreau
 

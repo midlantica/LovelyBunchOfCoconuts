@@ -26,7 +26,39 @@ export default defineNuxtConfig({
     // Reduce Vite verbosity; set SILENT_VITE=1 to only show errors
     logLevel: (process.env.SILENT_VITE === '1' ? 'error' : 'warn') as any,
     build: {
+      // Enable production optimizations
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true, // Remove console.logs in production
+          drop_debugger: true,
+          pure_funcs: ['console.log', 'console.info', 'console.debug'],
+        },
+        mangle: true,
+        format: {
+          comments: false,
+        },
+      },
+      // Enable code splitting
       rollupOptions: {
+        output: {
+          manualChunks(id) {
+            // Split Vue core into separate chunk
+            if (
+              id.includes('node_modules/vue/') ||
+              id.includes('node_modules/vue-router/')
+            ) {
+              return 'vue-core'
+            }
+            // Split large UI components
+            if (
+              id.includes('components/wall/TheWall.vue') ||
+              id.includes('components/modals/ModalProfile.vue')
+            ) {
+              return 'ui-components'
+            }
+          },
+        },
         onwarn(warning, handler) {
           const msg = String(warning?.message || '')
           // Hide Tailwind Vite plugin sourcemap warning noise
@@ -34,6 +66,9 @@ export default defineNuxtConfig({
           handler(warning)
         },
       },
+      // Optimize chunk size
+      chunkSizeWarningLimit: 1000,
+      cssCodeSplit: true,
     },
     // Filter chatty plugin warnings in both dev and build
     // Note: This keeps errors visible; set SILENT_VITE=1 to hide infos/warns entirely
@@ -66,6 +101,12 @@ export default defineNuxtConfig({
   nitro: {
     // Ensure Netlify Functions v2 features (incl. Blobs) are enabled
     compatibilityDate: '2025-06-27',
+    // Enable compression for all responses
+    compressPublicAssets: {
+      gzip: true,
+      brotli: true,
+    },
+    minify: true,
     prerender: {
       routes: ['/'],
       crawlLinks: true,
@@ -107,8 +148,6 @@ export default defineNuxtConfig({
         base: './server/.data/likes',
       },
     },
-    // Enable lossless compression for built public assets (gz/br)
-    compressPublicAssets: true,
     // Silence harmless node-resolve warnings for virtual "#content/server" module
     rollupConfig: {
       onwarn(warning, handler) {
@@ -150,7 +189,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: {
-        lang: 'en',
+        lang: 'en', // Fix accessibility issue
       },
       title: 'WakeUpNPC - Political Grifts, Quotes & Memes',
       meta: [
@@ -225,10 +264,9 @@ export default defineNuxtConfig({
           crossorigin: '',
         },
         {
-          rel: 'preload',
+          rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap',
-          as: 'style',
-          onload: "this.onload=null;this.rel='stylesheet'",
+          // Use font-display: swap to prevent CLS
         },
         // Preload key background images used above the fold
         {
@@ -313,10 +351,17 @@ export default defineNuxtConfig({
               {
                 'data-goatcounter': 'https://wakeupnpc.goatcounter.com/count',
                 async: true,
+                defer: true,
                 src: 'https://gc.zgo.at/count.js',
               },
             ]
           : []),
+      ],
+      // Add security headers
+      noscript: [
+        {
+          children: 'JavaScript is required to view this website.',
+        },
       ],
     },
   },

@@ -1,11 +1,7 @@
-Starting markdown file creation at 2025-10-31T03:14:26.865Z
-Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell
-Created markdown file for 567657996-1418946940237125.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/567657996-1418946940237125.md
-Created markdown file for if-i-were-rich-i-would-have-a-plaque.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/if-i-were-rich-i-would-have-a-plaque.md
-Created markdown file for if-youre-going-to-call-the-negative.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/if-youre-going-to-call-the-negative.md
-Created markdown file for img.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/img.md
-Created markdown file for there-is-no-greater-indictment-of-judges.jpg at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/thomas-sowell/there-is-no-greater-indictment-of-judges.md
+Starting markdown file creation at 2025-11-08T03:13:07.740Z
+Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/cartoons
+Created markdown file for theyre-all-nazis.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/cartoons/theyre-all-nazis.md
 
-Markdown file creation complete at 2025-10-31T03:14:26.874Z
-5 markdown files created, 98 files skipped
+Markdown file creation complete at 2025-11-08T03:13:07.746Z
+1 markdown files created, 34 files skipped
 Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/utils/markdown-creation-log.txt

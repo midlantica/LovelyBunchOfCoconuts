@@ -4,7 +4,7 @@ profile: 'Vladimir Lenin'
 status: 'zero'
 ---
 
-![Vladimir Lenin](/profiles/zeros/Vladimir-Lenin.jpg)
+![Vladimir Lenin](/profiles/zeros/Vladimir-Lenin.webp)
 
 ## Vladimir Lenin
 

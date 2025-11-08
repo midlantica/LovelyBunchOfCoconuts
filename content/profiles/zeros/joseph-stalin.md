@@ -4,7 +4,7 @@ profile: 'Joseph Stalin'
 status: 'zero'
 ---
 
-![Joseph Stalin](/profiles/zeros/Joseph-Stalin.jpg)
+![Joseph Stalin](/profiles/zeros/Joseph-Stalin.webp)
 
 ## Joseph Stalin
 

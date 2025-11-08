@@ -4,7 +4,7 @@ profile: 'Herbert Marcuse'
 status: 'zero'
 ---
 
-![Herbert Marcuse](/profiles/zeros/Herbert-Marcuse.jpg)
+![Herbert Marcuse](/profiles/zeros/Herbert-Marcuse.webp)
 
 ## Herbert Marcuse
 

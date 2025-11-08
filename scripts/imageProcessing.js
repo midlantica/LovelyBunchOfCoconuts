@@ -180,13 +180,13 @@ async function optimizeImages(directory, subdirName = '', options = {}) {
     } else {
       // Already good size: only convert/strip if needed
       const { format, hasProfiles } = await getFormatAndProfiles(filePath)
-      const needsConvert = format !== 'JPEG' && format !== 'JPG'
+      const needsConvert = format !== 'WEBP'
       const needsStrip = hasProfiles
       if (needsConvert || needsStrip) {
-        action = needsConvert ? 'convert-jpeg' : 'strip-profiles'
+        action = needsConvert ? 'convert-webp' : 'strip-profiles'
         console.log(
           `✅ ${
-            needsConvert ? 'Converting to JPEG' : 'Stripping profiles'
+            needsConvert ? 'Converting to WebP' : 'Stripping profiles'
           } (size is good)`
         )
         needsProcessing = true
@@ -201,13 +201,35 @@ async function optimizeImages(directory, subdirName = '', options = {}) {
     let dimsForManifest = dimensions
     if (needsProcessing && !dryRun) {
       try {
+        const originalExt = path.extname(filePath)
         await execPromise(
-          `mogrify +profile "*" -format jpg -quality 85 "${filePath}"`
+          `mogrify +profile "*" -format webp -quality 85 "${filePath}"`
         )
-        await markImageOptimized(filePath)
-        // Refresh dimensions after processing so manifest is accurate
-        const newDims = await getImageDimensions(filePath)
-        if (newDims) dimsForManifest = newDims
+
+        // mogrify creates a new .webp file, so we need to delete the original if it's not already .webp
+        if (originalExt.toLowerCase() !== '.webp') {
+          const webpPath = filePath.replace(/\.[^.]+$/, '.webp')
+          try {
+            // Delete the original file
+            await fs.unlink(filePath)
+            console.log(`   🗑️  Removed original: ${path.basename(filePath)}`)
+
+            // Mark the new webp file as optimized
+            await markImageOptimized(webpPath)
+
+            // Refresh dimensions from the new webp file
+            const newDims = await getImageDimensions(webpPath)
+            if (newDims) dimsForManifest = newDims
+          } catch (unlinkErr) {
+            console.warn(
+              `   ⚠️  Could not remove original: ${unlinkErr.message}`
+            )
+          }
+        } else {
+          await markImageOptimized(filePath)
+          const newDims = await getImageDimensions(filePath)
+          if (newDims) dimsForManifest = newDims
+        }
       } catch (e) {
         skippedFiles.push({ file, reason: `opt error: ${e.message}` })
         continue
@@ -279,7 +301,7 @@ async function renameImageFile(directory, filename) {
   return newFilename
 }
 
-// Pre-pass: normalize filenames (lowercase, dashes, .jpeg -> .jpg) before rest of pipeline
+// Pre-pass: normalize filenames (lowercase, dashes, sanitize special chars) before rest of pipeline
 async function prepassNormalizeFilenames(
   directory,
   subdirName,
@@ -305,7 +327,8 @@ async function prepassNormalizeFilenames(
       continue
     const baseOriginal = path.basename(file, extWithDot)
     const sanitizedBase = sanitizeFilename(baseOriginal, 60)
-    const targetExt = extLower === '.jpeg' ? '.jpg' : extLower
+    // Keep the extension as-is (will be converted to webp later by mogrify)
+    const targetExt = extLower
     let newName = sanitizedBase + targetExt
     if (newName === file) continue // Already normalized
     // uniqueness (only if actually renaming)
@@ -444,7 +467,7 @@ async function findAndMoveOrphanedMarkdownFiles(
         const content = await fs.readFile(mdPath, 'utf-8')
 
         // Extract image path from markdown content using regex
-        // Look for ![alt text](/memes/subdirectory/image.jpg) pattern
+        // Look for ![alt text](/memes/subdirectory/image.webp) pattern
         const imageMatch = content.match(/!\[.*?\]\(\/memes\/[^)]+\)/)
 
         if (imageMatch) {
@@ -719,8 +742,8 @@ async function processImages(directory, subdirName = '', options = {}) {
         const ext = path.extname(filename).toLowerCase()
         const base = path.basename(filename, ext)
         const sanitizedBase = sanitizeFilename(base, 60)
-        // Final target extension for output preview always .jpg
-        const finalName = `${sanitizedBase}.jpg`
+        // Final target extension for output preview always .webp
+        const finalName = `${sanitizedBase}.webp`
         SANITIZED.push(finalName)
         // Dimension + size probe (best-effort)
         let dims = { width: 0, height: 0 }
@@ -738,7 +761,7 @@ async function processImages(directory, subdirName = '', options = {}) {
         const TARGET_LONG_SIDE = 800
         const maxSide = Math.max(dims.width, dims.height)
         const minSide = Math.min(dims.width, dims.height)
-        let action = 'convert-jpg'
+        let action = 'convert-webp'
         if (maxSide < TARGET_LONG_SIDE) action = `upscale→${TARGET_LONG_SIDE}`
         else if (dims.width > MAX_WIDTH) action = `downscale→≤${MAX_WIDTH}`
         else action = 'optimize/strip'
@@ -757,7 +780,7 @@ async function processImages(directory, subdirName = '', options = {}) {
         })
         MARKDOWN_MAP.push({
           image: finalName,
-          md: finalName.replace(/\.jpg$/, '') + '.md',
+          md: finalName.replace(/\.webp$/, '') + '.md',
         })
       }
 
@@ -766,7 +789,7 @@ async function processImages(directory, subdirName = '', options = {}) {
       const bar = '###############################'
       console.log(`\n${bar}\n\n📂 LIST OF NEW IMAGES\nfound in public/memes/ :`)
       NEW_IMAGES.forEach((f) => console.log(f))
-      console.log('\n⮕⮕⮕⮕⮕⮕\n\n🧹 IMAGE NAMES SANITIZED & → jpg:')
+      console.log('\n⮕⮕⮕⮕⮕⮕\n\n🧹 IMAGE NAMES SANITIZED & → webp:')
       SANITIZED.forEach((f) => console.log(f))
       console.log(
         '\n⮕⮕⮕⮕⮕⮕\n\n🗜️ IMAGES SCALED / COMPRESSED (orig dims, est size change):'
@@ -970,7 +993,7 @@ export {
  *
  * Compliance definition (to mirror optimizeImages intent):
  * - Dimensions: MIN_WIDTH <= width <= MAX_WIDTH
- * - Format: JPEG
+ * - Format: WebP
  * - Interlace: Plane (progressive)
  * - Profiles: none (since we strip with +profile "*")
  *
@@ -1054,7 +1077,7 @@ async function auditImages(directory, subdirName = '') {
     if (minSide < MIN_SIDE) dimStatus = 'below-min'
     else if (maxSide < TARGET_LONG_SIDE) dimStatus = 'below-target'
     else if (width > MAX_WIDTH) dimStatus = 'above-max'
-    const fmtOk = format === 'JPEG' || format === 'JPG'
+    const fmtOk = format === 'WEBP'
     const profilesOk = !hasProfiles
     // No longer require progressive/interlace
     const compliant = dimStatus !== 'below-min' && fmtOk && profilesOk

@@ -2,7 +2,7 @@
 title: '🇬🇧️ Gave the world Magna Carta'
 ---
 
-![🇬🇧️ Gave the world Magna Carta](/memes/quotes/britain-gave-the-world.jpg)
+![🇬🇧️ Gave the world Magna Carta](/memes/quotes/britain-gave-the-world.webp)
 
 As a country we:
 🇬🇧️ Gave the world Magna Carta and the rule of law

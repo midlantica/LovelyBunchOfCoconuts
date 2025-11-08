@@ -4,7 +4,7 @@ profile: 'Eugene Debs'
 status: 'zero'
 ---
 
-![Eugene Debs](/profiles/zeros/Eugene-Debs.jpg)
+![Eugene Debs](/profiles/zeros/Eugene-Debs.webp)
 
 ## Eugene Debs
 

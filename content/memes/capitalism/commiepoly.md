@@ -2,6 +2,6 @@
 title: 'Commiepoly'
 ---
 
-![Commiepoly](/memes/capitalism/commiepoly.jpg)
+![Commiepoly](/memes/capitalism/commiepoly.webp)
 
 Commiepoly

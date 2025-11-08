@@ -4,7 +4,7 @@ profile: 'Thomas Sowell'
 status: 'hero'
 ---
 
-![Thomas Sowell](/profiles/heroes/Thomas-Sowell.jpg)
+![Thomas Sowell](/profiles/heroes/Thomas-Sowell.webp)
 
 ## Thomas Sowell
 

@@ -4,7 +4,7 @@ profile: 'Karl Marx'
 status: 'zero'
 ---
 
-![Karl Marx](/profiles/zeros/Karl-Marx.jpg)
+![Karl Marx](/profiles/zeros/Karl-Marx.webp)
 
 ## Karl Marx
 
