@@ -5,7 +5,7 @@
       <Icon
         name="mdi:magnify"
         size="1.4rem"
-        class="absolute top-1/2 left-[.5rem] -translate-y-1/2 text-slate-200/60"
+        class="absolute top-1/2 left-2 -translate-y-1/2 text-slate-200/60"
       />
       <!-- Tokenized input with pills -->
       <div
