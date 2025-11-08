@@ -687,38 +687,6 @@
   onMounted(async () => {
     if (isLoaded.value) return // already ready
     try {
-      // Load ads if enabled - fetch from API endpoint
-      if (adsEnabled.value) {
-        try {
-          // Fetch ads from the API endpoint
-          const response = await $fetch('/api/content/ads')
-          const adContent = response?.data || []
-
-          // Pass the loaded content to the ads system
-          if (adContent.length > 0) {
-            await loadAds(null, adContent)
-          } else {
-          }
-        } catch (e) {
-          console.warn('Could not load ads:', e)
-        }
-      }
-
-      // Always load profiles
-      try {
-        const loadedProfiles = await fetchAllProfiles()
-        profiles.value = loadedProfiles || []
-
-        // Also populate cache with profiles for search functionality
-        cache.profiles = loadedProfiles || []
-
-        console.log(`Loaded ${profiles.value.length} profiles`)
-      } catch (e) {
-        console.warn('Could not load profiles:', e)
-        profiles.value = []
-        cache.profiles = []
-      }
-
       if (
         cache.grifts.length === 0 &&
         cache.quotes.length === 0 &&
@@ -727,6 +695,38 @@
         // Load all content once instead of progressive loading to avoid double-fetch
         await loadAllContent()
 
+        // Load profiles BEFORE setting isLoaded so they're part of initial pattern
+        try {
+          const loadedProfiles = await fetchAllProfiles()
+          profiles.value = loadedProfiles || []
+
+          // Also populate cache with profiles for search functionality
+          cache.profiles = loadedProfiles || []
+
+          console.log(`Loaded ${profiles.value.length} profiles`)
+        } catch (e) {
+          console.warn('Could not load profiles:', e)
+          profiles.value = []
+          cache.profiles = []
+        }
+
+        // Load ads if enabled - fetch from API endpoint
+        if (adsEnabled.value) {
+          try {
+            // Fetch ads from the API endpoint
+            const response = await $fetch('/api/content/ads')
+            const adContent = response?.data || []
+
+            // Pass the loaded content to the ads system
+            if (adContent.length > 0) {
+              await loadAds(null, adContent)
+            } else {
+            }
+          } catch (e) {
+            console.warn('Could not load ads:', e)
+          }
+        }
+
         isLoaded.value = true
         wallHasLoadedOnce.value = true
 
@@ -734,12 +734,33 @@
         setTimeout(() => showAdSummary(), 500)
 
         // Schedule background pre-computation for instant refreshes
-        schedulePrecomputation(cache.grifts, cache.quotes, cache.memes, {
-          adsEnabled: adsEnabled.value,
-          adInterval: adInterval.value,
-        })
+        schedulePrecomputation(
+          cache.grifts,
+          cache.quotes,
+          cache.memes,
+          profiles.value,
+          {
+            adsEnabled: adsEnabled.value,
+            adInterval: adInterval.value,
+            profileInterval: 4,
+          }
+        )
       } else {
         // Cache had content but first visit this session
+        // Still need to load profiles if not already loaded
+        if (!profiles.value.length) {
+          try {
+            const loadedProfiles = await fetchAllProfiles()
+            profiles.value = loadedProfiles || []
+            cache.profiles = loadedProfiles || []
+            console.log(`Loaded ${profiles.value.length} profiles`)
+          } catch (e) {
+            console.warn('Could not load profiles:', e)
+            profiles.value = []
+            cache.profiles = []
+          }
+        }
+
         isLoaded.value = true
         wallHasLoadedOnce.value = true
         // Show ad summary after a delay to ensure baseline is built

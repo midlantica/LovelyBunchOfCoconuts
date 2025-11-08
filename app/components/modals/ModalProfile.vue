@@ -140,7 +140,7 @@
         .replace(/\./g, '') // Remove periods
         .replace(/ /g, '-')
       const folder = props.modalData.meta.status === 'hero' ? 'heroes' : 'zeros'
-      return `/profiles/${folder}/${profileName}.jpg`
+      return `/profiles/${folder}/${profileName}.webp`
     }
 
     return ''

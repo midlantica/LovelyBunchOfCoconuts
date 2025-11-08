@@ -7,7 +7,13 @@ export function useWallPrecomputation() {
   const precomputationReady = useState('precomputationReady', () => false)
 
   // Generate a pre-computed wall layout
-  async function precomputeWallLayout(claims, quotes, memes, options = {}) {
+  async function precomputeWallLayout(
+    claims,
+    quotes,
+    memes,
+    profiles = [],
+    options = {}
+  ) {
     if (isPrecomputing.value) return null
 
     try {
@@ -37,10 +43,12 @@ export function useWallPrecomputation() {
         enableShuffle: true,
         adInterval: interval,
         adProvider: adProvider,
+        profiles: profiles,
+        profileInterval: options.profileInterval || 4,
       })
 
       // Store the pre-computed layout
-      const layoutKey = `${claims.length}-${quotes.length}-${memes.length}`
+      const layoutKey = `${claims.length}-${quotes.length}-${memes.length}-${profiles.length}`
       precomputedWalls.value.set(layoutKey, {
         seed: newSeed,
         layout: precomputedLayout,
@@ -48,10 +56,10 @@ export function useWallPrecomputation() {
         claims: claims.length,
         quotes: quotes.length,
         memes: memes.length,
+        profiles: profiles.length,
       })
 
       if (import.meta.dev) {
-
       }
 
       precomputationReady.value = true
@@ -65,8 +73,8 @@ export function useWallPrecomputation() {
   }
 
   // Get a pre-computed layout if available
-  function getPrecomputedLayout(claims, quotes, memes) {
-    const layoutKey = `${claims.length}-${quotes.length}-${memes.length}`
+  function getPrecomputedLayout(claims, quotes, memes, profiles = []) {
+    const layoutKey = `${claims.length}-${quotes.length}-${memes.length}-${profiles.length}`
     const cached = precomputedWalls.value.get(layoutKey)
 
     if (!cached) return null
@@ -82,20 +90,26 @@ export function useWallPrecomputation() {
   }
 
   // Schedule background pre-computation
-  function schedulePrecomputation(claims, quotes, memes, options = {}) {
+  function schedulePrecomputation(
+    claims,
+    quotes,
+    memes,
+    profiles = [],
+    options = {}
+  ) {
     if (typeof window === 'undefined') return
 
     // Wait 10 seconds after initial load, then pre-compute
     setTimeout(() => {
       if (window.requestIdleCallback) {
         window.requestIdleCallback(
-          () => precomputeWallLayout(claims, quotes, memes, options),
+          () => precomputeWallLayout(claims, quotes, memes, profiles, options),
           { timeout: 5000 }
         )
       } else {
         // Fallback for browsers without requestIdleCallback
         setTimeout(
-          () => precomputeWallLayout(claims, quotes, memes, options),
+          () => precomputeWallLayout(claims, quotes, memes, profiles, options),
           100
         )
       }
@@ -115,8 +129,8 @@ export function useWallPrecomputation() {
   }
 
   // Use pre-computed layout for instant refresh
-  function usePrecomputedRefresh(claims, quotes, memes) {
-    const cached = getPrecomputedLayout(claims, quotes, memes)
+  function usePrecomputedRefresh(claims, quotes, memes, profiles = []) {
+    const cached = getPrecomputedLayout(claims, quotes, memes, profiles)
 
     if (cached) {
       // Update wall seed to the pre-computed seed
@@ -124,13 +138,13 @@ export function useWallPrecomputation() {
       wallSeed.value = cached.seed
 
       if (import.meta.dev) {
-
       }
 
       // Schedule next pre-computation
-      schedulePrecomputation(claims, quotes, memes, {
+      schedulePrecomputation(claims, quotes, memes, profiles, {
         adsEnabled: true,
         adInterval: 5,
+        profileInterval: 4,
       })
 
       return cached.layout
