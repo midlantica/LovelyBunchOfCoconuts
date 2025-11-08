@@ -130,8 +130,16 @@
 </template>
 
 <script setup>
-  import { debounce } from 'lodash-es'
   import { ideologies } from '~/data/ideologies'
+
+  // Native debounce implementation to replace lodash-es (saves 300KB)
+  function debounce(fn, delay) {
+    let timeoutId
+    return function (...args) {
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => fn.apply(this, args), delay)
+    }
+  }
 
   const props = defineProps({
     search: String,
