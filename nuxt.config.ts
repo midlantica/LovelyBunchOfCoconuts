@@ -41,24 +41,6 @@ export default defineNuxtConfig({
       },
       // Enable code splitting
       rollupOptions: {
-        output: {
-          manualChunks(id) {
-            // Split Vue core into separate chunk
-            if (
-              id.includes('node_modules/vue/') ||
-              id.includes('node_modules/vue-router/')
-            ) {
-              return 'vue-core'
-            }
-            // Split large UI components
-            if (
-              id.includes('components/wall/TheWall.vue') ||
-              id.includes('components/modals/ModalProfile.vue')
-            ) {
-              return 'ui-components'
-            }
-          },
-        },
         onwarn(warning, handler) {
           const msg = String(warning?.message || '')
           // Hide Tailwind Vite plugin sourcemap warning noise
