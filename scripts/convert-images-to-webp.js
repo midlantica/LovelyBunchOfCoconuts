@@ -78,11 +78,24 @@ function getImageFiles(dir, fileList = []) {
 async function convertImage(inputPath) {
   const outputPath = inputPath.replace(/\.(jpe?g)$/i, '.webp')
 
-  // Skip if WebP already exists
+  // If WebP already exists and we're in replace mode, just delete the original
   if (fs.existsSync(outputPath)) {
-    console.log(`⏭️  Skipping (WebP exists): ${path.basename(inputPath)}`)
-    stats.skipped++
-    return
+    if (shouldReplace && !isDryRun) {
+      fs.unlinkSync(inputPath)
+      console.log(
+        `🗑️  Removed original (WebP exists): ${path.basename(inputPath)}`
+      )
+      stats.skipped++
+      return
+    } else if (shouldReplace && isDryRun) {
+      console.log(`🔍 Would remove: ${path.basename(inputPath)} (WebP exists)`)
+      stats.skipped++
+      return
+    } else {
+      console.log(`⏭️  Skipping (WebP exists): ${path.basename(inputPath)}`)
+      stats.skipped++
+      return
+    }
   }
 
   try {

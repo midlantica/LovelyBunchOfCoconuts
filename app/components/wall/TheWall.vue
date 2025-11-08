@@ -124,6 +124,7 @@
                 v-else
                 :meme="memeItem"
                 :slug="memeItem?.path || memeItem?._path || ''"
+                :index="index"
               />
             </div>
           </div>

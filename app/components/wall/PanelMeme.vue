@@ -18,11 +18,20 @@
           />
         </div>
         <img
+          v-if="shouldLazyLoad"
           ref="lazyImg"
           :data-src="meme.image"
           :alt="imageAlt"
           decoding="async"
           loading="lazy"
+          class="aspect-square h-full max-h-full min-h-0 w-full max-w-full min-w-0 rounded-md bg-black/40 object-contain"
+        />
+        <img
+          v-else
+          :src="meme.image"
+          :alt="imageAlt"
+          decoding="async"
+          fetchpriority="high"
           class="aspect-square h-full max-h-full min-h-0 w-full max-w-full min-w-0 rounded-md bg-black/40 object-contain"
         />
       </div>
@@ -32,11 +41,20 @@
         class="card shadow-inset-card relative mx-auto h-full w-full overflow-hidden rounded-md p-3"
       >
         <img
+          v-if="shouldLazyLoad"
           ref="lazyImg"
           :data-src="meme.image"
           :alt="imageAlt"
           decoding="async"
           loading="lazy"
+          class="aspect-square h-full max-h-full min-h-0 w-full max-w-full min-w-0 rounded-md bg-black/40 object-contain"
+        />
+        <img
+          v-else
+          :src="meme.image"
+          :alt="imageAlt"
+          decoding="async"
+          fetchpriority="high"
           class="aspect-square h-full max-h-full min-h-0 w-full max-w-full min-w-0 rounded-md bg-black/40 object-contain"
         />
       </div>
@@ -61,10 +79,14 @@
   const props = defineProps({
     meme: Object,
     slug: String,
+    index: { type: Number, default: 0 }, // Add index prop for eager loading
   })
 
   const { registerLazyImage } = useLazyImages()
   const lazyImg = ref(null)
+
+  // Eagerly load first 6 images for better LCP
+  const shouldLazyLoad = computed(() => props.index >= 6)
 
   const contentType = computed(() => 'political meme')
 
@@ -93,9 +115,9 @@
     return `${cleanName}`
   })
 
-  // Register lazy loading when component mounts
+  // Register lazy loading when component mounts (only for lazy-loaded images)
   onMounted(() => {
-    if (lazyImg.value && props.meme?.image) {
+    if (shouldLazyLoad.value && lazyImg.value && props.meme?.image) {
       registerLazyImage(lazyImg.value)
     }
   })
