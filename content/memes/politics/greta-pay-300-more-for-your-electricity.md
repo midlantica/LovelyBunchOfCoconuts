@@ -2,6 +2,6 @@
 title: 'Greta Pay 300 More For Your Electricity!'
 ---
 
-![Greta Pay 300 More For Your Electricity!](/memes/politics/greta-pay-300-more-for-your-electricity.jpg)
+![Greta Pay 300 More For Your Electricity!](/memes/politics/greta-pay-300-more-for-your-electricity.webp)
 
 Greta pay 300 more for your electricity!

@@ -4,7 +4,7 @@ profile: 'Ho Chi Minh'
 status: 'zero'
 ---
 
-![Ho Chi Minh](/profiles/zeros/Ho-Chi-Minh.jpg)
+![Ho Chi Minh](/profiles/zeros/Ho-Chi-Minh.webp)
 
 ## Ho Chi Minh
 

@@ -4,7 +4,7 @@ profile: 'Theodore Adorno'
 status: 'zero'
 ---
 
-![Theodore Adorno](/profiles/zeros/Theodore-Adorno.jpg)
+![Theodore Adorno](/profiles/zeros/Theodore-Adorno.webp)
 
 ## Theodore Adorno
 

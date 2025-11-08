@@ -4,7 +4,7 @@ profile: 'Winston Churchill'
 status: 'hero'
 ---
 
-![Winston Churchill](/profiles/heroes/Winston-Churchill.jpg)
+![Winston Churchill](/profiles/heroes/Winston-Churchill.webp)
 
 ## Winston Churchill
 

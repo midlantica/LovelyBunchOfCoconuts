@@ -4,7 +4,7 @@ profile: 'Robert Nozick'
 status: 'hero'
 ---
 
-![Robert Nozick](/profiles/heroes/Robert-Nozick.jpg)
+![Robert Nozick](/profiles/heroes/Robert-Nozick.webp)
 
 ## Robert Nozick
 

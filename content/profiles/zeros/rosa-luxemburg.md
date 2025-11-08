@@ -4,7 +4,7 @@ profile: 'Rosa Luxemburg'
 status: 'zero'
 ---
 
-![Rosa Luxemburg](/profiles/zeros/Rosa-Luxemburg.jpg)
+![Rosa Luxemburg](/profiles/zeros/Rosa-Luxemburg.webp)
 
 ## Rosa Luxemburg
 

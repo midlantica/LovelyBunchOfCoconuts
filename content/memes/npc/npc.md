@@ -2,6 +2,6 @@
 title: "NPC"
 ---
 
-![NPC](/memes/npc/npc.jpg)
+![NPC](/memes/npc/npc.webp)
 
 NPC

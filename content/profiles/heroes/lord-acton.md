@@ -4,7 +4,7 @@ profile: 'Lord Acton'
 status: 'hero'
 ---
 
-![Lord Acton](/profiles/heroes/Lord-Acton.jpg)
+![Lord Acton](/profiles/heroes/Lord-Acton.webp)
 
 ## Lord Acton
 

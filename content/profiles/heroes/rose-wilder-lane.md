@@ -4,7 +4,7 @@ profile: 'Rose Wilder Lane'
 status: 'hero'
 ---
 
-![Rose Wilder Lane](/profiles/heroes/Rose-Wilder-Lane.jpg)
+![Rose Wilder Lane](/profiles/heroes/Rose-Wilder-Lane.webp)
 
 ## Rose Wilder Lane
 

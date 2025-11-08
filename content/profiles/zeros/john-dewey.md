@@ -4,7 +4,7 @@ profile: 'John Dewey'
 status: 'zero'
 ---
 
-![John Dewey](/profiles/zeros/John-Dewey.jpg)
+![John Dewey](/profiles/zeros/John-Dewey.webp)
 
 ## John Dewey
 

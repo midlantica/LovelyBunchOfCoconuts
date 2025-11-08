@@ -4,7 +4,7 @@ profile: 'John Stuart Mill'
 status: 'hero'
 ---
 
-![John Stuart Mill](/profiles/heroes/John-Stuart-Mill.jpg)
+![John Stuart Mill](/profiles/heroes/John-Stuart-Mill.webp)
 
 ## John Stuart Mill
 

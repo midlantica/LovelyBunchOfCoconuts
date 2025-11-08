@@ -2,7 +2,7 @@
 title: 'We know they are lying they know they'
 ---
 
-![We know they are lying they know they](/memes/media/we-know-they-are-lying-they-know-they.jpg)
+![We know they are lying they know they](/memes/media/we-know-they-are-lying-they-know-they.webp)
 
 "We know they are lying.
 They know they are lying,

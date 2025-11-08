@@ -2,6 +2,6 @@
 title: "Unnamed"
 ---
 
-![Unnamed](/memes/quotes/unnamed.jpg)
+![Unnamed](/memes/quotes/unnamed.webp)
 
 Unnamed

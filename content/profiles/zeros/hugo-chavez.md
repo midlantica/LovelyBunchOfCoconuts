@@ -4,7 +4,7 @@ profile: 'Hugo Chávez'
 status: 'zero'
 ---
 
-![Hugo Chávez](/profiles/zeros/Hugo-Chavez.jpg)
+![Hugo Chávez](/profiles/zeros/Hugo-Chavez.webp)
 
 ## Hugo Chávez
 

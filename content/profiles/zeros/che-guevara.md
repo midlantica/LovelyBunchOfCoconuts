@@ -4,7 +4,7 @@ profile: 'Che Guevara'
 status: 'zero'
 ---
 
-![Che Guevara](/profiles/zeros/Che-Guevara.jpg)
+![Che Guevara](/profiles/zeros/Che-Guevara.webp)
 
 ## Che Guevara
 

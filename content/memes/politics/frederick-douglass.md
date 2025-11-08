@@ -2,6 +2,6 @@
 title: 'Frederick Douglass'
 ---
 
-![Frederick Douglass](/memes/politics/frederick-douglass.jpg)
+![Frederick Douglass](/memes/politics/frederick-douglass.webp)
 
 Frederick Douglass

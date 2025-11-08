@@ -2,7 +2,7 @@
 title: 'Without ownership, there is no exchange'
 ---
 
-![Without ownership, there is no exchange](/memes/capitalism/without-ownership-there-is-no-exchange-m.jpg)
+![Without ownership, there is no exchange](/memes/capitalism/without-ownership-there-is-no-exchange-m.webp)
 
 Mises destroyed socialism this way:
 Without ownership, there is no exchange.

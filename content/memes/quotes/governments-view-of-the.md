@@ -2,6 +2,6 @@
 title: 'If it moves tax it. If it keeps moving'
 ---
 
-![If it moves tax. it If it keeps moving](/memes/quotes/governments-view-of-the.jpg)
+![If it moves tax. it If it keeps moving](/memes/quotes/governments-view-of-the.webp)
 
 "Government's view of the economy could be summed up in a few short phrases: If it moves, tax it. If it keeps moving, regulate it. And if it stops moving, subsidize it." - Ronald Reagan

@@ -4,7 +4,7 @@ profile: 'Edmund Burke'
 status: 'hero'
 ---
 
-![Edmund Burke](/profiles/heroes/Edmund-Burke.jpg)
+![Edmund Burke](/profiles/heroes/Edmund-Burke.webp)
 
 ## Edmund Burke
 

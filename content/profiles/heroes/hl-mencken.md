@@ -4,7 +4,7 @@ profile: 'H.L. Mencken'
 status: 'hero'
 ---
 
-![H.L. Mencken](/profiles/heroes/HL-Mencken.jpg)
+![H.L. Mencken](/profiles/heroes/HL-Mencken.webp)
 
 ## H.L. Mencken
 

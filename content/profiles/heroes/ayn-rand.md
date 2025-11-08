@@ -4,7 +4,7 @@ profile: 'Ayn Rand'
 status: 'hero'
 ---
 
-![Ayn Rand](/profiles/heroes/Ayn-Rand.jpg)
+![Ayn Rand](/profiles/heroes/Ayn-Rand.webp)
 
 ## Ayn Rand
 

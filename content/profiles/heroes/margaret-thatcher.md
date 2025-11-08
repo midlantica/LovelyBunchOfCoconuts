@@ -4,7 +4,7 @@ profile: 'Margaret Thatcher'
 status: 'hero'
 ---
 
-![Margaret Thatcher](/profiles/heroes/Margaret-Thatcher.jpg)
+![Margaret Thatcher](/profiles/heroes/Margaret-Thatcher.webp)
 
 ## Margaret Thatcher
 

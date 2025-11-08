@@ -4,7 +4,7 @@ profile: 'Henri de Saint-Simon'
 status: 'zero'
 ---
 
-![Henri de Saint-Simon](/profiles/zeros/Henri-de-Saint-Simon.jpg)
+![Henri de Saint-Simon](/profiles/zeros/Henri-de-Saint-Simon.webp)
 
 ## Henri de Saint-Simon
 

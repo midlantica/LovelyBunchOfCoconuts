@@ -4,7 +4,7 @@ profile: 'Murray Rothbard'
 status: 'hero'
 ---
 
-![Murray Rothbard](/profiles/heroes/Murray-Rothbard.jpg)
+![Murray Rothbard](/profiles/heroes/Murray-Rothbard.webp)
 
 ## Murray Rothbard
 

@@ -2,7 +2,7 @@
 title: 'Step 1: Prepare the environment'
 ---
 
-![Step 1: Prepare the environment](/memes/quotes/step-1-prepare-the-enviro.jpg)
+![Step 1: Prepare the environment](/memes/quotes/step-1-prepare-the-enviro.webp)
 
 Step 1: Prepare the environment by spreading Theory (prepare)
 Step 2: Wait for or manufacture a precipitating incident (activate)

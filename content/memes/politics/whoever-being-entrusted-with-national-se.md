@@ -2,7 +2,7 @@
 title: 'Whoever, being entrusted with national security documents'
 ---
 
-![Whoever, being entrusted with national security documents](/memes/politics/whoever-being-entrusted-with-national-se.jpg)
+![Whoever, being entrusted with national security documents](/memes/politics/whoever-being-entrusted-with-national-se.webp)
 
 Regarding Top Secret Govt documents of Hillary... others...
 

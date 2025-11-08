@@ -4,7 +4,7 @@ profile: 'Frédéric Bastiat'
 status: 'hero'
 ---
 
-![Frédéric Bastiat](/profiles/heroes/Frederic-Bastiat.jpg)
+![Frédéric Bastiat](/profiles/heroes/Frederic-Bastiat.webp)
 
 ## Frédéric Bastiat
 

@@ -2,7 +2,7 @@
 title: 'Warning the following media outlets'
 ---
 
-![Warning the following media outlets](/memes/media/warning-the-following-media-outlets.jpg)
+![Warning the following media outlets](/memes/media/warning-the-following-media-outlets.webp)
 
 WARNING
 The following media outlets promote fake news.

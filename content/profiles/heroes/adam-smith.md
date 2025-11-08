@@ -4,7 +4,7 @@ profile: 'Adam Smith'
 status: 'hero'
 ---
 
-![Adam Smith](/profiles/heroes/Adam-Smith.jpg)
+![Adam Smith](/profiles/heroes/Adam-Smith.webp)
 
 ## Adam Smith
 

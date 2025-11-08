@@ -4,7 +4,7 @@ profile: 'Antonio Gramsci'
 status: 'zero'
 ---
 
-![Antonio Gramsci](/profiles/zeros/Antonio-Gramsci.jpg)
+![Antonio Gramsci](/profiles/zeros/Antonio-Gramsci.webp)
 
 ## Antonio Gramsci
 

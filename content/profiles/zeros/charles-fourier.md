@@ -4,7 +4,7 @@ profile: 'Charles Fourier'
 status: 'zero'
 ---
 
-![Charles Fourier](/profiles/zeros/Charles-Fourier.jpg)
+![Charles Fourier](/profiles/zeros/Charles-Fourier.webp)
 
 ## Charles Fourier
 

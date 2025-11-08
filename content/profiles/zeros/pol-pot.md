@@ -4,7 +4,7 @@ profile: 'Pol Pot'
 status: 'zero'
 ---
 
-![Pol Pot](/profiles/zeros/Pol-Pot.jpg)
+![Pol Pot](/profiles/zeros/Pol-Pot.webp)
 
 ## Pol Pot
 

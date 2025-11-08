@@ -4,7 +4,7 @@ profile: 'Ronald Reagan'
 status: 'hero'
 ---
 
-![Ronald Reagan](/profiles/heroes/Ronald-Reagan.jpg)
+![Ronald Reagan](/profiles/heroes/Ronald-Reagan.webp)
 
 ## Ronald Reagan
 

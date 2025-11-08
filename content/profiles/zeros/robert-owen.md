@@ -4,7 +4,7 @@ profile: 'Robert Owen'
 status: 'zero'
 ---
 
-![Robert Owen](/profiles/zeros/Robert-Owen.jpg)
+![Robert Owen](/profiles/zeros/Robert-Owen.webp)
 
 ## Robert Owen
 

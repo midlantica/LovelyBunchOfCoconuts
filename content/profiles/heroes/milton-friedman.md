@@ -4,7 +4,7 @@ profile: 'Milton Friedman'
 status: 'hero'
 ---
 
-![Milton Friedman](/profiles/heroes/Milton-Friedman.jpg)
+![Milton Friedman](/profiles/heroes/Milton-Friedman.webp)
 
 ## Milton Friedman
 

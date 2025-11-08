@@ -4,7 +4,7 @@ profile: 'Friedrich Hayek'
 status: 'hero'
 ---
 
-![Friedrich Hayek](/profiles/heroes/Friedrich-Hayek.jpg)
+![Friedrich Hayek](/profiles/heroes/Friedrich-Hayek.webp)
 
 ## Friedrich Hayek
 
