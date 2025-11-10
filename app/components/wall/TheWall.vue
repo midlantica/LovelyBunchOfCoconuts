@@ -251,29 +251,31 @@
   )
 
   // Stable key generator for top-level pattern items
+  // ALWAYS include index to ensure uniqueness and prevent duplicate rendering
   function itemKey(item, idx) {
     if (!item) return idx
     if (item.type === 'quote') {
       const q = item.data || {}
-      // Include index for ads to ensure uniqueness
       const baseKey = q._path || q.path || q.id || idx
-      return q.isAd ? `q-${baseKey}-${idx}` : `q-${baseKey}`
+      // Always include index to ensure uniqueness
+      return q.isAd ? `q-${baseKey}-${idx}` : `q-${baseKey}-${idx}`
     }
     const joinIds = (arr = [], index) =>
       (arr || [])
         .map((d, i) => {
           const base = d?._path || d?.path || d?.id || ''
-          // Add index for ads to ensure uniqueness
-          return d?.isAd ? `${base}-${index}-${i}` : base
+          return base
         })
         .filter(Boolean)
-        .join('|') || idx
+        .join('|') || index
 
-    if (item.type === 'griftPair') return `gp-${joinIds(item.data, idx)}`
-    if (item.type === 'memeRow') return `mr-${joinIds(item.data, idx)}`
+    // Always include index to ensure uniqueness
+    if (item.type === 'griftPair') return `gp-${joinIds(item.data, idx)}-${idx}`
+    if (item.type === 'memeRow') return `mr-${joinIds(item.data, idx)}-${idx}`
     if (item.type === 'profile') {
       const p = item.data || {}
-      return `prof-${p._path || p.path || p.id || idx}`
+      const baseKey = p._path || p.path || p.id || idx
+      return `prof-${baseKey}-${idx}`
     }
     return idx
   }

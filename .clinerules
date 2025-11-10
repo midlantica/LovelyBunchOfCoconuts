@@ -1,0 +1,244 @@
+# Cline Rules Configuration for Nuxt 4 + Vue + Vite + Nuxt Content
+# Optimized for Nuxt 4's app/ directory structure
+# This file helps prevent token limit errors by excluding unnecessary files/folders
+
+# Node.js and package managers
+node_modules/
+.npm/
+.yarn/
+.pnp.*
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# PNPM specific
+pnpm-lock.yaml
+.pnpm-store/
+.pnpm-debug.log
+.modules.yaml
+.pnpm/
+pnpm-workspace.yaml
+.npmrc
+.pnpmfile.cjs
+
+# Monorepo / Workspace
+packages/*/node_modules/
+packages/*/dist/
+packages/*/.nuxt/
+
+# Build outputs and compiled files
+dist/
+build/
+out/
+*.min.js
+*.min.css
+*.map
+
+# Nuxt 4 specific build directories
+.nuxt/
+.output/
+.nitro/
+.cache/
+.data/
+.nuxt-*
+nuxt.d.ts
+.nuxt4/
+
+# Vite specific
+.vite/
+vite.config.ts.timestamp-*
+*.local
+
+# Vue specific
+*.vue.js
+*.vue.d.ts
+
+# Development and IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+test-results/
+*.test.js
+*.spec.js
+__tests__/
+e2e/
+
+# Documentation (usually not needed for coding)
+docs/
+documentation/
+*.md
+!README.md  # Keep README
+
+# Large media files
+*.mp4
+*.mov
+*.avi
+*.mp3
+*.wav
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+*.pdf
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+*.ico
+!assets/**/*.svg  # Keep SVGs in assets if needed
+!public/**/*.ico  # Keep favicon
+
+# Logs and temporary files
+*.log
+logs/
+tmp/
+temp/
+cache/
+.cache/
+
+# Nuxt/Vite/Vue dev artifacts
+.vite-inspect/
+stats.html
+.eslintcache
+.stylelintcache
+.yarn/
+
+# Environment and config files (for security)
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.crt
+
+# Version control
+.git/
+.gitignore
+.svn/
+.hg/
+
+# Database files
+*.db
+*.sqlite
+*.sql
+
+# Backup files
+*.backup
+*.bak
+*.old
+backup/
+
+# OS generated files
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Python (if applicable)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+
+# Large data files
+*.csv
+!sample.csv  # Keep sample data if needed
+*.json
+!package.json
+!tsconfig.json
+!*.config.json
+!app.config.ts
+!tailwind.config.js
+!postcss.config.js
+
+# Specific to your project (adjust as needed)
+public/fonts/
+public/videos/
+static/images/
+vendor/
+
+# Nuxt 4 / Your WakeUpNPC project specific
+dist/  # Symlink to .output/public
+logs/
+docs/
+# netlify/
+# scripts/
+templates/
+chromewebdata*.html
+_netlify_pro_config.md
+
+# Nuxt Content
+.content-cache/
+nuxt-content.d.ts
+
+# Keep content files accessible
+!content/**/*.md
+!content/**/*.json
+!content/**/*.yaml
+!content/**/*.yml
+
+# Maximum file size (in bytes) - files larger than this are ignored
+# 100KB = 102400 bytes
+# maxFileSize: 102400
+maxFileSize: 300400
+
+# Maximum files to include in context
+maxFiles: 50
+
+# Patterns to always include (overrides exclusions)
+# Nuxt 4 - Everything is in app/ directory now
+!app/**/*.vue
+!app/**/*.ts
+!app/**/*.js
+!app/components/**/*
+!app/composables/**/*
+!app/pages/**/*
+!app/layouts/**/*
+!app/plugins/**/*
+!app/middleware/**/*
+!app/utils/**/*
+!app/assets/**/*.css
+!app/assets/**/*.scss
+!app/data/**/*.json
+!app/data/**/*.ts
+
+# Root level files
+!app.vue
+!error.vue
+!nuxt.config.ts
+!content.config.ts
+!vite.config.ts
+!tailwind.config.js
+!eslint.config.js
+
+# Content directory (Nuxt Content)
+!content/**/*.md
+!content/**/*.json
+!content/**/*.yaml
+!content/**/*.yml
+
+# Server directory (API routes)
+!server/**/*.ts
+!server/**/*.js
+
+# Modules (if custom modules)
+!modules/**/*.ts
+!modules/**/*.js
+
+# Types
+!types/**/*.ts
+!types/**/*.d.ts

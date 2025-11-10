@@ -88,27 +88,58 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     return null
   }
 
+  // Helper function to deduplicate items by path
+  function deduplicateByPath(items) {
+    if (!Array.isArray(items)) return items
+    const seen = new Set()
+    return items.filter((item) => {
+      const path = item?._path || item?.path || item?.id
+      if (!path) return true // Keep items without paths
+      if (seen.has(path)) {
+        console.warn(`Duplicate item detected and removed: ${path}`)
+        return false
+      }
+      seen.add(path)
+      return true
+    })
+  }
+
   function applySearch(groups, q) {
-    if (!q?.trim()) return groups
+    if (!q?.trim()) {
+      // Even without search, deduplicate to prevent rendering issues
+      return {
+        grifts: deduplicateByPath(groups.grifts),
+        quotes: deduplicateByPath(groups.quotes),
+        memes: deduplicateByPath(groups.memes),
+        profiles: deduplicateByPath(groups.profiles),
+      }
+    }
 
     // Check if this is a content type search
     const contentTypeFilter = getContentTypeFilter(q)
     if (contentTypeFilter) {
-      // Filter by content type only
+      // Filter by content type only and deduplicate
       return {
-        grifts: contentTypeFilter.grifts ? groups.grifts : [],
-        quotes: contentTypeFilter.quotes ? groups.quotes : [],
-        memes: contentTypeFilter.memes ? groups.memes : [],
-        profiles: contentTypeFilter.profiles ? groups.profiles : [],
+        grifts: deduplicateByPath(
+          contentTypeFilter.grifts ? groups.grifts : []
+        ),
+        quotes: deduplicateByPath(
+          contentTypeFilter.quotes ? groups.quotes : []
+        ),
+        memes: deduplicateByPath(contentTypeFilter.memes ? groups.memes : []),
+        profiles: deduplicateByPath(
+          contentTypeFilter.profiles ? groups.profiles : []
+        ),
       }
     }
 
-    // Regular text search within content
+    // Regular text search within content with deduplication
     const out = {}
     for (const k in groups) {
-      out[k] = groups[k].filter((it) =>
+      const filtered = groups[k].filter((it) =>
         textMatches(it._search || it.searchableText, q)
       )
+      out[k] = deduplicateByPath(filtered)
     }
     return out
   }
