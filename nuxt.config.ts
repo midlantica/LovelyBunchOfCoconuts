@@ -93,6 +93,7 @@ export default defineNuxtConfig({
     ],
     experimental: {
       openAPI: true,
+      typescriptPlugin: true,
     },
     externals: {
       inline: ['@nuxt/content'],
