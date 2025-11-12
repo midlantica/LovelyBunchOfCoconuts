@@ -24,23 +24,16 @@
 </template>
 
 <script setup>
+  // PERFORMANCE FIX: Import modal components directly (not async) to eliminate first-click delay
+  // This adds ~50KB to initial bundle but removes the 10-second delay on first modal open
+  import ModalsModalMeme from '~/components/modals/ModalMeme.vue'
+  import ModalsModalGrift from '~/components/modals/ModalGrift.vue'
+  import ModalsModalQuote from '~/components/modals/ModalQuote.vue'
+  import ModalsModalProfile from '~/components/modals/ModalProfile.vue'
+
   const showModal = ref(false)
   const modalType = ref(null)
   const modalData = ref(null)
-
-  // Map modal types to actual component objects (async) so :is can resolve them
-  const ModalsModalMeme = defineAsyncComponent(
-    () => import('~/components/modals/ModalMeme.vue')
-  )
-  const ModalsModalGrift = defineAsyncComponent(
-    () => import('~/components/modals/ModalGrift.vue')
-  )
-  const ModalsModalQuote = defineAsyncComponent(
-    () => import('~/components/modals/ModalQuote.vue')
-  )
-  const ModalsModalProfile = defineAsyncComponent(
-    () => import('~/components/modals/ModalProfile.vue')
-  )
 
   const modalMap = {
     meme: ModalsModalMeme,
@@ -48,33 +41,6 @@
     quote: ModalsModalQuote,
     profile: ModalsModalProfile,
   }
-
-  // Pre-warm modal component chunks after initial render to avoid first-click delay
-  onMounted(() => {
-    const idle = (cb) =>
-      window.requestIdleCallback
-        ? window.requestIdleCallback(cb, { timeout: 2500 })
-        : setTimeout(cb, 1200)
-    idle(() => {
-      // Fire and forget; purpose is to prime dynamic import chunks
-      import('~/components/modals/ModalMeme.vue').catch((e) => {
-        if (import.meta.dev)
-          console.warn('[layout] Failed to pre-warm ModalMeme:', e)
-      })
-      import('~/components/modals/ModalGrift.vue').catch((e) => {
-        if (import.meta.dev)
-          console.warn('[layout] Failed to pre-warm ModalGrift:', e)
-      })
-      import('~/components/modals/ModalQuote.vue').catch((e) => {
-        if (import.meta.dev)
-          console.warn('[layout] Failed to pre-warm ModalQuote:', e)
-      })
-      import('~/components/modals/ModalProfile.vue').catch((e) => {
-        if (import.meta.dev)
-          console.warn('[layout] Failed to pre-warm ModalProfile:', e)
-      })
-    })
-  })
 
   // Allow calling with either (type, data) or ({ type, data, slug })
   function handleModal(arg1, arg2) {
