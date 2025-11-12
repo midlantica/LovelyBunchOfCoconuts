@@ -19,7 +19,7 @@
       class="scroll-container-stable h-full min-h-0 overflow-y-auto rounded-xl"
       style="min-height: 600px"
     >
-      <div class="mx-auto w-full max-w-3xl pr-3 pl-2 md:px-0">
+      <div class="mx-auto mb-16 w-full max-w-3xl pr-3 pb-16 pl-2 md:px-0">
         <main class="pb-8">
           <WallTheWall
             :search="searchTerm"
