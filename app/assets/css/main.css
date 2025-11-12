@@ -22,3 +22,38 @@
 * {
   -webkit-tap-highlight-color: transparent;
 }
+
+/* CRITICAL: Tailwind 4 cursor-pointer fix - HIGHEST PRIORITY */
+/* Tailwind v4 changed buttons to cursor: default, restore cursor: pointer globally */
+* {
+  cursor: pointer !important;
+}
+
+/* Except for disabled elements and specific non-interactive elements */
+:disabled,
+[disabled],
+input[type='checkbox'],
+input[type='radio'],
+textarea {
+  cursor: auto !important;
+}
+
+/* Override isolation stacking context interference with cursor display */
+.isolate,
+[class*='isolate'] {
+  cursor: pointer !important;
+}
+
+/* Ensure cursor-pointer works on interactive elements even with isolation */
+.cursor-pointer,
+[class*='cursor-pointer'] {
+  cursor: pointer !important;
+}
+
+/* Tailwind 4: Restore cursor-pointer for buttons (v4 defaults to cursor-default) */
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer !important;
+  }
+}

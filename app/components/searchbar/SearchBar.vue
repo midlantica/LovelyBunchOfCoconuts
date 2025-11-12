@@ -35,10 +35,16 @@
                 :aria-label="`Remove ${t}`"
                 @click.stop="removeToken(idx)"
               >
-                <Icon
-                  name="mdi:close"
-                  class="block align-middle text-[1.1rem] leading-none"
-                />
+                <svg
+                  viewBox="0 0 24 24"
+                  class="block h-[1.1rem] w-[1.1rem] align-middle leading-none"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+                  />
+                </svg>
               </button>
             </span>
           </template>
@@ -107,14 +113,20 @@
         <button
           v-if="hasSearch"
           @click="clearSearch"
-          class="cursor-pointer!items-center flex w-auto gap-1 rounded-full bg-transparent transition-colors"
+          class="flex w-auto cursor-pointer! items-center gap-1 rounded-full bg-transparent transition-colors"
           type="button"
           aria-label="Clear search"
         >
-          <Icon
-            name="mdi:close"
-            class="block text-[1.35rem] text-white/80 hover:text-white"
-          />
+          <svg
+            viewBox="0 0 24 24"
+            class="block h-[1.35rem] w-[1.35rem] text-white/80 hover:text-white"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+            />
+          </svg>
         </button>
       </div>
     </div>

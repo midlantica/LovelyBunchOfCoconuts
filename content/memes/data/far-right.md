@@ -1,7 +1,7 @@
 ---
-title: 'Left v Far Right'
+title: 'Left v Far Right 01'
 ---
 
-![Left v Far Right](/memes/data/far-right.webp)
+![Left v Far Right 01](/memes/data/far-right.webp)
 
-Left v Far Right.
+Left v Far Right 01.

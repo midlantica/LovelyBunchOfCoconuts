@@ -88,18 +88,42 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     return null
   }
 
-  // Helper function to deduplicate items by path
+  // Helper function to deduplicate items by path, title, and content
   function deduplicateByPath(items) {
     if (!Array.isArray(items)) return items
     const seen = new Set()
     return items.filter((item) => {
-      const path = item?._path || item?.path || item?.id
-      if (!path) return true // Keep items without paths
-      if (seen.has(path)) {
-        console.warn(`Duplicate item detected and removed: ${path}`)
+      // Create a unique key based on multiple properties
+      // For memes and grifts, use title as primary identifier
+      // For quotes, use a combination of quote text and attribution
+      const title = item?.title || ''
+      const path = item?._path || item?.path || item?.id || ''
+      const quoteText = item?.quoteText || ''
+      const attribution = item?.attribution || ''
+      const grift = item?.grift || ''
+
+      // Create a composite key that identifies truly unique content
+      // Priority: title (most reliable) > specific content fields > path
+      let uniqueKey = ''
+      if (title) {
+        uniqueKey = `title:${title.toLowerCase().trim()}`
+      } else if (quoteText && attribution) {
+        uniqueKey = `quote:${quoteText.toLowerCase().trim()}:${attribution.toLowerCase().trim()}`
+      } else if (grift) {
+        uniqueKey = `grift:${grift.toLowerCase().trim()}`
+      } else if (path) {
+        uniqueKey = `path:${path}`
+      } else {
+        return true // Keep items without any identifiable properties
+      }
+
+      if (seen.has(uniqueKey)) {
+        console.warn(
+          `Duplicate item detected and removed: ${title || path} (key: ${uniqueKey})`
+        )
         return false
       }
-      seen.add(path)
+      seen.add(uniqueKey)
       return true
     })
   }

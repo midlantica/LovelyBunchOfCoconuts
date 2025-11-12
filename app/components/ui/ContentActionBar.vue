@@ -39,19 +39,34 @@
                   : 'Copy image to clipboard'
               "
             >
-              <Icon
-                name="lucide:images"
-                size="1.4rem"
-                class="transition-all duration-200"
+              <svg
+                viewBox="0 0 24 24"
+                class="h-[1.5rem] w-[1.5rem] transition-all duration-200"
                 :class="
                   disableCopyImage
                     ? 'opacity-40'
                     : isCopying
-                      ? 'brightness-125 drop-shadow-[0_0_12px_#33c3fd]'
-                      : 'group-hover:brightness-125 group-hover:drop-shadow-[0_0_12px_#33c3fd]'
+                      ? 'brightness-150'
+                      : 'group-hover:brightness-150'
                 "
-                :style="disableCopyImage ? 'color: #6b7280' : 'color: #b3b3b3'"
-              />
+                :style="
+                  disableCopyImage
+                    ? 'color: #6b7280'
+                    : isCopying
+                      ? 'color: #33c3fd'
+                      : 'color: #b3b3b3'
+                "
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M18 22H4a2 2 0 0 1-2-2V6" />
+                <path d="m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18" />
+                <circle cx="12" cy="8" r="2" />
+                <rect width="16" height="16" x="6" y="2" rx="2" />
+              </svg>
             </button>
 
             <!-- Download image icon button -->
@@ -70,19 +85,35 @@
               ]"
               aria-label="Download image"
             >
-              <Icon
-                name="lucide:image-down"
-                size="1.5rem"
-                class="transition-all duration-200"
+              <svg
+                viewBox="0 0 24 24"
+                class="h-[1.5rem] w-[1.5rem] transition-all duration-200"
                 :class="
                   disableCopyImage
                     ? 'opacity-40'
                     : isDownloading
-                      ? 'brightness-125 drop-shadow-[0_0_12px_#33c3fd]'
-                      : 'group-hover:brightness-125 group-hover:drop-shadow-[0_0_12px_#33c3fd]'
+                      ? 'brightness-150'
+                      : 'group-hover:brightness-150'
                 "
-                :style="disableCopyImage ? 'color: #6b7280' : 'color: #b3b3b3'"
-              />
+                :style="
+                  disableCopyImage
+                    ? 'color: #6b7280'
+                    : isDownloading
+                      ? 'color: #33c3fd'
+                      : 'color: #b3b3b3'
+                "
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21"
+                />
+                <path d="m14 19l3 3v-5.5m0 5.5l3-3" />
+                <circle cx="9" cy="9" r="2" />
+              </svg>
             </button>
 
             <!-- Spinner positioned to the right of icon -->
