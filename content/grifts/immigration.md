@@ -1,4 +1,4 @@
 ---
 grift: 'Immigration'
-decode: 'Increased poverty. Increased division. Increased crime. Destroy native culture.'
+decode: 'Foreign Invasion'
 ---
