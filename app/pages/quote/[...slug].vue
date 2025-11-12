@@ -18,12 +18,14 @@
     </section>
 
     <!-- Local modal overlay -->
-    <ModalsModalQuote
-      v-if="quote"
-      :show="modalVisible"
-      :modal-data="quote"
-      @close="navigateHome"
-    />
+    <ClientOnly>
+      <ModalsModalQuote
+        v-if="quote"
+        :show="modalVisible"
+        :modal-data="quote"
+        @close="navigateHome"
+      />
+    </ClientOnly>
   </div>
 </template>
 

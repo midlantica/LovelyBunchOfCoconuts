@@ -18,12 +18,14 @@
     </section>
 
     <!-- Local modal overlay so URL remains /grift/... -->
-    <ModalsModalGrift
-      v-if="grift"
-      :show="modalVisible"
-      :modal-data="grift"
-      @close="navigateHome"
-    />
+    <ClientOnly>
+      <ModalsModalGrift
+        v-if="grift"
+        :show="modalVisible"
+        :modal-data="grift"
+        @close="navigateHome"
+      />
+    </ClientOnly>
   </div>
 </template>
 

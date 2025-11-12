@@ -18,12 +18,14 @@
     </section>
 
     <!-- Local modal overlay -->
-    <ModalsModalMeme
-      v-if="meme"
-      :show="modalVisible"
-      :modal-data="meme"
-      @close="navigateHome"
-    />
+    <ClientOnly>
+      <ModalsModalMeme
+        v-if="meme"
+        :show="modalVisible"
+        :modal-data="meme"
+        @close="navigateHome"
+      />
+    </ClientOnly>
   </div>
 </template>
 

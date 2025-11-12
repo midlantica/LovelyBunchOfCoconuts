@@ -10,7 +10,7 @@ export default defineEventHandler((event) => {
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: https: blob:",
-      "connect-src 'self' https://wakeupnpc.goatcounter.com",
+      "connect-src 'self' https://wakeupnpc.goatcounter.com https://api.iconify.design",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",

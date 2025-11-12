@@ -23,6 +23,24 @@ export default defineNuxtPlugin(() => {
         return
       }
 
+      // Skip duplicate item warnings (these are expected and handled)
+      if (message.includes('Duplicate item detected and removed:')) {
+        return
+      }
+
+      // Skip Suspense experimental feature warning
+      if (message.includes('<Suspense> is an experimental feature')) {
+        return
+      }
+
+      // Skip CSP violation warnings for Iconify (will be fixed after server restart)
+      if (
+        message.includes('api.iconify.design') &&
+        message.includes('Content Security Policy')
+      ) {
+        return
+      }
+
       // Pass through all other warnings
       originalConsoleWarn.apply(console, args)
     }

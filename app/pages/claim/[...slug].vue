@@ -18,12 +18,14 @@
     </section>
 
     <!-- Local modal overlay so URL remains /claim/... -->
-    <ModalsModalClaim
-      v-if="claim"
-      :show="modalVisible"
-      :modal-data="claim"
-      @close="navigateHome"
-    />
+    <ClientOnly>
+      <ModalsModalClaim
+        v-if="claim"
+        :show="modalVisible"
+        :modal-data="claim"
+        @close="navigateHome"
+      />
+    </ClientOnly>
   </div>
 </template>
 

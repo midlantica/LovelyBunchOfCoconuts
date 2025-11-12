@@ -118,9 +118,12 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
       }
 
       if (seen.has(uniqueKey)) {
-        console.warn(
-          `Duplicate item detected and removed: ${title || path} (key: ${uniqueKey})`
-        )
+        // Only log duplicates in development mode to avoid console spam
+        if (import.meta.dev) {
+          console.warn(
+            `Duplicate item detected and removed: ${title || path} (key: ${uniqueKey})`
+          )
+        }
         return false
       }
       seen.add(uniqueKey)

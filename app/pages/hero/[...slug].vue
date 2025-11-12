@@ -11,33 +11,35 @@
     />
 
     <!-- Modal overlay -->
-    <div class="fixed inset-0 z-50">
-      <ModalsModalProfile
-        v-if="profile && contentReady"
-        :show="modalVisible"
-        :modal-data="profile"
-        @close="navigateHome"
-      />
+    <ClientOnly>
+      <div class="fixed inset-0 z-50">
+        <ModalsModalProfile
+          v-if="profile && contentReady"
+          :show="modalVisible"
+          :modal-data="profile"
+          @close="navigateHome"
+        />
 
-      <!-- Fallback if profile not found -->
-      <div
-        v-else-if="contentReady"
-        class="flex h-screen items-center justify-center bg-slate-900"
-      >
-        <div class="text-center">
-          <h1 class="mb-4 text-2xl font-bold text-white">Hero Not Found</h1>
-          <p class="mb-6 text-gray-300">
-            The hero profile you are looking for could not be found.
-          </p>
-          <button
-            @click="navigateHome"
-            class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-          >
-            Go Home
-          </button>
+        <!-- Fallback if profile not found -->
+        <div
+          v-else-if="contentReady"
+          class="flex h-screen items-center justify-center bg-slate-900"
+        >
+          <div class="text-center">
+            <h1 class="mb-4 text-2xl font-bold text-white">Hero Not Found</h1>
+            <p class="mb-6 text-gray-300">
+              The hero profile you are looking for could not be found.
+            </p>
+            <button
+              @click="navigateHome"
+              class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+            >
+              Go Home
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </ClientOnly>
   </div>
 </template>
 
