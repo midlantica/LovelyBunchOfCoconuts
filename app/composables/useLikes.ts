@@ -52,7 +52,10 @@ export function useLikes() {
       queueMicrotask(() => {
         try {
           loadFromStorage()
-        } catch {}
+        } catch (e) {
+          if (import.meta.dev)
+            console.warn('[likes] Failed to load from storage in microtask:', e)
+        }
       })
     }
   }
@@ -205,6 +208,31 @@ export function useLikes() {
               countMap.value[cid] = data.count
               persistToStorage()
             }
+          } else if (res.status === 429) {
+            // Rate limit exceeded - revert optimistic update
+            likedMap.value[cid] = false
+            countMap.value[cid] = Math.max(0, current)
+            persistToStorage()
+
+            // Log rate limit in dev mode
+            if (import.meta.dev) {
+              console.warn('[likes] Rate limit exceeded for', cid)
+            }
+
+            // Show user-friendly message (could be enhanced with a toast notification)
+            if (typeof window !== 'undefined' && !import.meta.dev) {
+              console.info('Please wait before liking more items')
+            }
+          } else {
+            // Other error - keep optimistic update but log
+            if (import.meta.dev) {
+              console.warn(
+                '[likes] Server returned error',
+                res.status,
+                'for',
+                cid
+              )
+            }
           }
         })
         .catch((e) => {
@@ -236,7 +264,10 @@ export function useLikes() {
       // Reduce mega requests: cap batch size
       batch = pending.slice(0, 100)
       const qs = batch.map((i) => encodeURIComponent(i)).join(',')
-      let res = await fetch(`/api/likes?ids=${qs}`).catch(() => null as any)
+      let res = await fetch(`/api/likes?ids=${qs}`).catch((e) => {
+        if (import.meta.dev) console.warn('[likes] Batch fetch failed:', e)
+        return null as any
+      })
       if (!res || !res.ok) {
         // Fallback to debug route that returns all counts; append ?dev=1 in prod
         const isProd =
@@ -244,14 +275,22 @@ export function useLikes() {
           (location.hostname.endsWith('wakeupnpc.com') ||
             location.hostname.includes('netlify.app'))
         const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
-        res = await fetch(url).catch(() => null as any)
+        res = await fetch(url).catch((e) => {
+          if (import.meta.dev)
+            console.warn('[likes] Debug fetch fallback failed:', e)
+          return null as any
+        })
         if (!res || !res.ok) {
           // Hard network failure; allow a silent retry later
           shouldRetry = true
           return
         }
       }
-      const data = (await res.json().catch(() => ({}))) as any
+      const data = (await res.json().catch((e: unknown) => {
+        if (import.meta.dev)
+          console.warn('[likes] Failed to parse response JSON:', e)
+        return {}
+      })) as any
       let counts = data?.counts || {}
       // If the batch endpoint returns no counts (mismatch or cold store), try debug map
       if (Object.keys(counts).length === 0) {
@@ -261,9 +300,17 @@ export function useLikes() {
             (location.hostname.endsWith('wakeupnpc.com') ||
               location.hostname.includes('netlify.app'))
           const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
-          const res2 = await fetch(url).catch(() => null as any)
+          const res2 = await fetch(url).catch((e) => {
+            if (import.meta.dev)
+              console.warn('[likes] Debug map fetch failed:', e)
+            return null as any
+          })
           if (res2 && res2.ok) {
-            const data2 = await res2.json().catch(() => ({}))
+            const data2 = await res2.json().catch((e: unknown) => {
+              if (import.meta.dev)
+                console.warn('[likes] Failed to parse debug map JSON:', e)
+              return {}
+            })
             const all = data2?.counts || {}
             // Filter to only requested ids
             const set = new Set(batch.map((i) => canonicalizeId(i)))
@@ -271,7 +318,10 @@ export function useLikes() {
               Object.entries(all).filter(([k]) => set.has(canonicalizeId(k)))
             )
           }
-        } catch {}
+        } catch (e) {
+          if (import.meta.dev)
+            console.warn('[likes] Debug map fallback failed:', e)
+        }
       }
       let changed = false
       for (const [k, v] of Object.entries(counts)) {
@@ -297,9 +347,20 @@ export function useLikes() {
             (location.hostname.endsWith('wakeupnpc.com') ||
               location.hostname.includes('netlify.app'))
           const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
-          const res3 = await fetch(url).catch(() => null as any)
+          const res3 = await fetch(url).catch((e) => {
+            if (import.meta.dev)
+              console.warn('[likes] Rename-automerge fetch failed:', e)
+            return null as any
+          })
           if (res3 && res3.ok) {
-            const data3 = await res3.json().catch(() => ({}))
+            const data3 = await res3.json().catch((e: unknown) => {
+              if (import.meta.dev)
+                console.warn(
+                  '[likes] Failed to parse rename-automerge JSON:',
+                  e
+                )
+              return {}
+            })
             const all: Record<string, number> = data3?.counts || {}
             const target = canonicalizeId(ids[0])
             // Find a close match by ignoring small slug edits (levenshtein-lite for dashes only)
@@ -320,7 +381,10 @@ export function useLikes() {
               }
             }
           }
-        } catch {}
+        } catch (e) {
+          if (import.meta.dev)
+            console.warn('[likes] Rename-automerge failed:', e)
+        }
       }
       if (changed) {
         if (
@@ -353,7 +417,6 @@ export function useLikes() {
           if (!import.meta.dev) {
             // In production, only log on first retry
             if (retryCount === 0) {
-
             }
           }
 
@@ -384,8 +447,13 @@ export function useLikes() {
       try {
         const u = new URL(raw)
         raw = u.pathname || ''
-      } catch {
-        // ignore parse errors
+      } catch (e) {
+        if (import.meta.dev)
+          console.warn(
+            '[likes] Failed to parse URL for canonicalization:',
+            raw,
+            e
+          )
       }
     }
     // Remove trailing slashes (except root)
@@ -426,7 +494,6 @@ export function useLikes() {
     if (migrated) {
       delete likedMap.value[oldKey]
       delete countMap.value[oldKey]
-
     }
     return migrated
   }
@@ -442,7 +509,6 @@ export function useLikes() {
     }
     if (changed) {
       persistToStorage()
-
     }
   }
 

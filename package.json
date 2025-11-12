@@ -74,7 +74,8 @@
     "prettier-plugin-tailwindcss": "^0.7.1",
     "sharp": "^0.34.5",
     "tailwindcss": "4.1.17",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vite-plugin-vue-mcp": "^0.3.2"
   },
   "engines": {
     "node": ">=20.18.0 <23"

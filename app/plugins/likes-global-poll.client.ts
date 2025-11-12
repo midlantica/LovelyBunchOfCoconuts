@@ -16,6 +16,10 @@ export default defineNuxtPlugin(() => {
     Number(import.meta.env?.NUXT_PUBLIC_LIKES_GLOBAL_POLL_MS) || 15000
 
   async function tick() {
+    // Skip polling if tab is hidden (optimization from likes-live-poll)
+    if (typeof document !== 'undefined' && document.hidden) {
+      return schedule()
+    }
     try {
       const isProd =
         typeof window !== 'undefined' &&
@@ -27,7 +31,6 @@ export default defineNuxtPlugin(() => {
         import.meta.dev &&
         import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
       ) {
-
       }
 
       const res = await fetch(url).catch(() => null as any)
@@ -51,7 +54,6 @@ export default defineNuxtPlugin(() => {
         import.meta.dev &&
         import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
       ) {
-
       }
 
       if (data?.restricted) {
@@ -82,7 +84,6 @@ export default defineNuxtPlugin(() => {
           import.meta.dev &&
           import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
         ) {
-
         }
         // Persist the updated counts to localStorage
         try {
@@ -106,6 +107,17 @@ export default defineNuxtPlugin(() => {
     timer = setTimeout(tick, interval)
   }
 
+  // Resume polling when tab becomes visible again
+  const onVisibilityChange = () => {
+    if (!document.hidden) {
+      tick()
+    }
+  }
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('visibilitychange', onVisibilityChange)
+  }
+
   // Start after a short delay to not contend with initial hydration
   setTimeout(tick, 2500)
 
@@ -113,6 +125,11 @@ export default defineNuxtPlugin(() => {
   // @ts-ignore
   if ((import.meta as any).hot) {
     // @ts-ignore
-    ;(import.meta as any).hot.dispose(() => timer && clearTimeout(timer))
+    ;(import.meta as any).hot.dispose(() => {
+      if (timer) clearTimeout(timer)
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('visibilitychange', onVisibilityChange)
+      }
+    })
   }
 })

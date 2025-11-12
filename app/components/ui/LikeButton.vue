@@ -35,19 +35,16 @@
         countInside ? 'relative' : isReversed ? 'ml-1' : 'mr-1',
       ]"
     >
-      <Icon
-        :key="isSolid ? 'heart-solid' : 'heart-outline'"
-        :name="isSolid ? 'heroicons:heart-20-solid' : 'heroicons:heart'"
-        class="transition-all duration-200 group-hover:brightness-125 group-hover:drop-shadow-[0_0_12px_#33c3fd]"
-        :class="[
-          isSolid ? 'heart-gradient scale-105' : 'scale-100',
-          !isSolid && fadedUnliked
-            ? 'text-[#b3b3b3]/50'
-            : !isSolid
-              ? 'text-[#b3b3b3]'
-              : '',
-        ]"
+      <HeartSolid
+        v-if="isSolid"
         :size="iconSize"
+        class="scale-105 transition-all duration-200"
+      />
+      <HeartOutline
+        v-else
+        :size="iconSize"
+        class="scale-100 transition-all duration-200"
+        :class="[fadedUnliked ? 'text-[#b3b3b3]/50' : 'text-[#b3b3b3]']"
       />
       <span
         v-if="countInside && displayCount > 0 && showCount"
@@ -70,6 +67,9 @@
 </template>
 
 <script setup>
+  import HeartSolid from '~/components/icons/HeartSolid.vue'
+  import HeartOutline from '~/components/icons/HeartOutline.vue'
+
   const props = defineProps({
     id: { type: String, required: true },
     title: { type: String, default: '' },
@@ -153,13 +153,6 @@
     // Schedule a server reconciliation so any stale optimistic local count is corrected quickly
     setTimeout(() => hydrateServer([props.id]), 150)
   }
-
-  // PERFORMANCE: Completely disable individual hydration to avoid blocking modals
-  // The hydration plugin will handle all hydration after user interaction
-  onMounted(() => {
-    // Individual button hydration is now handled by the hydration plugin
-    // This prevents any blocking API calls when modals open
-  })
 </script>
 
 <style scoped>
@@ -167,12 +160,5 @@
     button:hover span:first-child {
       transform: scale(1.05);
     }
-  }
-
-  .heart-gradient {
-    background: radial-gradient(circle, #00a5ff, #00649b, #000000) !important;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 </style>

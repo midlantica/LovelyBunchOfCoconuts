@@ -57,10 +57,22 @@
         : setTimeout(cb, 1200)
     idle(() => {
       // Fire and forget; purpose is to prime dynamic import chunks
-      import('~/components/modals/ModalMeme.vue').catch(() => {})
-      import('~/components/modals/ModalGrift.vue').catch(() => {})
-      import('~/components/modals/ModalQuote.vue').catch(() => {})
-      import('~/components/modals/ModalProfile.vue').catch(() => {})
+      import('~/components/modals/ModalMeme.vue').catch((e) => {
+        if (import.meta.dev)
+          console.warn('[layout] Failed to pre-warm ModalMeme:', e)
+      })
+      import('~/components/modals/ModalGrift.vue').catch((e) => {
+        if (import.meta.dev)
+          console.warn('[layout] Failed to pre-warm ModalGrift:', e)
+      })
+      import('~/components/modals/ModalQuote.vue').catch((e) => {
+        if (import.meta.dev)
+          console.warn('[layout] Failed to pre-warm ModalQuote:', e)
+      })
+      import('~/components/modals/ModalProfile.vue').catch((e) => {
+        if (import.meta.dev)
+          console.warn('[layout] Failed to pre-warm ModalProfile:', e)
+      })
     })
   })
 
@@ -101,7 +113,10 @@
           path: `/modal/${type}/${encodeURIComponent(slug)}`,
         })
       }
-    } catch (e) {}
+    } catch (e) {
+      if (import.meta.dev)
+        console.warn('[layout] GoatCounter tracking failed:', e)
+    }
   }
 
   function closeModal() {
