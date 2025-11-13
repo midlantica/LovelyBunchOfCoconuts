@@ -6,7 +6,11 @@
     toast-message="Opening X..."
     @click="shareToTwitter"
     @toast-show="onToastShow"
-  />
+  >
+    <template #icon>
+      <IconsSimpleX :size="21" />
+    </template>
+  </UiShareButtonBase>
 </template>
 
 <script setup>
@@ -52,7 +56,6 @@
   })
 
   const shareToTwitter = async () => {
-
     let shareUrl = props.url.trim()
     // In development, keep localhost URLs as-is
     // In production, they should already be production URLs

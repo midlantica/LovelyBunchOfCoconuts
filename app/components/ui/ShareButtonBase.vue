@@ -6,7 +6,9 @@
       :aria-label="ariaLabel"
       :style="buttonStyle"
     >
-      <Icon :name="iconName" :size="iconSize" />
+      <slot name="icon">
+        <Icon v-if="iconName" :name="iconName" :size="iconSize" />
+      </slot>
     </button>
 
     <!-- Toast notification -->

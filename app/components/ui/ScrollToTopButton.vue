@@ -5,7 +5,7 @@
     @click="scrollToTop"
     title="Scroll to top"
   >
-    <Icon name="tabler:arrow-bar-to-up" class="text-[1.5rem]" />
+    <IconsArrowBarToUp :size="24" class="text-[1.5rem]" />
   </button>
 </template>
 

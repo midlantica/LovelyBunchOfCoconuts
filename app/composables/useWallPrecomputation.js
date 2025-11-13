@@ -37,26 +37,37 @@ export function useWallPrecomputation() {
         ? calculateAdInterval(options.adInterval || 5)
         : 0
 
+      // Ensure all parameters are arrays
+      const safeClaims = claims || []
+      const safeQuotes = quotes || []
+      const safeMemes = memes || []
+      const safeProfiles = profiles || []
+
       // Pre-compute the wall layout
-      const precomputedLayout = interleaveContent(claims, quotes, memes, {
-        seed: newSeed,
-        enableShuffle: true,
-        adInterval: interval,
-        adProvider: adProvider,
-        profiles: profiles,
-        profileInterval: options.profileInterval || 4,
-      })
+      const precomputedLayout = interleaveContent(
+        safeClaims,
+        safeQuotes,
+        safeMemes,
+        {
+          seed: newSeed,
+          enableShuffle: true,
+          adInterval: interval,
+          adProvider: adProvider,
+          profiles: safeProfiles,
+          profileInterval: options.profileInterval || 4,
+        }
+      )
 
       // Store the pre-computed layout
-      const layoutKey = `${claims.length}-${quotes.length}-${memes.length}-${profiles.length}`
+      const layoutKey = `${safeClaims.length}-${safeQuotes.length}-${safeMemes.length}-${safeProfiles.length}`
       precomputedWalls.value.set(layoutKey, {
         seed: newSeed,
         layout: precomputedLayout,
         timestamp: Date.now(),
-        claims: claims.length,
-        quotes: quotes.length,
-        memes: memes.length,
-        profiles: profiles.length,
+        claims: safeClaims.length,
+        quotes: safeQuotes.length,
+        memes: safeMemes.length,
+        profiles: safeProfiles.length,
       })
 
       if (import.meta.dev) {
@@ -74,7 +85,12 @@ export function useWallPrecomputation() {
 
   // Get a pre-computed layout if available
   function getPrecomputedLayout(claims, quotes, memes, profiles = []) {
-    const layoutKey = `${claims.length}-${quotes.length}-${memes.length}-${profiles.length}`
+    // Ensure all parameters are arrays
+    const safeClaims = claims || []
+    const safeQuotes = quotes || []
+    const safeMemes = memes || []
+    const safeProfiles = profiles || []
+    const layoutKey = `${safeClaims.length}-${safeQuotes.length}-${safeMemes.length}-${safeProfiles.length}`
     const cached = precomputedWalls.value.get(layoutKey)
 
     if (!cached) return null

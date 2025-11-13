@@ -13,9 +13,9 @@
         description="Real ideological positions from hard Left-wing Woke sources, presented with sane Translations for normal people. These are actual beliefs being advocated in mainstream spaces."
       >
         <template #title>
-          Grift<Icon
-            name="i-heroicons:arrow-right-20-solid"
-            class="100 relative top-0.5 mr-0.5 ml-px text-xl"
+          Grift<IconsArrowRight
+            :size="20"
+            class="100 relative -top-[2px] mr-0.5 ml-px inline-block text-xl"
           />Decodes
         </template>
       </FeatureCard>

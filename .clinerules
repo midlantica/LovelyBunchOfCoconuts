@@ -158,12 +158,28 @@ env/
 *.csv
 !sample.csv  # Keep sample data if needed
 *.json
+# Include all package.json files (root and subdirectories)
 !package.json
+!**/package.json
+# Include all TypeScript config files
 !tsconfig.json
+!tsconfig.*.json
+# Include all config files
 !*.config.json
+!*.config.js
+!*.config.ts
+!*.config.mjs
+!*.config.cjs
+# Specific important configs
 !app.config.ts
 !tailwind.config.js
 !postcss.config.js
+!nuxt.config.ts
+!vite.config.ts
+!vitest.config.ts
+!eslint.config.js
+!prettier.config.js
+!content.config.ts
 
 # Specific to your project (adjust as needed)
 public/fonts/

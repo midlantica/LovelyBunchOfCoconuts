@@ -11,10 +11,7 @@
           aria-label="Visit WakeUpNPC on X"
           class="inline-flex"
         >
-          <Icon
-            name="streamline-logos:x-twitter-logo-block"
-            class="hover:text-seagull-300"
-          />
+          <IconsXTwitter :size="24" class="hover:text-seagull-300" />
         </a>
         <a
           href="https://www.facebook.com/profile.php?id=61582910375411"
@@ -23,10 +20,7 @@
           aria-label="Visit WakeUpNPC on Facebook"
           class="inline-flex"
         >
-          <Icon
-            name="streamline-logos:facebook-logo-2-block"
-            class="hover:text-seagull-300"
-          />
+          <IconsFacebook :size="24" class="hover:text-seagull-300" />
         </a>
       </div>
     </div>

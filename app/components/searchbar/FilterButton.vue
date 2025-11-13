@@ -12,7 +12,7 @@
       @click.stop="toggle()"
       title="Filter results"
     >
-      <Icon name="mdi:filter-variant" class="text-[1.35rem]" />
+      <IconsFilterVariant :size="22" class="text-[1.35rem]" />
     </button>
 
     <div

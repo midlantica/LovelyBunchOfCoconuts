@@ -59,7 +59,8 @@
       const precomputedLayout = usePrecomputedRefresh(
         cache.claims,
         cache.quotes,
-        cache.memes
+        cache.memes,
+        cache.profiles || []
       )
 
       if (precomputedLayout) {

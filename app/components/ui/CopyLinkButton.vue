@@ -8,7 +8,11 @@
     :button-style="buttonStyle"
     @click="copyLink"
     @toast-show="onToastShow"
-  />
+  >
+    <template #icon>
+      <IconsExternalLink :size="iconSize" />
+    </template>
+  </UiShareButtonBase>
 </template>
 
 <script setup>

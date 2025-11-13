@@ -2,7 +2,7 @@
   <button
     type="button"
     @click.stop="emit('click')"
-    class="hover:bg-slate-800 p-2 rounded-lg focus:outline-none transition-colors"
+    class="rounded-lg p-2 transition-colors hover:bg-slate-800 focus:outline-none"
     aria-label="Toggle navigation menu"
   >
     <svg
@@ -16,7 +16,7 @@
       stroke-linecap="round"
       stroke-linejoin="round"
     >
-      <path d="M1.5 3.5h12M1.5 7.5h12M1.5 11.5h12" />
+      <path d="M1.5 2.5h12M1.5 7.5h12M1.5 12.5h12" />
     </svg>
   </button>
 </template>

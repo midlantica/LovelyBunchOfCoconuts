@@ -7,7 +7,11 @@
     :toast-duration="1200"
     @click="handleClick"
     @toast-show="onToastShow"
-  />
+  >
+    <template #icon>
+      <IconsShare :size="21" />
+    </template>
+  </UiShareButtonBase>
 </template>
 
 <script setup>
@@ -60,9 +64,7 @@
     const shareText = `${formattedText.value}\n\n${shareUrl}`
     try {
       await navigator.clipboard.writeText(shareText)
-    } catch (err) {
-
-    }
+    } catch (err) {}
   }
 
   const onToastShow = () => emit('toast-show', 'facebook')
