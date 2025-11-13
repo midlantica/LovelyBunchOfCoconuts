@@ -36,10 +36,41 @@ export default defineNuxtConfig({
           if (/Sourcemap is likely to be incorrect/.test(msg)) return
           handler(warning)
         },
+        output: {
+          // Manual chunk splitting for better caching and performance
+          manualChunks(id) {
+            // Vendor chunks
+            if (id.includes('node_modules')) {
+              // SQLite should be lazy loaded, not in initial bundle
+              if (id.includes('sql.js') || id.includes('sqlite')) {
+                return 'sqlite-lazy'
+              }
+              // Large vendor libraries
+              if (id.includes('vue') || id.includes('@vue')) {
+                return 'vue-vendor'
+              }
+              if (id.includes('@nuxt')) {
+                return 'nuxt-vendor'
+              }
+              // Other vendors
+              return 'vendor'
+            }
+            // Modal components - lazy load
+            if (id.includes('/components/modals/')) {
+              return 'modals'
+            }
+            // Wall components - can be in main bundle since they're critical
+            if (id.includes('/components/wall/')) {
+              return 'wall'
+            }
+          },
+        },
       },
       // Optimize chunk size
-      chunkSizeWarningLimit: 1000,
+      chunkSizeWarningLimit: 500, // Reduced from 1000 to catch large bundles
       cssCodeSplit: true,
+      // Target modern browsers for smaller bundles
+      target: 'es2020',
     },
     // Filter chatty plugin warnings in both dev and build
     // Note: This keeps errors visible; set SILENT_VITE=1 to hide infos/warns entirely
@@ -77,12 +108,46 @@ export default defineNuxtConfig({
       gzip: true,
       brotli: true,
     },
-    // Add security headers including CSP for Iconify
+    // Add security headers including CSP for Iconify + aggressive caching
     routeRules: {
       '/**': {
         headers: {
           'Content-Security-Policy':
             "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://wakeupnpc.goatcounter.com https://api.iconify.design; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
+        },
+      },
+      // Aggressive caching for static assets with hashed filenames
+      '/_nuxt/**': {
+        headers: {
+          'Cache-Control': 'public, max-age=31536000, immutable',
+        },
+      },
+      // Cache images for 1 year (they have content-based paths)
+      '/memes/**': {
+        headers: {
+          'Cache-Control': 'public, max-age=31536000, immutable',
+        },
+      },
+      '/profiles/**': {
+        headers: {
+          'Cache-Control': 'public, max-age=31536000, immutable',
+        },
+      },
+      '/ads/**': {
+        headers: {
+          'Cache-Control': 'public, max-age=31536000, immutable',
+        },
+      },
+      // Cache fonts
+      '/fonts/**': {
+        headers: {
+          'Cache-Control': 'public, max-age=31536000, immutable',
+        },
+      },
+      // Shorter cache for HTML pages
+      '/': {
+        headers: {
+          'Cache-Control': 'public, max-age=3600, must-revalidate',
         },
       },
     },
@@ -234,7 +299,7 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         // Canonical home URL
         { rel: 'canonical', href: 'https://wakeupnpc.com/' },
-        // Preload Google Fonts to prevent white flash
+        // Preconnect to Google Fonts for faster loading
         {
           rel: 'preconnect',
           href: 'https://fonts.googleapis.com',
@@ -244,19 +309,19 @@ export default defineNuxtConfig({
           href: 'https://fonts.gstatic.com',
           crossorigin: '',
         },
+        // Preload LCP image (welcome modal)
         {
           rel: 'preload',
-          href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap',
-          as: 'style',
-          onload: "this.onload=null;this.rel='stylesheet'",
+          href: '/welcome-modal-image.svg',
+          as: 'image',
+          type: 'image/svg+xml',
         },
+        // Load Google Fonts with font-display: swap for better performance
         {
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap',
-          media: 'print',
-          onload: "this.media='all'",
         },
-        // Preload key background images used above the fold
+        // Favicon sizes
         {
           rel: 'icon',
           type: 'image/png',
@@ -266,62 +331,8 @@ export default defineNuxtConfig({
         {
           rel: 'icon',
           type: 'image/png',
-          sizes: '36x36',
-          href: '/favicon/favicon-36x36.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '48x48',
-          href: '/favicon/favicon-48x48.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '57x57',
-          href: '/favicon/favicon-57x57.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '60x60',
-          href: '/favicon/favicon-60x60.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '72x72',
-          href: '/favicon/favicon-72x72.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '96x96',
-          href: '/favicon/favicon-96x96.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '120x120',
-          href: '/favicon/favicon-120x120.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '144x144',
-          href: '/favicon/favicon-144x144.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
           sizes: '192x192',
           href: '/favicon/favicon-192x192.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '512x512',
-          href: '/favicon/favicon-512x512.png',
         },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
@@ -377,5 +388,10 @@ export default defineNuxtConfig({
     public: {
       siteUrl: 'https://wakeupnpc.com',
     },
+  },
+  // Performance optimizations
+  experimental: {
+    payloadExtraction: true, // Extract payload for better caching
+    renderJsonPayloads: true, // Optimize JSON payloads
   },
 })

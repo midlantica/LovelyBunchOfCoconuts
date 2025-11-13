@@ -51,6 +51,10 @@
               <img
                 src="/welcome-modal-image.svg"
                 alt="Claim-Translation Example"
+                width="590"
+                height="280"
+                loading="eager"
+                fetchpriority="high"
               />
             </div>
           </div>
@@ -270,6 +274,7 @@
     max-width: 100%;
     height: auto;
     display: block;
+    aspect-ratio: 590 / 280;
   }
 
   /* Bottom explanation */

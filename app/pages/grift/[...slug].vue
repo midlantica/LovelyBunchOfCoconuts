@@ -52,9 +52,15 @@
   const wallScrollTop = useState('wallScrollTop', () => 0)
 
   const slugPath = computed(() => {
-    const slug = Array.isArray(route.params.slug)
+    let slug = Array.isArray(route.params.slug)
       ? route.params.slug.join('/')
       : route.params.slug || ''
+
+    // Remove any query parameters from the slug (in case they got mixed in)
+    if (slug.includes('?')) {
+      slug = slug.split('?')[0]
+    }
+
     return slug
   })
 

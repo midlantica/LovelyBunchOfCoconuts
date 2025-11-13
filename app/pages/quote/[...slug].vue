@@ -102,9 +102,14 @@
   })
 
   const routeSlug = computed(() => {
-    const slug = Array.isArray(route.params.slug)
+    let slug = Array.isArray(route.params.slug)
       ? route.params.slug.join('/')
       : route.params.slug || ''
+
+    // Remove any query parameters from the slug (in case they got mixed in)
+    if (slug.includes('?')) {
+      slug = slug.split('?')[0]
+    }
 
     // Handle different slug formats
     // Remove 'economics/' prefix if present to get just the quote slug
