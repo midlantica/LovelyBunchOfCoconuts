@@ -13,7 +13,7 @@
         class="modal-overlay fixed inset-0 z-50 flex items-center justify-center overscroll-contain"
         @click.self="handleBackdropClick"
       >
-        <div class="welcome-modal-background" @click="handleClose">
+        <div class="welcome-modal-background card" @click="handleClose">
           <!-- Close button -->
           <UiCloseButton
             class="welcome-modal-close-button"
@@ -30,16 +30,20 @@
 
             <!-- Intro paragraphs -->
             <p class="welcome-modal-paragraph">
-              NPCs — Non&#8209;Player Characters from games — are caught in the
-              Leftist echo chamber. It's time to wake them up!
+              NPCs — <span class="underlined-text">N</span>on&#8209;<span
+                class="underlined-text"
+                >P</span
+              >layer <span class="underlined-text">C</span>haracters from games
+              — are caught in the Leftist echo chamber. It's time to wake them
+              up!
             </p>
 
             <p class="welcome-modal-paragraph relative">
               WakeUpNPC is a gold mine of anti&#8209;Leftist Memes, Quotes,
               and&nbsp;<span class="underlined-text"
-                >Leftist Grift<Icon
-                  name="i-heroicons:arrow-right-20-solid"
-                  class="relative top-0.5 mx-0.5 text-xl text-slate-100"
+                >Leftist Grifts<IconsArrowRight
+                  :size="20"
+                  class="relative -top-0.5 mx-0.5 inline-block text-slate-100"
                 />Decoded</span
               >.
             </p>
@@ -58,19 +62,6 @@
               />
             </div>
           </div>
-
-          <!-- Bottom explanation -->
-          <!-- <p class="welcome-modal-explanation">
-            <span class="explanation-line-1"
-              >The <span class="underlined-text">Claim</span> is the loony
-              Leftist gaslighting idea/buzzword.</span
-            ><span> </span>
-
-            <span class="explanation-line-2"
-              >The <span class="underlined-text">Translation</span> reveals what
-              it truly means in plain terms.</span
-            >
-          </p> -->
         </div>
       </div>
     </transition>
@@ -194,7 +185,8 @@
   }
 
   .welcome-modal-close-button:hover {
-    background-color: hsl(215.68deg 38.14% 15%) !important;
+    color: white !important;
+    cursor: pointer;
   }
 
   /* Top section */
@@ -224,11 +216,13 @@
     text-align: right;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.85);
     margin: 0;
+    /* letter-spacing: -0.0005em; */
   }
 
   .welcome-modal-npc-icon {
     flex-shrink: 0;
-    width: 2rem;
+    width: 2.5rem;
+    margin-left: 0.15rem;
   }
 
   .welcome-modal-paragraph {
@@ -237,7 +231,7 @@
     font-size: var(--welcome-modal-body-font-size);
     font-style: normal;
     line-height: 1.35;
-    letter-spacing: 0.02788rem;
+    /* letter-spacing: 0.0001rem; */
     text-align: center;
     color: #fff;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.85);
@@ -250,8 +244,8 @@
     text-decoration-style: solid;
     -webkit-text-decoration-skip-ink: none;
     text-decoration-skip-ink: none;
-    text-decoration-thickness: 5%;
-    text-underline-offset: 20%;
+    text-decoration-thickness: 7%;
+    text-underline-offset: 15%;
     text-underline-position: from-font;
     text-decoration-color: #ffffffb5;
   }
@@ -262,7 +256,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin: -0.5rem 0 1rem 0;
+    margin: 0.75rem 0 0.75rem 0;
   }
 
   .welcome-modal-image-panel {
@@ -274,7 +268,7 @@
     max-width: 100%;
     height: auto;
     display: block;
-    aspect-ratio: 590 / 280;
+    aspect-ratio: 473 / 178;
   }
 
   /* Bottom explanation */
