@@ -1,4 +1,4 @@
 ---
 grift: 'Crisis'
-decode: 'Usually normalcy'
+decode: 'Change or Normal'
 ---
