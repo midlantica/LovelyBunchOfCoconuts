@@ -37,27 +37,11 @@ export default defineNuxtConfig({
           handler(warning)
         },
         output: {
-          // Balanced chunk splitting - avoid circular dependencies while improving performance
+          // Simplified chunk splitting to avoid circular dependencies
           manualChunks(id) {
+            // Only split out node_modules as vendor chunk
             if (id.includes('node_modules')) {
-              // Split out heavy/optional libraries that can be lazy loaded
-              if (id.includes('sql.js') || id.includes('sqlite')) {
-                return 'sqlite-lazy'
-              }
-              // Keep Vue/Nuxt together to avoid circular deps
-              if (
-                id.includes('vue') ||
-                id.includes('@vue') ||
-                id.includes('@nuxt')
-              ) {
-                return 'framework'
-              }
-              // Other vendors
               return 'vendor'
-            }
-            // Lazy load modal components
-            if (id.includes('/components/modals/')) {
-              return 'modals'
             }
           },
         },
