@@ -57,31 +57,59 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     const hasMemesKeyword = expanded.some((term) =>
       ['memes', 'meme', 'image', 'picture', 'graphic'].includes(term)
     )
-    const hasProfilesKeyword = expanded.some((term) =>
-      [
-        'profiles',
-        'profile',
-        'hero',
-        'heroes',
-        'zero',
-        'zeros',
-        'person',
-        'people',
-      ].includes(term)
+
+    // Check for hero-specific search (must NOT include zero terms)
+    const hasHeroKeyword = expanded.some((term) =>
+      ['hero', 'heroes'].includes(term)
+    )
+    const hasZeroKeyword = expanded.some((term) =>
+      ['zero', 'zeros'].includes(term)
     )
 
+    // If searching ONLY for heroes
+    if (hasHeroKeyword && !hasZeroKeyword) {
+      return {
+        grifts: false,
+        quotes: false,
+        memes: false,
+        profiles: true,
+        profileFilter: 'heroes',
+      }
+    }
+
+    // If searching ONLY for zeros
+    if (hasZeroKeyword && !hasHeroKeyword) {
+      return {
+        grifts: false,
+        quotes: false,
+        memes: false,
+        profiles: true,
+        profileFilter: 'zeros',
+      }
+    }
+
+    // Check for general profiles keyword
+    const hasProfilesKeyword = expanded.some((term) =>
+      ['profiles', 'profile', 'person', 'people'].includes(term)
+    )
+
+    if (hasProfilesKeyword) {
+      return {
+        grifts: false,
+        quotes: false,
+        memes: false,
+        profiles: true,
+        profileFilter: 'all',
+      }
+    }
+
     // If searching for specific content types, return filter
-    if (
-      hasGriftsKeyword ||
-      hasQuotesKeyword ||
-      hasMemesKeyword ||
-      hasProfilesKeyword
-    ) {
+    if (hasGriftsKeyword || hasQuotesKeyword || hasMemesKeyword) {
       return {
         grifts: hasGriftsKeyword,
         quotes: hasQuotesKeyword,
         memes: hasMemesKeyword,
-        profiles: hasProfilesKeyword,
+        profiles: false,
       }
     }
 
@@ -94,6 +122,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     const seen = new Set()
     return items.filter((item) => {
       // Create a unique key based on multiple properties
+      // For profiles, use path as the unique identifier (they all have title "Heroes and Zeros")
       // For memes and grifts, use title as primary identifier
       // For quotes, use a combination of quote text and attribution
       const title = item?.title || ''
@@ -101,11 +130,16 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
       const quoteText = item?.quoteText || ''
       const attribution = item?.attribution || ''
       const grift = item?.grift || ''
+      const profile = item?.meta?.profile || item?.profile || ''
 
       // Create a composite key that identifies truly unique content
-      // Priority: title (most reliable) > specific content fields > path
+      // Priority: path for profiles > title for others > specific content fields > path
       let uniqueKey = ''
-      if (title) {
+
+      // Profiles: use path since they all share the same title
+      if (profile || path.includes('/profiles/')) {
+        uniqueKey = `path:${path}`
+      } else if (title && title !== 'Heroes and Zeros') {
         uniqueKey = `title:${title.toLowerCase().trim()}`
       } else if (quoteText && attribution) {
         uniqueKey = `quote:${quoteText.toLowerCase().trim()}:${attribution.toLowerCase().trim()}`
@@ -145,7 +179,22 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     // Check if this is a content type search
     const contentTypeFilter = getContentTypeFilter(q)
     if (contentTypeFilter) {
-      // Filter by content type only and deduplicate
+      let filteredProfiles = groups.profiles
+
+      // Apply hero/zero filtering
+      if (contentTypeFilter.profileFilter === 'heroes') {
+        filteredProfiles = groups.profiles.filter(
+          (p) => p._path?.includes('/heroes/') || p.meta?.status === 'hero'
+        )
+      } else if (contentTypeFilter.profileFilter === 'zeros') {
+        filteredProfiles = groups.profiles.filter(
+          (p) => p._path?.includes('/zeros/') || p.meta?.status === 'zero'
+        )
+      }
+      // profileFilter === 'all' means use all profiles
+
+      // When searching for a specific content type (like "profiles"),
+      // return ALL items of that type without text filtering
       return {
         grifts: deduplicateByPath(
           contentTypeFilter.grifts ? groups.grifts : []
@@ -155,7 +204,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
         ),
         memes: deduplicateByPath(contentTypeFilter.memes ? groups.memes : []),
         profiles: deduplicateByPath(
-          contentTypeFilter.profiles ? groups.profiles : []
+          contentTypeFilter.profiles ? filteredProfiles : []
         ),
       }
     }
