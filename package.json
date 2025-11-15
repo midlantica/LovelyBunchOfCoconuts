@@ -30,10 +30,10 @@
   "dependencies": {
     "@napi-rs/canvas": "^0.1.82",
     "@netlify/blobs": "^10.3.3",
-    "@nuxt/content": "3.8.2",
+    "@nuxt/content": "3.8.0",
     "@nuxt/eslint": "1.10.0",
     "@nuxt/icon": "2.1.0",
-    "@nuxtjs/mdc": "0.18.3",
+    "@nuxtjs/mdc": "0.18.2",
     "gray-matter": "^4.0.3",
     "markdown-it": "^14.1.0",
     "nuxt": "^4.2.1",

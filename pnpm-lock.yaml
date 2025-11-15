@@ -15,8 +15,8 @@ importers:
         specifier: ^10.3.3
         version: 10.3.3
       '@nuxt/content':
-        specifier: 3.8.2
-        version: 3.8.2(better-sqlite3@12.4.1)(magicast@0.5.1)
+        specifier: 3.8.0
+        version: 3.8.0(better-sqlite3@12.4.1)(magicast@0.5.1)
       '@nuxt/eslint':
         specifier: 1.10.0
         version: 1.10.0(@typescript-eslint/utils@8.46.4(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-sfc@3.5.24)(eslint@9.39.1(jiti@2.6.1))(magicast@0.5.1)(typescript@5.9.3)(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.1))
@@ -24,8 +24,8 @@ importers:
         specifier: 2.1.0
         version: 2.1.0(magicast@0.5.1)(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.1))(vue@3.5.24(typescript@5.9.3))
       '@nuxtjs/mdc':
-        specifier: 0.18.3
-        version: 0.18.3(magicast@0.5.1)
+        specifier: 0.18.2
+        version: 0.18.2(magicast@0.5.1)
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -860,8 +860,8 @@ packages:
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
 
-  '@nuxt/content@3.8.2':
-    resolution: {integrity: sha512-bqqS2bTpkmLJDCCU3GuApBQBa6BlHuT7OW9GGoTEZ14evilwjlKSLlFNRYKIyS3Ua4L+GXz7Its7pLbXe+nW5w==}
+  '@nuxt/content@3.8.0':
+    resolution: {integrity: sha512-uW8aqo9bcWwBk43f+EkfcHRrkydRAqrVzpogRSCaoistJ9ND5T0Uul5oKEFfzeByKGlSrX4Qb2zbReSoN3rp4A==}
     peerDependencies:
       '@electric-sql/pglite': '*'
       '@libsql/client': '*'
@@ -973,8 +973,8 @@ packages:
       rolldown:
         optional: true
 
-  '@nuxtjs/mdc@0.18.3':
-    resolution: {integrity: sha512-Fl64a9OZBH3J7ZpqzSWkrS64oFmLLvledZMcnYH3UzVtgFPo/GaICdJN3Ml83NSs/J9At6HHaP0k3+nrxu2qJw==}
+  '@nuxtjs/mdc@0.18.2':
+    resolution: {integrity: sha512-pdeWd2/oOPriPVa1F6QNoK4fZCp/b4sxEVoouXJJCETCBIFSNS4OOtdRTY1ATLM1Gr+6ZvNyNPABvaaUEGC4Lw==}
 
   '@nuxtjs/sitemap@7.4.7':
     resolution: {integrity: sha512-DUhX92lnCJD6tpghUmfmRIsSIoiXMS2SQ2Yd9Tg1+SnZskiKX+DGwLeAeHX8r0/9Pl/bTDpmYhs1snWcCoIkXA==}
@@ -4078,8 +4078,8 @@ packages:
   mocked-exports@0.1.1:
     resolution: {integrity: sha512-aF7yRQr/Q0O2/4pIXm6PZ5G+jAd7QS4Yu8m+WEeEHGnbo+7mE36CbLSDQiXYV8bVL3NfmdeqPJct0tUlnjVSnA==}
 
-  modern-tar@0.7.0:
-    resolution: {integrity: sha512-ZKEfHrY3Gk7oqhLGUHb3pv/X/grcqqm5LF3DRwPmih7piadVPAl7ddHETImvHX/K6RWe4eSiS2JdU3Wg22pMWw==}
+  modern-tar@0.6.1:
+    resolution: {integrity: sha512-PS5kTfMLBrIP7X7dj3x+N17T1Fc2InnFJAe/pGleM0hT9GhDFkltsLYxB1eQisg55bjnvgLsbTRFYp47AUhcbg==}
     engines: {node: '>=18.0.0'}
 
   module-details-from-path@1.0.4:
@@ -4198,8 +4198,9 @@ packages:
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
-  nuxt-component-meta@0.14.2:
-    resolution: {integrity: sha512-pxEnARUzRmq3zbOm8fJkWLPR8mL82NeP5Pu/iYff4otl6jPJwgC1Cbpz3Z77HlVeYVtzhSpQRsCSo/+296CwYw==}
+  nuxt-component-meta@https://pkg.pr.new/nuxt-component-meta@e3eb2c4:
+    resolution: {tarball: https://pkg.pr.new/nuxt-component-meta@e3eb2c4}
+    version: 0.14.0
     hasBin: true
 
   nuxt-site-config-kit@3.2.11:
@@ -5465,8 +5466,8 @@ packages:
   unwasm@0.3.11:
     resolution: {integrity: sha512-Vhp5gb1tusSQw5of/g3Q697srYgMXvwMgXMjcG4ZNga02fDX9coxJ9fAb0Ci38hM2Hv/U1FXRPGgjP2BYqhNoQ==}
 
-  unwasm@0.5.0:
-    resolution: {integrity: sha512-6pGyUVJuqGRyyWc0JHbbjXwalBlc/9lEqfuE5j56L4V/MXhdBLRtbX7ciazT+EnzOVV+j++qnxJRTkjna+LgcQ==}
+  unwasm@0.4.2:
+    resolution: {integrity: sha512-/DWXXXn63zAbdoQ6jtdbhr1WP2Cz6ax2nwIu4/yqj4617VWmva4UAzNH16q2fD4I6fym4tSAXFT8P89weXn2AA==}
 
   update-browserslist-db@1.1.4:
     resolution: {integrity: sha512-q0SPT4xyU84saUX+tomz1WLkxUbuaJnR1xWt17M7fJtEJigJeWUNGUqrauFXsHnqev9y9JTRGwk13tFBuKby4A==}
@@ -6584,10 +6585,10 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@nuxt/content@3.8.2(better-sqlite3@12.4.1)(magicast@0.5.1)':
+  '@nuxt/content@3.8.0(better-sqlite3@12.4.1)(magicast@0.5.1)':
     dependencies:
       '@nuxt/kit': 4.2.1(magicast@0.5.1)
-      '@nuxtjs/mdc': 0.18.3(magicast@0.5.1)
+      '@nuxtjs/mdc': 0.18.2(magicast@0.5.1)
       '@shikijs/langs': 3.15.0
       '@sqlite.org/sqlite-wasm': 3.50.4-build1
       '@standard-schema/spec': 1.0.0
@@ -6613,8 +6614,8 @@ snapshots:
       micromatch: 4.0.8
       minimark: 0.2.0
       minimatch: 10.1.1
-      modern-tar: 0.7.0
-      nuxt-component-meta: 0.14.2(magicast@0.5.1)
+      modern-tar: 0.6.1
+      nuxt-component-meta: https://pkg.pr.new/nuxt-component-meta@e3eb2c4(magicast@0.5.1)
       nypm: 0.6.2
       ohash: 2.0.11
       pathe: 2.0.3
@@ -7003,7 +7004,7 @@ snapshots:
       - vue-tsc
       - yaml
 
-  '@nuxtjs/mdc@0.18.3(magicast@0.5.1)':
+  '@nuxtjs/mdc@0.18.2(magicast@0.5.1)':
     dependencies:
       '@nuxt/kit': 4.2.1(magicast@0.5.1)
       '@shikijs/core': 3.15.0
@@ -7046,7 +7047,7 @@ snapshots:
       unified: 11.0.5
       unist-builder: 4.0.0
       unist-util-visit: 5.0.0
-      unwasm: 0.5.0
+      unwasm: 0.4.2
       vfile: 6.0.3
     transitivePeerDependencies:
       - magicast
@@ -10315,7 +10316,7 @@ snapshots:
 
   mocked-exports@0.1.1: {}
 
-  modern-tar@0.7.0: {}
+  modern-tar@0.6.1: {}
 
   module-details-from-path@1.0.4: {}
 
@@ -10493,7 +10494,7 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nuxt-component-meta@0.14.2(magicast@0.5.1):
+  nuxt-component-meta@https://pkg.pr.new/nuxt-component-meta@e3eb2c4(magicast@0.5.1):
     dependencies:
       '@nuxt/kit': 4.2.1(magicast@0.5.1)
       citty: 0.1.6
@@ -12075,7 +12076,7 @@ snapshots:
       pkg-types: 2.3.0
       unplugin: 2.3.10
 
-  unwasm@0.5.0:
+  unwasm@0.4.2:
     dependencies:
       exsolve: 1.0.8
       knitwork: 1.2.0
