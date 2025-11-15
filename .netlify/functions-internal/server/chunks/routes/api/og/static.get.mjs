@@ -1,0 +1,2 @@
+import{d as t,g as o,n as e}from"../../../nitro/nitro.mjs";import"node:http";import"node:https";import"node:events";import"node:buffer";import"@netlify/blobs";import"node:fs";import"node:path";import"node:crypto";import"vue";import"@iconify/utils";import"consola";import"better-sqlite3";const i=t(async t=>{let i="/og-default.png";switch(o(t).type||"quote"){case"quote":i="/og-quote.png";break;case"claim":i="/og-claim.png";break;case"meme":i="/og-meme.png"}await e(t,i,302)});export{i as default};
+//# sourceMappingURL=static.get.mjs.map

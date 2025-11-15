@@ -1,0 +1,2 @@
+import{hasInjectionContext as r,inject as n}from"vue";import{e as t}from"./server.mjs";import{u as e,h as o}from"../routes/renderer.mjs";function x(s,u={}){const i=u.head||function(e){const s=e||t();return s.ssrContext?.head||s.runWithContext(()=>{if(r()){const r=n(o);if(!r)throw new Error("[nuxt] [unhead] Missing Unhead instance.");return r}})}(u.nuxt);return e(s,{head:i,...u})}export{x};
+//# sourceMappingURL=composables-DwpEVjqs.mjs.map

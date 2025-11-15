@@ -1,0 +1,2 @@
+const t=[".filter-hero[data-v-d4705ffe],.filter-zero[data-v-d4705ffe]{filter:grayscale(1)}.badge-top-left[data-v-d4705ffe]{left:.45rem;top:.65rem}.badge-top-right[data-v-d4705ffe]{right:.45rem;top:.65rem}.badge-bottom-right[data-v-d4705ffe]{bottom:.65rem;right:.45rem}.badge-bottom-left[data-v-d4705ffe]{bottom:.65rem;left:.45rem}"];export{t as default};
+//# sourceMappingURL=ProfileImage-styles.HeJVKM7A.mjs.map

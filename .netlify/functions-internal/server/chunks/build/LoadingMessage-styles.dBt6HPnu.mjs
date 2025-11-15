@@ -1,0 +1,2 @@
+const a=[".spinner-continuous[data-v-cba850af]{animation:spin-cba850af 1s linear infinite;animation-fill-mode:both;transform-origin:center;will-change:transform}@keyframes spin-cba850af{0%{transform:rotate(0)}to{transform:rotate(1turn)}}.spinner-continuous[data-v-cba850af] *{animation:inherit}.spinner-continuous[data-v-cba850af],.spinner-continuous[data-v-cba850af] *{backface-visibility:hidden;-webkit-backface-visibility:hidden}"];export{a as default};
+//# sourceMappingURL=LoadingMessage-styles.dBt6HPnu.mjs.map

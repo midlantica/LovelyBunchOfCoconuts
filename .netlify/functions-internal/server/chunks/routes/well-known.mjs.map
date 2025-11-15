@@ -1,0 +1,1 @@
+{"version":3,"file":"well-known.mjs","sources":["../../../../../server/routes/well-known.js"],"sourcesContent":null,"names":["wellKnown","defineEventHandler","event"],"mappings":"2QACA,MAAAA,EAAAC,EAAAC,IAEA,CAAA"}

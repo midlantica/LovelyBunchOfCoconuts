@@ -1,0 +1,2 @@
+const a=[".dropdown-enter-active[data-v-df93687e]{transition:all .2s ease-out}.dropdown-leave-active[data-v-df93687e]{transition:all .15s ease-in}.dropdown-enter-from[data-v-df93687e],.dropdown-leave-to[data-v-df93687e]{opacity:0;transform:translateY(-10px)}.font-100[data-v-df93687e]{font-weight:300}.font-100[data-v-df93687e],.font-300[data-v-df93687e]{font-family:Barlow Condensed,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif}.font-300[data-v-df93687e]{font-weight:500}"];export{a as default};
+//# sourceMappingURL=NavigationMenu-styles.D4-FTT1G.mjs.map
