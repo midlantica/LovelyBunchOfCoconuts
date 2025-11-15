@@ -81,6 +81,7 @@ export default defineNuxtConfig({
   },
   ssr: true,
   nitro: {
+    preset: 'netlify',
     // Ensure Netlify Functions v2 features (incl. Blobs) are enabled
     compatibilityDate: '2025-06-27',
     // Enable compression for all responses
