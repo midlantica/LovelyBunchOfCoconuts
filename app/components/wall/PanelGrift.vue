@@ -44,7 +44,7 @@
           class="w-8"
         />
         <h2
-          class="font-100 line-clamp-1 tracking-wide text-shadow-xs"
+          class="font-100 text-seagull-200 line-clamp-1 tracking-wide text-shadow-xs"
           :style="{ fontSize: decodeFontSize, lineHeight: '1.4' }"
           v-if="grift.decode"
         >

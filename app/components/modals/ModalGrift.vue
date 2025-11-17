@@ -30,7 +30,7 @@
                 class="w-8 self-start"
               />
               <h1
-                class="font-100 mb-0 text-2xl leading-tight text-white text-shadow-xs"
+                class="font-100 text-seagull-200 mb-0 text-2xl leading-tight text-shadow-xs"
               >
                 {{ modalData?.decode }}
               </h1>
