@@ -3,11 +3,11 @@
 
 [build]
 # Use Nitro Netlify preset (auto-detected). This builds SSR with Functions.
-command = "rm -rf .nuxt .cache node_modules/.cache && pnpm install --no-optional=false && pnpm run build"
+command = "pnpm install --no-optional=false && pnpm run build"
 publish = "dist"
 
 [build.environment]
-NODE_VERSION = "22"
+NODE_VERSION = "22.11.0"
 PNPM_FLAGS = "--shamefully-hoist --no-optional=false"
 
 # Form notifications are configured in Netlify UI:
