@@ -110,32 +110,14 @@
 </template>
 
 <script setup>
-  // Scroll the main content area to top when page loads or when navigating to this page
+  // Scroll to top when page loads
   onMounted(() => {
-    // Scroll both window and the main element
     const mainElement = document.querySelector('main')
     if (mainElement) {
       mainElement.scrollTop = 0
     }
     window.scrollTo({ top: 0, behavior: 'instant' })
   })
-
-  // Also scroll to top when the route changes to this page
-  const route = useRoute()
-  watch(
-    () => route.path,
-    (newPath) => {
-      if (newPath === '/advertising') {
-        nextTick(() => {
-          const mainElement = document.querySelector('main')
-          if (mainElement) {
-            mainElement.scrollTop = 0
-          }
-          window.scrollTo({ top: 0, behavior: 'instant' })
-        })
-      }
-    }
-  )
 
   useHead({
     title: 'Advertising Rates - WakeUpNPC',
