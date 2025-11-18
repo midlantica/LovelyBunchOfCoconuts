@@ -1,9 +1,9 @@
 <template>
-  <div class="mx-auto w-full max-w-3xl px-2 py-0 md:px-0">
+  <div class="mx-auto w-full max-w-3xl px-6 py-0 md:px-6">
     <h1 class="text-seagull-100! mb-4 text-center text-3xl">Advertising</h1>
 
     <!-- Teaser -->
-    <div class="mb-8 px-3">
+    <div class="mb-8 px-6">
       <p
         class="font-100 mx-auto max-w-2xl text-center text-xl leading-normal text-slate-300"
       >
@@ -110,6 +110,33 @@
 </template>
 
 <script setup>
+  // Scroll the main content area to top when page loads or when navigating to this page
+  onMounted(() => {
+    // Scroll both window and the main element
+    const mainElement = document.querySelector('main')
+    if (mainElement) {
+      mainElement.scrollTop = 0
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  })
+
+  // Also scroll to top when the route changes to this page
+  const route = useRoute()
+  watch(
+    () => route.path,
+    (newPath) => {
+      if (newPath === '/advertising') {
+        nextTick(() => {
+          const mainElement = document.querySelector('main')
+          if (mainElement) {
+            mainElement.scrollTop = 0
+          }
+          window.scrollTo({ top: 0, behavior: 'instant' })
+        })
+      }
+    }
+  )
+
   useHead({
     title: 'Advertising Rates - WakeUpNPC',
     meta: [

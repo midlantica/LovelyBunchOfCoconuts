@@ -121,13 +121,13 @@
         </div>
 
         <!-- Submit Button -->
-        <button
+        <UiButton
           type="submit"
+          :text="isSubmitting ? 'Sending...' : 'Send Message'"
+          size="xl"
+          variant="primary"
           :disabled="isSubmitting"
-          class="bg-seagull-600 hover:bg-seagull-500 cursor-pointer rounded-md px-6 py-3 text-[1.3rem] font-normal tracking-[0.1rem] text-slate-950 uppercase transition-colors [text-shadow:1px_1px_4px_#00000054] disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          {{ isSubmitting ? 'Sending...' : 'Send Message' }}
-        </button>
+        />
       </div>
     </form>
   </div>

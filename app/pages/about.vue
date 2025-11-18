@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto w-full max-w-3xl px-2 py-0 md:px-0">
+  <div class="mx-auto w-full max-w-3xl px-8 py-0 sm:px-12">
     <AboutWakeUpNPC />
     <WhatWeDo />
     <ContactForm />
@@ -7,6 +7,33 @@
 </template>
 
 <script setup>
+  // Scroll the main content area to top when page loads or when navigating to this page
+  onMounted(() => {
+    // Scroll both window and the main element
+    const mainElement = document.querySelector('main')
+    if (mainElement) {
+      mainElement.scrollTop = 0
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  })
+
+  // Also scroll to top when the route changes to this page
+  const route = useRoute()
+  watch(
+    () => route.path,
+    (newPath) => {
+      if (newPath === '/about') {
+        nextTick(() => {
+          const mainElement = document.querySelector('main')
+          if (mainElement) {
+            mainElement.scrollTop = 0
+          }
+          window.scrollTo({ top: 0, behavior: 'instant' })
+        })
+      }
+    }
+  )
+
   useHead({
     title: 'About Our Mission - WakeUpNPC',
     meta: [

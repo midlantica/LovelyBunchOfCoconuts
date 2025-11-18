@@ -95,7 +95,7 @@
   const variantClasses = computed(() => {
     switch (props.variant) {
       case 'primary':
-        return 'bg-seagull-400! hover:bg-seagull-600! text-seagull-900! hover:text-white! border-0! font-400!'
+        return 'bg-seagull-400! hover:bg-seagull-600! text-seagull-950! hover:text-white! border-0! font-400!'
       case 'secondary':
         return 'bg-seagull-800! hover:bg-seagull-900! !text-seagull-50 hover:text-white! border-0! font-400!'
       case 'tertiary':
