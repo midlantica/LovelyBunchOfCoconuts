@@ -7,7 +7,7 @@ command = "rm -rf .nuxt .cache node_modules/.cache && pnpm install --no-optional
 publish = "dist"
 
 [build.environment]
-NODE_VERSION = "22.11.0"
+NODE_VERSION = "22"
 PNPM_FLAGS = "--shamefully-hoist --no-optional=false"
 
 # Form notifications are configured in Netlify UI:
