@@ -3,7 +3,7 @@
 
 [build]
 # Use Nitro Netlify preset (auto-detected). This builds SSR with Functions.
-command = "pnpm install --no-optional=false && pnpm run build"
+command = "rm -rf .nuxt .cache node_modules/.cache && pnpm install --no-optional=false && pnpm run build"
 publish = "dist"
 
 [build.environment]
