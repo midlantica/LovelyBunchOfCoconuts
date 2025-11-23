@@ -19,7 +19,7 @@
     <div class="my-auto flex flex-col flex-wrap gap-0.5">
       <h1
         class="font-100 inline-block align-baseline tracking-wide text-shadow-xs"
-        style="font-size: 1.25rem; line-height: 1.4"
+        style="font-size: 1.25rem; line-height: 1.4; color: white"
         v-html="formatQuote(quote.headings[0])"
       ></h1>
       <p
@@ -36,7 +36,7 @@
     class="card shadow-inset-card quotePanel relative flex flex-col gap-2 rounded-lg px-5 py-4 text-white"
   >
     <div class="my-auto">
-      <h2 class="inline-block align-baseline">
+      <h2 class="inline-block align-baseline" style="color: white">
         {{
           quote && quote.headings && quote.headings.length > 0
             ? `&ldquo;${quote.headings[0]}&rdquo;`

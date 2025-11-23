@@ -129,6 +129,30 @@
             </div>
           </div>
 
+          <!-- Post pairs (2 columns on >=460px using custom 'meme2' breakpoint, stacked below) -->
+          <div
+            v-else-if="item.type === 'postRow'"
+            class="meme2:grid-cols-2 grid grid-cols-1 gap-3"
+          >
+            <div
+              v-for="(postItem, idx) in item.data"
+              :key="postItem._path || postItem.path || postItem.id || idx"
+              class="cursor-pointer!"
+              role="button"
+              tabindex="0"
+              @click.capture="
+                maybeOpenModal($event, () => openModal(postItem, 'post', true))
+              "
+              @keydown.enter.prevent="openModal(postItem, 'post', true)"
+              @keydown.space.prevent="openModal(postItem, 'post', true)"
+            >
+              <WallPanelPost
+                :post="postItem"
+                :slug="postItem?.path || postItem?._path || ''"
+              />
+            </div>
+          </div>
+
           <!-- Profiles (full width) -->
           <div
             v-else-if="item.type === 'profile'"
@@ -260,6 +284,11 @@
       // Always include index to ensure uniqueness
       return q.isAd ? `q-${baseKey}-${idx}` : `q-${baseKey}-${idx}`
     }
+    if (item.type === 'post') {
+      const p = item.data || {}
+      const baseKey = p._path || p.path || p.id || idx
+      return `post-${baseKey}-${idx}`
+    }
     const joinIds = (arr = [], index) =>
       (arr || [])
         .map((d, i) => {
@@ -272,6 +301,7 @@
     // Always include index to ensure uniqueness
     if (item.type === 'griftPair') return `gp-${joinIds(item.data, idx)}-${idx}`
     if (item.type === 'memeRow') return `mr-${joinIds(item.data, idx)}-${idx}`
+    if (item.type === 'postRow') return `pr-${joinIds(item.data, idx)}-${idx}`
     if (item.type === 'profile') {
       const p = item.data || {}
       const baseKey = p._path || p.path || p.id || idx
@@ -375,6 +405,7 @@
           adProvider: adProvider,
           profiles: profiles.value,
           profileInterval: 4,
+          posts: cache.posts,
         }
       )
       const order = deriveBaselineOrder(pattern)
@@ -464,6 +495,7 @@
       enableShuffle: false,
       profiles: filteredContent.value.profiles || [],
       profileInterval: 4,
+      posts: filteredContent.value.posts || [],
     })
   })
 

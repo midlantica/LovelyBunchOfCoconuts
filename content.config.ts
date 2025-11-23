@@ -6,6 +6,7 @@ export default defineContentConfig({
     grifts: defineCollection({ source: 'grifts/**', type: 'page' }),
     memes: defineCollection({ source: 'memes/**', type: 'page' }),
     quotes: defineCollection({ source: 'quotes/**', type: 'page' }),
+    posts: defineCollection({ source: 'posts/**', type: 'page' }),
     ads: defineCollection({ source: 'ads/**', type: 'page' }),
     profiles: defineCollection({ source: 'profiles/**', type: 'page' }),
   },

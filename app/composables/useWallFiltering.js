@@ -38,6 +38,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     grifts: normalizeArray(cacheRef.grifts),
     quotes: normalizeArray(cacheRef.quotes),
     memes: normalizeArray(cacheRef.memes),
+    posts: normalizeArray(cacheRef.posts),
     profiles: normalizeArray(cacheRef.profiles),
   }))
 
@@ -56,6 +57,9 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     )
     const hasMemesKeyword = expanded.some((term) =>
       ['memes', 'meme', 'image', 'picture', 'graphic'].includes(term)
+    )
+    const hasPostsKeyword = expanded.some((term) =>
+      ['posts', 'post', 'article', 'blog'].includes(term)
     )
 
     // Check for hero-specific search (must NOT include zero terms)
@@ -104,11 +108,17 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     }
 
     // If searching for specific content types, return filter
-    if (hasGriftsKeyword || hasQuotesKeyword || hasMemesKeyword) {
+    if (
+      hasGriftsKeyword ||
+      hasQuotesKeyword ||
+      hasMemesKeyword ||
+      hasPostsKeyword
+    ) {
       return {
         grifts: hasGriftsKeyword,
         quotes: hasQuotesKeyword,
         memes: hasMemesKeyword,
+        posts: hasPostsKeyword,
         profiles: false,
       }
     }
@@ -172,6 +182,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
         grifts: deduplicateByPath(groups.grifts),
         quotes: deduplicateByPath(groups.quotes),
         memes: deduplicateByPath(groups.memes),
+        posts: deduplicateByPath(groups.posts),
         profiles: deduplicateByPath(groups.profiles),
       }
     }
@@ -203,6 +214,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
           contentTypeFilter.quotes ? groups.quotes : []
         ),
         memes: deduplicateByPath(contentTypeFilter.memes ? groups.memes : []),
+        posts: deduplicateByPath(contentTypeFilter.posts ? groups.posts : []),
         profiles: deduplicateByPath(
           contentTypeFilter.profiles ? filteredProfiles : []
         ),
@@ -232,6 +244,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
       grifts: f.grifts ? rawPools.value.grifts : [],
       quotes: f.quotes ? rawPools.value.quotes : [],
       memes: f.memes ? rawPools.value.memes : [],
+      posts: rawPools.value.posts, // Always include posts (no filter toggle)
       profiles: rawPools.value.profiles, // Always include profiles
     }
     return applySearch(base, effectiveSearch.value)
@@ -245,22 +258,26 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
       grifts: sf.grifts.length,
       quotes: sf.quotes.length,
       memes: sf.memes.length,
+      posts: sf.posts?.length || 0,
       profiles: sf.profiles?.length || 0,
       total:
         (f.grifts ? sf.grifts.length : 0) +
         (f.quotes ? sf.quotes.length : 0) +
         (f.memes ? sf.memes.length : 0) +
+        (sf.posts?.length || 0) +
         (sf.profiles?.length || 0),
     }
     const totalCounts = {
       grifts: rp.grifts.length,
       quotes: rp.quotes.length,
       memes: rp.memes.length,
+      posts: rp.posts?.length || 0,
       profiles: rp.profiles?.length || 0,
       total:
         rp.grifts.length +
         rp.quotes.length +
         rp.memes.length +
+        (rp.posts?.length || 0) +
         (rp.profiles?.length || 0),
     }
     return { wallCounts, totalCounts }

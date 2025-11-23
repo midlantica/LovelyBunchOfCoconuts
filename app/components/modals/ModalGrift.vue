@@ -46,7 +46,7 @@
             ref="bodyRef"
             class="scroll-area relative max-h-[50vh] max-w-none overflow-y-auto"
           >
-            <div class="prose-invert prose pr-3">
+            <div class="prose-invert prose pr-0 sm:pr-3">
               <div v-html="modalData?.bodyHtml"></div>
             </div>
             <div
@@ -261,5 +261,28 @@
   }
   .scroll-area::-webkit-scrollbar-thumb:hover {
     background: #09acee; /* seagull-500 */
+  }
+
+  /* Ensure all headers in prose content are seagull-200 */
+  .prose :deep(h1),
+  .prose :deep(h2),
+  .prose :deep(h3),
+  .prose :deep(h4),
+  .prose :deep(h5),
+  .prose :deep(h6) {
+    color: #a5f3fc; /* seagull-200 */
+  }
+
+  /* Ensure paragraph text is white */
+  .prose :deep(p) {
+    color: white;
+  }
+
+  .prose :deep(ul li) {
+    color: white;
+  }
+
+  .prose :deep(ol li) {
+    color: white;
   }
 </style>

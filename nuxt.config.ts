@@ -198,7 +198,10 @@ export default defineNuxtConfig({
   },
   // @ts-ignore - @nuxt/content module augments config at runtime
   content: {
-    build: { markdown: { contentHeading: true } },
+    build: { markdown: { contentHeading: false } },
+    renderer: {
+      anchorLinks: false, // Disable automatic anchor link generation in headings
+    },
     // NOTE: File ignore patterns handled via content/.nuxtignore and transformation filters (useContentCache).
   },
 

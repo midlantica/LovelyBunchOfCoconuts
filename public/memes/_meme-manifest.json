@@ -2479,6 +2479,14 @@
       "updated": "2025-11-08T02:58:34.190Z",
       "width": 871,
       "height": 1080
+    },
+    "cartoons/fuck-america-viva-mexico-fafo.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-21T20:34:55.023Z",
+      "width": 720,
+      "height": 1080
     }
   }
 }

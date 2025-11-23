@@ -71,5 +71,6 @@ processMarkdownFiles('content/grifts', 'content-grifts.json')
 processMarkdownFiles('content/memes', 'content-memes.json')
 processMarkdownFiles('content/quotes', 'content-quotes.json')
 processMarkdownFiles('content/ads', 'content-ads.json')
+processMarkdownFiles('content/posts', 'content-posts.json')
 
 console.log('Content JSON files regenerated successfully!')

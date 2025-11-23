@@ -46,7 +46,7 @@
             ref="bodyRef"
             class="scroll-area relative max-h-[50vh] max-w-none overflow-y-auto"
           >
-            <div class="prose-invert prose pr-3">
+            <div class="prose-invert prose pr-0 sm:pr-3">
               <div v-html="modalData?.bodyHtml"></div>
             </div>
             <div

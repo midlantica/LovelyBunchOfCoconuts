@@ -28,7 +28,11 @@
         />
         <h2
           class="font-100 line-clamp-1 tracking-wide text-shadow-xs"
-          :style="{ fontSize: griftFontSize, lineHeight: '1.4' }"
+          :style="{
+            fontSize: griftFontSize,
+            lineHeight: '1.4',
+            color: 'white',
+          }"
           v-if="grift.grift"
         >
           {{ `&lsquo;${grift.grift}&rsquo;` }}
@@ -66,7 +70,7 @@
           height="32"
           class="w-8"
         />
-        <h2 class="line-clamp-1">
+        <h2 class="line-clamp-1" style="color: white">
           {{ grift && grift.grift ? `'${grift.grift}'` : 'Missing grift' }}
         </h2>
       </div>
@@ -79,7 +83,7 @@
           height="32"
           class="w-8"
         />
-        <h2 class="line-clamp-1" v-if="grift && grift.decode">
+        <h2 class="text-seagull-200 line-clamp-1" v-if="grift && grift.decode">
           {{ grift.decode }}
         </h2>
       </div>

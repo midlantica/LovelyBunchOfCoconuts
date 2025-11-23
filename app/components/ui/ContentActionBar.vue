@@ -14,10 +14,38 @@
       <div class="flex items-center gap-4">
         <!-- Share cluster flush left -->
         <div class="flex flex-1 items-center gap-3">
-          <!-- Copy and Download buttons -->
+          <!-- Copy and Download buttons (or Copy Text for posts) -->
           <div class="flex items-center gap-2">
-            <!-- Copy image icon button -->
+            <!-- Copy Text button for posts -->
             <button
+              v-if="contentType === 'post'"
+              type="button"
+              :disabled="isLoading"
+              @click="copyTextOnly"
+              title="Copy Text"
+              class="group inline-flex h-8 w-8 items-center justify-center rounded-full transition-all duration-150"
+              :class="[
+                isLoading
+                  ? 'cursor-not-allowed opacity-50'
+                  : 'cursor-pointer! hover:scale-105',
+              ]"
+              aria-label="Copy text to clipboard"
+            >
+              <IconsCopyText
+                :size="24"
+                class="transition-all duration-200"
+                :class="
+                  isCopyingText
+                    ? 'brightness-150'
+                    : 'group-hover:brightness-150'
+                "
+                :style="isCopyingText ? 'color: #33c3fd' : 'color: #b3b3b3'"
+              />
+            </button>
+
+            <!-- Copy image icon button (for non-post content) -->
+            <button
+              v-if="contentType !== 'post'"
               type="button"
               :disabled="isLoading || disableCopyImage"
               @click="copyImageOnly"
@@ -39,9 +67,9 @@
                   : 'Copy image to clipboard'
               "
             >
-              <svg
-                viewBox="0 0 24 24"
-                class="h-[1.5rem] w-[1.5rem] transition-all duration-200"
+              <IconsCopyImage
+                :size="24"
+                class="transition-all duration-200"
                 :class="
                   disableCopyImage
                     ? 'opacity-40'
@@ -56,21 +84,12 @@
                       ? 'color: #33c3fd'
                       : 'color: #b3b3b3'
                 "
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M18 22H4a2 2 0 0 1-2-2V6" />
-                <path d="m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18" />
-                <circle cx="12" cy="8" r="2" />
-                <rect width="16" height="16" x="6" y="2" rx="2" />
-              </svg>
+              />
             </button>
 
-            <!-- Download image icon button -->
+            <!-- Download image icon button (for non-post content) -->
             <button
+              v-if="contentType !== 'post'"
               type="button"
               :disabled="isLoading || disableCopyImage"
               @click="downloadImage"
@@ -85,9 +104,9 @@
               ]"
               aria-label="Download image"
             >
-              <svg
-                viewBox="0 0 24 24"
-                class="h-[1.5rem] w-[1.5rem] transition-all duration-200"
+              <IconsDownloadImage
+                :size="24"
+                class="transition-all duration-200"
                 :class="
                   disableCopyImage
                     ? 'opacity-40'
@@ -102,18 +121,7 @@
                       ? 'color: #33c3fd'
                       : 'color: #b3b3b3'
                 "
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21"
-                />
-                <path d="m14 19l3 3v-5.5m0 5.5l3-3" />
-                <circle cx="9" cy="9" r="2" />
-              </svg>
+              />
             </button>
 
             <!-- Spinner positioned to the right of icon -->
@@ -174,6 +182,7 @@
   const feedbackMessage = ref('')
   const isCopying = ref(false) // Track entire copy process
   const isDownloading = ref(false) // Track download process
+  const isCopyingText = ref(false) // Track text copy process
 
   // Button refs for coordination
   const copyButton = ref(null)
@@ -330,42 +339,33 @@
 
   // Copy text/URL only
   const copyTextOnly = async () => {
+    if (isLoading.value) return // Prevent multiple clicks
+
+    isCopyingText.value = true
+    isLoading.value = true
+    feedbackMessage.value = ''
+
     try {
-      // Simply copy the URL to clipboard
+      // Copy the text content to clipboard (for posts, this is the post text)
+      const textToCopy = props.contentType === 'post' ? props.text : props.url
+
+      if (!textToCopy || textToCopy.trim() === '') {
+        throw new Error('No text to copy')
+      }
+
       if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(props.url)
-        // Show toast notification
-        const toast = document.createElement('div')
-        toast.className = 'share-toast'
-        toast.textContent = 'Link copied!'
-        toast.style.cssText = `
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          background: #1e293b;
-          color: white;
-          padding: 12px 20px;
-          border-radius: 8px;
-          border: 1px solid #475569;
-          z-index: 9999;
-          font-family: Arial, sans-serif;
-          font-size: 14px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-          animation: toastSlideIn 0.3s ease-out;
-        `
-        document.body.appendChild(toast)
+        await navigator.clipboard.writeText(textToCopy)
+        // Show inline feedback
+        feedbackMessage.value =
+          props.contentType === 'post' ? 'Text copied 😀' : 'Link copied!'
         setTimeout(() => {
-          toast.style.animation = 'toastSlideOut 0.3s ease-in'
-          setTimeout(() => {
-            if (toast.parentNode) {
-              toast.parentNode.removeChild(toast)
-            }
-          }, 300)
+          feedbackMessage.value = ''
+          isCopyingText.value = false
         }, 3000)
       } else {
         // Enhanced fallback for Windows compatibility
         const textArea = document.createElement('textarea')
-        textArea.value = props.url
+        textArea.value = textToCopy
         textArea.style.position = 'fixed'
         textArea.style.left = '-999999px'
         textArea.style.top = '-999999px'
@@ -385,33 +385,12 @@
         document.body.removeChild(textArea)
 
         if (successful) {
-          // Show success toast
-          const toast = document.createElement('div')
-          toast.className = 'share-toast'
-          toast.textContent = 'Link copied!'
-          toast.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #1e293b;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            border: 1px solid #475569;
-            z-index: 9999;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            animation: toastSlideIn 0.3s ease-out;
-          `
-          document.body.appendChild(toast)
+          // Show inline feedback
+          feedbackMessage.value =
+            props.contentType === 'post' ? 'Text copied 😀' : 'Link copied!'
           setTimeout(() => {
-            toast.style.animation = 'toastSlideOut 0.3s ease-in'
-            setTimeout(() => {
-              if (toast.parentNode) {
-                toast.parentNode.removeChild(toast)
-              }
-            }, 300)
+            feedbackMessage.value = ''
+            isCopyingText.value = false
           }, 3000)
         } else {
           throw new Error('execCommand copy failed')
@@ -419,29 +398,13 @@
       }
     } catch (error) {
       console.error('Error copying text:', error)
-      // Show error toast
-      const toast = document.createElement('div')
-      toast.className = 'share-toast'
-      toast.textContent = 'Copy failed - please try Ctrl+C'
-      toast.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #dc2626;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 8px;
-        z-index: 9999;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      `
-      document.body.appendChild(toast)
+      feedbackMessage.value = error.message || 'Copy failed'
       setTimeout(() => {
-        if (toast.parentNode) {
-          toast.parentNode.removeChild(toast)
-        }
+        feedbackMessage.value = ''
+        isCopyingText.value = false
       }, 3000)
+    } finally {
+      isLoading.value = false
     }
   }
 </script>

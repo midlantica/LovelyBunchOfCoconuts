@@ -53,6 +53,7 @@ const globalCache = reactive({
   grifts: [],
   quotes: [],
   memes: [],
+  posts: [],
   profiles: [],
   isLoading: false,
   error: null,
@@ -72,6 +73,7 @@ const slugMaps = reactive({
   grifts: new Map(),
   quotes: new Map(),
   memes: new Map(),
+  posts: new Map(),
   profiles: new Map(),
 })
 
@@ -85,7 +87,8 @@ const registerSlugKeys = (map, keys, value) => {
 export function useContentCache() {
   // Instead of mirroring with individual refs + watchers, expose reactive toRefs directly
   const cache = globalCache
-  const { grifts, quotes, memes, profiles, isLoading, error } = toRefs(cache)
+  const { grifts, quotes, memes, posts, profiles, isLoading, error } =
+    toRefs(cache)
 
   // Auto-load content if not already loaded (for dynamic routes)
   const ensureContentLoaded = async () => {
@@ -93,6 +96,7 @@ export function useContentCache() {
       cache.grifts.length === 0 &&
       cache.quotes.length === 0 &&
       cache.memes.length === 0 &&
+      cache.posts.length === 0 &&
       cache.profiles.length === 0 &&
       !cache.isLoading
     ) {
@@ -145,6 +149,15 @@ export function useContentCache() {
           if (headings.length > 0) {
             transformed.quoteText = headings.join('\n\n')
           }
+        }
+      }
+
+      // For posts: extract body text for preview
+      if (type === 'posts') {
+        if (item.body && item.body.value) {
+          // Posts use full body content, no special transformation needed
+          // The body will be rendered by ContentRenderer in the modal
+          transformed.body = item.body
         }
       }
 
@@ -287,6 +300,13 @@ export function useContentCache() {
           [s, fileSlugDash, fileSlugUnderscore, fileBase],
           transformed
         )
+      } else if (type === 'posts') {
+        const s = slugify(transformed.title || '')
+        registerSlugKeys(
+          slugMaps.posts,
+          [s, fileSlugDash, fileSlugUnderscore, fileBase],
+          transformed
+        )
       } else if (type === 'memes') {
         const s = slugify(transformed.title || transformed.description || '')
         registerSlugKeys(
@@ -306,6 +326,8 @@ export function useContentCache() {
         return slugMaps.grifts.get(slug)
       if (contentType === 'quote' && slugMaps.quotes.has(slug))
         return slugMaps.quotes.get(slug)
+      if (contentType === 'post' && slugMaps.posts.has(slug))
+        return slugMaps.posts.get(slug)
       if (contentType === 'meme' && slugMaps.memes.has(slug))
         return slugMaps.memes.get(slug)
     }
@@ -457,10 +479,11 @@ export function useContentCache() {
     cache.isLoading = true
     cache.error = null
     try {
-      const [griftsData, quotesData, memesData] = await Promise.all([
+      const [griftsData, quotesData, memesData, postsData] = await Promise.all([
         queryCollection('grifts').all(),
         queryCollection('quotes').all(),
         queryCollection('memes').all(),
+        queryCollection('posts').all(),
       ])
 
       cache.grifts = transformContentForComponents(
@@ -475,8 +498,12 @@ export function useContentCache() {
         filterSpecialFiles(memesData),
         'memes'
       )
+      cache.posts = transformContentForComponents(
+        filterSpecialFiles(postsData),
+        'posts'
+      )
       debugLog(
-        `Content loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+        `Content loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes, ${cache.posts.length} posts`
       )
     } catch (error) {
       console.error('Error loading content:', error)
@@ -590,6 +617,7 @@ export function useContentCache() {
     grifts,
     quotes,
     memes,
+    posts,
     isLoading,
     error,
     ensureContentLoaded,

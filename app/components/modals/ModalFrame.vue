@@ -22,7 +22,8 @@
           <!-- Close button now always visible (works on all screens) -->
           <UiCloseButton
             v-if="!hideCloseButton"
-            class="absolute top-2 right-2 z-10 block"
+            class="close-button-modal"
+            :button-class="closeButtonClass"
             @click="onCloseClick"
           />
           <div
@@ -54,6 +55,10 @@
 
   // Shared guard to prevent click-through reopening
   const modalGuardUntil = useState('modalGuardUntil', () => 0)
+
+  // Custom button classes to ensure button is always visible
+  const closeButtonClass =
+    'close-button group border-seagull-600/30 absolute z-9999 flex h-10 w-10 items-center justify-center rounded-full border-none sm:border-t bg-transparent sm:bg-slate-900 hover:cursor-pointer! focus:outline-none'
 
   const computedModalStyle = computed(() => {
     const baseStyle = props.modalStyle || {
@@ -123,6 +128,34 @@
   /* Fix close button X centering */
   :deep(.absolute.top-2.right-2) {
     padding-top: 0 !important;
+  }
+
+  /* Default (Desktop) close button positioning - perched on top-right corner */
+  .close-button-modal {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  /* Default (Desktop) close button styling - with background, border, and transform */
+  .close-button-modal :deep(.close-button) {
+    background: rgb(15 23 42) !important; /* bg-slate-900 */
+    border-width: 1px !important;
+    border-top-width: 1px !important;
+    transform: translate(50%, -50%) !important; /* Position outside corner */
+  }
+
+  /* Mobile ONLY - override to tuck inside with no background/border */
+  @media (max-width: 639px) {
+    .close-button-modal {
+      top: 0rem;
+      right: 0rem;
+    }
+
+    .close-button-modal :deep(.close-button) {
+      background: none !important;
+      border: 0 !important;
+      transform: none !important; /* Remove transform to keep button inside */
+    }
   }
 
   .modal-overlay {

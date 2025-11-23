@@ -5,8 +5,13 @@
   }
 
   body {
-    @apply font-100 bg-slate-950 font-sans text-slate-200;
+    @apply font-100 bg-slate-950 font-sans text-white;
     color-scheme: dark;
+  }
+
+  .prose a,
+  a {
+    @apply hover:text-seagull-200 font-100 text-white underline;
   }
 
   h1,
@@ -15,7 +20,7 @@
   h4,
   h5,
   h6 {
-    @apply font-100 font-sans leading-normal tracking-wider text-pretty first:mt-0 last:mb-0;
+    @apply font-200 text-seagull-200 font-sans leading-normal tracking-wider text-pretty first:mt-0 last:mb-0;
   }
   h1 {
     @apply text-2xl;
@@ -49,10 +54,10 @@
 
   /* Global prose overrides for all markdown content */
   .prose h1 {
-    @apply font-100 text-3xl;
+    @apply font-200 text-3xl;
   }
   .prose h2 {
-    @apply font-100 mt-2 mb-2 text-2xl;
+    @apply font-200 mt-2 mb-2 text-2xl;
   }
   .prose h2 + h2 {
     @apply mb-0;
@@ -206,4 +211,41 @@ div > p:last-of-type {
   h6 {
     @apply font-300 text-seagull-300;
   }
+}
+
+/* ============================================================================
+   PROSE OVERRIDES - MUST BE OUTSIDE @layer FOR PROPER SPECIFICITY
+   ============================================================================
+
+   The @tailwindcss/typography plugin generates .prose styles with :where()
+   selectors that have 0 specificity but are applied in a specific layer order.
+
+   To override these styles reliably:
+   1. Place overrides OUTSIDE of @layer blocks (higher specificity)
+   2. Match the :where() selector pattern exactly
+   3. Use !important only when absolutely necessary
+
+   Reference: https://tailwindcss.com/docs/typography-plugin
+   ========================================================================== */
+
+/* Override prose strong to use font-weight 300 instead of 600 */
+.prose
+  :where(strong):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  color: var(--tw-prose-bold);
+  font-weight: 300 !important;
+}
+
+/* Override prose links - custom dotted underline style */
+.prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  font-weight: 300 !important;
+  /* text-decoration: underline !important; */
+  text-decoration-color: #33c3fdbd !important;
+  text-decoration-style: dotted !important;
+  text-underline-offset: 4px !important;
+}
+
+/* Ensure link hover states work */
+.prose
+  :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)):hover {
+  color: #a5f3fc !important; /* seagull-200 */
 }

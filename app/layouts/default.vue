@@ -30,6 +30,7 @@
   import ModalsModalGrift from '~/components/modals/ModalGrift.vue'
   import ModalsModalQuote from '~/components/modals/ModalQuote.vue'
   import ModalsModalProfile from '~/components/modals/ModalProfile.vue'
+  import ModalsModalPost from '~/components/modals/ModalPost.vue'
 
   const showModal = ref(false)
   const modalType = ref(null)
@@ -40,6 +41,7 @@
     grift: ModalsModalGrift,
     quote: ModalsModalQuote,
     profile: ModalsModalProfile,
+    post: ModalsModalPost,
   }
 
   // Allow calling with either (type, data) or ({ type, data, slug })
