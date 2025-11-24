@@ -25,7 +25,7 @@
             <!-- Header -->
             <div class="welcome-modal-header">
               <h1 class="welcome-modal-h1">Hi there! Are you an NPC?</h1>
-              <ModalsNpcIcon class="welcome-modal-npc-icon" />
+              <IconsNpcIcon class="welcome-modal-npc-icon" />
             </div>
 
             <!-- Intro paragraphs -->
