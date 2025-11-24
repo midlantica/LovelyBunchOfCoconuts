@@ -59,7 +59,7 @@
 
       // Try to use pre-computed layout for instant refresh
       const precomputedLayout = usePrecomputedRefresh(
-        cache.claims,
+        cache.grifts,
         cache.quotes,
         cache.memes,
         cache.profiles || []
@@ -75,7 +75,7 @@
         const contentFilters = useState('contentFilters')
         if (searchTerm?.value) searchTerm.value = ''
         if (contentFilters?.value) {
-          contentFilters.value = { claims: true, quotes: true, memes: true }
+          contentFilters.value = { grifts: true, quotes: true, memes: true }
         }
         await router.replace({ path: route.path, query: {} })
 

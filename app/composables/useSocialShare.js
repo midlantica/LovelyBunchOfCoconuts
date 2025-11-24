@@ -1258,7 +1258,7 @@ export function useSocialShare() {
         return
       }
 
-      // For claims and quotes, generate branded image
+      // For grifts and quotes, generate branded image
       const imageBlob = await generateShareImage(content, type)
 
       if (platform === 'download') {
@@ -1277,7 +1277,7 @@ export function useSocialShare() {
 
       // Handle different sharing modes
       if (platform === 'image') {
-        // For claims and quotes, use universal clipboard utility
+        // For grifts and quotes, use universal clipboard utility
         const { useUniversalClipboard } = await import(
           '~/composables/useUniversalClipboard'
         )

@@ -458,8 +458,8 @@ export function useLikes() {
     }
     // Remove trailing slashes (except root)
     raw = raw.replace(/\/$/, '')
-    // Collapse accidental double content-type segments (e.g. /grifts/claims/foo)
-    raw = raw.replace(/\/(claims|memes|quotes)\/(?:\1\/)+/g, '/$1/')
+    // Collapse accidental double content-type segments (e.g. /grifts/grifts/foo)
+    raw = raw.replace(/\/(grifts|memes|quotes)\/(?:\1\/)+/g, '/$1/')
     // Convert underscores to hyphens to match actual _path values
     raw = raw.replace(/_/g, '-')
     // Collapse duplicate slashes

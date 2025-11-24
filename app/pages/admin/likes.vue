@@ -366,8 +366,8 @@
           let routeUrl = id // default
           // Adjust to singular front-end route pattern /grift/slug etc
           const singular =
-            type === 'claims'
-              ? 'claim'
+            type === 'grifts'
+              ? 'grift'
               : type === 'memes'
                 ? 'meme'
                 : type === 'quotes'

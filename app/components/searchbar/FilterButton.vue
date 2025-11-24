@@ -61,11 +61,11 @@
   const props = defineProps({
     filters: {
       type: Object,
-      default: () => ({ claims: true, quotes: true, memes: true }),
+      default: () => ({ grifts: true, quotes: true, memes: true }),
     },
     counts: {
       type: Object,
-      default: () => ({ wall: { claims: 0, quotes: 0, memes: 0 } }),
+      default: () => ({ wall: { grifts: 0, quotes: 0, memes: 0 } }),
     },
     inline: { type: Boolean, default: false },
   })
@@ -74,7 +74,7 @@
   const root = ref(null)
 
   const opts = [
-    { key: 'claims', label: 'Claims' },
+    { key: 'grifts', label: 'Grifts' },
     { key: 'quotes', label: 'Quotes' },
     { key: 'memes', label: 'Memes' },
   ]
@@ -88,7 +88,7 @@
 
   function ensureKeys(obj) {
     return {
-      claims: typeof obj.claims === 'boolean' ? obj.claims : true,
+      grifts: typeof obj.grifts === 'boolean' ? obj.grifts : true,
       quotes: typeof obj.quotes === 'boolean' ? obj.quotes : true,
       memes: typeof obj.memes === 'boolean' ? obj.memes : true,
     }
@@ -97,13 +97,13 @@
   function onToggle(key) {
     const next = ensureKeys({ ...local, [key]: !local[key] })
     // never allow all off
-    if (!next.claims && !next.quotes && !next.memes) next[key] = true
+    if (!next.grifts && !next.quotes && !next.memes) next[key] = true
     Object.assign(local, next)
     emit('update:filters', { ...next })
   }
 
   function selectAll() {
-    const next = { claims: true, quotes: true, memes: true }
+    const next = { grifts: true, quotes: true, memes: true }
     Object.assign(local, next)
     emit('update:filters', { ...next })
   }

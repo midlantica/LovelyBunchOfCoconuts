@@ -88,67 +88,54 @@
             </div>
           </div>
 
-          <!-- Meme pairs (2 columns on >=460px using custom 'meme2' breakpoint, stacked below) - or Small Ads -->
+          <!-- Meme pairs (2 columns on >=460px using custom 'meme2' breakpoint, stacked below) -->
+          <!-- Can now contain: Memes, Posts (every 5th pair), or Ads -->
           <div
             v-else-if="item.type === 'memeRow'"
             class="meme2:grid-cols-2 grid grid-cols-1 gap-3"
           >
             <div
-              v-for="(memeItem, idx) in item.data"
-              :key="memeItem._path || memeItem.path || memeItem.id || idx"
+              v-for="(rowItem, idx) in item.data"
+              :key="rowItem._path || rowItem.path || rowItem.id || idx"
               class="cursor-pointer!"
               role="button"
               tabindex="0"
               @click.capture="
-                memeItem?.isAd
+                rowItem?.isAd
                   ? null
                   : maybeOpenModal($event, () =>
-                      openModal(memeItem, 'meme', true)
+                      openModal(rowItem, rowItem._type || 'meme', true)
                     )
               "
               @keydown.enter.prevent="
-                memeItem?.isAd ? null : openModal(memeItem, 'meme', true)
+                rowItem?.isAd
+                  ? null
+                  : openModal(rowItem, rowItem._type || 'meme', true)
               "
               @keydown.space.prevent="
-                memeItem?.isAd ? null : openModal(memeItem, 'meme', true)
+                rowItem?.isAd
+                  ? null
+                  : openModal(rowItem, rowItem._type || 'meme', true)
               "
             >
-              <!-- Ad Panel for square ads in meme slots -->
+              <!-- Ad Panel for square ads -->
               <WallPanelAd
-                v-if="memeItem?.isAd"
-                :ad="memeItem"
-                :size="memeItem.size || 'square'"
+                v-if="rowItem?.isAd"
+                :ad="rowItem"
+                :size="rowItem.size || 'square'"
               />
-              <!-- Regular Meme Panel -->
+              <!-- Meme Panel -->
               <WallPanelMeme
-                v-else
-                :meme="memeItem"
-                :slug="memeItem?.path || memeItem?._path || ''"
+                v-else-if="rowItem._type === 'meme'"
+                :meme="rowItem"
+                :slug="rowItem?.path || rowItem?._path || ''"
                 :index="index"
               />
-            </div>
-          </div>
-
-          <!-- Post pairs (2 columns on >=460px using custom 'meme2' breakpoint, stacked below) -->
-          <div
-            v-else-if="item.type === 'postRow'"
-            class="meme2:grid-cols-2 grid grid-cols-1 gap-3"
-          >
-            <div
-              v-for="(postItem, idx) in item.data"
-              :key="postItem._path || postItem.path || postItem.id || idx"
-              class="cursor-pointer!"
-              role="button"
-              tabindex="0"
-              @click.capture="
-                maybeOpenModal($event, () => openModal(postItem, 'post', true))
-              "
-              @keydown.enter.prevent="openModal(postItem, 'post', true)"
-              @keydown.space.prevent="openModal(postItem, 'post', true)"
-            >
+              <!-- Post Panel (mixed with memes every 5th pair) -->
               <WallPanelPost
-                :post="postItem"
-                :slug="postItem?.path || postItem?._path || ''"
+                v-else-if="rowItem._type === 'post'"
+                :post="rowItem"
+                :slug="rowItem?.path || rowItem?._path || ''"
               />
             </div>
           </div>
@@ -212,7 +199,7 @@
     search: { type: String, default: '' },
     filters: {
       type: Object,
-      default: () => ({ claims: true, quotes: true, memes: true }),
+      default: () => ({ grifts: true, quotes: true, memes: true }),
     },
     hideNoContent: { type: Boolean, default: false },
   })

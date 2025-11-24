@@ -6,12 +6,12 @@ export function useSocialMeta({ title, description, image, url } = {}) {
     meta: [
       {
         name: 'description',
-        content: description || 'Political claims, quotes, memes.',
+        content: description || 'Political grifts, quotes, memes.',
       },
       { property: 'og:title', content: title || 'WakeUpNPC' },
       {
         property: 'og:description',
-        content: description || 'Political claims, quotes, memes.',
+        content: description || 'Political grifts, quotes, memes.',
       },
       image && { property: 'og:image', content: image },
       url && { property: 'og:url', content: url },

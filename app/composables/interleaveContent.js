@@ -101,6 +101,7 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
   let lastItemWasAd = false // Track if last item added was an ad
   let itemsSinceLastAd = 0 // Track items since last ad
   let completedPatterns = 0 // Track number of complete 4-item patterns
+  let memeRowCount = 0 // Track meme rows for post injection every 5th row
 
   const haveGrifts = () => ci < c.length
   const haveMemes = () => mi < m.length
@@ -145,7 +146,30 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
     if (!hadAd) itemsSinceLastAd++
   }
   const pushMemeRow = (count = 2, includeAd = false) => {
-    const slice = m.slice(mi, mi + count)
+    memeRowCount++
+
+    // Every 5th meme row: try to create mixed [Meme | Post] pair
+    if (memeRowCount % 5 === 0 && havePosts() && haveMemes()) {
+      const meme = { ...m[mi], _type: 'meme' }
+      mi++
+      const post = { ...po[poi], _type: 'post' }
+      poi++
+
+      // Random order using seeded RNG
+      const items =
+        (rng ? rng() : Math.random()) > 0.5 ? [meme, post] : [post, meme]
+
+      output.push({ type: 'memeRow', data: items })
+      producedCoreItems++
+      itemsSinceLastAd++
+      lastItemWasAd = false
+      return
+    }
+
+    // Normal meme pair [Meme | Meme]
+    const slice = m
+      .slice(mi, mi + count)
+      .map((item) => ({ ...item, _type: 'meme' }))
     mi += slice.length
 
     let hadAd = false
@@ -165,7 +189,7 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
         slice.push({
           ...adData,
           isAd: true,
-          _type: 'meme',
+          _type: 'ad',
         })
         hadAd = true
         itemsSinceLastAd = 0
@@ -189,14 +213,6 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
       itemsSinceLastAd = 0
     }
     lastItemWasAd = isAd
-  }
-  const pushPostRow = (count = 2) => {
-    const slice = po.slice(poi, poi + count)
-    poi += slice.length
-    output.push({ type: 'postRow', data: slice })
-    producedCoreItems++
-    itemsSinceLastAd++
-    lastItemWasAd = false
   }
   const pushProfile = (profileObj) => {
     output.push({
@@ -238,28 +254,22 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
         created = true
       }
     } else if (expected === 'quote') {
-      // Alternate between quotes and posts for variety
-      // Prefer posts if available and we haven't used one recently
-      if (postRemaining() >= 2 && (quoteRemaining() === 0 || poi <= qi * 2)) {
-        pushPostRow(2)
-        created = true
-      } else if (quoteRemaining() >= 1) {
+      // Just use quotes - posts are now handled in memeRow
+      if (quoteRemaining() >= 1) {
         pushQuote(q[qi])
         qi += 1
         created = true
       }
     }
 
-    // Fallbacks (stable priority): griftPair(2) → memeRow(2) → postRow(2) → quote(1) → grift single → meme single → post single
+    // Fallbacks (stable priority): griftPair(2) → memeRow(2) → quote(1) → grift single → meme single
+    // Posts are now only used within memeRow (every 5th), not as standalone pairs
     if (!created) {
       if (griftRemaining() >= 2) {
         pushGriftPair(2)
         created = true
       } else if (memeRemaining() >= 2) {
         pushMemeRow(2)
-        created = true
-      } else if (postRemaining() >= 2) {
-        pushPostRow(2)
         created = true
       } else if (quoteRemaining() >= 1) {
         pushQuote(q[qi])
@@ -270,9 +280,6 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
         created = true
       } else if (memeRemaining() === 1) {
         pushMemeRow(1)
-        created = true
-      } else if (postRemaining() === 1) {
-        pushPostRow(1) // single wrapped as postRow for template compatibility
         created = true
       }
     }

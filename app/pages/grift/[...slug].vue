@@ -9,7 +9,7 @@
       <div
         class="scroll-container-stable h-full min-h-0 overflow-y-auto rounded-xl"
       >
-        <div class="mx-auto w-full max-w-3xl pr-3 pl-2 md:px-0">
+        <div class="mx-auto w-full max-w-screen-md pr-3 pl-2 md:px-0">
           <main class="pb-8">
             <WallTheWall :hide-no-content="true" />
           </main>
@@ -52,15 +52,9 @@
   const wallScrollTop = useState('wallScrollTop', () => 0)
 
   const slugPath = computed(() => {
-    let slug = Array.isArray(route.params.slug)
+    const slug = Array.isArray(route.params.slug)
       ? route.params.slug.join('/')
       : route.params.slug || ''
-
-    // Remove any query parameters from the slug (in case they got mixed in)
-    if (slug.includes('?')) {
-      slug = slug.split('?')[0]
-    }
-
     return slug
   })
 
