@@ -26,6 +26,9 @@ export const TERM_RELATIONS = {
     'individual',
     'civil liberties',
     'personal freedom',
+    'liberalism',
+    'liberal',
+    'libertarian',
   ],
   individual: [
     'freedom',
@@ -38,6 +41,7 @@ export const TERM_RELATIONS = {
     'individual',
     'civil liberties',
     'personal freedom',
+    'liberalism',
   ],
   freedom: ['liberty', 'individualism', 'individual', 'free speech'],
   speech: ['free speech', 'expression', 'freedom of expression'],
@@ -52,6 +56,8 @@ export const TERM_RELATIONS = {
     'capitalism',
     'capitalist',
     'capital',
+    'liberalism',
+    'liberal',
   ],
   // Support phrase keys in lowercase with spaces
   'free markets': [
@@ -135,6 +141,19 @@ export const TERM_RELATIONS = {
   quote: ['quotes', 'quotation', 'saying', 'citation'],
   memes: ['meme', 'image', 'picture', 'graphic'],
   meme: ['memes', 'image', 'picture', 'graphic'],
+  posts: ['post', 'article', 'blog'],
+  post: ['posts', 'article', 'blog'],
+  // Add liberalism as a standalone term with related concepts
+  liberalism: [
+    'liberal',
+    'liberty',
+    'freedom',
+    'individualism',
+    'capitalism',
+    'free market',
+    'classical liberal',
+  ],
+  liberal: ['liberalism', 'liberty', 'freedom', 'individualism'],
 }
 
 export function expandSearchTerms(q = '') {

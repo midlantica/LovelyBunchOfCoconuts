@@ -27,6 +27,7 @@
     border-radius: 999px;
     /* border removed per request */
     transition: background 0.25s ease;
+    min-height: 60px; /* Minimum thumb height for usability */
   }
 
   .scroll-container-stable::-webkit-scrollbar-thumb:hover {
@@ -72,4 +73,77 @@
   }
 }
 
-/* (Redundant previous scoped track/thumb block removed; consolidated above) */
+/* Modal scrollbar styling - matches Wall scrollbar on desktop, visible on mobile */
+/* Desktop scrollbar - force stable */
+@media (min-width: 768px) {
+  /* Base scrollbar width (WebKit) */
+  .modal-scroll-area::-webkit-scrollbar {
+    width: 12px;
+    display: block;
+    background: transparent; /* let track define bg */
+  }
+
+  /* Rounded full-height track with spacing so ends are pill-shaped */
+  .modal-scroll-area::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-bg);
+    border-radius: 999px;
+    margin: 24px 0 4px 0; /* Extra space at top to avoid close button, normal space at bottom */
+  }
+
+  /* Accent thumb separated by border to reveal track behind */
+  .modal-scroll-area::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 999px;
+    transition: background 0.25s ease;
+  }
+
+  .modal-scroll-area::-webkit-scrollbar-thumb:hover {
+    background: var(--light);
+  }
+
+  .modal-scroll-area {
+    scrollbar-gutter: stable both-edges;
+    overflow-y: scroll; /* Force scrollbar always visible on desktop */
+    padding-top: 20px; /* Push content and scrollbar down to avoid close button */
+  }
+}
+
+/* Mobile scrollbar - keep visible but styled */
+@media (max-width: 767px) {
+  .modal-scroll-area::-webkit-scrollbar {
+    width: 8px; /* Slightly thinner on mobile */
+    display: block;
+  }
+
+  .modal-scroll-area::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-bg);
+    border-radius: 4px; /* Half of scrollbar width for semicircular ends */
+    margin: 4px 0;
+  }
+
+  .modal-scroll-area::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px; /* Half of scrollbar width for semicircular ends */
+    border: 1px solid var(--scrollbar-track-bg); /* Border creates spacing for rounded ends */
+  }
+
+  .modal-scroll-area {
+    overflow-y: auto; /* Auto scrolling on mobile */
+  }
+}
+
+/* Firefox - responsive behavior */
+@media (min-width: 768px) {
+  /* Firefox scoped styling */
+  .modal-scroll-area {
+    scrollbar-width: thin; /* or auto */
+    scrollbar-color: var(--accent) var(--scrollbar-track-bg); /* solid track color */
+  }
+}
+
+@media (max-width: 767px) {
+  .modal-scroll-area {
+    scrollbar-width: thin; /* Keep visible on mobile for Firefox */
+    scrollbar-color: var(--accent) var(--scrollbar-track-bg);
+  }
+}

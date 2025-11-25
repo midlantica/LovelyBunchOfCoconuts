@@ -4,6 +4,8 @@ title: 'Liberalism Isn’t dead – It’s Buried Under 120 Years of Collectivis
 
 ## Liberalism Isn’t dead, don't confuse it with Leftism.
 
+![Declaration of Iindependence painting](/posts/declaration-of-independence-painting.jpg)
+
 Liberalism is just buried under 120 years of collectivist garbage.
 
 The core of liberalism is dead-simple:

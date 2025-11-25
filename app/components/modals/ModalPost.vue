@@ -10,7 +10,7 @@
           <div
             v-if="modalData?.body"
             ref="bodyRef"
-            class="scroll-area relative max-h-[60vh] max-w-none overflow-y-auto"
+            class="modal-scroll-area relative max-h-[60vh] max-w-none overflow-y-auto"
           >
             <div
               class="prose-invert prose post-modal-content max-w-none pr-0 sm:pr-3"
@@ -195,26 +195,6 @@
 </script>
 
 <style scoped>
-  .scroll-area {
-    scrollbar-gutter: stable;
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: hsla(197, 92%, 80%, 0.5) rgba(255, 255, 255, 0.08); /* thumb, track */
-  }
-  .scroll-area::-webkit-scrollbar {
-    width: 5px;
-  }
-  .scroll-area::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 6px;
-  }
-  .scroll-area::-webkit-scrollbar-thumb {
-    background: hsl(197, 93%, 80%, 0.5); /* I want seagull-200 */
-    border-radius: 6px;
-  }
-  .scroll-area::-webkit-scrollbar-thumb:hover {
-    background: hsl(197, 93%, 80%); /* I want seagull-200 */
-  }
-
   /* Post modal content styling - ensure all headers are seagull-200 */
   .post-modal-content :deep(h1),
   .post-modal-content :deep(h2),
@@ -222,7 +202,7 @@
   .post-modal-content :deep(h4),
   .post-modal-content :deep(h5),
   .post-modal-content :deep(h6) {
-    color: #a5f3fc; /* seagull-200 */
+    color: #b8e8ff; /* seagull-200 */
     font-weight: 300;
   }
 
@@ -262,7 +242,7 @@
   }
 
   .post-modal-content :deep(ul li::marker) {
-    color: #a5f3fc; /* seagull-200 */
+    color: #b8e8ff; /* seagull-200 */
   }
 
   .post-modal-content :deep(ol) {

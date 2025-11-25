@@ -45,7 +45,16 @@ const extractSearchableText = (body, itemPath = '') => {
     }
   }
 
-  return text.trim()
+  // Normalize special characters: convert smart quotes, apostrophes, dashes to standard ASCII
+  // This ensures searches work regardless of character encoding
+  const normalized = text
+    .replace(/[\u2018\u2019]/g, "'") // Smart single quotes to apostrophe
+    .replace(/[\u201C\u201D]/g, '"') // Smart double quotes to straight quotes
+    .replace(/[\u2013\u2014]/g, '-') // En dash and em dash to hyphen
+    .replace(/[\u2026]/g, '...') // Ellipsis to three dots
+    .trim()
+
+  return normalized
 }
 
 // Global cache instance - shared across all components
@@ -152,15 +161,6 @@ export function useContentCache() {
         }
       }
 
-      // For posts: extract body text for preview
-      if (type === 'posts') {
-        if (item.body && item.body.value) {
-          // Posts use full body content, no special transformation needed
-          // The body will be rendered by ContentRenderer in the modal
-          transformed.body = item.body
-        }
-      }
-
       // For memes: extract image from body content structure
       if (type === 'memes') {
         // Extract image from body value array (Nuxt Content v3 minimark format)
@@ -248,27 +248,44 @@ export function useContentCache() {
         }
       }
 
+      // For posts: extract body text for preview and search
+      if (type === 'posts') {
+        if (item.body && item.body.value) {
+          // Posts use full body content, no special transformation needed
+          // The body will be rendered by ContentRenderer in the modal
+          transformed.body = item.body
+
+          // Extract text content for search (including title)
+          const bodyText = extractSearchableText(
+            item.body,
+            item._path || item.path
+          )
+          transformed.bodyText = bodyText
+        }
+      }
+
       // Add searchable text field for search functionality (precompute consolidated lowercase string)
       const rawSearch = extractSearchableText(
         item.body,
         item._path || item.path
       )
       transformed.searchableText = rawSearch
-      transformed._search = (
-        [
-          transformed.grift,
-          transformed.decode,
-          transformed.title,
-          transformed.quoteText,
-          transformed.attribution,
-          transformed.description,
-          rawSearch,
-        ]
-          .filter(Boolean)
-          .join(' ') +
-        ' ' +
-        (item._path || '')
-      )
+
+      // Build _search field with all relevant text content
+      const searchParts = [
+        transformed.grift,
+        transformed.decode,
+        transformed.title,
+        transformed.quoteText,
+        transformed.attribution,
+        transformed.description,
+        transformed.bodyText, // Include bodyText for posts
+        rawSearch,
+        item._path || '',
+      ].filter(Boolean)
+
+      transformed._search = searchParts
+        .join(' ')
         .toLowerCase()
         .replace(/[-_]/g, ' ')
 
@@ -518,8 +535,11 @@ export function useContentCache() {
       grifts: cache.grifts.length,
       quotes: cache.quotes.length,
       memes: cache.memes.length,
+      posts: cache.posts.length,
     })
-    return interleaveContent(cache.grifts, cache.quotes, cache.memes)
+    return interleaveContent(cache.grifts, cache.quotes, cache.memes, {
+      posts: cache.posts,
+    })
   }
 
   const getFilteredContent = (
@@ -529,24 +549,30 @@ export function useContentCache() {
     let filteredGrifts = contentFilters.grifts ? cache.grifts : []
     let filteredQuotes = contentFilters.quotes ? cache.quotes : []
     let filteredMemes = contentFilters.memes ? cache.memes : []
+    let filteredPosts = cache.posts // Posts are always included (no filter toggle)
     if (searchTerm && searchTerm.trim()) {
       const s = searchTerm.toLowerCase().trim()
       const match = (item) => item._search && item._search.includes(s)
       filteredGrifts = filteredGrifts.filter(match)
       filteredQuotes = filteredQuotes.filter(match)
       filteredMemes = filteredMemes.filter(match)
+      filteredPosts = filteredPosts.filter(match)
       debugLog('🔍 Search results:', {
         grifts: filteredGrifts.length,
         quotes: filteredQuotes.length,
         memes: filteredMemes.length,
+        posts: filteredPosts.length,
       })
     }
     debugLog('🎯 getFilteredContent using interleaveContent with:', {
       grifts: filteredGrifts.length,
       quotes: filteredQuotes.length,
       memes: filteredMemes.length,
+      posts: filteredPosts.length,
     })
-    return interleaveContent(filteredGrifts, filteredQuotes, filteredMemes)
+    return interleaveContent(filteredGrifts, filteredQuotes, filteredMemes, {
+      posts: filteredPosts,
+    })
   }
 
   // Progressive loading: Load small batch first for instant display

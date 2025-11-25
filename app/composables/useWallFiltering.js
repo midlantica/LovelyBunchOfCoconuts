@@ -62,6 +62,17 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
       ['posts', 'post', 'article', 'blog'].includes(term)
     )
 
+    // If searching for posts keyword, return ALL posts without text filtering
+    if (hasPostsKeyword) {
+      return {
+        grifts: false,
+        quotes: false,
+        memes: false,
+        posts: true,
+        profiles: false,
+      }
+    }
+
     // Check for hero-specific search (must NOT include zero terms)
     const hasHeroKeyword = expanded.some((term) =>
       ['hero', 'heroes'].includes(term)
@@ -187,6 +198,19 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
       }
     }
 
+    // DEBUG: Log search query and available posts
+    if (import.meta.dev && (q.includes('dead') || q.includes('post'))) {
+      console.log('🔍 SEARCH DEBUG:', {
+        query: q,
+        postsAvailable: groups.posts?.length || 0,
+        postsPreview: groups.posts?.slice(0, 3).map((p) => ({
+          title: p.title,
+          hasSearch: !!p._search,
+          searchPreview: p._search?.substring(0, 100),
+        })),
+      })
+    }
+
     // Check if this is a content type search
     const contentTypeFilter = getContentTypeFilter(q)
     if (contentTypeFilter) {
@@ -228,6 +252,29 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
         textMatches(it._search || it.searchableText, q)
       )
       out[k] = deduplicateByPath(filtered)
+
+      // DEBUG: Log post filtering results
+      if (
+        import.meta.dev &&
+        k === 'posts' &&
+        (q.includes('dead') || q.includes('post'))
+      ) {
+        console.log('🔍 POST FILTER RESULTS:', {
+          query: q,
+          totalPosts: groups[k]?.length || 0,
+          filteredPosts: filtered.length,
+          samplePost: groups[k]?.[0]
+            ? {
+                title: groups[k][0].title,
+                searchField: groups[k][0]._search?.substring(0, 200),
+                matchResult: textMatches(
+                  groups[k][0]._search || groups[k][0].searchableText,
+                  q
+                ),
+              }
+            : null,
+        })
+      }
     }
     return out
   }

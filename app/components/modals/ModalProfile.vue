@@ -231,26 +231,6 @@
 </script>
 
 <style scoped>
-  .scroll-area {
-    scrollbar-gutter: stable;
-    scrollbar-width: thin;
-    scrollbar-color: #0089cc rgba(255, 255, 255, 0.08);
-  }
-  .scroll-area::-webkit-scrollbar {
-    width: 5px;
-  }
-  .scroll-area::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 6px;
-  }
-  .scroll-area::-webkit-scrollbar-thumb {
-    background: #0089cc;
-    border-radius: 6px;
-  }
-  .scroll-area::-webkit-scrollbar-thumb:hover {
-    background: #09acee;
-  }
-
   /* Style for bio content with proper markdown rendering */
   .prose-bio :deep(h2) {
     display: none; /* Hide h2 headings */

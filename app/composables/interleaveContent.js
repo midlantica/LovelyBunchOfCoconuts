@@ -214,6 +214,15 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
     }
     lastItemWasAd = isAd
   }
+  const pushPost = (postObj) => {
+    output.push({
+      type: 'post',
+      data: { ...postObj, _type: 'post' },
+    })
+    producedCoreItems++
+    itemsSinceLastAd++
+    lastItemWasAd = false
+  }
   const pushProfile = (profileObj) => {
     output.push({
       type: 'profile',
@@ -254,7 +263,6 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
         created = true
       }
     } else if (expected === 'quote') {
-      // Just use quotes - posts are now handled in memeRow
       if (quoteRemaining() >= 1) {
         pushQuote(q[qi])
         qi += 1
@@ -262,8 +270,8 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
       }
     }
 
-    // Fallbacks (stable priority): griftPair(2) → memeRow(2) → quote(1) → grift single → meme single
-    // Posts are now only used within memeRow (every 5th), not as standalone pairs
+    // Fallbacks (stable priority): griftPair(2) → memeRow(2) → quote(1) → post(1) → grift single → meme single
+    // Posts can now appear as standalone items (like quotes) in addition to being mixed with memes
     if (!created) {
       if (griftRemaining() >= 2) {
         pushGriftPair(2)
@@ -274,6 +282,39 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
       } else if (quoteRemaining() >= 1) {
         pushQuote(q[qi])
         qi += 1
+        created = true
+      } else if (postRemaining() >= 2) {
+        // When we have 2+ posts but no memes, pair posts together
+        const post1 = { ...po[poi], _type: 'post' }
+        poi++
+        const post2 = { ...po[poi], _type: 'post' }
+        poi++
+        output.push({ type: 'memeRow', data: [post1, post2] })
+        producedCoreItems++
+        itemsSinceLastAd++
+        lastItemWasAd = false
+        created = true
+      } else if (postRemaining() >= 1 && memeRemaining() >= 1) {
+        // Pair remaining posts with memes when both are available
+        const meme = { ...m[mi], _type: 'meme' }
+        mi++
+        const post = { ...po[poi], _type: 'post' }
+        poi++
+        const items =
+          (rng ? rng() : Math.random()) > 0.5 ? [meme, post] : [post, meme]
+        output.push({ type: 'memeRow', data: items })
+        producedCoreItems++
+        itemsSinceLastAd++
+        lastItemWasAd = false
+        created = true
+      } else if (postRemaining() === 1) {
+        // Single remaining post - pair with itself or show alone
+        const post = { ...po[poi], _type: 'post' }
+        poi++
+        output.push({ type: 'memeRow', data: [post] })
+        producedCoreItems++
+        itemsSinceLastAd++
+        lastItemWasAd = false
         created = true
       } else if (griftRemaining() === 1) {
         pushGriftPair(1) // single wrapped as griftPair for template compatibility

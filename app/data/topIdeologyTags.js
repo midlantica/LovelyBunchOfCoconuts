@@ -4,6 +4,7 @@ export const curatedTop = [
   'Freedom',
   'Equality',
   'Capitalism',
+  'Liberalism',
   'Individualism',
   'Socialism',
   'Communism',

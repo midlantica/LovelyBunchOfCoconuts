@@ -140,6 +140,28 @@
             </div>
           </div>
 
+          <!-- Posts (standalone, single item centered) -->
+          <div
+            v-else-if="item.type === 'post'"
+            class="mx-auto w-full max-w-[460px]"
+          >
+            <div
+              class="cursor-pointer!"
+              role="button"
+              tabindex="0"
+              @click.capture="
+                maybeOpenModal($event, () => openModal(item.data, 'post', true))
+              "
+              @keydown.enter.prevent="openModal(item.data, 'post', true)"
+              @keydown.space.prevent="openModal(item.data, 'post', true)"
+            >
+              <WallPanelPost
+                :post="item.data"
+                :slug="item.data?.path || item.data?._path || ''"
+              />
+            </div>
+          </div>
+
           <!-- Profiles (full width) -->
           <div
             v-else-if="item.type === 'profile'"

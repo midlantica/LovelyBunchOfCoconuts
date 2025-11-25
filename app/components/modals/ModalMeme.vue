@@ -21,7 +21,7 @@
             />
             <div
               v-if="modalData?.bodyText"
-              class="font-100 scroll-area mt-2 min-h-0 w-full flex-1 overflow-y-auto px-2 text-center text-base leading-normal text-gray-300 sm:px-0 sm:text-lg"
+              class="font-100 modal-scroll-area mt-2 min-h-0 w-full flex-1 overflow-y-auto px-2 text-center text-base leading-normal text-gray-300 sm:px-0 sm:text-lg"
             >
               <div class="whitespace-pre-line">
                 {{ modalData.bodyText }}
@@ -127,32 +127,3 @@
 
   // Native scrollbar styling handled via CSS
 </script>
-
-<style scoped>
-  .scroll-area {
-    scrollbar-gutter: stable;
-    scrollbar-width: auto; /* Firefox - always visible */
-    scrollbar-color: #0089cc rgba(255, 255, 255, 0.15); /* thumb, track */
-    /* Add padding to show full scrollbar track */
-    padding-right: 2px;
-  }
-  .scroll-area::-webkit-scrollbar {
-    width: 12px; /* Wider, more visible scrollbar */
-  }
-  .scroll-area::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 999px;
-    /* Inset the track slightly to show rounded ends */
-    margin: 4px 0;
-  }
-  .scroll-area::-webkit-scrollbar-thumb {
-    background: #0089cc; /* seagull-600 */
-    border-radius: 999px;
-  }
-  .scroll-area::-webkit-scrollbar-thumb:hover {
-    background: #09acee; /* seagull-500 */
-  }
-  .scroll-area::-webkit-scrollbar-corner {
-    background: rgba(255, 255, 255, 0.15);
-  }
-</style>

@@ -31,7 +31,7 @@
               modalData.body.value.length > 0
             "
             ref="bodyRef"
-            class="scroll-area relative max-h-[50vh] max-w-none overflow-y-auto"
+            class="modal-scroll-area relative max-h-[50vh] max-w-none overflow-y-auto"
           >
             <div class="prose-invert prose pr-0 sm:pr-3">
               <div v-html="modalData?.bodyHtml"></div>
@@ -234,25 +234,6 @@
     filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.35));
     opacity: 0.5;
     display: inline-block;
-  }
-  .scroll-area {
-    scrollbar-gutter: stable;
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: #0089cc rgba(255, 255, 255, 0.08); /* thumb, track */
-  }
-  .scroll-area::-webkit-scrollbar {
-    width: 5px;
-  }
-  .scroll-area::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 6px;
-  }
-  .scroll-area::-webkit-scrollbar-thumb {
-    background: #0089cc; /* seagull-600 */
-    border-radius: 6px;
-  }
-  .scroll-area::-webkit-scrollbar-thumb:hover {
-    background: #09acee; /* seagull-500 */
   }
 
   /* Ensure all headers in prose content are seagull-200 */

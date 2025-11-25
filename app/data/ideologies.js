@@ -4,6 +4,7 @@ export const ideologyGroups = {
     'Individualism',
     'Limited Government',
     'Free Markets',
+    'Liberalism',
     'Responsibility',
     'Rule of Law',
     'Property Rights',

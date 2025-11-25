@@ -25,9 +25,12 @@
         {{ postHeader }}
       </h2>
 
-      <!-- Body preview with markdown rendering -->
+      <!-- Body preview with markdown rendering (images filtered out) -->
       <div class="post-preview-content flex-1 overflow-hidden">
-        <ContentRenderer :value="post" class="prose-invert prose-sm" />
+        <ContentRenderer
+          :value="{ ...post, body: postBodyWithoutImages }"
+          class="prose-invert prose-sm"
+        />
       </div>
     </div>
   </div>
@@ -50,6 +53,46 @@
   })
 
   const contentType = computed(() => 'post')
+
+  // Filter out image nodes from post body for preview (prevents image downloads)
+  const postBodyWithoutImages = computed(() => {
+    if (!props.post?.body?.value) return props.post?.body
+
+    const filterImages = (elements) => {
+      return elements
+        .map((element) => {
+          // Keep non-array elements (strings, etc.)
+          if (!Array.isArray(element)) return element
+
+          const [tag, attrs, ...children] = element
+
+          // Remove standalone images
+          if (tag === 'img') return null
+
+          // For paragraphs, filter out any image children
+          if (tag === 'p' && children.length > 0) {
+            const filteredChildren = children.filter((child) => {
+              if (!Array.isArray(child)) return true
+              return child[0] !== 'img'
+            })
+
+            // If paragraph becomes empty after filtering, remove it
+            if (filteredChildren.length === 0) return null
+
+            // Return paragraph with filtered children
+            return [tag, attrs, ...filteredChildren]
+          }
+
+          return element
+        })
+        .filter((element) => element !== null)
+    }
+
+    return {
+      ...props.post.body,
+      value: filterImages(props.post.body.value),
+    }
+  })
 
   // Extract the first H2 heading from the post body
   const postHeader = computed(() => {
