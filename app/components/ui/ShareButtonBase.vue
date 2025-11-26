@@ -22,7 +22,7 @@
     >
       <div
         v-if="showToast"
-        class="pointer-events-none absolute bottom-full left-1/2 z-[9999] mb-2 -translate-x-1/2 transform rounded-lg border border-slate-600 bg-slate-800 px-3 py-1.5 text-sm whitespace-nowrap text-white shadow-lg"
+        class="pointer-events-none absolute bottom-full left-1/2 z-9999 mb-2 -translate-x-1/2 transform rounded-lg border border-slate-600 bg-slate-800 px-3 py-1.5 text-sm whitespace-nowrap text-white shadow-lg"
       >
         {{ toastMessage }}
       </div>

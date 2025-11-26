@@ -180,18 +180,6 @@
     position: relative;
   }
 
-  /* Create ellipsis effect with pseudo-element */
-  .post-preview-content::after {
-    content: '...';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding-left: 0.5rem;
-    background: linear-gradient(to right, transparent, #0f172a 50%);
-    font-size: 2.199376rem; /* Twice as big as 1.099688rem */
-    line-height: 1;
-  }
-
   /* Hide H2 in preview since we show it separately */
   .post-preview-content :deep(h2) {
     display: none;

@@ -2487,6 +2487,70 @@
       "updated": "2025-11-21T20:34:55.023Z",
       "width": 720,
       "height": 1080
+    },
+    "capitalism/order-emerges-when-freedom-is-allowed-to.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-26T23:49:25.181Z",
+      "width": 1080,
+      "height": 1080
+    },
+    "capitalism/socialism-assumes-that-all-the-available.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-26T23:49:25.323Z",
+      "width": 1080,
+      "height": 697
+    },
+    "capitalism/socialism-like-the-ancient-ideas-from.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-26T23:49:25.475Z",
+      "width": 1080,
+      "height": 557
+    },
+    "cartoons/democrat-party-kkk-antifa-anti-ice-pro.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-26T23:49:25.700Z",
+      "width": 960,
+      "height": 534
+    },
+    "cartoons/era-of-big-govt-over-vs-dems-now-free.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-26T23:49:26.041Z",
+      "width": 1080,
+      "height": 1080
+    },
+    "cartoons/who-runs-education.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-26T23:49:26.222Z",
+      "width": 864,
+      "height": 1080
+    },
+    "data/in-2024-60-of-federal-spending.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-26T23:49:26.630Z",
+      "width": 1011,
+      "height": 1080
+    },
+    "data/total-fertility-rate-by-state-2023.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "upscale→800",
+      "updated": "2025-11-26T23:49:26.838Z",
+      "width": 800,
+      "height": 560
     }
   }
 }
