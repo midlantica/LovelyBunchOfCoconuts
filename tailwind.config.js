@@ -24,6 +24,7 @@ export default {
       boxShadow: {
         // Frequently used custom shadows
         modal: '0 6px 10px -3px black',
+        'share-shelf': '0 8px 12px -6px black',
         'inset-card': 'inset 0 0 12px 0 #0f1e24',
       },
       fontFamily: {

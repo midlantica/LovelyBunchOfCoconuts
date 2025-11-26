@@ -1,14 +1,6 @@
 /* Modal styles for all modals using ModalFrame.vue */
 @layer top {
-  #modal-root .modal-overlay {
-    z-index: 50;
-    position: fixed;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.7);
-  }
+  /* Overlay styling is handled in ModalFrame.vue scoped styles */
   #modal-root .modal-frame {
     position: relative;
     max-height: 90vh;

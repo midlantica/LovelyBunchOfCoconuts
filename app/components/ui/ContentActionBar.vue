@@ -9,7 +9,7 @@
   >
     <div
       v-if="show"
-      class="absolute -top-2 w-full rounded-b-lg border-b-[0.05em] border-[#7c7c7c4a] bg-[#1b1b1b] px-3 pt-4 pb-2 sm:px-3.5"
+      class="shadow-share-shelf absolute -top-2 w-full rounded-b-lg border-b-[0.05em] border-[#7c7c7c4a] bg-[#1b1b1b] px-3 pt-4 pb-2 sm:px-3.5"
     >
       <div class="flex items-center gap-4">
         <!-- Share cluster flush left -->

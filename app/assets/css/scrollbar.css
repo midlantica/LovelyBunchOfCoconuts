@@ -104,7 +104,6 @@
   .modal-scroll-area {
     scrollbar-gutter: stable both-edges;
     overflow-y: scroll; /* Force scrollbar always visible on desktop */
-    padding-top: 20px; /* Push content and scrollbar down to avoid close button */
   }
 }
 
@@ -113,12 +112,13 @@
   .modal-scroll-area::-webkit-scrollbar {
     width: 8px; /* Slightly thinner on mobile */
     display: block;
+    height: 90%; /* Limit scrollbar to 90% of container height */
   }
 
   .modal-scroll-area::-webkit-scrollbar-track {
     background: var(--scrollbar-track-bg);
     border-radius: 4px; /* Half of scrollbar width for semicircular ends */
-    margin: 4px 0;
+    margin: 48px 0 4px 0; /* Large top margin to clear close button, normal bottom margin */
   }
 
   .modal-scroll-area::-webkit-scrollbar-thumb {

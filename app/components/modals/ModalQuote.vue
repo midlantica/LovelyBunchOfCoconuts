@@ -26,9 +26,9 @@
           </div>
           <div
             v-if="
-              modalData?.body &&
-              modalData.body.value &&
-              modalData.body.value.length > 0
+              modalData?.bodyHtml &&
+              modalData.bodyHtml.trim() !== '' &&
+              modalData.bodyHtml.trim() !== '<div></div>'
             "
             ref="bodyRef"
             class="modal-scroll-area relative max-h-[50vh] max-w-none overflow-y-auto"

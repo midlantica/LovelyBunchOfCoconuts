@@ -1,292 +1,491 @@
-# Lighthouse Performance Fixes - WakeUpNPC
+# Lighthouse Performance Fixes
+
+**Report Date:** November 25, 2025
+**Test URL:** https://692500547bb93b0008cfc25b--wakeupnpc.netlify.app/
+**Current Performance Score:** 66/100
 
 ## Executive Summary
 
-This document summarizes the performance optimizations implemented to address the Lighthouse audit issues reported for wakeupnpc.com.
+The Lighthouse audit reveals critical performance issues that need immediate attention:
 
-**Initial Lighthouse Scores:**
-
-- Performance: 34
-- Accessibility: 90
-- Best Practices: 96
-- SEO: 100
-
-**Target Scores:**
-
-- Performance: 70+ (realistic target given image-heavy content)
-- Accessibility: 95+
-- Best Practices: 100
-- SEO: 100
-
-## Issues Addressed
-
-### 1. ✅ Accessibility - HTML Lang Attribute
-
-**Issue:** Missing `lang` attribute on `<html>` element
-
-**Fix:** Added `htmlAttrs: { lang: 'en' }` to `nuxt.config.ts`
-
-```typescript
-app: {
-  head: {
-    htmlAttrs: {
-      lang: 'en',
-    },
-    // ...
-  }
-}
-```
-
-**Impact:** Improves accessibility for screen readers and search engines.
+- **LCP (Largest Contentful Paint):** 5.5s → Target: <2.5s (CRITICAL)
+- **CLS (Cumulative Layout Shift):** 0.228 → Target: <0.1 (HIGH PRIORITY)
+- **DOM Size:** 20,554 elements → Target: <1,500 (CRITICAL)
+- **Server Response Time:** 737ms → Target: <600ms (HIGH PRIORITY)
+- **Render-blocking Resources:** 648ms potential savings (HIGH PRIORITY)
 
 ---
 
-### 2. ✅ Security Headers
+## Priority 1: CRITICAL FIXES (Immediate Action Required)
 
-**Issues:**
+### 1.1 Reduce DOM Size (20,554 → <1,500 elements)
 
-- CSP uses `unsafe-inline`
-- Missing HSTS with `preload` and `includeSubDomains`
-- No COOP (Cross-Origin-Opener-Policy)
+**Current Issue:** Excessive DOM elements causing memory issues and slow rendering
+**Impact:** High - Affects all performance metrics
+**Potential Savings:** Massive performance improvement
 
-**Fixes in `netlify.toml`:**
+**Root Causes:**
 
-```toml
-Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
-Cross-Origin-Opener-Policy = "same-origin-allow-popups"
-Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://gc.zgo.at; connect-src 'self' https: https://wakeupnpc.goatcounter.com https://gc.zgo.at; font-src 'self' data: https://fonts.gstatic.com; frame-ancestors 'self';"
-```
+- Virtual scrolling implementation may be rendering too many items
+- Wall component likely rendering all content at once
+- Possible memory leaks or duplicate elements
 
-**Impact:**
+**Action Items:**
 
-- HSTS protects against protocol downgrade attacks
-- COOP provides better isolation for security
-- Enhanced CSP with frame-ancestors
+1. **Audit TheWall.vue virtualization:**
 
-**Note:** CSP still uses `unsafe-inline` due to Nuxt's inline styles. Future improvement: implement nonce-based CSP.
+   ```bash
+   # Check current implementation
+   grep -n "virtualScroll\|renderBuffer\|itemHeight" app/components/wall/TheWall.vue
+   ```
 
----
+2. **Reduce render buffer:**
+   - Current buffer may be too large
+   - Reduce to render only visible items + 5-10 buffer items
+   - Implement aggressive cleanup of off-screen elements
 
-### 3. ✅ Lazy Loading Optimization
+3. **Implement DOM recycling:**
+   - Reuse DOM nodes instead of creating new ones
+   - Use `v-show` instead of `v-if` where appropriate for frequently toggled elements
 
-**Issue:** Images loading with 200px rootMargin causing unnecessary preloading
+4. **Lazy load modal content:**
+   - Don't render modal content until opened
+   - Destroy modal DOM when closed
 
-**Fix in `app/composables/useLazyImages.js`:**
+**Files to Modify:**
 
-```javascript
-{
-  rootMargin: '50px', // Reduced from 200px
-  threshold: 0.01,
-}
+- `app/components/wall/TheWall.vue`
+- `app/composables/useWallVirtualization.js`
+- `app/components/modals/ModalFrame.vue`
 
-// Added async decoding hint
-imageLoader.decoding = 'async'
-```
-
-**Impact:**
-
-- Reduces unnecessary image preloading
-- Improves initial page load performance
-- Better resource prioritization
+**Expected Result:** DOM size reduced to <2,000 elements
 
 ---
 
-### 4. 📋 Image Optimization (Action Required)
+### 1.2 Optimize Largest Contentful Paint (5.5s → <2.5s)
 
-**Issues:**
+**Current Issue:** LCP element taking 5.5 seconds to render
+**Impact:** Critical - Primary performance metric
+**Potential Savings:** 3+ seconds
 
-- 8+ MB potential savings from WebP/AVIF conversion
-- 3.5 MB from deferring offscreen images
-- High CLS (0.507) from layout shifts
+**Root Causes:**
 
-**Solutions Provided:**
+- Large images loading without optimization
+- Render-blocking resources delaying paint
+- Server response time delays
+- Excessive DOM size blocking rendering
 
-#### Two Scripts Created
+**Action Items:**
 
-**1. `scripts/convert-images-to-webp.js`** - Converts images to WebP
+1. **Identify LCP element:**
+   - Likely the hero image or first wall content item
+   - Use Chrome DevTools Performance tab to confirm
 
-```bash
-# Install dependency
-pnpm add -D sharp
+2. **Preload critical images:**
 
-# Preview conversion
-node scripts/convert-images-to-webp.js --dry-run
+   ```vue
+   <!-- In app.vue or nuxt.config.ts -->
+   <link
+     rel="preload"
+     as="image"
+     href="/hero-image.webp"
+     fetchpriority="high"
+   />
+   ```
 
-# Convert images (keeps originals)
-node scripts/convert-images-to-webp.js
-```
+3. **Optimize image delivery:**
+   - Ensure WebP format with fallbacks
+   - Use responsive images with `srcset`
+   - Implement proper `width` and `height` attributes
+   - Add `fetchpriority="high"` to LCP image
 
-**2. `scripts/update-markdown-image-refs.js`** - Updates markdown files
+4. **Inline critical CSS:**
+   - Extract above-the-fold CSS
+   - Inline in `<head>` to avoid render-blocking
 
-```bash
-# Preview changes
-node scripts/update-markdown-image-refs.js --dry-run
+5. **Defer non-critical resources:**
+   - Move non-critical JS to bottom or use `defer`
+   - Lazy load below-the-fold content
 
-# Update references
-node scripts/update-markdown-image-refs.js
-```
+**Files to Modify:**
 
-**What happens:**
+- `nuxt.config.ts` (add preload links)
+- `app/app.vue` (critical CSS)
+- `app/components/wall/TheWall.vue` (image optimization)
+- `app/pages/index.vue` (hero optimization)
 
-1. First script converts `.jpg` → `.webp` (creates new files, keeps originals)
-2. Second script updates markdown files to reference `.webp` instead of `.jpg`
-3. You test to verify everything works
-4. Optionally remove original JPEGs with `--replace` flag
-
-**Expected Results:**
-
-- 25-35% file size reduction
-- 8-10 MB total savings
-- Faster image loading
-- All markdown references automatically updated
-
-#### Comprehensive Guide
-
-See `docs/IMAGE_OPTIMIZATION_GUIDE.md` for:
-
-- Step-by-step conversion instructions
-- Troubleshooting tips
-- Additional optimization techniques
-- Alternative solutions (@nuxt/image module)
+**Expected Result:** LCP reduced to <2.5s
 
 ---
 
-## Implementation Status
+### 1.3 Reduce Server Response Time (737ms → <600ms)
 
-### ✅ Completed (Ready to Deploy)
+**Current Issue:** Initial server response taking 737ms
+**Impact:** High - Delays everything
+**Potential Savings:** 638ms
 
-1. Added HTML lang attribute
-2. Enhanced security headers (HSTS, COOP)
-3. Improved lazy loading configuration
-4. Created image optimization scripts
-5. Created comprehensive documentation
+**Root Causes:**
 
-### 📋 Next Steps for Image Optimization
+- Cold start delays on Netlify
+- Inefficient server-side rendering
+- Large data fetching on initial load
+- No edge caching
 
-**Phase 1: Image Conversion (High Priority)**
+**Action Items:**
 
-**Estimated Time:** 2-4 hours
-**Expected Performance Gain:** +30-40 points
+1. **Enable Netlify Edge Functions:**
+   - Move critical API routes to edge functions
+   - Reduce latency by serving from nearest edge location
 
-```bash
-# Step 1: Install sharp
-pnpm add -D sharp
+2. **Implement aggressive caching:**
 
-# Step 2: Convert images
-node scripts/convert-images-to-webp.js --dry-run
-node scripts/convert-images-to-webp.js
+   ```typescript
+   // In nuxt.config.ts
+   nitro: {
+     compressPublicAssets: true,
+     prerender: {
+       crawlLinks: true,
+       routes: ['/']
+     }
+   }
+   ```
 
-# Step 3: Update markdown
-node scripts/update-markdown-image-refs.js --dry-run
-node scripts/update-markdown-image-refs.js
+3. **Optimize data fetching:**
+   - Reduce initial data payload
+   - Implement incremental loading
+   - Cache static content JSON files
 
-# Step 4: Test
-pnpm dev
-# Verify images load correctly
+4. **Add Cache-Control headers:**
 
-# Step 5: Optional - remove originals
-node scripts/convert-images-to-webp.js --replace
-```
+   ```toml
+   # In netlify.toml
+   [[headers]]
+     for = "/*"
+     [headers.values]
+       Cache-Control = "public, max-age=31536000, immutable"
 
-**Phase 2: Additional Optimizations (Optional)**
+   [[headers]]
+     for = "/*.html"
+     [headers.values]
+       Cache-Control = "public, max-age=0, must-revalidate"
+   ```
 
-- Add explicit image dimensions to prevent CLS
-- Preload LCP image in nuxt.config.ts
-- Implement responsive srcset
-- Consider @nuxt/image module
+**Files to Modify:**
+
+- `netlify.toml`
+- `nuxt.config.ts`
+- `server/middleware/cache.ts` (create)
+
+**Expected Result:** Server response time <600ms
 
 ---
 
-## Expected Results
+## Priority 2: HIGH PRIORITY FIXES
 
-### After Current Changes (Deployed)
+### 2.1 Eliminate Render-Blocking Resources (648ms savings)
 
-- Accessibility: 90 → 95+
-- Best Practices: 96 → 100
-- Performance: Minor improvement from lazy loading
+**Current Issue:** Google Fonts CSS blocking render
+**Impact:** High - Delays FCP and LCP
+**Potential Savings:** 648ms
 
-### After Image Optimization (Phase 1)
+**Action Items:**
 
-- Performance: 34 → 65-75
-- CLS: 0.507 → <0.1 (with dimension fixes)
-- Image Payload: -8-10 MB
-- LCP: Maintain or improve from 1.6s
+1. **Self-host Google Fonts:**
 
-### After All Optimizations
+   ```bash
+   # Download fonts and add to public/fonts/
+   # Update CSS to use local fonts
+   ```
 
-- Performance: 70-85
-- Accessibility: 95+
-- Best Practices: 100
-- SEO: 100
+2. **Use font-display: swap:**
+
+   ```css
+   @font-face {
+     font-family: 'Your Font';
+     font-display: swap;
+     src: url('/fonts/your-font.woff2') format('woff2');
+   }
+   ```
+
+3. **Preload critical fonts:**
+
+   ```vue
+   <link
+     rel="preload"
+     href="/fonts/main-font.woff2"
+     as="font"
+     type="font/woff2"
+     crossorigin
+   />
+   ```
+
+4. **Remove unused font weights:**
+   - Audit which font weights are actually used
+   - Only load necessary weights
+
+**Files to Modify:**
+
+- `app/app.vue` or `nuxt.config.ts`
+- `app/assets/css/main.css`
+- `public/fonts/` (add font files)
+
+**Expected Result:** Eliminate 648ms render-blocking time
+
+---
+
+### 2.2 Reduce Cumulative Layout Shift (0.228 → <0.1)
+
+**Current Issue:** Elements shifting during page load
+**Impact:** High - Poor user experience
+**Potential Savings:** Better UX and performance score
+
+**Root Causes:**
+
+- Images loading without dimensions
+- Dynamic content insertion
+- Web fonts causing text reflow
+- Ads or dynamic components
+
+**Action Items:**
+
+1. **Add explicit dimensions to all images:**
+
+   ```vue
+   <img src="image.webp" width="800" height="600" alt="Description" />
+   ```
+
+2. **Reserve space for dynamic content:**
+
+   ```css
+   .wall-item {
+     min-height: 400px; /* Reserve space before content loads */
+   }
+   ```
+
+3. **Use font-display: swap with fallback metrics:**
+
+   ```css
+   @font-face {
+     font-family: 'Main Font';
+     font-display: swap;
+     size-adjust: 100%; /* Match fallback font metrics */
+   }
+   ```
+
+4. **Preload critical images:**
+   - Add dimensions to all wall item images
+   - Use aspect-ratio CSS property
+
+**Files to Modify:**
+
+- `app/components/wall/WallItem.vue`
+- `app/components/ProfileImage.vue`
+- `app/assets/css/main.css`
+
+**Expected Result:** CLS reduced to <0.1
+
+---
+
+## Priority 3: MEDIUM PRIORITY FIXES
+
+### 3.1 Remove Unused JavaScript (60KB in BsV056DK.js)
+
+**Current Issue:** 39% of JavaScript unused
+**Impact:** Medium - Increases bundle size
+**Potential Savings:** 60KB
+
+**Action Items:**
+
+1. **Analyze bundle composition:**
+
+   ```bash
+   pnpm run analyze-bundle-size
+   ```
+
+2. **Implement code splitting:**
+
+   ```typescript
+   // Use dynamic imports for large components
+   const HeavyComponent = defineAsyncComponent(
+     () => import('./components/HeavyComponent.vue')
+   )
+   ```
+
+3. **Tree-shake unused dependencies:**
+   - Audit package.json for unused packages
+   - Use named imports instead of default imports
+   - Enable tree-shaking in build config
+
+4. **Lazy load non-critical features:**
+   - Modal components
+   - Share functionality
+   - Admin features
+
+**Files to Modify:**
+
+- `nuxt.config.ts` (build optimization)
+- Various component files (dynamic imports)
+
+**Expected Result:** 60KB reduction in JavaScript
+
+---
+
+### 3.2 Remove Unused CSS (11KB in entry.MLIZCXKN.css)
+
+**Current Issue:** 76% of CSS unused
+**Impact:** Medium - Increases bundle size
+**Potential Savings:** 11KB
+
+**Action Items:**
+
+1. **Audit Tailwind usage:**
+
+   ```bash
+   # Check which Tailwind classes are actually used
+   pnpm dlx tailwindcss-analyzer
+   ```
+
+2. **Configure PurgeCSS properly:**
+
+   ```javascript
+   // In tailwind.config.js
+   content: [
+     './app/**/*.{vue,js,ts}',
+     './content/**/*.md'
+   ],
+   safelist: [
+     // Only safelist truly dynamic classes
+   ]
+   ```
+
+3. **Remove unused component styles:**
+   - Audit scoped styles in components
+   - Remove dead CSS code
+
+4. **Optimize Tailwind config:**
+   - Disable unused plugins
+   - Reduce color palette if not needed
+   - Remove unused utilities
+
+**Files to Modify:**
+
+- `tailwind.config.js`
+- Various component files
+
+**Expected Result:** 11KB reduction in CSS
+
+---
+
+### 3.3 Fix Accessibility Issues
+
+**Current Issues:**
+
+- Button without accessible name (1 element)
+- Color contrast issues (6 elements)
+
+**Action Items:**
+
+1. **Add accessible name to header button:**
+
+   ```vue
+   <button aria-label="Menu" class="header-button">
+     <IconMenu />
+   </button>
+   ```
+
+2. **Fix color contrast issues:**
+   - Search input: Increase contrast ratio to 4.5:1
+   - Filter buttons: Adjust text/background colors
+   - Test with Chrome DevTools Accessibility panel
+
+**Files to Modify:**
+
+- `app/components/layout/Header.vue`
+- `app/components/searchbar/SearchBar.vue`
+- `app/components/wall/FilterButtons.vue`
+
+**Expected Result:** Accessibility score 100/100
+
+---
+
+## Implementation Plan
+
+### Phase 1: Critical Fixes (Week 1)
+
+1. Reduce DOM size (TheWall virtualization)
+2. Optimize LCP (image preloading, critical CSS)
+3. Reduce server response time (caching, edge functions)
+
+**Expected Impact:** Performance score 66 → 80+
+
+### Phase 2: High Priority (Week 2)
+
+1. Eliminate render-blocking resources (self-host fonts)
+2. Reduce CLS (image dimensions, space reservation)
+
+**Expected Impact:** Performance score 80 → 90+
+
+### Phase 3: Medium Priority (Week 3)
+
+1. Remove unused JavaScript (code splitting)
+2. Remove unused CSS (Tailwind optimization)
+3. Fix accessibility issues
+
+**Expected Impact:** Performance score 90 → 95+
 
 ---
 
 ## Testing & Validation
 
-### Tools to Use
+After each phase:
 
-1. **Chrome DevTools Lighthouse**
-   - Run in incognito mode
-   - Use "Mobile" device simulation
-   - Test multiple times for consistency
+1. **Run Lighthouse audit:**
 
-2. **PageSpeed Insights**
-   - https://pagespeed.web.dev/
-   - Tests real-world performance
-   - Provides field data from actual users
+   ```bash
+   # Local testing
+   pnpm run build
+   pnpm run preview
+   # Then run Lighthouse in Chrome DevTools
+   ```
 
-3. **WebPageTest**
-   - https://www.webpagetest.org/
-   - Detailed waterfall analysis
-   - Multiple location testing
+2. **Test on Netlify preview:**
+   - Deploy to preview branch
+   - Run Lighthouse on preview URL
+   - Compare metrics
 
-### Key Metrics to Monitor
-
-- **FCP (First Contentful Paint):** Currently 1.0s (good)
-- **LCP (Largest Contentful Paint):** Currently 1.6s (good)
-- **TBT (Total Blocking Time):** Currently 3.9s (needs improvement)
-- **CLS (Cumulative Layout Shift):** Currently 0.507 (needs improvement)
+3. **Monitor Core Web Vitals:**
+   - Use Chrome User Experience Report
+   - Monitor real user metrics
+   - Track improvements over time
 
 ---
 
-## Files Created
+## Success Metrics
 
-### Scripts
+**Target Scores:**
 
-- `scripts/convert-images-to-webp.js` - Image conversion utility
-- `scripts/update-markdown-image-refs.js` - Markdown reference updater
+- Performance: 95+ (currently 66)
+- Accessibility: 100 (currently 91)
+- Best Practices: 100 (currently 100)
+- SEO: 100 (currently 100)
+- PWA: 80+ (currently 40)
 
-### Documentation
+**Target Core Web Vitals:**
 
-- `docs/IMAGE_OPTIMIZATION_GUIDE.md` - Comprehensive optimization guide
-- `docs/LIGHTHOUSE_PERFORMANCE_FIXES.md` - This file
-
-### Modified Files
-
-- `nuxt.config.ts` - Added HTML lang attribute
-- `netlify.toml` - Enhanced security headers
-- `app/composables/useLazyImages.js` - Optimized lazy loading
+- LCP: <2.5s (currently 5.5s)
+- FID: <100ms
+- CLS: <0.1 (currently 0.228)
+- FCP: <1.8s (currently 2.8s)
+- TBT: <200ms (currently 0ms - good)
 
 ---
 
-## Conclusion
+## Notes
 
-The immediate fixes are ready to deploy and will improve accessibility and security scores. The primary performance bottleneck is image optimization, which can now be addressed using the provided scripts.
+- All fixes should be tested individually before combining
+- Monitor bundle size after each change
+- Use feature flags for gradual rollout if needed
+- Document any breaking changes
+- Update this document as fixes are implemented
 
-**Quick Start:**
-
-```bash
-# Deploy current changes first
-git add .
-git commit -m "Add Lighthouse performance fixes"
-git push
-
-# Then run image optimization when ready
-pnpm add -D sharp
-node scripts/convert-images-to-webp.js --dry-run
-node scripts/convert-images-to-webp.js
-node scripts/update-markdown-image-refs.js --dry-run
-node scripts/update-markdown-image-refs.js
-```
-
-With these changes, the site should achieve a Performance score of 65-75, with potential to reach 80+ with additional optimizations.
+**Last Updated:** November 25, 2025

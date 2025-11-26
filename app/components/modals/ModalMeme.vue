@@ -20,7 +20,7 @@
               decoding="async"
             />
             <div
-              v-if="modalData?.bodyText"
+              v-if="modalData?.bodyText && modalData.bodyText.trim() !== ''"
               class="font-100 modal-scroll-area mt-2 min-h-0 w-full flex-1 overflow-y-auto px-2 text-center text-base leading-normal text-gray-300 sm:px-0 sm:text-lg"
             >
               <div class="whitespace-pre-line">

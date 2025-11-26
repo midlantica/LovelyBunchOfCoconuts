@@ -282,7 +282,16 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         // Canonical home URL
         { rel: 'canonical', href: 'https://wakeupnpc.com/' },
-        // Preconnect to Google Fonts for faster loading
+        // DNS prefetch for external resources (faster than preconnect for multiple domains)
+        {
+          rel: 'dns-prefetch',
+          href: 'https://fonts.googleapis.com',
+        },
+        {
+          rel: 'dns-prefetch',
+          href: 'https://fonts.gstatic.com',
+        },
+        // Preconnect to critical font resources
         {
           rel: 'preconnect',
           href: 'https://fonts.googleapis.com',
@@ -292,17 +301,29 @@ export default defineNuxtConfig({
           href: 'https://fonts.gstatic.com',
           crossorigin: '',
         },
-        // Preload LCP image (welcome modal)
+        // Preload LCP image (welcome modal) with fetchpriority
         {
           rel: 'preload',
           href: '/welcome-modal-image.svg',
           as: 'image',
           type: 'image/svg+xml',
+          fetchpriority: 'high',
+        },
+        // Preload critical logo image
+        {
+          rel: 'preload',
+          href: '/WakeUpNPC-logo.svg',
+          as: 'image',
+          type: 'image/svg+xml',
+          fetchpriority: 'high',
         },
         // Load Google Fonts with font-display: swap for better performance
+        // Using media="print" onload trick to load async without blocking render
         {
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap',
+          media: 'print',
+          onload: "this.media='all'",
         },
         // Favicon sizes
         {
@@ -339,10 +360,14 @@ export default defineNuxtConfig({
             ]
           : []),
       ],
-      // Add security headers
+      // Add security headers and font fallback
       noscript: [
         {
           children: 'JavaScript is required to view this website.',
+        },
+        {
+          children:
+            '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap">',
         },
       ],
     },

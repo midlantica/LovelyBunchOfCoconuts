@@ -44,4 +44,12 @@
   .close-button:hover .close-icon {
     color: hsl(0 0% 100% / 1);
   }
+
+  /* Explicit border styling for larger screens */
+  @media (width >= 40rem) {
+    .close-button {
+      border-top-width: 1px;
+      border-top-style: solid;
+    }
+  }
 </style>

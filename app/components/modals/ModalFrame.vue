@@ -15,7 +15,7 @@
       >
         <div
           ref="modalEl"
-          class="modal-frame relative -top-8 mx-0 flex flex-col rounded-none shadow-lg sm:mx-6 sm:rounded-lg"
+          class="modal-frame shadow-share-shelf relative -top-8 mx-0 flex flex-col rounded-none sm:mx-6 sm:rounded-lg"
           :style="computedModalStyle"
           @click.stop
         >
@@ -139,8 +139,12 @@
   /* Default (Desktop) close button styling - with background, border, and transform */
   .close-button-modal :deep(.close-button) {
     background: rgb(15 23 42) !important; /* bg-slate-900 */
+    border-style: solid !important;
     border-width: 1px !important;
-    border-top-width: 1px !important;
+    border-color: transparent !important;
+    border-top-color: rgb(
+      0 137 204 / 0.3
+    ) !important; /* seagull-600/30 to match card */
     transform: translate(50%, -50%) !important; /* Position outside corner */
   }
 

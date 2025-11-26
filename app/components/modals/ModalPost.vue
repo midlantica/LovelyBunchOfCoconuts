@@ -8,7 +8,7 @@
           class="card shadow-modal xs:max-w-[1400px] relative z-10 w-full min-w-1/2 rounded-none p-4 sm:max-w-[95vw] sm:rounded-lg sm:px-6 sm:py-6"
         >
           <div
-            v-if="modalData?.body"
+            v-if="modalData?.body && hasBodyContent"
             ref="bodyRef"
             class="modal-scroll-area relative max-h-[60vh] max-w-none overflow-y-auto"
           >
@@ -47,6 +47,18 @@
   const { generateContentUrl } = useContentUrls()
 
   const { showShareShelf, onToggle } = useShareShelf(500)
+
+  // Check if body has actual content
+  const hasBodyContent = computed(() => {
+    if (!props.modalData?.body) return false
+
+    // Check if body.value exists and has content
+    if (Array.isArray(props.modalData.body.value)) {
+      return props.modalData.body.value.length > 0
+    }
+
+    return false
+  })
 
   // Create shareable URL
   const shareUrl = computed(() => {
