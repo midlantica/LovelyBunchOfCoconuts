@@ -1,7 +1,8 @@
-Starting markdown file creation at 2025-11-26T23:49:27.097Z
-Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/margaret-thatcher
-Created markdown file for the-problem-with-socialism-is.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/margaret-thatcher/the-problem-with-socialism-is.md
+Starting markdown file creation at 2025-11-27T00:01:25.939Z
+Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/politics
+Created markdown file for the-only-culture-were-not-supposed-to.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/politics/the-only-culture-were-not-supposed-to.md
+Created markdown file for venezuela-timeline.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/politics/venezuela-timeline.md
 
-Markdown file creation complete at 2025-11-26T23:49:27.121Z
-1 markdown files created, 24 files skipped
+Markdown file creation complete at 2025-11-27T00:01:25.950Z
+2 markdown files created, 148 files skipped
 Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/utils/markdown-creation-log.txt
