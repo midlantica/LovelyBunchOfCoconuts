@@ -4,73 +4,110 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
+function getAllMarkdownFiles(dir, fileList = []) {
+  const items = fs.readdirSync(dir)
+
+  for (const item of items) {
+    const fullPath = path.join(dir, item)
+    const stat = fs.statSync(fullPath)
+
+    if (stat.isDirectory()) {
+      // Skip directories starting with _ or .
+      if (!item.startsWith('_') && !item.startsWith('.')) {
+        getAllMarkdownFiles(fullPath, fileList)
+      }
+    } else if (
+      item.endsWith('.md') &&
+      !item.toLowerCase().includes('readme') &&
+      !item.startsWith('_')
+    ) {
+      fileList.push(fullPath)
+    }
+  }
+
+  return fileList
+}
+
 function processMarkdownFiles(contentDir, outputFile) {
   const files = []
   const fullPath = path.join(process.cwd(), contentDir)
 
   if (!fs.existsSync(fullPath)) {
     console.log(`Directory ${contentDir} does not exist`)
-    return
+    return 0
   }
 
-  const markdownFiles = fs
-    .readdirSync(fullPath)
-    .filter(
-      (file) => file.endsWith('.md') && !file.toLowerCase().includes('readme')
-    )
-    .filter((file) => !file.startsWith('_'))
+  const markdownFiles = getAllMarkdownFiles(fullPath)
+  const contentType = contentDir.split('/')[1] // grifts, memes, quotes, ads
 
-  for (const file of markdownFiles) {
-    const filePath = path.join(fullPath, file)
-    const content = fs.readFileSync(filePath, 'utf8')
-    const parsed = matter(content)
+  for (const filePath of markdownFiles) {
+    try {
+      const content = fs.readFileSync(filePath, 'utf8')
+      const parsed = matter(content)
 
-    const slug = file.replace('.md', '')
-    const contentType = contentDir.split('/')[1] // grifts, memes, quotes, ads
+      const file = path.basename(filePath)
+      const slug = file.replace('.md', '')
 
-    // Special handling for ads
-    if (contentType === 'ads') {
-      // Map old size values to new ones
-      let size = parsed.data.size || 'square'
-      if (size === 'small') size = 'square'
-      if (size === 'large') size = 'horizontal'
+      // Special handling for ads
+      if (contentType === 'ads') {
+        // Map old size values to new ones
+        let size = parsed.data.size || 'square'
+        if (size === 'small') size = 'square'
+        if (size === 'large') size = 'horizontal'
 
-      files.push({
-        id: parsed.data.id || slug,
-        title: parsed.data.title || 'Advertisement',
-        type: parsed.data.type || 'grift',
-        size: size,
-        advertiser: parsed.data.advertiser || 'Demo Advertiser',
-        campaign: parsed.data.campaign || 'Test Campaign',
-        link: parsed.data.link || '#',
-        image: parsed.data.image || `/ads/${slug}.png`,
-        frequency: parsed.data.frequency || 10,
-        active: parsed.data.active !== false,
-        body: parsed.content || '',
-      })
-    } else {
-      files.push({
-        _path: `/${contentType}/${slug}`,
-        title:
-          parsed.data.title || parsed.data.grift || slug.replace(/-/g, ' '),
-        grift:
-          parsed.data.grift || parsed.data.title || slug.replace(/-/g, ' '),
-        decode: parsed.data.decode || '',
-        body: parsed.content || '',
-      })
+        files.push({
+          id: parsed.data.id || slug,
+          title: parsed.data.title || 'Advertisement',
+          type: parsed.data.type || 'grift',
+          size: size,
+          advertiser: parsed.data.advertiser || 'Demo Advertiser',
+          campaign: parsed.data.campaign || 'Test Campaign',
+          link: parsed.data.link || '#',
+          image: parsed.data.image || `/ads/${slug}.png`,
+          frequency: parsed.data.frequency || 10,
+          active: parsed.data.active !== false,
+          body: parsed.content || '',
+        })
+      } else {
+        files.push({
+          _path: `/${contentType}/${slug}`,
+          title:
+            parsed.data.title || parsed.data.grift || slug.replace(/-/g, ' '),
+          grift:
+            parsed.data.grift || parsed.data.title || slug.replace(/-/g, ' '),
+          decode: parsed.data.decode || '',
+          body: parsed.content || '',
+        })
+      }
+    } catch (error) {
+      console.warn(
+        `⚠️  Skipping ${path.relative(process.cwd(), filePath)}: ${error.message}`
+      )
     }
   }
 
   const outputPath = path.join(process.cwd(), 'public', outputFile)
   fs.writeFileSync(outputPath, JSON.stringify(files, null, 2))
   console.log(`Generated ${outputFile} with ${files.length} entries`)
+
+  return files.length
 }
 
 // Regenerate all content JSON files
-processMarkdownFiles('content/grifts', 'content-grifts.json')
-processMarkdownFiles('content/memes', 'content-memes.json')
-processMarkdownFiles('content/quotes', 'content-quotes.json')
-processMarkdownFiles('content/ads', 'content-ads.json')
-processMarkdownFiles('content/posts', 'content-posts.json')
+const griftsCount = processMarkdownFiles(
+  'content/grifts',
+  'content-grifts.json'
+)
+const memesCount = processMarkdownFiles('content/memes', 'content-memes.json')
+const quotesCount = processMarkdownFiles(
+  'content/quotes',
+  'content-quotes.json'
+)
+const adsCount = processMarkdownFiles('content/ads', 'content-ads.json')
+const postsCount = processMarkdownFiles('content/posts', 'content-posts.json')
 
-console.log('Content JSON files regenerated successfully!')
+const totalCount =
+  griftsCount + memesCount + quotesCount + adsCount + postsCount
+
+console.log('\nContent JSON files regenerated successfully!')
+console.log(`\n📊 TOTAL ITEMS: ${totalCount}`)
