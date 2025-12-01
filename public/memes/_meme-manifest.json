@@ -2559,6 +2559,54 @@
       "updated": "2025-11-27T00:01:25.889Z",
       "width": 960,
       "height": 740
+    },
+    "margaret-thatcher/the-most-debilitating-myth-was-that-the.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-30T01:29:11.325Z",
+      "width": 1080,
+      "height": 723
+    },
+    "politics/ive-recently-had-an-epiphany.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-30T01:29:11.708Z",
+      "width": 1080,
+      "height": 939
+    },
+    "quotes/i-have-never-once-dealt-with-a.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "upscale→800",
+      "updated": "2025-11-30T01:29:12.033Z",
+      "width": 800,
+      "height": 791
+    },
+    "quotes/soros-realized-that-you-dont-actually.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-30T01:29:12.228Z",
+      "width": 1047,
+      "height": 1080
+    },
+    "quotes/thanksgiving-is-a-great-time-to-revisit.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-30T01:29:12.390Z",
+      "width": 663,
+      "height": 1080
+    },
+    "quotes/the-most-debilitating-myth-was-that-the.jpeg": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-11-30T01:29:12.556Z",
+      "width": 1080,
+      "height": 723
     }
   }
 }

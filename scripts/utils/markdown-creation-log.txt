@@ -1,8 +1,11 @@
-Starting markdown file creation at 2025-11-27T00:01:25.939Z
-Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/politics
-Created markdown file for the-only-culture-were-not-supposed-to.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/politics/the-only-culture-were-not-supposed-to.md
-Created markdown file for venezuela-timeline.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/politics/venezuela-timeline.md
+Starting markdown file creation at 2025-11-30T01:29:12.594Z
+Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes
+Created markdown file for i-have-never-once-dealt-with-a.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/i-have-never-once-dealt-with-a.md
+Created markdown file for now-i-get-it-when-they-say-democracy.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/now-i-get-it-when-they-say-democracy.md
+Created markdown file for soros-realized-that-you-dont-actually.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/soros-realized-that-you-dont-actually.md
+Created markdown file for thanksgiving-is-a-great-time-to-revisit.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/thanksgiving-is-a-great-time-to-revisit.md
+Created markdown file for the-most-debilitating-myth-was-that-the.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/the-most-debilitating-myth-was-that-the.md
 
-Markdown file creation complete at 2025-11-27T00:01:25.950Z
-2 markdown files created, 148 files skipped
+Markdown file creation complete at 2025-11-30T01:29:12.604Z
+5 markdown files created, 86 files skipped
 Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/utils/markdown-creation-log.txt
