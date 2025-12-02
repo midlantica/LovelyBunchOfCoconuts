@@ -249,3 +249,12 @@ div > p:last-of-type {
   :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)):hover {
   color: #a5f3fc !important; /* seagull-200 */
 }
+
+/* Post modal content list styling */
+.post-modal-content[data-v-cc9c582a] ul {
+  list-style-type: disc;
+  padding-left: 0;
+  margin-left: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+}

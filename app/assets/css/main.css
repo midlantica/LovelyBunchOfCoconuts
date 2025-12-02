@@ -8,9 +8,11 @@
 @import './lazyLoading.css';
 
 :root {
-  --dark: #181818;
-  --light: #6dd3ff;
-  --accent: hsl(198, 55%, 50%);
+  --dark: #06304b; /* seagull-900 */
+  --medium: #0a81c2; /* seagull-700 */
+  --light: #6dd3ff; /* seagull-300 */
+  --accent: #09acee; /* seagull-500 */
+  /* --accent: hsl(198, 55%, 50%); */
 }
 
 /* Avoid transition flickers during first paint */

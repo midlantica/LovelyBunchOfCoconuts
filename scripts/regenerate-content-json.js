@@ -88,7 +88,6 @@ function processMarkdownFiles(contentDir, outputFile) {
 
   const outputPath = path.join(process.cwd(), 'public', outputFile)
   fs.writeFileSync(outputPath, JSON.stringify(files, null, 2))
-  console.log(`Generated ${outputFile} with ${files.length} entries`)
 
   return files.length
 }
@@ -109,5 +108,11 @@ const postsCount = processMarkdownFiles('content/posts', 'content-posts.json')
 const totalCount =
   griftsCount + memesCount + quotesCount + adsCount + postsCount
 
-console.log('\nContent JSON files regenerated successfully!')
-console.log(`\n📊 TOTAL ITEMS: ${totalCount}`)
+console.log('Generated JSON content in public/:')
+console.log(`Grifts: ${griftsCount},`)
+console.log(`Memes: ${memesCount},`)
+console.log(`Quotes: ${quotesCount},`)
+console.log(`Ads: ${adsCount},`)
+console.log(`Posts: ${postsCount}`)
+console.log(`\n📊 Total items: ${totalCount}`)
+console.log('\nContent JSON files regenerated successfully!\n')
