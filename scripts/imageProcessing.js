@@ -666,6 +666,59 @@ async function hashFile(filePath) {
 // ---------------------------------------------------------------------------
 
 /**
+ * Find orphaned original image files (where both original and .webp exist)
+ * @param {string} directory - Directory containing images
+ * @param {string[]} imageFiles - Array of all image filenames
+ * @returns {Promise<Array>} Array of orphaned originals with their webp counterparts
+ */
+async function findOrphanedOriginals(directory, imageFiles) {
+  const orphanedOriginals = []
+  const webpFiles = new Set(
+    imageFiles
+      .filter((f) => f.toLowerCase().endsWith('.webp'))
+      .map((f) => path.basename(f, '.webp').toLowerCase())
+  )
+
+  for (const file of imageFiles) {
+    const ext = path.extname(file).toLowerCase()
+    // Skip if already webp
+    if (ext === '.webp') continue
+
+    // Check if this is an original format
+    if (!['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff'].includes(ext))
+      continue
+
+    const baseName = path.basename(file, ext).toLowerCase()
+
+    // Check if a .webp version exists
+    if (webpFiles.has(baseName)) {
+      const webpFile = imageFiles.find(
+        (f) =>
+          f.toLowerCase().endsWith('.webp') &&
+          path.basename(f, '.webp').toLowerCase() === baseName
+      )
+
+      if (webpFile) {
+        // Verify the webp has a markdown pair
+        const webpPath = path.join(directory, webpFile)
+        const hasPair = await hasMarkdownPair(webpPath)
+
+        if (hasPair) {
+          orphanedOriginals.push({
+            original: file,
+            webp: webpFile,
+            originalPath: path.join(directory, file),
+            webpPath: webpPath,
+          })
+        }
+      }
+    }
+  }
+
+  return orphanedOriginals
+}
+
+/**
  * Main function to process all images in a directory
  * @param {string} directory - Directory containing images
  * @param {string} subdirName - Name of subdirectory for reporting
@@ -810,6 +863,9 @@ async function processImages(directory, subdirName = '', options = {}) {
     }
     // ---------------------------------------------------------------------------
 
+    // Check for orphaned original files (where both original and .webp exist)
+    const orphanedOriginals = await findOrphanedOriginals(directory, imageFiles)
+
     // Check for orphaned markdown files and automatically move them to _orphaned folder
     const movedOrphanedFiles = await findAndMoveOrphanedMarkdownFiles(
       directory,
@@ -914,6 +970,7 @@ async function processImages(directory, subdirName = '', options = {}) {
         newMarkdownFiles,
         missingMarkdownFiles: imagesWithoutMarkdown,
         orphanedMarkdownFiles: movedOrphanedFiles,
+        orphanedOriginals,
         dryRun: true,
         force,
         manifestPath: MEME_MANIFEST_PATH,
@@ -962,6 +1019,7 @@ async function processImages(directory, subdirName = '', options = {}) {
       newMarkdownFiles,
       missingMarkdownFiles: effectiveMissing,
       orphanedMarkdownFiles: movedOrphanedFiles,
+      orphanedOriginals,
       dryRun,
       force,
       manifestPath: MEME_MANIFEST_PATH,
@@ -984,6 +1042,7 @@ export {
   renameImageFile,
   processImages,
   hasMarkdownPair,
+  findOrphanedOriginals,
 }
 
 // --- Read-only Audit helpers (exported below) ------------------------------

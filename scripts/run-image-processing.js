@@ -315,6 +315,7 @@ async function processAllSubdirectories() {
     const perFolder = []
     const perFolderDetails = []
     const createdMarkdownPaths = []
+    const allOrphanedOriginals = []
 
     for (const subdir of subdirs) {
       const subdirPath = path.join(baseMemeDir, subdir)
@@ -346,6 +347,17 @@ async function processAllSubdirectories() {
         newMarkdown: result.newMarkdownCount || 0,
         orphanedMoved: (result.orphanedMarkdownFiles || []).length,
       })
+
+      // Collect orphaned originals
+      if (result.orphanedOriginals && result.orphanedOriginals.length > 0) {
+        allOrphanedOriginals.push(
+          ...result.orphanedOriginals.map((o) => ({
+            ...o,
+            subdir,
+          }))
+        )
+      }
+
       if (
         !dryRun &&
         Array.isArray(result.newMarkdownFiles) &&
@@ -384,6 +396,55 @@ async function processAllSubdirectories() {
           dryRun ? 'DRY-RUN (no changes written)' : force ? 'FORCE' : 'NORMAL'
         }`
       )
+
+      // Report orphaned originals
+      if (allOrphanedOriginals.length > 0) {
+        printHeader('⚠️  ORPHANED ORIGINAL FILES DETECTED')
+        console.log(
+          `Found ${allOrphanedOriginals.length} orphaned original file(s) that have .webp versions:\n`
+        )
+
+        for (const orphan of allOrphanedOriginals) {
+          const originalStats = await fs.stat(orphan.originalPath)
+          const webpStats = await fs.stat(orphan.webpPath)
+          const originalSizeKB = (originalStats.size / 1024).toFixed(1)
+          const webpSizeKB = (webpStats.size / 1024).toFixed(1)
+          const savings = (
+            (1 - webpStats.size / originalStats.size) *
+            100
+          ).toFixed(0)
+
+          console.log(`📁 ${orphan.subdir}/`)
+          console.log(`  ❌ ${orphan.original} (${originalSizeKB} KB)`)
+          console.log(
+            `  ✅ ${orphan.webp} (${webpSizeKB} KB, ${savings}% smaller)`
+          )
+          console.log(
+            `  💡 The .webp version is already being used in markdown\n`
+          )
+        }
+
+        console.log(
+          `These original files can be safely deleted to save disk space.`
+        )
+        console.log(
+          `Total potential savings: ${(
+            allOrphanedOriginals.reduce((sum, o) => {
+              const originalStats = require('fs').statSync(o.originalPath)
+              const webpStats = require('fs').statSync(o.webpPath)
+              return sum + (originalStats.size - webpStats.size)
+            }, 0) / 1024
+          ).toFixed(1)} KB\n`
+        )
+
+        if (!dryRun) {
+          console.log(
+            `To delete these files, run the script with the --clean-orphans flag`
+          )
+          console.log(`Example: pnpm process-images --clean-orphans\n`)
+        }
+      }
+
       if (openCreated && createdMarkdownPaths.length) {
         console.log(
           `\nOpening ${createdMarkdownPaths.length} new markdown file(s) in VS Code...`
