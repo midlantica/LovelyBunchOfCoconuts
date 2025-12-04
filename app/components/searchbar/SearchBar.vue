@@ -1,6 +1,8 @@
 <!-- components/SearchBar.vue -->
 <template>
-  <div class="text-seagull-950 flex h-auto w-full flex-col items-center gap-2">
+  <div
+    class="text-seagull-950 mt-[2px] flex h-auto w-full flex-col items-center gap-2"
+  >
     <div class="relative flex w-full flex-row gap-2 overflow-visible">
       <Icon
         name="mdi:magnify"
@@ -9,7 +11,7 @@
       />
       <!-- Tokenized input with pills -->
       <div
-        class="border-seagull-400/40 font-100 w-full rounded-[20px] border-[thin] bg-transparent px-9 py-[0.2rem] text-[1.02rem] leading-none tracking-wider text-slate-200 outline-none focus-within:bg-transparent sm:text-[0.935rem]"
+        class="font-100 ring-seagull-400/40 w-full rounded-[20px] bg-transparent px-9 py-[0.2rem] text-[1.02rem] leading-none tracking-wider text-slate-200 ring-1 transition-all duration-200 outline-none focus-within:bg-transparent focus-within:ring-1 focus-within:ring-white sm:text-[0.935rem]"
         @click="focusInnerInput"
       >
         <div
@@ -56,7 +58,6 @@
             aria-label="Search terms"
             class="placeholder:text-seagull-200/50 h-[1.6rem] min-w-[6ch] flex-1 bg-transparent pb-0.5 leading-[1.6rem] outline-none focus:bg-transparent"
             :placeholder="tokens.length ? '' : 'Search...'"
-            @keydown.enter.prevent="handleEnterKey()"
             @blur="commitInputAsToken()"
             @keydown="onKeydown"
             @keyup="onKeyup"
@@ -70,6 +71,7 @@
       <div
         v-if="showSuggestions && suggestions.length > 0"
         class="border-seagull-400/40 absolute top-full right-0 left-0 z-5 mt-1 max-h-64 overflow-y-auto rounded-lg border bg-slate-800 shadow-lg"
+        @mousedown.prevent
       >
         <div
           v-for="(suggestion, idx) in suggestions"
@@ -189,6 +191,7 @@
   const suggestions = ref([])
   const recentSearches = useState('recentSearches', () => [])
   const selectedSuggestionIndex = ref(-1)
+  const isSelectingSuggestion = ref(false)
 
   // Ensure suggestions is always an array
   if (!suggestions.value) {
@@ -302,6 +305,13 @@
   }
 
   function onGlobalKeydown(e) {
+    // Cmd+K (Mac) or Ctrl+K (Windows/Linux) to focus search
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault()
+      searchInputRef.value?.focus()
+      return
+    }
+
     if (e.key === 'Escape') {
       // Only clear search if there's actually something in the search input
       if (inputText.value.trim() !== '' || tokens.value.length > 0) {
@@ -379,6 +389,9 @@
     return c || cleaned
   }
   function commitInputAsToken() {
+    // Don't commit if we're in the process of selecting a suggestion
+    if (isSelectingSuggestion.value) return
+
     const raw = inputText.value.trim()
     if (!raw) return
     const token = canonicalizeToken(raw)
@@ -427,10 +440,12 @@
           selectedSuggestionIndex.value >= 0 &&
           selectedSuggestionIndex.value < suggestions.value.length
         ) {
+          // Set flag before selecting to prevent blur from committing
+          isSelectingSuggestion.value = true
           selectSuggestion(suggestions.value[selectedSuggestionIndex.value])
         } else {
           // No selection, commit current input as token
-          commitInputAsToken()
+          handleEnterKey()
         }
         return
       } else if (k === 'Escape') {
@@ -439,6 +454,13 @@
         selectedSuggestionIndex.value = -1
         return
       }
+    }
+
+    // Handle Enter when no suggestions are visible
+    if (k === 'Enter') {
+      e.preventDefault()
+      handleEnterKey()
+      return
     }
 
     if ((k === 'Backspace' || k === 'Delete') && inputText.value.length === 0) {
@@ -580,9 +602,23 @@
   }
 
   function selectSuggestion(suggestion) {
-    inputText.value = suggestion.term
+    // Set flag to prevent blur from committing the partial input
+    isSelectingSuggestion.value = true
+
+    inputText.value = '' // Clear the input first
     showSuggestions.value = false
-    commitInputAsToken()
+    selectedSuggestionIndex.value = -1
+
+    // Add the suggestion as a token directly
+    const token = canonicalizeToken(suggestion.term)
+    const exists = tokens.value.some(
+      (p) => p.toLowerCase() === token.toLowerCase()
+    )
+    if (!exists) {
+      tokens.value.push(token)
+    } else {
+      flashToken(token)
+    }
 
     // Add to recent searches if not already there
     const termLower = suggestion.term.toLowerCase()
@@ -594,6 +630,11 @@
     }
     recentSearches.value.unshift(suggestion.term)
     recentSearches.value = recentSearches.value.slice(0, 10) // Keep only 10 recent searches
+
+    // Reset the flag after a short delay
+    setTimeout(() => {
+      isSelectingSuggestion.value = false
+    }, 100)
   }
 
   // Watch for input changes to generate suggestions
