@@ -21,10 +21,12 @@ export const useContentUrls = () => {
     if (item._path) {
       // Transform "/grifts/some-grift" to "/grift/some-grift"
       // Transform "/quotes/some-quote" to "/quote/some-quote"
+      // Transform "/posts/some-post" to "/post/some-post"
       // Transform "/memes/category/some-meme" to "/meme/category/some-meme"
       const routePath = item._path
         .replace(/^\/grifts\//, '/grift/')
         .replace(/^\/quotes\//, '/quote/')
+        .replace(/^\/posts\//, '/post/')
         .replace(/^\/memes\//, '/meme/')
         .replace(/^\/profiles\/heroes\//, '/hero/')
         .replace(/^\/profiles\/zeros\//, '/zero/')
@@ -39,6 +41,7 @@ export const useContentUrls = () => {
       const routePath = item.path
         .replace(/^\/grifts\//, '/grift/')
         .replace(/^\/quotes\//, '/quote/')
+        .replace(/^\/posts\//, '/post/')
         .replace(/^\/memes\//, '/meme/')
         .replace(/^\/profiles\/heroes\//, '/hero/')
         .replace(/^\/profiles\/zeros\//, '/zero/')
@@ -55,6 +58,7 @@ export const useContentUrls = () => {
       const routePath = pathFromId
         .replace(/^\/grifts\//, '/grift/')
         .replace(/^\/quotes\//, '/quote/')
+        .replace(/^\/posts\//, '/post/')
         .replace(/^\/memes\//, '/meme/')
         .replace(/^\/profiles\/heroes\//, '/hero/')
         .replace(/^\/profiles\/zeros\//, '/zero/')
