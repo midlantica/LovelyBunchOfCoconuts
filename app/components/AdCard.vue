@@ -35,7 +35,7 @@ f
         text="Get Started"
         size="lg"
         variant="primary"
-        class="w-full rounded-t-none rounded-b-md"
+        class="w-full rounded-t-none rounded-b-md no-underline"
       />
     </div>
   </div>
