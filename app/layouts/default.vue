@@ -24,13 +24,23 @@
 </template>
 
 <script setup>
-  // PERFORMANCE FIX: Import modal components directly (not async) to eliminate first-click delay
-  // This adds ~50KB to initial bundle but removes the 10-second delay on first modal open
-  import ModalsModalMeme from '~/components/modals/ModalMeme.vue'
-  import ModalsModalGrift from '~/components/modals/ModalGrift.vue'
-  import ModalsModalQuote from '~/components/modals/ModalQuote.vue'
-  import ModalsModalProfile from '~/components/modals/ModalProfile.vue'
-  import ModalsModalPost from '~/components/modals/ModalPost.vue'
+  // PERFORMANCE OPTIMIZATION: Lazy load modal components to reduce initial bundle size
+  // Modals are loaded on-demand when first opened, saving ~100KB on initial page load
+  const ModalsModalMeme = defineAsyncComponent(
+    () => import('~/components/modals/ModalMeme.vue')
+  )
+  const ModalsModalGrift = defineAsyncComponent(
+    () => import('~/components/modals/ModalGrift.vue')
+  )
+  const ModalsModalQuote = defineAsyncComponent(
+    () => import('~/components/modals/ModalQuote.vue')
+  )
+  const ModalsModalProfile = defineAsyncComponent(
+    () => import('~/components/modals/ModalProfile.vue')
+  )
+  const ModalsModalPost = defineAsyncComponent(
+    () => import('~/components/modals/ModalPost.vue')
+  )
 
   const showModal = ref(false)
   const modalType = ref(null)

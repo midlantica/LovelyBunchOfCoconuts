@@ -28,8 +28,8 @@ export const useContentUrls = () => {
         .replace(/^\/quotes\//, '/quote/')
         .replace(/^\/posts\//, '/post/')
         .replace(/^\/memes\//, '/meme/')
-        .replace(/^\/profiles\/heroes\//, '/hero/')
-        .replace(/^\/profiles\/zeros\//, '/zero/')
+        .replace(/^\/profiles\/heroes\//, '/profiles/hero/')
+        .replace(/^\/profiles\/zeros\//, '/profiles/zero/')
 
       const finalUrl = `${baseUrl}${routePath}`
 
@@ -43,8 +43,8 @@ export const useContentUrls = () => {
         .replace(/^\/quotes\//, '/quote/')
         .replace(/^\/posts\//, '/post/')
         .replace(/^\/memes\//, '/meme/')
-        .replace(/^\/profiles\/heroes\//, '/hero/')
-        .replace(/^\/profiles\/zeros\//, '/zero/')
+        .replace(/^\/profiles\/heroes\//, '/profiles/hero/')
+        .replace(/^\/profiles\/zeros\//, '/profiles/zero/')
 
       const finalUrl = `${baseUrl}${routePath}`
 
@@ -60,8 +60,8 @@ export const useContentUrls = () => {
         .replace(/^\/quotes\//, '/quote/')
         .replace(/^\/posts\//, '/post/')
         .replace(/^\/memes\//, '/meme/')
-        .replace(/^\/profiles\/heroes\//, '/hero/')
-        .replace(/^\/profiles\/zeros\//, '/zero/')
+        .replace(/^\/profiles\/heroes\//, '/profiles/hero/')
+        .replace(/^\/profiles\/zeros\//, '/profiles/zero/')
 
       const finalUrl = `${baseUrl}${routePath}`
 
@@ -98,7 +98,8 @@ export const useContentUrls = () => {
 
       case 'profile':
         slug = createSlug(item.profile || item.title || '')
-        const prefix = item.status === 'hero' ? 'hero' : 'zero'
+        const prefix =
+          item.status === 'hero' ? 'profiles/hero' : 'profiles/zero'
         return `${baseUrl}/${prefix}/${slug}`
 
       default:

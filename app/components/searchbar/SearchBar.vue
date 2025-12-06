@@ -208,7 +208,7 @@
     emit('update:search', val)
     // Update the display URL preserving literal '+' separators
     updateUrlWithTokens()
-  }, 250)
+  }, 350) // Increased from 250ms to 350ms for better performance
 
   const pillGriftCount = computed(() => props.counts.wall.grifts || 0)
   const pillQuoteCount = computed(() => props.counts.wall.quotes || 0)
@@ -637,9 +637,13 @@
     }, 100)
   }
 
-  // Watch for input changes to generate suggestions
+  // Watch for input changes to generate suggestions with debouncing
+  const debouncedGenerateSuggestions = debounce((val) => {
+    generateSuggestions(val)
+  }, 200)
+
   watch(inputText, (newVal) => {
-    generateSuggestions(newVal)
+    debouncedGenerateSuggestions(newVal)
   })
 
   // Hide suggestions when clicking outside

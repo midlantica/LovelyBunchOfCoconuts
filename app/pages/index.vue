@@ -170,35 +170,17 @@
 
   const openContentFromSlug = async (contentType, slug) => {
     try {
-      const { useContentCache } = await import('~/composables/useContentCache')
-      const { grifts, quotes, memes, loadAllContent, slugMaps } =
-        useContentCache()
+      // Use lazy loading for instant modal functionality
+      const { loadContentItemForModal } = useModalContentLoader()
 
-      await nextTick()
+      // Load just the single item needed - much faster than loading everything
+      const item = await loadContentItemForModal(contentType, slug)
 
-      if (
-        !grifts?.value?.length ||
-        !quotes?.value?.length ||
-        !memes?.value?.length
-      ) {
-        await loadAllContent()
-        await nextTick()
-        if (
-          !grifts?.value?.length ||
-          !quotes?.value?.length ||
-          !memes?.value?.length
-        ) {
-          setTimeout(() => openContentFromSlug(contentType, slug), 500)
-          return
-        }
+      if (item && openModal) {
+        openModal({ type: contentType, data: item })
+      } else {
+        console.warn(`Could not load ${contentType} with slug: ${slug}`)
       }
-
-      let item = null
-      if (contentType === 'grift') item = slugMaps.grifts.get(slug)
-      else if (contentType === 'quote') item = slugMaps.quotes.get(slug)
-      else if (contentType === 'meme') item = slugMaps.memes.get(slug)
-
-      if (item && openModal) openModal({ type: contentType, data: item })
     } catch (error) {
       console.error('💥 Error in openContentFromSlug:', error)
     }

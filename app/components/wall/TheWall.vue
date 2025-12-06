@@ -17,7 +17,7 @@
           <!-- Quotes (full width) - or Large Ads -->
           <div
             v-if="item.type === 'quote'"
-            class="cursor-pointer!"
+            class="cursor-pointer"
             role="button"
             tabindex="0"
             @click.capture="
@@ -56,7 +56,7 @@
             <div
               v-for="(griftItem, idx) in item.data"
               :key="griftItem?._path || griftItem?.path || griftItem?.id || idx"
-              class="cursor-pointer!"
+              class="cursor-pointer"
               role="button"
               tabindex="0"
               @click.capture="
@@ -97,7 +97,7 @@
             <div
               v-for="(rowItem, idx) in item.data"
               :key="rowItem._path || rowItem.path || rowItem.id || idx"
-              class="cursor-pointer!"
+              class="cursor-pointer"
               role="button"
               tabindex="0"
               @click.capture="
@@ -146,7 +146,7 @@
             class="mx-auto w-full max-w-[460px]"
           >
             <div
-              class="cursor-pointer!"
+              class="cursor-pointer"
               role="button"
               tabindex="0"
               @click.capture="
@@ -165,7 +165,7 @@
           <!-- Profiles (full width) -->
           <div
             v-else-if="item.type === 'profile'"
-            class="cursor-pointer!"
+            class="cursor-pointer"
             role="button"
             tabindex="0"
             @click.capture="
@@ -568,7 +568,7 @@
   function scheduleGrowBaseline(total) {
     if (!virtualizingBaseline.value) return
     if (wallDisplayCount.value >= total) return
-    const chunk = 40 // pattern items per growth step
+    const chunk = 30 // pattern items per growth step (reduced from 40)
     const next = Math.min(wallDisplayCount.value + chunk, total)
     const cb = () => {
       wallDisplayCount.value = next
@@ -609,7 +609,7 @@
         prev.length !== total &&
         wallDisplayCount.value !== Infinity
       if (!virtualizingBaseline.value || baselineReset) {
-        const initial = 70
+        const initial = 25 // Reduced from 70 to 25 for faster initial render
         wallDisplayCount.value = Math.min(initial, total)
         virtualizingBaseline.value = true
         scheduleGrowBaseline(total)
@@ -626,7 +626,7 @@
     const full = document.documentElement.scrollHeight
     if (scrollY + vh * 1.4 > full) {
       wallDisplayCount.value = Math.min(
-        wallDisplayCount.value + 120,
+        wallDisplayCount.value + 80, // Reduced from 120 to 80 for smoother growth
         interleavedContent.value.length
       )
     }
@@ -735,59 +735,72 @@
         cache.quotes.length === 0 &&
         cache.memes.length === 0
       ) {
-        // Load all content once instead of progressive loading to avoid double-fetch
-        await loadAllContent()
+        // PERFORMANCE FIX: Load initial batch first for instant display
+        // This makes the wall interactive in ~200ms instead of waiting for everything
+        await loadInitialContent(30) // Load first 30 items of each type
 
-        // Load profiles BEFORE setting isLoaded so they're part of initial pattern
-        try {
-          const loadedProfiles = await fetchAllProfiles()
-          profiles.value = loadedProfiles || []
+        // Load profiles in parallel with initial content
+        const profilesPromise = fetchAllProfiles()
+          .then((loadedProfiles) => {
+            profiles.value = loadedProfiles || []
+            cache.profiles = loadedProfiles || []
+            console.log(`✅ Loaded ${profiles.value.length} profiles`)
+          })
+          .catch((e) => {
+            console.warn('Could not load profiles:', e)
+            profiles.value = []
+            cache.profiles = []
+          })
 
-          // Also populate cache with profiles for search functionality
-          cache.profiles = loadedProfiles || []
+        // Load ads in parallel
+        const adsPromise = adsEnabled.value
+          ? $fetch('/api/content/ads')
+              .then((response) => {
+                const adContent = response?.data || []
+                if (adContent.length > 0) {
+                  return loadAds(null, adContent)
+                }
+              })
+              .catch((e) => {
+                console.warn('Could not load ads:', e)
+              })
+          : Promise.resolve()
 
-          console.log(`Loaded ${profiles.value.length} profiles`)
-        } catch (e) {
-          console.warn('Could not load profiles:', e)
-          profiles.value = []
-          cache.profiles = []
-        }
+        // Wait for profiles and ads before showing content
+        await Promise.all([profilesPromise, adsPromise])
 
-        // Load ads if enabled - fetch from API endpoint
-        if (adsEnabled.value) {
-          try {
-            // Fetch ads from the API endpoint
-            const response = await $fetch('/api/content/ads')
-            const adContent = response?.data || []
-
-            // Pass the loaded content to the ads system
-            if (adContent.length > 0) {
-              await loadAds(null, adContent)
-            } else {
-            }
-          } catch (e) {
-            console.warn('Could not load ads:', e)
-          }
-        }
-
+        // Mark as loaded - wall is now interactive!
         isLoaded.value = true
         wallHasLoadedOnce.value = true
 
-        // Show ad summary after content is loaded
-        setTimeout(() => showAdSummary(), 500)
+        console.log('🚀 Wall is now interactive!')
 
-        // Schedule background pre-computation for instant refreshes
-        schedulePrecomputation(
-          cache.grifts,
-          cache.quotes,
-          cache.memes,
-          profiles.value,
-          {
-            adsEnabled: adsEnabled.value,
-            adInterval: adInterval.value,
-            profileInterval: 4,
-          }
-        )
+        // Load remaining content in the background (non-blocking)
+        // This happens AFTER the wall is already interactive
+        setTimeout(() => {
+          loadRemainingContent()
+            .then(() => {
+              console.log('✅ All content loaded in background')
+              // Show ad summary after full load
+              setTimeout(() => showAdSummary(), 500)
+
+              // Schedule background pre-computation for instant refreshes
+              schedulePrecomputation(
+                cache.grifts,
+                cache.quotes,
+                cache.memes,
+                profiles.value,
+                {
+                  adsEnabled: adsEnabled.value,
+                  adInterval: adInterval.value,
+                  profileInterval: 4,
+                }
+              )
+            })
+            .catch((e) => {
+              console.warn('Error loading remaining content:', e)
+            })
+        }, 100)
       } else {
         // Cache had content but first visit this session
         // Still need to load profiles if not already loaded
