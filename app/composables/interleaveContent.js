@@ -148,8 +148,9 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
   const pushMemeRow = (count = 2, includeAd = false) => {
     memeRowCount++
 
-    // Every 5th meme row: try to create mixed [Meme | Post] pair
-    if (memeRowCount % 5 === 0 && havePosts() && haveMemes()) {
+    // Every 2nd meme row: try to create mixed [Meme | Post] pair
+    // This makes posts appear much more frequently (every other meme row instead of every 5th)
+    if (memeRowCount % 2 === 0 && havePosts() && haveMemes()) {
       const meme = { ...m[mi], _type: 'meme' }
       mi++
       const post = { ...po[poi], _type: 'post' }

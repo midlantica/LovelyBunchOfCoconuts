@@ -581,10 +581,11 @@ export function useContentCache() {
     cache.isLoading = true
     cache.error = null
     try {
-      const [griftsData, quotesData, memesData] = await Promise.all([
+      const [griftsData, quotesData, memesData, postsData] = await Promise.all([
         queryCollection('grifts').limit(limit).all(),
         queryCollection('quotes').limit(limit).all(),
         queryCollection('memes').limit(limit).all(),
+        queryCollection('posts').limit(limit).all(),
       ])
       cache.grifts = transformContentForComponents(
         filterSpecialFiles(griftsData),
@@ -598,8 +599,12 @@ export function useContentCache() {
         filterSpecialFiles(memesData),
         'memes'
       )
+      cache.posts = transformContentForComponents(
+        filterSpecialFiles(postsData),
+        'posts'
+      )
       debugLog(
-        `✅ Initial batch loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+        `✅ Initial batch loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes, ${cache.posts.length} posts`
       )
     } catch (error) {
       console.error('Error loading initial content:', error)
@@ -612,10 +617,11 @@ export function useContentCache() {
   // Load remaining content in background after initial display
   const loadRemainingContent = async () => {
     try {
-      const [griftsData, quotesData, memesData] = await Promise.all([
+      const [griftsData, quotesData, memesData, postsData] = await Promise.all([
         queryCollection('grifts').all(),
         queryCollection('quotes').all(),
         queryCollection('memes').all(),
+        queryCollection('posts').all(),
       ])
       cache.grifts = transformContentForComponents(
         filterSpecialFiles(griftsData),
@@ -629,8 +635,12 @@ export function useContentCache() {
         filterSpecialFiles(memesData),
         'memes'
       )
+      cache.posts = transformContentForComponents(
+        filterSpecialFiles(postsData),
+        'posts'
+      )
       debugLog(
-        `🎉 Full content loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+        `🎉 Full content loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes, ${cache.posts.length} posts`
       )
     } catch (error) {
       console.error('Error loading remaining content:', error)
