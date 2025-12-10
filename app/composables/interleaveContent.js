@@ -112,38 +112,17 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
   const quoteRemaining = () => q.length - qi
   const postRemaining = () => po.length - poi
 
-  const pushGriftPair = (count = 2, includeAd = false) => {
+  const pushGriftPair = (count = 2) => {
     const slice = c.slice(ci, ci + count)
     ci += slice.length
 
-    let hadAd = false
-
-    // If we should include an ad and have an ad provider
-    // But don't add if last item was an ad
-    if (includeAd && adProvider && slice.length > 0 && !lastItemWasAd) {
-      const adData = adProvider()
-      if (adData && (adData.size === 'square' || adData.size === 'small')) {
-        // Replace one grift with an ad (push the grift back)
-        if (slice.length === 2) {
-          // Put the second grift back
-          ci -= 1
-          slice.pop()
-        }
-        // Add the ad as a grift-like item
-        slice.push({
-          ...adData,
-          isAd: true,
-          _type: 'grift',
-        })
-        hadAd = true
-        itemsSinceLastAd = 0
-      }
-    }
+    // NEVER inject square ads into griftPair - they should only appear in memeRow
+    // Grifts are not square-shaped and get stretched badly when paired with square ads
 
     output.push({ type: 'griftPair', data: slice })
     producedCoreItems++
-    lastItemWasAd = hadAd
-    if (!hadAd) itemsSinceLastAd++
+    itemsSinceLastAd++
+    lastItemWasAd = false
   }
   const pushMemeRow = (count = 2, includeAd = false) => {
     memeRowCount++
@@ -241,14 +220,8 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
 
     if (expected === 'griftPair') {
       if (griftRemaining() >= 2) {
-        // Check if we should inject a square ad in this grift pair
-        const shouldInjectAd =
-          adInterval > 0 &&
-          producedCoreItems > 0 &&
-          producedCoreItems % adInterval === 0 &&
-          adProvider
-
-        pushGriftPair(2, shouldInjectAd)
+        // Never inject square ads into grift pairs - they stretch grifts badly
+        pushGriftPair(2)
         created = true
       }
     } else if (expected === 'memeRow') {

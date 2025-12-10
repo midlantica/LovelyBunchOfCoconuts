@@ -394,14 +394,17 @@
 
   function buildBaselineNow() {
     try {
-      // Create ad provider if ads are enabled
+      // Create ad provider if ads are enabled AND not searching for ads
+      // When searching for ads, we don't want them interleaved - we want them as results
       // Note: ads should be loaded in onMounted before this is called
-      const adProvider = adsEnabled.value
-        ? createAdProvider({ smallWeight: 0.7 })
-        : null
-      const interval = adsEnabled.value
-        ? calculateAdInterval(adInterval.value)
-        : 0
+      const adProvider =
+        adsEnabled.value && !isSearchingForAds.value
+          ? createAdProvider({ smallWeight: 0.7 })
+          : null
+      const interval =
+        adsEnabled.value && !isSearchingForAds.value
+          ? calculateAdInterval(adInterval.value)
+          : 0
 
       const pattern = interleaveContent(
         cache.grifts,
@@ -450,6 +453,13 @@
     })
   }
 
+  // Check if user is searching for ads (dev feature)
+  const isSearchingForAds = computed(() => {
+    const search = effectiveSearch.value?.toLowerCase().trim()
+    if (!search) return false
+    return ['ads', 'ad', 'advertisement', 'advertisements'].includes(search)
+  })
+
   const interleavedContent = computed(() => {
     const { grifts, quotes, memes } = filteredContent.value
     const emptySearch = !effectiveSearch.value?.trim()
@@ -474,6 +484,25 @@
         scheduleBaselineRebuild()
       }
       return baselineState.value.pattern
+    }
+
+    // Special case: if searching for ads, show ads as content items
+    if (isSearchingForAds.value) {
+      // Return ads as quote-type items so they display properly
+      const { ads } = useAds()
+      const allAds = [
+        ...(ads.value.square || []),
+        ...(ads.value.horizontal || []),
+      ]
+
+      return allAds.map((ad) => ({
+        type: 'quote',
+        data: {
+          ...ad,
+          isAd: true,
+          _type: 'ad',
+        },
+      }))
     }
 
     // Filtered / searched path: impose baseline ordering for stability, no shuffle.

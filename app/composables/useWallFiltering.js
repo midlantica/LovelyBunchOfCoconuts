@@ -48,6 +48,23 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     const query = q.toLowerCase().trim()
     const expanded = expandSearchTerms(query)
 
+    // Check if searching for ads (dev feature)
+    const hasAdsKeyword = expanded.some((term) =>
+      ['ads', 'ad', 'advertisement', 'advertisements'].includes(term)
+    )
+
+    // If searching for ads, return special filter to show only ads
+    if (hasAdsKeyword) {
+      return {
+        grifts: false,
+        quotes: false,
+        memes: false,
+        posts: false,
+        profiles: false,
+        adsOnly: true,
+      }
+    }
+
     // Check if any expanded terms match content type keywords
     const hasGriftsKeyword = expanded.some((term) =>
       ['grifts', 'grift', 'statement', 'assertion', 'position'].includes(term)
