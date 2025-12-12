@@ -7,7 +7,7 @@
     "advertiser": "Premium Advertiser 1",
     "campaign": "Big Campaign",
     "link": "https://example.com/premium1",
-    "image": "/ads/768x90-ad-1.png",
+    "image": "/ads/768x90-ad-1b.png",
     "frequency": 50,
     "active": true,
     "body": "\n# Horizontal Ad Space 1\n\nThis is a placeholder for a large advertisement that would appear in the Quotes panel size - perfect for premium advertisers who want maximum visibility.\n"
@@ -20,7 +20,7 @@
     "advertiser": "Premium Advertiser 2",
     "campaign": "Big Campaign",
     "link": "https://example.com/premium2",
-    "image": "/ads/768x90-ad-2.png",
+    "image": "/ads/768x90-ad-2b.png",
     "frequency": 50,
     "active": true,
     "body": "\n# Horizontal Ad Space 2\n\nThis is a placeholder for a large advertisement that would appear in the Quotes panel size - perfect for premium advertisers who want maximum visibility.\n"
