@@ -1,19 +1,16 @@
 <!-- components/wall/WallAdPanel.vue -->
 <template>
   <div
-    class="relative shadow-md hover:shadow-lg rounded-lg overflow-hidden transition-shadow duration-200 wall-ad-panel"
+    class="wall-ad-panel relative overflow-hidden rounded-lg shadow-md transition-shadow duration-200 hover:shadow-lg"
     :class="panelClasses"
   >
-    <!-- Use the UiAdBadge component -->
-    <UiAdBadge :size="size" />
-
     <!-- Ad link wrapper -->
     <a
       v-if="ad.link"
       :href="ad.link"
       target="_blank"
       rel="noopener noreferrer sponsored"
-      class="block w-full h-full"
+      class="block h-full w-full"
       :title="ad.title"
       @click="trackClick"
     >
@@ -21,31 +18,31 @@
         v-if="ad.image"
         :src="ad.image"
         :alt="ad.title"
-        class="w-full h-full object-cover"
+        class="h-full w-full object-cover"
         @error="handleImageError"
       />
       <div
         v-else
-        class="flex justify-center items-center bg-gray-200 w-full h-full"
+        class="flex h-full w-full items-center justify-center bg-gray-200"
       >
-        <span class="font-300 text-gray-500 text-lg">{{ ad.title }}</span>
+        <span class="font-300 text-lg text-gray-500">{{ ad.title }}</span>
       </div>
     </a>
 
     <!-- Non-linked ad -->
-    <div v-else class="w-full h-full">
+    <div v-else class="h-full w-full">
       <img
         v-if="ad.image"
         :src="ad.image"
         :alt="ad.title"
-        class="w-full h-full object-cover"
+        class="h-full w-full object-cover"
         @error="handleImageError"
       />
       <div
         v-else
-        class="flex justify-center items-center bg-gray-200 w-full h-full"
+        class="flex h-full w-full items-center justify-center bg-gray-200"
       >
-        <span class="font-300 text-gray-500 text-lg">{{ ad.title }}</span>
+        <span class="font-300 text-lg text-gray-500">{{ ad.title }}</span>
       </div>
     </div>
   </div>
@@ -68,7 +65,8 @@
   const panelClasses = computed(() => {
     if (props.size === 'horizontal') {
       // Horizontal ads (for quote slots) - full width, fixed height
-      return 'w-full h-[100px] md:h-[120px]'
+      // Using fixed height instead of aspect ratio to avoid rendering issues
+      return 'w-full h-[90px]'
     } else {
       // Square ads (for claim/meme slots) - aspect square
       return 'aspect-square w-full'
@@ -78,7 +76,6 @@
   // Track ad clicks (for analytics)
   const trackClick = () => {
     if (import.meta.client) {
-
       // Here you could send analytics events
     }
   }

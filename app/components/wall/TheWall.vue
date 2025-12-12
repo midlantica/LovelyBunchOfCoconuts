@@ -557,6 +557,8 @@
     // Count ALL ads in the full interleaved content (not just displayed)
     const adCounts = {}
     let totalAds = 0
+    let horizontalAds = 0
+    let squareAds = 0
 
     // Use interleavedContent.value to get ALL content, not just displayed
     interleavedContent.value.forEach((item) => {
@@ -564,12 +566,14 @@
         const adId = item.data.id || 'unknown'
         adCounts[adId] = (adCounts[adId] || 0) + 1
         totalAds++
+        if (item.data.size === 'horizontal') horizontalAds++
       } else if (item.type === 'griftPair' || item.type === 'memeRow') {
         item.data?.forEach((d) => {
           if (d?.isAd) {
             const adId = d.id || 'unknown'
             adCounts[adId] = (adCounts[adId] || 0) + 1
             totalAds++
+            if (d.size === 'square') squareAds++
           }
         })
       }
@@ -577,9 +581,10 @@
 
     // Log ad summary only when there are ads
     if (Object.keys(adCounts).length > 0) {
-      Object.entries(adCounts)
-        .sort((a, b) => b[1] - a[1]) // Sort by count descending
-        .forEach(([id, count]) => {})
+      console.log(`\n📊 Ad Summary:`)
+      console.log(`Horizontal ads: ${horizontalAds}`)
+      console.log(`Square ads: ${squareAds}`)
+      console.log(`Ads total: ${totalAds}\n`)
 
       adSummaryShown.value = true
     }
@@ -773,7 +778,6 @@
           .then((loadedProfiles) => {
             profiles.value = loadedProfiles || []
             cache.profiles = loadedProfiles || []
-            console.log(`✅ Loaded ${profiles.value.length} profiles`)
           })
           .catch((e) => {
             console.warn('Could not load profiles:', e)
@@ -801,8 +805,6 @@
         // Mark as loaded - wall is now interactive!
         isLoaded.value = true
         wallHasLoadedOnce.value = true
-
-        console.log('🚀 Wall is now interactive!')
 
         // Load remaining content in the background (non-blocking)
         // This happens AFTER the wall is already interactive
@@ -838,7 +840,6 @@
             const loadedProfiles = await fetchAllProfiles()
             profiles.value = loadedProfiles || []
             cache.profiles = loadedProfiles || []
-            console.log(`Loaded ${profiles.value.length} profiles`)
           } catch (e) {
             console.warn('Could not load profiles:', e)
             profiles.value = []

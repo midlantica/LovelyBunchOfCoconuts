@@ -93,7 +93,7 @@ export default defineNuxtConfig({
       '/**': {
         headers: {
           'Content-Security-Policy':
-            "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://wakeupnpc.goatcounter.com https://api.iconify.design; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
+            "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: http: https: blob:; connect-src 'self' https://wakeupnpc.goatcounter.com https://api.iconify.design; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
         },
       },
       // Aggressive caching for static assets with hashed filenames

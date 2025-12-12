@@ -7,10 +7,23 @@
     "advertiser": "Premium Advertiser 1",
     "campaign": "Big Campaign",
     "link": "https://example.com/premium1",
-    "image": "/ads/768x100-ad-1.png",
+    "image": "/ads/768x90-ad-1.png",
     "frequency": 50,
     "active": true,
     "body": "\n# Horizontal Ad Space 1\n\nThis is a placeholder for a large advertisement that would appear in the Quotes panel size - perfect for premium advertisers who want maximum visibility.\n"
+  },
+  {
+    "id": "ad-horizontal-2",
+    "title": "Advertisement",
+    "type": "quote",
+    "size": "horizontal",
+    "advertiser": "Premium Advertiser 2",
+    "campaign": "Big Campaign",
+    "link": "https://example.com/premium2",
+    "image": "/ads/768x90-ad-2.png",
+    "frequency": 50,
+    "active": true,
+    "body": "\n# Horizontal Ad Space 2\n\nThis is a placeholder for a large advertisement that would appear in the Quotes panel size - perfect for premium advertisers who want maximum visibility.\n"
   },
   {
     "id": "ad-square-1",
@@ -24,5 +37,18 @@
     "frequency": 50,
     "active": true,
     "body": "\n# Square Ad Space 1\n\nThis is a placeholder for a square advertisement that would appear in the Claims panel size.\n"
+  },
+  {
+    "id": "ad-square-2",
+    "title": "Advertisement",
+    "type": "claim",
+    "size": "square",
+    "advertiser": "Demo Advertiser 2",
+    "campaign": "Test Campaign",
+    "link": "https://example.com/ad2",
+    "image": "/ads/378x378-ad-2.png",
+    "frequency": 50,
+    "active": true,
+    "body": "\n# Square Ad Space 2\n\nThis is a placeholder for a square advertisement that would appear in the Claims panel size.\n"
   }
 ]
