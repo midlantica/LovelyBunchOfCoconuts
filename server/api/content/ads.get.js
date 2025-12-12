@@ -1,52 +1,73 @@
 // Server API endpoint for ads
-// Reads from the pre-built content-ads.json file
-// This works in both development and production (Netlify)
-
-import { readFile } from 'fs/promises'
-import { join } from 'path'
+// Returns ad data directly (embedded in the API)
+// This ensures it works in all environments including Netlify Functions
 
 export default defineEventHandler(async (event) => {
   try {
-    // Try multiple possible paths for the content-ads.json file
-    const possiblePaths = [
-      join(process.cwd(), 'public', 'content-ads.json'), // Dev
-      join(process.cwd(), '.output', 'public', 'content-ads.json'), // Nuxt build
-      join(process.cwd(), 'dist', 'content-ads.json'), // Netlify dist
-      join(process.cwd(), 'content-ads.json'), // Root fallback
+    console.log('🔍 Loading ads data...')
+
+    // Hardcoded ads data (matches content-ads.json)
+    // This is the most reliable approach for serverless environments
+    const adsData = [
+      {
+        id: 'ad-horizontal-1',
+        title: 'Advertisement',
+        type: 'quote',
+        size: 'horizontal',
+        advertiser: 'Premium Advertiser 1',
+        campaign: 'Big Campaign',
+        link: 'https://example.com/premium1',
+        image: '/ads/768x90-ad-1b.png',
+        frequency: 50,
+        active: true,
+        body: '\n# Horizontal Ad Space 1\n\nThis is a placeholder for a large advertisement that would appear in the Quotes panel size - perfect for premium advertisers who want maximum visibility.\n',
+      },
+      {
+        id: 'ad-horizontal-2',
+        title: 'Advertisement',
+        type: 'quote',
+        size: 'horizontal',
+        advertiser: 'Premium Advertiser 2',
+        campaign: 'Big Campaign',
+        link: 'https://example.com/premium2',
+        image: '/ads/768x90-ad-2b.png',
+        frequency: 50,
+        active: true,
+        body: '\n# Horizontal Ad Space 2\n\nThis is a placeholder for a large advertisement that would appear in the Quotes panel size - perfect for premium advertisers who want maximum visibility.\n',
+      },
+      {
+        id: 'ad-square-1',
+        title: 'Advertisement',
+        type: 'claim',
+        size: 'square',
+        advertiser: 'Demo Advertiser 1',
+        campaign: 'Test Campaign',
+        link: 'https://example.com/ad1',
+        image: '/ads/378x378-ad-1.png',
+        frequency: 50,
+        active: true,
+        body: '\n# Square Ad Space 1\n\nThis is a placeholder for a square advertisement that would appear in the Claims panel size.\n',
+      },
+      {
+        id: 'ad-square-2',
+        title: 'Advertisement',
+        type: 'claim',
+        size: 'square',
+        advertiser: 'Demo Advertiser 2',
+        campaign: 'Test Campaign',
+        link: 'https://example.com/ad2',
+        image: '/ads/378x378-ad-2.png',
+        frequency: 50,
+        active: true,
+        body: '\n# Square Ad Space 2\n\nThis is a placeholder for a square advertisement that would appear in the Claims panel size.\n',
+      },
     ]
-
-    console.log('🔍 Searching for content-ads.json in multiple locations...')
-    console.log('Current working directory:', process.cwd())
-    console.log('Environment:', {
-      NETLIFY: process.env.NETLIFY,
-      NODE_ENV: process.env.NODE_ENV,
-    })
-
-    let adsData = null
-    let successPath = null
-
-    // Try each path until we find the file
-    for (const jsonPath of possiblePaths) {
-      try {
-        console.log('Trying path:', jsonPath)
-        const fileContent = await readFile(jsonPath, 'utf-8')
-        adsData = JSON.parse(fileContent)
-        successPath = jsonPath
-        console.log('✅ Found content-ads.json at:', jsonPath)
-        break
-      } catch (err) {
-        console.log('❌ Not found at:', jsonPath, '-', err.message)
-        continue
-      }
-    }
 
     if (adsData && Array.isArray(adsData)) {
       // Filter only active ads
       const activeAds = adsData.filter((ad) => ad.active !== false)
 
-      console.log(
-        `✅ Loaded ${activeAds.length} active ads from ${successPath}`
-      )
+      console.log(`✅ Loaded ${activeAds.length} active ads`)
       console.log(
         'Ad IDs:',
         activeAds.map((ad) => ad.id)
@@ -57,13 +78,13 @@ export default defineEventHandler(async (event) => {
       }
     }
 
-    // Fallback: return empty array if data is invalid or not found
-    console.warn('⚠️ No valid ads data found in any location')
+    // Fallback: return empty array if data is invalid
+    console.warn('⚠️ Invalid ads data')
     return {
       data: [],
     }
   } catch (error) {
-    console.error('❌ Error fetching ads:', error.message)
+    console.error('❌ Error loading ads:', error.message)
     console.error('Error details:', error)
     // Return empty array instead of failing
     return {
