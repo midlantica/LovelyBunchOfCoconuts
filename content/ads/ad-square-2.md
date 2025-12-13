@@ -5,7 +5,7 @@ type: claim
 size: square
 advertiser: 'Demo Advertiser 2'
 campaign: 'Test Campaign'
-link: 'https://example.com/ad2'
+link: 'https://wakeupnpc.com/advertising'
 image: '/ads/378x378-ad-2.png'
 frequency: 50
 active: true

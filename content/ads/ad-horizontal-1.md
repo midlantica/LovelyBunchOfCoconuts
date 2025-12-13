@@ -5,8 +5,8 @@ type: quote
 size: horizontal
 advertiser: 'Premium Advertiser 1'
 campaign: 'Big Campaign'
-link: 'https://example.com/premium1'
-image: '/ads/768x90-ad-1b.png'
+link: 'https://wakeupnpc.com/advertising'
+image: '/ads/768x90-ad-1c.png'
 frequency: 50
 active: true
 ---
