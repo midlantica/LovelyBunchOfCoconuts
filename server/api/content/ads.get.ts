@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
         advertiser: 'Premium Advertiser 1',
         campaign: 'Big Campaign',
         link: 'https://example.com/premium1',
-        image: '/ads/768x90-ad-1b.png',
+        image: '/ads/768x90-ad-1b.png?v=2',
         frequency: 50,
         active: true,
         body: '\n# Horizontal Ad Space 1\n\nThis is a placeholder for a large advertisement that would appear in the Quotes panel size - perfect for premium advertisers who want maximum visibility.\n',
@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
         advertiser: 'Premium Advertiser 2',
         campaign: 'Big Campaign',
         link: 'https://example.com/premium2',
-        image: '/ads/768x90-ad-2b.png',
+        image: '/ads/768x90-ad-2b.png?v=2',
         frequency: 50,
         active: true,
         body: '\n# Horizontal Ad Space 2\n\nThis is a placeholder for a large advertisement that would appear in the Quotes panel size - perfect for premium advertisers who want maximum visibility.\n',
@@ -84,8 +84,7 @@ export default defineEventHandler(async (event) => {
       data: [],
     }
   } catch (error) {
-    console.error('❌ Error loading ads:', error.message)
-    console.error('Error details:', error)
+    console.error('❌ Error loading ads:', error)
     // Return empty array instead of failing
     return {
       data: [],
