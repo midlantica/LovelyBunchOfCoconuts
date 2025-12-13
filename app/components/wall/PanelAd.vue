@@ -18,8 +18,10 @@
         v-if="ad.image"
         :src="ad.image"
         :alt="ad.title"
-        class="h-full w-full object-cover"
+        class="h-full w-full object-contain"
         @error="handleImageError"
+        loading="eager"
+        fetchpriority="high"
       />
       <div
         v-else
@@ -35,8 +37,10 @@
         v-if="ad.image"
         :src="ad.image"
         :alt="ad.title"
-        class="h-full w-full object-cover"
+        class="h-full w-full object-contain"
         @error="handleImageError"
+        loading="eager"
+        fetchpriority="high"
       />
       <div
         v-else
