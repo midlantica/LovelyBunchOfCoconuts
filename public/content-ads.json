@@ -7,7 +7,7 @@
     "advertiser": "Premium Advertiser 1",
     "campaign": "Big Campaign",
     "link": "https://wakeupnpc.com/advertising",
-    "image": "/ads/768x90-ad-1.png",
+    "image": "/banners/768x90-banner-1.png",
     "frequency": 50,
     "active": true,
     "body": "\n# Horizontal Ad Space 1\n\nThis is a placeholder for a large advertisement that would appear in the Quotes panel size - perfect for premium advertisers who want maximum visibility.\n"
@@ -20,7 +20,7 @@
     "advertiser": "Premium Advertiser 2",
     "campaign": "Big Campaign",
     "link": "https://wakeupnpc.com/advertising",
-    "image": "/ads/768x90-ad-2.png",
+    "image": "/banners/768x90-banner-2.png",
     "frequency": 50,
     "active": true,
     "body": "\n# Horizontal Ad Space 2\n\nThis is a placeholder for a large advertisement that would appear in the Quotes panel size - perfect for premium advertisers who want maximum visibility.\n"
@@ -33,7 +33,7 @@
     "advertiser": "Demo Advertiser 1",
     "campaign": "Test Campaign",
     "link": "https://wakeupnpc.com/advertising",
-    "image": "/ads/378x378-ad-1.png",
+    "image": "/banners/378x378-tile-1.png",
     "frequency": 50,
     "active": true,
     "body": "\n# Square Ad Space 1\n\nThis is a placeholder for a square advertisement that would appear in the Claims panel size.\n"
@@ -46,7 +46,7 @@
     "advertiser": "Demo Advertiser 2",
     "campaign": "Test Campaign",
     "link": "https://wakeupnpc.com/advertising",
-    "image": "/ads/378x378-ad-2.png",
+    "image": "/banners/378x378-tile-2.png",
     "frequency": 50,
     "active": true,
     "body": "\n# Square Ad Space 2\n\nThis is a placeholder for a square advertisement that would appear in the Claims panel size.\n"

@@ -70,10 +70,10 @@
     if (props.size === 'horizontal') {
       // Horizontal ads (for quote slots) - full width, fixed height
       // Using fixed height instead of aspect ratio to avoid rendering issues
-      return 'w-full h-[90px]'
+      return 'w-full h-[90px] _tw-keep-horizontal'
     } else {
       // Square ads (for claim/meme slots) - aspect square
-      return 'aspect-square w-full'
+      return 'aspect-square w-full _tw-keep-square'
     }
   })
 
@@ -94,5 +94,21 @@
 <style scoped>
   .wall-ad-panel {
     background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  }
+
+  /*
+    Critical: ensure Tailwind height/width utility classes are not tree-shaken.
+    In production, the panel sizing classes are generated dynamically in JS
+    (computed() returning strings like 'w-full h-[90px]' / 'aspect-square w-full').
+    Tailwind JIT can miss these and omit the CSS, causing the horizontal ad panel
+    to collapse to ~0px height (you see the background but not the image).
+
+    These @apply rules force Tailwind to always emit the required utilities.
+  */
+  ._tw-keep-horizontal {
+    @apply h-[90px] w-full;
+  }
+  ._tw-keep-square {
+    @apply aspect-square w-full;
   }
 </style>

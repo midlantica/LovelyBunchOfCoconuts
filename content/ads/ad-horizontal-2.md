@@ -6,7 +6,7 @@ size: horizontal
 advertiser: 'Premium Advertiser 2'
 campaign: 'Big Campaign'
 link: 'https://wakeupnpc.com/advertising'
-image: '/ads/768x90-ad-2.png'
+image: '/banners/768x90-banner-2.png'
 frequency: 50
 active: true
 ---
