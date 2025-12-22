@@ -10,7 +10,7 @@
       :href="ad.link"
       target="_blank"
       rel="noopener noreferrer sponsored"
-      class="block h-full w-full"
+      class="block w-full"
       :title="ad.title"
       @click="trackClick"
     >
@@ -18,7 +18,7 @@
         v-if="ad.image"
         :src="ad.image"
         :alt="ad.title"
-        class="h-full w-full object-cover"
+        class="h-auto w-full object-contain"
         @error="handleImageError"
         loading="eager"
         fetchpriority="high"
@@ -32,12 +32,12 @@
     </a>
 
     <!-- Non-linked ad -->
-    <div v-else class="h-full w-full">
+    <div v-else class="w-full">
       <img
         v-if="ad.image"
         :src="ad.image"
         :alt="ad.title"
-        class="h-full w-full object-cover"
+        class="h-auto w-full object-contain"
         @error="handleImageError"
         loading="eager"
         fetchpriority="high"
@@ -70,7 +70,7 @@
     if (props.size === 'horizontal') {
       // Horizontal ads (for quote slots) - full width, fixed height
       // Using fixed height instead of aspect ratio to avoid rendering issues
-      return 'w-full h-[90px] _tw-keep-horizontal'
+      return 'w-full h-auto _tw-keep-horizontal'
     } else {
       // Square ads (for claim/meme slots) - aspect square
       return 'aspect-square w-full _tw-keep-square'
@@ -106,7 +106,7 @@
     These @apply rules force Tailwind to always emit the required utilities.
   */
   ._tw-keep-horizontal {
-    @apply h-[90px] w-full;
+    @apply h-auto w-full;
   }
   ._tw-keep-square {
     @apply aspect-square w-full;
