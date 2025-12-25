@@ -30,14 +30,14 @@
   "dependencies": {
     "@napi-rs/canvas": "^0.1.82",
     "@netlify/blobs": "^10.3.3",
-    "@nuxt/content": "3.8.0",
+    "@nuxt/content": "3.9.0",
     "@nuxt/eslint": "1.10.0",
     "@nuxt/icon": "2.1.0",
     "@nuxtjs/mdc": "0.18.2",
     "gray-matter": "^4.0.3",
     "markdown-it": "^14.1.0",
-    "nuxt": "^4.2.1",
-    "vue": "^3.5.24",
+    "nuxt": "^4.2.2",
+    "vue": "^3.5.26",
     "vue-router": "^4.6.3"
   },
   "packageManager": "pnpm@10.20.0+sha512.cf9998222162dd85864d0a8102e7892e7ba4ceadebbf5a31f9c2fce48dfce317a9c53b9f6464d1ef9042cba2e02ae02a9f7c143a2b438cd93c91840f0192b9dd",
