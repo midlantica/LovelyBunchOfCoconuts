@@ -1,11 +1,7 @@
-Starting markdown file creation at 2025-11-30T01:29:12.594Z
-Using/creating content directory: /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes
-Created markdown file for i-have-never-once-dealt-with-a.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/i-have-never-once-dealt-with-a.md
-Created markdown file for now-i-get-it-when-they-say-democracy.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/now-i-get-it-when-they-say-democracy.md
-Created markdown file for soros-realized-that-you-dont-actually.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/soros-realized-that-you-dont-actually.md
-Created markdown file for thanksgiving-is-a-great-time-to-revisit.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/thanksgiving-is-a-great-time-to-revisit.md
-Created markdown file for the-most-debilitating-myth-was-that-the.webp at /Users/drew/Documents/_work/WakeUpNPC2/content/memes/quotes/the-most-debilitating-myth-was-that-the.md
+Starting markdown file creation at 2025-12-29T16:36:19.915Z
+Using/creating content directory: /Users/drew/Projects/WakeUpNPC2/content/memes/data
+Created markdown file for the-death-toll-of-communism.webp at /Users/drew/Projects/WakeUpNPC2/content/memes/data/the-death-toll-of-communism.md
 
-Markdown file creation complete at 2025-11-30T01:29:12.604Z
-5 markdown files created, 86 files skipped
-Created markdown files are logged in /Users/drew/Documents/_work/WakeUpNPC2/scripts/utils/markdown-creation-log.txt
+Markdown file creation complete at 2025-12-29T16:36:19.924Z
+1 markdown files created, 136 files skipped
+Created markdown files are logged in /Users/drew/Projects/WakeUpNPC2/scripts/utils/markdown-creation-log.txt

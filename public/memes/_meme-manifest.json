@@ -2607,6 +2607,54 @@
       "updated": "2025-11-30T01:29:12.556Z",
       "width": 1080,
       "height": 723
+    },
+    "capitalism/the-industrial-revolution-is-not-what.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-12-29T16:35:32.244Z",
+      "width": 1080,
+      "height": 1080
+    },
+    "data/g7-real-gdp-per-capita.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-12-29T16:35:32.640Z",
+      "width": 848,
+      "height": 1080
+    },
+    "data/share-of-pop-living-in-extreme-poverty.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-12-29T16:35:32.816Z",
+      "width": 1080,
+      "height": 645
+    },
+    "quotes/socialism-of-any-type-leads-to-a.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "upscale→800",
+      "updated": "2025-12-29T16:35:33.256Z",
+      "width": 800,
+      "height": 487
+    },
+    "thomas-sowell/nothing-reveals-the-hypocrisy-of-the.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-12-29T16:35:33.656Z",
+      "width": 1080,
+      "height": 1080
+    },
+    "data/the-death-toll-of-communism.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "upscale→800",
+      "updated": "2025-12-29T16:36:19.834Z",
+      "width": 784,
+      "height": 800
     }
   }
 }
