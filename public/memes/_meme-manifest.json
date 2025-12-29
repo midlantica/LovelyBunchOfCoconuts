@@ -2655,6 +2655,14 @@
       "updated": "2025-12-29T16:36:19.834Z",
       "width": 784,
       "height": 800
+    },
+    "data/how-fertility-actually-changes-with-age.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2025-12-29T17:45:00.874Z",
+      "width": 1080,
+      "height": 754
     }
   }
 }
