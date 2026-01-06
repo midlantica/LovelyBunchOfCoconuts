@@ -1,8 +1,7 @@
-Starting markdown file creation at 2025-12-29T17:45:00.957Z
-Using/creating content directory: /Users/drew/Projects/WakeUpNPC2/content/memes/data
-Created markdown file for g7-real-gdp-per-capita.webp at /Users/drew/Projects/WakeUpNPC2/content/memes/data/g7-real-gdp-per-capita.md
-Created markdown file for how-fertility-actually-changes-with-age.webp at /Users/drew/Projects/WakeUpNPC2/content/memes/data/how-fertility-actually-changes-with-age.md
+Starting markdown file creation at 2026-01-06T20:22:24.173Z
+Using/creating content directory: /Users/drew/Projects/WakeUpNPC2/content/memes/politics
+Created markdown file for government-corruption-weve-seen.webp at /Users/drew/Projects/WakeUpNPC2/content/memes/politics/government-corruption-weve-seen.md
 
-Markdown file creation complete at 2025-12-29T17:45:00.966Z
-2 markdown files created, 136 files skipped
+Markdown file creation complete at 2026-01-06T20:22:24.183Z
+1 markdown files created, 151 files skipped
 Created markdown files are logged in /Users/drew/Projects/WakeUpNPC2/scripts/utils/markdown-creation-log.txt

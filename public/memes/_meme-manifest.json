@@ -2663,6 +2663,14 @@
       "updated": "2025-12-29T17:45:00.874Z",
       "width": 1080,
       "height": 754
+    },
+    "politics/government-corruption-weve-seen.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "upscale→800",
+      "updated": "2026-01-06T20:22:24.082Z",
+      "width": 800,
+      "height": 787
     }
   }
 }
