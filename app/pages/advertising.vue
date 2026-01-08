@@ -117,7 +117,7 @@
     if (mainElement) {
       mainElement.scrollTop = 0
     }
-    window.scrollTo({ top: 0, behavior: 'instant' })
+    window.scrollTo({ top: 0, behavior: 'auto' })
   })
 
   useHead({

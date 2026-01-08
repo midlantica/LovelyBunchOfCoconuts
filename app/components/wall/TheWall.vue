@@ -18,8 +18,8 @@
           <div
             v-if="item.type === 'quote'"
             class="cursor-pointer"
-            role="button"
-            tabindex="0"
+            :role="item.data?.isAd ? null : 'button'"
+            :tabindex="item.data?.isAd ? null : 0"
             @click.capture="
               item.data?.isAd
                 ? null
@@ -57,8 +57,8 @@
               v-for="(griftItem, idx) in item.data"
               :key="griftItem?._path || griftItem?.path || griftItem?.id || idx"
               class="cursor-pointer"
-              role="button"
-              tabindex="0"
+              :role="griftItem?.isAd ? null : 'button'"
+              :tabindex="griftItem?.isAd ? null : 0"
               @click.capture="
                 griftItem?.isAd
                   ? null
@@ -98,8 +98,8 @@
               v-for="(rowItem, idx) in item.data"
               :key="rowItem._path || rowItem.path || rowItem.id || idx"
               class="cursor-pointer"
-              role="button"
-              tabindex="0"
+              :role="rowItem?.isAd ? null : 'button'"
+              :tabindex="rowItem?.isAd ? null : 0"
               @click.capture="
                 rowItem?.isAd
                   ? null
