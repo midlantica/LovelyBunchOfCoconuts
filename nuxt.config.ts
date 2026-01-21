@@ -11,14 +11,7 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
-  modules: [
-    '@nuxt/content',
-    '@nuxt/eslint',
-    '@nuxt/icon',
-    '@nuxtjs/mdc',
-    '@nuxtjs/sitemap',
-    './modules/hide-system-files',
-  ],
+  modules: ['@nuxt/content', '@nuxt/eslint', '@nuxt/icon', '@nuxtjs/mdc', '@nuxtjs/sitemap', './modules/hide-system-files', '@netlify/nuxt'],
   css: ['./app/assets/css/main.css'],
   // Use Tailwind v4 via official Vite plugin
   vite: {
