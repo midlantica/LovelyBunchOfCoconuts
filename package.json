@@ -52,6 +52,7 @@
     "@oxc-parser/binding-linux-x64-gnu": "0.97.0",
     "@oxc-transform/binding-linux-x64-gnu": "0.97.0",
     "@shikijs/engine-javascript": "^3.21.0",
+    "@shikijs/engine-oniguruma": "^3.21.0",
     "@tailwindcss/cli": "4.1.17",
     "@tailwindcss/postcss": "^4.1.18",
     "@tailwindcss/typography": "^0.5.19",
