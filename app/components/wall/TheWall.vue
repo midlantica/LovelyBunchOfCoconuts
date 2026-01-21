@@ -216,6 +216,9 @@
   // Initialize ads system
   const { loadAds, createAdProvider, calculateAdInterval } = useAds()
 
+  // AbortController for canceling pending requests
+  const adsAbortController = ref(null)
+
   // Props for search/filters from parent
   const props = defineProps({
     search: { type: String, default: '' },
@@ -697,9 +700,16 @@
   )
 
   onBeforeUnmount(() => {
+    // Clean up scroll listener
     if (typeof window !== 'undefined' && scrollListenerAttached) {
       window.removeEventListener('scroll', onScrollBoost)
       scrollListenerAttached = false
+    }
+
+    // Cancel any pending ad requests
+    if (adsAbortController.value) {
+      adsAbortController.value.abort()
+      adsAbortController.value = null
     }
   })
 
@@ -785,18 +795,32 @@
             cache.profiles = []
           })
 
-        // Load ads in parallel
+        // Load ads in parallel with AbortController support
         const adsPromise = adsEnabled.value
-          ? $fetch('/api/content/ads')
-              .then((response) => {
-                const adContent = response?.data || []
-                if (adContent.length > 0) {
-                  return loadAds(null, adContent)
-                }
+          ? (() => {
+              // Cancel any existing request
+              if (adsAbortController.value) {
+                adsAbortController.value.abort()
+              }
+              // Create new controller for this request
+              adsAbortController.value = new AbortController()
+
+              return $fetch('/api/content/ads', {
+                signal: adsAbortController.value.signal,
               })
-              .catch((e) => {
-                console.warn('Could not load ads:', e)
-              })
+                .then((response) => {
+                  const adContent = response?.data || []
+                  if (adContent.length > 0) {
+                    return loadAds(null, adContent)
+                  }
+                })
+                .catch((e) => {
+                  // Don't warn on abort - it's intentional
+                  if (e.name !== 'AbortError') {
+                    console.warn('Could not load ads:', e)
+                  }
+                })
+            })()
           : Promise.resolve()
 
         // Wait for profiles and ads before showing content

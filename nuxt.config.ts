@@ -11,7 +11,15 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
-  modules: ['@nuxt/content', '@nuxt/eslint', '@nuxt/icon', '@nuxtjs/mdc', '@nuxtjs/sitemap', './modules/hide-system-files', '@netlify/nuxt'],
+  modules: [
+    '@nuxt/content',
+    '@nuxt/eslint',
+    '@nuxt/icon',
+    '@nuxtjs/mdc',
+    '@nuxtjs/sitemap',
+    './modules/hide-system-files',
+    '@netlify/nuxt',
+  ],
   css: ['./app/assets/css/main.css'],
   // Use Tailwind v4 via official Vite plugin
   vite: {
@@ -394,5 +402,7 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: true, // Extract payload for better caching
     renderJsonPayloads: true, // Optimize JSON payloads
+    extractAsyncDataHandlers: true, // ⭐ NEW: Extract data handlers for 39% bundle reduction
+    viteEnvironmentApi: true, // ⭐ NEW: Faster dev server with Vite environment API
   },
 })
