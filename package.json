@@ -28,8 +28,8 @@
   },
   "scriptsExtra": {},
   "dependencies": {
-    "@napi-rs/canvas": "^0.1.82",
-    "@netlify/blobs": "^10.3.3",
+    "@napi-rs/canvas": "^0.1.88",
+    "@netlify/blobs": "^10.5.0",
     "@netlify/nuxt": "0.2.19",
     "@nuxt/content": "3.9.0",
     "@nuxt/eslint": "1.10.0",
