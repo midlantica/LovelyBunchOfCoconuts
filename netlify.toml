@@ -1,7 +1,4 @@
-# cspell:disable
 # netlify.toml
-# Performance optimizations: increased function memory + expanded prerendering
-
 [build]
 command = "pnpm install --no-optional=false && pnpm run build"
 publish = "dist"
@@ -10,21 +7,10 @@ publish = "dist"
 NODE_VERSION = "22.11.0"
 PNPM_FLAGS = "--shamefully-hoist --no-optional=false"
 
-# Netlify Functions configuration for better performance
 [functions]
 node_bundler = "esbuild"
-# Increase memory allocation for faster cold starts (default: 1024MB, max: 3008MB on Pro)
-# Higher memory = faster cold starts and execution
 memory = 2048
 
-# Form notifications are configured in Netlify UI:
-# Site Settings > Forms > Form notifications
-# Or add to your form HTML:
-# <form name="contact" method="POST" data-netlify="true" action="/success">
-
-# Pro Plan: Build plugins removed - using built-in optimizations instead
-
-# Pro Plan: Advanced caching configuration
 [build.processing]
 skip_processing = false
 
@@ -42,14 +28,12 @@ pretty_urls = true
 [build.processing.images]
 compress = true
 
-# Force non-www canonical domain
 [[redirects]]
 from = "https://www.wakeupnpc.com/*"
 to = "https://wakeupnpc.com/:splat"
 status = 301
 force = true
 
-# Pro Plan: Enhanced caching headers for static assets
 [[headers]]
 for = "/assets/*"
 [headers.values]
@@ -105,7 +89,6 @@ for = "/*.svg"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
 
-# Security headers with Pro Plan optimizations
 [[headers]]
 for = "/*"
 [headers.values]
