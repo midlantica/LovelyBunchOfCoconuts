@@ -1,4 +1,4 @@
-# netlify.toml
+# netlify.toml - Performance optimized configuration
 [build]
 command = "pnpm install --no-optional=false && pnpm run build"
 publish = "dist"
