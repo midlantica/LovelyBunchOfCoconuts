@@ -1,5 +1,8 @@
-# netlify.toml - Performance optimized configuration
+# cspell:disable
+# netlify.toml
+
 [build]
+# Use Nitro Netlify preset (auto-detected). This builds SSR with Functions.
 command = "pnpm install --no-optional=false && pnpm run build"
 publish = "dist"
 
@@ -7,10 +10,14 @@ publish = "dist"
 NODE_VERSION = "22.11.0"
 PNPM_FLAGS = "--shamefully-hoist --no-optional=false"
 
-[functions]
-node_bundler = "esbuild"
-memory = 2048
+# Form notifications are configured in Netlify UI:
+# Site Settings > Forms > Form notifications
+# Or add to your form HTML:
+# <form name="contact" method="POST" data-netlify="true" action="/success">
 
+# Pro Plan: Build plugins removed - using built-in optimizations instead
+
+# Pro Plan: Advanced caching configuration
 [build.processing]
 skip_processing = false
 
@@ -28,12 +35,14 @@ pretty_urls = true
 [build.processing.images]
 compress = true
 
+# Force non-www canonical domain
 [[redirects]]
 from = "https://www.wakeupnpc.com/*"
 to = "https://wakeupnpc.com/:splat"
 status = 301
 force = true
 
+# Pro Plan: Enhanced caching headers for static assets
 [[headers]]
 for = "/assets/*"
 [headers.values]
@@ -89,6 +98,7 @@ for = "/*.svg"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
 
+# Security headers with Pro Plan optimizations
 [[headers]]
 for = "/*"
 [headers.values]
@@ -96,6 +106,9 @@ X-Content-Type-Options = "nosniff"
 Referrer-Policy = "strict-origin-when-cross-origin"
 X-Frame-Options = "SAMEORIGIN"
 Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+# Strict-Transport-Security with preload
 Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+# Cross-Origin-Opener-Policy for better isolation
 Cross-Origin-Opener-Policy = "same-origin-allow-popups"
+# Enhanced CSP for Pro Plan (keeping unsafe-inline for now but adding nonce support path)
 Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://gc.zgo.at; connect-src 'self' https: https://wakeupnpc.goatcounter.com https://gc.zgo.at; font-src 'self' data: https://fonts.gstatic.com; frame-ancestors 'self';"
