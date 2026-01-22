@@ -50,7 +50,7 @@ Edge Functions run on **Netlify's globally distributed edge network** using the 
 
 ### Changes Made
 
-**File:** `netlify.toml`
+**File 1:** `netlify.toml`
 
 ```toml
 [build.environment]
@@ -65,6 +65,28 @@ SERVER_PRESET = "netlify-edge"
 - Sets Nitro preset to `netlify-edge` instead of default `netlify`
 - Tells Nuxt to build for Edge Functions deployment
 - Automatically configures edge-compatible server handlers
+
+**File 2:** `nuxt.config.ts`
+
+```typescript
+nitro: {
+  routeRules: {
+    // Share image generation routes must run in Node.js runtime (not edge)
+    // because they require @nuxt/content server module which isn't edge-compatible
+    '/api/share/**': {
+      runtime: 'nodejs',
+    },
+    // ... other route rules
+  }
+}
+```
+
+**Why This Is Needed:**
+
+- The `/api/share/**` routes use `#content/server` from `@nuxt/content`
+- This virtual module is not available in the Deno edge runtime
+- These routes will run as Netlify Functions (Node.js) while everything else runs at the edge
+- This is a hybrid approach: fast edge SSR + Node.js for content-dependent APIs
 
 ### How It Works
 
