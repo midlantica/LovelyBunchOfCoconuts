@@ -1,5 +1,6 @@
 # cspell:disable
 # netlify.toml
+# Performance optimizations: increased function memory + expanded prerendering
 
 [build]
 command = "pnpm install --no-optional=false && pnpm run build"
