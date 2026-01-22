@@ -2,13 +2,15 @@
 # netlify.toml
 
 [build]
-# Use Nitro Netlify preset (auto-detected). This builds SSR with Functions.
+# Use Nitro Netlify Edge preset for faster response times
 command = "pnpm install --no-optional=false && pnpm run build"
 publish = "dist"
 
 [build.environment]
 NODE_VERSION = "22.11.0"
 PNPM_FLAGS = "--shamefully-hoist --no-optional=false"
+# Use Netlify Edge Functions for faster server response times
+SERVER_PRESET = "netlify-edge"
 
 # Form notifications are configured in Netlify UI:
 # Site Settings > Forms > Form notifications
