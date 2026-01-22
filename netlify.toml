@@ -9,8 +9,13 @@ publish = "dist"
 [build.environment]
 NODE_VERSION = "22.11.0"
 PNPM_FLAGS = "--shamefully-hoist --no-optional=false"
-# Use Netlify Edge Functions for faster server response times
-SERVER_PRESET = "netlify-edge"
+
+# Netlify Functions configuration for better performance
+[functions]
+node_bundler = "esbuild"
+# Increase memory allocation for faster cold starts (default: 1024MB, max: 3008MB on Pro)
+# Higher memory = faster cold starts and execution
+memory = 2048
 
 # Form notifications are configured in Netlify UI:
 # Site Settings > Forms > Form notifications

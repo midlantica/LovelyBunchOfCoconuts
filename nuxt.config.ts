@@ -91,11 +91,6 @@ export default defineNuxtConfig({
     },
     // Add security headers including CSP for Iconify + aggressive caching
     routeRules: {
-      // Share image generation routes must run in Node.js runtime (not edge)
-      // because they require @nuxt/content server module which isn't edge-compatible
-      '/api/share/**': {
-        runtime: 'nodejs',
-      },
       '/**': {
         headers: {
           'Content-Security-Policy':
@@ -139,7 +134,7 @@ export default defineNuxtConfig({
     },
     minify: true,
     prerender: {
-      routes: ['/'],
+      routes: ['/', '/about', '/advertising'],
       crawlLinks: true,
     },
     ignore: [
