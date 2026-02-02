@@ -58,6 +58,7 @@
 
   // Reactive state
   const shareImageBlob = ref(null)
+  const shareImageCache = useState('memeShareImageCache', () => new Map())
   const { showShareShelf, onToggle } = useShareShelf(500)
   // Custom ScrollArea handles scrollbar visuals, no overlay detection needed here
 
@@ -85,12 +86,25 @@
   watch(
     () => props.modalData,
     async (data) => {
-      if (import.meta.server || !data?.image) return
+      if (import.meta.server) return
+      if (!data?.image) {
+        shareImageBlob.value = null
+        return
+      }
+
+      const cacheKey =
+        data?._path || data?.path || `${data.image}|${shareTitle.value}`
+      const cached = shareImageCache.value.get(cacheKey)
+      if (cached) {
+        shareImageBlob.value = cached
+        return
+      }
+
+      shareImageBlob.value = null
       const run = async () => {
         try {
-          const { useShareImageGenerator } = await import(
-            '~/composables/useShareImageGenerator'
-          )
+          const { useShareImageGenerator } =
+            await import('~/composables/useShareImageGenerator')
           const { generateMemeShareImage } = useShareImageGenerator()
           const blob = await generateMemeShareImage(
             data.image,
@@ -98,6 +112,7 @@
           )
           if (props.modalData === data) {
             shareImageBlob.value = blob
+            shareImageCache.value.set(cacheKey, blob)
           }
         } catch (error) {
           if (import.meta.dev)

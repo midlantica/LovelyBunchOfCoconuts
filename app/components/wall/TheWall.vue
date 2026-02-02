@@ -795,7 +795,7 @@
             cache.profiles = []
           })
 
-        // Load ads in parallel with AbortController support
+        // Load ads in parallel with AbortController support (deferred from initial render)
         const adsPromise = adsEnabled.value
           ? (() => {
               // Cancel any existing request
@@ -814,6 +814,11 @@
                     return loadAds(null, adContent)
                   }
                 })
+                .then(() => {
+                  // Rebuild baseline once ads are ready so they appear in the wall
+                  scheduleBaselineRebuild()
+                  setTimeout(() => showAdSummary(), 500)
+                })
                 .catch((e) => {
                   // Don't warn on abort - it's intentional
                   if (e.name !== 'AbortError') {
@@ -823,8 +828,8 @@
             })()
           : Promise.resolve()
 
-        // Wait for profiles and ads before showing content
-        await Promise.all([profilesPromise, adsPromise])
+        // Wait for profiles before showing content (ads are deferred)
+        await Promise.all([profilesPromise])
 
         // Mark as loaded - wall is now interactive!
         isLoaded.value = true
@@ -836,7 +841,7 @@
           loadRemainingContent()
             .then(() => {
               console.log('✅ All content loaded in background')
-              // Show ad summary after full load
+              // Show ad summary after full load (if ads already loaded)
               setTimeout(() => showAdSummary(), 500)
 
               // Schedule background pre-computation for instant refreshes
@@ -856,6 +861,9 @@
               console.warn('Error loading remaining content:', e)
             })
         }, 100)
+
+        // Ensure deferred ads fetch begins after initial render
+        void adsPromise
       } else {
         // Cache had content but first visit this session
         // Still need to load profiles if not already loaded
