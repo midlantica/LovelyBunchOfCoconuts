@@ -2,6 +2,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from '@tailwindcss/vite'
 
+const vueMcpPlugin =
+  process.env.NUXT_VUE_MCP === '1'
+    ? (await import('vite-plugin-vue-mcp')).VueMcp({
+        appendTo: 'nuxt/dist/app/entry.js',
+      })
+    : null
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-06-27',
   components: true,
@@ -23,7 +30,10 @@ export default defineNuxtConfig({
   css: ['./app/assets/css/main.css'],
   // Use Tailwind v4 via official Vite plugin
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      tailwindcss(),
+      ...(vueMcpPlugin ? [vueMcpPlugin] : []),
+    ],
     // Reduce Vite verbosity; set SILENT_VITE=1 to only show errors
     logLevel: (process.env.SILENT_VITE === '1' ? 'error' : 'warn') as any,
     build: {
