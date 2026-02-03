@@ -28,30 +28,9 @@ export function useWallSeed() {
     }
   }
 
-  // In a fully static (nuxt generate) deployment, the initial seed comes from the
-  // prerendered payload and is therefore identical on every hard refresh.
-  // To ensure a fresh randomized ordering on each browser refresh (matching
-  // desired behavior observed in dev SSR), we reseed once on client mount.
-  // This runs only after hydration and only once per page load.
-  // Safe client-only mount hook. Guard for environments where composable
-  // might be evaluated outside a component setup (e.g. imported & executed pre-setup).
-  if (typeof window !== 'undefined' && process.client) {
-    try {
-      // Only register onMounted if there's an active component instance
-      // This prevents warnings when useWallSeed is called from event handlers
-      if (getCurrentInstance()) {
-        const seededFlag = '__WALL_SEEDED_ON_LOAD__'
-        onMounted(() => {
-          if (!window[seededFlag]) {
-            reseedWall('page-load')
-            window[seededFlag] = true
-          }
-        })
-      }
-    } catch (_) {
-      // Silently ignore if onMounted not available in this call context.
-    }
-  }
+  // NOTE: We intentionally avoid auto-reseeding on client mount to prevent
+  // post-hydration reshuffles that cause visible flashes in production.
+  // If you want a fresh shuffle, call reseedWall() explicitly (e.g., logo click).
 
   return { wallSeed, reseedWall }
 }

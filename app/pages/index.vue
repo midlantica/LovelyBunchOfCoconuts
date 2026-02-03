@@ -25,7 +25,6 @@
             :search="searchTerm"
             :filters="contentFilters"
             @counts="handleCounts"
-            @modal="handleModalEvent"
             @content-updated="handleContentUpdated"
           />
         </main>
@@ -206,21 +205,6 @@
   function handleCounts({ wallCounts: wc, totalCounts: tc }) {
     wallCounts.value = wc
     totalCounts.value = tc
-  }
-
-  // Expose handler to receive modal events from TheWall when it doesn't have injected modal
-  function handleModalEvent(payload) {
-    const modalSuppressed = useState('modalSuppressedFromQuery', () => false)
-    if (modalSuppressed.value) {
-      // Allow first user interaction before enabling auto modal
-      modalSuppressed.value = false
-      // Still open on explicit click, only suppress automatic programmatic ones
-      if (payload && payload.__userClick) {
-        openModal && openModal(payload)
-      }
-      return
-    }
-    if (openModal) openModal(payload)
   }
 
   // Provide search state for child components

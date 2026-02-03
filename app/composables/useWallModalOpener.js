@@ -7,7 +7,6 @@ export function useWallModalOpener({
   modalGuardUntil,
   effectiveSearch,
   openGlobalModal,
-  emit, // fallback emitter when no injected global modal
 }) {
   const slugify = (s = '') =>
     s
@@ -73,6 +72,12 @@ export function useWallModalOpener({
   function openModal(data, type, userInitiated = false) {
     if (Date.now() < modalGuardUntil.value) return
 
+    const modalSuppressed = useState('modalSuppressedFromQuery', () => false)
+    if (modalSuppressed.value && !userInitiated) return
+    if (modalSuppressed.value && userInitiated) {
+      modalSuppressed.value = false
+    }
+
     const slug = buildSlug(data, type)
     const payload = { type, data, slug }
     if (userInitiated) payload.__userClick = true
@@ -80,7 +85,6 @@ export function useWallModalOpener({
     mutateHistory(type, slug, data)
 
     if (openGlobalModal) openGlobalModal(payload)
-    else emit?.('modal', payload)
 
     trackPopularity(userInitiated)
   }

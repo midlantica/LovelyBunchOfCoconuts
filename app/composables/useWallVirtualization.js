@@ -1,7 +1,10 @@
 // composables/useWallVirtualization.js
 // Progressive virtualization system for baseline view
 
-export function useWallVirtualization() {
+export function useWallVirtualization(options = {}) {
+  const initialCount = options.initialCount ?? 25
+  const growthChunk = options.growthChunk ?? 30
+  const scrollBoost = options.scrollBoost ?? 80
   const wallDisplayCount = ref(Infinity) // full for SSR & non-baseline / search views
   const virtualizingBaseline = ref(false)
   let scrollListenerAttached = false
@@ -18,8 +21,7 @@ export function useWallVirtualization() {
   function scheduleGrowBaseline(total) {
     if (!virtualizingBaseline.value) return
     if (wallDisplayCount.value >= total) return
-    const chunk = 40 // pattern items per growth step
-    const next = Math.min(wallDisplayCount.value + chunk, total)
+    const next = Math.min(wallDisplayCount.value + growthChunk, total)
     const cb = () => {
       wallDisplayCount.value = next
       if (next < total) scheduleGrowBaseline(total)
@@ -32,23 +34,23 @@ export function useWallVirtualization() {
   }
 
   // Boost growth if user scrolls near bottom during virtualization
-  function onScrollBoost(interleavedContent) {
+  function onScrollBoost(getTotal) {
     if (!virtualizingBaseline.value) return
     const scrollY = window.scrollY || document.documentElement.scrollTop
     const vh = window.innerHeight
     const full = document.documentElement.scrollHeight
     if (scrollY + vh * 1.4 > full) {
       wallDisplayCount.value = Math.min(
-        wallDisplayCount.value + 120,
-        interleavedContent.length
+        wallDisplayCount.value + scrollBoost,
+        getTotal()
       )
     }
   }
 
-  function setupScrollListener(interleavedContent) {
+  function setupScrollListener(getTotal) {
     if (typeof window === 'undefined') return
 
-    const scrollHandler = () => onScrollBoost(interleavedContent)
+    const scrollHandler = () => onScrollBoost(getTotal)
 
     if (virtualizingBaseline.value && !scrollListenerAttached) {
       window.addEventListener('scroll', scrollHandler, { passive: true })
@@ -96,8 +98,7 @@ export function useWallVirtualization() {
       prev.length !== total &&
       wallDisplayCount.value !== Infinity
     if (!virtualizingBaseline.value || baselineReset) {
-      const initial = 70
-      wallDisplayCount.value = Math.min(initial, total)
+      wallDisplayCount.value = Math.min(initialCount, total)
       virtualizingBaseline.value = true
       scheduleGrowBaseline(total)
     }

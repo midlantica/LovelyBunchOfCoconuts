@@ -269,7 +269,7 @@
   const profiles = ref([]) // Loaded profiles
 
   // Emit counts for search bar
-  const emit = defineEmits(['counts', 'modal', 'content-updated'])
+  const emit = defineEmits(['counts', 'content-updated'])
 
   // Clear search and reset filters (triggered from WallNoContent button)
   function onClearSearch() {
@@ -338,7 +338,6 @@
     modalGuardUntil,
     effectiveSearch,
     openGlobalModal,
-    emit,
   })
 
   // Frozen baseline pattern (no search, all filters) returned instantly when clearing search.
@@ -543,15 +542,24 @@
   // --------------------------------------------------
   // Progressive virtualization for baseline view
   // --------------------------------------------------
-  const wallDisplayCount = ref(Infinity) // full for SSR & non-baseline / search views
-  const virtualizingBaseline = ref(false)
+  const {
+    wallDisplayCount,
+    virtualizingBaseline,
+    handleInterleavedChange,
+    setupScrollListener,
+    cleanupScrollListener,
+  } = useWallVirtualization({
+    initialCount: 25,
+    growthChunk: 30,
+    scrollBoost: 80,
+  })
+
   // Track if we've shown the ad summary
   const adSummaryShown = ref(false)
 
-  const displayedInterleavedContent = computed(() => {
-    const content = interleavedContent.value.slice(0, wallDisplayCount.value)
-    return content
-  })
+  const displayedInterleavedContent = computed(() =>
+    interleavedContent.value.slice(0, wallDisplayCount.value)
+  )
 
   // Show ad summary once when loading is complete
   function showAdSummary() {
@@ -593,102 +601,37 @@
     }
   }
 
-  function isBaselineView() {
-    return (
-      !effectiveSearch.value?.trim() &&
-      effectiveFilters.value.grifts &&
-      effectiveFilters.value.quotes &&
-      effectiveFilters.value.memes
-    )
-  }
-
-  function scheduleGrowBaseline(total) {
-    if (!virtualizingBaseline.value) return
-    if (wallDisplayCount.value >= total) return
-    const chunk = 30 // pattern items per growth step (reduced from 40)
-    const next = Math.min(wallDisplayCount.value + chunk, total)
-    const cb = () => {
-      wallDisplayCount.value = next
-      if (next < total) scheduleGrowBaseline(total)
-    }
-    if (window.requestIdleCallback) {
-      requestIdleCallback(cb, { timeout: 60 })
-    } else {
-      setTimeout(cb, 16)
-    }
-  }
-
   // Watch for interleaved changes & decide virtualization (SSR-safe)
   watch(
     interleavedContent,
-    (val, prev) => {
-      if (typeof window === 'undefined') {
-        // SSR: render full list to avoid hydration mismatch
-        wallDisplayCount.value = Infinity
-        virtualizingBaseline.value = false
-        return
-      }
-      const baseline = isBaselineView()
-      if (!baseline) {
-        wallDisplayCount.value = Infinity
-        virtualizingBaseline.value = false
-        return
-      }
-      const total = val.length
-      if (!total) {
-        wallDisplayCount.value = 0
-        virtualizingBaseline.value = false
-        return
-      }
-      const baselineReset =
-        prev &&
-        prev.length &&
-        prev.length !== total &&
-        wallDisplayCount.value !== Infinity
-      if (!virtualizingBaseline.value || baselineReset) {
-        const initial = 25 // Reduced from 70 to 25 for faster initial render
-        wallDisplayCount.value = Math.min(initial, total)
-        virtualizingBaseline.value = true
-        scheduleGrowBaseline(total)
-      }
-    },
+    (val, prev) =>
+      handleInterleavedChange(val, prev, effectiveSearch.value, {
+        grifts: effectiveFilters.value.grifts,
+        quotes: effectiveFilters.value.quotes,
+        memes: effectiveFilters.value.memes,
+      }),
     { immediate: true }
   )
 
-  // Boost growth if user scrolls near bottom during virtualization
-  function onScrollBoost() {
-    if (!virtualizingBaseline.value) return
-    const scrollY = window.scrollY || document.documentElement.scrollTop
-    const vh = window.innerHeight
-    const full = document.documentElement.scrollHeight
-    if (scrollY + vh * 1.4 > full) {
-      wallDisplayCount.value = Math.min(
-        wallDisplayCount.value + 80, // Reduced from 120 to 80 for smoother growth
-        interleavedContent.value.length
-      )
-    }
-  }
   let scrollListenerAttached = false
   watch(
     virtualizingBaseline,
     (v) => {
       if (v && !scrollListenerAttached) {
-        window.addEventListener('scroll', onScrollBoost, { passive: true })
+        setupScrollListener(() => interleavedContent.value.length)
         scrollListenerAttached = true
       } else if (!v && scrollListenerAttached) {
-        window.removeEventListener('scroll', onScrollBoost)
+        cleanupScrollListener()
         scrollListenerAttached = false
         watch(
           virtualizingBaseline,
           (v) => {
             if (typeof window === 'undefined') return
             if (v && !scrollListenerAttached) {
-              window.addEventListener('scroll', onScrollBoost, {
-                passive: true,
-              })
+              setupScrollListener(() => interleavedContent.value.length)
               scrollListenerAttached = true
             } else if (!v && scrollListenerAttached) {
-              window.removeEventListener('scroll', onScrollBoost)
+              cleanupScrollListener()
               scrollListenerAttached = false
             }
           },
@@ -702,7 +645,7 @@
   onBeforeUnmount(() => {
     // Clean up scroll listener
     if (typeof window !== 'undefined' && scrollListenerAttached) {
-      window.removeEventListener('scroll', onScrollBoost)
+      cleanupScrollListener()
       scrollListenerAttached = false
     }
 
