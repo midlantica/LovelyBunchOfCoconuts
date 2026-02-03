@@ -350,7 +350,11 @@
     pattern: [],
     order: { grifts: [], quotes: [], memes: [] },
     rebuilding: false,
+    blockUpdates: false, // Prevent updates during background loading
   }))
+
+  // Track if we're in initial load phase (prevents watcher from triggering rebuilds)
+  const initialLoadInProgress = ref(false)
 
   function deriveBaselineOrder(pattern) {
     const order = { grifts: [], quotes: [], memes: [] }
@@ -493,66 +497,19 @@
         bs.quotes !== cache.quotes.length ||
         bs.memes !== cache.memes.length
       const seedChanged = bs.seed !== wallSeed.value
+
       if (baselineEmpty) {
         buildBaselineNow()
-        return baselineState.value.pattern
-      }
-
-      if (seedChanged) {
+      } else if (seedChanged) {
         buildBaselineNow()
-        return baselineState.value.pattern
-      }
-
-      if (countsChanged) {
-        const baseOrder = baselineState.value.order
-        const usedGrifts = new Set(baseOrder.grifts || [])
-        const usedQuotes = new Set(baseOrder.quotes || [])
-        const usedMemes = new Set(baseOrder.memes || [])
-
-        const remainingGrifts = grifts.filter(
-          (item) => !usedGrifts.has(item?._path || item?.path || '')
-        )
-        const remainingQuotes = quotes.filter(
-          (item) => !usedQuotes.has(item?._path || item?.path || '')
-        )
-        const remainingMemes = memes.filter(
-          (item) => !usedMemes.has(item?._path || item?.path || '')
-        )
-
-        if (
-          remainingGrifts.length ||
-          remainingQuotes.length ||
-          remainingMemes.length
-        ) {
-          const { adProvider, interval } = getBaselineAdSettings()
-          const appended = interleaveContent(
-            remainingGrifts,
-            remainingQuotes,
-            remainingMemes,
-            {
-              seed: wallSeed.value,
-              enableShuffle: true,
-              adInterval: interval,
-              adProvider,
-              profiles: profiles.value,
-              profileInterval: 4,
-              posts: cache.posts,
-            }
-          )
-          const nextPattern = [...baselineState.value.pattern, ...appended]
-          const nextOrder = deriveBaselineOrder(nextPattern)
-          baselineState.value = {
-            seed: wallSeed.value,
-            grifts: cache.grifts.length,
-            quotes: cache.quotes.length,
-            memes: cache.memes.length,
-            pattern: nextPattern,
-            order: nextOrder,
-            rebuilding: false,
-          }
+      } else if (countsChanged) {
+        if (bs.blockUpdates || initialLoadInProgress.value) {
+          return baselineState.value.pattern
         }
-
-        return baselineState.value.pattern
+        // Don't update synchronously - schedule async rebuild to avoid visible shuffle
+        if (typeof window !== 'undefined') {
+          scheduleBaselineRebuild()
+        }
       }
 
       return baselineState.value.pattern
@@ -738,14 +695,21 @@
       profiles.value.length, // Watch for profile changes!
     ],
     () => {
+      // Skip watcher activity during initial load
+      if (initialLoadInProgress.value) return
+
       const bs = baselineState.value
       if (!bs.pattern.length) return // nothing yet
+      if (bs.blockUpdates) return // Skip updates during background loading
+
       const emptySearch = !effectiveSearch.value?.trim()
       const allFiltersActive =
         effectiveFilters.value.grifts &&
         effectiveFilters.value.quotes &&
         effectiveFilters.value.memes
-      if (emptySearch && allFiltersActive) scheduleBaselineRebuild()
+      if (emptySearch && allFiltersActive) {
+        scheduleBaselineRebuild()
+      }
     }
   )
 
@@ -777,6 +741,11 @@
 
   onMounted(async () => {
     if (isLoaded.value) return // already ready
+
+    // CRITICAL: Block watcher IMMEDIATELY before any content loads
+    initialLoadInProgress.value = true
+    baselineState.value.blockUpdates = true
+
     try {
       if (
         cache.grifts.length === 0 &&
@@ -819,8 +788,8 @@
                   }
                 })
                 .then(() => {
-                  // Rebuild baseline once ads are ready so they appear in the wall
-                  scheduleBaselineRebuild()
+                  // Ads are loaded - they'll be included in the next baseline build
+                  // DON'T rebuild here - it causes a visible second shuffle
                   setTimeout(() => showAdSummary(), 500)
                 })
                 .catch((e) => {
@@ -845,6 +814,22 @@
           loadRemainingContent()
             .then(() => {
               console.log('✅ All content loaded in background')
+
+              // Update baseline counts to match cache WITHOUT triggering rebuild
+              // This prevents countsChanged from being true when we unblock
+              baselineState.value.grifts = cache.grifts.length
+              baselineState.value.quotes = cache.quotes.length
+              baselineState.value.memes = cache.memes.length
+
+              // End initial load phase - allow future updates (like logo click)
+              baselineState.value.blockUpdates = false
+
+              // CRITICAL: Delay unblocking initialLoadInProgress to prevent watcher from triggering
+              // The watcher will see the count update and try to rebuild if we unblock immediately
+              setTimeout(() => {
+                initialLoadInProgress.value = false
+              }, 100)
+
               // Show ad summary after full load (if ads already loaded)
               setTimeout(() => showAdSummary(), 500)
 
@@ -863,6 +848,9 @@
             })
             .catch((e) => {
               console.warn('Error loading remaining content:', e)
+              // Unblock even on error
+              baselineState.value.blockUpdates = false
+              initialLoadInProgress.value = false
             })
         }, 100)
 
