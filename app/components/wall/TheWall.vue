@@ -742,7 +742,7 @@
   onMounted(async () => {
     if (isLoaded.value) return // already ready
 
-    // CRITICAL: Block watcher IMMEDIATELY before any content loads
+    // Block watchers during load
     initialLoadInProgress.value = true
     baselineState.value.blockUpdates = true
 
@@ -752,11 +752,10 @@
         cache.quotes.length === 0 &&
         cache.memes.length === 0
       ) {
-        // PERFORMANCE FIX: Load initial batch first for instant display
-        // This makes the wall interactive in ~200ms instead of waiting for everything
-        await loadInitialContent(30) // Load first 30 items of each type
+        // Load ALL content first (no progressive loading - simpler, no double shuffle)
+        await loadAllContent()
 
-        // Load profiles in parallel with initial content
+        // Load profiles in parallel
         const profilesPromise = fetchAllProfiles()
           .then((loadedProfiles) => {
             profiles.value = loadedProfiles || []
@@ -768,14 +767,12 @@
             cache.profiles = []
           })
 
-        // Load ads in parallel with AbortController support (deferred from initial render)
+        // Load ads in parallel
         const adsPromise = adsEnabled.value
           ? (() => {
-              // Cancel any existing request
               if (adsAbortController.value) {
                 adsAbortController.value.abort()
               }
-              // Create new controller for this request
               adsAbortController.value = new AbortController()
 
               return $fetch('/api/content/ads', {
@@ -787,13 +784,7 @@
                     return loadAds(null, adContent)
                   }
                 })
-                .then(() => {
-                  // Ads are loaded - they'll be included in the next baseline build
-                  // DON'T rebuild here - it causes a visible second shuffle
-                  setTimeout(() => showAdSummary(), 500)
-                })
                 .catch((e) => {
-                  // Don't warn on abort - it's intentional
                   if (e.name !== 'AbortError') {
                     console.warn('Could not load ads:', e)
                   }
@@ -801,58 +792,39 @@
             })()
           : Promise.resolve()
 
-        // Wait for profiles before showing content (ads are deferred)
-        await Promise.all([profilesPromise])
+        // Wait for profiles AND ads before showing wall
+        await Promise.all([profilesPromise, adsPromise])
 
-        // Mark as loaded - wall is now interactive!
+        console.log(
+          `✅ All content loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+        )
+
+        // Unblock and build baseline ONCE with everything
+        initialLoadInProgress.value = false
+        baselineState.value.blockUpdates = false
+
+        // Build baseline with ALL content + ads (only happens once)
+        buildBaselineNow()
+
+        // Mark as loaded - wall appears with full content
         isLoaded.value = true
         wallHasLoadedOnce.value = true
 
-        // Load remaining content in the background (non-blocking)
-        // This happens AFTER the wall is already interactive
-        setTimeout(async () => {
-          try {
-            // Wait for BOTH remaining content AND ads to load
-            await Promise.all([
-              loadRemainingContent(),
-              adsPromise, // Wait for ads too!
-            ])
+        // Show ad summary
+        setTimeout(() => showAdSummary(), 500)
 
-            console.log('✅ All content + ads loaded in background')
-            console.log(
-              `📊 Final counts: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
-            )
-
-            // End initial load phase
-            initialLoadInProgress.value = false
-            baselineState.value.blockUpdates = false
-
-            // NOW rebuild baseline with ALL content + ads
-            // User has likely scrolled down by now, so this won't be jarring
-            buildBaselineNow()
-
-            // Show ad summary after rebuild
-            setTimeout(() => showAdSummary(), 500)
-
-            // Schedule background pre-computation for instant refreshes
-            schedulePrecomputation(
-              cache.grifts,
-              cache.quotes,
-              cache.memes,
-              profiles.value,
-              {
-                adsEnabled: adsEnabled.value,
-                adInterval: adInterval.value,
-                profileInterval: 4,
-              }
-            )
-          } catch (e) {
-            console.warn('Error loading remaining content:', e)
-            // Unblock even on error
-            baselineState.value.blockUpdates = false
-            initialLoadInProgress.value = false
+        // Schedule pre-computation for future refreshes
+        schedulePrecomputation(
+          cache.grifts,
+          cache.quotes,
+          cache.memes,
+          profiles.value,
+          {
+            adsEnabled: adsEnabled.value,
+            adInterval: adInterval.value,
+            profileInterval: 4,
           }
-        }, 100)
+        )
       } else {
         // Cache had content but first visit this session
         // Still need to load profiles if not already loaded
