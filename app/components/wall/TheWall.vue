@@ -385,13 +385,33 @@
     return order
   }
 
-  function reorderByBaseline(arr, orderMap) {
-    if (!Array.isArray(arr) || !orderMap || !orderMap.size) return arr
-    return [...arr].sort((a, b) => {
-      const ap = a?._path || a?.path || ''
-      const bp = b?._path || b?.path || ''
-      return (orderMap.get(ap) ?? 0) - (orderMap.get(bp) ?? 0)
+  function reorderByBaseline(arr, orderList) {
+    if (!Array.isArray(arr) || !orderList?.length) return arr
+    const orderMap = new Map(orderList.map((p, i) => [p, i]))
+    const known = []
+    const unknown = []
+    arr.forEach((item) => {
+      const key = item?._path || item?.path || ''
+      if (orderMap.has(key)) {
+        known.push({ order: orderMap.get(key), item })
+      } else {
+        unknown.push(item)
+      }
     })
+    known.sort((a, b) => a.order - b.order)
+    return [...known.map((entry) => entry.item), ...unknown]
+  }
+
+  function getBaselineAdSettings() {
+    const adProvider =
+      adsEnabled.value && !isSearchingForAds.value
+        ? createAdProvider({ smallWeight: 0.7 })
+        : null
+    const interval =
+      adsEnabled.value && !isSearchingForAds.value
+        ? calculateAdInterval(adInterval.value)
+        : 0
+    return { adProvider, interval }
   }
 
   function buildBaselineNow() {
@@ -399,14 +419,7 @@
       // Create ad provider if ads are enabled AND not searching for ads
       // When searching for ads, we don't want them interleaved - we want them as results
       // Note: ads should be loaded in onMounted before this is called
-      const adProvider =
-        adsEnabled.value && !isSearchingForAds.value
-          ? createAdProvider({ smallWeight: 0.7 })
-          : null
-      const interval =
-        adsEnabled.value && !isSearchingForAds.value
-          ? calculateAdInterval(adInterval.value)
-          : 0
+      const { adProvider, interval } = getBaselineAdSettings()
 
       const pattern = interleaveContent(
         cache.grifts,
@@ -479,12 +492,35 @@
         bs.grifts !== cache.grifts.length ||
         bs.quotes !== cache.quotes.length ||
         bs.memes !== cache.memes.length
+      const seedChanged = bs.seed !== wallSeed.value
       if (baselineEmpty) {
         buildBaselineNow()
-      } else if (countsChanged && typeof window !== 'undefined') {
-        // Rebuild later; return stale instantly
-        scheduleBaselineRebuild()
+        return baselineState.value.pattern
       }
+
+      if (seedChanged) {
+        buildBaselineNow()
+        return baselineState.value.pattern
+      }
+
+      if (countsChanged) {
+        const baseOrder = baselineState.value.order
+        const orderedGrifts = reorderByBaseline(grifts, baseOrder.grifts)
+        const orderedQuotes = reorderByBaseline(quotes, baseOrder.quotes)
+        const orderedMemes = reorderByBaseline(memes, baseOrder.memes)
+        const { adProvider, interval } = getBaselineAdSettings()
+
+        return interleaveContent(orderedGrifts, orderedQuotes, orderedMemes, {
+          seed: wallSeed.value,
+          enableShuffle: false,
+          adInterval: interval,
+          adProvider,
+          profiles: profiles.value,
+          profileInterval: 4,
+          posts: cache.posts,
+        })
+      }
+
       return baselineState.value.pattern
     }
 
@@ -512,23 +548,14 @@
     let orderedGrifts = grifts
     let orderedQuotes = quotes
     let orderedMemes = memes
-    if (baseOrder && baseOrder.grifts?.length) {
-      orderedGrifts = reorderByBaseline(
-        grifts,
-        new Map(baseOrder.grifts.map((p, i) => [p, i]))
-      )
+    if (baseOrder?.grifts?.length) {
+      orderedGrifts = reorderByBaseline(grifts, baseOrder.grifts)
     }
-    if (baseOrder && baseOrder.quotes?.length) {
-      orderedQuotes = reorderByBaseline(
-        quotes,
-        new Map(baseOrder.quotes.map((p, i) => [p, i]))
-      )
+    if (baseOrder?.quotes?.length) {
+      orderedQuotes = reorderByBaseline(quotes, baseOrder.quotes)
     }
-    if (baseOrder && baseOrder.memes?.length) {
-      orderedMemes = reorderByBaseline(
-        memes,
-        new Map(baseOrder.memes.map((p, i) => [p, i]))
-      )
+    if (baseOrder?.memes?.length) {
+      orderedMemes = reorderByBaseline(memes, baseOrder.memes)
     }
     return interleaveContent(orderedGrifts, orderedQuotes, orderedMemes, {
       seed: wallSeed.value,
