@@ -74,34 +74,10 @@ export function useWallVirtualization(options = {}) {
     effectiveSearch,
     effectiveFilters
   ) {
-    if (typeof window === 'undefined') {
-      // SSR: render full list to avoid hydration mismatch
-      wallDisplayCount.value = Infinity
-      virtualizingBaseline.value = false
-      return
-    }
-    const baseline = isBaselineView(effectiveSearch, effectiveFilters)
-    if (!baseline) {
-      wallDisplayCount.value = Infinity
-      virtualizingBaseline.value = false
-      return
-    }
-    const total = val.length
-    if (!total) {
-      wallDisplayCount.value = 0
-      virtualizingBaseline.value = false
-      return
-    }
-    const baselineReset =
-      prev &&
-      prev.length &&
-      prev.length !== total &&
-      wallDisplayCount.value !== Infinity
-    if (!virtualizingBaseline.value || baselineReset) {
-      wallDisplayCount.value = Math.min(initialCount, total)
-      virtualizingBaseline.value = true
-      scheduleGrowBaseline(total)
-    }
+    // Since we now load all content before showing the wall,
+    // virtualization is no longer needed - just show everything
+    wallDisplayCount.value = Infinity
+    virtualizingBaseline.value = false
   }
 
   return {
