@@ -810,52 +810,49 @@
 
         // Load remaining content in the background (non-blocking)
         // This happens AFTER the wall is already interactive
-        setTimeout(() => {
-          loadRemainingContent()
-            .then(() => {
-              console.log('✅ All content loaded in background')
+        setTimeout(async () => {
+          try {
+            // Wait for BOTH remaining content AND ads to load
+            await Promise.all([
+              loadRemainingContent(),
+              adsPromise, // Wait for ads too!
+            ])
 
-              // Update baseline counts to match cache WITHOUT triggering rebuild
-              // This prevents countsChanged from being true when we unblock
-              baselineState.value.grifts = cache.grifts.length
-              baselineState.value.quotes = cache.quotes.length
-              baselineState.value.memes = cache.memes.length
+            console.log('✅ All content + ads loaded in background')
+            console.log(
+              `📊 Final counts: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+            )
 
-              // End initial load phase - allow future updates (like logo click)
-              baselineState.value.blockUpdates = false
+            // End initial load phase
+            initialLoadInProgress.value = false
+            baselineState.value.blockUpdates = false
 
-              // CRITICAL: Delay unblocking initialLoadInProgress to prevent watcher from triggering
-              // The watcher will see the count update and try to rebuild if we unblock immediately
-              setTimeout(() => {
-                initialLoadInProgress.value = false
-              }, 100)
+            // NOW rebuild baseline with ALL content + ads
+            // User has likely scrolled down by now, so this won't be jarring
+            buildBaselineNow()
 
-              // Show ad summary after full load (if ads already loaded)
-              setTimeout(() => showAdSummary(), 500)
+            // Show ad summary after rebuild
+            setTimeout(() => showAdSummary(), 500)
 
-              // Schedule background pre-computation for instant refreshes
-              schedulePrecomputation(
-                cache.grifts,
-                cache.quotes,
-                cache.memes,
-                profiles.value,
-                {
-                  adsEnabled: adsEnabled.value,
-                  adInterval: adInterval.value,
-                  profileInterval: 4,
-                }
-              )
-            })
-            .catch((e) => {
-              console.warn('Error loading remaining content:', e)
-              // Unblock even on error
-              baselineState.value.blockUpdates = false
-              initialLoadInProgress.value = false
-            })
+            // Schedule background pre-computation for instant refreshes
+            schedulePrecomputation(
+              cache.grifts,
+              cache.quotes,
+              cache.memes,
+              profiles.value,
+              {
+                adsEnabled: adsEnabled.value,
+                adInterval: adInterval.value,
+                profileInterval: 4,
+              }
+            )
+          } catch (e) {
+            console.warn('Error loading remaining content:', e)
+            // Unblock even on error
+            baselineState.value.blockUpdates = false
+            initialLoadInProgress.value = false
+          }
         }, 100)
-
-        // Ensure deferred ads fetch begins after initial render
-        void adsPromise
       } else {
         // Cache had content but first visit this session
         // Still need to load profiles if not already loaded
