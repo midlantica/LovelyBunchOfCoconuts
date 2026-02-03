@@ -505,20 +505,54 @@
 
       if (countsChanged) {
         const baseOrder = baselineState.value.order
-        const orderedGrifts = reorderByBaseline(grifts, baseOrder.grifts)
-        const orderedQuotes = reorderByBaseline(quotes, baseOrder.quotes)
-        const orderedMemes = reorderByBaseline(memes, baseOrder.memes)
-        const { adProvider, interval } = getBaselineAdSettings()
+        const usedGrifts = new Set(baseOrder.grifts || [])
+        const usedQuotes = new Set(baseOrder.quotes || [])
+        const usedMemes = new Set(baseOrder.memes || [])
 
-        return interleaveContent(orderedGrifts, orderedQuotes, orderedMemes, {
-          seed: wallSeed.value,
-          enableShuffle: false,
-          adInterval: interval,
-          adProvider,
-          profiles: profiles.value,
-          profileInterval: 4,
-          posts: cache.posts,
-        })
+        const remainingGrifts = grifts.filter(
+          (item) => !usedGrifts.has(item?._path || item?.path || '')
+        )
+        const remainingQuotes = quotes.filter(
+          (item) => !usedQuotes.has(item?._path || item?.path || '')
+        )
+        const remainingMemes = memes.filter(
+          (item) => !usedMemes.has(item?._path || item?.path || '')
+        )
+
+        if (
+          remainingGrifts.length ||
+          remainingQuotes.length ||
+          remainingMemes.length
+        ) {
+          const { adProvider, interval } = getBaselineAdSettings()
+          const appended = interleaveContent(
+            remainingGrifts,
+            remainingQuotes,
+            remainingMemes,
+            {
+              seed: wallSeed.value,
+              enableShuffle: true,
+              adInterval: interval,
+              adProvider,
+              profiles: profiles.value,
+              profileInterval: 4,
+              posts: cache.posts,
+            }
+          )
+          const nextPattern = [...baselineState.value.pattern, ...appended]
+          const nextOrder = deriveBaselineOrder(nextPattern)
+          baselineState.value = {
+            seed: wallSeed.value,
+            grifts: cache.grifts.length,
+            quotes: cache.quotes.length,
+            memes: cache.memes.length,
+            pattern: nextPattern,
+            order: nextOrder,
+            rebuilding: false,
+          }
+        }
+
+        return baselineState.value.pattern
       }
 
       return baselineState.value.pattern
