@@ -418,7 +418,7 @@
     return { adProvider, interval }
   }
 
-  function buildBaselineNow() {
+  function buildBaselineNow(opts = {}) {
     try {
       // Create ad provider if ads are enabled AND not searching for ads
       // When searching for ads, we don't want them interleaved - we want them as results
@@ -439,6 +439,71 @@
           posts: cache.posts,
         }
       )
+
+      // If extending (Phase 2), keep the existing visible items in place
+      // and only append new items after them to prevent the double-flash.
+      if (opts.extend && baselineState.value.pattern.length > 0) {
+        const prevPattern = baselineState.value.pattern
+        const prevLen = prevPattern.length
+
+        // Build a set of paths already visible in the old pattern
+        const visiblePaths = new Set()
+        for (const item of prevPattern) {
+          if (!item) continue
+          if (
+            item.type === 'quote' ||
+            item.type === 'post' ||
+            item.type === 'profile'
+          ) {
+            const p = item.data?._path || item.data?.path || ''
+            if (p) visiblePaths.add(p)
+          } else if (item.type === 'griftPair' || item.type === 'memeRow') {
+            for (const d of item.data || []) {
+              const p = d?._path || d?.path || ''
+              if (p) visiblePaths.add(p)
+            }
+          }
+        }
+
+        // From the new full pattern, collect items that contain NEW content
+        const newItems = pattern.filter((item) => {
+          if (!item) return false
+          if (
+            item.type === 'quote' ||
+            item.type === 'post' ||
+            item.type === 'profile'
+          ) {
+            const p = item.data?._path || item.data?.path || ''
+            // Ads are always new (they have no stable path)
+            if (item.data?.isAd) return true
+            return p && !visiblePaths.has(p)
+          }
+          if (item.type === 'griftPair' || item.type === 'memeRow') {
+            // Include if ANY item in the pair/row is new
+            return (item.data || []).some((d) => {
+              if (d?.isAd) return true
+              const p = d?._path || d?.path || ''
+              return p && !visiblePaths.has(p)
+            })
+          }
+          return true
+        })
+
+        // Merge: keep old pattern + append new items
+        const merged = [...prevPattern, ...newItems]
+        const order = deriveBaselineOrder(merged)
+        baselineState.value = {
+          seed: wallSeed.value,
+          grifts: cache.grifts.length,
+          quotes: cache.quotes.length,
+          memes: cache.memes.length,
+          pattern: merged,
+          order,
+          rebuilding: false,
+        }
+        return
+      }
+
       const order = deriveBaselineOrder(pattern)
       baselineState.value = {
         seed: wallSeed.value,
@@ -501,15 +566,14 @@
       if (baselineEmpty) {
         buildBaselineNow()
       } else if (seedChanged) {
+        // Seed changed (e.g. logo click) – full rebuild is intentional
         buildBaselineNow()
       } else if (countsChanged) {
-        if (bs.blockUpdates || initialLoadInProgress.value) {
-          return baselineState.value.pattern
-        }
-        // Don't update synchronously - schedule async rebuild to avoid visible shuffle
-        if (typeof window !== 'undefined') {
-          scheduleBaselineRebuild()
-        }
+        // Content counts changed (Phase 2 background load finished).
+        // Don't rebuild here – the onMounted handler calls
+        // buildBaselineNow({ extend: true }) explicitly.
+        // Just return the current pattern to avoid a flash.
+        return baselineState.value.pattern
       }
 
       return baselineState.value.pattern
@@ -566,10 +630,12 @@
     handleInterleavedChange,
     setupScrollListener,
     cleanupScrollListener,
+    startVirtualization,
+    resetForInitialLoad,
   } = useWallVirtualization({
-    initialCount: 25,
-    growthChunk: 30,
-    scrollBoost: 80,
+    initialCount: 20,
+    growthChunk: 25,
+    scrollBoost: 60,
   })
 
   // Track if we've shown the ad summary
@@ -752,10 +818,37 @@
         cache.quotes.length === 0 &&
         cache.memes.length === 0
       ) {
-        // Load ALL content first (no progressive loading - simpler, no double shuffle)
-        await loadAllContent()
+        // ─────────────────────────────────────────────
+        // PHASE 1 – Above-the-fold: load a small subset
+        // ─────────────────────────────────────────────
+        // Load ~12 items per type – enough to fill the first viewport.
+        // This is much faster than loading everything.
+        await loadInitialContent(12)
 
-        // Load profiles in parallel
+        console.log(
+          `⚡ Phase 1 loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+        )
+
+        // Build baseline with the initial subset (same seed used later)
+        initialLoadInProgress.value = false
+        baselineState.value.blockUpdates = false
+        buildBaselineNow()
+
+        // Cap virtualization to initial items and show the wall NOW
+        resetForInitialLoad()
+        isLoaded.value = true
+        wallHasLoadedOnce.value = true
+
+        // ─────────────────────────────────────────────
+        // PHASE 2 – Below-the-fold: load remaining content + extras
+        // ─────────────────────────────────────────────
+        // Everything below runs in the background while the user sees content.
+        // Block baseline watcher updates so the visible wall stays stable.
+        baselineState.value.blockUpdates = true
+
+        // Kick off remaining content, profiles, and ads in parallel
+        const remainingPromise = loadRemainingContent()
+
         const profilesPromise = fetchAllProfiles()
           .then((loadedProfiles) => {
             profiles.value = loadedProfiles || []
@@ -767,7 +860,6 @@
             cache.profiles = []
           })
 
-        // Load ads in parallel
         const adsPromise = adsEnabled.value
           ? (() => {
               if (adsAbortController.value) {
@@ -792,28 +884,28 @@
             })()
           : Promise.resolve()
 
-        // Wait for profiles AND ads before showing wall
-        await Promise.all([profilesPromise, adsPromise])
+        // Wait for everything to finish in background
+        await Promise.all([remainingPromise, profilesPromise, adsPromise])
 
         console.log(
-          `✅ All content loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+          `✅ Phase 2 complete: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
         )
 
-        // Unblock and build baseline ONCE with everything
-        initialLoadInProgress.value = false
+        // Unblock and EXTEND baseline with ALL content + ads + profiles
+        // Using extend mode preserves the Phase 1 visible items in place
+        // and only appends new items after them – no double-flash.
         baselineState.value.blockUpdates = false
+        buildBaselineNow({ extend: true })
 
-        // Build baseline with ALL content + ads (only happens once)
-        buildBaselineNow()
-
-        // Mark as loaded - wall appears with full content
-        isLoaded.value = true
-        wallHasLoadedOnce.value = true
+        // Grow the virtualized display to reveal the new items smoothly
+        startVirtualization(interleavedContent.value.length)
 
         // Show ad summary
         setTimeout(() => showAdSummary(), 500)
 
-        // Schedule pre-computation for future refreshes
+        // ─────────────────────────────────────────────
+        // PHASE 3 – Pre-compute next seed for instant refresh
+        // ─────────────────────────────────────────────
         schedulePrecomputation(
           cache.grifts,
           cache.quotes,
@@ -840,6 +932,8 @@
           }
         }
 
+        initialLoadInProgress.value = false
+        baselineState.value.blockUpdates = false
         isLoaded.value = true
         wallHasLoadedOnce.value = true
         // Show ad summary after a delay to ensure baseline is built

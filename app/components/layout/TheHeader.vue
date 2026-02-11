@@ -54,10 +54,10 @@
     try {
       isWallRefreshing.value = true
 
-      // Reseed the wall to get new random content
-      reseedWall()
+      // Content is already cached in memory — no page reload needed.
+      // Just reseed and let TheWall's computed rebuild the baseline.
 
-      // Try to use pre-computed layout for instant refresh
+      // Try to use pre-computed layout for truly instant refresh
       const precomputedLayout = usePrecomputedRefresh(
         cache.grifts,
         cache.quotes,
@@ -66,31 +66,80 @@
       )
 
       if (precomputedLayout) {
-        // Instant refresh using pre-computed layout!
-        if (import.meta.dev) {
-        }
+        // usePrecomputedRefresh already set wallSeed to the precomputed seed.
+        // Inject the precomputed layout directly into the baseline state
+        // so TheWall doesn't have to rebuild it from scratch.
+        const baselineState = useState('wallBaselinePattern')
+        if (baselineState.value) {
+          const { wallSeed } = useWallSeed()
 
-        // Clear search and filters
-        const searchTerm = useState('searchTerm')
-        const contentFilters = useState('contentFilters')
-        if (searchTerm?.value) searchTerm.value = ''
-        if (contentFilters?.value) {
-          contentFilters.value = { grifts: true, quotes: true, memes: true }
-        }
-        await router.replace({ path: route.path, query: {} })
+          // Derive baseline order for search stability
+          const order = { grifts: [], quotes: [], memes: [] }
+          const seen = {
+            grifts: new Set(),
+            quotes: new Set(),
+            memes: new Set(),
+          }
+          for (const item of precomputedLayout) {
+            if (!item) continue
+            if (item.type === 'griftPair') {
+              for (const c of item.data || []) {
+                const p = c?._path || c?.path || ''
+                if (p && !seen.grifts.has(p)) {
+                  seen.grifts.add(p)
+                  order.grifts.push(p)
+                }
+              }
+            } else if (item.type === 'memeRow') {
+              for (const m of item.data || []) {
+                const p = m?._path || m?.path || ''
+                if (p && !seen.memes.has(p)) {
+                  seen.memes.add(p)
+                  order.memes.push(p)
+                }
+              }
+            } else if (item.type === 'quote') {
+              const p = item.data?._path || item.data?.path || ''
+              if (p && !seen.quotes.has(p)) {
+                seen.quotes.add(p)
+                order.quotes.push(p)
+              }
+            }
+          }
 
-        // Brief visual feedback (much shorter since it's instant)
-        await new Promise((resolve) => setTimeout(resolve, 100))
+          baselineState.value = {
+            ...baselineState.value,
+            seed: wallSeed.value,
+            pattern: precomputedLayout,
+            order,
+            grifts: cache.grifts.length,
+            quotes: cache.quotes.length,
+            memes: cache.memes.length,
+            rebuilding: false,
+          }
+        }
       } else {
-        // Fallback to full page reload if no pre-computed layout available
-        if (import.meta.dev) {
-        }
-
-        const currentUrl = new URL(window.location)
-        currentUrl.search = '' // Remove all query parameters
-        window.location.href = currentUrl.toString()
-        return // Don't set isWallRefreshing to false since we're reloading
+        // No precomputed layout — just reseed. TheWall's computed will
+        // detect the seed change and rebuild the baseline instantly
+        // since all content is already cached in memory.
+        reseedWall()
       }
+
+      // Clear search and filters
+      const searchTerm = useState('searchTerm')
+      const contentFilters = useState('contentFilters')
+      if (searchTerm?.value) searchTerm.value = ''
+      if (contentFilters?.value) {
+        contentFilters.value = { grifts: true, quotes: true, memes: true }
+      }
+
+      // Scroll to top for the fresh view
+      const scrollEl = document.querySelector('.scroll-container-stable')
+      if (scrollEl) scrollEl.scrollTop = 0
+      else window.scrollTo(0, 0)
+
+      // Brief visual feedback
+      await new Promise((resolve) => setTimeout(resolve, 80))
     } finally {
       isWallRefreshing.value = false
     }

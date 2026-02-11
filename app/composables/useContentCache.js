@@ -66,6 +66,9 @@ const globalCache = reactive({
   profiles: [],
   isLoading: false,
   error: null,
+  // Progressive loading state
+  _initialLoadComplete: false,
+  _fullLoadComplete: false,
 })
 
 // Slug helpers & maps must be declared before use
@@ -519,6 +522,8 @@ export function useContentCache() {
         filterSpecialFiles(postsData),
         'posts'
       )
+      cache._fullLoadComplete = true
+      cache._initialLoadComplete = true
       debugLog(
         `Content loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes, ${cache.posts.length} posts`
       )
@@ -575,17 +580,23 @@ export function useContentCache() {
     })
   }
 
-  // Progressive loading: Load small batch first for instant display
-  const loadInitialContent = async (limit = 20) => {
+  // ─── Progressive Loading: Phase 1 (above-the-fold) ───
+  // Load a small batch for instant display. The limit is per-type so the
+  // interleave pattern has enough variety to fill the first viewport.
+  const loadInitialContent = async (limit = 12) => {
     if (cache.isLoading) return
     cache.isLoading = true
     cache.error = null
+    cache._initialLoadComplete = false
+    cache._fullLoadComplete = false
     try {
       const [griftsData, quotesData, memesData, postsData] = await Promise.all([
         queryCollection('grifts').limit(limit).all(),
         queryCollection('quotes').limit(limit).all(),
         queryCollection('memes').limit(limit).all(),
-        queryCollection('posts').limit(limit).all(),
+        queryCollection('posts')
+          .limit(Math.ceil(limit / 2))
+          .all(),
       ])
       cache.grifts = transformContentForComponents(
         filterSpecialFiles(griftsData),
@@ -603,6 +614,7 @@ export function useContentCache() {
         filterSpecialFiles(postsData),
         'posts'
       )
+      cache._initialLoadComplete = true
       debugLog(
         `✅ Initial batch loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes, ${cache.posts.length} posts`
       )
@@ -614,8 +626,12 @@ export function useContentCache() {
     }
   }
 
-  // Load remaining content in background after initial display
+  // ─── Progressive Loading: Phase 2 (below-the-fold / remaining) ───
+  // Loads ALL content and merges it into the cache. Items already present
+  // from Phase 1 are preserved in their original positions by using a
+  // path-based dedup so the visible wall doesn't reshuffle.
   const loadRemainingContent = async () => {
+    if (cache._fullLoadComplete) return // already done
     try {
       const [griftsData, quotesData, memesData, postsData] = await Promise.all([
         queryCollection('grifts').all(),
@@ -623,24 +639,59 @@ export function useContentCache() {
         queryCollection('memes').all(),
         queryCollection('posts').all(),
       ])
-      cache.grifts = transformContentForComponents(
+
+      // Build sets of paths already in cache (from Phase 1)
+      const existingPaths = {
+        grifts: new Set(cache.grifts.map((i) => i._path || i.path || i.id)),
+        quotes: new Set(cache.quotes.map((i) => i._path || i.path || i.id)),
+        memes: new Set(cache.memes.map((i) => i._path || i.path || i.id)),
+        posts: new Set(cache.posts.map((i) => i._path || i.path || i.id)),
+      }
+
+      // Transform ALL items
+      const allGrifts = transformContentForComponents(
         filterSpecialFiles(griftsData),
         'grifts'
       )
-      cache.quotes = transformContentForComponents(
+      const allQuotes = transformContentForComponents(
         filterSpecialFiles(quotesData),
         'quotes'
       )
-      cache.memes = transformContentForComponents(
+      const allMemes = transformContentForComponents(
         filterSpecialFiles(memesData),
         'memes'
       )
-      cache.posts = transformContentForComponents(
+      const allPosts = transformContentForComponents(
         filterSpecialFiles(postsData),
         'posts'
       )
+
+      // Separate new items (not in Phase 1) from existing
+      const newGrifts = allGrifts.filter(
+        (i) => !existingPaths.grifts.has(i._path || i.path || i.id)
+      )
+      const newQuotes = allQuotes.filter(
+        (i) => !existingPaths.quotes.has(i._path || i.path || i.id)
+      )
+      const newMemes = allMemes.filter(
+        (i) => !existingPaths.memes.has(i._path || i.path || i.id)
+      )
+      const newPosts = allPosts.filter(
+        (i) => !existingPaths.posts.has(i._path || i.path || i.id)
+      )
+
+      // Append new items AFTER existing ones so the visible order is stable
+      cache.grifts = [...cache.grifts, ...newGrifts]
+      cache.quotes = [...cache.quotes, ...newQuotes]
+      cache.memes = [...cache.memes, ...newMemes]
+      cache.posts = [...cache.posts, ...newPosts]
+      cache._fullLoadComplete = true
+
       debugLog(
         `🎉 Full content loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes, ${cache.posts.length} posts`
+      )
+      debugLog(
+        `   (added ${newGrifts.length} grifts, ${newQuotes.length} quotes, ${newMemes.length} memes, ${newPosts.length} posts in background)`
       )
     } catch (error) {
       console.error('Error loading remaining content:', error)
