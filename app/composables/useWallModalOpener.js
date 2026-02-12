@@ -8,15 +8,7 @@ export function useWallModalOpener({
   effectiveSearch,
   openGlobalModal,
 }) {
-  const slugify = (s = '') =>
-    s
-      .toString()
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-_]/g, '')
-      .trim()
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .substring(0, 80)
+  // slugify is auto-imported from ~/utils/slugify.ts
 
   const deriveFileBase = (data) => {
     const id = data?.id || data?._id || ''

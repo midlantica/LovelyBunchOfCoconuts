@@ -6,7 +6,7 @@ title: 'Magna Carta 1215'
 
 In 1215, English barons forced tyrannical King John to sign the Great Charter at Runnymede.
 
-Key clauses:
+### Key clauses:
 
 - No taxation without consent
 - No imprisonment without lawful judgment

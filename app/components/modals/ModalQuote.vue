@@ -165,9 +165,8 @@
       if (data && (data.quoteText || data.title) && data.attribution) {
         const run = async () => {
           try {
-            const { useShareImageGenerator } = await import(
-              '~/composables/useShareImageGenerator'
-            )
+            const { useShareImageGenerator } =
+              await import('~/composables/useShareImageGenerator')
             const { generateQuoteImage } = useShareImageGenerator()
             const blob = await generateQuoteImage(
               data.quoteText || data.title,
@@ -236,7 +235,7 @@
     display: inline-block;
   }
 
-  /* Ensure all headers in prose content are seagull-200 */
+  /* --- Prose vertical rhythm for quote body content --- */
   .prose :deep(h1),
   .prose :deep(h2),
   .prose :deep(h3),
@@ -244,18 +243,40 @@
   .prose :deep(h5),
   .prose :deep(h6) {
     color: #a5f3fc; /* seagull-200 */
+    line-height: 1.3;
+    margin-top: 1.75em;
+    margin-bottom: 0.15em;
   }
 
-  /* Ensure paragraph text is white in quote body */
+  .prose :deep(:first-child) {
+    margin-top: 0;
+  }
+
   .prose :deep(p) {
     color: white;
+    margin-top: 0;
+    margin-bottom: 0.75em;
+    line-height: 1.5;
   }
 
-  .prose :deep(ul li) {
-    color: white;
+  .prose :deep(ul),
+  .prose :deep(ol) {
+    margin-top: 0;
+    margin-bottom: 0.75em;
   }
 
+  .prose :deep(ul li),
   .prose :deep(ol li) {
     color: white;
+    margin-bottom: 0.2em;
+    line-height: 1.5;
+  }
+
+  .prose :deep(li:last-child) {
+    margin-bottom: 0;
+  }
+
+  .prose :deep(:last-child) {
+    margin-bottom: 0;
   }
 </style>

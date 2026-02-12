@@ -90,7 +90,7 @@
     transform: translateY(-10px);
   }
 
-  /* Barlow Condensed font classes */
+  /* Barlow Condensed font classes — weights must match their class names */
   .font-100 {
     font-family:
       'Barlow Condensed',
@@ -98,7 +98,7 @@
       BlinkMacSystemFont,
       'Segoe UI',
       sans-serif;
-    font-weight: 300;
+    font-weight: 100;
   }
 
   .font-300 {
@@ -108,6 +108,6 @@
       BlinkMacSystemFont,
       'Segoe UI',
       sans-serif;
-    font-weight: 500;
+    font-weight: 300;
   }
 </style>

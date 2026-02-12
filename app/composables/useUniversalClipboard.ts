@@ -1,11 +1,28 @@
-// composables/useUniversalClipboard.js
+// composables/useUniversalClipboard.ts
 // Universal clipboard utility that works across all browsers and platforms
+
+interface CopyImageOptions {
+  onSuccess?: (message: string) => void
+  onError?: (message: string) => void
+  contentType?: string
+  filename?: string | null
+  maxRetries?: number
+}
+
+interface CopyTextOptions {
+  onSuccess?: (message: string) => void
+  onError?: (message: string) => void
+}
 
 export function useUniversalClipboard() {
   // Detect platform with more comprehensive checks
-  const isMobile = () => {
+  const isMobile = (): boolean => {
     if (typeof navigator === 'undefined') return false
-    const ua = navigator.userAgent || navigator.vendor || window.opera || ''
+    const ua =
+      navigator.userAgent ||
+      (navigator as any).vendor ||
+      (window as any).opera ||
+      ''
     return (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         ua
@@ -15,32 +32,36 @@ export function useUniversalClipboard() {
     )
   }
 
-  const isIOS = () => {
+  const isIOS = (): boolean => {
     if (typeof navigator === 'undefined') return false
-    const ua = navigator.userAgent || navigator.vendor || window.opera || ''
+    const ua =
+      navigator.userAgent ||
+      (navigator as any).vendor ||
+      (window as any).opera ||
+      ''
     return (
       /iPhone|iPad|iPod/i.test(ua) ||
       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
     )
   }
 
-  const isSafari = () => {
+  const isSafari = (): boolean => {
     if (typeof navigator === 'undefined') return false
     const ua = navigator.userAgent || ''
     return (
       /^((?!chrome|android).)*safari/i.test(ua) &&
-      !window.chrome &&
+      !(window as any).chrome &&
       !/CriOS|FxiOS|EdgiOS|OPiOS/i.test(ua)
     )
   }
 
-  const isWindows = () => {
+  const isWindows = (): boolean => {
     if (typeof navigator === 'undefined') return false
     return /Win/i.test(navigator.platform || navigator.userAgent)
   }
 
   // Convert blob to data URL with timeout protection
-  const blobToDataURL = (blob, timeoutMs = 5000) => {
+  const blobToDataURL = (blob: Blob, timeoutMs = 5000): Promise<string> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader()
       const timeout = setTimeout(() => {
@@ -50,7 +71,7 @@ export function useUniversalClipboard() {
 
       reader.onload = () => {
         clearTimeout(timeout)
-        resolve(reader.result)
+        resolve(reader.result as string)
       }
       reader.onerror = () => {
         clearTimeout(timeout)
@@ -61,7 +82,10 @@ export function useUniversalClipboard() {
   }
 
   // Helper to create image with retry and timeout
-  const loadImageFromDataURL = (dataUrl, timeoutMs = 5000) => {
+  const loadImageFromDataURL = (
+    dataUrl: string,
+    timeoutMs = 5000
+  ): Promise<HTMLImageElement> => {
     return new Promise((resolve, reject) => {
       const img = new Image()
       const timeout = setTimeout(() => {
@@ -81,7 +105,11 @@ export function useUniversalClipboard() {
   }
 
   // Convert canvas to blob with timeout protection
-  const canvasToBlob = (canvas, type = 'image/png', quality = 1.0) => {
+  const canvasToBlob = (
+    canvas: HTMLCanvasElement,
+    type = 'image/png',
+    quality = 1.0
+  ): Promise<Blob> => {
     return new Promise((resolve, reject) => {
       const timeout = setTimeout(() => {
         reject(new Error('Canvas to blob timeout'))
@@ -103,7 +131,10 @@ export function useUniversalClipboard() {
   }
 
   // Copy image blob to clipboard with universal compatibility and retry logic
-  const copyImageToClipboard = async (imageBlob, options = {}) => {
+  const copyImageToClipboard = async (
+    imageBlob: Blob,
+    options: CopyImageOptions = {}
+  ): Promise<boolean> => {
     const {
       onSuccess,
       onError,
@@ -112,7 +143,7 @@ export function useUniversalClipboard() {
       maxRetries = 2,
     } = options
 
-    let lastError = null
+    let lastError: unknown = null
 
     // Try up to maxRetries times
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -160,7 +191,7 @@ export function useUniversalClipboard() {
                   'image/png': pngBlob,
                 })
                 await navigator.clipboard.write([clipboardItem])
-              } catch (e) {
+              } catch {
                 // Fallback: try with just PNG
                 await navigator.clipboard.write([
                   new ClipboardItem({ 'image/png': pngBlob }),
@@ -267,7 +298,10 @@ export function useUniversalClipboard() {
   }
 
   // Copy text to clipboard (for URLs, etc.)
-  const copyTextToClipboard = async (text, options = {}) => {
+  const copyTextToClipboard = async (
+    text: string,
+    options: CopyTextOptions = {}
+  ): Promise<boolean> => {
     const { onSuccess, onError } = options
 
     try {

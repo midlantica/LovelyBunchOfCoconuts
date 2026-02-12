@@ -1,33 +1,7 @@
 // composables/useProfiles.js
 // Fetches and manages profile content (heroes and zeros)
 
-// Helper to extract searchable text from profile body
-const extractSearchableText = (body, profile, status) => {
-  if (!body || !body.value) return ''
-
-  let text = ''
-  const extractFromElement = (element) => {
-    if (Array.isArray(element)) {
-      const [tag, attrs, content] = element
-      if (typeof content === 'string') {
-        text += content + ' '
-      } else if (Array.isArray(content)) {
-        content.forEach(extractFromElement)
-      }
-    } else if (typeof element === 'string') {
-      text += element + ' '
-    }
-  }
-
-  body.value.forEach(extractFromElement)
-
-  // Add profile name and status as searchable
-  if (profile) text += ' ' + profile
-  if (status) text += ' ' + status
-  text += status === 'hero' ? ' hero' : ' zero'
-
-  return text.trim()
-}
+// extractSearchableText is auto-imported from ~/utils/searchText.ts
 
 export const useProfiles = () => {
   const allProfilesData = useState('allProfiles', () => null)
@@ -45,11 +19,10 @@ export const useProfiles = () => {
       const profiles = (allProfiles || []).map((profile) => {
         const profileName = profile.meta?.profile || ''
         const status = profile.meta?.status || ''
-        const searchText = extractSearchableText(
-          profile.body,
-          profileName,
-          status
-        )
+        const searchText = extractSearchableText(profile.body, {
+          profile: profileName,
+          status,
+        })
 
         return {
           ...profile,

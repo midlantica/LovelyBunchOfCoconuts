@@ -25,12 +25,23 @@ export function useWallSeed() {
   const reseedWall = (reason = '') => {
     wallSeed.value = generateSeed()
     if (import.meta.dev && reason) {
+      console.log(`🎲 Wall reseeded: ${reason}`)
     }
   }
 
-  // NOTE: We intentionally avoid auto-reseeding on client mount to prevent
-  // post-hydration reshuffles that cause visible flashes in production.
-  // If you want a fresh shuffle, call reseedWall() explicitly (e.g., logo click).
+  // On every client-side page load (full navigation / Cmd-R), generate a fresh
+  // seed so the user always sees a new shuffle.  We use a *session-level* flag
+  // stored in sessionStorage so the reseed fires exactly once per page load
+  // (not on every component re-mount during SPA navigation).
+  if (import.meta.client) {
+    const _seedApplied = useState('_seedAppliedThisLoad', () => false)
+    if (!_seedApplied.value) {
+      _seedApplied.value = true
+      // Generate a brand-new seed on this page load, overriding the SSR seed.
+      // This ensures Cmd-R always produces a fresh shuffle.
+      wallSeed.value = generateSeed()
+    }
+  }
 
   return { wallSeed, reseedWall }
 }

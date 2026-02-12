@@ -6,7 +6,7 @@ title: 'Scottish Miracle 1707-1850'
 
 In 1700 Scotland was one of Europe's poorest nations—regular famines, almost no industry, life expectancy under 40.
 
-Then everything changed:
+### Then everything changed:
 
 - 1707 Union opened England's markets
 - Scottish Enlightenment (Hume, Smith) explained wealth

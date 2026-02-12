@@ -30,13 +30,13 @@ The timeline:
 
 **2019**: 5 million refugees flee. GDP collapses 75%.
 
-The excuses from the left:
+### The excuses from the left:
 
 - "It's the sanctions!" (Collapse started before sanctions)
 - "It's the oil prices!" (Other oil exporters didn't collapse)
 - "It wasn't real socialism!" (They nationalized everything—what's more real?)
 
-The reality:
+### The reality:
 
 - Price controls created shortages
 - Nationalizations destroyed production
@@ -48,7 +48,7 @@ Venezuela had everything: oil, resources, educated people.
 
 Socialism destroyed it all in 20 years.
 
-The lesson is clear:
+### The lesson is clear:
 
 **Socialism doesn't just fail in theory. It fails in practice. Every. Single. Time.**
 

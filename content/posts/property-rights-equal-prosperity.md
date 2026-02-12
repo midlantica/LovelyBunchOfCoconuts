@@ -18,7 +18,7 @@ They're poor because they lack _legal title_ to their assets.
 
 In Peru, a street vendor owns his cart. A farmer owns her land. But they have no legal deed.
 
-Without legal title:
+### Without legal title:
 
 - You can't use it as collateral for a loan
 - You can't sell it easily
@@ -31,7 +31,7 @@ The solution isn't foreign aid or government programs.
 
 It's **clear, enforceable property rights.**
 
-When people can legally own, buy, and sell property:
+### When people can legally own, buy, and sell property:
 
 - Capital flows
 - Credit expands

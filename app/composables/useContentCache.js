@@ -11,51 +11,7 @@ const debugLog = (...args) => {
   if (contentDebug) console.log(...args)
 }
 
-// Helper function to extract searchable text from AST body and path
-const extractSearchableText = (body, itemPath = '') => {
-  if (!body || !body.value) return ''
-
-  let text = ''
-  const extractFromElement = (element) => {
-    if (Array.isArray(element)) {
-      const [tag, attrs, content] = element
-      if (typeof content === 'string') {
-        text += content + ' '
-      } else if (Array.isArray(content)) {
-        content.forEach(extractFromElement)
-      }
-    } else if (typeof element === 'string') {
-      text += element + ' '
-    }
-  }
-
-  body.value.forEach(extractFromElement)
-
-  // Add path information as searchable content (lower priority)
-  if (itemPath) {
-    // Extract folder names from path and add them as searchable terms
-    const pathParts = itemPath.split('/').filter(Boolean)
-    const folderNames = pathParts
-      .filter((part) => !part.endsWith('.md')) // Exclude filename
-      .map((part) => part.replace(/[-_]/g, ' ')) // Convert dashes/underscores to spaces
-      .join(' ')
-
-    if (folderNames) {
-      text += ' ' + folderNames
-    }
-  }
-
-  // Normalize special characters: convert smart quotes, apostrophes, dashes to standard ASCII
-  // This ensures searches work regardless of character encoding
-  const normalized = text
-    .replace(/[\u2018\u2019]/g, "'") // Smart single quotes to apostrophe
-    .replace(/[\u201C\u201D]/g, '"') // Smart double quotes to straight quotes
-    .replace(/[\u2013\u2014]/g, '-') // En dash and em dash to hyphen
-    .replace(/[\u2026]/g, '...') // Ellipsis to three dots
-    .trim()
-
-  return normalized
-}
+// extractSearchableText is auto-imported from ~/utils/searchText.ts
 
 // Global cache instance - shared across all components
 const globalCache = reactive({
@@ -69,17 +25,148 @@ const globalCache = reactive({
   // Progressive loading state
   _initialLoadComplete: false,
   _fullLoadComplete: false,
+  // Whether cache was restored from sessionStorage (fast path)
+  _restoredFromSession: false,
 })
 
-// Slug helpers & maps must be declared before use
-const slugify = (str = '') =>
-  str
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '')
-    .substring(0, 80)
+// ─── SessionStorage persistence for instant Cmd-R reloads ───
+const SESSION_CACHE_KEY = 'wunpc_content_cache'
+
+function saveToSessionStorage() {
+  if (typeof sessionStorage === 'undefined') return
+  try {
+    // Only save the fields needed for wall rendering (strip heavy body data for memes)
+    const slim = {
+      grifts: globalCache.grifts,
+      quotes: globalCache.quotes,
+      memes: globalCache.memes.map((m) => {
+        // Keep everything except raw body to save space
+        const { body, ...rest } = m
+        return rest
+      }),
+      posts: globalCache.posts,
+      ts: Date.now(),
+    }
+    sessionStorage.setItem(SESSION_CACHE_KEY, JSON.stringify(slim))
+    debugLog('💾 Content saved to sessionStorage')
+  } catch (e) {
+    // sessionStorage full or unavailable — not critical
+    debugLog('⚠️ Could not save to sessionStorage:', e.message)
+  }
+}
+
+function restoreFromSessionStorage() {
+  if (typeof sessionStorage === 'undefined') return false
+  try {
+    const raw = sessionStorage.getItem(SESSION_CACHE_KEY)
+    if (!raw) return false
+    const data = JSON.parse(raw)
+    // Reject stale cache (older than 30 minutes)
+    if (Date.now() - (data.ts || 0) > 30 * 60 * 1000) {
+      sessionStorage.removeItem(SESSION_CACHE_KEY)
+      return false
+    }
+    // Must have meaningful content
+    if (!data.grifts?.length && !data.quotes?.length && !data.memes?.length) {
+      return false
+    }
+    globalCache.grifts = data.grifts || []
+    globalCache.quotes = data.quotes || []
+    globalCache.memes = data.memes || []
+    globalCache.posts = data.posts || []
+    globalCache._initialLoadComplete = true
+    globalCache._fullLoadComplete = true
+    globalCache._restoredFromSession = true
+
+    // Rebuild slug maps from restored data
+    rebuildSlugMaps()
+
+    debugLog(
+      `⚡ Restored from sessionStorage: ${globalCache.grifts.length} grifts, ${globalCache.quotes.length} quotes, ${globalCache.memes.length} memes`
+    )
+    return true
+  } catch (e) {
+    debugLog('⚠️ Could not restore from sessionStorage:', e.message)
+    return false
+  }
+}
+
+function rebuildSlugMaps() {
+  // Clear existing maps
+  slugMaps.grifts.clear()
+  slugMaps.quotes.clear()
+  slugMaps.memes.clear()
+  slugMaps.posts.clear()
+
+  for (const item of globalCache.grifts) {
+    const fileBase = (item.id || item._path || '')
+      .toString()
+      .split('/')
+      .pop()
+      ?.replace(/\.md$/, '')
+      .toLowerCase()
+    const fileSlugDash = fileBase?.replace(/_/g, '-')
+    const fileSlugUnderscore = fileBase?.replace(/-/g, '_')
+    const s = slugify(item.grift || item.title || '')
+    registerSlugKeys(
+      slugMaps.grifts,
+      [s, fileSlugDash, fileSlugUnderscore, fileBase],
+      item
+    )
+  }
+  for (const item of globalCache.quotes) {
+    const fileBase = (item.id || item._path || '')
+      .toString()
+      .split('/')
+      .pop()
+      ?.replace(/\.md$/, '')
+      .toLowerCase()
+    const fileSlugDash = fileBase?.replace(/_/g, '-')
+    const fileSlugUnderscore = fileBase?.replace(/-/g, '_')
+    const author = slugify(item.attribution || 'unknown')
+    const qt = slugify(item.quoteText || item.title || '')
+    const s = `${author}-${qt}`.substring(0, 80)
+    registerSlugKeys(
+      slugMaps.quotes,
+      [s, fileSlugDash, fileSlugUnderscore, fileBase],
+      item
+    )
+  }
+  for (const item of globalCache.memes) {
+    const fileBase = (item.id || item._path || '')
+      .toString()
+      .split('/')
+      .pop()
+      ?.replace(/\.md$/, '')
+      .toLowerCase()
+    const fileSlugDash = fileBase?.replace(/_/g, '-')
+    const fileSlugUnderscore = fileBase?.replace(/-/g, '_')
+    const s = slugify(item.title || item.description || '')
+    registerSlugKeys(
+      slugMaps.memes,
+      [s, fileSlugDash, fileSlugUnderscore, fileBase],
+      item
+    )
+  }
+  for (const item of globalCache.posts) {
+    const fileBase = (item.id || item._path || '')
+      .toString()
+      .split('/')
+      .pop()
+      ?.replace(/\.md$/, '')
+      .toLowerCase()
+    const fileSlugDash = fileBase?.replace(/_/g, '-')
+    const fileSlugUnderscore = fileBase?.replace(/-/g, '_')
+    const s = slugify(item.title || '')
+    registerSlugKeys(
+      slugMaps.posts,
+      [s, fileSlugDash, fileSlugUnderscore, fileBase],
+      item
+    )
+  }
+}
+
+// slugify is auto-imported from ~/utils/slugify.ts
 
 const slugMaps = reactive({
   grifts: new Map(),
@@ -259,19 +346,17 @@ export function useContentCache() {
           transformed.body = item.body
 
           // Extract text content for search (including title)
-          const bodyText = extractSearchableText(
-            item.body,
-            item._path || item.path
-          )
+          const bodyText = extractSearchableText(item.body, {
+            itemPath: item._path || item.path,
+          })
           transformed.bodyText = bodyText
         }
       }
 
       // Add searchable text field for search functionality (precompute consolidated lowercase string)
-      const rawSearch = extractSearchableText(
-        item.body,
-        item._path || item.path
-      )
+      const rawSearch = extractSearchableText(item.body, {
+        itemPath: item._path || item.path,
+      })
       transformed.searchableText = rawSearch
 
       // Build _search field with all relevant text content
@@ -717,5 +802,7 @@ export function useContentCache() {
     getInterleavedContent,
     getFilteredContent,
     slugMaps,
+    saveToSessionStorage,
+    restoreFromSessionStorage,
   }
 }

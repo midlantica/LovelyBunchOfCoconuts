@@ -12,7 +12,7 @@ There are two types of equality—and they're incompatible.
 
 You can have one or the other. Not both.
 
-**Equality of Opportunity means:**
+### Equality of Opportunity means:
 
 - Same laws for everyone
 - No discrimination based on race, sex, religion
@@ -21,7 +21,7 @@ You can have one or the other. Not both.
 
 Result: Different outcomes based on talent, effort, and choices.
 
-**Equality of Outcome means:**
+### Equality of Outcome means:
 
 - Different rules for different groups
 - Discrimination to "correct" disparities
@@ -30,7 +30,7 @@ Result: Different outcomes based on talent, effort, and choices.
 
 Result: Mediocrity, resentment, and tyranny.
 
-Here's why equality of outcome fails:
+### Here's why equality of outcome fails:
 
 **People are different.**
 
@@ -42,7 +42,7 @@ Here's why equality of outcome fails:
 
 If you let people be free, outcomes will differ.
 
-The only way to force equal outcomes is to:
+### The only way to force equal outcomes is to:
 
 - Punish success
 - Reward failure
@@ -59,13 +59,13 @@ What they mean: Discriminate against successful groups to benefit unsuccessful o
 
 This isn't justice. It's revenge.
 
-The American ideal is equality of opportunity:
+### The American ideal is equality of opportunity:
 
 - Same rules
 - Same rights
 - Different outcomes based on merit
 
-The socialist ideal is equality of outcome:
+### The socialist ideal is equality of outcome:
 
 - Different rules
 - Different rights

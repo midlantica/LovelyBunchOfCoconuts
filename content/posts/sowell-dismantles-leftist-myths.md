@@ -16,7 +16,7 @@ His books read like intellectual massacres:
 
 **Discrimination and Disparities** (2018): Proves that group differences in outcomes don't prove discrimination—they prove different choices, cultures, and circumstances.
 
-Sowell's method is devastating:
+### Sowell's method is devastating:
 
 1. Leftists claim X causes Y
 2. Sowell shows the data proves the opposite

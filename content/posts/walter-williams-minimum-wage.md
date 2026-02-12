@@ -16,7 +16,7 @@ You don't get hired.
 
 The minimum wage doesn't raise your value. It just makes you unemployable.
 
-Williams showed the data:
+### Williams showed the data:
 
 - Before minimum wage laws: black teen unemployment was _lower_ than white teen unemployment
 - After minimum wage laws: black teen unemployment skyrocketed to 40%+

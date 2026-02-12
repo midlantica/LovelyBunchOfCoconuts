@@ -12,7 +12,7 @@ There are two types of "rights"—and only one is real.
 
 The difference matters.
 
-**Negative Rights (Real Rights):**
+### Negative Rights (Real Rights):
 
 - Freedom of speech (government can't silence you)
 - Freedom of religion (government can't force a religion on you)
@@ -23,7 +23,7 @@ These rights require one thing: **Leave me alone.**
 
 They cost nothing. They don't force anyone to do anything. They simply prohibit interference.
 
-**Positive Rights (Fake Rights):**
+### Positive Rights (Fake Rights):
 
 - "Right" to healthcare (someone must provide it)
 - "Right" to housing (someone must build/pay for it)

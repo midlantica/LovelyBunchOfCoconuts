@@ -14,7 +14,7 @@ Madison's answer: Don't rely on virtue. Rely on structure.
 
 **Make the branches compete against each other.**
 
-The system:
+### The system:
 
 - Congress makes laws (but the President can veto)
 - President enforces laws (but Congress controls the purse)
@@ -30,7 +30,7 @@ Madison knew this would frustrate people. That was the point.
 
 **"If men were angels, no government would be necessary."**
 
-But men aren't angels. So you need a system where:
+### But men aren't angels. So you need a system where:
 
 - Power is divided
 - Ambition checks ambition

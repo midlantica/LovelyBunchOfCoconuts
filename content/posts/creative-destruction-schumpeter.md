@@ -12,7 +12,7 @@ Here's how it works:
 
 New innovations destroy old industries—and that's _good_.
 
-Examples:
+### Examples:
 
 - Cars destroyed the horse-and-buggy industry
 - Electricity destroyed the candle industry
@@ -27,13 +27,13 @@ The buggy-whip makers became auto workers. The typewriter repairmen became IT sp
 
 **Progress requires destruction of the old to make room for the new.**
 
-When government tries to "save jobs" by protecting dying industries:
+### When government tries to "save jobs" by protecting dying industries:
 
 - Resources stay trapped in obsolete sectors
 - Innovation slows
 - Everyone stays poorer
 
-Examples of failed "job saving":
+### Examples of failed "job saving":
 
 - Steel tariffs (saved a few steel jobs, killed thousands of manufacturing jobs)
 - Auto bailouts (rewarded failure, punished success)

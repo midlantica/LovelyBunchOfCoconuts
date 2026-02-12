@@ -26,7 +26,7 @@ The wall wasn't built to keep capitalists out.
 
 It was built to keep socialists _in_.
 
-When it fell, the world saw what socialists had hidden for 28 years:
+### When it fell, the world saw what socialists had hidden for 28 years:
 
 - Empty stores
 - Crumbling buildings

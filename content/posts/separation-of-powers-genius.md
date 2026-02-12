@@ -12,21 +12,21 @@ Their solution: **Separation of Powers.**
 
 Instead of one sovereign authority, they created three competing branches:
 
-**Legislative Branch** (Congress):
+### Legislative Branch (Congress):
 
 - Makes the laws
 - Controls spending
 - Can override vetoes
 - Can impeach the President
 
-**Executive Branch** (President):
+### Executive Branch (President):
 
 - Enforces the laws
 - Commands military
 - Can veto legislation
 - Appoints judges
 
-**Judicial Branch** (Courts):
+### Judicial Branch (Courts):
 
 - Interprets the laws
 - Can strike down unconstitutional acts

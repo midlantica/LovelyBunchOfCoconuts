@@ -8,7 +8,7 @@ In 1980 Milton Friedman released a 10-part PBS series that did the impossible:
 
 **He made free-market economics entertaining.**
 
-Friedman took his camera crew everywhere:
+### Friedman took his camera crew everywhere:
 
 - Hong Kong (freest economy, fastest growth)
 - India (socialist disaster)

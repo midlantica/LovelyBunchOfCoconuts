@@ -8,7 +8,7 @@ title: 'Reagan Revives America 1981'
 
 Reagan slashed top tax from 70% to 28%, deregulated energy, airlines, trucking, and backed Volcker's war on inflation.
 
-1983–1989 results:
+### 1983–1989 results:
 
 - 21 million new jobs
 - Inflation down to 3%

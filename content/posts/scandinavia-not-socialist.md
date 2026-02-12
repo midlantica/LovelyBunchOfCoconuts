@@ -14,7 +14,7 @@ Scandinavia's response: "We're not socialist."
 
 Let's look at the facts:
 
-**What Scandinavia HAS:**
+### What Scandinavia HAS:
 
 - Free markets
 - Private property
@@ -24,13 +24,13 @@ Let's look at the facts:
 - Privatized pensions (Sweden)
 - Ease of doing business (top rankings globally)
 
-**What Scandinavia DOESN'T HAVE:**
+### What Scandinavia DOESN'T HAVE:
 
 - Government ownership of production
 - Wealth caps
 - Nationalized industries (they tried it in the 1970s-80s, it failed, they privatized)
 
-**What they DO have that leftists want:**
+### What they DO have that leftists want:
 
 - High taxes on everyone (not just the rich)
 - Large welfare state
@@ -39,27 +39,27 @@ But here's the catch:
 
 **Scandinavia got rich BEFORE the welfare state.**
 
-Timeline:
+### Timeline:
 
 - **1870-1970**: Free markets, low taxes, rapid growth
 - **1970-1990**: Welfare expansion, high taxes, growth slows
 - **1990s**: Crisis, reforms, privatization, growth returns
 
-Sweden's lesson:
+### Sweden's lesson:
 
 - Built wealth through capitalism
 - Expanded welfare with that wealth
 - Nearly went broke
 - Reformed back toward free markets
 
-**The Nordic model works because:**
+### The Nordic model works because:
 
 1. Small, homogeneous populations
 2. Strong work ethic
 3. High trust culture
 4. **Capitalist economies** funding welfare
 
-**It doesn't work when:**
+### It doesn't work when:
 
 - You try it in large, diverse nations
 - You destroy the capitalist base

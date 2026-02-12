@@ -8,7 +8,7 @@ The left's favorite lie: "The rich don't pay their fair share!"
 
 The data says otherwise.
 
-**2021 IRS Data:**
+### 2021 IRS Data:
 
 - Top 1% earned 22% of income
 - Top 1% paid 42% of all federal income taxes
@@ -23,7 +23,7 @@ That's nearly double their share of income.
 
 **The rich pay far more than their "fair share."**
 
-But it gets better:
+### But it gets better:
 
 **Effective tax rates:**
 
@@ -35,20 +35,20 @@ The system is already massively progressive.
 
 **"But what about billionaires who pay nothing?"**
 
-That's a myth. They pay:
+### That's a myth. They pay:
 
 - Capital gains taxes (when they sell assets)
 - Corporate taxes (on business profits)
 - Property taxes (on real estate)
 - Payroll taxes (on employees)
 
-When Jeff Bezos "pays no income tax," it's because:
+### When Jeff Bezos "pays no income tax," it's because:
 
 - His wealth is in Amazon stock (unrealized gains)
 - He takes a small salary
 - You can't tax wealth that hasn't been sold
 
-If you force him to sell stock to pay taxes, you:
+### If you force him to sell stock to pay taxes, you:
 
 - Crash the stock price
 - Destroy retirement accounts
@@ -57,7 +57,7 @@ If you force him to sell stock to pay taxes, you:
 
 **The real question: What's "fair"?**
 
-The top 1% pay 42% of taxes but get:
+### The top 1% pay 42% of taxes but get:
 
 - Same roads
 - Same military protection

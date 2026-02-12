@@ -10,7 +10,7 @@ In 1787 James Madison wrote Federalist No. 10 and solved a problem that had plag
 
 A faction is any group united by passion or interest adverse to the rights of others.
 
-History showed that factions always win:
+### History showed that factions always win:
 
 - In pure democracies, the majority faction tyrannizes the minority
 - In small republics, demagogues seize power
@@ -20,7 +20,7 @@ Madison's solution was brilliant:
 
 **Don't eliminate factions. Control their effects.**
 
-How? Through a large republic with:
+### How? Through a large republic with:
 
 1. **Representation** (filters passion through elected officials)
 2. **Extended territory** (makes it harder for one faction to dominate)

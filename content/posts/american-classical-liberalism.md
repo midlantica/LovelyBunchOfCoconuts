@@ -4,7 +4,7 @@ title: "America's Classical Liberal Era"
 
 ## America's Classical Liberal Era
 
-The Founders distilled English liberty into plain words:
+### The Founders distilled English liberty into plain words:
 
 - Government only stops harm to others
 - Power divided so ambition checks ambition

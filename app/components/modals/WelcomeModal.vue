@@ -135,8 +135,6 @@
 </style>
 
 <style scoped>
-  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;300&display=swap');
-
   .welcome-modal-wrapper {
     display: flex;
     justify-content: center;

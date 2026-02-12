@@ -50,99 +50,61 @@
       return
     }
 
-    // Otherwise, do wall refresh logic
-    try {
-      isWallRefreshing.value = true
+    // ── Instant in-place reseed (no loading spinner) ──
+    // Content is already cached in memory. We just reseed the wall seed
+    // and let TheWall's computed property rebuild the baseline synchronously.
+    // This avoids the slow flash-of-loading that isWallRefreshing caused.
 
-      // Content is already cached in memory — no page reload needed.
-      // Just reseed and let TheWall's computed rebuild the baseline.
-
-      // Try to use pre-computed layout for truly instant refresh
-      const precomputedLayout = usePrecomputedRefresh(
-        cache.grifts,
-        cache.quotes,
-        cache.memes,
-        cache.profiles || []
-      )
-
-      if (precomputedLayout) {
-        // usePrecomputedRefresh already set wallSeed to the precomputed seed.
-        // Inject the precomputed layout directly into the baseline state
-        // so TheWall doesn't have to rebuild it from scratch.
-        const baselineState = useState('wallBaselinePattern')
-        if (baselineState.value) {
-          const { wallSeed } = useWallSeed()
-
-          // Derive baseline order for search stability
-          const order = { grifts: [], quotes: [], memes: [] }
-          const seen = {
-            grifts: new Set(),
-            quotes: new Set(),
-            memes: new Set(),
-          }
-          for (const item of precomputedLayout) {
-            if (!item) continue
-            if (item.type === 'griftPair') {
-              for (const c of item.data || []) {
-                const p = c?._path || c?.path || ''
-                if (p && !seen.grifts.has(p)) {
-                  seen.grifts.add(p)
-                  order.grifts.push(p)
-                }
-              }
-            } else if (item.type === 'memeRow') {
-              for (const m of item.data || []) {
-                const p = m?._path || m?.path || ''
-                if (p && !seen.memes.has(p)) {
-                  seen.memes.add(p)
-                  order.memes.push(p)
-                }
-              }
-            } else if (item.type === 'quote') {
-              const p = item.data?._path || item.data?.path || ''
-              if (p && !seen.quotes.has(p)) {
-                seen.quotes.add(p)
-                order.quotes.push(p)
-              }
-            }
-          }
-
-          baselineState.value = {
-            ...baselineState.value,
-            seed: wallSeed.value,
-            pattern: precomputedLayout,
-            order,
-            grifts: cache.grifts.length,
-            quotes: cache.quotes.length,
-            memes: cache.memes.length,
-            rebuilding: false,
-          }
-        }
-      } else {
-        // No precomputed layout — just reseed. TheWall's computed will
-        // detect the seed change and rebuild the baseline instantly
-        // since all content is already cached in memory.
-        reseedWall()
-      }
-
-      // Clear search and filters
-      const searchTerm = useState('searchTerm')
-      const contentFilters = useState('contentFilters')
-      if (searchTerm?.value) searchTerm.value = ''
-      if (contentFilters?.value) {
-        contentFilters.value = { grifts: true, quotes: true, memes: true }
-      }
-
-      // Scroll to top for the fresh view
-      const scrollEl = document.querySelector('.scroll-container-stable')
-      if (scrollEl) scrollEl.scrollTop = 0
-      else window.scrollTo(0, 0)
-
-      // Brief visual feedback
-      await new Promise((resolve) => setTimeout(resolve, 80))
-    } finally {
-      isWallRefreshing.value = false
+    // Clear search and filters FIRST (before reseed) so the baseline path
+    // is active when the seed change triggers the rebuild.
+    const searchTerm = useState('searchTerm')
+    const contentFilters = useState('contentFilters')
+    if (searchTerm?.value) searchTerm.value = ''
+    if (contentFilters?.value) {
+      contentFilters.value = { grifts: true, quotes: true, memes: true }
     }
+
+    // Try to use pre-computed layout for truly instant refresh
+    const precomputedLayout = usePrecomputedRefresh(
+      cache.grifts,
+      cache.quotes,
+      cache.memes,
+      cache.profiles || []
+    )
+
+    if (precomputedLayout) {
+      // usePrecomputedRefresh already set wallSeed to the precomputed seed.
+      // Inject the precomputed layout directly into the baseline state
+      // so TheWall doesn't have to rebuild it from scratch.
+      const baselineState = useState('wallBaselinePattern')
+      if (baselineState.value) {
+        const { wallSeed } = useWallSeed()
+        const { deriveBaselineOrder } = useWallBaseline()
+
+        const order = deriveBaselineOrder(precomputedLayout)
+
+        baselineState.value = {
+          ...baselineState.value,
+          seed: wallSeed.value,
+          pattern: precomputedLayout,
+          order,
+          grifts: cache.grifts.length,
+          quotes: cache.quotes.length,
+          memes: cache.memes.length,
+          rebuilding: false,
+        }
+      }
+    } else {
+      // No precomputed layout — just reseed. TheWall's computed will
+      // detect the seed change and rebuild the baseline instantly
+      // since all content is already cached in memory.
+      reseedWall('logo click')
+    }
+
+    // Scroll to top for the fresh view
+    const scrollEl = document.querySelector('.scroll-container-stable')
+    if (scrollEl) scrollEl.scrollTop = 0
+    else window.scrollTo(0, 0)
   }
 </script>
 

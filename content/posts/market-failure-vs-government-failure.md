@@ -12,7 +12,7 @@ But they ignore a bigger problem: **Government failure.**
 
 When markets don't produce the "optimal" outcome according to economic theory.
 
-Examples leftists cite:
+### Examples leftists cite:
 
 - Monopolies
 - Externalities (pollution)
@@ -23,7 +23,7 @@ Examples leftists cite:
 
 When government intervention makes things worse than the market "failure" it tried to fix.
 
-Examples everywhere:
+### Examples everywhere:
 
 - **Monopolies**: Usually created by government (patents, licenses, regulations that block competition)
 - **Pollution**: Worst under government ownership (Soviet Union destroyed the environment)
@@ -52,7 +52,7 @@ Milton Friedman's test:
 
 **"If you put the federal government in charge of the Sahara Desert, in five years there'd be a shortage of sand."**
 
-The left's logic:
+### The left's logic:
 
 1. Market isn't perfect
 2. Therefore, government should intervene

@@ -16,19 +16,19 @@ This is the Holodomor—the Soviet man-made famine.
 
 What happened:
 
-**1929**: Stalin orders collectivization of farms.
+### **1929**: Stalin orders collectivization of farms.
 
 - Private farms seized
 - Farmers forced into collective farms
 - "Kulaks" (successful farmers) executed or sent to gulags
 
-**1930-32**: Agricultural production collapses.
+### **1930-32**: Agricultural production collapses.
 
 - No one owns the land, so no one cares
 - Quotas are impossible but mandatory
 - Farmers hide grain to survive
 
-**1932-33**: Stalin's response to shortfall: Take more grain.
+### **1932-33**: Stalin's response to shortfall: Take more grain.
 
 - NKVD seizes all food from Ukraine
 - Borders sealed—no one can leave
@@ -40,14 +40,14 @@ The excuse: "Kulaks sabotaged production!"
 
 The reality: **Central planning destroyed the incentive to produce.**
 
-When you collectivize farms:
+### When you collectivize farms:
 
 - No one owns the output
 - No one profits from hard work
 - Everyone has incentive to shirk
 - Production collapses
 
-This wasn't unique to Ukraine:
+### This wasn't unique to Ukraine:
 
 - Soviet Union: Multiple famines, 1921-1947
 - China: Great Leap Forward, 45 million dead

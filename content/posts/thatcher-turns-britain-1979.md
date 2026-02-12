@@ -6,7 +6,7 @@ title: 'Thatcher Turns Britain 1979'
 
 1979 Britain: 29% inflation, unburied dead, three-day work week, IMF bailout—the "sick man of Europe."
 
-Margaret Thatcher applied classical liberalism with an iron will:
+### Margaret Thatcher applied classical liberalism with an iron will:
 
 - Sold council houses to tenants
 - Broke inflationary union power

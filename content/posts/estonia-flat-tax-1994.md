@@ -18,7 +18,7 @@ Economists said it was reckless. "You need progressive taxation! You need comple
 
 Estonia ignored them.
 
-The results:
+### The results:
 
 - GDP growth averaged 7% per year
 - Foreign investment flooded in

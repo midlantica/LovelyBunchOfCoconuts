@@ -14,9 +14,62 @@ export function useWallVirtualization(options = {}) {
   const scrollBoost = options.scrollBoost ?? 60
   const wallDisplayCount = ref(initialCount) // start capped for fast first paint
   const virtualizingBaseline = ref(false)
+  // Track whether we were previously in a search/filtered view so we can
+  // avoid re-capping when the user clears the search (X button).
+  let _wasInSearchView = false
   let growthTimer = null
   let _scrollHandler = null
   let _scrollListenerAttached = false
+
+  // Pre-search state snapshot: saved when entering search, restored on clear
+  // This allows instant restoration of the wall when the X button is pressed.
+  let _preSearchSnapshot = null
+
+  /**
+   * Save the current scroll position and display count before entering search.
+   * Called once when transitioning from baseline → search view.
+   */
+  function _savePreSearchSnapshot() {
+    if (typeof window === 'undefined') return
+    const el = document.querySelector('.scroll-container-stable')
+    _preSearchSnapshot = {
+      scrollTop: el ? el.scrollTop : 0,
+      displayCount: wallDisplayCount.value,
+      timestamp: Date.now(),
+    }
+  }
+
+  /**
+   * Restore the saved scroll position after clearing search (X button).
+   * Uses requestAnimationFrame to ensure the DOM has updated with baseline
+   * content before scrolling, giving an instant feel.
+   */
+  function _restorePreSearchSnapshot() {
+    if (!_preSearchSnapshot || typeof window === 'undefined') {
+      _preSearchSnapshot = null
+      return
+    }
+
+    const snapshot = _preSearchSnapshot
+    _preSearchSnapshot = null
+
+    // Only restore if the snapshot is recent (within 5 minutes)
+    // Stale snapshots from long-ago searches aren't useful
+    if (Date.now() - snapshot.timestamp > 5 * 60 * 1000) return
+
+    // Use double-rAF to ensure Vue has flushed DOM updates from the
+    // baseline pattern restore before we scroll. This is faster than
+    // nextTick + setTimeout because it syncs with the browser's paint cycle.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const el = document.querySelector('.scroll-container-stable')
+        if (el && snapshot.scrollTop > 0) {
+          // Use instant scroll (no smooth) for snappy feel
+          el.scrollTo({ top: snapshot.scrollTop, behavior: 'instant' })
+        }
+      })
+    })
+  }
 
   function isBaselineView(effectiveSearch, effectiveFilters) {
     return (
@@ -119,8 +172,26 @@ export function useWallVirtualization(options = {}) {
 
     // For search / filtered views: show everything immediately (no virtualization)
     if (!isBaselineView(effectiveSearch, effectiveFilters)) {
+      // Save pre-search snapshot the first time we enter search view
+      // so we can restore scroll position instantly when the user hits X.
+      if (!_wasInSearchView) {
+        _savePreSearchSnapshot()
+      }
       wallDisplayCount.value = Infinity
       virtualizingBaseline.value = false
+      _wasInSearchView = true
+      return
+    }
+
+    // Returning from search/filter view (user cleared search / X button):
+    // Show all baseline items immediately — don't re-cap to initialCount.
+    // The user expects to see the same wall they had before searching.
+    if (_wasInSearchView) {
+      _wasInSearchView = false
+      wallDisplayCount.value = total
+      virtualizingBaseline.value = false
+      // Restore the scroll position the user had before searching
+      _restorePreSearchSnapshot()
       return
     }
 
@@ -131,10 +202,27 @@ export function useWallVirtualization(options = {}) {
       return
     }
 
+    // Detect a reseed / logo-click: the content array reference changed but
+    // the total is roughly the same (±20%). This means the baseline was
+    // rebuilt with a new seed. Show the first batch instantly and grow.
+    const prevTotal = prev?.length || 0
+    const isSeedChange =
+      prevTotal > 0 &&
+      total > 0 &&
+      val !== prev &&
+      Math.abs(total - prevTotal) / prevTotal < 0.2
+
+    if (isSeedChange && wallDisplayCount.value >= prevTotal) {
+      // Reseed detected – show first batch instantly, then grow
+      wallDisplayCount.value = Math.min(initialCount, total)
+      virtualizingBaseline.value = true
+      scheduleGrowBaseline(total)
+      return
+    }
+
     // If we're already showing everything (e.g. after full load completed),
     // don't re-cap. Only cap on the very first render or when content grows
     // significantly (background load just finished).
-    const prevTotal = prev?.length || 0
     const alreadyShowingAll =
       wallDisplayCount.value >= prevTotal && prevTotal > 0
 

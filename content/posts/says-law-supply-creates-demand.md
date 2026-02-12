@@ -8,7 +8,7 @@ In 1803 Jean-Baptiste Say explained something that still confuses Keynesians:
 
 **"Supply creates its own demand."**
 
-Here's what he meant:
+### Here's what he meant:
 
 When a farmer produces wheat, he doesn't just create supply. He creates _purchasing power_.
 
@@ -20,7 +20,7 @@ This is Say's Law: Production creates income, which creates demand.
 
 **You can't consume what hasn't been produced.**
 
-The implications destroy Keynesian economics:
+### The implications destroy Keynesian economics:
 
 - "Stimulus" doesn't create prosperity—production does
 - Government spending doesn't create demand—it redirects it
@@ -32,7 +32,7 @@ Say's response: If people aren't buying your product, you're producing the wrong
 
 The solution isn't government spending. It's letting prices adjust so resources flow to what people actually want.
 
-Say's Law explains why:
+### Say's Law explains why:
 
 - Stimulus packages don't work
 - "Cash for Clunkers" was a waste

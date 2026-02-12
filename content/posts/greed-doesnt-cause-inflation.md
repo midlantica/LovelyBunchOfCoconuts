@@ -18,13 +18,13 @@ So why do prices change?
 
 **Supply and demand. Not greed.**
 
-When prices rise, it's because:
+### When prices rise, it's because:
 
 - Supply decreased (fewer goods available)
 - Demand increased (more money chasing same goods)
 - Money supply increased (inflation)
 
-When prices fall, it's because:
+### When prices fall, it's because:
 
 - Supply increased (more goods available)
 - Demand decreased (less money chasing goods)
@@ -39,7 +39,7 @@ Because no one would buy it. Competition limits prices.
 
 If one company raises prices too high, customers buy from competitors.
 
-The only way to maintain high prices is to:
+### The only way to maintain high prices is to:
 
 - Eliminate competition (government-granted monopoly)
 - Print money (government-caused inflation)
@@ -47,7 +47,7 @@ The only way to maintain high prices is to:
 
 Notice the pattern? **Government** enables high prices, not greed.
 
-Politicians blame greed because admitting the truth means admitting _they_ caused the problem:
+### Politicians blame greed because admitting the truth means admitting _they_ caused the problem:
 
 - Fed printed $5 trillion → inflation
 - Regulations restrict supply → shortages

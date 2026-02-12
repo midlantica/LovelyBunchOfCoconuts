@@ -10,7 +10,7 @@ In 1776 Adam Smith published _The Wealth of Nations_ and destroyed centuries of 
 
 This was revolutionary.
 
-Before Smith, people thought:
+### Before Smith, people thought:
 
 - Trade is zero-sum (one side wins, one loses)
 - Merchants are greedy parasites

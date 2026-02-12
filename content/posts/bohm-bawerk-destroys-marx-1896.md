@@ -8,7 +8,7 @@ In 1896 Eugen von Böhm-Bawerk published _Karl Marx and the Close of His System_
 
 **The surplus value theory is nonsense.**
 
-Marx's theory claimed:
+### Marx's theory claimed:
 
 - Workers create all value through labor
 - Capitalists pay workers less than the value they create

@@ -16,7 +16,7 @@ Result: Each herder adds more cattle until the pasture is destroyed.
 
 **When everyone owns something, no one takes care of it.**
 
-This explains everything:
+### This explains everything:
 
 - Why public parks are trashed but private yards are pristine
 - Why government housing projects decay but private homes are maintained

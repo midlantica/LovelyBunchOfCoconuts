@@ -4,7 +4,7 @@ title: 'Inflation is Always Monetary'
 
 ## Inflation is Always Monetary
 
-Milton Friedman said it clearly:
+### Milton Friedman said it clearly:
 
 **"Inflation is always and everywhere a monetary phenomenon."**
 
@@ -14,7 +14,7 @@ Not greed. Not supply chains. Not Putin. Not corporations.
 
 **Too much money chasing too few goods.**
 
-Here's the proof:
+### Here's the proof:
 
 **1970s**: Fed printed money. Inflation hit 13%.
 
@@ -24,7 +24,7 @@ Here's the proof:
 
 Every. Single. Time.
 
-Politicians blame everyone except the people printing money:
+### Politicians blame everyone except the people printing money:
 
 - "Corporate greed!" (Were corporations not greedy in 2019?)
 - "Supply chain disruptions!" (Why did prices rise for everything, not just disrupted goods?)
@@ -36,7 +36,7 @@ Why do they lie?
 
 Because admitting the truth means admitting _government_ causes inflation.
 
-Friedman's insight destroys the excuses:
+### Friedman's insight destroys the excuses:
 
 - You can't fix inflation with price controls
 - You can't fix it by taxing the rich

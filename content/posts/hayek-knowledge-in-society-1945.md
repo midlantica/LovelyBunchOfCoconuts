@@ -14,7 +14,7 @@ Key lines that changed economics forever:
 
 - Most of the knowledge we need to coordinate a modern economy is **not** scientific data in textbooks.
 
-It is local, fleeting, tacit:
+### It is local, fleeting, tacit:
 
 - a factory manager knows his machines are wearing out
 

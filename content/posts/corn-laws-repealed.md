@@ -10,7 +10,7 @@ Cobden, Bright, and classical liberals fought. In 1846 Conservative PM Robert Pe
 
 The aristocracy predicted ruin.
 
-Instead:
+### Instead:
 
 - Bread prices fell 25–40 %
 - Real wages soared

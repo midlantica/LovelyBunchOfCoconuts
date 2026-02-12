@@ -4,7 +4,7 @@ title: '1920-21 Depression: Government Did Nothing, Economy Recovered'
 
 ## 1920-21 Depression: Government Did Nothing, Economy Recovered
 
-In 1920 America faced a depression worse than 1929:
+### In 1920 America faced a depression worse than 1929:
 
 - Stock market crashed 47%
 - Unemployment hit 12%
@@ -13,7 +13,7 @@ In 1920 America faced a depression worse than 1929:
 
 It was brutal. Banks failed. Businesses closed. Workers lost jobs.
 
-Then something remarkable happened:
+### Then something remarkable happened:
 
 **The government did nothing.**
 
@@ -31,7 +31,7 @@ The result:
 
 Total recovery time: 18 months.
 
-Compare to the Great Depression:
+### Compare to the Great Depression:
 
 - Government intervened massively
 - Unemployment stayed above 15% for a decade
@@ -41,7 +41,7 @@ Why did doing nothing work?
 
 **Because markets adjust when you let them.**
 
-In 1920-21:
+### In 1920-21:
 
 - Prices fell (making goods affordable)
 - Wages adjusted (making hiring profitable)

@@ -1,8 +1,23 @@
-/**
- * Composable for generating unique URLs for content items
- */
+// composables/useContentUrls.ts
+// Composable for generating unique URLs for content items
+
+type ContentType = 'grift' | 'quote' | 'meme' | 'profile' | 'post' | 'general'
+
+interface ContentItem {
+  _path?: string
+  path?: string
+  id?: string
+  grift?: string
+  title?: string
+  quoteText?: string
+  attribution?: string
+  description?: string
+  profile?: string
+  status?: 'hero' | 'zero'
+}
+
 export const useContentUrls = () => {
-  const createSlug = (text, maxLength = 50) => {
+  const createSlug = (text: string, maxLength = 50): string => {
     return text
       .toLowerCase()
       .replace(/[^a-z0-9\s-]/g, '') // Remove special chars except spaces and dashes
@@ -12,66 +27,49 @@ export const useContentUrls = () => {
       .substring(0, maxLength)
   }
 
-  const generateContentUrl = (item, contentType) => {
+  /** Transform Nuxt Content collection paths to route paths */
+  const _toRoutePath = (contentPath: string): string => {
+    return contentPath
+      .replace(/^\/grifts\//, '/grift/')
+      .replace(/^\/quotes\//, '/quote/')
+      .replace(/^\/posts\//, '/post/')
+      .replace(/^\/memes\//, '/meme/')
+      .replace(/^\/profiles\/heroes\//, '/profiles/hero/')
+      .replace(/^\/profiles\/zeros\//, '/profiles/zero/')
+  }
+
+  const generateContentUrl = (
+    item: ContentItem,
+    contentType: ContentType
+  ): string => {
     const baseUrl = import.meta.client
       ? window.location.origin
       : 'https://wakeupnpc.com'
 
     // If item already has a path (from Nuxt Content), transform it to route format
     if (item._path) {
-      // Transform "/grifts/some-grift" to "/grift/some-grift"
-      // Transform "/quotes/some-quote" to "/quote/some-quote"
-      // Transform "/posts/some-post" to "/post/some-post"
-      // Transform "/memes/category/some-meme" to "/meme/category/some-meme"
-      const routePath = item._path
-        .replace(/^\/grifts\//, '/grift/')
-        .replace(/^\/quotes\//, '/quote/')
-        .replace(/^\/posts\//, '/post/')
-        .replace(/^\/memes\//, '/meme/')
-        .replace(/^\/profiles\/heroes\//, '/profiles/hero/')
-        .replace(/^\/profiles\/zeros\//, '/profiles/zero/')
-
-      const finalUrl = `${baseUrl}${routePath}`
-
-      return finalUrl
+      return `${baseUrl}${_toRoutePath(item._path)}`
     }
 
     // Try using item.path if _path doesn't exist
     if (item.path) {
-      const routePath = item.path
-        .replace(/^\/grifts\//, '/grift/')
-        .replace(/^\/quotes\//, '/quote/')
-        .replace(/^\/posts\//, '/post/')
-        .replace(/^\/memes\//, '/meme/')
-        .replace(/^\/profiles\/heroes\//, '/profiles/hero/')
-        .replace(/^\/profiles\/zeros\//, '/profiles/zero/')
-
-      const finalUrl = `${baseUrl}${routePath}`
-
-      return finalUrl
+      return `${baseUrl}${_toRoutePath(item.path)}`
     }
 
     // Try using item.id as a path
     if (item.id) {
-      // Remove file extension and convert to path
       const pathFromId = '/' + item.id.replace(/\.md$/, '')
-      const routePath = pathFromId
-        .replace(/^\/grifts\//, '/grift/')
-        .replace(/^\/quotes\//, '/quote/')
-        .replace(/^\/posts\//, '/post/')
-        .replace(/^\/memes\//, '/meme/')
-        .replace(/^\/profiles\/heroes\//, '/profiles/hero/')
-        .replace(/^\/profiles\/zeros\//, '/profiles/zero/')
+      return `${baseUrl}${_toRoutePath(pathFromId)}`
+    }
 
-      const finalUrl = `${baseUrl}${routePath}`
-
-      return finalUrl
-    } // Fallback to hash URLs only if we don't have path
-
+    // Fallback to hash URLs only if we don't have path
     return generateHashUrl(item, contentType)
   }
 
-  const generateHashUrl = (item, contentType) => {
+  const generateHashUrl = (
+    item: ContentItem,
+    contentType: ContentType
+  ): string => {
     const baseUrl = import.meta.client
       ? window.location.origin
       : 'https://wakeupnpc.com'
@@ -83,7 +81,7 @@ export const useContentUrls = () => {
         slug = createSlug(item.grift || item.title || '')
         return `${baseUrl}/#grift-${slug}`
 
-      case 'quote':
+      case 'quote': {
         const author = (item.attribution || 'unknown')
           .toLowerCase()
           .replace(/\s+/g, '-')
@@ -91,16 +89,18 @@ export const useContentUrls = () => {
           (item.quoteText || item.title || '').split(' ').slice(0, 3).join(' ')
         )
         return `${baseUrl}/#quote-${author}-${slug}`
+      }
 
       case 'meme':
         slug = createSlug(item.title || item.description || '')
         return `${baseUrl}/#meme-${slug}`
 
-      case 'profile':
+      case 'profile': {
         slug = createSlug(item.profile || item.title || '')
         const prefix =
           item.status === 'hero' ? 'profiles/hero' : 'profiles/zero'
         return `${baseUrl}/${prefix}/${slug}`
+      }
 
       default:
         return baseUrl

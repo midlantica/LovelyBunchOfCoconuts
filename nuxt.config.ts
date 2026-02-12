@@ -1,4 +1,3 @@
-// @ts-nocheck
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from '@tailwindcss/vite'
 
@@ -21,19 +20,55 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
     '@nuxt/eslint',
+    '@nuxt/fonts',
     '@nuxt/icon',
+    '@nuxt/image',
     '@nuxtjs/mdc',
     '@nuxtjs/sitemap',
     './modules/hide-system-files',
-    '@netlify/nuxt',
+    // Only load @netlify/nuxt in production builds — it crashes the dev server
+    // by trying to connect to Netlify's edge functions runtime (ECONNREFUSED)
+    ...(process.env.NODE_ENV === 'production' ? ['@netlify/nuxt'] : []),
   ],
+  // @nuxt/fonts — expand default weight range to include thin (100) and light (300)
+  // Default is "400 700" which misses the lighter weights we use throughout the site
+  // @ts-ignore - @nuxt/fonts augments NuxtConfig at runtime
+  fonts: {
+    defaults: {
+      weights: [100, 200, 300, 400, 500],
+    },
+    families: [
+      {
+        name: 'Barlow Condensed',
+        provider: 'google',
+        global: true,
+        weights: [100, 200, 300, 400, 500],
+      },
+    ],
+  },
+  // @nuxt/image — automatic optimization, lazy loading, responsive sizes
+  // @ts-ignore - @nuxt/image augments NuxtConfig at runtime
+  image: {
+    // Use Netlify's built-in image CDN in production; fall back to default (ipx) in dev
+    provider: process.env.NODE_ENV === 'production' ? 'netlify' : 'ipx',
+    // Quality default for optimized images
+    quality: 80,
+    // Common screen breakpoints for responsive srcset
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      '2xl': 1536,
+    },
+    // Format preference order
+    format: ['webp', 'png', 'jpg'],
+  },
   css: ['./app/assets/css/main.css'],
   // Use Tailwind v4 via official Vite plugin
   vite: {
-    plugins: [
-      tailwindcss(),
-      ...(vueMcpPlugin ? [vueMcpPlugin] : []),
-    ],
+    plugins: [tailwindcss(), ...(vueMcpPlugin ? [vueMcpPlugin] : [])],
     // Reduce Vite verbosity; set SILENT_VITE=1 to only show errors
     logLevel: (process.env.SILENT_VITE === '1' ? 'error' : 'warn') as any,
     build: {
@@ -104,7 +139,7 @@ export default defineNuxtConfig({
       '/**': {
         headers: {
           'Content-Security-Policy':
-            "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: http: https: blob:; connect-src 'self' https://wakeupnpc.goatcounter.com https://api.iconify.design; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
+            "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: http: https: blob:; connect-src 'self' https://wakeupnpc.goatcounter.com https://api.iconify.design; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
         },
       },
       // Aggressive caching for static assets with hashed filenames
@@ -158,7 +193,6 @@ export default defineNuxtConfig({
     ],
     experimental: {
       openAPI: true,
-      typescriptPlugin: true,
     },
     externals: {
       inline: ['@nuxt/content'],
@@ -293,25 +327,6 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         // Canonical home URL
         { rel: 'canonical', href: 'https://wakeupnpc.com/' },
-        // DNS prefetch for external resources (faster than preconnect for multiple domains)
-        {
-          rel: 'dns-prefetch',
-          href: 'https://fonts.googleapis.com',
-        },
-        {
-          rel: 'dns-prefetch',
-          href: 'https://fonts.gstatic.com',
-        },
-        // Preconnect to critical font resources
-        {
-          rel: 'preconnect',
-          href: 'https://fonts.googleapis.com',
-        },
-        {
-          rel: 'preconnect',
-          href: 'https://fonts.gstatic.com',
-          crossorigin: '',
-        },
         // Preload LCP image (welcome modal) with fetchpriority
         {
           rel: 'preload',
@@ -327,14 +342,6 @@ export default defineNuxtConfig({
           as: 'image',
           type: 'image/svg+xml',
           fetchpriority: 'high',
-        },
-        // Load Google Fonts with font-display: swap for better performance
-        // Using media="print" onload trick to load async without blocking render
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap',
-          media: 'print',
-          onload: "this.media='all'",
         },
         // Favicon sizes
         {
@@ -374,11 +381,7 @@ export default defineNuxtConfig({
       // Add security headers and font fallback
       noscript: [
         {
-          children: 'JavaScript is required to view this website.',
-        },
-        {
-          children:
-            '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap">',
+          innerHTML: 'JavaScript is required to view this website.',
         },
       ],
     },

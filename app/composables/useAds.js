@@ -1,6 +1,12 @@
 // composables/useAds.js
 // Manages ad content loading and provider creation
 
+// Debug logging — only active in dev mode with VITE_AD_DEBUG=1
+const adDebug = import.meta.dev && import.meta.env?.VITE_AD_DEBUG === '1'
+const debugLog = (...args) => {
+  if (adDebug) console.log(...args)
+}
+
 export function useAds() {
   const ads = useState('adsContent', () => ({
     square: [],
@@ -39,14 +45,14 @@ export function useAds() {
         ads.value.loaded = true
 
         // Debug: Show which ads were loaded with their frequencies
-        console.log(
+        debugLog(
           'Square ads loaded:',
           ads.value.square.map((ad) => ({
             id: ad.id,
             frequency: ad.frequency,
           }))
         )
-        console.log(
+        debugLog(
           'Horizontal ads loaded:',
           ads.value.horizontal.map((ad) => ({
             id: ad.id,
@@ -54,7 +60,6 @@ export function useAds() {
           }))
         )
       } else {
-
         ads.value.loaded = true // Mark as loaded even if empty
       }
     } catch (error) {
@@ -82,23 +87,11 @@ export function useAds() {
       // Random number between 0 and totalWeight
       let random = Math.random() * totalWeight
 
-      // Debug logging (remove in production)
-      const originalRandom = random
-
       // Find which ad this random number falls into
       for (const ad of adArray) {
         const freq = ad.frequency || 10
         random -= freq
         if (random <= 0) {
-          // Debug: Log selection (remove in production)
-          if (Math.random() < 0.01) {
-            // Only log 1% of selections to avoid spam
-            console.log(
-              `Selected ${ad.id} (freq: ${freq}, roll: ${originalRandom.toFixed(
-                2
-              )}/${totalWeight})`
-            )
-          }
           return ad
         }
       }

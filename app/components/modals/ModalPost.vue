@@ -207,7 +207,18 @@
 </script>
 
 <style scoped>
-  /* Post modal content styling - ensure all headers are seagull-200 */
+  /* =====================================================================
+     POST MODAL VERTICAL RHYTHM
+
+     Typographic hierarchy:
+     - Line-height (leading) is tighter than paragraph spacing
+     - Paragraphs have clear bottom spacing to separate blocks
+     - Headings have generous top margin (visual section break)
+     - Headings have smaller bottom margin (they belong to what follows)
+     - Lists have spacing consistent with paragraphs
+     ===================================================================== */
+
+  /* --- Headings --- */
   .post-modal-content :deep(h1),
   .post-modal-content :deep(h2),
   .post-modal-content :deep(h3),
@@ -216,62 +227,113 @@
   .post-modal-content :deep(h6) {
     color: #b8e8ff; /* seagull-200 */
     font-weight: 300;
+    line-height: 1.3;
+    margin-top: 1.75em; /* generous space BEFORE headings */
+    margin-bottom: 0.15em; /* tight — heading belongs to next block */
+  }
+
+  .post-modal-content :deep(h1) {
+    font-size: 1.75rem;
   }
 
   .post-modal-content :deep(h2) {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+  }
+
+  .post-modal-content :deep(h3) {
+    font-size: 1.25rem;
+  }
+
+  /* First heading in content should not have top space */
+  .post-modal-content :deep(:first-child) {
     margin-top: 0;
   }
 
+  /* --- Paragraphs --- */
   .post-modal-content :deep(p) {
-    margin: 0.75rem 0;
-    line-height: 1.6;
-    color: white;
-  }
-
-  .post-modal-content :deep(p:first-of-type) {
     margin-top: 0;
+    margin-bottom: 0.75em; /* clear space between paragraphs */
+    line-height: 1.5; /* tighter than the paragraph gap */
+    color: white;
   }
 
   .post-modal-content :deep(p:last-of-type) {
     margin-bottom: 0;
   }
 
-  /* Bullet list styling - brighter bullets */
+  /* --- Unordered Lists --- */
   .post-modal-content :deep(ul) {
     list-style-type: disc;
     padding-left: 0;
     margin-left: 0;
-    margin-bottom: 0.5rem;
+    margin-top: 0;
+    margin-bottom: 0.75em; /* same rhythm as paragraphs */
   }
 
   .post-modal-content :deep(ul li) {
     margin-left: 1.25rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2em; /* tight spacing between list items */
     padding-left: 0;
+    line-height: 1.5;
     color: white;
+  }
+
+  .post-modal-content :deep(ul li:last-child) {
+    margin-bottom: 0;
   }
 
   .post-modal-content :deep(ul li::marker) {
     color: #b8e8ff; /* seagull-200 */
   }
 
+  /* --- Ordered Lists --- */
   .post-modal-content :deep(ol) {
     padding-left: 0;
     margin-left: 0;
-    margin-bottom: 0.5rem;
+    margin-top: 0;
+    margin-bottom: 0.75em; /* same rhythm as paragraphs */
   }
 
   .post-modal-content :deep(ol li) {
     margin-left: 1.25rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2em;
     padding-left: 0;
+    line-height: 1.5;
     color: white;
   }
 
-  /* Strong tags should use font-weight 400 */
+  .post-modal-content :deep(ol li:last-child) {
+    margin-bottom: 0;
+  }
+
+  .post-modal-content :deep(ol li::marker) {
+    color: #b8e8ff; /* seagull-200 */
+  }
+
+  /* --- Blockquotes --- */
+  .post-modal-content :deep(blockquote) {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 1em;
+    border-left: 3px solid #b8e8ff;
+    color: #d1d5db;
+    line-height: 1.5;
+  }
+
+  /* --- Horizontal Rules --- */
+  .post-modal-content :deep(hr) {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    border-color: rgba(184, 232, 255, 0.2);
+  }
+
+  /* --- Strong / Bold --- */
   .post-modal-content :deep(strong) {
     font-weight: 400;
+  }
+
+  /* --- Last child of any type should not add trailing space --- */
+  .post-modal-content :deep(:last-child) {
+    margin-bottom: 0;
   }
 </style>

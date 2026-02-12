@@ -202,14 +202,7 @@
     }
   })
 
-  const slugify = (str = '') =>
-    str
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .trim()
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .substring(0, 80)
+  // slugify is auto-imported from ~/utils/slugify.ts
 
   const navigateHome = () => {
     const modalGuardUntil = useState('modalGuardUntil', () => 0)

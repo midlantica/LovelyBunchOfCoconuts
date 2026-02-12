@@ -16,7 +16,7 @@ The difference:
 
 Why does this matter?
 
-**Under Rule of Law:**
+### \*Under Rule of Law:
 
 - You know the rules in advance
 - You can plan your life
@@ -25,7 +25,7 @@ Why does this matter?
 - Investment flows
 - Prosperity follows
 
-**Under Rule of Men:**
+### Under Rule of Men:
 
 - Rules change arbitrarily
 - You can't plan
@@ -46,7 +46,7 @@ History proves this:
 
 The left hates rule of law because it limits their power.
 
-They prefer:
+### They prefer:
 
 - "Prosecutorial discretion" (selective enforcement)
 - "Living Constitution" (judges make it up as they go)
@@ -61,7 +61,7 @@ When the law is fixed and known, everyone can prosper.
 
 The Founders knew this:
 
-**"A government of laws, not of men."** —John Adams
+**"A government of laws, not of men."** — John Adams
 
 Rule of law protects the weak from the powerful.
 

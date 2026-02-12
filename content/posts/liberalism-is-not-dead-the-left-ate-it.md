@@ -8,7 +8,7 @@ title: "Liberalism Isn't dead - It's Buried Under 120 Years of Collectivist Garb
 
 Liberalism is just buried under 120 years of collectivist garbage.
 
-The core of liberalism is dead-simple:
+### The core of liberalism is dead-simple:
 
 - You own your life
 - You own your body
@@ -51,7 +51,8 @@ That’s “we stopped being liberals and became soft-socialists while pretendin
 
 And yeah, classical liberals in the 19th century were generally pro-free-migration because most countries still had small welfare states and tiny governments. Times have changed — massive vote-buying welfare states plus open borders is a suicide pact, not a liberal policy. So we adapt that part. The rest of the program is still perfect.
 
-**Bottom line:**
+### Bottom line:
+
 I don’t defend liberalism because it created the wealthiest, healthiest, most innovative century in human history (even though it did).
 
 I defend it because it is the **only system** that treats you like a free, adult human being instead of a toddler who needs the state to wipe your nose and plan your life.

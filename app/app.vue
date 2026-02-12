@@ -9,6 +9,10 @@
     <ClientOnly>
       <ModalsWelcomeModal :show="showWelcomeModal" @close="closeWelcomeModal" />
     </ClientOnly>
+    <!-- Global toast notifications -->
+    <ClientOnly>
+      <UiToastContainer />
+    </ClientOnly>
   </div>
 </template>
 

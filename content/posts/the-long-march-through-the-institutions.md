@@ -14,7 +14,7 @@ You do it patiently, generation after generation, by becoming the professors, th
 
 The **Frankfurt School** (Marcuse, Adorno, Horkheimer, Habermas, et al.) had already laid the intellectual groundwork in the 1930s–50s, blending Marx with Freud and a deep hatred of Western civilization itself. When they fled Nazi Germany and landed in American universities (especially Columbia), they began the infection in earnest. By the late 60s their students—now tenured—were running entire departments.
 
-## What followed was a fifty-year conquest:
+### What followed was a fifty-year conquest:
 
 - **1970s**: “Political correctness” starts as an in-joke on the left, then becomes mandatory speech.
 - **1980s**: Critical theory metastasizes into Women’s Studies, Black Studies, Queer Studies—entire academic fields built not to pursue truth but to advance ideological warfare.

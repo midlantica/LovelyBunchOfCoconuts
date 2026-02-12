@@ -12,7 +12,7 @@ The Bill of Rights doesn't _grant_ rights. It _protects_ rights you already have
 
 **It tells government what it cannot do.**
 
-Read the language:
+### Read the language:
 
 - "Congress shall make no law..." (1st Amendment)
 - "...shall not be infringed" (2nd Amendment)

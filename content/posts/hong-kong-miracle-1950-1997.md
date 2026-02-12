@@ -12,7 +12,7 @@ What happened?
 
 **The freest economy in the world.**
 
-Hong Kong's formula was radical:
+### Hong Kong's formula was radical:
 
 - No tariffs
 - No capital controls
@@ -23,7 +23,7 @@ Hong Kong's formula was radical:
 
 The government's role: Stay out of the way.
 
-The results were staggering:
+### The results were staggering:
 
 - GDP per capita grew 180-fold
 - Life expectancy jumped from 60 to 80

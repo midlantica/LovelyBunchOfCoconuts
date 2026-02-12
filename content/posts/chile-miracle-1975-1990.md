@@ -6,7 +6,7 @@ title: 'Chile Miracle 1975–1990'
 
 1973 Chile under Allende: 600% inflation, empty shops, expropriations, Marxist chaos.
 
-After Pinochet, the "Chicago Boys" launched radical free-market reforms:
+### After Pinochet, the "Chicago Boys" launched radical free-market reforms:
 
 - Privatized pensions, mines, utilities
 - Flat 10% income tax

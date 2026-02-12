@@ -1,21 +1,23 @@
-/**
- * Composable for optimized image lazy loading with Intersection Observer
- * Reduces LCP and improves performance by deferring offscreen images
- */
-export function useImageLazyLoad() {
-  const observerRef = ref(null)
-  const loadedImages = new Set()
+// composables/useImageLazyLoad.ts
+// Composable for optimized image lazy loading with Intersection Observer
+// Reduces LCP and improves performance by deferring offscreen images
 
-  const initObserver = () => {
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+export function useImageLazyLoad() {
+  const observerRef = ref<IntersectionObserver | null>(null)
+  const loadedImages = new Set<string>()
+
+  const initObserver = (): void => {
     if (typeof window === 'undefined') return
     if (observerRef.value) return
 
     // Create intersection observer with optimized settings
     observerRef.value = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
-            const img = entry.target
+            const img = entry.target as HTMLImageElement
             const src = img.dataset.src
             const srcset = img.dataset.srcset
 
@@ -28,13 +30,13 @@ export function useImageLazyLoad() {
               loadedImages.add(src)
 
               // Stop observing once loaded
-              observerRef.value.unobserve(img)
+              observerRef.value?.unobserve(img)
 
               // Add loaded class for fade-in effect
               img.classList.add('lazy-loaded')
             }
           }
-        })
+        }
       },
       {
         // Load images slightly before they enter viewport
@@ -44,17 +46,17 @@ export function useImageLazyLoad() {
     )
   }
 
-  const observeImage = (el) => {
+  const observeImage = (el: Element | null): void => {
     if (!el || !observerRef.value) return
     observerRef.value.observe(el)
   }
 
-  const unobserveImage = (el) => {
+  const unobserveImage = (el: Element | null): void => {
     if (!el || !observerRef.value) return
     observerRef.value.unobserve(el)
   }
 
-  const cleanup = () => {
+  const cleanup = (): void => {
     if (observerRef.value) {
       observerRef.value.disconnect()
       observerRef.value = null

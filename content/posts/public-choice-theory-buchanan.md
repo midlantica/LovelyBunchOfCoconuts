@@ -8,7 +8,7 @@ In 1962 James Buchanan and Gordon Tullock published _The Calculus of Consent_ an
 
 **Politicians are just as self-interested as everyone else.**
 
-Before Public Choice Theory, economists assumed:
+### Before Public Choice Theory, economists assumed:
 
 - Markets fail because people are greedy
 - Government fixes markets because politicians are noble
@@ -24,7 +24,7 @@ Politicians want re-election. Bureaucrats want bigger budgets. Interest groups w
 
 The result: Government "solutions" that benefit politicians and special interests—not the public.
 
-Examples everywhere:
+### Examples everywhere:
 
 - Farm subsidies (enriching agribusiness, not feeding the poor)
 - Occupational licensing (protecting incumbents, not consumers)

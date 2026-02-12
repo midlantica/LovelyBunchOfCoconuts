@@ -1,6 +1,19 @@
-// composables/useSocialMeta.js
+// composables/useSocialMeta.ts
 // Provide helper to set social/open graph meta tags for dynamic pages
-export function useSocialMeta({ title, description, image, url } = {}) {
+
+import type { MaybeRefOrGetter } from 'vue'
+
+interface SocialMetaOptions {
+  title?: string
+  description?: string
+  image?: string
+  url?: string
+}
+
+export function useSocialMeta(options: SocialMetaOptions = {}) {
+  const { title, description, image, url } = options
+
+  // @ts-expect-error useHead is auto-imported by Nuxt at runtime
   const head = useHead({
     title: title || 'WakeUpNPC',
     meta: [
@@ -13,13 +26,14 @@ export function useSocialMeta({ title, description, image, url } = {}) {
         property: 'og:description',
         content: description || 'Political grifts, quotes, memes.',
       },
-      image && { property: 'og:image', content: image },
-      url && { property: 'og:url', content: url },
+      ...(image ? [{ property: 'og:image', content: image }] : []),
+      ...(url ? [{ property: 'og:url', content: url }] : []),
       {
         name: 'twitter:card',
         content: image ? 'summary_large_image' : 'summary',
       },
-    ].filter(Boolean),
+    ],
   })
+
   return head
 }

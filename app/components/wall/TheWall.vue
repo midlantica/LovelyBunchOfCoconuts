@@ -7,12 +7,16 @@
     <!-- Loading state (initial load or masthead refresh) -->
     <WallLoadingMessage v-else-if="!isLoaded || isWallRefreshing" />
 
-    <!-- Content wall (no transitions) -->
+    <!-- Content wall: dual-layer for instant search clear restore -->
+    <!-- BASELINE LAYER: kept alive in DOM via v-show, hidden during search.
+         When user hits X to clear search, this layer is instantly revealed
+         with zero re-rendering — the DOM nodes are already there. -->
     <section v-else class="xs:px-2 sm:px-2 md:px-0">
-      <div class="flex flex-col gap-3">
+      <!-- Baseline layer (v-show keeps DOM alive, display:none during search) -->
+      <div v-show="!isActiveSearch" class="flex flex-col gap-3">
         <div
-          v-for="(item, index) in displayedInterleavedContent"
-          :key="itemKey(item, index)"
+          v-for="(item, index) in displayedBaselineContent"
+          :key="'bl-' + itemKey(item, index)"
         >
           <!-- Quotes (full width) - or Large Ads -->
           <div
@@ -34,13 +38,11 @@
               item.data?.isAd ? null : openModal(item.data, 'quote', true)
             "
           >
-            <!-- Ad Panel for horizontal ads -->
             <WallPanelAd
               v-if="item.data?.isAd"
               :ad="item.data"
               :size="item.data.size || 'horizontal'"
             />
-            <!-- Regular Quote Panel -->
             <WallPanelQuote
               v-else
               :quote="item.data"
@@ -48,7 +50,7 @@
             />
           </div>
 
-          <!-- Grift pairs (2 columns on md+, stacked on smaller) - or Small Ads -->
+          <!-- Grift pairs -->
           <div
             v-else-if="item.type === 'griftPair'"
             class="grid grid-cols-1 gap-3 md:grid-cols-2"
@@ -73,13 +75,11 @@
                 griftItem?.isAd ? null : openModal(griftItem, 'grift', true)
               "
             >
-              <!-- Ad Panel for square ads -->
               <WallPanelAd
                 v-if="griftItem?.isAd"
                 :ad="griftItem"
                 :size="griftItem.size || 'square'"
               />
-              <!-- Regular Grift Panel -->
               <WallPanelGrift
                 v-else
                 :grift="griftItem"
@@ -88,8 +88,7 @@
             </div>
           </div>
 
-          <!-- Meme pairs (2 columns on >=460px using custom 'meme2' breakpoint, stacked below) -->
-          <!-- Can now contain: Memes, Posts (every 5th pair), or Ads -->
+          <!-- Meme pairs -->
           <div
             v-else-if="item.type === 'memeRow'"
             class="meme2:grid-cols-2 grid grid-cols-1 gap-3"
@@ -118,20 +117,17 @@
                   : openModal(rowItem, rowItem._type || 'meme', true)
               "
             >
-              <!-- Ad Panel for square ads -->
               <WallPanelAd
                 v-if="rowItem?.isAd"
                 :ad="rowItem"
                 :size="rowItem.size || 'square'"
               />
-              <!-- Meme Panel -->
               <WallPanelMeme
                 v-else-if="rowItem._type === 'meme'"
                 :meme="rowItem"
                 :slug="rowItem?.path || rowItem?._path || ''"
                 :index="index"
               />
-              <!-- Post Panel (mixed with memes every 5th pair) -->
               <WallPanelPost
                 v-else-if="rowItem._type === 'post'"
                 :post="rowItem"
@@ -140,7 +136,7 @@
             </div>
           </div>
 
-          <!-- Posts (standalone, single item centered) -->
+          <!-- Posts (standalone) -->
           <div
             v-else-if="item.type === 'post'"
             class="mx-auto w-full max-w-[460px]"
@@ -162,7 +158,7 @@
             </div>
           </div>
 
-          <!-- Profiles (full width) -->
+          <!-- Profiles -->
           <div
             v-else-if="item.type === 'profile'"
             class="cursor-pointer"
@@ -184,9 +180,190 @@
         </div>
       </div>
 
+      <!-- SEARCH RESULTS LAYER: only rendered when actively searching.
+           Uses v-if so it's destroyed when search clears — no stale DOM.
+           Wrapped in Transition for a subtle fade-in/fade-out. -->
+      <Transition name="wall-search" appear>
+        <div
+          v-if="isActiveSearch"
+          class="wall-layer wall-layer-search flex flex-col gap-3"
+        >
+          <div
+            v-for="(item, index) in searchResultsContent"
+            :key="'sr-' + itemKey(item, index)"
+          >
+            <!-- Quotes (full width) - or Large Ads -->
+            <div
+              v-if="item.type === 'quote'"
+              class="cursor-pointer"
+              :role="item.data?.isAd ? null : 'button'"
+              :tabindex="item.data?.isAd ? null : 0"
+              @click.capture="
+                item.data?.isAd
+                  ? null
+                  : maybeOpenModal($event, () =>
+                      openModal(item.data, 'quote', true)
+                    )
+              "
+              @keydown.enter.prevent="
+                item.data?.isAd ? null : openModal(item.data, 'quote', true)
+              "
+              @keydown.space.prevent="
+                item.data?.isAd ? null : openModal(item.data, 'quote', true)
+              "
+            >
+              <WallPanelAd
+                v-if="item.data?.isAd"
+                :ad="item.data"
+                :size="item.data.size || 'horizontal'"
+              />
+              <WallPanelQuote
+                v-else
+                :quote="item.data"
+                :slug="item.data?.path || item.data?._path || ''"
+              />
+            </div>
+
+            <!-- Grift pairs -->
+            <div
+              v-else-if="item.type === 'griftPair'"
+              class="grid grid-cols-1 gap-3 md:grid-cols-2"
+            >
+              <div
+                v-for="(griftItem, idx) in item.data"
+                :key="
+                  griftItem?._path || griftItem?.path || griftItem?.id || idx
+                "
+                class="cursor-pointer"
+                :role="griftItem?.isAd ? null : 'button'"
+                :tabindex="griftItem?.isAd ? null : 0"
+                @click.capture="
+                  griftItem?.isAd
+                    ? null
+                    : maybeOpenModal($event, () =>
+                        openModal(griftItem, 'grift', true)
+                      )
+                "
+                @keydown.enter.prevent="
+                  griftItem?.isAd ? null : openModal(griftItem, 'grift', true)
+                "
+                @keydown.space.prevent="
+                  griftItem?.isAd ? null : openModal(griftItem, 'grift', true)
+                "
+              >
+                <WallPanelAd
+                  v-if="griftItem?.isAd"
+                  :ad="griftItem"
+                  :size="griftItem.size || 'square'"
+                />
+                <WallPanelGrift
+                  v-else
+                  :grift="griftItem"
+                  :slug="griftItem?.path || griftItem?._path || ''"
+                />
+              </div>
+            </div>
+
+            <!-- Meme pairs -->
+            <div
+              v-else-if="item.type === 'memeRow'"
+              class="meme2:grid-cols-2 grid grid-cols-1 gap-3"
+            >
+              <div
+                v-for="(rowItem, idx) in item.data"
+                :key="rowItem._path || rowItem.path || rowItem.id || idx"
+                class="cursor-pointer"
+                :role="rowItem?.isAd ? null : 'button'"
+                :tabindex="rowItem?.isAd ? null : 0"
+                @click.capture="
+                  rowItem?.isAd
+                    ? null
+                    : maybeOpenModal($event, () =>
+                        openModal(rowItem, rowItem._type || 'meme', true)
+                      )
+                "
+                @keydown.enter.prevent="
+                  rowItem?.isAd
+                    ? null
+                    : openModal(rowItem, rowItem._type || 'meme', true)
+                "
+                @keydown.space.prevent="
+                  rowItem?.isAd
+                    ? null
+                    : openModal(rowItem, rowItem._type || 'meme', true)
+                "
+              >
+                <WallPanelAd
+                  v-if="rowItem?.isAd"
+                  :ad="rowItem"
+                  :size="rowItem.size || 'square'"
+                />
+                <WallPanelMeme
+                  v-else-if="rowItem._type === 'meme'"
+                  :meme="rowItem"
+                  :slug="rowItem?.path || rowItem?._path || ''"
+                  :index="index"
+                />
+                <WallPanelPost
+                  v-else-if="rowItem._type === 'post'"
+                  :post="rowItem"
+                  :slug="rowItem?.path || rowItem?._path || ''"
+                />
+              </div>
+            </div>
+
+            <!-- Posts (standalone) -->
+            <div
+              v-else-if="item.type === 'post'"
+              class="mx-auto w-full max-w-[460px]"
+            >
+              <div
+                class="cursor-pointer"
+                role="button"
+                tabindex="0"
+                @click.capture="
+                  maybeOpenModal($event, () =>
+                    openModal(item.data, 'post', true)
+                  )
+                "
+                @keydown.enter.prevent="openModal(item.data, 'post', true)"
+                @keydown.space.prevent="openModal(item.data, 'post', true)"
+              >
+                <WallPanelPost
+                  :post="item.data"
+                  :slug="item.data?.path || item.data?._path || ''"
+                />
+              </div>
+            </div>
+
+            <!-- Profiles -->
+            <div
+              v-else-if="item.type === 'profile'"
+              class="cursor-pointer"
+              role="button"
+              tabindex="0"
+              @click.capture="
+                maybeOpenModal($event, () =>
+                  openModal(item.data, 'profile', true)
+                )
+              "
+              @keydown.enter.prevent="openModal(item.data, 'profile', true)"
+              @keydown.space.prevent="openModal(item.data, 'profile', true)"
+            >
+              <WallPanelProfile
+                :profile="item.data"
+                :slug="item.data?.path || item.data?._path || ''"
+              />
+            </div>
+          </div>
+        </div>
+      </Transition>
+
       <!-- No content message -->
       <WallNoContent
-        v-if="interleavedContent.length === 0 && !hideNoContent"
+        v-if="
+          isActiveSearch && searchResultsContent.length === 0 && !hideNoContent
+        "
         message="No content available"
         @clear-search="onClearSearch"
       />
@@ -208,6 +385,8 @@
     loadAllContent, // kept in case we need full reload
     loadInitialContent,
     loadRemainingContent,
+    saveToSessionStorage,
+    restoreFromSessionStorage,
   } = useContentCache()
 
   // Initialize profiles system
@@ -340,72 +519,16 @@
     openGlobalModal,
   })
 
-  // Frozen baseline pattern (no search, all filters) returned instantly when clearing search.
-  // Built once after initial load; later growth triggers an idle rebuild (non-blocking).
-  const baselineState = useState('wallBaselinePattern', () => ({
-    seed: null,
-    grifts: 0,
-    quotes: 0,
-    memes: 0,
-    pattern: [],
-    order: { grifts: [], quotes: [], memes: [] },
-    rebuilding: false,
-    blockUpdates: false, // Prevent updates during background loading
-  }))
+  // Baseline pattern caching (extracted to composable)
+  const {
+    baselineState,
+    initialLoadInProgress,
+    reorderByBaseline,
+    buildBaselineNow: _buildBaseline,
+    scheduleBaselineRebuild: _scheduleRebuild,
+  } = useWallBaseline()
 
-  // Track if we're in initial load phase (prevents watcher from triggering rebuilds)
-  const initialLoadInProgress = ref(false)
-
-  function deriveBaselineOrder(pattern) {
-    const order = { grifts: [], quotes: [], memes: [] }
-    const seen = { grifts: new Set(), quotes: new Set(), memes: new Set() }
-    for (const item of pattern) {
-      if (!item) continue
-      if (item.type === 'griftPair') {
-        for (const c of item.data || []) {
-          const p = c?._path || c?.path || ''
-          if (p && !seen.grifts.has(p)) {
-            seen.grifts.add(p)
-            order.grifts.push(p)
-          }
-        }
-      } else if (item.type === 'memeRow') {
-        for (const m of item.data || []) {
-          const p = m?._path || m?.path || ''
-          if (p && !seen.memes.has(p)) {
-            seen.memes.add(p)
-            order.memes.push(p)
-          }
-        }
-      } else if (item.type === 'quote') {
-        const q = item.data || {}
-        const p = q?._path || q?.path || ''
-        if (p && !seen.quotes.has(p)) {
-          seen.quotes.add(p)
-          order.quotes.push(p)
-        }
-      }
-    }
-    return order
-  }
-
-  function reorderByBaseline(arr, orderList) {
-    if (!Array.isArray(arr) || !orderList?.length) return arr
-    const orderMap = new Map(orderList.map((p, i) => [p, i]))
-    const known = []
-    const unknown = []
-    arr.forEach((item) => {
-      const key = item?._path || item?.path || ''
-      if (orderMap.has(key)) {
-        known.push({ order: orderMap.get(key), item })
-      } else {
-        unknown.push(item)
-      }
-    })
-    known.sort((a, b) => a.order - b.order)
-    return [...known.map((entry) => entry.item), ...unknown]
-  }
-
+  // Helper to get ad settings for baseline builds
   function getBaselineAdSettings() {
     const adProvider =
       adsEnabled.value && !isSearchingForAds.value
@@ -418,123 +541,24 @@
     return { adProvider, interval }
   }
 
+  // Convenience wrappers that pass current state to the composable
   function buildBaselineNow(opts = {}) {
-    try {
-      // Create ad provider if ads are enabled AND not searching for ads
-      // When searching for ads, we don't want them interleaved - we want them as results
-      // Note: ads should be loaded in onMounted before this is called
-      const { adProvider, interval } = getBaselineAdSettings()
-
-      const pattern = interleaveContent(
-        cache.grifts,
-        cache.quotes,
-        cache.memes,
-        {
-          seed: wallSeed.value,
-          enableShuffle: true,
-          adInterval: interval,
-          adProvider: adProvider,
-          profiles: profiles.value,
-          profileInterval: 4,
-          posts: cache.posts,
-        }
-      )
-
-      // If extending (Phase 2), keep the existing visible items in place
-      // and only append new items after them to prevent the double-flash.
-      if (opts.extend && baselineState.value.pattern.length > 0) {
-        const prevPattern = baselineState.value.pattern
-        const prevLen = prevPattern.length
-
-        // Build a set of paths already visible in the old pattern
-        const visiblePaths = new Set()
-        for (const item of prevPattern) {
-          if (!item) continue
-          if (
-            item.type === 'quote' ||
-            item.type === 'post' ||
-            item.type === 'profile'
-          ) {
-            const p = item.data?._path || item.data?.path || ''
-            if (p) visiblePaths.add(p)
-          } else if (item.type === 'griftPair' || item.type === 'memeRow') {
-            for (const d of item.data || []) {
-              const p = d?._path || d?.path || ''
-              if (p) visiblePaths.add(p)
-            }
-          }
-        }
-
-        // From the new full pattern, collect items that contain NEW content
-        const newItems = pattern.filter((item) => {
-          if (!item) return false
-          if (
-            item.type === 'quote' ||
-            item.type === 'post' ||
-            item.type === 'profile'
-          ) {
-            const p = item.data?._path || item.data?.path || ''
-            // Ads are always new (they have no stable path)
-            if (item.data?.isAd) return true
-            return p && !visiblePaths.has(p)
-          }
-          if (item.type === 'griftPair' || item.type === 'memeRow') {
-            // Include if ANY item in the pair/row is new
-            return (item.data || []).some((d) => {
-              if (d?.isAd) return true
-              const p = d?._path || d?.path || ''
-              return p && !visiblePaths.has(p)
-            })
-          }
-          return true
-        })
-
-        // Merge: keep old pattern + append new items
-        const merged = [...prevPattern, ...newItems]
-        const order = deriveBaselineOrder(merged)
-        baselineState.value = {
-          seed: wallSeed.value,
-          grifts: cache.grifts.length,
-          quotes: cache.quotes.length,
-          memes: cache.memes.length,
-          pattern: merged,
-          order,
-          rebuilding: false,
-        }
-        return
-      }
-
-      const order = deriveBaselineOrder(pattern)
-      baselineState.value = {
-        seed: wallSeed.value,
-        grifts: cache.grifts.length,
-        quotes: cache.quotes.length,
-        memes: cache.memes.length,
-        pattern,
-        order,
-        rebuilding: false,
-      }
-    } catch (e) {
-      baselineState.value.rebuilding = false
-    }
+    _buildBaseline(
+      cache,
+      wallSeed.value,
+      profiles.value,
+      getBaselineAdSettings(),
+      opts
+    )
   }
 
   function scheduleBaselineRebuild() {
-    const bs = baselineState.value
-    if (bs.rebuilding) return
-    bs.rebuilding = true
-    if (typeof window === 'undefined') {
-      // SSR: skip; will build on client mount
-      bs.rebuilding = false
-      return
-    }
-    const schedule = (cb) =>
-      window.requestIdleCallback
-        ? window.requestIdleCallback(cb, { timeout: 1200 })
-        : setTimeout(cb, 16)
-    schedule(() => {
-      buildBaselineNow()
-    })
+    _scheduleRebuild(
+      cache,
+      wallSeed.value,
+      profiles.value,
+      getBaselineAdSettings()
+    )
   }
 
   // Check if user is searching for ads (dev feature)
@@ -645,6 +669,32 @@
     interleavedContent.value.slice(0, wallDisplayCount.value)
   )
 
+  // ── Dual-layer system for instant search clear ──
+  // isActiveSearch: true when user has an active search/filter
+  const isActiveSearch = computed(() => {
+    const hasSearch = !!effectiveSearch.value?.trim()
+    const allFiltersActive =
+      effectiveFilters.value.grifts &&
+      effectiveFilters.value.quotes &&
+      effectiveFilters.value.memes
+    return hasSearch || !allFiltersActive
+  })
+
+  // Baseline content: the full wall pattern (kept alive in DOM via v-show).
+  // This never changes during search — it's the frozen baseline.
+  const displayedBaselineContent = computed(() => {
+    const bs = baselineState.value
+    if (!bs.pattern.length) return displayedInterleavedContent.value
+    return bs.pattern.slice(0, wallDisplayCount.value)
+  })
+
+  // Search results: only computed when actively searching.
+  // Uses the filtered/searched interleaved content.
+  const searchResultsContent = computed(() => {
+    if (!isActiveSearch.value) return []
+    return interleavedContent.value
+  })
+
   // Show ad summary once when loading is complete
   function showAdSummary() {
     if (adSummaryShown.value) return
@@ -674,13 +724,14 @@
       }
     })
 
-    // Log ad summary only when there are ads
+    // Log ad summary only in dev mode when there are ads
     if (Object.keys(adCounts).length > 0) {
-      console.log(`\n📊 Ad Summary:`)
-      console.log(`Horizontal ads: ${horizontalAds}`)
-      console.log(`Square ads: ${squareAds}`)
-      console.log(`Ads total: ${totalAds}\n`)
-
+      if (import.meta.dev) {
+        console.log(`\n📊 Ad Summary:`)
+        console.log(`Horizontal ads: ${horizontalAds}`)
+        console.log(`Square ads: ${squareAds}`)
+        console.log(`Ads total: ${totalAds}\n`)
+      }
       adSummaryShown.value = true
     }
   }
@@ -701,26 +752,13 @@
   watch(
     virtualizingBaseline,
     (v) => {
+      if (typeof window === 'undefined') return
       if (v && !scrollListenerAttached) {
         setupScrollListener(() => interleavedContent.value.length)
         scrollListenerAttached = true
       } else if (!v && scrollListenerAttached) {
         cleanupScrollListener()
         scrollListenerAttached = false
-        watch(
-          virtualizingBaseline,
-          (v) => {
-            if (typeof window === 'undefined') return
-            if (v && !scrollListenerAttached) {
-              setupScrollListener(() => interleavedContent.value.length)
-              scrollListenerAttached = true
-            } else if (!v && scrollListenerAttached) {
-              cleanupScrollListener()
-              scrollListenerAttached = false
-            }
-          },
-          { immediate: true }
-        )
       }
     },
     { immediate: true }
@@ -819,15 +857,105 @@
         cache.memes.length === 0
       ) {
         // ─────────────────────────────────────────────
-        // PHASE 1 – Above-the-fold: load a small subset
+        // FAST PATH – Restore from sessionStorage (Cmd-R reload)
         // ─────────────────────────────────────────────
+        // On Cmd-R the JS module cache is wiped but sessionStorage persists.
+        // Restoring from sessionStorage is synchronous and skips the slow
+        // queryCollection() calls entirely. The wall seed was already
+        // regenerated by useWallSeed() during hydration, so we just
+        // reseed + build baseline — the SAME code path as logo-click.
+        const restoredFromSession = restoreFromSessionStorage()
+
+        if (restoredFromSession) {
+          if (import.meta.dev) {
+            console.log(
+              `⚡ SessionStorage fast path: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+            )
+          }
+
+          // Reseed + build baseline (identical to logo-click path)
+          initialLoadInProgress.value = false
+          baselineState.value.blockUpdates = false
+          buildBaselineNow()
+
+          // Show the wall immediately with all content
+          startVirtualization(interleavedContent.value.length)
+          isLoaded.value = true
+          wallHasLoadedOnce.value = true
+
+          // Load profiles and ads in background (not in sessionStorage)
+          const profilesPromise = fetchAllProfiles()
+            .then((loadedProfiles) => {
+              profiles.value = loadedProfiles || []
+              cache.profiles = loadedProfiles || []
+            })
+            .catch((e) => {
+              console.warn('Could not load profiles:', e)
+              profiles.value = []
+              cache.profiles = []
+            })
+
+          const adsPromise = adsEnabled.value
+            ? (() => {
+                if (adsAbortController.value) {
+                  adsAbortController.value.abort()
+                }
+                adsAbortController.value = new AbortController()
+                return $fetch('/api/content/ads', {
+                  signal: adsAbortController.value.signal,
+                })
+                  .then((response) => {
+                    const adContent = response?.data || []
+                    if (adContent.length > 0) {
+                      return loadAds(null, adContent)
+                    }
+                  })
+                  .catch((e) => {
+                    if (e.name !== 'AbortError') {
+                      console.warn('Could not load ads:', e)
+                    }
+                  })
+              })()
+            : Promise.resolve()
+
+          await Promise.all([profilesPromise, adsPromise])
+
+          // Rebuild baseline with profiles + ads now included
+          if (profiles.value.length) {
+            buildBaselineNow()
+            startVirtualization(interleavedContent.value.length)
+          }
+
+          // Pre-compute next seed for instant logo-click refresh
+          schedulePrecomputation(
+            cache.grifts,
+            cache.quotes,
+            cache.memes,
+            profiles.value,
+            {
+              adsEnabled: adsEnabled.value,
+              adInterval: adInterval.value,
+              profileInterval: 4,
+            }
+          )
+
+          setTimeout(() => showAdSummary(), 500)
+          return // Done — skip the slow path entirely
+        }
+
+        // ─────────────────────────────────────────────
+        // SLOW PATH – First visit (no sessionStorage cache)
+        // ─────────────────────────────────────────────
+
+        // ── PHASE 1 – Above-the-fold: load a small subset ──
         // Load ~12 items per type – enough to fill the first viewport.
-        // This is much faster than loading everything.
         await loadInitialContent(12)
 
-        console.log(
-          `⚡ Phase 1 loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
-        )
+        if (import.meta.dev) {
+          console.log(
+            `⚡ Phase 1 loaded: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+          )
+        }
 
         // Build baseline with the initial subset (same seed used later)
         initialLoadInProgress.value = false
@@ -839,11 +967,8 @@
         isLoaded.value = true
         wallHasLoadedOnce.value = true
 
-        // ─────────────────────────────────────────────
-        // PHASE 2 – Below-the-fold: load remaining content + extras
-        // ─────────────────────────────────────────────
+        // ── PHASE 2 – Below-the-fold: load remaining content + extras ──
         // Everything below runs in the background while the user sees content.
-        // Block baseline watcher updates so the visible wall stays stable.
         baselineState.value.blockUpdates = true
 
         // Kick off remaining content, profiles, and ads in parallel
@@ -887,13 +1012,13 @@
         // Wait for everything to finish in background
         await Promise.all([remainingPromise, profilesPromise, adsPromise])
 
-        console.log(
-          `✅ Phase 2 complete: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
-        )
+        if (import.meta.dev) {
+          console.log(
+            `✅ Phase 2 complete: ${cache.grifts.length} grifts, ${cache.quotes.length} quotes, ${cache.memes.length} memes`
+          )
+        }
 
         // Unblock and EXTEND baseline with ALL content + ads + profiles
-        // Using extend mode preserves the Phase 1 visible items in place
-        // and only appends new items after them – no double-flash.
         baselineState.value.blockUpdates = false
         buildBaselineNow({ extend: true })
 
@@ -903,9 +1028,10 @@
         // Show ad summary
         setTimeout(() => showAdSummary(), 500)
 
-        // ─────────────────────────────────────────────
-        // PHASE 3 – Pre-compute next seed for instant refresh
-        // ─────────────────────────────────────────────
+        // ── Save to sessionStorage for fast Cmd-R next time ──
+        saveToSessionStorage()
+
+        // ── PHASE 3 – Pre-compute next seed for instant refresh ──
         schedulePrecomputation(
           cache.grifts,
           cache.quotes,
@@ -989,9 +1115,39 @@
     transition: transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
+  /* ── Search results layer: fade + slide transition ──
+     Baseline layer uses v-show (instant toggle via display:none).
+     Search results use Vue <Transition> for a polished appearance. */
+  .wall-search-enter-active {
+    transition:
+      opacity 350ms ease-out,
+      transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .wall-search-leave-active {
+    transition:
+      opacity 150ms ease-in,
+      transform 150ms ease-in;
+  }
+  .wall-search-enter-from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  .wall-search-leave-to {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .wall-row-move,
     .wall-col-move {
+      transition-duration: 1ms !important;
+    }
+    .wall-layer-baseline,
+    .wall-layer--hidden {
+      transition-duration: 1ms !important;
+    }
+    .wall-search-enter-active,
+    .wall-search-leave-active {
       transition-duration: 1ms !important;
     }
   }

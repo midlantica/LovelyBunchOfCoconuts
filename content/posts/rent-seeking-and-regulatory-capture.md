@@ -10,14 +10,14 @@ Here's how the game really works:
 
 Rent-seeking is when businesses use government power to get rich instead of serving customers.
 
-Examples:
+### Examples:
 
 - Taxi medallions (blocking Uber to protect incumbents)
 - Occupational licensing (requiring 1,000 hours of training to braid hair)
 - Sugar tariffs (making Americans pay double to protect sugar producers)
 - Banking regulations (so complex only giant banks can comply)
 
-The pattern is always the same:
+### The pattern is always the same:
 
 1. Industry lobbies for "consumer protection"
 2. Government creates complex regulations
@@ -26,7 +26,7 @@ The pattern is always the same:
 
 This is **regulatory capture**—when regulators serve the industry they're supposed to regulate.
 
-Why does it happen?
+### Why does it happen?
 
 - Concentrated benefits (one industry gets rich)
 - Dispersed costs (everyone pays a little more)

@@ -1,7 +1,7 @@
 <!-- components/SearchBar.vue -->
 <template>
   <div
-    class="text-seagull-950 mt-[2px] flex h-auto w-full flex-col items-center gap-2"
+    class="text-seagull-950 mt-0.5 flex h-auto w-full flex-col items-center gap-2"
   >
     <div class="relative flex w-full flex-row gap-2 overflow-visible">
       <Icon
@@ -149,10 +149,15 @@
   // Native debounce implementation to replace lodash-es (saves 300KB)
   function debounce(fn, delay) {
     let timeoutId
-    return function (...args) {
+    const debounced = function (...args) {
       clearTimeout(timeoutId)
       timeoutId = setTimeout(() => fn.apply(this, args), delay)
     }
+    debounced.cancel = () => {
+      clearTimeout(timeoutId)
+      timeoutId = null
+    }
+    return debounced
   }
 
   const props = defineProps({
@@ -271,10 +276,15 @@
   }
 
   function clearSearch() {
+    // Cancel any pending debounced search emission first
+    // This prevents the watcher from re-emitting after we clear
+    debouncedEmitSearch.cancel?.()
+
     tokens.value = []
     inputText.value = ''
     resetFilters()
     // Immediately emit the search change instead of waiting for debounce
+    lastEmittedSearch.value = ''
     emit('update:search', '')
     // Ensure focus stays on search input to prevent pill focus ring
     nextTick(() => searchInputRef.value?.focus())
@@ -332,6 +342,9 @@
     tokens,
     (arr) => {
       const valueToEmit = arr.join(' ').trim()
+      // Skip debounced emit if the value was already emitted (e.g. by clearSearch)
+      // This prevents a redundant 350ms delayed re-emission after the X button
+      if (valueToEmit === lastEmittedSearch.value) return
       debouncedEmitSearch(valueToEmit)
       if (valueToEmit === '') resetFilters()
     },
@@ -350,14 +363,21 @@
   )
 
   function onSelectIdeology(term) {
+    // Cancel any pending debounced emission so it doesn't fight with our
+    // immediate emit below (prevents the "4 ticks" delay).
+    debouncedEmitSearch.cancel?.()
+
     // Toggle-add behavior for multi-term search
     const lower = term.toLowerCase()
     const idx = tokens.value.findIndex((p) => p.toLowerCase() === lower)
     if (idx >= 0) tokens.value.splice(idx, 1)
     else tokens.value.push(canonicalizeToken(term))
     // Emit immediately to feel responsive and guard re-parse
-    lastEmittedSearch.value = joinedSearch.value
-    emit('update:search', joinedSearch.value)
+    const searchValue = joinedSearch.value
+    lastEmittedSearch.value = searchValue
+    emit('update:search', searchValue)
+    // Update URL with ?q= parameter
+    updateUrlWithTokens()
     // On mobile, blur to dismiss keyboard after selecting a tag
     // On desktop, keep focus for continued typing
     nextTick(() => {
@@ -602,7 +622,8 @@
   }
 
   function selectSuggestion(suggestion) {
-    // Set flag to prevent blur from committing the partial input
+    // Cancel pending debounce and set flag to prevent blur from committing
+    debouncedEmitSearch.cancel?.()
     isSelectingSuggestion.value = true
 
     inputText.value = '' // Clear the input first
@@ -619,6 +640,12 @@
     } else {
       flashToken(token)
     }
+
+    // Emit immediately (don't wait for debounce) and update URL
+    const searchValue = joinedSearch.value
+    lastEmittedSearch.value = searchValue
+    emit('update:search', searchValue)
+    updateUrlWithTokens()
 
     // Add to recent searches if not already there
     const termLower = suggestion.term.toLowerCase()

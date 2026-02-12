@@ -36,7 +36,7 @@ The implications destroy leftist ideology:
 
 **If rights come from nature, government can only protect or violate them.**
 
-The left treats rights as government grants:
+### The left treats rights as government grants:
 
 - "Right" to healthcare (forcing others to provide it)
 - "Right" to housing (forcing others to pay for it)

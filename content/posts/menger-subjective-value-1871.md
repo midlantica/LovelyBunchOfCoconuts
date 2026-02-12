@@ -8,7 +8,7 @@ In 1871 Carl Menger published _Principles of Economics_ and destroyed the labor 
 
 **Value is subjective.**
 
-For centuries, economists believed value came from labor:
+### For centuries, economists believed value came from labor:
 
 - A coat is valuable because it took 10 hours to make
 - A diamond is valuable because it's hard to mine
@@ -38,7 +38,7 @@ But if value is subjective, there is no "true" value to be exploited from.
 
 Price is simply what buyer and seller agree on—both benefit, or they wouldn't trade.
 
-Menger launched the Austrian School of Economics and proved:
+### Menger launched the Austrian School of Economics and proved:
 
 - Markets discover value through exchange
 - Central planners can't calculate value

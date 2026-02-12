@@ -8,42 +8,7 @@ const debugLog = (...args) => {
   if (contentDebug) console.log('[ModalContentLoader]', ...args)
 }
 
-// Helper to extract searchable text from AST body
-const extractSearchableText = (body, itemPath = '') => {
-  if (!body || !body.value) return ''
-
-  let text = ''
-  const extractFromElement = (element) => {
-    if (Array.isArray(element)) {
-      const [tag, attrs, content] = element
-      if (typeof content === 'string') {
-        text += content + ' '
-      } else if (Array.isArray(content)) {
-        content.forEach(extractFromElement)
-      }
-    } else if (typeof element === 'string') {
-      text += element + ' '
-    }
-  }
-
-  body.value.forEach(extractFromElement)
-
-  if (itemPath) {
-    const pathParts = itemPath.split('/').filter(Boolean)
-    const folderNames = pathParts
-      .filter((part) => !part.endsWith('.md'))
-      .map((part) => part.replace(/[-_]/g, ' '))
-      .join(' ')
-    if (folderNames) text += ' ' + folderNames
-  }
-
-  return text
-    .replace(/[\u2018\u2019]/g, "'")
-    .replace(/[\u201C\u201D]/g, '"')
-    .replace(/[\u2013\u2014]/g, '-')
-    .replace(/[\u2026]/g, '...')
-    .trim()
-}
+// extractSearchableText is auto-imported from ~/utils/searchText.ts
 
 // Transform content for component compatibility
 const transformContentItem = (item, type) => {
@@ -133,13 +98,17 @@ const transformContentItem = (item, type) => {
   if (type === 'post' || type === 'posts') {
     if (item.body && item.body.value) {
       transformed.body = item.body
-      const bodyText = extractSearchableText(item.body, item._path || item.path)
+      const bodyText = extractSearchableText(item.body, {
+        itemPath: item._path || item.path,
+      })
       transformed.bodyText = bodyText
     }
   }
 
   // Add searchable text
-  const rawSearch = extractSearchableText(item.body, item._path || item.path)
+  const rawSearch = extractSearchableText(item.body, {
+    itemPath: item._path || item.path,
+  })
   transformed.searchableText = rawSearch
 
   const searchParts = [

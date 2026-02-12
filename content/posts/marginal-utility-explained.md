@@ -34,12 +34,12 @@ But they're not. The 10th slice is nearly worthless to you.
 
 This explains everything:
 
-**Why water is cheap but diamonds are expensive:**
+### Why water is cheap but diamonds are expensive:
 
 - Water is abundant. The marginal utility of one more gallon is low.
 - Diamonds are scarce. The marginal utility of one more diamond is high.
 
-**Why progressive taxation is economically illiterate:**
+### Why progressive taxation is economically illiterate:
 
 - The rich don't value their last dollar as much as the poor value theirs
 - But that doesn't mean taking it creates more total utility

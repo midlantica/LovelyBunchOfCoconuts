@@ -34,7 +34,7 @@ By 1983, inflation was crushed to 3%.
 
 The economy roared back. Reagan's boom began.
 
-Volcker proved three things:
+### Volcker proved three things:
 
 1. Inflation is always a monetary phenomenon
 2. Central banks cause it, and only central banks can stop it
