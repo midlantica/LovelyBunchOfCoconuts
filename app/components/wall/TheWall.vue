@@ -4,8 +4,8 @@
     <!-- Error state -->
     <WallErrorMessage v-if="error" :error="error" />
 
-    <!-- Loading state (initial load or masthead refresh) -->
-    <WallLoadingMessage v-else-if="!isLoaded || isWallRefreshing" />
+    <!-- Loading state (initial load) -->
+    <WallLoadingMessage v-else-if="!isLoaded" />
 
     <!-- Content wall: dual-layer for instant search clear restore -->
     <!-- BASELINE LAYER: kept alive in DOM via v-show, hidden during search.
@@ -375,9 +375,6 @@
   // Auto-impoorts components/composables
   // Global guard to avoid click-through reopen after closing a modal
   const modalGuardUntil = useState('modalGuardUntil', () => 0)
-
-  // Global loading state for wall refresh (from masthead click)
-  const isWallRefreshing = useState('isWallRefreshing', () => false)
 
   // Use the proven content cache system instead of direct queryContent
   const {
