@@ -139,7 +139,7 @@
           <!-- Posts (standalone) -->
           <div
             v-else-if="item.type === 'post'"
-            class="mx-auto w-full max-w-[460px]"
+            class="mx-auto w-full max-w-115"
           >
             <div
               class="cursor-pointer"
@@ -315,7 +315,7 @@
             <!-- Posts (standalone) -->
             <div
               v-else-if="item.type === 'post'"
-              class="mx-auto w-full max-w-[460px]"
+              class="mx-auto w-full max-w-115"
             >
               <div
                 class="cursor-pointer"

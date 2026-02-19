@@ -20,4 +20,4 @@ Every government "stimulus," every regulation, every tax creates visible winners
 
 Politicians always point to the seen (jobs "created"). Classical liberals ask about the unseen (jobs destroyed, growth prevented).
 
-Bastiat's one short essay destroys 99 % of bad economic thinking—then and now.
+Bastiat's one short essay destroys 99% of bad economic thinking — then and now.
