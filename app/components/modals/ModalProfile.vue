@@ -72,7 +72,7 @@
   const emit = defineEmits(['close'])
   const { generateContentUrl } = useContentUrls()
 
-  const { showShareShelf, onToggle } = useShareShelf(500)
+  const { showShareShelf, onToggle } = useShareShelf()
 
   // Create bio content object for ContentRenderer (excluding h2 and images)
   const bioContent = computed(() => {

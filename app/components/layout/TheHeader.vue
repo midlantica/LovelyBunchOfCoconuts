@@ -39,6 +39,10 @@
     if (isReloading.value) return // Ignore clicks while reload is in progress
 
     isReloading.value = true
+    // Safety reset in case navigation is blocked or delayed
+    setTimeout(() => {
+      isReloading.value = false
+    }, 3000)
 
     // Full page reload — behaves exactly like Cmd-R / F5.
     // If on a sub-page, navigate to home with a full reload;

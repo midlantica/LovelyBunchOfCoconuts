@@ -59,7 +59,7 @@
   // Reactive state
   const shareImageBlob = ref(null)
   const shareImageCache = useState('memeShareImageCache', () => new Map())
-  const { showShareShelf, onToggle } = useShareShelf(500)
+  const { showShareShelf, onToggle } = useShareShelf()
   // Custom ScrollArea handles scrollbar visuals, no overlay detection needed here
 
   // Computed share props
@@ -127,18 +127,6 @@
     },
     { immediate: true }
   )
-
-  // Dev logging
-  if (process.env.NODE_ENV === 'development') {
-    watch(
-      () => props.modalData,
-      (data) => {
-        if (data && import.meta.dev) {
-        }
-      },
-      { immediate: true }
-    )
-  }
 
   // Native scrollbar styling handled via CSS
 </script>

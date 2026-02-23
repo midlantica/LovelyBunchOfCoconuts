@@ -330,13 +330,6 @@
     }
   }
 
-  onMounted(() => {
-    window.addEventListener('keydown', onGlobalKeydown)
-  })
-  onUnmounted(() => {
-    window.removeEventListener('keydown', onGlobalKeydown)
-  })
-
   // Emit whenever tokens change
   watch(
     tokens,

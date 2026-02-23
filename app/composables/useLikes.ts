@@ -387,15 +387,8 @@ export function useLikes() {
         }
       }
       if (changed) {
-        if (
-          import.meta.dev &&
-          import.meta.env?.NUXT_PUBLIC_LIKES_VERBOSE === '1'
-        ) {
-        }
         persistToStorage()
       }
-      // Dev: minimal log once per call (comment out to silence completely)
-      // if (import.meta.dev) console.info('[likes] hydrated batch', Object.keys(counts).length)
     } catch (e) {
       if (
         import.meta.dev &&
@@ -413,12 +406,6 @@ export function useLikes() {
         if (retryCount < MAX_RETRIES) {
           _retryCount.set(batchKey, retryCount + 1)
           const retryDelay = 1500 * Math.pow(2, retryCount) // Exponential backoff
-
-          if (!import.meta.dev) {
-            // In production, only log on first retry
-            if (retryCount === 0) {
-            }
-          }
 
           setTimeout(() => {
             // Re-run for the same batch

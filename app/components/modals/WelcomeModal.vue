@@ -242,8 +242,8 @@
     text-decoration-style: solid;
     -webkit-text-decoration-skip-ink: none;
     text-decoration-skip-ink: none;
-    text-decoration-thickness: 7%;
-    text-underline-offset: 15%;
+    text-decoration-thickness: 8%;
+    text-underline-offset: -2%;
     text-underline-position: from-font;
     text-decoration-color: #ffffffb5;
   }

@@ -163,6 +163,8 @@ export function useWallBaseline() {
         rebuilding: false,
       }
     } catch (e) {
+      if (import.meta.dev)
+        console.warn('[useWallBaseline] buildBaselineNow failed:', e)
       baselineState.value.rebuilding = false
     }
   }

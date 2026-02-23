@@ -46,7 +46,7 @@
   const emit = defineEmits(['close'])
   const { generateContentUrl } = useContentUrls()
 
-  const { showShareShelf, onToggle } = useShareShelf(500)
+  const { showShareShelf, onToggle } = useShareShelf()
 
   // Check if body has actual content
   const hasBodyContent = computed(() => {
@@ -174,21 +174,7 @@
     showCue.value = shouldShow
     isBottom.value = shouldShow && nearBottom
   }
-  const onScroll = () => {
-    const el = bodyRef.value
-    if (!el) return
-    const hasOverflow = el.scrollHeight - el.clientHeight > 1
-    const atTop = el.scrollTop <= 4
-    const nearBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 4
-    const nextShow = hasOverflow && (atTop || nearBottom)
-    const nextPos = nearBottom ? 'bottom' : 'top'
-    if (nextShow) {
-      if (!showCue.value || lastCuePos.value !== nextPos) cueKey.value++
-      lastCuePos.value = nextPos
-    }
-    showCue.value = nextShow
-    isBottom.value = nextShow && nearBottom
-  }
+  const onScroll = () => recalcCue()
 
   onMounted(() => {
     nextTick(() => {
