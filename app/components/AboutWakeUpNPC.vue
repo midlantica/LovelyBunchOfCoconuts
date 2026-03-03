@@ -2,11 +2,15 @@
   <div class="mt-6 mb-6 flex flex-wrap items-center gap-8 px-3 max-md:flex-col">
     <!-- About WakeUpNPC -->
     <div class="flex-1">
-      <h1 class="font-300 text-seagull-200! mb-3 text-3xl">
+      <h1
+        class="font-300 mb-3 text-3xl"
+        style="color: var(--color-text-heading)"
+      >
         About Wake&hairsp;Up&hairsp;NPC
       </h1>
       <p
-        class="font-100 text-seagull-100 mb-3 text-xl leading-relaxed last:pb-0"
+        class="font-100 mb-3 text-xl leading-relaxed last:pb-0"
+        style="color: var(--color-text-body)"
       >
         It took millennia to build the West—Greeks to cathedrals to locomotives
         to microchips. Day Zero Woke Left barbarians would burn it to the

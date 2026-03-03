@@ -1,4 +1,3 @@
-f
 <template>
   <div
     class="card relative flex w-full cursor-pointer! flex-col transition-all duration-300 hover:scale-105 hover:border sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
@@ -8,12 +7,14 @@ f
         {{ tier }}
       </h3>
       <div
-        class="font-300 text-seagull-100 text-center text-4xl tracking-widest"
+        class="font-300 text-center text-4xl tracking-widest"
+        style="color: var(--color-text-heading)"
       >
         ${{ price }}
       </div>
       <div
-        class="font-100 mb-4 text-center text-lg tracking-wider text-slate-200 uppercase"
+        class="font-100 mb-4 text-center text-lg tracking-wider uppercase"
+        style="color: var(--color-text-muted)"
         :class="periodClass"
       >
         {{ period }}
@@ -22,7 +23,8 @@ f
         <div
           v-for="(feature, index) in features"
           :key="index"
-          class="font-100 px-2 py-1.5 text-center text-lg tracking-wide text-slate-300"
+          class="font-100 px-2 py-1.5 text-center text-lg tracking-wide"
+          style="color: var(--color-text-body)"
           :class="index % 2 === 0 ? 'bg-seagull-400/10 rounded-md' : ''"
         >
           {{ feature }}

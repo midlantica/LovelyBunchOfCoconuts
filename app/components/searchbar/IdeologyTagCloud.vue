@@ -27,17 +27,17 @@
   // Visual theme by group; add new groups here. Keeps template free of hard-coded names.
   const groupStyles = {
     Freedom: {
-      base: 'bg-seagull-300/20 text-slate-200 hover:bg-seagull-600/30',
-      active: 'bg-seagull-300/90 text-slate-950',
+      base: 'bg-theme-surface text-theme-body hover:bg-theme-overlay',
+      active: 'bg-theme-accent text-white',
     },
     Collectivism: {
-      base: 'bg-slate-200/20 text-slate-200 hover:bg-slate-500/30',
-      active: 'bg-slate-300 text-slate-900',
+      base: 'bg-theme-surface text-theme-body hover:bg-theme-overlay',
+      active: 'bg-theme-accent text-white',
     },
   }
   const defaultStyles = {
-    base: 'bg-white/10 text-slate-200 hover:bg-white/20',
-    active: 'bg-slate-300 text-slate-900',
+    base: 'bg-theme-surface text-theme-body hover:bg-theme-overlay',
+    active: 'bg-theme-accent text-white',
   }
   function classesFor(item) {
     const styles = groupStyles[item.group] || defaultStyles

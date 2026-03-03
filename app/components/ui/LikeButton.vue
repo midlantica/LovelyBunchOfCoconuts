@@ -44,7 +44,7 @@
         v-else
         :size="iconSize"
         class="scale-100 transition-all duration-200"
-        :class="[fadedUnliked ? 'text-[#b3b3b3]/50' : 'text-[#b3b3b3]']"
+        :class="[fadedUnliked ? 'text-theme-icon/50' : 'text-theme-icon']"
       />
       <span
         v-if="countInside && displayCount > 0 && showCount"

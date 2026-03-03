@@ -2,7 +2,7 @@
 <template>
   <div
     v-if="post && post.title && slug"
-    class="card group shadow-inset-card hover:border-seagull-400/50 postPanel relative isolate flex h-full cursor-pointer! flex-col gap-2 rounded-lg border border-transparent px-6 py-4 text-white hover:border hover:bg-slate-900"
+    class="card group hover:border-theme-border-hover postPanel text-theme-body hover:bg-theme-surface relative isolate flex h-full cursor-pointer! flex-col gap-2 rounded-lg px-6 py-4"
   >
     <!-- Like button only -->
     <div class="absolute top-1 right-1 z-20">
@@ -19,7 +19,7 @@
     <div class="flex h-full flex-col gap-2 overflow-hidden">
       <!-- Header from first H2 -->
       <h2
-        class="font-300 text-seagull-200 line-clamp-2 inline-block align-baseline tracking-wide text-shadow-xs"
+        class="font-300 text-theme-muted line-clamp-2 inline-block align-baseline tracking-wide"
         style="font-size: 1.25rem; line-height: 1.4"
       >
         {{ postHeader }}
@@ -36,7 +36,7 @@
   </div>
   <div
     v-else
-    class="card shadow-inset-card postPanel relative flex flex-col gap-2 rounded-lg px-5 py-4 text-white"
+    class="card shadow-inset-card postPanel text-theme-body relative flex flex-col gap-2 rounded-lg px-5 py-4"
   >
     <div class="my-auto">
       <h2 class="inline-block align-baseline">
@@ -191,7 +191,7 @@
     padding: 0;
     line-height: 1.4;
     font-size: 1.099688rem; /* 15% larger than 0.95625rem */
-    color: white;
+    color: var(--color-text-body);
   }
 
   /* Add small gap between paragraphs */
@@ -215,11 +215,11 @@
     padding-left: 0;
     line-height: 1.4;
     font-size: 1.099688rem; /* 15% larger than 0.95625rem */
-    color: white;
+    color: var(--color-text-body);
   }
 
   .post-preview-content :deep(ul li::marker) {
-    color: #a5f3fc; /* seagull-200 */
+    color: var(--color-accent-light);
   }
 
   /* Ordered lists with same spacing as paragraphs */
@@ -238,10 +238,10 @@
     padding-left: 0;
     line-height: 1.4;
     font-size: 1.099688rem; /* 15% larger than 0.95625rem */
-    color: white;
+    color: var(--color-text-body);
   }
 
   .post-preview-content :deep(ol li::marker) {
-    color: #a5f3fc; /* seagull-200 */
+    color: var(--color-accent-light);
   }
 </style>

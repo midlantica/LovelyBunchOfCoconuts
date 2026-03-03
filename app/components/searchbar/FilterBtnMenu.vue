@@ -137,7 +137,7 @@
   function btnClass(key) {
     const active = !!local[key]
     return active
-      ? 'bg-[#358fbb] text-black hover:brightness-110'
+      ? 'bg-seagull-600 text-white hover:brightness-110'
       : 'bg-seagull-800/90 text-slate-200/80 hover:brightness-[1.15] text-shadow-sm'
   }
 
@@ -207,7 +207,7 @@
       width: '2.7rem',
       height: '2.9rem',
       opacity: '1',
-      backgroundColor: '#06304b',
+      backgroundColor: 'var(--color-bg-base)',
       zIndex: -20,
       boxShadow: 'none',
     }

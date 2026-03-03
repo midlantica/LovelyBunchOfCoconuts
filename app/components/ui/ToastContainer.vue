@@ -15,7 +15,7 @@
         <div
           v-for="toast in toasts"
           :key="toast.id"
-          class="pointer-events-auto cursor-pointer rounded-lg border border-slate-600 bg-slate-800 px-5 py-3 text-sm text-white shadow-lg shadow-black/30"
+          class="border-theme-border bg-theme-elevated text-theme-body pointer-events-auto cursor-pointer rounded-lg border px-5 py-3 text-sm shadow-lg shadow-black/30"
           @click="dismissToast(toast.id)"
         >
           {{ toast.message }}

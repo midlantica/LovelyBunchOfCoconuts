@@ -2,7 +2,7 @@
   <button
     type="button"
     @click.stop="emit('click')"
-    class="rounded-lg p-2 transition-colors hover:bg-slate-800 focus:outline-none"
+    class="hover:bg-theme-overlay rounded-lg p-2 transition-colors focus:outline-none"
     aria-label="Toggle navigation menu"
   >
     <svg

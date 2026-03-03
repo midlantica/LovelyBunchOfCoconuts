@@ -8,7 +8,10 @@
       <nav
         v-if="isMenuOpen"
         @click.stop
-        class="absolute top-full right-0 z-1500 mt-1 rounded-md border border-slate-600/50 bg-slate-900 py-0 shadow-[0_8px_30px_rgb(0,0,0,0.6)] backdrop-blur-md"
+        :class="[
+          'nav-dropdown absolute top-full right-0 z-1500 mt-1 rounded-md border py-0 shadow-[0_8px_30px_rgb(0,0,0,0.6)] backdrop-blur-md',
+          isDark ? 'nav-dropdown--dark' : 'nav-dropdown--light',
+        ]"
       >
         <!-- Navigation Links -->
         <ul class="font-100 py-0.5">
@@ -33,6 +36,8 @@
 </template>
 
 <script setup>
+  const { isDark } = useTheme()
+
   const isMenuOpen = ref(false)
   const menuContainer = ref(null)
 
@@ -88,6 +93,18 @@
   .dropdown-leave-to {
     opacity: 0;
     transform: translateY(-10px);
+  }
+
+  /* Dark mode */
+  .nav-dropdown--dark {
+    background-color: #0f172a; /* slate-900 */
+    border-color: rgb(71 85 105 / 0.5); /* slate-600/50 */
+  }
+
+  /* Light mode: cream/off-white background, charcoal border */
+  .nav-dropdown--light {
+    background-color: #fdfdf8; /* cream-bright white */
+    border-color: rgba(26, 26, 26, 0.15); /* charcoal 15% */
   }
 
   /* Barlow Condensed font classes — weights must match their class names */

@@ -23,8 +23,8 @@
   const props = defineProps({
     railWidth: { type: Number, default: 5 },
     trackColor: { type: String, default: 'rgba(255, 255, 255, 0.08)' },
-    thumbColor: { type: String, default: '#0089cc' },
-    thumbHoverColor: { type: String, default: '#09acee' },
+    thumbColor: { type: String, default: 'var(--color-accent)' },
+    thumbHoverColor: { type: String, default: 'var(--color-accent-hover)' },
     paddingRight: { type: Number, default: 8 },
     showBottomFade: { type: Boolean, default: true },
     bottomFadeHeight: { type: Number, default: 8 },

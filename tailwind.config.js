@@ -25,7 +25,7 @@ export default {
         // Frequently used custom shadows
         modal: '0 6px 10px -3px black',
         'share-shelf': '0 8px 12px -6px black',
-        'inset-card': 'inset 0 0 12px 0 #0f1e24',
+        'inset-card': 'inset 0 0 12px 0 var(--color-shadow-inset, #0f1e24)',
       },
       fontFamily: {
         helvetica: ['Helvetica', 'Arial', 'sans-serif'],
@@ -39,6 +39,24 @@ export default {
         // Custom: keep meme rows 2-up until below 460px
       },
       colors: {
+        // Semantic theme tokens — respond to dark/light theme switching
+        theme: {
+          base: 'var(--color-bg-base)',
+          surface: 'var(--color-bg-surface)',
+          elevated: 'var(--color-bg-elevated)',
+          overlay: 'var(--color-bg-overlay)',
+          accent: 'var(--color-accent)',
+          'accent-hover': 'var(--color-accent-hover)',
+          'accent-light': 'var(--color-accent-light)',
+          body: 'var(--color-text-body)',
+          muted: 'var(--color-text-muted)',
+          subtle: 'var(--color-text-subtle)',
+          disabled: 'var(--color-text-disabled)',
+          icon: 'var(--color-text-icon)',
+          border: 'var(--color-border)',
+          'border-subtle': 'var(--color-border-subtle)',
+          'border-hover': 'var(--color-border-hover)',
+        },
         seagull: {
           50: '#f0f9ff',
           100: '#dff3ff',
@@ -60,8 +78,9 @@ export default {
     function ({ addComponents }) {
       addComponents({
         '.card': {
-          '@apply bg-slate-900 shadow-xl border-t border-seagull-600/30 rounded-md':
-            {},
+          'background-color': 'var(--color-bg-surface)',
+          'border-color': 'var(--color-border)',
+          '@apply shadow-xl border rounded-md': {},
         },
       })
     },

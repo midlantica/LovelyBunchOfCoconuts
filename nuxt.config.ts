@@ -358,11 +358,11 @@ export default defineNuxtConfig({
         },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
-      // Inline critical background color to avoid white flash before CSS loads
+      // Inline critical styles — background is handled by CSS vars via data-theme attribute
       style: [
         {
           children:
-            'html{background-color:#020617!important;color:#e2e8f0!important;color-scheme:dark!important;font-family:system-ui,-apple-system,sans-serif!important;}body{background-color:#020617!important;color:#e2e8f0!important;margin:0;padding:0;font-family:system-ui,-apple-system,sans-serif!important;}#__nuxt{background-color:#020617!important;min-height:100vh;}*{box-sizing:border-box;}#modal-root{position:fixed;inset:0;pointer-events:none;}',
+            'html,body{margin:0;padding:0;font-family:system-ui,-apple-system,sans-serif;}#__nuxt{min-height:100vh;}*{box-sizing:border-box;}#modal-root{position:fixed;inset:0;pointer-events:none;}',
         } as any,
       ],
       script: [

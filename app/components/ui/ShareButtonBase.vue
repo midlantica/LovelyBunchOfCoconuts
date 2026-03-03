@@ -2,9 +2,9 @@
   <div class="relative z-10" ref="buttonRef">
     <button
       @click="handleClick"
-      class="relative z-10 flex items-center justify-center rounded-lg bg-transparent text-gray-400 transition-all duration-200 hover:cursor-pointer! hover:text-white hover:brightness-150"
+      class="relative z-10 flex items-center justify-center rounded-lg text-theme-icon transition-all duration-200 hover:cursor-pointer! hover:text-theme-body hover:brightness-110"
       :aria-label="ariaLabel"
-      :style="buttonStyle"
+      :style="[{ backgroundColor: 'var(--color-share-btn-bg)' }, buttonStyle]"
     >
       <slot name="icon">
         <Icon v-if="iconName" :name="iconName" :size="iconSize" />
@@ -22,7 +22,7 @@
     >
       <div
         v-if="showToast"
-        class="pointer-events-none absolute bottom-full left-1/2 z-9999 mb-2 -translate-x-1/2 transform rounded-lg border border-slate-600 bg-slate-800 px-3 py-1.5 text-sm whitespace-nowrap text-white shadow-lg"
+        class="border-theme-border bg-theme-elevated text-theme-body pointer-events-none absolute bottom-full left-1/2 z-9999 mb-2 -translate-x-1/2 transform rounded-lg border px-3 py-1.5 text-sm whitespace-nowrap shadow-lg"
       >
         {{ toastMessage }}
       </div>

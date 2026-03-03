@@ -6,12 +6,113 @@
 @import './transitions.css';
 @import './lazyLoading.css';
 
-:root {
-  --dark: #06304b; /* seagull-900 */
-  --medium: #0a81c2; /* seagull-700 */
-  --light: #6dd3ff; /* seagull-300 */
-  --accent: #09acee; /* seagull-500 */
-  /* --accent: hsl(198, 55%, 50%); */
+/* ============================================================
+   DESIGN TOKENS — Dark Theme (default)
+   All semantic color roles are defined here as CSS custom
+   properties. The light theme overrides them in [data-theme="light"].
+   ============================================================ */
+
+:root,
+[data-theme='dark'] {
+  /* ── Base Backgrounds ─────────────────────────────────── */
+  --color-bg-base: #020617; /* deep navy-black — page/body background */
+  --color-bg-surface: #131d34; /* dark navy — cards, wall items, header, footer */
+  --color-bg-elevated: #1e2a45; /* slightly lighter navy — modals, popovers */
+  --color-bg-overlay: #263352; /* lightest navy — hover overlays */
+
+  /* ── Brand / Accent ───────────────────────────────────── */
+  --color-accent: #09acee; /* seagull-500 — primary CTA, active states */
+  --color-accent-hover: #33c3fd; /* seagull-400 — accent hover / active icon */
+  --color-accent-light: #6dd3ff; /* seagull-300 — logo fill, highlights */
+
+  /* ── Text ─────────────────────────────────────────────── */
+  --color-text-body: #fdfdf8; /* cream-bright white — body copy */
+  --color-text-heading: #fdfdf8; /* cream-bright white — headings */
+  --color-text-muted: #fdfdf8; /* cream-bright white — secondary / muted text */
+  --color-logo-byline: #ffffff; /* white — logo byline text */
+  --color-logo-npc-grey: #dadada; /* light grey — NPC/WakeUp text in logo */
+  --color-text-subtle: #6dd3ff; /* seagull-300 — tertiary / de-emphasized */
+  --color-text-disabled: #6b7280; /* gray-500 — disabled states */
+  --color-text-icon: #b3b3b3; /* neutral — default icon color */
+
+  /* ── Borders ──────────────────────────────────────────── */
+  --color-border: transparent; /* no border on wall cards in dark mode */
+  --color-border-subtle: #7c7c7c4a; /* neutral 29% opacity */
+  --color-border-hover: #33c3fd80; /* seagull-400 50% — card hover border */
+  --color-share-btn-bg: #1b1b1b; /* near-black — share button background */
+  --color-share-shelf-bg: #1a1a1a; /* charcoal — share shelf background in dark mode */
+
+  /* ── Shadows ──────────────────────────────────────────── */
+  --color-shadow-inset: #010410; /* deep navy inset shadow for cards */
+
+  /* ── Divider Arrow (grift card separator) ─────────────── */
+  --color-divider-line: rgba(255, 255, 255, 0.1); /* subtle white line */
+  --color-divider-arrow: rgba(255, 255, 255, 0.3); /* white triangle */
+
+  /* ── Legacy aliases (backward compat) ────────────────── */
+  --dark: var(--color-bg-base);
+  --medium: #0a81c2;
+  --light: var(--color-accent-light);
+  --accent: var(--color-accent);
+}
+
+/* ============================================================
+   LIGHT THEME — applied via <html data-theme="light">
+   ============================================================ */
+
+[data-theme='light'] {
+  /* ── Base Backgrounds ─────────────────────────────────── */
+  --color-bg-base: #d5e8f0; /* pale seagull blue — page/body background */
+  --color-bg-surface: #fdfdf8; /* cream-bright white — wall items, cards */
+  --color-bg-elevated: #eeede8; /* slightly deeper off-white — modals, popovers */
+  --color-bg-overlay: #e5e4de; /* warm grey-white — hover overlays */
+
+  /* ── Brand / Accent ───────────────────────────────────── */
+  --color-accent: #0089cc; /* seagull-600 */
+  --color-accent-hover: #006ea5; /* seagull-700 */
+  --color-accent-light: #09acee; /* seagull-500 */
+
+  /* ── Text ─────────────────────────────────────────────── */
+  --color-text-body: #1a1a1a; /* charcoal — all body copy */
+  --color-text-heading: #1a1a1a; /* charcoal — headings (unified with body) */
+  --color-logo-byline: #1a1a1a; /* charcoal — logo byline text in light mode */
+  --color-logo-npc-grey: #888888; /* npc-grey — medium grey for NPC/WakeUp text in light mode */
+  --color-text-muted: #1a1a1a; /* charcoal — secondary text (unified) */
+  --color-text-subtle: #1a1a1a; /* charcoal — tertiary text (unified) */
+  --color-text-disabled: #9ca3af; /* gray-400 */
+  --color-text-icon: #1a1a1a; /* charcoal — icons */
+
+  /* ── Borders ──────────────────────────────────────────── */
+  --color-border: transparent; /* no border on wall cards at rest */
+  --color-border-subtle: #1a1a1a26; /* charcoal 15% opacity */
+  --color-border-hover: #1a1a1a; /* charcoal — card hover border in light mode */
+  --color-share-btn-bg: #e5e4de; /* warm grey — share button background in light mode */
+  --color-share-shelf-bg: #e0dfd9; /* light grey — share shelf in light mode */
+
+  /* ── Shadows ──────────────────────────────────────────── */
+  --color-shadow-inset: transparent; /* no inset shadow in light mode */
+
+  /* ── Scrollbar ────────────────────────────────────────── */
+  --scrollbar-track-bg: #c8dde8; /* pale blue-grey track matching page bg */
+
+  /* ── Divider Arrow (grift card separator) ─────────────── */
+  --color-divider-line: rgba(
+    0,
+    0,
+    0,
+    0.12
+  ); /* subtle dark line on light cards */
+  --color-divider-arrow: rgba(0, 0, 0, 0.2); /* dark triangle on light cards */
+
+  /* ── Close Button (modal X icon) ─────────────────────── */
+  --color-close-icon: hsl(0 0% 55% / 1); /* medium grey at rest */
+  --color-close-icon-hover: hsl(0 0% 15% / 1); /* dark charcoal on hover */
+
+  /* ── Legacy aliases ───────────────────────────────────── */
+  --dark: var(--color-bg-base);
+  --medium: var(--color-accent);
+  --light: var(--color-accent-light);
+  --accent: var(--color-accent);
 }
 
 /* Avoid transition flickers during first paint */

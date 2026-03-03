@@ -1,7 +1,7 @@
 <!-- components/TheHeader.vue -->
 <template>
   <header
-    class="sticky top-0 left-0 z-10 w-full bg-slate-900 px-2 pt-2 pb-1 sm:p-0 sm:pt-2 sm:pb-1"
+    class="bg-theme-elevated sticky top-0 left-0 z-10 w-full px-2 pt-2 pb-1 sm:p-0 sm:pt-2 sm:pb-1"
   >
     <div class="pr-2 pl-4 sm:pr-4">
       <!-- Flex container with three sections for balanced layout -->
@@ -20,8 +20,47 @@
           </button>
         </div>
 
-        <!-- Right navigation menu -->
-        <div class="w-10">
+        <!-- Right: theme toggle + navigation menu -->
+        <div class="flex items-center gap-1">
+          <button
+            type="button"
+            :title="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+            class="text-theme-muted hover:text-theme-accent-light flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-white/10 focus:outline-none"
+            @click="toggleTheme"
+          >
+            <!-- Sun icon (shown in dark mode → click to go light) -->
+            <svg
+              v-if="isDark"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"
+              />
+            </svg>
+            <!-- Moon icon (shown in light mode → click to go dark) -->
+            <svg
+              v-else
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"
+              />
+            </svg>
+          </button>
           <LayoutNavigationMenu />
         </div>
       </div>
@@ -31,6 +70,11 @@
 
 <script setup>
   const route = useRoute()
+  const { isDark, toggleTheme, init } = useTheme()
+
+  onMounted(() => {
+    init()
+  })
 
   // Guard against double-clicks during reload
   const isReloading = ref(false)

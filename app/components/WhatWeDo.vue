@@ -1,6 +1,11 @@
 <template>
   <div class="mt-10 mb-12">
-    <h2 class="text-seagull-200! mb-6 text-center text-3xl">What We Do</h2>
+    <h2
+      class="mb-6 text-center text-3xl"
+      style="color: var(--color-text-heading)"
+    >
+      What We Do
+    </h2>
 
     <div class="flex flex-col gap-6">
       <div class="flex min-w-1/2 flex-col items-stretch gap-6 sm:flex-row">

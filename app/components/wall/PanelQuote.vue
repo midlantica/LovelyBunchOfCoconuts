@@ -2,7 +2,7 @@
 <template>
   <div
     v-if="quote && quote.headings && quote.headings.length > 0 && slug"
-    class="card group shadow-inset-card hover:border-seagull-400/50 quotePanel relative isolate flex cursor-pointer! flex-col gap-2 rounded-lg border border-transparent px-6 py-4 text-white hover:border hover:bg-slate-900"
+    class="card group hover:border-theme-border-hover quotePanel text-theme-body hover:bg-theme-surface relative isolate flex cursor-pointer! flex-col gap-2 rounded-lg px-6 py-4"
     @click="openModal"
   >
     <!-- Like button only -->
@@ -18,12 +18,12 @@
     </div>
     <div class="my-auto flex flex-col flex-wrap gap-0.5">
       <h1
-        class="font-100 inline-block align-baseline tracking-wide text-shadow-xs"
-        style="font-size: 1.25rem; line-height: 1.4; color: white"
+        class="font-100 inline-block align-baseline tracking-wide"
+        style="font-size: 1.25rem; line-height: 1.4"
         v-html="formatQuote(quote.headings[0])"
       ></h1>
       <p
-        class="font-100 text-seagull-200 inline-block align-baseline tracking-wide text-shadow-xs"
+        class="font-100 text-theme-muted inline-block align-baseline tracking-wide"
         style="font-size: 1.25rem; line-height: 1.4"
         v-if="quote.attribution"
       >
@@ -33,10 +33,10 @@
   </div>
   <div
     v-else
-    class="card shadow-inset-card quotePanel relative flex flex-col gap-2 rounded-lg px-5 py-4 text-white"
+    class="card shadow-inset-card quotePanel text-theme-body relative flex flex-col gap-2 rounded-lg px-5 py-4"
   >
     <div class="my-auto">
-      <h2 class="inline-block align-baseline" style="color: white">
+      <h2 class="inline-block align-baseline">
         {{
           quote && quote.headings && quote.headings.length > 0
             ? `&ldquo;${quote.headings[0]}&rdquo;`
@@ -44,7 +44,7 @@
         }}
       </h2>
       <p
-        class="font-100 text-seagull-200 inline-block align-baseline text-xl"
+        class="font-100 text-theme-muted inline-block align-baseline text-xl"
         v-if="quote && quote.attribution"
       >
         — {{ quote.attribution }}

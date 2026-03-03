@@ -5,15 +5,26 @@
   }
 
   body {
-    @apply font-100 bg-slate-950 font-sans text-white;
-    color-scheme: dark;
+    @apply font-100 font-sans;
+    background-color: var(--color-bg-base);
+    color: var(--color-text-body);
     /* -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; */
   }
 
+  /* Light theme: bump all copy to font-weight 200 */
+  [data-theme='light']:is(body, p, ul, li, ol, h1, h2, h3, h4, h5, h6) {
+    font-weight: 200;
+  }
+
   .prose a,
   a {
-    @apply hover:text-seagull-200 font-100 text-white underline;
+    @apply font-100 underline;
+    color: var(--color-accent);
+  }
+  .prose a:hover,
+  a:hover {
+    color: var(--color-accent-hover);
   }
 
   h1,
@@ -22,7 +33,8 @@
   h4,
   h5,
   h6 {
-    @apply font-100 text-seagull-200 font-sans leading-normal tracking-wider text-pretty first:mt-0 last:mb-0;
+    @apply font-100 font-sans leading-normal tracking-wider text-pretty first:mt-0 last:mb-0;
+    color: var(--color-text-heading);
   }
   h1 {
     @apply text-2xl;
@@ -286,6 +298,38 @@ div > p:last-of-type {
   }
 }
 
+/* Light theme: override seagull-* headings to charcoal on About/Advertising pages.
+   These components use inline Tailwind classes like text-seagull-200! which apply
+   color with !important, so we need to match or beat that specificity. */
+[data-theme='light'] body.about h1,
+[data-theme='light'] body.about h2,
+[data-theme='light'] body.about h3,
+[data-theme='light'] body.about h4,
+[data-theme='light'] body.about h5,
+[data-theme='light'] body.about h6,
+[data-theme='light'] body.advertising h1,
+[data-theme='light'] body.advertising h2,
+[data-theme='light'] body.advertising h3,
+[data-theme='light'] body.advertising h4,
+[data-theme='light'] body.advertising h5,
+[data-theme='light'] body.advertising h6 {
+  color: #1a1a1a !important;
+}
+
+/* Also override any element with seagull text color classes in light mode on these pages */
+[data-theme='light'] body.about .text-seagull-100,
+[data-theme='light'] body.about .text-seagull-200,
+[data-theme='light'] body.about .text-seagull-300,
+[data-theme='light'] body.about .text-seagull-400,
+[data-theme='light'] body.about .text-seagull-500,
+[data-theme='light'] body.advertising .text-seagull-100,
+[data-theme='light'] body.advertising .text-seagull-200,
+[data-theme='light'] body.advertising .text-seagull-300,
+[data-theme='light'] body.advertising .text-seagull-400,
+[data-theme='light'] body.advertising .text-seagull-500 {
+  color: #1a1a1a !important;
+}
+
 /* ============================================================================
    PROSE OVERRIDES - MUST BE OUTSIDE @layer FOR PROPER SPECIFICITY
    ============================================================================
@@ -383,3 +427,99 @@ div > p:last-of-type {
 }
 
 /* Post modal content list styling is now handled in ModalPost.vue scoped styles */
+
+/* =====================================================================
+   LIGHT THEME — WALL ITEM OVERRIDES
+   Outside @layer for maximum specificity over Tailwind utilities.
+   ===================================================================== */
+[data-theme='light'] .card {
+  box-shadow: 0px 2px 4px -2px black !important;
+}
+
+/* Force font-weight 200 on ALL descendants of .card in light mode.
+   Uses * to beat inline font-100 utility classes on h1/h2/p elements. */
+[data-theme='light'] .card *,
+[data-theme='light'] .card {
+  font-weight: 200 !important;
+}
+
+/* =====================================================================
+   LIGHT THEME — MODAL TEXT
+   All modal content should be charcoal black.
+   We target specific text-bearing elements rather than a wildcard *
+   so the close button can manage its own color independently.
+   ===================================================================== */
+[data-theme='light'] .modal-frame p,
+[data-theme='light'] .modal-frame h1,
+[data-theme='light'] .modal-frame h2,
+[data-theme='light'] .modal-frame h3,
+[data-theme='light'] .modal-frame h4,
+[data-theme='light'] .modal-frame h5,
+[data-theme='light'] .modal-frame h6,
+[data-theme='light'] .modal-frame span,
+[data-theme='light'] .modal-frame li,
+[data-theme='light'] .modal-frame a,
+[data-theme='light'] .modal-frame blockquote,
+[data-theme='light'] .modal-frame label,
+[data-theme='light'] .modal-frame strong,
+[data-theme='light'] .modal-frame em,
+[data-theme='light'] .modal-frame div:not(.close-button) {
+  color: #1a1a1a !important;
+}
+
+/* =====================================================================
+   LIGHT THEME — ABOUT & ADVERTISING PAGES
+   Force all text to charcoal. These pages use hardcoded color utilities
+   (text-seagull-*, text-slate-*) so we override at the body class level.
+   ===================================================================== */
+[data-theme='light'] body.about *,
+[data-theme='light'] body.advertising * {
+  color: #1a1a1a !important;
+}
+
+/* =====================================================================
+   LIGHT THEME — CONTACT FORM INPUTS
+   bg-black/20 renders too dark on light backgrounds. Override to a
+   very light off-white so inputs look clean and readable.
+   Placeholder text also forced to charcoal.
+   ===================================================================== */
+[data-theme='light'] body.about input,
+[data-theme='light'] body.about textarea {
+  background-color: #f0efea !important;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.08) !important;
+}
+[data-theme='light'] body.about input::placeholder,
+[data-theme='light'] body.about textarea::placeholder {
+  color: #1a1a1a !important;
+  opacity: 0.5;
+}
+
+/* =====================================================================
+   LIGHT THEME — SEARCH INPUT
+   Placeholder and typed text should be charcoal. Suggestion dropdown
+   items use hardcoded slate colors so override those too.
+   ===================================================================== */
+[data-theme='light'] #search-input::placeholder {
+  color: #1a1a1a !important;
+  opacity: 0.5;
+}
+[data-theme='light'] #search-input {
+  color: #1a1a1a !important;
+}
+
+/* =====================================================================
+   LIGHT THEME — SCROLLBAR
+   In light mode, give the scrollbar track a pale grey background so it's
+   visible against the light page background.
+   ===================================================================== */
+[data-theme='light'] {
+  --scrollbar-track-bg: #e5e5e5; /* pale grey track */
+}
+
+[data-theme='light'] *::-webkit-scrollbar-track {
+  background: #e5e5e5;
+}
+
+[data-theme='light'] * {
+  scrollbar-color: #045d88 #e5e5e5;
+}

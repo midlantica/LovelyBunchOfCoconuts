@@ -497,6 +497,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/compassion",
+    "title": "Compassion",
+    "grift": "Compassion",
+    "decode": "Your tax money to buy votes",
+    "body": ""
+  },
+  {
     "_path": "/grifts/compassionate-code-of-conduct",
     "title": "Compassionate Code of Conduct",
     "grift": "Compassionate Code of Conduct",
@@ -1110,6 +1117,13 @@
     "title": "Environmental Racism",
     "grift": "Environmental Racism",
     "decode": "Pollution is now prejudiced.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/equal-opportunity",
+    "title": "Equal opportunity",
+    "grift": "Equal opportunity",
+    "decode": "Preferential treatment",
     "body": ""
   },
   {
@@ -1974,6 +1988,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/non-judgemental",
+    "title": "Non-judgemental",
+    "grift": "Non-judgemental",
+    "decode": "Blame society, not yourself",
+    "body": ""
+  },
+  {
     "_path": "/grifts/normalize-emotional-labor",
     "title": "Normalize Emotional Labor",
     "grift": "Normalize Emotional Labor",
@@ -2538,6 +2559,13 @@
     "title": "Silence is violence",
     "grift": "Silence is violence",
     "decode": "Shut up and agree with us.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/simplistic",
+    "title": "Simplistic",
+    "grift": "Simplistic",
+    "decode": "An irrefutable argument",
     "body": ""
   },
   {

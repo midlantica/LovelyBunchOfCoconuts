@@ -6,7 +6,8 @@
       <slot name="title">{{ title }}</slot>
     </h3>
     <p
-      class="font-100 text-seagull-100 block w-full text-left text-lg last:pb-0"
+      class="font-100 block w-full text-left text-lg last:pb-0"
+      style="color: var(--color-text-body)"
     >
       {{ description }}
     </p>

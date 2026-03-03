@@ -9,7 +9,8 @@
   >
     <div
       v-if="show"
-      class="shadow-share-shelf absolute -top-2 w-full rounded-b-lg border-b-[0.05em] border-[#7c7c7c4a] bg-[#1b1b1b] px-3 pt-4 pb-2 sm:px-3.5"
+      class="shadow-share-shelf border-theme-border-subtle absolute -top-2 w-full rounded-b-lg border-b-[0.05em] px-3 pt-4 pb-2 sm:px-3.5"
+      :style="{ backgroundColor: 'var(--color-share-shelf-bg)' }"
     >
       <div class="flex items-center gap-4">
         <!-- Share cluster flush left -->
@@ -39,7 +40,11 @@
                     ? 'brightness-150'
                     : 'group-hover:brightness-150'
                 "
-                :style="isCopyingText ? 'color: #33c3fd' : 'color: #b3b3b3'"
+                :style="
+                  isCopyingText
+                    ? 'color: var(--color-accent-hover)'
+                    : 'color: var(--color-text-icon)'
+                "
               />
             </button>
 
@@ -79,10 +84,10 @@
                 "
                 :style="
                   disableCopyImage
-                    ? 'color: #6b7280'
+                    ? 'color: var(--color-text-disabled)'
                     : isCopying
-                      ? 'color: #33c3fd'
-                      : 'color: #b3b3b3'
+                      ? 'color: var(--color-accent-hover)'
+                      : 'color: var(--color-text-icon)'
                 "
               />
             </button>
@@ -116,10 +121,10 @@
                 "
                 :style="
                   disableCopyImage
-                    ? 'color: #6b7280'
+                    ? 'color: var(--color-text-disabled)'
                     : isDownloading
-                      ? 'color: #33c3fd'
-                      : 'color: #b3b3b3'
+                      ? 'color: var(--color-accent-hover)'
+                      : 'color: var(--color-text-icon)'
                 "
               />
             </button>

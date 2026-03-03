@@ -6,7 +6,7 @@
   >
     <button
       type="button"
-      class="flex items-center justify-center text-white/80 hover:text-white focus:outline-none"
+      class="text-theme-icon hover:text-theme-body flex items-center justify-center focus:outline-none"
       :aria-expanded="open ? 'true' : 'false'"
       aria-haspopup="menu"
       @click.stop="toggle()"
@@ -17,10 +17,10 @@
 
     <div
       v-if="open"
-      class="absolute top-[1.9rem] right-0 z-20 min-w-[200px] rounded-md border border-slate-700 bg-slate-900/95 px-2.5 py-1.5 shadow-lg backdrop-blur"
+      class="border-theme-border bg-theme-elevated absolute top-[1.9rem] right-0 z-20 min-w-[200px] rounded-md border px-2.5 py-1.5 shadow-lg backdrop-blur"
       role="menu"
     >
-      <div class="mb-1.5 text-[11px] tracking-wide text-slate-300 uppercase">
+      <div class="text-theme-subtle mb-1.5 text-[11px] tracking-wide uppercase">
         Filter by type
       </div>
       <ul class="space-y-[.2rem]">
@@ -32,8 +32,8 @@
               class="accent-seagull-400"
               @change="onToggle(opt.key)"
             />
-            <span class="text-[13px] text-slate-200">{{ opt.label }}</span>
-            <span class="ml-auto font-mono text-[11px] text-slate-400">{{
+            <span class="text-theme-body text-[13px]">{{ opt.label }}</span>
+            <span class="text-theme-subtle ml-auto font-mono text-[11px]">{{
               counts?.wall?.[opt.key] ?? 0
             }}</span>
           </label>
@@ -41,13 +41,13 @@
       </ul>
       <div class="mt-1.5 flex justify-between">
         <button
-          class="rounded bg-slate-800 px-1.5 py-0.5 text-[11px] text-slate-200 hover:bg-slate-700"
+          class="bg-theme-overlay text-theme-body hover:bg-theme-border rounded px-1.5 py-0.5 text-[11px]"
           @click="selectAll()"
         >
           All
         </button>
         <button
-          class="rounded bg-slate-800 px-1.5 py-0.5 text-[11px] text-slate-200 hover:bg-slate-700"
+          class="bg-theme-overlay text-theme-body hover:bg-theme-border rounded px-1.5 py-0.5 text-[11px]"
           @click="selectNoneThenDefault()"
         >
           Default

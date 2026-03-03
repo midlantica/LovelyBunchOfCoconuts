@@ -2,7 +2,7 @@
 <template>
   <div
     v-if="grift && grift.grift && grift.decode && slug"
-    class="card group shadow-inset-card hover:border-seagull-400/50 relative isolate flex h-full cursor-pointer! flex-col gap-2 rounded-lg border border-transparent px-4 py-3 text-white transition-colors hover:border hover:bg-slate-900"
+    class="card group hover:border-theme-border-hover text-theme-body hover:bg-theme-surface relative isolate flex h-full cursor-pointer! flex-col gap-2 rounded-lg px-4 py-3 transition-colors"
     @click="openModal"
   >
     <!-- Like button only -->
@@ -27,11 +27,10 @@
           class="w-8"
         />
         <h2
-          class="font-100 line-clamp-1 tracking-wide text-shadow-xs"
+          class="font-100 line-clamp-1 tracking-wide"
           :style="{
             fontSize: griftFontSize,
             lineHeight: '1.4',
-            color: 'white',
           }"
           v-if="grift.grift"
         >
@@ -48,7 +47,7 @@
           class="w-8"
         />
         <h2
-          class="font-100 text-seagull-200 line-clamp-1 tracking-wide text-shadow-xs"
+          class="font-100 text-theme-muted line-clamp-1 tracking-wide"
           :style="{ fontSize: decodeFontSize, lineHeight: '1.4' }"
           v-if="grift.decode"
         >
@@ -59,7 +58,7 @@
   </div>
   <div
     v-else
-    class="card shadow-inset-card relative flex h-full flex-col gap-2 rounded-lg px-4 py-3 text-white"
+    class="card shadow-inset-card text-theme-body relative flex h-full flex-col gap-2 rounded-lg px-4 py-3"
   >
     <div class="my-auto">
       <div class="flex items-center gap-3">
@@ -70,11 +69,11 @@
           height="32"
           class="w-8"
         />
-        <h2 class="line-clamp-1" style="color: white">
+        <h2 class="line-clamp-1">
           {{ grift && grift.grift ? `'${grift.grift}'` : 'Missing grift' }}
         </h2>
       </div>
-      <hr class="my-2 border-t border-white/10" />
+      <hr class="border-theme-border my-2 border-t" />
       <div class="flex items-center gap-3">
         <img
           src="~/assets/icons/player_icon.svg"
@@ -83,7 +82,7 @@
           height="32"
           class="w-8"
         />
-        <h2 class="text-seagull-200 line-clamp-1" v-if="grift && grift.decode">
+        <h2 class="text-theme-muted line-clamp-1" v-if="grift && grift.decode">
           {{ grift.decode }}
         </h2>
       </div>

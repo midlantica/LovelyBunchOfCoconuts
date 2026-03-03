@@ -99,7 +99,7 @@
       case 'secondary':
         return 'bg-seagull-800! hover:bg-seagull-900! !text-seagull-50 hover:text-white! border-0! font-400!'
       case 'tertiary':
-        return 'bg-slate-300! hover:bg-slate-400! !text-slate-950 hover:!text-slate-900 border-0! font-400!'
+        return 'bg-theme-overlay! hover:bg-theme-border! text-theme-body! border-0! font-400!'
       case 'outline':
         return '!bg-transparent hover:!bg-white/20 text-black! border-0! ring-1 ring-black/50 hover:ring-2 hover:ring-black font-400!'
       case 'outline-dark':

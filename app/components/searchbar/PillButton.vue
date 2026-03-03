@@ -23,8 +23,7 @@
 <style scoped>
   @reference '../../assets/css/main.css';
   .pill-btn {
-    @apply font-100 flex cursor-pointer! items-center justify-between gap-1 rounded-md bg-slate-800 px-3 pt-[.2rem] pb-[0.3rem] text-base tracking-wider text-slate-200 uppercase transition;
-    outline: none;
+    @apply font-100 bg-theme-surface text-theme-body hover:bg-theme-overlay tran outline: none flex cursor-pointer! items-center justify-between gap-1 rounded-md px-3 pt-[.2rem] pb-[0.3rem] text-base tracking-wider uppercase;
   }
   .pill-btn:focus {
     outline: none;

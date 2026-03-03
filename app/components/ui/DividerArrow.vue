@@ -3,7 +3,7 @@
   <div class="relative my-2" :class="wrapperClass">
     <hr :class="['border-t', colorClass, hrClass]" />
     <span
-      class="left-1/2 absolute -translate-x-1/2"
+      class="absolute left-1/2 -translate-x-1/2"
       :style="triangleStyle"
     ></span>
   </div>
@@ -11,7 +11,7 @@
 
 <script setup>
   const props = defineProps({
-    colorClass: { type: String, default: 'border-white/10' },
+    colorClass: { type: String, default: '' },
     hrClass: { type: String, default: '' },
     wrapperClass: { type: String, default: '' },
     size: { type: Number, default: 5 },
@@ -26,8 +26,14 @@
       width: 0,
       borderLeft: `${s}px solid transparent`,
       borderRight: `${s}px solid transparent`,
-      borderTop: `${s}px solid rgba(255, 255, 255, ${props.opacity})`,
+      borderTop: `${s}px solid var(--color-divider-arrow)`,
       bottom: `${props.offset}px`,
     }
   })
 </script>
+
+<style scoped>
+  hr {
+    border-color: var(--color-divider-line);
+  }
+</style>

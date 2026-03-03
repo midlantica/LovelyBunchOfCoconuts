@@ -1,11 +1,17 @@
 <template>
   <div class="mx-auto w-full max-w-3xl px-6 py-0 md:px-6">
-    <h1 class="text-seagull-100! mb-4 text-center text-3xl">Advertising</h1>
+    <h1
+      class="mb-4 text-center text-3xl"
+      style="color: var(--color-text-heading)"
+    >
+      Advertising
+    </h1>
 
     <!-- Teaser -->
     <div class="mb-8 px-6">
       <p
-        class="font-100 mx-auto max-w-2xl text-center text-xl leading-normal text-slate-300"
+        class="font-100 mx-auto max-w-2xl text-center text-xl leading-normal"
+        style="color: var(--color-text-body)"
       >
         The Left's propaganda torrent never stops. We're done ceding ideological
         ground. As Churchill warned: "Wars are not won by evacuation." Your
@@ -21,10 +27,13 @@
         :key="benefit.title"
         class="card font-400 flex flex-1 flex-col gap-2 p-5"
       >
-        <h3 class="font-300 text-seagull-200 text-xl leading-tight">
+        <h3
+          class="font-300 text-xl leading-tight"
+          style="color: var(--color-text-heading)"
+        >
           {{ benefit.title }}
         </h3>
-        <p class="font-100 text-lg text-slate-300">
+        <p class="font-100 text-lg" style="color: var(--color-text-body)">
           {{ benefit.description }}
         </p>
       </div>
@@ -32,17 +41,26 @@
 
     <!-- Pricing Tiers -->
     <div class="mb-8 px-3">
-      <h2 class="text-seagull-100! mb-3 text-center text-3xl">Pricing Tiers</h2>
+      <h2
+        class="mb-3 text-center text-3xl"
+        style="color: var(--color-text-heading)"
+      >
+        Pricing Tiers
+      </h2>
 
       <!-- Square Ads Section -->
       <div class="mb-8">
         <div class="mb-6">
           <h3
             class="font-300 mb-2 text-center text-2xl leading-tight uppercase"
+            style="color: var(--color-text-heading)"
           >
             Square Ads
           </h3>
-          <p class="font-100 block text-center text-xl text-slate-300">
+          <p
+            class="font-100 block text-center text-xl"
+            style="color: var(--color-text-body)"
+          >
             Native integration in meme slots. 378&hairsp;x&hairsp;378px • JPG or
             PNG • Max 500KB
           </p>
@@ -66,10 +84,14 @@
         <div class="mb-6">
           <h3
             class="font-300 mb-2 text-center text-2xl leading-tight uppercase"
+            style="color: var(--color-text-heading)"
           >
             Horizontal Ads
           </h3>
-          <p class="font-100 block text-center text-xl text-slate-300">
+          <p
+            class="font-100 block text-center text-xl"
+            style="color: var(--color-text-body)"
+          >
             Quote slot placement. 768&hairsp;x&hairsp;100px • JPG or PNG • Max
             500KB • Add 50% to tier price
           </p>
@@ -91,10 +113,13 @@
 
     <!-- CTA -->
     <div class="mb-12 px-3 text-center">
-      <h2 class="font-300 text-seagull-100! mb-2 text-3xl">
+      <h2
+        class="font-300 mb-2 text-3xl"
+        style="color: var(--color-text-heading)"
+      >
         Ready to Get Started?
       </h2>
-      <p class="font-100 mb-8 text-xl text-slate-100">
+      <p class="font-100 mb-8 text-xl" style="color: var(--color-text-body)">
         Founding advertisers get 50% off their first month
       </p>
       <div class="mt-4 flex justify-center">

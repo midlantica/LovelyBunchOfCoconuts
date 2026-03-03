@@ -2,7 +2,7 @@
 <template>
   <div
     v-if="profile && profileName"
-    class="card group shadow-inset-card hover:border-seagull-400/50 relative isolate flex h-full cursor-pointer! flex-col rounded-lg border border-transparent text-white transition-colors hover:border hover:bg-slate-900"
+    class="card group hover:border-theme-border-hover text-theme-body hover:bg-theme-surface relative isolate flex h-full cursor-pointer! flex-col rounded-lg transition-colors"
     @click="openModal"
   >
     <!-- Like button -->
@@ -37,7 +37,7 @@
       <div class="flex min-w-0 flex-1 flex-col justify-center gap-2">
         <!-- Profile Name -->
         <h2
-          class="line-clamp-1 text-[1.3rem] leading-[1.3rem] font-light tracking-[0.1rem] text-white uppercase"
+          class="text-theme-body line-clamp-1 text-[1.3rem] leading-[1.3rem] font-light tracking-[0.1rem] uppercase"
           style="font-family: 'Barlow Condensed'"
         >
           {{ profileName }}
@@ -55,9 +55,9 @@
   </div>
   <div
     v-else
-    class="card shadow-inset-card relative flex h-full flex-col gap-2 rounded-lg p-4 text-white"
+    class="card shadow-inset-card text-theme-body relative flex h-full flex-col gap-2 rounded-lg p-4"
   >
-    <p class="text-white/60">Missing profile data</p>
+    <p class="text-theme-muted">Missing profile data</p>
   </div>
 </template>
 
@@ -177,7 +177,7 @@
   .prose-bio :deep(p) {
     font-size: 1.25rem;
     line-height: 1.4;
-    color: white;
+    color: var(--color-text-body);
     margin: 0; /* Remove default paragraph margins */
   }
 
