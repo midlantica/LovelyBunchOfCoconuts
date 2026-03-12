@@ -3,36 +3,25 @@
   <header
     class="bg-theme-elevated sticky top-0 left-0 z-10 w-full px-2 pt-2 pb-1 sm:p-0 sm:pt-2 sm:pb-1"
   >
-    <div class="pr-2 pl-4 sm:pr-4">
+    <div class="xs:px-1 px-2 sm:px-2">
       <!-- Flex container with three sections for balanced layout -->
-      <div class="flex items-center justify-between">
-        <!-- Left spacer (same width as hamburger menu) - hidden on mobile -->
-        <div class="hidden w-10 sm:block"></div>
-
-        <!-- Center logo on desktop, left-aligned on mobile -->
-        <div class="flex flex-1 justify-center">
-          <button
-            type="button"
-            class="no-underline hover:cursor-pointer! focus:outline-none"
-            @click="handleMastheadClick"
-          >
-            <LogoComponent />
-          </button>
-        </div>
-
-        <!-- Right: theme toggle + navigation menu -->
-        <div class="flex items-center gap-1">
+      <div class="flex items-center justify-between gap-1">
+        <!-- Left: theme toggle (mirrors hamburger on the right) -->
+        <div class="flex items-center">
           <button
             type="button"
             :title="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
-            class="text-theme-muted hover:text-theme-accent-light flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-white/10 focus:outline-none"
+            :aria-label="
+              isDark ? 'Switch to light mode' : 'Switch to dark mode'
+            "
+            class="hover:bg-theme-overlay text-theme-muted hover:text-theme-accent-light rounded-lg p-2 transition-colors focus:outline-none"
             @click="toggleTheme"
           >
             <!-- Sun icon (shown in dark mode → click to go light) -->
             <svg
               v-if="isDark"
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              class="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -48,7 +37,7 @@
             <svg
               v-else
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              class="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -61,6 +50,21 @@
               />
             </svg>
           </button>
+        </div>
+
+        <!-- Center logo -->
+        <div class="flex flex-1 justify-center">
+          <button
+            type="button"
+            class="no-underline hover:cursor-pointer! focus:outline-none"
+            @click="handleMastheadClick"
+          >
+            <LogoComponent />
+          </button>
+        </div>
+
+        <!-- Right: navigation menu (hamburger) -->
+        <div class="flex items-center">
           <LayoutNavigationMenu />
         </div>
       </div>

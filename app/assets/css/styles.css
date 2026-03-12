@@ -436,6 +436,13 @@ div > p:last-of-type {
   box-shadow: none !important;
 }
 
+/* Restore shadow-modal on the modal's top content panel in light mode.
+   The modal card sits inside #modal-root and casts a shadow onto the
+   SharingShelf section below it — this must be preserved in light mode. */
+[data-theme='light'] #modal-root .card {
+  box-shadow: 0 6px 10px -3px black !important;
+}
+
 /* Force font-weight 200 on ALL descendants of .card in light mode.
    Uses * to beat inline font-100 utility classes on h1/h2/p elements. */
 [data-theme='light'] .card *,
