@@ -366,6 +366,14 @@ export default defineNuxtConfig({
         } as any,
       ],
       script: [
+        // CRITICAL: Inline blocking script — runs synchronously before first paint.
+        // Reads localStorage and applies data-theme to <html> immediately so there
+        // is never a flash of the wrong theme on full page loads / hard navigations.
+        // Must be synchronous (no async/defer) so it runs before CSS is applied.
+        {
+          innerHTML: `(function(){try{var k='wakeupnpc-theme-override';var o=localStorage.getItem(k);var t=o==='light'||o==='dark'?o:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
+          tagPosition: 'head',
+        } as any,
         // GoatCounter analytics (enabled only when env var is present)
         ...(process.env.NUXT_PUBLIC_GOATCOUNTER
           ? [

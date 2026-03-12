@@ -433,7 +433,7 @@ div > p:last-of-type {
    Outside @layer for maximum specificity over Tailwind utilities.
    ===================================================================== */
 [data-theme='light'] .card {
-  box-shadow: 0px 2px 4px -2px black !important;
+  box-shadow: none !important;
 }
 
 /* Force font-weight 200 on ALL descendants of .card in light mode.

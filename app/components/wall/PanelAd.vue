@@ -7,8 +7,8 @@
     <!-- Ad link wrapper -->
     <a
       v-if="ad.link"
-      :href="ad.link"
-      target="_blank"
+      :href="adHref"
+      :target="adIsExternal ? '_blank' : '_self'"
       rel="noopener noreferrer sponsored"
       class="block w-full"
       :title="ad.title"
@@ -63,6 +63,25 @@
       default: 'square',
       validator: (value) => ['square', 'horizontal'].includes(value),
     },
+  })
+
+  // Resolve ad link — strip the production origin so same-site links work in dev too
+  const PROD_ORIGIN = 'https://wakeupnpc.com'
+  const adHref = computed(() => {
+    const link = props.ad?.link
+    if (!link) return '#'
+    // If the link starts with the production origin, make it relative
+    if (link.startsWith(PROD_ORIGIN)) {
+      return link.slice(PROD_ORIGIN.length) || '/'
+    }
+    return link
+  })
+  // Open in same tab for internal links, new tab for external
+  const adIsExternal = computed(() => {
+    const link = props.ad?.link
+    if (!link) return false
+    // After stripping prod origin, check if it's still an absolute URL
+    return link.startsWith('http') && !link.startsWith(PROD_ORIGIN)
   })
 
   // Compute panel classes based on size

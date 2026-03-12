@@ -11,7 +11,7 @@
       />
       <!-- Tokenized input with pills -->
       <div
-        class="font-100 ring-theme-border-hover/40 text-theme-body focus-within:ring-theme-accent w-full rounded-[20px] bg-transparent px-9 py-[0.2rem] text-[1.02rem] leading-none tracking-wider ring-1 transition-all duration-200 outline-none focus-within:bg-transparent focus-within:ring-1 sm:text-[0.935rem]"
+        class="font-100 ring-theme-border-hover/40 text-theme-body focus-within:ring-theme-accent w-full rounded-[20px] bg-(--color-search-bg) px-9 py-[0.2rem] text-[1.02rem] leading-none tracking-wider ring-1 transition-all duration-200 outline-none focus-within:bg-(--color-search-bg) focus-within:ring-1 sm:text-[0.935rem]"
         @click="focusInnerInput"
       >
         <div
@@ -19,7 +19,7 @@
         >
           <template v-for="(t, idx) in tokens" :key="t + ':' + idx">
             <span
-              class="group bg-theme-surface text-theme-body hover:bg-theme-overlay inline-flex cursor-pointer! items-center gap-0.5 rounded-full py-0.5 pr-2 pl-2.5 text-[.825rem] leading-none transition-colors select-none focus:outline-none"
+              class="group inline-flex cursor-pointer! items-center gap-0.5 rounded-full bg-(--color-pill-bg) py-0.5 pr-2 pl-2.5 text-[.825rem] leading-none text-(--color-pill-text) transition-colors select-none hover:bg-(--color-pill-bg-hover) focus:outline-none"
               :class="{ 'pill-flash': isFlashing(t) }"
               role="button"
               tabindex="0"
@@ -28,7 +28,7 @@
               @keydown.space.prevent="removeToken(idx)"
             >
               <span
-                class="group-hover:text-theme-body block align-middle leading-none whitespace-nowrap"
+                class="group-hover:text-theme-body block align-middle leading-none font-(--color-pill-font-weight) whitespace-nowrap"
                 >{{ t }}</span
               >
               <button
@@ -40,12 +40,14 @@
                 <svg
                   viewBox="0 0 24 24"
                   class="block h-[1.1rem] w-[1.1rem] align-middle leading-none"
-                  fill="currentColor"
+                  fill="none"
+                  stroke="currentColor"
+                  :stroke-width="pillXStroke"
+                  stroke-linecap="round"
                   aria-hidden="true"
                 >
-                  <path
-                    d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-                  />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                  <line x1="18" y1="6" x2="6" y2="18" />
                 </svg>
               </button>
             </span>
@@ -76,7 +78,7 @@
         <div
           v-for="(suggestion, idx) in suggestions"
           :key="suggestion.term + idx"
-          class="cursor-pointer! px-4 py-2 text-slate-200 transition-colors"
+          class="text-theme-body cursor-pointer! px-4 py-2 transition-colors"
           :class="{
             'bg-theme-overlay': selectedSuggestionIndex === idx,
             'hover:bg-theme-surface': selectedSuggestionIndex !== idx,
@@ -86,7 +88,7 @@
         >
           <div class="flex items-center justify-between">
             <span class="font-100">{{ suggestion.term }}</span>
-            <span class="text-xs text-slate-400 capitalize">{{
+            <span class="text-theme-icon text-xs capitalize">{{
               suggestion.type
             }}</span>
           </div>
@@ -99,7 +101,7 @@
       >
         <client-only>
           <span
-            class="font-100 text-[.95rem] tracking-wider text-slate-300"
+            class="font-100 text-theme-body text-[.95rem] tracking-wider"
             aria-label="Total results"
           >
             {{ totalDisplay }}
@@ -178,6 +180,10 @@
   const emit = defineEmits(['update:search', 'update:filters'])
   // Hide inline filter menu for now; flip to true to re-enable or move elsewhere
   const showInlineFilterMenu = false
+
+  // X icon stroke weight — thinner in light mode to match lighter font-weight
+  const { isDark } = useTheme()
+  const pillXStroke = computed(() => (isDark.value ? 2 : 1.5))
 
   // Tokenized search state
   const tokens = ref([])

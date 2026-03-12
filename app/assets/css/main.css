@@ -30,7 +30,16 @@
   --color-text-heading: #fdfdf8; /* cream-bright white — headings */
   --color-text-muted: #fdfdf8; /* cream-bright white — secondary / muted text */
   --color-logo-byline: #ffffff; /* white — logo byline text */
-  --color-logo-npc-grey: #dadada; /* light grey — NPC/WakeUp text in logo */
+  --color-logo-npc-grey: #c9c9c9; /* npc-grey — matches grift NPC icon grey */
+  --color-search-bg: transparent; /* search input background — transparent in dark mode */
+  --color-pill-bg: var(
+    --color-bg-elevated
+  ); /* search pill background — dark mode */
+  --color-pill-bg-hover: var(
+    --color-bg-overlay
+  ); /* search pill hover — dark mode */
+  --color-pill-text: var(--color-text-body); /* search pill text — dark mode */
+  --color-pill-font-weight: 100; /* search pill font weight — dark mode (thin) */
   --color-text-subtle: #6dd3ff; /* seagull-300 — tertiary / de-emphasized */
   --color-text-disabled: #6b7280; /* gray-500 — disabled states */
   --color-text-icon: #b3b3b3; /* neutral — default icon color */
@@ -76,7 +85,14 @@
   --color-text-body: #1a1a1a; /* charcoal — all body copy */
   --color-text-heading: #1a1a1a; /* charcoal — headings (unified with body) */
   --color-logo-byline: #1a1a1a; /* charcoal — logo byline text in light mode */
-  --color-logo-npc-grey: #888888; /* npc-grey — medium grey for NPC/WakeUp text in light mode */
+  --color-logo-npc-grey: #b0b0b0; /* npc-grey — matches grift NPC icon grey, darker for light bg */
+  --color-search-bg: var(
+    --color-bg-surface
+  ); /* search input background — off-white in light mode */
+  --color-pill-bg: #b8e8ff; /* seagull-200 — search pill background in light mode */
+  --color-pill-bg-hover: #6dd3ff; /* seagull-300 — search pill hover in light mode */
+  --color-pill-text: #06304b; /* seagull-950 — search pill text in light mode */
+  --color-pill-font-weight: 300; /* search pill font weight — light mode (light) */
   --color-text-muted: #1a1a1a; /* charcoal — secondary text (unified) */
   --color-text-subtle: #1a1a1a; /* charcoal — tertiary text (unified) */
   --color-text-disabled: #9ca3af; /* gray-400 */

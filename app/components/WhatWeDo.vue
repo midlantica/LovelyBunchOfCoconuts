@@ -20,7 +20,7 @@
           <template #title>
             Grift<IconsArrowRight
               :size="20"
-              class="100 relative -top-[2px] mr-0.5 ml-px inline-block text-xl"
+              class="100 relative -top-0.5 mr-0.5 ml-px inline-block text-xl"
             />Decodes
           </template>
         </FeatureCard>
