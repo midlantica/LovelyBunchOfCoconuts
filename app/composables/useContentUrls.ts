@@ -1,5 +1,6 @@
 // composables/useContentUrls.ts
 // Composable for generating unique URLs for content items
+// useRequestURL is auto-imported by Nuxt 4 — available on both server and client
 
 type ContentType = 'grift' | 'quote' | 'meme' | 'profile' | 'post' | 'general'
 
@@ -17,6 +18,10 @@ interface ContentItem {
 }
 
 export const useContentUrls = () => {
+  // useRequestURL() is SSR-safe (Nuxt 4): works on server and client alike,
+  // replacing the old `import.meta.client ? window.location.origin : hardcoded` pattern.
+  const requestUrl = useRequestURL()
+
   const createSlug = (text: string, maxLength = 50): string => {
     return text
       .toLowerCase()
@@ -42,9 +47,8 @@ export const useContentUrls = () => {
     item: ContentItem,
     contentType: ContentType
   ): string => {
-    const baseUrl = import.meta.client
-      ? window.location.origin
-      : 'https://wakeupnpc.com'
+    // Use SSR-safe origin from useRequestURL() — no more window.location guard needed
+    const baseUrl = requestUrl.origin
 
     // If item already has a path (from Nuxt Content), transform it to route format
     if (item._path) {
@@ -70,9 +74,7 @@ export const useContentUrls = () => {
     item: ContentItem,
     contentType: ContentType
   ): string => {
-    const baseUrl = import.meta.client
-      ? window.location.origin
-      : 'https://wakeupnpc.com'
+    const baseUrl = requestUrl.origin
 
     let slug = ''
 

@@ -418,7 +418,10 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: true, // Extract payload for better caching
     renderJsonPayloads: true, // Optimize JSON payloads
-    extractAsyncDataHandlers: true, // ⭐ NEW: Extract data handlers for 39% bundle reduction
-    viteEnvironmentApi: true, // ⭐ NEW: Faster dev server with Vite environment API
+    extractAsyncDataHandlers: true, // Extract data handlers for ~39% bundle reduction
+    viteEnvironmentApi: true, // Faster dev server with Vite environment API
+    // Nuxt 4.4: typedPages enables fully typed route params/query via vue-router typed routes
+    // Works with Vue Router 5's new typed route system — eliminates string-based route guessing
+    typedPages: true,
   },
 })

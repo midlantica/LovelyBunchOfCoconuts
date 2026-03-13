@@ -1,5 +1,7 @@
 <template>
   <div class="app-root">
+    <!-- NuxtAnnouncer: announces route changes to screen readers (Nuxt 4.4 a11y) -->
+    <NuxtAnnouncer />
     <NuxtLayout>
       <NuxtPage :keepalive="keepAliveConfig" />
     </NuxtLayout>

@@ -65,7 +65,7 @@
             @keyup="onKeyup"
             @keydown.esc="handleInputEscape"
             @input="handleSearchInput"
-            ref="searchInputRef"
+            ref="searchInput"
           />
         </div>
       </div>
@@ -190,7 +190,9 @@
   const inputText = ref('')
   const joinedSearch = computed(() => [...tokens.value].join(' ').trim())
   const hasSearch = computed(() => tokens.value.length > 0)
-  const searchInputRef = ref(null)
+  // useTemplateRef (Vue 3.5): typed template ref — replaces `ref(null)` + matching ref="name" pattern.
+  // The string 'searchInput' must match ref="searchInput" on the <input> element in the template.
+  const searchInputRef = useTemplateRef('searchInput')
   const router = useRouter()
   const route = useRoute()
   const lastEmittedSearch = ref('')

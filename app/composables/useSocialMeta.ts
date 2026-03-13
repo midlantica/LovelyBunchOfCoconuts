@@ -1,7 +1,11 @@
 // composables/useSocialMeta.ts
 // Provide helper to set social/open graph meta tags for dynamic pages
-
-import type { MaybeRefOrGetter } from 'vue'
+//
+// Migrated from useHead() to useSeoMeta() (Nuxt 4 best practice):
+//   - Fully typed meta properties (no raw string keys)
+//   - Tree-shakeable at build time
+//   - Prevents XSS via raw innerHTML injection
+//   - useSeoMeta/useHead are Nuxt auto-imports (available without explicit import)
 
 interface SocialMetaOptions {
   title?: string
@@ -13,27 +17,19 @@ interface SocialMetaOptions {
 export function useSocialMeta(options: SocialMetaOptions = {}) {
   const { title, description, image, url } = options
 
-  // @ts-expect-error useHead is auto-imported by Nuxt at runtime
-  const head = useHead({
+  // useSeoMeta is the Nuxt 4 recommended API for all SEO/social meta tags.
+  // It sets both <title> and all meta tags in a single typed call.
+  // @ts-expect-error — useSeoMeta/useHead are Nuxt auto-imports resolved at runtime
+  return useSeoMeta({
     title: title || 'WakeUpNPC',
-    meta: [
-      {
-        name: 'description',
-        content: description || 'Political grifts, quotes, memes.',
-      },
-      { property: 'og:title', content: title || 'WakeUpNPC' },
-      {
-        property: 'og:description',
-        content: description || 'Political grifts, quotes, memes.',
-      },
-      ...(image ? [{ property: 'og:image', content: image }] : []),
-      ...(url ? [{ property: 'og:url', content: url }] : []),
-      {
-        name: 'twitter:card',
-        content: image ? 'summary_large_image' : 'summary',
-      },
-    ],
+    description: description || 'Political grifts, quotes, memes.',
+    ogTitle: title || 'WakeUpNPC',
+    ogDescription: description || 'Political grifts, quotes, memes.',
+    ...(image ? { ogImage: image } : {}),
+    ...(url ? { ogUrl: url } : {}),
+    twitterCard: image ? 'summary_large_image' : 'summary',
+    twitterTitle: title || 'WakeUpNPC',
+    twitterDescription: description || 'Political grifts, quotes, memes.',
+    ...(image ? { twitterImage: image } : {}),
   })
-
-  return head
 }
