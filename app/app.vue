@@ -30,7 +30,17 @@
           'wakeupnpc_wall_visited'
         )
         if (!hasVisitedThisSession) {
-          showWelcomeModal.value = true
+          // Delay modal render until after LCP paint — use requestIdleCallback
+          // (or setTimeout fallback) so the modal image is NOT the LCP element.
+          // This moves the modal out of the critical rendering path entirely.
+          const showAfterPaint = () => {
+            showWelcomeModal.value = true
+          }
+          if (typeof requestIdleCallback !== 'undefined') {
+            requestIdleCallback(showAfterPaint, { timeout: 2000 })
+          } else {
+            setTimeout(showAfterPaint, 500)
+          }
         }
       }
     }

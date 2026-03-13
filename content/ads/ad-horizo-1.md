@@ -6,7 +6,7 @@ size: horizontal
 advertiser: 'First Co'
 campaign: 'first-123'
 link: 'https://wakeupnpc.com/advertising'
-image: '/banners/h1.png'
+image: '/banners/h1.webp'
 frequency: 50
 active: true
 ---

@@ -3,6 +3,7 @@
   <div
     v-if="grift && grift.grift && grift.decode && slug"
     class="card group hover:border-theme-border-hover text-theme-body hover:bg-theme-surface relative isolate flex h-full cursor-pointer! flex-col gap-2 rounded-lg px-4 py-3 transition-colors"
+    style="min-height: 110px; contain: layout"
     @click="openModal"
   >
     <!-- Like button only -->

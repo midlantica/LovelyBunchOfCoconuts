@@ -6,7 +6,7 @@ size: horizontal
 advertiser: 'Second Co'
 campaign: 'second-123'
 link: 'https://wakeupnpc.com/advertising'
-image: '/banners/h2.png'
+image: '/banners/h2.webp'
 frequency: 50
 active: true
 ---

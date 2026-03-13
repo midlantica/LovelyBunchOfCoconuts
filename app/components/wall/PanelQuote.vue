@@ -3,6 +3,7 @@
   <div
     v-if="quote && quote.headings && quote.headings.length > 0 && slug"
     class="card group hover:border-theme-border-hover quotePanel text-theme-body hover:bg-theme-surface relative isolate flex cursor-pointer! flex-col gap-2 rounded-lg px-6 py-4"
+    style="min-height: 80px; contain: layout"
     @click="openModal"
   >
     <!-- Like button only -->

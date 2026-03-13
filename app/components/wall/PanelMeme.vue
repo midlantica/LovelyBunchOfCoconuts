@@ -4,6 +4,7 @@
     <template v-if="meme && meme.image && slug">
       <div
         class="card group hover:border-theme-border-hover hover:bg-theme-surface relative isolate mx-auto h-full w-full cursor-pointer! overflow-hidden rounded-md p-3"
+        style="min-height: 200px; aspect-ratio: 1 / 1; contain: layout"
         @click="openModal"
       >
         <!-- Like button only -->

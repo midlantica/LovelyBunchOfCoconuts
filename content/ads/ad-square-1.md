@@ -6,7 +6,7 @@ size: square
 advertiser: 'Demo Advertiser 1'
 campaign: 'Test Campaign'
 link: 'https://wakeupnpc.com/advertising'
-image: '/banners/378x378-tile-1.png'
+image: '/banners/378x378-tile-1.webp'
 frequency: 50
 active: true
 ---

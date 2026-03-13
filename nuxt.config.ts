@@ -327,14 +327,9 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         // Canonical home URL
         { rel: 'canonical', href: 'https://wakeupnpc.com/' },
-        // Preload LCP image (welcome modal) with fetchpriority
-        {
-          rel: 'preload',
-          href: '/welcome-modal-image.svg',
-          as: 'image',
-          type: 'image/svg+xml',
-          fetchpriority: 'high',
-        },
+        // Preconnect to GoatCounter analytics domain — saves ~470ms DNS+TCP+TLS
+        { rel: 'preconnect', href: 'https://gc.zgo.at' },
+        { rel: 'preconnect', href: 'https://wakeupnpc.goatcounter.com' },
         // Preload critical logo image
         {
           rel: 'preload',
