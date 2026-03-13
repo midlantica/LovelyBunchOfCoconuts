@@ -39,7 +39,7 @@
     "@nuxtjs/mdc": "^0.20.2",
     "gray-matter": "^4.0.3",
     "markdown-it": "^14.1.1",
-    "nuxt": "4.3.1",
+    "nuxt": "4.4.2",
     "vue": "^3.5.30",
     "vue-router": "^4.6.4"
   },
@@ -48,7 +48,7 @@
     "@eslint/css": "^0.14.1",
     "@eslint/json": "^0.14.0",
     "@eslint/markdown": "^7.5.1",
-    "@nuxt/kit": "4.3.1",
+    "@nuxt/kit": "4.4.2",
     "@nuxtjs/sitemap": "7.6.0",
     "@oxc-minify/binding-linux-x64-gnu": "0.115.0",
     "@oxc-parser/binding-linux-x64-gnu": "0.115.0",
