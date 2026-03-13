@@ -52,13 +52,16 @@
           <!-- Mid section with image (includes labels and arrows) -->
           <div class="welcome-modal-mid-section">
             <div class="welcome-modal-image-panel">
+              <!-- loading="lazy" + fetchpriority="low": modal is deferred via requestIdleCallback
+                   so it must NOT compete with the real LCP element (the wall content).
+                   Previously had eager+high which made Lighthouse flag this as the LCP. -->
               <img
                 src="/welcome-modal-image.svg"
                 alt="Claim-Translation Example"
                 width="590"
                 height="280"
-                loading="eager"
-                fetchpriority="high"
+                loading="lazy"
+                fetchpriority="low"
               />
             </div>
           </div>

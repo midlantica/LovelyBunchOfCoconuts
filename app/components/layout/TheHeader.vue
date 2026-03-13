@@ -56,6 +56,7 @@
         <div class="flex flex-1 justify-center">
           <button
             type="button"
+            aria-label="WakeUpNPC — go to home page"
             class="no-underline hover:cursor-pointer! focus:outline-none"
             @click="handleMastheadClick"
           >
