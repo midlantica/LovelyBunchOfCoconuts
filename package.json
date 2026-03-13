@@ -31,7 +31,7 @@
     "@napi-rs/canvas": "^0.1.96",
     "@netlify/blobs": "^10.7.2",
     "@netlify/nuxt": "0.2.24",
-    "@nuxt/content": "3.11.2",
+    "@nuxt/content": "3.12.0",
     "@nuxt/eslint": "1.15.2",
     "@nuxt/fonts": "^0.13.0",
     "@nuxt/icon": "^2.1.1",
