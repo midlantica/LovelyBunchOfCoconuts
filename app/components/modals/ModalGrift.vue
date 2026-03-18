@@ -5,7 +5,7 @@
       <template #mainPanel>
         <!-- Main Content Panel - completely independent -->
         <div
-          class="card shadow-modal relative z-10 w-full max-w-[800px] min-w-[400px] rounded-none p-0 sm:rounded-lg sm:px-7 sm:py-6"
+          class="card shadow-modal bg-theme-elevated relative z-10 w-full max-w-[800px] min-w-[400px] rounded-none p-0 sm:rounded-lg sm:px-7 sm:py-6"
         >
           <div class="mb-0 p-4 sm:p-0">
             <div class="flex gap-3">

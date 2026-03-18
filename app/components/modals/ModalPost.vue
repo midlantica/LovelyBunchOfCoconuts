@@ -5,7 +5,7 @@
       <template #mainPanel>
         <!-- Main Content Panel -->
         <div
-          class="card shadow-modal xs:max-w-[1400px] relative z-10 w-full min-w-1/2 rounded-none p-4 sm:max-w-[95vw] sm:rounded-lg sm:px-6 sm:py-6"
+          class="card shadow-modal bg-theme-elevated xs:max-w-[1400px] relative z-10 w-full min-w-1/2 rounded-none p-4 sm:max-w-[95vw] sm:rounded-lg sm:px-6 sm:py-6"
         >
           <div
             v-if="modalData?.body && hasBodyContent"

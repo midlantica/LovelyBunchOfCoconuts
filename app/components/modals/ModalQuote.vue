@@ -5,7 +5,7 @@
       <template #mainPanel>
         <!-- Main Content Panel -->
         <div
-          class="card shadow-modal relative z-10 w-full max-w-[800px] min-w-1/2 rounded-none p-0 sm:rounded-lg sm:px-7 sm:py-6"
+          class="card shadow-modal bg-theme-elevated relative z-10 w-full max-w-[800px] min-w-1/2 rounded-none p-0 sm:rounded-lg sm:px-7 sm:py-6"
         >
           <div class="p-4 sm:p-0">
             <h1

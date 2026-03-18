@@ -5,7 +5,7 @@
       <template #mainPanel>
         <!-- Main Content Panel -->
         <div
-          class="card shadow-modal relative z-10 flex h-full max-h-[calc(100vh-8rem)] w-full max-w-full flex-col rounded-none sm:max-w-[min(1000px,calc(100vw-4rem))] sm:rounded-lg"
+          class="card shadow-modal bg-theme-elevated relative z-10 flex h-full max-h-[calc(100vh-8rem)] w-full max-w-full flex-col rounded-none sm:max-w-[min(1000px,calc(100vw-4rem))] sm:rounded-lg"
         >
           <!-- Image + Text container -->
           <div

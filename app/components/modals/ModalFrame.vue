@@ -58,7 +58,7 @@
 
   // Custom button classes to ensure button is always visible
   const closeButtonClass =
-    'close-button group border-seagull-600/30 absolute z-9999 flex h-10 w-10 items-center justify-center rounded-full border-none sm:border-t bg-transparent sm:bg-theme-surface hover:cursor-pointer! focus:outline-none'
+    'close-button group border-seagull-600/30 absolute z-9999 flex h-10 w-10 items-center justify-center rounded-full border-none sm:border-t bg-transparent sm:bg-theme-elevated hover:cursor-pointer! focus:outline-none'
 
   const computedModalStyle = computed(() => {
     const baseStyle = props.modalStyle || {
@@ -138,7 +138,7 @@
 
   /* Default (Desktop) close button styling - with background, border, and transform */
   .close-button-modal :deep(.close-button) {
-    background: var(--color-bg-surface) !important;
+    background: var(--color-bg-elevated) !important;
     border-style: solid !important;
     border-width: 1px !important;
     border-color: transparent !important;
