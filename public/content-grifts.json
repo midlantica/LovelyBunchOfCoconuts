@@ -1,5 +1,12 @@
 [
   {
+    "_path": "/grifts/American-dream-problem",
+    "title": "An American dream problem!",
+    "grift": "An American dream problem!",
+    "decode": "No, a Democrat destruction problem.",
+    "body": ""
+  },
+  {
     "_path": "/grifts/Inequality",
     "title": "Inequality",
     "grift": "Inequality",
@@ -315,6 +322,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/border-problem",
+    "title": "Border problem!",
+    "grift": "Border problem!",
+    "decode": "No, an enforcement problem.",
+    "body": ""
+  },
+  {
     "_path": "/grifts/cancel-culture-1",
     "title": "Cancel Culture",
     "grift": "Cancel Culture",
@@ -567,6 +581,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/crime-problem",
+    "title": "Crime problem!",
+    "grift": "Crime problem!",
+    "decode": "No, a prosecution problem.",
+    "body": ""
+  },
+  {
     "_path": "/grifts/criminal-justice-reform",
     "title": "Criminal Justice Reform",
     "grift": "Criminal Justice Reform",
@@ -662,6 +683,13 @@
     "title": "De-Gendered Pronouns",
     "grift": "De-Gendered Pronouns",
     "decode": "Grammar as activism.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/debt-problem",
+    "title": "Debt problem!",
+    "grift": "Debt problem!",
+    "decode": "No, a Fraud problem.",
     "body": ""
   },
   {
@@ -1239,6 +1267,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/failing-school-system-problem",
+    "title": "A failing school system problem!",
+    "grift": "A failing school system problem!",
+    "decode": "No, an indoctrination problem.",
+    "body": ""
+  },
+  {
     "_path": "/grifts/fat-liberation",
     "title": "Fat Liberation",
     "grift": "Fat Liberation",
@@ -1376,6 +1411,13 @@
     "title": "Free Transit",
     "grift": "Free Transit",
     "decode": "Who needs reliability when it's free?",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/funding-problem",
+    "title": "A a funding problem!",
+    "grift": "A a funding problem!",
+    "decode": "No, an indoctrination problem.",
     "body": ""
   },
   {
@@ -1568,6 +1610,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/healthcare-affordability-problem",
+    "title": "A healthcare affordability problem!",
+    "grift": "A healthcare affordability problem!",
+    "decode": "No, an illegal alien freeloading problem.",
+    "body": ""
+  },
+  {
     "_path": "/grifts/healthcare-is-a-human-right",
     "title": "Healthcare is a human right",
     "grift": "Healthcare is a human right",
@@ -1589,6 +1638,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/homelessness-problem",
+    "title": "Homelessness problem!",
+    "grift": "Homelessness problem!",
+    "decode": "No, a fraudulent NGO problem.",
+    "body": ""
+  },
+  {
     "_path": "/grifts/houselessness",
     "title": "Houselessness",
     "grift": "Houselessness",
@@ -1607,6 +1663,13 @@
     "title": "Housing is a Human Right",
     "grift": "Housing is a Human Right",
     "decode": "Government decides where you live.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/housing_problem",
+    "title": "Housing Problem!",
+    "grift": "Housing Problem!",
+    "decode": "No, an Illegal Immigration problem.",
     "body": ""
   },
   {
