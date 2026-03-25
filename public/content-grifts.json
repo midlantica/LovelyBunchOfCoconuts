@@ -350,6 +350,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/capitalism-is-evil",
+    "title": "Capitalism is Evil",
+    "grift": "Capitalism is Evil",
+    "decode": "Check out my new iPad!",
+    "body": ""
+  },
+  {
     "_path": "/grifts/cis-privilege",
     "title": "Cis Privilege",
     "grift": "Cis Privilege",
@@ -368,6 +375,13 @@
     "title": "Civic Equity",
     "grift": "Civic Equity",
     "decode": "Government quotas for your neighborhood.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/civil-discourse-is-the-way",
+    "title": "Civil Discourse is the Way",
+    "grift": "Civil Discourse is the Way",
+    "decode": "Except for MAGA 'fascists'.",
     "body": ""
   },
   {
@@ -966,6 +980,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/dictatorship-is-bad",
+    "title": "Dictatorship is Bad",
+    "grift": "Dictatorship is Bad",
+    "decode": "Viva el Che.",
+    "body": ""
+  },
+  {
     "_path": "/grifts/digital-equity-act",
     "title": "Digital Equity Act",
     "grift": "Digital Equity Act",
@@ -1138,6 +1159,13 @@
     "title": "End the Nuclear Family",
     "grift": "End the Nuclear Family",
     "decode": "Dissolve roots, grow dependence.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/energy-prices-are-too-high",
+    "title": "Energy prices are too high.",
+    "grift": "Energy prices are too high.",
+    "decode": "We need a carbon tax.",
     "body": ""
   },
   {
@@ -1379,6 +1407,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/fox-news-is-biased",
+    "title": "Fox News is biased.",
+    "grift": "Fox News is biased.",
+    "decode": "CNN-MSNOW is not.",
+    "body": ""
+  },
+  {
     "_path": "/grifts/free-college-education",
     "title": "Free College Education",
     "grift": "Free College Education",
@@ -1530,6 +1565,13 @@
     "title": "Globalism",
     "grift": "Globalism",
     "decode": "Give up National Sovereignty.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/government-aid",
+    "title": "Government aid",
+    "grift": "Government aid",
+    "decode": "Taxpayers' aid",
     "body": ""
   },
   {
@@ -1768,6 +1810,13 @@
     "title": "Intersectionality",
     "grift": "Intersectionality",
     "decode": "Oppression Olympics, now with spreadsheets.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/iraq-afghanistan-wars-illegal",
+    "title": "Iraq/Afghanistan wars illegal.",
+    "grift": "Iraq/Afghanistan wars illegal.",
+    "decode": "Libya war is not.",
     "body": ""
   },
   {
@@ -2093,6 +2142,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/oppression-of-women-is-wrong",
+    "title": "Oppression of women is wrong!",
+    "grift": "Oppression of women is wrong!",
+    "decode": "Islamists are freedom fighters.",
+    "body": ""
+  },
+  {
     "_path": "/grifts/over-regulations",
     "title": "Over-Regulations",
     "grift": "Over-Regulations",
@@ -2264,7 +2320,7 @@
     "_path": "/grifts/publicly-owned",
     "title": "Publicly owned",
     "grift": "Publicly owned",
-    "decode": "Levelling down",
+    "decode": "State controlled",
     "body": ""
   },
   {
@@ -2317,10 +2373,24 @@
     "body": ""
   },
   {
+    "_path": "/grifts/race-is-a-social-construct",
+    "title": "Race is a Social Construct",
+    "grift": "Race is a Social Construct",
+    "decode": "White people are evil & racist.",
+    "body": ""
+  },
+  {
     "_path": "/grifts/racist-fascist-nazi",
     "title": "Racist, Fascist, Nazi",
     "grift": "Racist, Fascist, Nazi",
     "decode": "Anybody who disagrees with leftists.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/racist-slurs-are-offensive",
+    "title": "Racist slurs are offensive",
+    "grift": "Racist slurs are offensive",
+    "decode": "White people are uniquely racist.",
     "body": ""
   },
   {
@@ -2541,6 +2611,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/respect-all-cultures",
+    "title": "Respect all cultures.",
+    "grift": "Respect all cultures.",
+    "decode": "The West is evil.",
+    "body": ""
+  },
+  {
     "_path": "/grifts/restorative-justice-1",
     "title": "Restorative Justice",
     "grift": "Restorative Justice",
@@ -2642,7 +2719,7 @@
     "_path": "/grifts/social-justice",
     "title": "Social Justice",
     "grift": "Social Justice",
-    "decode": "Mob rule wrapped in moral language.",
+    "decode": "Selective Justice",
     "body": ""
   },
   {
@@ -2681,6 +2758,20 @@
     "body": ""
   },
   {
+    "_path": "/grifts/stereotypes-are-wrong",
+    "title": "Stereotypes are wrong",
+    "grift": "Stereotypes are wrong",
+    "decode": "Gingers have no souls",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/stick-it-to-the-man",
+    "title": "Stick it to the Man",
+    "grift": "Stick it to the Man",
+    "decode": "Bigger Govt is the answer!",
+    "body": ""
+  },
+  {
     "_path": "/grifts/student-led-justice",
     "title": "Student-Led Justice",
     "grift": "Student-Led Justice",
@@ -2692,6 +2783,20 @@
     "title": "Subvert the Algorithm",
     "grift": "Subvert the Algorithm",
     "decode": "Shadow ban everyone you dislike.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/support-equality",
+    "title": "Support equality.",
+    "grift": "Support equality.",
+    "decode": "Affirmative action is necessary.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/support-free-speech",
+    "title": "Support Free Speech",
+    "grift": "Support Free Speech",
+    "decode": "Enact Hate Speech laws",
     "body": ""
   },
   {
@@ -2748,6 +2853,20 @@
     "title": "Taxation",
     "grift": "Taxation",
     "decode": "Theft.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/terrorism-does-not-define-islam",
+    "title": "Terrorism does not define Islam.",
+    "grift": "Terrorism does not define Islam.",
+    "decode": "Oslo shootings define the Right.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/the-death-penalty-is-wrong",
+    "title": "The Death Penalty is wrong.",
+    "grift": "The Death Penalty is wrong.",
+    "decode": "Abortion to the 9th month is fine.",
     "body": ""
   },
   {
