@@ -1,4 +1,4 @@
 ---
 grift: 'Publicly owned'
-decode: 'Levelling down'
+decode: 'State controlled'
 ---
