@@ -315,6 +315,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/birthing-person",
+    "title": "Birthing person",
+    "grift": "Birthing person",
+    "decode": "Woman",
+    "body": ""
+  },
+  {
     "_path": "/grifts/body-positivity",
     "title": "Body Positivity",
     "grift": "Body Positivity",
@@ -854,6 +861,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/decolonize",
+    "title": "Decolonize",
+    "grift": "Decolonize",
+    "decode": "Remove Western knowledge.",
+    "body": ""
+  },
+  {
     "_path": "/grifts/deconstruct-parenting-norms",
     "title": "Deconstruct Parenting Norms",
     "grift": "Deconstruct Parenting Norms",
@@ -1040,6 +1054,13 @@
     "title": "Diversity Training",
     "grift": "Diversity Training",
     "decode": "Ideological re-education with a corporate HR badge.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/diversity",
+    "title": "Diversity",
+    "grift": "Diversity",
+    "decode": "Ideological conformity.",
     "body": ""
   },
   {
@@ -1257,6 +1278,13 @@
     "title": "Equity",
     "grift": "Equity",
     "decode": "Equal outcomes, unequal effort.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/equity2",
+    "title": "Equity",
+    "grift": "Equity",
+    "decode": "Engineer outcomes, no Equal Opp.",
     "body": ""
   },
   {
@@ -1729,6 +1757,13 @@
     "body": ""
   },
   {
+    "_path": "/grifts/inclusion",
+    "title": "Inclusion",
+    "grift": "Inclusion",
+    "decode": "Exclusion of dissent.",
+    "body": ""
+  },
+  {
     "_path": "/grifts/inclusive-algorithms",
     "title": "Inclusive Algorithms",
     "grift": "Inclusive Algorithms",
@@ -1929,6 +1964,13 @@
     "title": "Liberatory Education",
     "grift": "Liberatory Education",
     "decode": "Unlearn everything and start with slogans.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/lived-experience",
+    "title": "Lived experience",
+    "grift": "Lived experience",
+    "decode": "Anecdote that outranks data.",
     "body": ""
   },
   {
@@ -2230,6 +2272,13 @@
     "title": "Pro-Choice",
     "grift": "Pro-Choice",
     "decode": "Legalized Murder.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/problematic",
+    "title": "Problematic",
+    "grift": "Problematic",
+    "decode": "Anything but orthodoxy.",
     "body": ""
   },
   {
@@ -2951,6 +3000,13 @@
     "title": "Welfare State",
     "grift": "Welfare State",
     "decode": "Permanent underclass.",
+    "body": ""
+  },
+  {
+    "_path": "/grifts/white-rage",
+    "title": "White rage",
+    "grift": "White rage",
+    "decode": "Disagreement while white.",
     "body": ""
   }
 ]
