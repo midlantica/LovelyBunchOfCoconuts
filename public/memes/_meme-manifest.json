@@ -2671,6 +2671,14 @@
       "updated": "2026-01-06T20:22:24.082Z",
       "width": 800,
       "height": 787
+    },
+    "margaret-thatcher/margaret-thatcher-a-mans-right-to-work.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "downscale→≤1080",
+      "updated": "2026-04-13T22:58:38.485Z",
+      "width": 1080,
+      "height": 567
     }
   }
 }

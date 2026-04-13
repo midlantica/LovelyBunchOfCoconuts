@@ -4,7 +4,7 @@
       class="mb-6 text-center text-3xl"
       style="color: var(--color-text-heading)"
     >
-      What We Do
+      What We Do!
     </h2>
 
     <div class="flex flex-col gap-6">
