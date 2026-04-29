@@ -2,11 +2,11 @@
 
 ## ✅ Last Updated: 2026-04-29
 
-**20 packages updated** on branch `package-updates-20260429` — lint ✓, build ✓
+**All packages fully up to date** — 0 outdated packages remaining — lint ✓, build ✓
 
 ---
 
-## 📊 Current State (post Apr 29 update)
+## 📊 Current State (post Apr 29 update — 5 rounds)
 
 ### ✅ Recently Updated (Apr 29, 2026)
 
@@ -14,13 +14,17 @@
 | -------------------------------------- | ------- | ------- | --------- |
 | `@napi-rs/canvas`                      | 0.1.96  | 0.1.100 | patch     |
 | `@netlify/blobs`                       | 10.7.2  | 10.7.4  | patch     |
+| `@netlify/nuxt`                        | 0.2.34  | 0.3.1   | minor     |
 | `@nuxt/content`                        | 3.12.0  | 3.13.0  | minor     |
+| `@nuxtjs/mdc`                          | 0.20.2  | 0.21.1  | minor     |
+| `@nuxtjs/sitemap`                      | 7.6.0   | 8.0.14  | 🔴 major  |
 | `tailwindcss`                          | 4.2.1   | 4.2.4   | patch/dev |
 | `@tailwindcss/cli`                     | 4.2.1   | 4.2.4   | patch/dev |
 | `@tailwindcss/postcss`                 | 4.2.1   | 4.2.4   | patch/dev |
 | `@tailwindcss/vite`                    | 4.2.1   | 4.2.4   | patch/dev |
 | `@eslint/css`                          | 1.0.0   | 1.1.0   | minor/dev |
 | `@eslint/json`                         | 1.1.0   | 1.2.0   | minor/dev |
+| `@eslint/markdown`                     | 7.5.1   | 8.0.1   | 🔴 major  |
 | `@typescript-eslint/parser`            | 8.57.0  | 8.59.1  | patch/dev |
 | `baseline-browser-mapping`             | 2.10.7  | 2.10.24 | patch/dev |
 | `eslint`                               | 10.0.3  | 10.2.1  | patch/dev |
@@ -30,34 +34,16 @@
 | `@oxc-parser/binding-linux-x64-gnu`    | 0.118.0 | 0.128.0 | patch/dev |
 | `@oxc-transform/binding-linux-x64-gnu` | 0.118.0 | 0.128.0 | patch/dev |
 | `prettier`                             | 3.8.1   | 3.8.3   | patch/dev |
+| `prettier-plugin-tailwindcss`          | 0.7.2   | 0.8.0   | 🔴 major  |
+| `typescript`                           | 5.9.3   | 6.0.3   | 🔴 major  |
 | `vue`                                  | 3.5.30  | 3.5.33  | patch     |
 | `vue-router`                           | 5.0.3   | 5.0.6   | patch     |
 
 ---
 
-## 🚨 Skipped — Major Version Bumps (Breaking Changes)
+## 🚨 Skipped — Nothing! All packages are current.
 
-These require dedicated migration work — **do NOT update with `pnpm update`**:
-
-| Package                       | Current | Latest | Risk                                                      |
-| ----------------------------- | ------- | ------ | --------------------------------------------------------- |
-| `@eslint/markdown`            | 7.5.1   | 8.0.1  | 🔴 Major — API changes, check eslint.config.js            |
-| `@nuxtjs/sitemap`             | 7.6.0   | 8.0.14 | 🔴 Major — significant config changes                     |
-| `typescript`                  | 5.9.3   | 6.0.3  | 🔴 Major — type system changes, broad impact              |
-| `@netlify/nuxt`               | 0.2.34  | 0.3.1  | 🟡 Minor bump but significant — test Netlify deploy first |
-| `prettier-plugin-tailwindcss` | 0.7.2   | 0.8.0  | 🔴 Major — may change formatting, review diffs carefully  |
-
-### Migration Notes
-
-**typescript 5 → 6**: Significant type system changes. Wait for Nuxt ecosystem (nuxt, @nuxt/kit, etc.) to officially support TS 6 before upgrading. Check `nuxt` release notes.
-
-**@nuxtjs/sitemap 7 → 8**: Major config overhaul. Review the [v8 migration guide](https://nuxtseo.com/sitemap/getting-started/migration) before upgrading.
-
-**@eslint/markdown 7 → 8**: Dev-only, but check `eslint.config.js` for any API changes before updating.
-
-**prettier-plugin-tailwindcss 0.7 → 0.8**: May reformat many files. Run on a branch and review the diff carefully.
-
-**@netlify/nuxt 0.2 → 0.3**: Test a Netlify preview deploy before merging to main.
+No packages are currently outdated. 🎉
 
 ---
 
@@ -77,13 +63,23 @@ Also pinned (Nuxt ecosystem — update together):
 "nuxt": "4.4.2",
 "@nuxt/kit": "4.4.2",
 "@nuxt/content": "3.13.0",
-"@nuxtjs/sitemap": "7.6.0",
 "@tailwindcss/cli": "4.2.4",
-"tailwindcss": "4.2.4",
-"typescript": "5.9.3"
+"tailwindcss": "4.2.4"
 ```
 
 When updating pinned packages, edit `package.json` directly then run `pnpm install`.
+
+---
+
+## ⚠️ Known Peer Dependency Warnings (pre-existing, not our problem)
+
+These warnings exist regardless of our updates and can be ignored:
+
+- `vite-plugin-vue-mcp@0.3.2` — expects vite `^3-6`, found vite 7 (Nuxt ships vite 7)
+- `@nuxt/content@3.13.0` — expects `better-sqlite3@^12.5.0`, found `12.4.1`
+- `@nuxt/eslint@1.15.2` → `@eslint/config-inspector` — expects eslint `^8-9`, found `10.x`
+- `@nuxt/eslint@1.15.2` → `eslint-plugin-import-x` — same as above
+- `@typescript-eslint/*@8.57.x` internals — expect typescript `<6.0.0`, found `6.0.3` (warnings only, lint and build pass cleanly)
 
 ---
 
@@ -109,10 +105,11 @@ pnpm install
 pnpm lint
 pnpm build:quiet
 
-# 6. Commit
+# 6. Commit and merge to master
 git add package.json pnpm-lock.yaml
 git commit -m "chore: dependency updates"
 git push
+git checkout master && git merge <branch> && git push origin master
 ```
 
 ---
@@ -134,15 +131,3 @@ git log --oneline -5
 git revert <commit-hash>
 git push
 ```
-
----
-
-## ⚠️ Pre-existing Peer Dependency Warnings (not our problem)
-
-These warnings exist regardless of our updates and can be ignored:
-
-- `vite-plugin-vue-mcp@0.3.2` — expects vite `^3-6`, found vite 7 (Nuxt ships vite 7)
-- `@nuxt/cli` → `@bomb.sh/tab` — expects `citty@^0.1.6`, found `0.2.0`
-- `@nuxt/content@3.13.0` — expects `better-sqlite3@^12.5.0`, found `12.4.1`
-- `@nuxt/eslint@1.15.2` → `@eslint/config-inspector` — expects eslint `^8-9`, found `10.x` (upstream hasn't caught up to eslint 10 yet)
-- `@nuxt/eslint@1.15.2` → `eslint-plugin-import-x` — same as above
