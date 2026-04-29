@@ -2799,6 +2799,46 @@
       "updated": "2026-04-29T05:36:31.391Z",
       "width": 1080,
       "height": 1227
+    },
+    "data/annual-median-equivalised-disposable.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "downscale→≤1080",
+      "updated": "2026-04-29T05:55:33.315Z",
+      "width": 1080,
+      "height": 505
+    },
+    "data/demonstrations-associated-with-black.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "downscale→≤1080",
+      "updated": "2026-04-29T05:55:33.832Z",
+      "width": 1080,
+      "height": 845
+    },
+    "data/faculty-ideology-in-the-united-1969.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "upscale→800",
+      "updated": "2026-04-29T05:55:34.016Z",
+      "width": 800,
+      "height": 587
+    },
+    "data/who-pays-the-most-income-tax.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2026-04-29T05:55:34.197Z",
+      "width": 1080,
+      "height": 1350
+    },
+    "politics/the-left-vs-the-right.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "downscale→≤1080",
+      "updated": "2026-04-29T05:55:35.067Z",
+      "width": 1080,
+      "height": 1042
     }
   }
 }
