@@ -36,7 +36,7 @@
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/icon": "^2.1.1",
     "@nuxt/image": "^2.0.0",
-    "@nuxtjs/mdc": "^0.20.2",
+    "@nuxtjs/mdc": "^0.21.1",
     "gray-matter": "^4.0.3",
     "markdown-it": "^14.1.1",
     "nuxt": "4.4.2",
