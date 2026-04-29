@@ -1,7 +1,7 @@
-Starting markdown file creation at 2026-04-13T22:58:38.552Z
-Using/creating content directory: /Users/drew/Projects/WakeUpNPC2/content/memes/margaret-thatcher
-Created markdown file for margaret-thatcher-a-mans-right-to-work.webp at /Users/drew/Projects/WakeUpNPC2/content/memes/margaret-thatcher/margaret-thatcher-a-mans-right-to-work.md
+Starting markdown file creation at 2026-04-29T05:36:31.461Z
+Using/creating content directory: /Users/drew/Projects/WakeUpNPC2/content/memes/the-science
+Created markdown file for future-generations-will-wonder-in.webp at /Users/drew/Projects/WakeUpNPC2/content/memes/the-science/future-generations-will-wonder-in.md
 
-Markdown file creation complete at 2026-04-13T22:58:38.557Z
-1 markdown files created, 26 files skipped
+Markdown file creation complete at 2026-04-29T05:36:31.467Z
+1 markdown files created, 89 files skipped
 Created markdown files are logged in /Users/drew/Projects/WakeUpNPC2/scripts/utils/markdown-creation-log.txt

@@ -8,4 +8,4 @@ title: 'It was Thomas Edison who brought'
 
 ## Those who have helped the poor the most have not been those who have gone around loudly expressing compassion for the poor but those who found ways to make industry more productive and distribution more efficient so that the poor of today can afford things that the affluent of yesterday could only dream about."
 
-Thomas Sowell
+Thomas Sowell, *The Real Public Service (2010)*

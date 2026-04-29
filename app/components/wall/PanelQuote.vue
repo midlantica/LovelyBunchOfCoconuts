@@ -27,9 +27,8 @@
         class="font-100 text-theme-muted inline-block align-baseline tracking-wide"
         style="font-size: 1.25rem; line-height: 1.4"
         v-if="quote.attribution"
-      >
-        — {{ quote.attribution }}
-      </p>
+        v-html="'— ' + (quote.attributionHtml || quote.attribution)"
+      ></p>
     </div>
   </div>
   <div
@@ -47,9 +46,8 @@
       <p
         class="font-100 text-theme-muted inline-block align-baseline text-xl"
         v-if="quote && quote.attribution"
-      >
-        — {{ quote.attribution }}
-      </p>
+        v-html="'— ' + (quote.attributionHtml || quote.attribution)"
+      ></p>
     </div>
   </div>
 </template>

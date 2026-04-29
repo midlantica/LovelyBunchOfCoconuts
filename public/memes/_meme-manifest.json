@@ -2679,6 +2679,126 @@
       "updated": "2026-04-13T22:58:38.485Z",
       "width": 1080,
       "height": 567
+    },
+    "cartoons/democrat-friends-our-enemies.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2026-04-29T05:36:26.657Z",
+      "width": 1080,
+      "height": 1093
+    },
+    "cartoons/i-protested-trump-today-momma.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2026-04-29T05:36:26.873Z",
+      "width": 960,
+      "height": 932
+    },
+    "cartoons/odd-it-is-nazis-were-national-socialists.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "downscale→≤1080",
+      "updated": "2026-04-29T05:36:27.422Z",
+      "width": 860,
+      "height": 1080
+    },
+    "cartoons/political-violence-is-never-the-answer.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "downscale→≤1080",
+      "updated": "2026-04-29T05:36:28.122Z",
+      "width": 1080,
+      "height": 1025
+    },
+    "cartoons/radical-islam-coexist.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "upscale→800",
+      "updated": "2026-04-29T05:36:28.371Z",
+      "width": 800,
+      "height": 573
+    },
+    "data/do-the-rich-pay-their-fair-share.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2026-04-29T05:36:28.613Z",
+      "width": 945,
+      "height": 512
+    },
+    "politics/1960s-civil-rights-law.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2026-04-29T05:36:28.988Z",
+      "width": 784,
+      "height": 847
+    },
+    "politics/has-anyone-else-noticed-that-ice-is-more.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "downscale→≤1080",
+      "updated": "2026-04-29T05:36:29.414Z",
+      "width": 1080,
+      "height": 862
+    },
+    "politics/prison-is-perfect-place-for-liberals.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "downscale→≤1080",
+      "updated": "2026-04-29T05:36:30.113Z",
+      "width": 837,
+      "height": 1080
+    },
+    "politics/slavery-in-the-world-and-us.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2026-04-29T05:36:30.308Z",
+      "width": 1023,
+      "height": 1020
+    },
+    "politics/there-wasnt-enough-racism-in-america.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2026-04-29T05:36:30.424Z",
+      "width": 960,
+      "height": 633
+    },
+    "quotes/illegals-are-voting-matt-van-swol.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2026-04-29T05:36:30.715Z",
+      "width": 960,
+      "height": 928
+    },
+    "quotes/the-founders-knew-that-a-democracy-would.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2026-04-29T05:36:30.954Z",
+      "width": 1080,
+      "height": 1058
+    },
+    "quotes/when-muslims-are-in-the-minority.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2026-04-29T05:36:31.088Z",
+      "width": 960,
+      "height": 708
+    },
+    "the-science/future-generations-will-wonder-in.png": {
+      "optimized": true,
+      "hash": null,
+      "action": "convert-webp",
+      "updated": "2026-04-29T05:36:31.391Z",
+      "width": 1080,
+      "height": 1227
     }
   }
 }

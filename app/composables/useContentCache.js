@@ -183,6 +183,55 @@ const registerSlugKeys = (map, keys, value) => {
     .forEach((k) => map.set(k, value))
 }
 
+// Extract plain text from a Nuxt Content body node.
+// element[2] can be a plain string OR an array of inline nodes.
+// Nuxt Content minimark format:
+//   - A single element node: ["tagname", {attrs}, ...children]
+//   - A list of child nodes: [child1, child2, ...]  where children can be strings or element nodes
+// We distinguish them by checking if node[0] is a known HTML tag name (short string, no spaces).
+function extractNodeText(node) {
+  if (!node) return ''
+  if (typeof node === 'string') return node
+  if (Array.isArray(node)) {
+    // Detect if this array IS an element node: first item is a tag name string
+    const isElementNode =
+      typeof node[0] === 'string' &&
+      /^[a-z][a-z0-9]*$/i.test(node[0]) &&
+      (node.length < 2 ||
+        (typeof node[1] === 'object' && !Array.isArray(node[1])))
+    if (isElementNode) {
+      // Recurse into children (index 2+)
+      return node.slice(2).map(extractNodeText).join('')
+    }
+    // Otherwise it's a list of child nodes — recurse each
+    return node.map(extractNodeText).join('')
+  }
+  return ''
+}
+
+// Extract HTML from a Nuxt Content body node, preserving inline formatting (em, strong, etc.)
+// Only allows safe inline tags; everything else is rendered as plain text.
+const INLINE_TAGS = new Set(['em', 'strong', 'b', 'i', 's', 'code', 'span'])
+function extractNodeHtml(node) {
+  if (!node) return ''
+  if (typeof node === 'string') return node
+  if (Array.isArray(node)) {
+    const isElementNode =
+      typeof node[0] === 'string' &&
+      /^[a-z][a-z0-9]*$/i.test(node[0]) &&
+      (node.length < 2 ||
+        (typeof node[1] === 'object' && !Array.isArray(node[1])))
+    if (isElementNode) {
+      const tag = node[0]
+      const inner = node.slice(2).map(extractNodeHtml).join('')
+      if (INLINE_TAGS.has(tag)) return `<${tag}>${inner}</${tag}>`
+      return inner
+    }
+    return node.map(extractNodeHtml).join('')
+  }
+  return ''
+}
+
 export function useContentCache() {
   // Instead of mirroring with individual refs + watchers, expose reactive toRefs directly
   const cache = globalCache
@@ -240,11 +289,21 @@ export function useContentCache() {
             .map((element) => element[2] || '')
             .filter(Boolean)
           transformed.headings = headings
-          const paragraphs = item.body.value
-            .filter((element) => element[0] === 'p')
-            .map((element) => element[2] || '')
+          const paragraphElements = item.body.value.filter(
+            (element) => element[0] === 'p'
+          )
+          const paragraphs = paragraphElements
+            .map((element) => element.slice(2).map(extractNodeText).join(''))
             .filter(Boolean)
-          transformed.attribution = paragraphs[0] || ''
+          // Attribution is always the LAST paragraph (after the heading and any
+          // continuation paragraphs that are part of the quote itself)
+          transformed.attribution = paragraphs[paragraphs.length - 1] || ''
+          // Also store HTML version to preserve inline formatting (e.g. <em> for source titles)
+          const paragraphsHtml = paragraphElements
+            .map((element) => element.slice(2).map(extractNodeHtml).join(''))
+            .filter(Boolean)
+          transformed.attributionHtml =
+            paragraphsHtml[paragraphsHtml.length - 1] || ''
           if (headings.length > 0) {
             transformed.quoteText = headings.join('\n\n')
           }

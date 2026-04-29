@@ -20,9 +20,11 @@
             </h1>
             <p
               class="font-100 text-seagull-200 mb-2 text-xl text-shadow-xs sm:text-2xl"
-            >
-              — {{ modalData?.attribution }}
-            </p>
+              v-html="
+                '— ' +
+                (modalData?.attributionHtml || modalData?.attribution || '')
+              "
+            ></p>
           </div>
           <div
             v-if="
