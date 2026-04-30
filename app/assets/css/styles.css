@@ -264,7 +264,7 @@ div > p:last-of-type {
 /* Custom Scrollbar Styling */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #045d88 transparent;
+  scrollbar-color: #8b0000 transparent;
 }
 
 *::-webkit-scrollbar {
@@ -276,25 +276,25 @@ div > p:last-of-type {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #045d88;
+  background-color: #8b0000;
   border-radius: 6px;
   border: none;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: #006ea5;
+  background-color: #c8102e;
 }
 
 .about,
-.contact,
-.advertising {
+.contact {
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    @apply font-300 text-seagull-300;
+    @apply font-300;
+    color: var(--color-text-heading);
   }
 }
 
@@ -528,5 +528,13 @@ div > p:last-of-type {
 }
 
 [data-theme='light'] * {
-  scrollbar-color: #045d88 #e5e5e5;
+  scrollbar-color: #8b0000 #e5e5e5;
+}
+
+[data-theme='light'] *::-webkit-scrollbar-thumb {
+  background-color: #8b0000;
+}
+
+[data-theme='light'] *::-webkit-scrollbar-thumb:hover {
+  background-color: #c8102e;
 }

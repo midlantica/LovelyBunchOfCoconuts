@@ -49,6 +49,7 @@ export default {
           'accent-hover': 'var(--color-accent-hover)',
           'accent-light': 'var(--color-accent-light)',
           body: 'var(--color-text-body)',
+          heading: 'var(--color-text-heading)',
           muted: 'var(--color-text-muted)',
           subtle: 'var(--color-text-subtle)',
           disabled: 'var(--color-text-disabled)',

@@ -7,118 +7,116 @@
 @import './lazyLoading.css';
 
 /* ============================================================
-   DESIGN TOKENS — Dark Theme (default)
-   All semantic color roles are defined here as CSS custom
-   properties. The light theme overrides them in [data-theme="light"].
+   DESIGN TOKENS — British Flag Colour Theme
+   Light: Scottish blue bg, off-white panels, Union Jack red accents
+   Dark:  Muted/desaturated versions of the light palette
    ============================================================ */
 
+/* ── DARK THEME (default) ─────────────────────────────────── */
 :root,
 [data-theme='dark'] {
   /* ── Base Backgrounds ─────────────────────────────────── */
-  --color-bg-base: #020617; /* deep navy-black — page/body background */
-  --color-bg-surface: #131d34; /* dark navy — cards, wall items, header, footer */
-  --color-bg-elevated: #1e2a45; /* slightly lighter navy — modals, popovers */
-  --color-bg-overlay: #263352; /* lightest navy — hover overlays */
+  --color-bg-base: #0d1a2e; /* deep muted navy — page/body background */
+  --color-bg-surface: #162236; /* dark muted blue — cards, wall items, header, footer */
+  --color-bg-elevated: #1e2e45; /* slightly lighter — modals, popovers */
+  --color-bg-overlay: #253650; /* lightest — hover overlays */
 
   /* ── Brand / Accent ───────────────────────────────────── */
-  --color-accent: #09acee; /* seagull-500 — primary CTA, active states */
-  --color-accent-hover: #33c3fd; /* seagull-400 — accent hover / active icon */
-  --color-accent-light: #6dd3ff; /* seagull-300 — logo fill, highlights */
+  --color-accent: #a03040; /* muted Union Jack red — primary CTA, active states */
+  --color-accent-hover: #c03a4c; /* slightly brighter red — hover */
+  --color-accent-light: #d4606e; /* lighter muted red — highlights */
 
   /* ── Text ─────────────────────────────────────────────── */
-  --color-text-body: #fdfdf8; /* cream-bright white — body copy */
-  --color-text-heading: #fdfdf8; /* cream-bright white — headings */
-  --color-text-muted: #fdfdf8; /* cream-bright white — secondary / muted text */
-  --color-logo-byline: #ffffff; /* white — logo byline text */
-  --color-logo-npc-grey: #c9c9c9; /* npc-grey — matches grift NPC icon grey */
+  --color-text-body: #e8e4dc; /* warm off-white — body copy */
+  --color-text-heading: #f0ece4; /* bright off-white — headings */
+  --color-text-muted: #c8c4bc; /* muted warm grey — secondary text */
+  --color-logo-byline: #e8e4dc; /* warm off-white — logo byline text */
+  --color-logo-npc-grey: #8a8a8a; /* neutral grey */
   --color-search-bg: transparent; /* search input background — transparent in dark mode */
-  --color-pill-bg: var(
-    --color-bg-elevated
-  ); /* search pill background — dark mode */
-  --color-pill-bg-hover: var(
-    --color-bg-overlay
-  ); /* search pill hover — dark mode */
-  --color-pill-text: var(--color-text-body); /* search pill text — dark mode */
-  --color-pill-font-weight: 100; /* search pill font weight — dark mode (thin) */
-  --color-text-subtle: #6dd3ff; /* seagull-300 — tertiary / de-emphasized */
+  --color-pill-bg: var(--color-bg-elevated); /* search pill background */
+  --color-pill-bg-hover: var(--color-bg-overlay); /* search pill hover */
+  --color-pill-text: var(--color-text-body); /* search pill text */
+  --color-pill-font-weight: 100; /* search pill font weight — thin */
+  --color-text-subtle: #d4606e; /* muted red — tertiary / de-emphasized */
   --color-text-disabled: #6b7280; /* gray-500 — disabled states */
-  --color-text-icon: #b3b3b3; /* neutral — default icon color */
+  --color-text-icon: #b0aca4; /* warm neutral — default icon color */
 
   /* ── Borders ──────────────────────────────────────────── */
   --color-border: transparent; /* no border on wall cards in dark mode */
   --color-border-subtle: #7c7c7c4a; /* neutral 29% opacity */
-  --color-border-hover: #33c3fd80; /* seagull-400 50% — card hover border */
-  --color-share-btn-bg: #1b1b1b; /* near-black — share button background */
-  --color-share-shelf-bg: #1a1a1a; /* charcoal — share shelf background in dark mode */
+  --color-border-hover: #a0304080; /* muted red 50% — card hover border */
+  --color-share-btn-bg: #1a1a1a; /* near-black — share button background */
+  --color-share-shelf-bg: #181818; /* charcoal — share shelf background */
 
   /* ── Shadows ──────────────────────────────────────────── */
-  --color-shadow-inset: #010410; /* deep navy inset shadow for cards */
+  --color-shadow-inset: #060c14; /* deep navy inset shadow for cards */
 
-  /* ── Divider Arrow (grift card separator) ─────────────── */
+  /* ── Divider ──────────────────────────────────────────── */
   --color-divider-line: rgba(255, 255, 255, 0.1); /* subtle white line */
   --color-divider-arrow: rgba(255, 255, 255, 0.3); /* white triangle */
 
+  /* ── Close Button ─────────────────────────────────────── */
+  --color-close-icon: hsl(0 0% 55% / 1);
+  --color-close-icon-hover: hsl(0 0% 85% / 1);
+
+  /* ── Scrollbar ────────────────────────────────────────── */
+  --scrollbar-track-bg: #0d1a2e;
+
   /* ── Legacy aliases (backward compat) ────────────────── */
   --dark: var(--color-bg-base);
-  --medium: #0a81c2;
+  --medium: #a03040;
   --light: var(--color-accent-light);
   --accent: var(--color-accent);
 }
 
 /* ============================================================
    LIGHT THEME — applied via <html data-theme="light">
+   Scottish blue background, off-white panels, red accents
    ============================================================ */
 
 [data-theme='light'] {
   /* ── Base Backgrounds ─────────────────────────────────── */
-  --color-bg-base: #d5e8f0; /* pale seagull blue — page/body background */
-  --color-bg-surface: #fdfdf8; /* cream-bright white — wall items, cards */
-  --color-bg-elevated: #eeede8; /* slightly deeper off-white — modals, popovers */
-  --color-bg-overlay: #e5e4de; /* warm grey-white — hover overlays */
+  --color-bg-base: #0065bd; /* Scottish blue (St Andrew's Cross) — page/body background */
+  --color-bg-surface: #faf8f5; /* warm off-white — wall items, cards */
+  --color-bg-elevated: #f5f0e8; /* slightly deeper off-white — modals, popovers */
+  --color-bg-overlay: #ede8e0; /* warm grey-white — hover overlays */
 
   /* ── Brand / Accent ───────────────────────────────────── */
-  --color-accent: #0089cc; /* seagull-600 */
-  --color-accent-hover: #006ea5; /* seagull-700 */
-  --color-accent-light: #09acee; /* seagull-500 */
+  --color-accent: #c8102e; /* Union Jack red — primary CTA, active states */
+  --color-accent-hover: #a00d24; /* dark red — hover */
+  --color-accent-light: #e03050; /* lighter red — highlights */
 
   /* ── Text ─────────────────────────────────────────────── */
   --color-text-body: #1a1a1a; /* charcoal — all body copy */
-  --color-text-heading: #1a1a1a; /* charcoal — headings (unified with body) */
-  --color-logo-byline: #1a1a1a; /* charcoal — logo byline text in light mode */
-  --color-logo-npc-grey: #b0b0b0; /* npc-grey — matches grift NPC icon grey, darker for light bg */
-  --color-search-bg: var(
-    --color-bg-surface
-  ); /* search input background — off-white in light mode */
-  --color-pill-bg: #b8e8ff; /* seagull-200 — search pill background in light mode */
-  --color-pill-bg-hover: #6dd3ff; /* seagull-300 — search pill hover in light mode */
-  --color-pill-text: #06304b; /* seagull-950 — search pill text in light mode */
-  --color-pill-font-weight: 300; /* search pill font weight — light mode (light) */
-  --color-text-muted: #1a1a1a; /* charcoal — secondary text (unified) */
-  --color-text-subtle: #1a1a1a; /* charcoal — tertiary text (unified) */
+  --color-text-heading: #8b0000; /* dark red — headings */
+  --color-logo-byline: #1a1a1a; /* charcoal — logo byline text */
+  --color-logo-npc-grey: #b0b0b0; /* neutral grey */
+  --color-search-bg: var(--color-bg-surface); /* off-white search input */
+  --color-pill-bg: #faf8f5; /* off-white — search pill background */
+  --color-pill-bg-hover: #f5f0e8; /* slightly deeper off-white — pill hover */
+  --color-pill-text: #1a1a1a; /* charcoal — search pill text */
+  --color-pill-font-weight: 300; /* search pill font weight — light */
+  --color-text-muted: #3a3a3a; /* dark charcoal — secondary text */
+  --color-text-subtle: #8b0000; /* dark red — tertiary / de-emphasized */
   --color-text-disabled: #9ca3af; /* gray-400 */
   --color-text-icon: #1a1a1a; /* charcoal — icons */
 
   /* ── Borders ──────────────────────────────────────────── */
   --color-border: transparent; /* no border on wall cards at rest */
   --color-border-subtle: #1a1a1a26; /* charcoal 15% opacity */
-  --color-border-hover: #1a1a1a; /* charcoal — card hover border in light mode */
-  --color-share-btn-bg: #e5e4de; /* warm grey — share button background in light mode */
-  --color-share-shelf-bg: #e0dfd9; /* light grey — share shelf in light mode */
+  --color-border-hover: #c8102e; /* Union Jack red — card hover border */
+  --color-share-btn-bg: #ede8e0; /* warm grey — share button background */
+  --color-share-shelf-bg: #e8e3db; /* light warm grey — share shelf */
 
   /* ── Shadows ──────────────────────────────────────────── */
   --color-shadow-inset: transparent; /* no inset shadow in light mode */
 
   /* ── Scrollbar ────────────────────────────────────────── */
-  --scrollbar-track-bg: #c8dde8; /* pale blue-grey track matching page bg */
+  --scrollbar-track-bg: #0055a8; /* slightly darker Scottish blue track */
 
-  /* ── Divider Arrow (grift card separator) ─────────────── */
-  --color-divider-line: rgba(
-    0,
-    0,
-    0,
-    0.12
-  ); /* subtle dark line on light cards */
-  --color-divider-arrow: rgba(0, 0, 0, 0.2); /* dark triangle on light cards */
+  /* ── Divider ──────────────────────────────────────────── */
+  --color-divider-line: rgba(0, 0, 0, 0.12); /* subtle dark line */
+  --color-divider-arrow: rgba(0, 0, 0, 0.2); /* dark triangle */
 
   /* ── Close Button (modal X icon) ─────────────────────── */
   --color-close-icon: hsl(0 0% 55% / 1); /* medium grey at rest */
