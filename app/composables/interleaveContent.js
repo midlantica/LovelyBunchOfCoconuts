@@ -1,12 +1,8 @@
 // composables/interleaveContent.js
-// Core pattern engine: Creates visual layout pattern [ grift | grift ] → [ quote ] → [ meme | meme ] → [ quote ]
-// Improvements:
+// Core pattern engine: Creates visual layout pattern [ quote ] → [ meme | meme ] → [ quote ] → [ meme | meme ]
 // - Deterministic (seeded) optional shuffle for idempotence
 // - Non‑mutating (does not splice input arrays)
 // - Graceful fallback ordering remains stable & deterministic
-// - Optional ad placeholder injection every N pattern items (as quote with isAd flag)
-// - Never introduces new template types (still only: griftPair, quote, memeRow)
-// - Avoids partial singles except when content exhaustion leaves 1 item (last resort)
 
 function createSeededRng(seed) {
   if (!seed) return Math.random // fallback
@@ -36,7 +32,6 @@ function createSeededRng(seed) {
 
 function seededShuffle(arr, rng) {
   if (!rng || rng === Math.random) {
-    // keep original random behavior only if no seed provided
     const a = [...arr]
     for (let i = a.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
@@ -53,25 +48,21 @@ function seededShuffle(arr, rng) {
 }
 
 /**
- * Interleave grifts, quotes, posts, memes, and profiles into strict visual pattern with stable fallbacks.
- * @param {Array} grifts
+ * Interleave quotes, posts, memes, and profiles into strict visual pattern with stable fallbacks.
+ * @param {Array} _grifts - Ignored (kept for API compatibility)
  * @param {Array} quotes
  * @param {Array} memes
  * @param {Object} options
  * @param {string} [options.seed] - Seed for deterministic shuffle
- * @param {number} [options.adInterval=0] - Inject ad placeholder every N pattern items (0 = disabled)
- * @param {Function} [options.adProvider] - () => { id, title, body, size } returns data for ad. If returns falsy, ad skipped.
  * @param {boolean} [options.enableShuffle=true] - Disable to keep original order
  * @param {Array} [options.profiles] - Array of profile objects to interleave
  * @param {number} [options.profileInterval=4] - Insert profile after every N complete patterns (0 = disabled)
  * @param {Array} [options.posts] - Array of post objects to interleave with quotes
- * @returns {Array} pattern items (types: griftPair | quote | post | memeRow | profile)
+ * @returns {Array} pattern items (types: quote | post | memeRow | profile)
  */
-export function interleaveContent(grifts, quotes, memes, options = {}) {
+export function interleaveContent(_grifts, quotes, memes, options = {}) {
   const {
     seed,
-    adInterval = 0,
-    adProvider,
     enableShuffle = true,
     profiles = [],
     profileInterval = 4,
@@ -81,68 +72,46 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
   const rng = seed ? createSeededRng(seed) : null
 
   // Create non‑mutated working arrays (optionally shuffled)
-  const c = enableShuffle ? seededShuffle(grifts, rng) : [...grifts]
   const q = enableShuffle ? seededShuffle(quotes, rng) : [...quotes]
   const m = enableShuffle ? seededShuffle(memes, rng) : [...memes]
   const po = enableShuffle ? seededShuffle(posts, rng) : [...posts]
   const p = enableShuffle ? seededShuffle(profiles, rng) : [...profiles]
 
   // Indices instead of splicing (preserves idempotence)
-  let ci = 0
   let qi = 0
   let mi = 0
   let poi = 0
   let pi = 0
 
   const output = []
-  const pattern = ['griftPair', 'quote', 'memeRow', 'quote']
+  const pattern = ['quote', 'memeRow', 'quote', 'memeRow']
   let patternIndex = 0
-  let producedCoreItems = 0 // counts non‑ad items only
-  let lastItemWasAd = false // Track if last item added was an ad
-  let itemsSinceLastAd = 0 // Track items since last ad
-  let completedPatterns = 0 // Track number of complete 4-item patterns
-  let memeRowCount = 0 // Track meme rows for post injection every 5th row
+  let producedCoreItems = 0
+  let completedPatterns = 0
+  let memeRowCount = 0
 
-  const haveGrifts = () => ci < c.length
   const haveMemes = () => mi < m.length
   const haveQuotes = () => qi < q.length
   const havePosts = () => poi < po.length
-  const griftRemaining = () => c.length - ci
   const memeRemaining = () => m.length - mi
   const quoteRemaining = () => q.length - qi
   const postRemaining = () => po.length - poi
 
-  const pushGriftPair = (count = 2) => {
-    const slice = c.slice(ci, ci + count)
-    ci += slice.length
-
-    // NEVER inject square ads into griftPair - they should only appear in memeRow
-    // Grifts are not square-shaped and get stretched badly when paired with square ads
-
-    output.push({ type: 'griftPair', data: slice })
-    producedCoreItems++
-    itemsSinceLastAd++
-    lastItemWasAd = false
-  }
-  const pushMemeRow = (count = 2, includeAd = false) => {
+  const pushMemeRow = (count = 2) => {
     memeRowCount++
 
     // Every 2nd meme row: try to create mixed [Meme | Post] pair
-    // This makes posts appear much more frequently (every other meme row instead of every 5th)
     if (memeRowCount % 2 === 0 && havePosts() && haveMemes()) {
       const meme = { ...m[mi], _type: 'meme' }
       mi++
       const post = { ...po[poi], _type: 'post' }
       poi++
 
-      // Random order using seeded RNG
       const items =
         (rng ? rng() : Math.random()) > 0.5 ? [meme, post] : [post, meme]
 
       output.push({ type: 'memeRow', data: items })
       producedCoreItems++
-      itemsSinceLastAd++
-      lastItemWasAd = false
       return
     }
 
@@ -152,65 +121,29 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
       .map((item) => ({ ...item, _type: 'meme' }))
     mi += slice.length
 
-    let hadAd = false
-
-    // If we should include an ad and have an ad provider
-    // But don't add if last item was an ad
-    if (includeAd && adProvider && slice.length > 0 && !lastItemWasAd) {
-      const adData = adProvider()
-      if (adData && (adData.size === 'square' || adData.size === 'small')) {
-        // Replace one meme with an ad (push the meme back)
-        if (slice.length === 2) {
-          // Put the second meme back
-          mi -= 1
-          slice.pop()
-        }
-        // Add the ad as a meme-like item
-        slice.push({
-          ...adData,
-          isAd: true,
-          _type: 'ad',
-        })
-        hadAd = true
-        itemsSinceLastAd = 0
-      }
-    }
-
     output.push({ type: 'memeRow', data: slice })
     producedCoreItems++
-    lastItemWasAd = hadAd
-    if (!hadAd) itemsSinceLastAd++
   }
-  const pushQuote = (quoteObj, isAd = false) => {
-    output.push({
-      type: 'quote',
-      data: isAd ? { ...quoteObj, isAd: true } : quoteObj,
-    })
-    if (!isAd) {
-      producedCoreItems++
-      itemsSinceLastAd++
-    } else {
-      itemsSinceLastAd = 0
-    }
-    lastItemWasAd = isAd
+
+  const pushQuote = (quoteObj) => {
+    output.push({ type: 'quote', data: quoteObj })
+    producedCoreItems++
   }
+
   const pushPost = (postObj) => {
     output.push({
       type: 'post',
       data: { ...postObj, _type: 'post' },
     })
     producedCoreItems++
-    itemsSinceLastAd++
-    lastItemWasAd = false
   }
+
   const pushProfile = (profileObj) => {
     output.push({
       type: 'profile',
       data: profileObj,
     })
     producedCoreItems++
-    itemsSinceLastAd++
-    lastItemWasAd = false
   }
 
   // Main build loop
@@ -218,22 +151,9 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
     const expected = pattern[patternIndex % pattern.length]
     let created = false
 
-    if (expected === 'griftPair') {
-      if (griftRemaining() >= 2) {
-        // Never inject square ads into grift pairs - they stretch grifts badly
-        pushGriftPair(2)
-        created = true
-      }
-    } else if (expected === 'memeRow') {
+    if (expected === 'memeRow') {
       if (memeRemaining() >= 2) {
-        // Check if we should inject a small ad in this meme row
-        const shouldInjectAd =
-          adInterval > 0 &&
-          producedCoreItems > 0 &&
-          producedCoreItems % adInterval === 0 &&
-          adProvider
-
-        pushMemeRow(2, shouldInjectAd)
+        pushMemeRow(2)
         created = true
       }
     } else if (expected === 'quote') {
@@ -244,13 +164,9 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
       }
     }
 
-    // Fallbacks (stable priority): griftPair(2) → memeRow(2) → quote(1) → post(1) → grift single → meme single
-    // Posts can now appear as standalone items (like quotes) in addition to being mixed with memes
+    // Fallbacks: memeRow(2) → quote(1) → post(1) → meme single
     if (!created) {
-      if (griftRemaining() >= 2) {
-        pushGriftPair(2)
-        created = true
-      } else if (memeRemaining() >= 2) {
+      if (memeRemaining() >= 2) {
         pushMemeRow(2)
         created = true
       } else if (quoteRemaining() >= 1) {
@@ -258,18 +174,14 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
         qi += 1
         created = true
       } else if (postRemaining() >= 2) {
-        // When we have 2+ posts but no memes, pair posts together
         const post1 = { ...po[poi], _type: 'post' }
         poi++
         const post2 = { ...po[poi], _type: 'post' }
         poi++
         output.push({ type: 'memeRow', data: [post1, post2] })
         producedCoreItems++
-        itemsSinceLastAd++
-        lastItemWasAd = false
         created = true
       } else if (postRemaining() >= 1 && memeRemaining() >= 1) {
-        // Pair remaining posts with memes when both are available
         const meme = { ...m[mi], _type: 'meme' }
         mi++
         const post = { ...po[poi], _type: 'post' }
@@ -278,20 +190,12 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
           (rng ? rng() : Math.random()) > 0.5 ? [meme, post] : [post, meme]
         output.push({ type: 'memeRow', data: items })
         producedCoreItems++
-        itemsSinceLastAd++
-        lastItemWasAd = false
         created = true
       } else if (postRemaining() === 1) {
-        // Single remaining post - pair with itself or show alone
         const post = { ...po[poi], _type: 'post' }
         poi++
         output.push({ type: 'memeRow', data: [post] })
         producedCoreItems++
-        itemsSinceLastAd++
-        lastItemWasAd = false
-        created = true
-      } else if (griftRemaining() === 1) {
-        pushGriftPair(1) // single wrapped as griftPair for template compatibility
         created = true
       } else if (memeRemaining() === 1) {
         pushMemeRow(1)
@@ -301,38 +205,12 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
 
     if (!created) break // nothing left to place
 
-    // Optional ad injection (as quote placeholder) AFTER creating a core item
-    // Only inject if we haven't just placed an ad and have had enough items since last ad
-    if (
-      adInterval > 0 &&
-      producedCoreItems > 0 &&
-      producedCoreItems % adInterval === 0 &&
-      adProvider &&
-      !lastItemWasAd &&
-      itemsSinceLastAd >= 2 // Ensure at least 2 items between ads
-    ) {
-      const adData = adProvider()
-      if (adData && (adData.size === 'horizontal' || adData.size === 'large')) {
-        pushQuote(
-          {
-            id: adData.id || `ad-${producedCoreItems}`,
-            title: adData.title || 'Sponsored',
-            body: adData.body || '',
-            isAd: true,
-            ...adData,
-          },
-          true
-        )
-      }
-    }
-
     patternIndex++
 
-    // Check if we just completed a full pattern (4 items: griftPair, quote, memeRow, quote)
+    // Check if we just completed a full pattern (4 items)
     if (patternIndex % 4 === 0) {
       completedPatterns++
 
-      // Insert profile after every profileInterval complete patterns
       const shouldInsert =
         profileInterval > 0 &&
         completedPatterns % profileInterval === 0 &&
@@ -346,7 +224,6 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
   }
 
   // Add any remaining profiles that weren't inserted during normal flow
-  // This ensures profiles show up even when they're the only search results
   while (pi < p.length) {
     pushProfile(p[pi])
     pi++
@@ -357,7 +234,6 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
     value: {
       seed: seed || null,
       counts: {
-        griftsUsed: ci,
         quotesUsed: qi,
         memesUsed: mi,
         postsUsed: poi,
@@ -365,7 +241,6 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
         total: output.length,
       },
       exhausted: {
-        grifts: ci >= c.length,
         quotes: qi >= q.length,
         memes: mi >= m.length,
         posts: poi >= po.length,
@@ -374,12 +249,6 @@ export function interleaveContent(grifts, quotes, memes, options = {}) {
     },
     enumerable: false,
   })
-
-  if (import.meta?.env?.DEV && seed) {
-    // Lightweight debug hook, safe in dev only
-    try {
-    } catch (_) {}
-  }
 
   return output
 }

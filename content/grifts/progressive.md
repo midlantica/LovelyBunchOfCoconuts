@@ -1,4 +1,0 @@
----
-grift: 'Progressive'
-decode: 'Regressive.'
----

@@ -1,0 +1,7 @@
+---
+title: 'Fashion is a form of'
+---
+
+## "Fashion is a form of ugliness so intolerable that we have to alter it every six months."
+
+Oscar Wilde

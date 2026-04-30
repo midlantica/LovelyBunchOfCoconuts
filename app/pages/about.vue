@@ -17,43 +17,31 @@
   })
 
   useHead({
-    title: 'About Our Mission - WakeUpNPC',
+    title: 'About - Tally Ho!',
     meta: [
       {
         name: 'description',
         content:
-          "We highlight the Woke Left's insanity sweeping through our civilization that took a thousand years to build. We make fun of the Left's madness. We see their Guilt Grift machine and decode it. We expose their empty rhetoric, regressive dogma, and the epic gaslighting.",
+          'Tally Ho! is a celebration of British humour — from Oscar Wilde to Monty Python, Blackadder to Fawlty Towers. A wall of wit, wisdom, and wonderfully silly jokes.',
       },
       // Open Graph
       { property: 'og:type', content: 'website' },
-      { property: 'og:title', content: 'About Our Mission - WakeUpNPC' },
+      { property: 'og:title', content: 'About - Tally Ho!' },
       {
         property: 'og:description',
         content:
-          "We highlight the Woke Left's insanity sweeping through our civilization. We decode the Guilt Grift machine and expose their empty rhetoric and regressive dogma.",
+          'A celebration of British humour — from Oscar Wilde to Monty Python, Blackadder to Fawlty Towers.',
       },
-      { property: 'og:url', content: 'https://wakeupnpc.com/about' },
-      { property: 'og:site_name', content: 'WakeUpNPC' },
-      {
-        property: 'og:image',
-        content: 'https://wakeupnpc.com/text-bg-1200x630.png?v=2',
-      },
-      { property: 'og:image:width', content: '1200' },
-      { property: 'og:image:height', content: '630' },
+      { property: 'og:site_name', content: 'Tally Ho!' },
       // Twitter
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'About Our Mission - WakeUpNPC' },
+      { name: 'twitter:title', content: 'About - Tally Ho!' },
       {
         name: 'twitter:description',
         content:
-          "We highlight the Woke Left's insanity sweeping through our civilization. We decode the Guilt Grift machine and expose their empty rhetoric and regressive dogma.",
-      },
-      {
-        name: 'twitter:image',
-        content: 'https://wakeupnpc.com/text-bg-1200x630.png?v=2',
+          'A celebration of British humour — from Oscar Wilde to Monty Python, Blackadder to Fawlty Towers.',
       },
     ],
-    link: [{ rel: 'canonical', href: 'https://wakeupnpc.com/about' }],
     bodyAttrs: {
       class: 'about',
     },

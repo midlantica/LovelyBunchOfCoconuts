@@ -1,7 +1,0 @@
----
-title: 'When A trades with B, it means that both'
----
-
-![When A trades with B, it means that both](/memes/capitalism/when-a-trades-with-b.webp)
-
-When A trades with B, it means that both of them value what they are giving away less than what they are receiving, otherwise they wouldn't do it. In any voluntary exchange, both A and B benefit.

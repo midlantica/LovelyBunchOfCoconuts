@@ -29,9 +29,6 @@
   const ModalsModalMeme = defineAsyncComponent(
     () => import('~/components/modals/ModalMeme.vue')
   )
-  const ModalsModalGrift = defineAsyncComponent(
-    () => import('~/components/modals/ModalGrift.vue')
-  )
   const ModalsModalQuote = defineAsyncComponent(
     () => import('~/components/modals/ModalQuote.vue')
   )
@@ -48,7 +45,6 @@
 
   const modalMap = {
     meme: ModalsModalMeme,
-    grift: ModalsModalGrift,
     quote: ModalsModalQuote,
     profile: ModalsModalProfile,
     post: ModalsModalPost,

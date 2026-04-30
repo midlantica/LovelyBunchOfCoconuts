@@ -1,6 +1,6 @@
 // composables/useShareImageGenerator.js
 // Composable for generating shareable social media images.
-// Used by modal components (ModalQuote, ModalGrift, ModalMeme) for OG-style previews.
+// Used by modal components (ModalQuote, ModalMeme) for OG-style previews.
 // Delegates to shared canvas utilities in ~/utils/canvasHelpers.js
 
 import {

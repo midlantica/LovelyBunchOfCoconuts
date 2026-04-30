@@ -1,7 +1,0 @@
----
-title: "A 'liberal' is a man too broadminded"
----
-
-## "A 'liberal' is a man too broadminded to take his own side in a quarrel."
-
-Robert Frost

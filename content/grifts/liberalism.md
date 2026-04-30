@@ -1,4 +1,0 @@
----
-grift: 'Liberalism'
-decode: 'Leftism'
----

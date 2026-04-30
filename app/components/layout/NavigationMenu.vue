@@ -21,11 +21,6 @@
             label="About"
             @click="closeMenu"
           />
-          <LayoutNavigationMenuItem
-            to="/advertising"
-            label="Advertising"
-            @click="closeMenu"
-          />
         </ul>
 
         <!-- Social Links Section -->

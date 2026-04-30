@@ -16,8 +16,8 @@
               <ProfileImage
                 v-if="imagePath"
                 :image-path="imagePath"
-                :profile-name="modalData?.meta?.profile || 'Profile'"
-                :status="modalData?.meta?.status || modalData?.status"
+                :profile-name="profileName || 'Profile'"
+                :status="profileStatus"
                 size="modal"
                 badge-size="small"
               />
@@ -32,7 +32,7 @@
                 class="text-[1.3rem] leading-[1.3rem] font-light tracking-[0.1rem] text-white uppercase"
                 style="font-family: 'Barlow Condensed'"
               >
-                {{ modalData?.meta?.profile }}
+                {{ profileName }}
               </h1>
 
               <!-- Bio text -->
@@ -48,8 +48,8 @@
         <!-- Content Action Bar -->
         <UiContentActionBar
           v-if="modalData"
-          :title="modalData?.meta?.profile"
-          :text="`${modalData?.meta?.profile} - ${modalData?.meta?.status === 'hero' ? 'Hero' : 'Zero'}`"
+          :title="profileName"
+          :text="profileName"
           :url="shareUrl"
           :like-id="modalData?.path || ''"
           :generated-image-blob="null"
@@ -73,6 +73,18 @@
   const { generateContentUrl } = useContentUrls()
 
   const { showShareShelf, onToggle } = useShareShelf()
+
+  // Support both top-level fields (new British comedian profiles) and meta-nested fields (legacy)
+  const profileName = computed(
+    () =>
+      props.modalData?.profile ||
+      props.modalData?.meta?.profile ||
+      props.modalData?.title ||
+      ''
+  )
+  const profileStatus = computed(
+    () => props.modalData?.status || props.modalData?.meta?.status || 'comedian'
+  )
 
   // Create bio content object for ContentRenderer (excluding h2 and images)
   const bioContent = computed(() => {
@@ -131,16 +143,19 @@
       }
     }
 
-    // Fallback: construct path based on profile name and status
-    if (props.modalData?.meta?.profile && props.modalData?.meta?.status) {
-      // Normalize profile name: remove accents, periods, and replace spaces
-      const profileName = props.modalData.meta.profile
+    // Fallback: construct path based on profile name
+    const name =
+      props.modalData?.profile ||
+      props.modalData?.meta?.profile ||
+      props.modalData?.title
+    if (name) {
+      const normalized = name
         .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
-        .replace(/\./g, '') // Remove periods
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/\./g, '')
         .replace(/ /g, '-')
-      const folder = props.modalData.meta.status === 'hero' ? 'heroes' : 'zeros'
-      return `/profiles/${folder}/${profileName}.webp`
+        .toLowerCase()
+      return `/profiles/comedians/${normalized}.webp`
     }
 
     return ''
@@ -214,8 +229,8 @@
   // Prepare profile data for image generation
   const profileData = computed(() => ({
     meta: {
-      profile: props.modalData?.meta?.profile || '',
-      status: props.modalData?.meta?.status || '',
+      profile: profileName.value,
+      status: profileStatus.value,
     },
     bio: bioText.value,
     imagePath: imagePath.value,

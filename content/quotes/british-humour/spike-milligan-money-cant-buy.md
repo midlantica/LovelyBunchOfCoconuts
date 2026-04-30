@@ -1,0 +1,7 @@
+---
+title: "Money can't buy you happiness"
+---
+
+## "Money can't buy you happiness, but it does bring you a more pleasant form of misery."
+
+Spike Milligan

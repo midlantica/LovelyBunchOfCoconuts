@@ -1,4 +1,0 @@
----
-grift: 'Dismantling Capitalism'
-decode: 'Begging for bread lines.'
----

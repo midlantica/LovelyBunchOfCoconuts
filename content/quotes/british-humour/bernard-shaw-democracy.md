@@ -1,0 +1,7 @@
+---
+title: 'Democracy'
+---
+
+## "Democracy is a device that ensures we shall be governed no better than we deserve."
+
+George Bernard Shaw

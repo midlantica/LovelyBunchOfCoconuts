@@ -5,11 +5,10 @@
 export function useWallBaseline() {
   const baselineState = useState('wallBaselinePattern', () => ({
     seed: null,
-    grifts: 0,
     quotes: 0,
     memes: 0,
     pattern: [],
-    order: { grifts: [], quotes: [], memes: [] },
+    order: { quotes: [], memes: [] },
     rebuilding: false,
     blockUpdates: false,
   }))
@@ -18,19 +17,11 @@ export function useWallBaseline() {
   const initialLoadInProgress = ref(false)
 
   function deriveBaselineOrder(pattern) {
-    const order = { grifts: [], quotes: [], memes: [] }
-    const seen = { grifts: new Set(), quotes: new Set(), memes: new Set() }
+    const order = { quotes: [], memes: [] }
+    const seen = { quotes: new Set(), memes: new Set() }
     for (const item of pattern) {
       if (!item) continue
-      if (item.type === 'griftPair') {
-        for (const c of item.data || []) {
-          const p = c?._path || c?.path || ''
-          if (p && !seen.grifts.has(p)) {
-            seen.grifts.add(p)
-            order.grifts.push(p)
-          }
-        }
-      } else if (item.type === 'memeRow') {
+      if (item.type === 'memeRow') {
         for (const m of item.data || []) {
           const p = m?._path || m?.path || ''
           if (p && !seen.memes.has(p)) {
@@ -69,23 +60,21 @@ export function useWallBaseline() {
 
   /**
    * Build the baseline pattern from cache data.
-   * @param {Object} cache - The content cache (grifts, quotes, memes, posts)
+   * @param {Object} cache - The content cache (quotes, memes, posts)
    * @param {number} wallSeed - The current wall seed
    * @param {Array} profiles - Loaded profiles
-   * @param {Object} adSettings - { adProvider, interval } from getBaselineAdSettings()
+   * @param {Object} adSettings - Kept for API compatibility (unused)
    * @param {Object} opts - { extend: boolean } for Phase 2 extend mode
    */
   function buildBaselineNow(cache, wallSeed, profiles, adSettings, opts = {}) {
     try {
       const pattern = interleaveContent(
-        cache.grifts,
+        [], // no grifts
         cache.quotes,
         cache.memes,
         {
           seed: wallSeed,
           enableShuffle: true,
-          adInterval: adSettings.interval,
-          adProvider: adSettings.adProvider,
           profiles: profiles,
           profileInterval: 4,
           posts: cache.posts,
@@ -108,7 +97,7 @@ export function useWallBaseline() {
           ) {
             const p = item.data?._path || item.data?.path || ''
             if (p) visiblePaths.add(p)
-          } else if (item.type === 'griftPair' || item.type === 'memeRow') {
+          } else if (item.type === 'memeRow') {
             for (const d of item.data || []) {
               const p = d?._path || d?.path || ''
               if (p) visiblePaths.add(p)
@@ -125,12 +114,10 @@ export function useWallBaseline() {
             item.type === 'profile'
           ) {
             const p = item.data?._path || item.data?.path || ''
-            if (item.data?.isAd) return true
             return p && !visiblePaths.has(p)
           }
-          if (item.type === 'griftPair' || item.type === 'memeRow') {
+          if (item.type === 'memeRow') {
             return (item.data || []).some((d) => {
-              if (d?.isAd) return true
               const p = d?._path || d?.path || ''
               return p && !visiblePaths.has(p)
             })
@@ -142,7 +129,6 @@ export function useWallBaseline() {
         const order = deriveBaselineOrder(merged)
         baselineState.value = {
           seed: wallSeed,
-          grifts: cache.grifts.length,
           quotes: cache.quotes.length,
           memes: cache.memes.length,
           pattern: merged,
@@ -155,7 +141,6 @@ export function useWallBaseline() {
       const order = deriveBaselineOrder(pattern)
       baselineState.value = {
         seed: wallSeed,
-        grifts: cache.grifts.length,
         quotes: cache.quotes.length,
         memes: cache.memes.length,
         pattern,

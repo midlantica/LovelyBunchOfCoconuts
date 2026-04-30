@@ -159,11 +159,6 @@ export default defineNuxtConfig({
           'Cache-Control': 'public, max-age=31536000, immutable',
         },
       },
-      '/ads/**': {
-        headers: {
-          'Cache-Control': 'public, max-age=31536000, immutable',
-        },
-      },
       // Cache fonts
       '/fonts/**': {
         headers: {
@@ -179,7 +174,7 @@ export default defineNuxtConfig({
     },
     minify: true,
     prerender: {
-      routes: ['/', '/about', '/advertising'],
+      routes: ['/', '/about'],
       crawlLinks: true,
     },
     ignore: [
@@ -265,12 +260,12 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en', // Fix accessibility issue
       },
-      title: 'WakeUpNPC - Political Grifts, Quotes & Memes',
+      title: 'Tally Ho! - British Humour, Quotes & Comedy',
       meta: [
         {
           name: 'description',
           content:
-            'A curated wall of political grifts, insightful quotes, and thought-provoking memes. Explore diverse perspectives and challenge your thinking.',
+            'A curated celebration of British humour — wit, wisdom, and wonderfully absurd comedy from the greatest minds Britain has ever produced.',
         },
         { name: 'theme-color', content: '#68D2FF' },
 
@@ -278,15 +273,15 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         {
           property: 'og:title',
-          content: 'WakeUpNPC - Political Grifts, Quotes & Memes',
+          content: 'Tally Ho! - British Humour, Quotes & Comedy',
         },
         {
           property: 'og:description',
           content:
-            'A curated wall of political grifts, insightful quotes, and thought-provoking memes. Explore diverse perspectives and challenge your thinking.',
+            'A curated celebration of British humour — wit, wisdom, and wonderfully absurd comedy from the greatest minds Britain has ever produced.',
         },
         { property: 'og:url', content: 'https://wakeupnpc.com' },
-        { property: 'og:site_name', content: 'WakeUpNPC' },
+        { property: 'og:site_name', content: 'Tally Ho!' },
         {
           property: 'og:image',
           content: 'https://wakeupnpc.com/text-bg-1200x630.png?v=2',
@@ -299,12 +294,12 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' },
         {
           name: 'twitter:title',
-          content: 'WakeUpNPC - Political Grifts, Quotes & Memes',
+          content: 'Tally Ho! - British Humour, Quotes & Comedy',
         },
         {
           name: 'twitter:description',
           content:
-            'A curated wall of political grifts, insightful quotes, and thought-provoking memes.',
+            'A curated celebration of British humour — wit, wisdom, and wonderfully absurd comedy.',
         },
         {
           name: 'twitter:image',
@@ -315,9 +310,9 @@ export default defineNuxtConfig({
         {
           name: 'keywords',
           content:
-            'politics, quotes, memes, grifts, political discourse, critical thinking',
+            'British humour, comedy, quotes, Monty Python, Blackadder, Fawlty Towers, Oscar Wilde, British wit, satire',
         },
-        { name: 'author', content: 'WakeUpNPC' },
+        { name: 'author', content: 'Tally Ho!' },
         { name: 'robots', content: 'index, follow' },
 
         // Mobile optimization (fix a11y):

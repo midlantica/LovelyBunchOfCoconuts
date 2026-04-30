@@ -1,4 +1,0 @@
----
-grift: 'Deplatforming'
-decode: 'Censoring.'
----

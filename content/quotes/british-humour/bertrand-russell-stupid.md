@@ -1,0 +1,7 @@
+---
+title: 'Fools and Fanatics'
+---
+
+## "The whole problem with the world is that fools and fanatics are always so certain of themselves, and wiser people so full of doubts."
+
+Bertrand Russell

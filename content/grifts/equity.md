@@ -1,4 +1,0 @@
----
-grift: 'Equity'
-decode: 'Equal outcomes, unequal effort.'
----

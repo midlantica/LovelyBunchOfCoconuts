@@ -1,4 +1,0 @@
----
-grift: 'Taxation'
-decode: 'Theft.'
----

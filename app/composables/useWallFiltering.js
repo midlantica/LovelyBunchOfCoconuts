@@ -35,7 +35,6 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
 
   // Raw pools (reactive via cacheRef)
   const rawPools = computed(() => ({
-    grifts: normalizeArray(cacheRef.grifts),
     quotes: normalizeArray(cacheRef.quotes),
     memes: normalizeArray(cacheRef.memes),
     posts: normalizeArray(cacheRef.posts),
@@ -48,27 +47,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     const query = q.toLowerCase().trim()
     const expanded = expandSearchTerms(query)
 
-    // Check if searching for ads (dev feature)
-    const hasAdsKeyword = expanded.some((term) =>
-      ['ads', 'ad', 'advertisement', 'advertisements'].includes(term)
-    )
-
-    // If searching for ads, return special filter to show only ads
-    if (hasAdsKeyword) {
-      return {
-        grifts: false,
-        quotes: false,
-        memes: false,
-        posts: false,
-        profiles: false,
-        adsOnly: true,
-      }
-    }
-
     // Check if any expanded terms match content type keywords
-    const hasGriftsKeyword = expanded.some((term) =>
-      ['grifts', 'grift', 'statement', 'assertion', 'position'].includes(term)
-    )
     const hasQuotesKeyword = expanded.some((term) =>
       ['quotes', 'quote', 'quotation', 'saying', 'citation'].includes(term)
     )
@@ -82,7 +61,6 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     // If searching for posts keyword, return ALL posts without text filtering
     if (hasPostsKeyword) {
       return {
-        grifts: false,
         quotes: false,
         memes: false,
         posts: true,
@@ -90,7 +68,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
       }
     }
 
-    // Check for hero-specific search (must NOT include zero terms)
+    // Check for profile-specific searches
     const hasHeroKeyword = expanded.some((term) =>
       ['hero', 'heroes'].includes(term)
     )
@@ -98,10 +76,8 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
       ['zero', 'zeros'].includes(term)
     )
 
-    // If searching ONLY for heroes
     if (hasHeroKeyword && !hasZeroKeyword) {
       return {
-        grifts: false,
         quotes: false,
         memes: false,
         profiles: true,
@@ -109,10 +85,8 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
       }
     }
 
-    // If searching ONLY for zeros
     if (hasZeroKeyword && !hasHeroKeyword) {
       return {
-        grifts: false,
         quotes: false,
         memes: false,
         profiles: true,
@@ -120,14 +94,12 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
       }
     }
 
-    // Check for general profiles keyword
     const hasProfilesKeyword = expanded.some((term) =>
-      ['profiles', 'profile', 'person', 'people'].includes(term)
+      ['profiles', 'profile', 'person', 'people', 'comedian', 'comedians'].includes(term)
     )
 
     if (hasProfilesKeyword) {
       return {
-        grifts: false,
         quotes: false,
         memes: false,
         profiles: true,
@@ -136,14 +108,8 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     }
 
     // If searching for specific content types, return filter
-    if (
-      hasGriftsKeyword ||
-      hasQuotesKeyword ||
-      hasMemesKeyword ||
-      hasPostsKeyword
-    ) {
+    if (hasQuotesKeyword || hasMemesKeyword || hasPostsKeyword) {
       return {
-        grifts: hasGriftsKeyword,
         quotes: hasQuotesKeyword,
         memes: hasMemesKeyword,
         posts: hasPostsKeyword,
@@ -159,38 +125,27 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     if (!Array.isArray(items)) return items
     const seen = new Set()
     return items.filter((item) => {
-      // Create a unique key based on multiple properties
-      // For profiles, use path as the unique identifier (they all have title "Heroes and Zeros")
-      // For memes and grifts, use title as primary identifier
-      // For quotes, use a combination of quote text and attribution
       const title = item?.title || ''
       const path = item?._path || item?.path || item?.id || ''
       const quoteText = item?.quoteText || ''
       const attribution = item?.attribution || ''
-      const grift = item?.grift || ''
       const profile = item?.meta?.profile || item?.profile || ''
 
-      // Create a composite key that identifies truly unique content
-      // Priority: path for profiles > title for others > specific content fields > path
       let uniqueKey = ''
 
-      // Profiles: use path since they all share the same title
       if (profile || path.includes('/profiles/')) {
         uniqueKey = `path:${path}`
-      } else if (title && title !== 'Heroes and Zeros') {
+      } else if (title && title !== 'British Comedy Legends') {
         uniqueKey = `title:${title.toLowerCase().trim()}`
       } else if (quoteText && attribution) {
         uniqueKey = `quote:${quoteText.toLowerCase().trim()}:${attribution.toLowerCase().trim()}`
-      } else if (grift) {
-        uniqueKey = `grift:${grift.toLowerCase().trim()}`
       } else if (path) {
         uniqueKey = `path:${path}`
       } else {
-        return true // Keep items without any identifiable properties
+        return true
       }
 
       if (seen.has(uniqueKey)) {
-        // Only log duplicates in development mode to avoid console spam
         if (import.meta.dev) {
           console.warn(
             `Duplicate item detected and removed: ${title || path} (key: ${uniqueKey})`
@@ -205,9 +160,7 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
 
   function applySearch(groups, q) {
     if (!q?.trim()) {
-      // Even without search, deduplicate to prevent rendering issues
       return {
-        grifts: deduplicateByPath(groups.grifts),
         quotes: deduplicateByPath(groups.quotes),
         memes: deduplicateByPath(groups.memes),
         posts: deduplicateByPath(groups.posts),
@@ -215,12 +168,10 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
       }
     }
 
-    // Check if this is a content type search
     const contentTypeFilter = getContentTypeFilter(q)
     if (contentTypeFilter) {
       let filteredProfiles = groups.profiles
 
-      // Apply hero/zero filtering
       if (contentTypeFilter.profileFilter === 'heroes') {
         filteredProfiles = groups.profiles.filter(
           (p) => p._path?.includes('/heroes/') || p.meta?.status === 'hero'
@@ -230,14 +181,8 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
           (p) => p._path?.includes('/zeros/') || p.meta?.status === 'zero'
         )
       }
-      // profileFilter === 'all' means use all profiles
 
-      // When searching for a specific content type (like "profiles"),
-      // return ALL items of that type without text filtering
       return {
-        grifts: deduplicateByPath(
-          contentTypeFilter.grifts ? groups.grifts : []
-        ),
         quotes: deduplicateByPath(
           contentTypeFilter.quotes ? groups.quotes : []
         ),
@@ -269,7 +214,6 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
   const filteredContent = computed(() => {
     const f = effectiveFilters.value
     const base = {
-      grifts: f.grifts ? rawPools.value.grifts : [],
       quotes: f.quotes ? rawPools.value.quotes : [],
       memes: f.memes ? rawPools.value.memes : [],
       posts: rawPools.value.posts, // Always include posts (no filter toggle)
@@ -283,28 +227,24 @@ export function useWallFiltering(cacheRef, effectiveSearch, effectiveFilters) {
     const rp = rawPools.value
     const f = effectiveFilters.value
     const wallCounts = {
-      grifts: sf.grifts.length,
-      quotes: sf.quotes.length,
-      memes: sf.memes.length,
+      quotes: sf.quotes?.length || 0,
+      memes: sf.memes?.length || 0,
       posts: sf.posts?.length || 0,
       profiles: sf.profiles?.length || 0,
       total:
-        (f.grifts ? sf.grifts.length : 0) +
-        (f.quotes ? sf.quotes.length : 0) +
-        (f.memes ? sf.memes.length : 0) +
+        (f.quotes ? sf.quotes?.length || 0 : 0) +
+        (f.memes ? sf.memes?.length || 0 : 0) +
         (sf.posts?.length || 0) +
         (sf.profiles?.length || 0),
     }
     const totalCounts = {
-      grifts: rp.grifts.length,
-      quotes: rp.quotes.length,
-      memes: rp.memes.length,
+      quotes: rp.quotes?.length || 0,
+      memes: rp.memes?.length || 0,
       posts: rp.posts?.length || 0,
       profiles: rp.profiles?.length || 0,
       total:
-        rp.grifts.length +
-        rp.quotes.length +
-        rp.memes.length +
+        (rp.quotes?.length || 0) +
+        (rp.memes?.length || 0) +
         (rp.posts?.length || 0) +
         (rp.profiles?.length || 0),
     }
