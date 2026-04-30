@@ -21,15 +21,15 @@ export function useSocialMeta(options: SocialMetaOptions = {}) {
   // It sets both <title> and all meta tags in a single typed call.
   // @ts-expect-error — useSeoMeta/useHead are Nuxt auto-imports resolved at runtime
   return useSeoMeta({
-    title: title || 'WakeUpNPC',
-    description: description || 'Political grifts, quotes, memes.',
-    ogTitle: title || 'WakeUpNPC',
-    ogDescription: description || 'Political grifts, quotes, memes.',
+    title: title || 'Lovely Bunch of Coconuts',
+    description: description || 'British humour, quotes, comedy & wit.',
+    ogTitle: title || 'Lovely Bunch of Coconuts',
+    ogDescription: description || 'British humour, quotes, comedy & wit.',
     ...(image ? { ogImage: image } : {}),
     ...(url ? { ogUrl: url } : {}),
     twitterCard: image ? 'summary_large_image' : 'summary',
-    twitterTitle: title || 'WakeUpNPC',
-    twitterDescription: description || 'Political grifts, quotes, memes.',
+    twitterTitle: title || 'Lovely Bunch of Coconuts',
+    twitterDescription: description || 'British humour, quotes, comedy & wit.',
     ...(image ? { twitterImage: image } : {}),
   })
 }

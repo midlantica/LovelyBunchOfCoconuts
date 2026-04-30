@@ -267,5 +267,5 @@ export function getFilenameFromContent(content, contentType) {
     const segments = path.split('/')
     return `${segments[segments.length - 1]}.png`
   }
-  return `wakeupnpc-${contentType}-${Date.now()}.png`
+  return `lboc-${contentType}-${Date.now()}.png`
 }

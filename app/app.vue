@@ -28,9 +28,8 @@
     const checkAndShowModal = () => {
       // Only show modal on the index page (the Wall)
       if (route.path === '/') {
-        const hasVisitedThisSession = sessionStorage.getItem(
-          'wakeupnpc_wall_visited'
-        )
+        const hasVisitedThisSession =
+          sessionStorage.getItem('lboc_wall_visited')
         if (!hasVisitedThisSession) {
           // Delay modal render until after LCP paint — use requestIdleCallback
           // (or setTimeout fallback) so the modal image is NOT the LCP element.
@@ -64,7 +63,7 @@
   const closeWelcomeModal = () => {
     showWelcomeModal.value = false
     if (import.meta.client) {
-      sessionStorage.setItem('wakeupnpc_wall_visited', 'true')
+      sessionStorage.setItem('lboc_wall_visited', 'true')
     }
   }
 

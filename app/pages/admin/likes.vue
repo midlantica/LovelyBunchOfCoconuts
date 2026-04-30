@@ -447,8 +447,8 @@
           row.count = Math.floor(val)
         }
         // Immediately sync any open client session displaying this id
-        if (process.client && window.__wakeupnpcSetLike) {
-          window.__wakeupnpcSetLike(row.id, row.count)
+        if (process.client && window.__lbocSetLike) {
+          window.__lbocSetLike(row.id, row.count)
         }
       } else {
         row.count = Math.floor(val)
@@ -523,8 +523,8 @@
           if (res.ok) {
             item.count = newCount
             customValues[item.id] = newCount
-            if (process.client && window.__wakeupnpcSetLike) {
-              window.__wakeupnpcSetLike(item.id, newCount)
+            if (process.client && window.__lbocSetLike) {
+              window.__lbocSetLike(item.id, newCount)
             }
             added++
           }
@@ -573,8 +573,8 @@
 
             target.count = newCount
             customValues[target.id] = newCount
-            if (process.client && window.__wakeupnpcSetLike) {
-              window.__wakeupnpcSetLike(target.id, newCount)
+            if (process.client && window.__lbocSetLike) {
+              window.__lbocSetLike(target.id, newCount)
             }
           } catch (e) {
             console.warn('Simulation step failed', e)

@@ -7,7 +7,7 @@ import { defineNuxtRouteMiddleware } from 'nuxt/app'
 export default defineNuxtRouteMiddleware((_to: any, _from: any) => {
   if (typeof window === 'undefined') return // Only run client-side
 
-  const domainName = 'wakeupnpc.com'
+  const domainName = 'lovelybunchofcoconuts.com'
   const allowedHosts = [
     window.location.host, // Always allow the current host (dev or prod)
     `www.${domainName}`,

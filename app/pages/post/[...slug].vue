@@ -43,7 +43,8 @@
   const wallScrollTop = useState('wallScrollTop', () => 0)
   const { posts, loadAllContent, slugMaps } = useContentCache()
   const runtimeConfig = useRuntimeConfig()
-  const siteUrl = runtimeConfig.public.siteUrl || 'https://wakeupnpc.com'
+  const siteUrl =
+    runtimeConfig.public.siteUrl || 'https://lovelybunchofcoconuts.com'
 
   const contentReady = ref(false)
   const loadingTimeout = ref(null)
@@ -173,7 +174,7 @@
   useHead(() => {
     if (!post.value) {
       return {
-        title: 'Post Not Found | WakeUpNPC',
+        title: 'Post Not Found | Lovely Bunch of Coconuts',
         meta: [
           {
             name: 'description',
@@ -187,14 +188,14 @@
     const currentUrl = `${siteUrl}${route.path}`
 
     return {
-      title: `${postTitle} | WakeUpNPC`,
+      title: `${postTitle} | Lovely Bunch of Coconuts`,
       meta: [
         { name: 'description', content: postTitle },
         { property: 'og:title', content: postTitle },
         { property: 'og:description', content: postTitle },
         { property: 'og:type', content: 'article' },
         { property: 'og:url', content: currentUrl },
-        { property: 'og:site_name', content: 'WakeUpNPC' },
+        { property: 'og:site_name', content: 'Lovely Bunch of Coconuts' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: postTitle },
         { name: 'twitter:description', content: postTitle },

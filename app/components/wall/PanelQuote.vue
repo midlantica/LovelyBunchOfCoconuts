@@ -80,13 +80,13 @@
   function shareContent() {
     const url = `${window.location.origin}/${props.slug}`
     const title = props.quote?.headings?.[0] || 'Political Quote'
-    const description = `Check out this political quote from WakeUpNPC - Political Claims, Quotes & Memes`
+    const description = `Check out this quote from Lovely Bunch of Coconuts - British Humour, Quotes & Comedy`
 
     // Use Web Share API if available (mobile)
     if (navigator.share) {
       navigator
         .share({
-          title: `WakeUpNPC - ${title}`,
+          title: `Lovely Bunch of Coconuts - ${title}`,
           text: description,
           url: url,
         })

@@ -116,7 +116,7 @@ export function useSocialShare() {
 
   const _applyLogoOverlay = async (canvas, ctx) => {
     try {
-      const logoImg = await loadImage('/wakeupnpc-mini.png', 3000)
+      const logoImg = await loadImage('/wakeupnpc-mini.png', 3000) // TODO: update image file to lboc-mini.png
       const logoWidth = 158
       const logoHeight = 19
       ctx.globalAlpha = 0.9
@@ -246,7 +246,7 @@ export function useSocialShare() {
 
   const _copyWithFallbacks = async (imageBlob, url) => {
     if (!navigator.clipboard?.write) {
-      _downloadBlob(imageBlob, `wakeupnpc-share-${Date.now()}.png`)
+        _downloadBlob(imageBlob, `lboc-share-${Date.now()}.png`)
       showToast('Image downloaded!')
       return
     }

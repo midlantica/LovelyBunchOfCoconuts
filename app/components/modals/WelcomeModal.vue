@@ -39,9 +39,9 @@
             </p>
 
             <p class="welcome-modal-paragraph relative">
-              WakeUpNPC is a gold mine of anti&#8209;Leftist Memes, Quotes,
-              and&nbsp;<span class="underlined-text"
-                >Leftist Grifts<IconsArrowRight
+              Lovely Bunch of Coconuts is a gold mine of British humour — Memes,
+              Quotes, and&nbsp;<span class="underlined-text"
+                >Comedy<IconsArrowRight
                   :size="20"
                   class="relative -top-0.5 mx-0.5 inline-block text-slate-100"
                 />Decoded</span

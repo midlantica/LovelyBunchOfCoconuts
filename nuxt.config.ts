@@ -139,7 +139,7 @@ export default defineNuxtConfig({
       '/**': {
         headers: {
           'Content-Security-Policy':
-            "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: http: https: blob:; connect-src 'self' https://wakeupnpc.goatcounter.com https://api.iconify.design; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
+            "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: http: https: blob:; connect-src 'self' https://lovelybunchofcoconuts.goatcounter.com https://api.iconify.design; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
         },
       },
       // Aggressive caching for static assets with hashed filenames
@@ -199,17 +199,17 @@ export default defineNuxtConfig({
     },
     // Persist likes in production using Netlify Blobs; use FS locally
     storage: {
-      wakeupnpc_likes: {
+      lboc_likes: {
         driver: 'netlify-blobs',
         // Netlify Blobs requires a store name (global across deploys)
-        name: 'wakeupnpc_likes',
+        name: 'lboc_likes',
         // Ensure immediate read-after-write behavior for small counters
         consistency: 'strong',
         // Optional: default consistency is 'eventual'; keep default
       },
     },
     devStorage: {
-      wakeupnpc_likes: {
+      lboc_likes: {
         driver: 'fs',
         base: './server/.data/likes',
       },
@@ -248,7 +248,7 @@ export default defineNuxtConfig({
   // Site + sitemap configuration
   // Newer @nuxtjs/sitemap expects site.url to be present (or NUXT_PUBLIC_SITE_URL env)
   site: {
-    url: 'https://wakeupnpc.com',
+    url: 'https://lovelybunchofcoconuts.com',
   },
   sitemap: {
     autoI18n: false,
@@ -260,31 +260,31 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en', // Fix accessibility issue
       },
-      title: 'Tally Ho! - British Humour, Quotes & Comedy',
+      title: 'Lovely Bunch of Coconuts - British Humour, Quotes & Comedy',
       meta: [
         {
           name: 'description',
           content:
             'A curated celebration of British humour — wit, wisdom, and wonderfully absurd comedy from the greatest minds Britain has ever produced.',
         },
-        { name: 'theme-color', content: '#68D2FF' },
+        { name: 'theme-color', content: '#C8102E' },
 
         // Open Graph / Facebook
         { property: 'og:type', content: 'website' },
         {
           property: 'og:title',
-          content: 'Tally Ho! - British Humour, Quotes & Comedy',
+          content: 'Lovely Bunch of Coconuts - British Humour, Quotes & Comedy',
         },
         {
           property: 'og:description',
           content:
             'A curated celebration of British humour — wit, wisdom, and wonderfully absurd comedy from the greatest minds Britain has ever produced.',
         },
-        { property: 'og:url', content: 'https://wakeupnpc.com' },
-        { property: 'og:site_name', content: 'Tally Ho!' },
+        { property: 'og:url', content: 'https://lovelybunchofcoconuts.com' },
+        { property: 'og:site_name', content: 'Lovely Bunch of Coconuts' },
         {
           property: 'og:image',
-          content: 'https://wakeupnpc.com/text-bg-1200x630.png?v=2',
+          content: 'https://lovelybunchofcoconuts.com/text-bg-1200x630.png?v=2',
         },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
@@ -294,7 +294,7 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' },
         {
           name: 'twitter:title',
-          content: 'Tally Ho! - British Humour, Quotes & Comedy',
+          content: 'Lovely Bunch of Coconuts - British Humour, Quotes & Comedy',
         },
         {
           name: 'twitter:description',
@@ -303,7 +303,7 @@ export default defineNuxtConfig({
         },
         {
           name: 'twitter:image',
-          content: 'https://wakeupnpc.com/text-bg-1200x630.png?v=2',
+          content: 'https://lovelybunchofcoconuts.com/text-bg-1200x630.png?v=2',
         },
 
         // Additional SEO
@@ -312,7 +312,7 @@ export default defineNuxtConfig({
           content:
             'British humour, comedy, quotes, Monty Python, Blackadder, Fawlty Towers, Oscar Wilde, British wit, satire',
         },
-        { name: 'author', content: 'Tally Ho!' },
+        { name: 'author', content: 'Lovely Bunch of Coconuts' },
         { name: 'robots', content: 'index, follow' },
 
         // Mobile optimization (fix a11y):
@@ -321,10 +321,13 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         // Canonical home URL
-        { rel: 'canonical', href: 'https://wakeupnpc.com/' },
+        { rel: 'canonical', href: 'https://lovelybunchofcoconuts.com/' },
         // Preconnect to GoatCounter analytics domain — saves ~470ms DNS+TCP+TLS
         { rel: 'preconnect', href: 'https://gc.zgo.at' },
-        { rel: 'preconnect', href: 'https://wakeupnpc.goatcounter.com' },
+        {
+          rel: 'preconnect',
+          href: 'https://lovelybunchofcoconuts.goatcounter.com',
+        },
         // Preload critical logo image
         {
           rel: 'preload',
@@ -361,14 +364,15 @@ export default defineNuxtConfig({
         // is never a flash of the wrong theme on full page loads / hard navigations.
         // Must be synchronous (no async/defer) so it runs before CSS is applied.
         {
-          innerHTML: `(function(){try{var k='wakeupnpc-theme-override';var o=localStorage.getItem(k);var t=o==='light'||o==='dark'?o:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
+          innerHTML: `(function(){try{var k='lboc-theme-override';var o=localStorage.getItem(k);var t=o==='light'||o==='dark'?o:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
           tagPosition: 'head',
         } as any,
         // GoatCounter analytics (enabled only when env var is present)
         ...(process.env.NUXT_PUBLIC_GOATCOUNTER
           ? [
               {
-                'data-goatcounter': 'https://wakeupnpc.goatcounter.com/count',
+                'data-goatcounter':
+                  'https://lovelybunchofcoconuts.goatcounter.com/count',
                 async: true,
                 defer: true,
                 src: 'https://gc.zgo.at/count.js',
@@ -406,7 +410,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      siteUrl: 'https://wakeupnpc.com',
+      siteUrl: 'https://lovelybunchofcoconuts.com',
     },
   },
   // Performance optimizations

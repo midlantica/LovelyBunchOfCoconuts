@@ -11,7 +11,7 @@ function withLock(fn: () => Promise<any>) {
 }
 const STORAGE_KEY = 'counts'
 // Use a unique mount key to avoid duplicate mounts during Nitro prerender/build
-const NAMESPACE = 'wakeupnpc_likes'
+const NAMESPACE = 'lboc_likes'
 import { applyBanPurge } from './likesBanned'
 
 interface LikeCounts {

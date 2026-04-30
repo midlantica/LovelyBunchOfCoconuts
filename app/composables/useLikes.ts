@@ -17,8 +17,8 @@ export function useLikes() {
     () => ({})
   )
 
-  const storageKeyLiked = 'wakeupnpc.likes.v1'
-  const storageKeyCounts = 'wakeupnpc.likeCounts.v1'
+  const storageKeyLiked = 'lboc.likes.v1'
+  const storageKeyCounts = 'lboc.likeCounts.v1'
 
   const loadFromStorage = () => {
     if (import.meta.server) return
@@ -101,7 +101,7 @@ export function useLikes() {
 
   // Small in-memory event for admin-forced updates (no external bus needed)
   if (import.meta.client) {
-    ;(window as any).__wakeupnpcSetLike = (id: string, value: number) => {
+    ;(window as any).__lbocSetLike = (id: string, value: number) => {
       setCount(id, value)
     }
   }
@@ -137,7 +137,7 @@ export function useLikes() {
     try {
       const isProd =
         typeof window !== 'undefined' &&
-        (location.hostname.endsWith('wakeupnpc.com') ||
+        (location.hostname.endsWith('lovelybunchofcoconuts.com') ||
           location.hostname.includes('netlify.app'))
       const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
       const res = await fetch(url).catch(() => null as any)
@@ -272,7 +272,7 @@ export function useLikes() {
         // Fallback to debug route that returns all counts; append ?dev=1 in prod
         const isProd =
           typeof window !== 'undefined' &&
-          (location.hostname.endsWith('wakeupnpc.com') ||
+          (location.hostname.endsWith('lovelybunchofcoconuts.com') ||
             location.hostname.includes('netlify.app'))
         const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
         res = await fetch(url).catch((e) => {
@@ -297,7 +297,7 @@ export function useLikes() {
         try {
           const isProd =
             typeof window !== 'undefined' &&
-            (location.hostname.endsWith('wakeupnpc.com') ||
+            (location.hostname.endsWith('lovelybunchofcoconuts.com') ||
               location.hostname.includes('netlify.app'))
           const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
           const res2 = await fetch(url).catch((e) => {
@@ -344,7 +344,7 @@ export function useLikes() {
         try {
           const isProd =
             typeof window !== 'undefined' &&
-            (location.hostname.endsWith('wakeupnpc.com') ||
+            (location.hostname.endsWith('lovelybunchofcoconuts.com') ||
               location.hostname.includes('netlify.app'))
           const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
           const res3 = await fetch(url).catch((e) => {

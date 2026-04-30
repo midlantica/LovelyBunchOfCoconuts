@@ -146,13 +146,13 @@
     const url = `${window.location.origin}/${props.slug}`
     const title =
       props.meme?.title || props.meme?.description || 'Political Meme'
-    const description = `Check out this political meme from WakeUpNPC - Political Claims, Quotes & Memes`
+    const description = `Check out this meme from Lovely Bunch of Coconuts - British Humour, Quotes & Comedy`
 
     // Use Web Share API if available (mobile)
     if (navigator.share) {
       navigator
         .share({
-          title: `WakeUpNPC - ${title}`,
+          title: `Lovely Bunch of Coconuts - ${title}`,
           text: description,
           url: url,
         })

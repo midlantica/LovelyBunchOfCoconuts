@@ -5,8 +5,8 @@ export default defineNuxtPlugin(() => {
   // 1. If the user has an explicit override stored → use it
   // 2. Otherwise → follow the OS/browser prefers-color-scheme
   if (process.client) {
-    const OVERRIDE_KEY = 'wakeupnpc-theme-override'
-    const OLD_KEY = 'wakeupnpc-theme'
+    const OVERRIDE_KEY = 'lboc-theme-override'
+    const OLD_KEY = 'wakeupnpc-theme-override'
 
     // Migrate old stored preference to new override key (one-time migration)
     const oldStored = localStorage.getItem(OLD_KEY)

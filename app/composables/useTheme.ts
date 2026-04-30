@@ -18,7 +18,7 @@ import { ref, computed, readonly } from 'vue'
 type Theme = 'dark' | 'light'
 
 // Key that stores an explicit user override (set only when user toggles)
-const OVERRIDE_KEY = 'wakeupnpc-theme-override'
+const OVERRIDE_KEY = 'lboc-theme-override'
 
 // Shared reactive state (module-level singleton)
 const theme = ref<Theme>('dark')
@@ -41,7 +41,7 @@ export function useTheme() {
   // without changing the value. This keeps the SSR theme cookie alive across sessions
   // so the server can read it on the first request and avoid a theme flash.
   // @ts-expect-error — useCookie is a Nuxt auto-import resolved at runtime
-  const themeCookie = useCookie<Theme>('wakeupnpc-theme', {
+  const themeCookie = useCookie<Theme>('lboc-theme', {
     maxAge: 60 * 60 * 24 * 365, // 1 year
     sameSite: 'lax',
     secure: false, // theme is not sensitive

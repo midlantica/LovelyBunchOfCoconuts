@@ -60,7 +60,8 @@
   const wallScrollTop = useState('wallScrollTop', () => 0)
   const { quotes, loadAllContent, slugMaps } = useContentCache()
   const runtimeConfig = useRuntimeConfig()
-  const siteUrl = runtimeConfig.public.siteUrl || 'https://wakeupnpc.com'
+  const siteUrl =
+    runtimeConfig.public.siteUrl || 'https://lovelybunchofcoconuts.com'
 
   const contentReady = ref(false)
   const loadingTimeout = ref(null)
@@ -214,7 +215,7 @@
   useHead(() => {
     if (!quote.value) {
       return {
-        title: 'Quote Not Found | WakeUpNPC',
+        title: 'Quote Not Found | Lovely Bunch of Coconuts',
         meta: [
           {
             name: 'description',
@@ -230,7 +231,7 @@
     const ogImageUrl = `${siteUrl}/api/share/quote/${slugify(quoteText)}.png`
 
     return {
-      title: `${quoteText} — ${attribution} | WakeUpNPC`,
+      title: `${quoteText} — ${attribution} | Lovely Bunch of Coconuts`,
       meta: [
         { name: 'description', content: `${quoteText} — ${attribution}` },
         { property: 'og:title', content: `${quoteText} — ${attribution}` },
@@ -243,7 +244,7 @@
         { property: 'og:image', content: ogImageUrl },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
-        { property: 'og:site_name', content: 'WakeUpNPC' },
+        { property: 'og:site_name', content: 'Lovely Bunch of Coconuts' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: `${quoteText} — ${attribution}` },
         {

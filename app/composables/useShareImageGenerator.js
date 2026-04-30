@@ -95,7 +95,7 @@ export const useShareImageGenerator = () => {
     // Branding
     ctx.font = '22px -apple-system, system-ui, sans-serif'
     ctx.fillStyle = '#94a3b8'
-    ctx.fillText('WakeUpNPC.com', canvas.width / 2, canvas.height - 30)
+    ctx.fillText('LovelyBunchOfCoconuts.com', canvas.width / 2, canvas.height - 30)
 
     return canvasToBlob(canvas)
   }
@@ -208,7 +208,7 @@ export const useShareImageGenerator = () => {
 
       ctx.font = '20px -apple-system, system-ui, sans-serif'
       ctx.fillStyle = '#68D2FF'
-      ctx.fillText('WakeUpNPC.com', canvas.width / 2, canvas.height - 25)
+      ctx.fillText('LovelyBunchOfCoconuts.com', canvas.width / 2, canvas.height - 25)
     }
 
     return canvasToBlob(canvas)

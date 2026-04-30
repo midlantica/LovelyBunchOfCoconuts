@@ -58,7 +58,8 @@
   const modalGuardUntil = useState('modalGuardUntil', () => 0)
   const { memes, loadAllContent, slugMaps } = useContentCache()
   const runtimeConfig = useRuntimeConfig()
-  const siteUrl = runtimeConfig.public.siteUrl || 'https://wakeupnpc.com'
+  const siteUrl =
+    runtimeConfig.public.siteUrl || 'https://lovelybunchofcoconuts.com'
 
   const contentReady = ref(false)
 
@@ -186,7 +187,7 @@
   useHead(() => {
     if (!meme.value) {
       return {
-        title: 'Meme Not Found | WakeUpNPC',
+        title: 'Meme Not Found | Lovely Bunch of Coconuts',
         meta: [
           {
             name: 'description',
@@ -203,7 +204,7 @@
         : `${siteUrl}${meme.value.image}`
       : `${siteUrl}/npc_icon.svg`
     return {
-      title: `${memeTitle} | WakeUpNPC`,
+      title: `${memeTitle} | Lovely Bunch of Coconuts`,
       meta: [
         { name: 'description', content: memeTitle },
         { property: 'og:title', content: memeTitle },
@@ -213,7 +214,7 @@
         { property: 'og:image', content: ogImageUrl },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
-        { property: 'og:site_name', content: 'WakeUpNPC' },
+        { property: 'og:site_name', content: 'Lovely Bunch of Coconuts' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: memeTitle },
         { name: 'twitter:description', content: memeTitle },

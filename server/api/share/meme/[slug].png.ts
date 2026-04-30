@@ -55,7 +55,7 @@ export default defineEventHandler(async (event: H3Event) => {
   ctx.fillText(text.substring(0, 100), 600, 630 - 60)
   ctx.fillStyle = '#68D2FF'
   ctx.font = '26px system-ui, -apple-system, sans-serif'
-  ctx.fillText('WakeUpNPC.com', 600, 630 - 25)
+  ctx.fillText('LovelyBunchOfCoconuts.com', 600, 630 - 25)
   const png = canvas.toBuffer('image/png')
   setHeader(event, 'Content-Type', 'image/png')
   setHeader(

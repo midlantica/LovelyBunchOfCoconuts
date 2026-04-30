@@ -60,7 +60,7 @@ export default defineEventHandler(async (event) => {
     ctx.font = 'bold 24px -apple-system, system-ui, sans-serif'
     ctx.fillStyle = '#68D2FF'
     ctx.textAlign = 'right'
-    ctx.fillText('WakeUpNPC.com', 1140, 580)
+    ctx.fillText('LovelyBunchOfCoconuts.com', 1140, 580)
 
     // Set headers for PNG image
     setHeader(event, 'Content-Type', 'image/png')
@@ -74,7 +74,7 @@ export default defineEventHandler(async (event) => {
 
     // Fallback to redirect to a static image
     setResponseStatus(event, 302)
-    setHeader(event, 'Location', 'https://wakeupnpc.com/og-fallback-quote.png')
+    setHeader(event, 'Location', 'https://lovelybunchofcoconuts.com/og-fallback-quote.png')
     return ''
   }
 })

@@ -10,10 +10,10 @@
         class="flex cursor-pointer! justify-end gap-3 text-xs text-slate-100 *:text-[1.5rem]"
       >
         <a
-          href="https://x.com/WakeUpNPC911"
+          href="https://x.com/LovelyBunchOfCoconuts"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Visit WakeUpNPC on X"
+          aria-label="Visit Lovely Bunch of Coconuts on X"
           :class="[
             'inline-flex',
             isDark ? 'social-icon-link--dark' : 'social-icon-link--light',
@@ -25,7 +25,7 @@
           href="https://www.facebook.com/profile.php?id=61582910375411"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Visit WakeUpNPC on Facebook"
+          aria-label="Visit Lovely Bunch of Coconuts on Facebook"
           :class="[
             'inline-flex',
             isDark ? 'social-icon-link--dark' : 'social-icon-link--light',

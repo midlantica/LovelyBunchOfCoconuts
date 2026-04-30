@@ -216,7 +216,7 @@ export function useUniversalClipboard() {
         if (isMobile()) {
           try {
             if (navigator.share) {
-              const fileName = filename || `wakeupnpc-${contentType}.png`
+              const fileName = filename || `lboc-${contentType}.png`
               const file = new File([imageBlob], fileName, {
                 type: 'image/png',
                 lastModified: Date.now(),
@@ -225,8 +225,8 @@ export function useUniversalClipboard() {
               // Check if sharing files is supported
               if (navigator.canShare && navigator.canShare({ files: [file] })) {
                 await navigator.share({
-                  title: 'WakeUpNPC Content',
-                  text: 'Share from WakeUpNPC',
+                  title: 'Lovely Bunch of Coconuts',
+                  text: 'Share from Lovely Bunch of Coconuts',
                   files: [file],
                 })
                 onSuccess?.('Shared!')
@@ -238,8 +238,7 @@ export function useUniversalClipboard() {
             const url = URL.createObjectURL(imageBlob)
             const a = document.createElement('a')
             a.href = url
-            a.download =
-              filename || `wakeupnpc-${contentType}-${Date.now()}.png`
+            a.download = filename || `lboc-${contentType}-${Date.now()}.png`
             a.style.display = 'none'
             document.body.appendChild(a)
 
@@ -264,7 +263,7 @@ export function useUniversalClipboard() {
         const url = URL.createObjectURL(imageBlob)
         const a = document.createElement('a')
         a.href = url
-        a.download = filename || `wakeupnpc-${contentType}-${Date.now()}.png`
+        a.download = filename || `lboc-${contentType}-${Date.now()}.png`
         a.style.display = 'none'
         document.body.appendChild(a)
         a.click()

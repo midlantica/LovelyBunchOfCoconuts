@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
     // If we have an image URL, try to load and display it
     if (imageUrl) {
       try {
-        const memeImage = await loadImage(`https://wakeupnpc.com${imageUrl}`)
+        const memeImage = await loadImage(`https://lovelybunchofcoconuts.com${imageUrl}`)
 
         // Calculate dimensions to fit image while maintaining aspect ratio
         const maxWidth = 800
@@ -84,7 +84,7 @@ export default defineEventHandler(async (event) => {
     ctx.font = 'bold 24px -apple-system, system-ui, sans-serif'
     ctx.fillStyle = '#68D2FF'
     ctx.textAlign = 'right'
-    ctx.fillText('WakeUpNPC.com', 1140, 580)
+    ctx.fillText('LovelyBunchOfCoconuts.com', 1140, 580)
 
     // Set headers for PNG image
     setHeader(event, 'Content-Type', 'image/png')
@@ -98,7 +98,7 @@ export default defineEventHandler(async (event) => {
 
     // Fallback to redirect to a static image
     setResponseStatus(event, 302)
-    setHeader(event, 'Location', 'https://wakeupnpc.com/og-fallback-meme.png')
+    setHeader(event, 'Location', 'https://lovelybunchofcoconuts.com/og-fallback-meme.png')
     return ''
   }
 })

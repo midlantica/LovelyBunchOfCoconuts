@@ -23,7 +23,7 @@ export default defineNuxtPlugin(() => {
     try {
       const isProd =
         typeof window !== 'undefined' &&
-        (location.hostname.endsWith('wakeupnpc.com') ||
+        (location.hostname.endsWith('lovelybunchofcoconuts.com') ||
           location.hostname.includes('netlify.app'))
       const url = `/api/likes/debug${isProd ? '?dev=1' : ''}`
 
@@ -88,7 +88,7 @@ export default defineNuxtPlugin(() => {
         // Persist the updated counts to localStorage
         try {
           localStorage.setItem(
-            'wakeupnpc.likeCounts.v1',
+            'lboc.likeCounts.v1',
             JSON.stringify(_countMap.value)
           )
         } catch (e) {

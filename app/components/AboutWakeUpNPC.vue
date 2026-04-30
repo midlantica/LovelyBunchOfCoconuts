@@ -1,6 +1,8 @@
 <template>
   <section class="py-8">
-    <h1 class="text-theme-primary mb-4 text-3xl font-bold">Tally Ho! 🎩</h1>
+    <h1 class="text-theme-primary mb-4 text-3xl font-bold">
+      Lovely Bunch of Coconuts 🥥
+    </h1>
     <p class="text-theme-secondary mb-4 text-lg leading-relaxed">
       A celebration of British humour in all its glorious, absurd, and
       magnificently understated forms.

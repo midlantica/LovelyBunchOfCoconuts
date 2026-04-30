@@ -74,7 +74,8 @@
   const wallScrollTop = useState('wallScrollTop', () => 0)
   const { fetchAllProfiles } = useProfiles()
   const runtimeConfig = useRuntimeConfig()
-  const siteUrl = runtimeConfig.public.siteUrl || 'https://wakeupnpc.com'
+  const siteUrl =
+    runtimeConfig.public.siteUrl || 'https://lovelybunchofcoconuts.com'
 
   const contentReady = ref(false)
   const loadingTimeout = ref(null)
