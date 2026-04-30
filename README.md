@@ -1,4 +1,4 @@
-# WakeUpNPC2
+# LovelyBunchOfCoconuts
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cbd5cc6d-699c-403c-bd9c-b81c372c06fd/deploy-status)](https://app.netlify.com/projects/wakeupnpc/deploys)
 
