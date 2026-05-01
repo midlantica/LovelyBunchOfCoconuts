@@ -18,7 +18,7 @@
     />
     <!-- Hero/Zero Icon Badge -->
     <div
-      v-if="imagePath"
+      v-if="imagePath && (status === 'hero' || status === 'zero')"
       :class="[
         'absolute flex items-center justify-center rounded-full shadow-lg',
         badgeSizeClasses,
