@@ -17,25 +17,25 @@
   })
 
   useHead({
-    title: 'About - Tally Ho!',
+    title: 'About - Lovely Bunch of Coconuts',
     meta: [
       {
         name: 'description',
         content:
-          'Tally Ho! is a celebration of British humour — from Oscar Wilde to Monty Python, Blackadder to Fawlty Towers. A wall of wit, wisdom, and wonderfully silly jokes.',
+          'Lovely Bunch of Coconuts is a celebration of British humour — from Oscar Wilde to Monty Python, Blackadder to Fawlty Towers. A wall of wit, wisdom, and wonderfully silly jokes.',
       },
       // Open Graph
       { property: 'og:type', content: 'website' },
-      { property: 'og:title', content: 'About - Tally Ho!' },
+      { property: 'og:title', content: 'About - Lovely Bunch of Coconuts' },
       {
         property: 'og:description',
         content:
           'A celebration of British humour — from Oscar Wilde to Monty Python, Blackadder to Fawlty Towers.',
       },
-      { property: 'og:site_name', content: 'Tally Ho!' },
+      { property: 'og:site_name', content: 'Lovely Bunch of Coconuts' },
       // Twitter
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'About - Tally Ho!' },
+      { name: 'twitter:title', content: 'About - Lovely Bunch of Coconuts' },
       {
         name: 'twitter:description',
         content:

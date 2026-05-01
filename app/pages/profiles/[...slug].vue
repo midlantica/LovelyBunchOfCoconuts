@@ -170,7 +170,7 @@
   useHead(() => {
     if (!profile.value) {
       return {
-        title: 'Profile Not Found | Tally Ho!',
+        title: 'Profile Not Found | Lovely Bunch of Coconuts',
         meta: [
           {
             name: 'description',
@@ -188,22 +188,25 @@
     const currentUrl = `${siteUrl}${route.path}`
 
     return {
-      title: `${name} | Tally Ho!`,
+      title: `${name} | Lovely Bunch of Coconuts`,
       meta: [
         {
           name: 'description',
           content: `Profile of ${name} — British comedy legend.`,
         },
-        { property: 'og:title', content: `${name} | Tally Ho!` },
+        { property: 'og:title', content: `${name} | Lovely Bunch of Coconuts` },
         {
           property: 'og:description',
           content: `Profile of ${name} — British comedy legend.`,
         },
         { property: 'og:type', content: 'article' },
         { property: 'og:url', content: currentUrl },
-        { property: 'og:site_name', content: 'Tally Ho!' },
+        { property: 'og:site_name', content: 'Lovely Bunch of Coconuts' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: `${name} | Tally Ho!` },
+        {
+          name: 'twitter:title',
+          content: `${name} | Lovely Bunch of Coconuts`,
+        },
         {
           name: 'twitter:description',
           content: `Profile of ${name} — British comedy legend.`,

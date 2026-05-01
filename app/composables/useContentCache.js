@@ -29,7 +29,7 @@ const globalCache = reactive({
 })
 
 // ─── SessionStorage persistence for instant Cmd-R reloads ───
-const SESSION_CACHE_KEY = 'tallyho_content_cache'
+const SESSION_CACHE_KEY = 'lboc_content_cache'
 
 function saveToSessionStorage() {
   if (typeof sessionStorage === 'undefined') return

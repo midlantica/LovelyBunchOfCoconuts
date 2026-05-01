@@ -56,7 +56,7 @@
         <div class="flex flex-1 justify-center">
           <button
             type="button"
-            aria-label="Tally Ho! — go to home page"
+            aria-label="Lovely Bunch of Coconuts — go to home page"
             class="no-underline hover:cursor-pointer! focus:outline-none"
             @click="handleMastheadClick"
           >
