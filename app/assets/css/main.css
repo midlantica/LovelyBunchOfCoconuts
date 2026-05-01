@@ -9,7 +9,7 @@
 /* ============================================================
    DESIGN TOKENS — British Union Flag Colour Theme
    Light: white bg, union-blue-900 pills/headings, union-red accents
-   Dark:  union-blue-900 bg, union-blue-800 cards, union-red accents
+   Dark:  union-blue-900 bg, union-blue-950 cards, union-red accents
    ============================================================ */
 
 /* ── DARK THEME (default) ─────────────────────────────────── */
@@ -17,7 +17,7 @@
 [data-theme='dark'] {
   /* ── Base Backgrounds ─────────────────────────────────── */
   --color-bg-base: #012169; /* union-blue-900 — exact flag navy, page/body background */
-  --color-bg-surface: #0c1f5c; /* union-blue-800 — cards, wall items */
+  --color-bg-surface: #010f35; /* union-blue-950 — cards, wall items */
   --color-bg-elevated: #162d78; /* union-blue-700 — modals, popovers */
   --color-bg-overlay: #1f3d8f; /* union-blue-600 — hover overlays */
 
