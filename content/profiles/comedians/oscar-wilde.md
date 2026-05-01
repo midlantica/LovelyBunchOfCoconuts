@@ -4,7 +4,7 @@ profile: 'Oscar Wilde'
 status: 'comedian'
 ---
 
-![Oscar Wilde](/profiles/comedians/oscar-wilde.webp)
+![Oscar Wilde](/profiles/acts/oscar-wilde.jpg)
 
 ## Oscar Wilde
 

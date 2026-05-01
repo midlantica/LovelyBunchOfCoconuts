@@ -4,7 +4,7 @@ profile: 'Rowan Atkinson'
 status: 'comedian'
 ---
 
-![Rowan Atkinson](/profiles/comedians/rowan-atkinson.webp)
+![Rowan Atkinson](/profiles/acts/rowan-atkinson.jpg)
 
 ## Rowan Atkinson
 

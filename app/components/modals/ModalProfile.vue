@@ -155,7 +155,7 @@
         .replace(/\./g, '')
         .replace(/ /g, '-')
         .toLowerCase()
-      return `/profiles/comedians/${normalized}.webp`
+      return `/profiles/acts/${normalized}.jpg`
     }
 
     return ''

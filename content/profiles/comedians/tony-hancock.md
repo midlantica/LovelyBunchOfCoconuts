@@ -4,7 +4,7 @@ profile: 'Tony Hancock'
 status: 'comedian'
 ---
 
-![Tony Hancock](/profiles/comedians/tony-hancock.webp)
+![Tony Hancock](/profiles/acts/tony-hancock.jpg)
 
 ## Tony Hancock
 

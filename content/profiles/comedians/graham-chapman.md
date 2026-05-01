@@ -4,7 +4,7 @@ profile: 'Graham Chapman'
 status: 'comedian'
 ---
 
-![Graham Chapman](/profiles/comedians/graham-chapman.webp)
+![Graham Chapman](/profiles/acts/graham-chapman.jpg)
 
 ## Graham Chapman
 

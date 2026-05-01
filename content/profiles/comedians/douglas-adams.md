@@ -4,7 +4,7 @@ profile: 'Douglas Adams'
 status: 'comedian'
 ---
 
-![Douglas Adams](/profiles/comedians/douglas-adams.webp)
+![Douglas Adams](/profiles/acts/douglas-adams.jpg)
 
 ## Douglas Adams
 

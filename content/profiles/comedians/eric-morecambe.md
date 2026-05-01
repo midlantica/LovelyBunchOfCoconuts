@@ -4,7 +4,7 @@ profile: 'Eric Morecambe'
 status: 'comedian'
 ---
 
-![Eric Morecambe](/profiles/comedians/eric-morecambe.webp)
+![Eric Morecambe](/profiles/acts/eric-morecambe.jpg)
 
 ## Eric Morecambe
 

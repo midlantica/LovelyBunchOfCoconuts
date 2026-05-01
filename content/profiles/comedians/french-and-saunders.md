@@ -4,7 +4,7 @@ profile: 'French & Saunders'
 status: 'comedian'
 ---
 
-![French & Saunders](/profiles/comedians/french-and-saunders.webp)
+![French & Saunders](/profiles/acts/french-and-saunders.jpg)
 
 ## French & Saunders
 

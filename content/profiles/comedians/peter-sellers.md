@@ -4,7 +4,7 @@ profile: 'Peter Sellers'
 status: 'comedian'
 ---
 
-![Peter Sellers](/profiles/comedians/peter-sellers.webp)
+![Peter Sellers](/profiles/acts/peter-sellers.jpg)
 
 ## Peter Sellers
 

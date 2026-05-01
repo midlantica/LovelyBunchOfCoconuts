@@ -4,7 +4,7 @@ profile: 'Victoria Wood'
 status: 'comedian'
 ---
 
-![Victoria Wood](/profiles/comedians/victoria-wood.webp)
+![Victoria Wood](/profiles/acts/victoria-wood.jpg)
 
 ## Victoria Wood
 

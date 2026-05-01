@@ -4,7 +4,7 @@ profile: 'Benny Hill'
 status: 'comedian'
 ---
 
-![Benny Hill](/profiles/comedians/benny-hill.webp)
+![Benny Hill](/profiles/acts/benny-hill.jpg)
 
 ## Benny Hill
 

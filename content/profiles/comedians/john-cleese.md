@@ -4,7 +4,7 @@ profile: 'John Cleese'
 status: 'comedian'
 ---
 
-![John Cleese](/profiles/comedians/john-cleese.webp)
+![John Cleese](/profiles/acts/john-cleese.jpg)
 
 ## John Cleese
 

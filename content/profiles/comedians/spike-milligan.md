@@ -4,7 +4,7 @@ profile: 'Spike Milligan'
 status: 'comedian'
 ---
 
-![Spike Milligan](/profiles/comedians/spike-milligan.webp)
+![Spike Milligan](/profiles/acts/spike-milligan.jpg)
 
 ## Spike Milligan
 

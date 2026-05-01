@@ -4,7 +4,7 @@ profile: 'Stephen Fry'
 status: 'comedian'
 ---
 
-![Stephen Fry](/profiles/comedians/stephen-fry.webp)
+![Stephen Fry](/profiles/acts/stephen-fry.jpg)
 
 ## Stephen Fry
 

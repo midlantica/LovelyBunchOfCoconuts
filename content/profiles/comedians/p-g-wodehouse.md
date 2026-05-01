@@ -4,7 +4,7 @@ profile: 'P.G. Wodehouse'
 status: 'comedian'
 ---
 
-![P.G. Wodehouse](/profiles/comedians/p-g-wodehouse.webp)
+![P.G. Wodehouse](/profiles/acts/pg-wodehouse.jpg)
 
 ## P.G. Wodehouse
 

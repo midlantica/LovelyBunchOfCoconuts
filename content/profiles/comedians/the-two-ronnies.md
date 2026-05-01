@@ -4,7 +4,7 @@ profile: 'The Two Ronnies'
 status: 'comedian'
 ---
 
-![The Two Ronnies](/profiles/comedians/the-two-ronnies.webp)
+![The Two Ronnies](/profiles/acts/the-two-ronnies.jpg)
 
 ## The Two Ronnies
 
