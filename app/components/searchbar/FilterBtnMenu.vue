@@ -18,7 +18,7 @@
 
     <div
       v-if="open"
-      class="bg-seagull-950 absolute top-[1.9rem] right-0 z-20 w-fit rounded-lg p-2 shadow-[3px_4px_9px_-2px_rgba(0,0,0,1)] backdrop-blur"
+      class="bg-union-blue-950 absolute top-[1.9rem] right-0 z-20 w-fit rounded-lg p-2 shadow-[3px_4px_9px_-2px_rgba(0,0,0,1)] backdrop-blur"
       role="menu"
       :ref="(el) => (panelRef = el)"
       :style="panelStyle"
@@ -137,8 +137,8 @@
   function btnClass(key) {
     const active = !!local[key]
     return active
-      ? 'bg-seagull-600 text-white hover:brightness-110'
-      : 'bg-seagull-800/90 text-slate-200/80 hover:brightness-[1.15] text-shadow-sm'
+      ? 'bg-union-blue-600 text-white hover:brightness-110'
+      : 'bg-union-blue-800/90 text-slate-200/80 hover:brightness-[1.15] text-shadow-sm'
   }
 
   function radiusClass(pos) {

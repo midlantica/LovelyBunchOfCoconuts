@@ -29,7 +29,7 @@
             <input
               type="checkbox"
               :checked="local[opt.key]"
-              class="accent-seagull-400"
+              class="accent-union-blue-400"
               @change="onToggle(opt.key)"
             />
             <span class="text-theme-body text-[13px]">{{ opt.label }}</span>

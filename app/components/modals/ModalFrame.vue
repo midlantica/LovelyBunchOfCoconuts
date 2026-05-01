@@ -58,7 +58,7 @@
 
   // Custom button classes to ensure button is always visible
   const closeButtonClass =
-    'close-button group border-seagull-600/30 absolute z-9999 flex h-10 w-10 items-center justify-center rounded-full border-none sm:border-t bg-transparent sm:bg-theme-elevated hover:cursor-pointer! focus:outline-none'
+    'close-button group border-union-blue-600/30 absolute z-9999 flex h-10 w-10 items-center justify-center rounded-full border-none sm:border-t bg-transparent sm:bg-theme-elevated hover:cursor-pointer! focus:outline-none'
 
   const computedModalStyle = computed(() => {
     const baseStyle = props.modalStyle || {
@@ -144,7 +144,7 @@
     border-color: transparent !important;
     border-top-color: rgb(
       0 137 204 / 0.3
-    ) !important; /* seagull-600/30 to match card */
+    ) !important; /* union-blue-600/30 to match card */
     transform: translate(50%, -50%) !important; /* Position outside corner */
   }
 

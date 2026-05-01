@@ -18,8 +18,8 @@
       class="font-300 min-w-[1ch] pr-1 pl-0.5 text-xs tabular-nums transition-colors"
       :class="
         isSolid
-          ? 'text-seagull-700'
-          : 'text-seagull-700/70 group-hover:text-seagull-700'
+          ? 'text-union-blue-700'
+          : 'text-union-blue-700/70 group-hover:text-union-blue-700'
       "
       >{{ abbreviated }}</span
     >
@@ -28,10 +28,10 @@
       :class="[
         'h-8',
         isSolid
-          ? 'text-seagull-700'
+          ? 'text-union-blue-700'
           : fadedUnliked
-            ? 'text-seagull-700/50 hover:text-seagull-700'
-            : 'text-seagull-700/70 hover:text-seagull-700',
+            ? 'text-union-blue-700/50 hover:text-union-blue-700'
+            : 'text-union-blue-700/70 hover:text-union-blue-700',
         countInside ? 'relative' : isReversed ? 'ml-1' : 'mr-1',
       ]"
     >
@@ -58,8 +58,8 @@
       class="font-300 min-w-[1ch] pr-1 pl-0.5 text-xs tabular-nums transition-colors"
       :class="
         isSolid
-          ? 'text-seagull-700'
-          : 'text-seagull-700/70 group-hover:text-seagull-700'
+          ? 'text-union-blue-700'
+          : 'text-union-blue-700/70 group-hover:text-union-blue-700'
       "
       >{{ abbreviated }}</span
     >

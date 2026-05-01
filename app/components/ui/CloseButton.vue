@@ -24,7 +24,7 @@
     buttonClass: {
       type: String,
       default:
-        'close-button group border-seagull-600/30 absolute z-9999 hidden h-10 w-10 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-t bg-theme-elevated hover:cursor-pointer! focus:outline-none sm:flex',
+        'close-button group border-union-blue-600/30 absolute z-9999 hidden h-10 w-10 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-t bg-theme-elevated hover:cursor-pointer! focus:outline-none sm:flex',
     },
     // Allow custom icon classes to be passed in
     iconClass: {

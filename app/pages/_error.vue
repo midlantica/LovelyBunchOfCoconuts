@@ -20,7 +20,7 @@
       <div class="space-x-4">
         <NuxtLink
           to="/"
-          class="bg-seagull-600 hover:bg-seagull-700 font-100 inline-block rounded-lg px-6 py-3 text-white transition-colors"
+          class="bg-union-blue-600 hover:bg-union-blue-700 font-100 inline-block rounded-lg px-6 py-3 text-white transition-colors"
         >
           Return to Home
         </NuxtLink>

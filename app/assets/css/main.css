@@ -7,64 +7,64 @@
 @import './lazyLoading.css';
 
 /* ============================================================
-   DESIGN TOKENS — British Flag Colour Theme
-   Light: Scottish blue bg, off-white panels, Union Jack red accents
-   Dark:  Muted/desaturated versions of the light palette
+   DESIGN TOKENS — British Union Flag Colour Theme
+   Light: white bg, union-blue-900 pills/headings, union-red accents
+   Dark:  union-blue-900 bg, union-blue-800 cards, union-red accents
    ============================================================ */
 
 /* ── DARK THEME (default) ─────────────────────────────────── */
 :root,
 [data-theme='dark'] {
   /* ── Base Backgrounds ─────────────────────────────────── */
-  --color-bg-base: #0d1a2e; /* deep muted navy — page/body background */
-  --color-bg-surface: #162236; /* dark muted blue — cards, wall items, header, footer */
-  --color-bg-elevated: #1e2e45; /* slightly lighter — modals, popovers */
-  --color-bg-overlay: #253650; /* lightest — hover overlays */
+  --color-bg-base: #012169; /* union-blue-900 — exact flag navy, page/body background */
+  --color-bg-surface: #0c1f5c; /* union-blue-800 — cards, wall items */
+  --color-bg-elevated: #162d78; /* union-blue-700 — modals, popovers */
+  --color-bg-overlay: #1f3d8f; /* union-blue-600 — hover overlays */
 
   /* ── Brand / Accent ───────────────────────────────────── */
-  --color-accent: #a03040; /* muted Union Jack red — primary CTA, active states */
-  --color-accent-hover: #c03a4c; /* slightly brighter red — hover */
-  --color-accent-light: #d4606e; /* lighter muted red — highlights */
+  --color-accent: #cf142b; /* union-red-500 — exact flag red, primary CTA */
+  --color-accent-hover: #a80d22; /* union-red-600 — hover */
+  --color-accent-light: #f5475a; /* union-red-400 — highlights */
 
   /* ── Text ─────────────────────────────────────────────── */
-  --color-text-body: #e8e4dc; /* warm off-white — body copy */
-  --color-text-heading: #f0ece4; /* bright off-white — headings */
-  --color-text-muted: #c8c4bc; /* muted warm grey — secondary text */
-  --color-logo-byline: #e8e4dc; /* warm off-white — logo byline text */
-  --color-logo-npc-grey: #8a8a8a; /* neutral grey */
-  --color-search-bg: transparent; /* search input background — transparent in dark mode */
-  --color-pill-bg: var(--color-bg-elevated); /* search pill background */
-  --color-pill-bg-hover: var(--color-bg-overlay); /* search pill hover */
-  --color-pill-text: var(--color-text-body); /* search pill text */
-  --color-pill-font-weight: 100; /* search pill font weight — thin */
-  --color-text-subtle: #d4606e; /* muted red — tertiary / de-emphasized */
-  --color-text-disabled: #6b7280; /* gray-500 — disabled states */
-  --color-text-icon: #b0aca4; /* warm neutral — default icon color */
+  --color-text-body: #d5ddf0; /* union-blue-100 — light navy tint body copy */
+  --color-text-heading: #eef1f8; /* union-blue-50 — near-white headings */
+  --color-text-muted: #7f93ce; /* union-blue-300 — muted secondary text */
+  --color-logo-byline: #d5ddf0; /* union-blue-100 — logo byline */
+  --color-logo-npc-grey: #8a8a8a;
+  --color-search-bg: #0c1f5c; /* union-blue-800 — search input background */
+  --color-pill-bg: #1f3d8f; /* union-blue-600 — act tag pill background */
+  --color-pill-bg-hover: #3453a8; /* union-blue-500 — pill hover */
+  --color-pill-text: #eef1f8; /* union-blue-50 — pill text */
+  --color-pill-font-weight: 100;
+  --color-text-subtle: #f5475a; /* union-red-400 — de-emphasized / tertiary */
+  --color-text-disabled: #5570bb; /* union-blue-400 — disabled */
+  --color-text-icon: #adbae1; /* union-blue-200 — icons */
 
   /* ── Borders ──────────────────────────────────────────── */
-  --color-border: transparent; /* no border on wall cards in dark mode */
-  --color-border-subtle: #7c7c7c4a; /* neutral 29% opacity */
-  --color-border-hover: #a0304080; /* muted red 50% — card hover border */
-  --color-share-btn-bg: #1a1a1a; /* near-black — share button background */
-  --color-share-shelf-bg: #181818; /* charcoal — share shelf background */
+  --color-border: transparent;
+  --color-border-subtle: rgba(173, 186, 225, 0.2); /* union-blue-200 20% */
+  --color-border-hover: rgba(207, 20, 43, 0.6); /* union-red 60% */
+  --color-share-btn-bg: #010f35; /* union-blue-950 */
+  --color-share-shelf-bg: #010f35; /* union-blue-950 */
 
   /* ── Shadows ──────────────────────────────────────────── */
-  --color-shadow-inset: #060c14; /* deep navy inset shadow for cards */
+  --color-shadow-inset: #010f35; /* union-blue-950 */
 
   /* ── Divider ──────────────────────────────────────────── */
-  --color-divider-line: rgba(255, 255, 255, 0.1); /* subtle white line */
-  --color-divider-arrow: rgba(255, 255, 255, 0.3); /* white triangle */
+  --color-divider-line: rgba(213, 221, 240, 0.15); /* union-blue-100 15% */
+  --color-divider-arrow: rgba(213, 221, 240, 0.35); /* union-blue-100 35% */
 
   /* ── Close Button ─────────────────────────────────────── */
   --color-close-icon: hsl(0 0% 55% / 1);
   --color-close-icon-hover: hsl(0 0% 85% / 1);
 
   /* ── Scrollbar ────────────────────────────────────────── */
-  --scrollbar-track-bg: #0d1a2e;
+  --scrollbar-track-bg: #010f35; /* union-blue-950 */
 
   /* ── Legacy aliases (backward compat) ────────────────── */
   --dark: var(--color-bg-base);
-  --medium: #a03040;
+  --medium: #cf142b;
   --light: var(--color-accent-light);
   --accent: var(--color-accent);
 }
@@ -76,51 +76,51 @@
 
 [data-theme='light'] {
   /* ── Base Backgrounds ─────────────────────────────────── */
-  --color-bg-base: #0065bd; /* Scottish blue (St Andrew's Cross) — page/body background */
-  --color-bg-surface: #faf8f5; /* warm off-white — wall items, cards */
-  --color-bg-elevated: #f5f0e8; /* slightly deeper off-white — modals, popovers */
-  --color-bg-overlay: #ede8e0; /* warm grey-white — hover overlays */
+  --color-bg-base: #ffffff; /* pure white — page/body background */
+  --color-bg-surface: #f8f8f8; /* union-white-50 — cards, wall items */
+  --color-bg-elevated: #f0f0f0; /* union-white-100 — modals, popovers */
+  --color-bg-overlay: #e0e0e0; /* union-white-200 — hover overlays */
 
   /* ── Brand / Accent ───────────────────────────────────── */
-  --color-accent: #c8102e; /* Union Jack red — primary CTA, active states */
-  --color-accent-hover: #a00d24; /* dark red — hover */
-  --color-accent-light: #e03050; /* lighter red — highlights */
+  --color-accent: #cf142b; /* union-red-500 — exact flag red, primary CTA */
+  --color-accent-hover: #a80d22; /* union-red-600 — hover */
+  --color-accent-light: #f5475a; /* union-red-400 — highlights */
 
   /* ── Text ─────────────────────────────────────────────── */
-  --color-text-body: #1a1a1a; /* charcoal — all body copy */
-  --color-text-heading: #8b0000; /* dark red — headings */
-  --color-logo-byline: #1a1a1a; /* charcoal — logo byline text */
-  --color-logo-npc-grey: #b0b0b0; /* neutral grey */
-  --color-search-bg: var(--color-bg-surface); /* off-white search input */
-  --color-pill-bg: #faf8f5; /* off-white — search pill background */
-  --color-pill-bg-hover: #f5f0e8; /* slightly deeper off-white — pill hover */
-  --color-pill-text: #1a1a1a; /* charcoal — search pill text */
-  --color-pill-font-weight: 300; /* search pill font weight — light */
-  --color-text-muted: #3a3a3a; /* dark charcoal — secondary text */
-  --color-text-subtle: #8b0000; /* dark red — tertiary / de-emphasized */
-  --color-text-disabled: #9ca3af; /* gray-400 */
+  --color-text-body: #1a1a1a; /* union-white-900 — charcoal body copy */
+  --color-text-heading: #012169; /* union-blue-900 — navy headings */
+  --color-logo-byline: #1a1a1a;
+  --color-logo-npc-grey: #b0b0b0;
+  --color-search-bg: #f8f8f8; /* union-white-50 — search input */
+  --color-pill-bg: #012169; /* union-blue-900 — act tag pill background */
+  --color-pill-bg-hover: #1f3d8f; /* union-blue-600 — pill hover */
+  --color-pill-text: #ffffff; /* white — pill text */
+  --color-pill-font-weight: 300;
+  --color-text-muted: #444444; /* union-white-700 — secondary text */
+  --color-text-subtle: #cf142b; /* union-red-500 — tertiary / de-emphasized */
+  --color-text-disabled: #a8a8a8; /* union-white-400 */
   --color-text-icon: #1a1a1a; /* charcoal — icons */
 
   /* ── Borders ──────────────────────────────────────────── */
-  --color-border: transparent; /* no border on wall cards at rest */
-  --color-border-subtle: #1a1a1a26; /* charcoal 15% opacity */
-  --color-border-hover: #c8102e; /* Union Jack red — card hover border */
-  --color-share-btn-bg: #ede8e0; /* warm grey — share button background */
-  --color-share-shelf-bg: #e8e3db; /* light warm grey — share shelf */
+  --color-border: #e0e0e0; /* union-white-200 — card borders */
+  --color-border-subtle: rgba(1, 33, 105, 0.12); /* union-blue-900 12% */
+  --color-border-hover: #cf142b; /* union-red-500 — card hover border */
+  --color-share-btn-bg: #e0e0e0; /* union-white-200 */
+  --color-share-shelf-bg: #f0f0f0; /* union-white-100 */
 
   /* ── Shadows ──────────────────────────────────────────── */
-  --color-shadow-inset: transparent; /* no inset shadow in light mode */
+  --color-shadow-inset: transparent;
 
   /* ── Scrollbar ────────────────────────────────────────── */
-  --scrollbar-track-bg: #0055a8; /* slightly darker Scottish blue track */
+  --scrollbar-track-bg: #e0e0e0; /* union-white-200 */
 
   /* ── Divider ──────────────────────────────────────────── */
-  --color-divider-line: rgba(0, 0, 0, 0.12); /* subtle dark line */
-  --color-divider-arrow: rgba(0, 0, 0, 0.2); /* dark triangle */
+  --color-divider-line: rgba(1, 33, 105, 0.1); /* union-blue-900 10% */
+  --color-divider-arrow: rgba(1, 33, 105, 0.2); /* union-blue-900 20% */
 
   /* ── Close Button (modal X icon) ─────────────────────── */
-  --color-close-icon: hsl(0 0% 55% / 1); /* medium grey at rest */
-  --color-close-icon-hover: hsl(0 0% 15% / 1); /* dark charcoal on hover */
+  --color-close-icon: hsl(0 0% 55% / 1);
+  --color-close-icon-hover: hsl(0 0% 15% / 1);
 
   /* ── Legacy aliases ───────────────────────────────────── */
   --dark: var(--color-bg-base);

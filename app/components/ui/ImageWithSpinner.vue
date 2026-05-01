@@ -9,7 +9,7 @@
       >
         <IconsSpinnerDotRevolve
           :size="spinnerSize"
-          class-name="text-seagull-400"
+          class-name="text-union-blue-400"
         />
       </div>
     </Transition>

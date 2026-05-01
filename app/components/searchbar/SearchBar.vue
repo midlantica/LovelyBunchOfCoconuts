@@ -1,7 +1,7 @@
 <!-- components/SearchBar.vue -->
 <template>
   <div
-    class="text-seagull-950 mt-0.5 flex h-auto w-full flex-col items-center gap-2"
+    class="text-union-blue-950 mt-0.5 flex h-auto w-full flex-col items-center gap-2"
   >
     <div class="relative flex w-full flex-row gap-2 overflow-visible">
       <Icon
@@ -72,7 +72,7 @@
       <!-- Search suggestions dropdown -->
       <div
         v-if="showSuggestions && suggestions.length > 0"
-        class="border-seagull-400/40 bg-theme-elevated absolute top-full right-0 left-0 z-5 mt-1 max-h-64 overflow-y-auto rounded-lg border shadow-lg"
+        class="border-union-blue-400/40 bg-theme-elevated absolute top-full right-0 left-0 z-5 mt-1 max-h-64 overflow-y-auto rounded-lg border shadow-lg"
         @mousedown.prevent
       >
         <div
@@ -146,7 +146,7 @@
 </template>
 
 <script setup>
-  import { ideologies } from '~/data/ideologies'
+  import { acts } from '~/data/acts'
 
   // Native debounce implementation to replace lodash-es (saves 300KB)
   function debounce(fn, delay) {
@@ -211,9 +211,9 @@
     suggestions.value = []
   }
 
-  // Map lowercase ideology term -> canonical term casing
+  // Map lowercase act name -> canonical name casing
   const ideologyCanonicalByLower = Object.fromEntries(
-    ideologies.map((i) => [i.term.toLowerCase(), i.term])
+    acts.map((a) => [a.term.toLowerCase(), a.term])
   )
 
   const debouncedEmitSearch = debounce((val) => {
@@ -559,26 +559,21 @@
 
   // Search autocomplete functionality
   const popularTerms = [
-    'freedom',
-    'equality',
-    'capitalism',
-    'socialism',
-    'democracy',
-    'climate change',
-    'environment',
-    'education',
-    'healthcare',
-    'rights',
-    'government',
-    'politics',
-    'economy',
-    'society',
-    'justice',
-    'liberty',
-    'progressive',
-    'conservative',
-    'reform',
-    'policy',
+    'benny hill',
+    'douglas adams',
+    'eric morecambe',
+    'french & saunders',
+    'graham chapman',
+    'john cleese',
+    'oscar wilde',
+    'p.g. wodehouse',
+    'peter sellers',
+    'rowan atkinson',
+    'spike milligan',
+    'stephen fry',
+    'the two ronnies',
+    'tony hancock',
+    'victoria wood',
   ]
 
   function generateSuggestions(input) {
@@ -608,13 +603,13 @@
       }
     })
 
-    // Add ideology terms that match
-    ideologies.forEach((ideology) => {
+    // Add act names that match
+    acts.forEach((act) => {
       if (
-        ideology.term.toLowerCase().includes(inputLower) &&
-        !results.find((r) => r.term === ideology.term)
+        act.term.toLowerCase().includes(inputLower) &&
+        !results.find((r) => r.term === act.term)
       ) {
-        results.push({ term: ideology.term, type: 'ideology' })
+        results.push({ term: act.term, type: 'act' })
       }
     })
 

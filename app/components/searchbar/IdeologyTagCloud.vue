@@ -16,21 +16,17 @@
 </template>
 
 <script setup>
-  import { ideologies } from '~/data/ideologies'
-  import { curatedTop } from '~/data/topIdeologyTags'
+  import { acts } from '~/data/acts'
+  import { curatedTop } from '~/data/topActTags'
   const props = defineProps({ activeTerm: [String, Array] })
   const emit = defineEmits(['select'])
 
-  const byTerm = Object.fromEntries(ideologies.map((i) => [i.term, i]))
-  const totalLimit = Math.max(1, Math.ceil(ideologies.length / 3))
+  const byTerm = Object.fromEntries(acts.map((a) => [a.term, a]))
+  const totalLimit = acts.length
 
   // Visual theme by group; add new groups here. Keeps template free of hard-coded names.
   const groupStyles = {
-    Freedom: {
-      base: 'bg-theme-surface text-theme-body hover:bg-theme-overlay',
-      active: 'bg-theme-accent text-white',
-    },
-    Collectivism: {
+    Acts: {
       base: 'bg-theme-surface text-theme-body hover:bg-theme-overlay',
       active: 'bg-theme-accent text-white',
     },

@@ -50,7 +50,7 @@
     transition: color 0.15s ease;
   }
   .social-icon-link--dark:hover {
-    color: #6dd3ff; /* seagull-300 */
+    color: #6dd3ff; /* union-blue-300 */
   }
 
   /* Light mode */
@@ -60,6 +60,6 @@
     transition: color 0.15s ease;
   }
   .social-icon-link--light:hover {
-    color: #0089cc; /* seagull-600 */
+    color: #0089cc; /* union-blue-600 */
   }
 </style>

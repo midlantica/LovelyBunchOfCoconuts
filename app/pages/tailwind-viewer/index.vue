@@ -344,7 +344,7 @@
     'white',
   ]
   const defaultColors = ref({})
-  const customColorNames = computed(() => new Set(['seagull']))
+  const customColorNames = computed(() => new Set(['union']))
   async function loadDefaults() {
     try {
       const mod = await import('tailwindcss/colors')
@@ -358,7 +358,7 @@
   const mainColors = computed(() => {
     const out = []
     const extMap = new Map(colorsList.value.map((c) => [c.name, c]))
-    if (extMap.has('seagull')) out.push(extMap.get('seagull'))
+    if (extMap.has('union')) out.push(extMap.get('union'))
     const slate = (defaultColors.value || {}).slate
     if (slate) out.push({ name: 'slate', shades: slate })
     return out

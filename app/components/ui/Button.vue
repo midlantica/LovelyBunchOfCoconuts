@@ -10,7 +10,7 @@
       sizeClasses,
       variantClasses,
       props.variant === 'default'
-        ? 'hoverbg-seagull-200: border-seagull-950 text-seagull-950 border bg-white'
+        ? 'hoverbg-union-blue-200: border-union-blue-950 text-union-blue-950 border bg-white'
         : '',
       disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer!',
       $attrs.class,
@@ -95,9 +95,9 @@
   const variantClasses = computed(() => {
     switch (props.variant) {
       case 'primary':
-        return 'bg-seagull-400! hover:bg-seagull-600! text-seagull-950! hover:text-white! border-0! font-400!'
+        return 'bg-union-blue-400! hover:bg-union-blue-600! text-union-blue-950! hover:text-white! border-0! font-400!'
       case 'secondary':
-        return 'bg-seagull-800! hover:bg-seagull-900! !text-seagull-50 hover:text-white! border-0! font-400!'
+        return 'bg-union-blue-800! hover:bg-union-blue-900! !text-union-blue-50 hover:text-white! border-0! font-400!'
       case 'tertiary':
         return 'bg-theme-overlay! hover:bg-theme-border! text-theme-body! border-0! font-400!'
       case 'outline':

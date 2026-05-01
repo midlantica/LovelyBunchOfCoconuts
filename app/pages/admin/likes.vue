@@ -33,7 +33,7 @@
           >Sum (loaded): {{ sumCounts }}</span
         >
         <label class="ml-2 flex items-center gap-2 text-base text-slate-300">
-          <input type="checkbox" v-model="live" class="accent-seagull-500" />
+          <input type="checkbox" v-model="live" class="accent-union-blue-500" />
           Live
         </label>
         <div class="ml-4 flex items-center gap-2">
@@ -178,7 +178,7 @@
                 @click="toggleSortDir()"
               >
                 Count&nbsp;<span
-                  class="text-seagull-400 ml-1 inline-block"
+                  class="text-union-blue-400 ml-1 inline-block"
                   aria-hidden="true"
                 >
                   {{ sortDir === 'desc' ? '▾' : '▴' }}
@@ -200,7 +200,7 @@
                   <NuxtLink
                     :to="row.url"
                     target="_blank"
-                    class="text-seagull-400 hover:text-seagull-300"
+                    class="text-union-blue-400 hover:text-union-blue-300"
                   >
                     {{ row.id }}
                   </NuxtLink>
@@ -229,10 +229,10 @@
                     v-model.number="customValues[row.id]"
                     type="number"
                     min="0"
-                    class="focus:ring-seagull-500 w-[4.8rem] rounded-l-md rounded-r-none border border-slate-700 bg-slate-800 px-2 py-0 text-right text-base text-slate-100 focus:ring-1 focus:outline-none"
+                    class="focus:ring-union-blue-500 w-[4.8rem] rounded-l-md rounded-r-none border border-slate-700 bg-slate-800 px-2 py-0 text-right text-base text-slate-100 focus:ring-1 focus:outline-none"
                   />
                   <button
-                    class="bg-seagull-600 hover:bg-seagull-500 -ml-px inline-flex h-7 w-7 items-center justify-center rounded-l-none rounded-r-md text-[20px] text-slate-950 disabled:cursor-not-allowed disabled:opacity-40"
+                    class="bg-union-blue-600 hover:bg-union-blue-500 -ml-px inline-flex h-7 w-7 items-center justify-center rounded-l-none rounded-r-md text-[20px] text-slate-950 disabled:cursor-not-allowed disabled:opacity-40"
                     :disabled="
                       pending[row.id] ||
                       customValues[row.id] == null ||
@@ -259,7 +259,7 @@
         </div>
         <div v-if="!loading && items.length < total" class="p-3 text-center">
           <button
-            class="bg-seagull-600 hover:bg-seagull-500 rounded px-3 py-1.5 text-sm text-slate-950"
+            class="bg-union-blue-600 hover:bg-union-blue-500 rounded px-3 py-1.5 text-sm text-slate-950"
             @click="refresh(false)"
           >
             Load More ({{ items.length }}/{{ total }})

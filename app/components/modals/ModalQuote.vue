@@ -19,7 +19,7 @@
               }}
             </h1>
             <p
-              class="font-100 text-seagull-200 mb-2 text-xl text-shadow-xs sm:text-2xl"
+              class="font-100 text-union-blue-200 mb-2 text-xl text-shadow-xs sm:text-2xl"
               v-html="
                 '— ' +
                 (modalData?.attributionHtml || modalData?.attribution || '')
@@ -47,7 +47,7 @@
               <Icon
                 name="tabler:chevron-compact-down"
                 :class="[
-                  'text-seagull-200 chevron chevron-wide text-[2.5rem]',
+                  'text-union-blue-200 chevron chevron-wide text-[2.5rem]',
                   isBottom ? 'rotate-180' : '',
                 ]"
               />
@@ -230,7 +230,7 @@
   .prose :deep(h4),
   .prose :deep(h5),
   .prose :deep(h6) {
-    color: #a5f3fc; /* seagull-200 */
+    color: #a5f3fc; /* union-blue-200 */
     line-height: 1.3;
     margin-top: 1.75em;
     margin-bottom: 0.15em;

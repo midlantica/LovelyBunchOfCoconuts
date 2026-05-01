@@ -264,7 +264,7 @@ div > p:last-of-type {
 /* Custom Scrollbar Styling */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #8b0000 transparent;
+  scrollbar-color: #cf142b transparent; /* union-red-500 */
 }
 
 *::-webkit-scrollbar {
@@ -276,13 +276,13 @@ div > p:last-of-type {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #8b0000;
+  background-color: #cf142b; /* union-red-500 */
   border-radius: 6px;
   border: none;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: #c8102e;
+  background-color: #a80d22; /* union-red-600 */
 }
 
 .about,
@@ -298,8 +298,8 @@ div > p:last-of-type {
   }
 }
 
-/* Light theme: override seagull-* headings to charcoal on About/Advertising pages.
-   These components use inline Tailwind classes like text-seagull-200! which apply
+/* Light theme: override union-* headings to charcoal on About/Advertising pages.
+   These components use inline Tailwind classes like text-union-blue-200! which apply
    color with !important, so we need to match or beat that specificity. */
 [data-theme='light'] body.about h1,
 [data-theme='light'] body.about h2,
@@ -316,17 +316,17 @@ div > p:last-of-type {
   color: #1a1a1a !important;
 }
 
-/* Also override any element with seagull text color classes in light mode on these pages */
-[data-theme='light'] body.about .text-seagull-100,
-[data-theme='light'] body.about .text-seagull-200,
-[data-theme='light'] body.about .text-seagull-300,
-[data-theme='light'] body.about .text-seagull-400,
-[data-theme='light'] body.about .text-seagull-500,
-[data-theme='light'] body.advertising .text-seagull-100,
-[data-theme='light'] body.advertising .text-seagull-200,
-[data-theme='light'] body.advertising .text-seagull-300,
-[data-theme='light'] body.advertising .text-seagull-400,
-[data-theme='light'] body.advertising .text-seagull-500 {
+/* Also override any element with union text color classes in light mode on these pages */
+[data-theme='light'] body.about .text-union-blue-100,
+[data-theme='light'] body.about .text-union-blue-200,
+[data-theme='light'] body.about .text-union-blue-300,
+[data-theme='light'] body.about .text-union-blue-400,
+[data-theme='light'] body.about .text-union-blue-500,
+[data-theme='light'] body.advertising .text-union-blue-100,
+[data-theme='light'] body.advertising .text-union-blue-200,
+[data-theme='light'] body.advertising .text-union-blue-300,
+[data-theme='light'] body.advertising .text-union-blue-400,
+[data-theme='light'] body.advertising .text-union-blue-500 {
   color: #1a1a1a !important;
 }
 
@@ -356,7 +356,7 @@ div > p:last-of-type {
 .prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
   font-weight: 300 !important;
   /* text-decoration: underline !important; */
-  text-decoration-color: #33c3fdbd !important;
+  text-decoration-color: #7f93cebd !important; /* union-blue-300 */
   text-decoration-style: dotted !important;
   text-underline-offset: 4px !important;
 }
@@ -364,7 +364,7 @@ div > p:last-of-type {
 /* Ensure link hover states work */
 .prose
   :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)):hover {
-  color: #a5f3fc !important; /* seagull-200 */
+  color: #adbae1 !important; /* union-blue-200 */
 }
 
 /* =====================================================================
@@ -477,7 +477,7 @@ div > p:last-of-type {
 /* =====================================================================
    LIGHT THEME — ABOUT & ADVERTISING PAGES
    Force all text to charcoal. These pages use hardcoded color utilities
-   (text-seagull-*, text-slate-*) so we override at the body class level.
+   (text-union-*, text-slate-*) so we override at the body class level.
    ===================================================================== */
 [data-theme='light'] body.about *,
 [data-theme='light'] body.advertising * {
@@ -524,17 +524,17 @@ div > p:last-of-type {
 }
 
 [data-theme='light'] *::-webkit-scrollbar-track {
-  background: #e5e5e5;
+  background: #e0e0e0; /* union-white-200 */
 }
 
 [data-theme='light'] * {
-  scrollbar-color: #8b0000 #e5e5e5;
+  scrollbar-color: #cf142b #e0e0e0; /* union-red-500 on union-white-200 */
 }
 
 [data-theme='light'] *::-webkit-scrollbar-thumb {
-  background-color: #8b0000;
+  background-color: #cf142b; /* union-red-500 */
 }
 
 [data-theme='light'] *::-webkit-scrollbar-thumb:hover {
-  background-color: #c8102e;
+  background-color: #a80d22; /* union-red-600 */
 }

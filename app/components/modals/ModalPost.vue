@@ -211,7 +211,7 @@
   .post-modal-content :deep(h4),
   .post-modal-content :deep(h5),
   .post-modal-content :deep(h6) {
-    color: #b8e8ff; /* seagull-200 */
+    color: #b8e8ff; /* union-blue-200 */
     font-weight: 300;
     line-height: 1.3;
     margin-top: 1.75em; /* generous space BEFORE headings */
@@ -269,7 +269,7 @@
   }
 
   .post-modal-content :deep(ul li::marker) {
-    color: #b8e8ff; /* seagull-200 */
+    color: #b8e8ff; /* union-blue-200 */
   }
 
   /* --- Ordered Lists --- */
@@ -293,7 +293,7 @@
   }
 
   .post-modal-content :deep(ol li::marker) {
-    color: #b8e8ff; /* seagull-200 */
+    color: #b8e8ff; /* union-blue-200 */
   }
 
   /* --- Blockquotes --- */

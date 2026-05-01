@@ -11,7 +11,7 @@
 
       <NuxtLink
         to="/"
-        class="bg-seagull-600 hover:bg-seagull-700 font-100 rounded-lg px-6 py-3 text-white transition-colors"
+        class="bg-union-blue-600 hover:bg-union-blue-700 font-100 rounded-lg px-6 py-3 text-white transition-colors"
         @click="handleError"
       >
         Return to Home
