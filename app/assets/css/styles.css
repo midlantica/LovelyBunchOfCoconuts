@@ -553,3 +553,91 @@ div > p:last-of-type {
 [data-theme='light'] *::-webkit-scrollbar-thumb:hover {
   background-color: #a80d22; /* union-red-600 */
 }
+
+/* =====================================================================
+   RAF ROUNDEL & UNION FLAG GRADIENTS
+   Inspired by WWII-era Spitfire markings.
+
+   Usage:
+     <div class="raf-roundel"></div>
+     <div class="raf-roundel-yellow"></div>
+     <div class="raf-stripe"></div>
+
+   Roundel colours (authentic):
+     Red:    #CF142B  (union-red-500)
+     White:  #FFFFFF
+     Blue:   #012169  (union-blue-900)
+     Yellow: #FFD700  (gold)
+   ===================================================================== */
+
+/* ── Standard RAF Roundel (Type B — red, white, blue) ─────── */
+.raf-roundel {
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #cf142b 0%,
+    #cf142b 28%,
+    #ffffff 28%,
+    #ffffff 48%,
+    #012169 48%,
+    #012169 100%
+  );
+  aspect-ratio: 1;
+}
+
+/* ── Type C1 Roundel (red, white, blue + yellow outer ring) ── */
+.raf-roundel-yellow {
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #cf142b 0%,
+    #cf142b 22%,
+    #ffffff 22%,
+    #ffffff 38%,
+    #012169 38%,
+    #012169 72%,
+    #ffd700 72%,
+    #ffd700 100%
+  );
+  aspect-ratio: 1;
+}
+
+/* ── Union Flag Stripe — Vertical (red | white | blue columns) */
+.raf-stripe,
+.raf-stripe-vertical {
+  background: linear-gradient(
+    to right,
+    #cf142b 0%,
+    #cf142b 33.33%,
+    #ffffff 33.33%,
+    #ffffff 66.66%,
+    #012169 66.66%,
+    #012169 100%
+  );
+}
+
+/* ── Union Flag Stripe — Horizontal (red / white / blue rows) */
+.raf-stripe-horizontal {
+  background: linear-gradient(
+    to bottom,
+    #cf142b 0%,
+    #cf142b 33.33%,
+    #ffffff 33.33%,
+    #ffffff 66.66%,
+    #012169 66.66%,
+    #012169 100%
+  );
+}
+
+/* ── Diagonal Union Flag Stripe (45deg — more flag-like) ───── */
+.raf-stripe-diagonal {
+  background: repeating-linear-gradient(
+    45deg,
+    #cf142b 0px,
+    #cf142b 20px,
+    #ffffff 20px,
+    #ffffff 40px,
+    #012169 40px,
+    #012169 60px
+  );
+}

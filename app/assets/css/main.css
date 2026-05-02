@@ -36,9 +36,9 @@
   --color-logo-npc-grey: #8a8a8a;
   --color-search-bg: #f0f0f0; /* union-white-100 — search input background */
   --color-search-text: #012169; /* union-blue-900 — search input text & icons */
-  --color-pill-bg: #1f3d8f; /* union-blue-600 — act tag pill background */
-  --color-pill-bg-hover: #3453a8; /* union-blue-500 — pill hover */
-  --color-pill-text: #eef1f8; /* union-blue-50 — pill text */
+  --color-pill-bg: #a80d22; /* union-red-600 — act tag pill background */
+  --color-pill-bg-hover: #cf142b; /* union-red-500 — pill hover */
+  --color-pill-text: #ffffff; /* white — pill text */
   --color-pill-font-weight: 100;
   --color-text-subtle: #f5475a; /* union-red-400 — de-emphasized / tertiary */
   --color-text-disabled: #5570bb; /* union-blue-400 — disabled */
