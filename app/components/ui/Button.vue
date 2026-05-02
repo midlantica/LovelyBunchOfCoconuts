@@ -97,13 +97,13 @@
       case 'primary':
         return 'bg-union-blue-400! hover:bg-union-blue-600! text-union-blue-950! hover:text-white! border-0! font-400!'
       case 'secondary':
-        return 'bg-union-blue-800! hover:bg-union-blue-900! !text-union-blue-50 hover:text-white! border-0! font-400!'
+        return 'bg-union-blue-800! hover:bg-union-blue-900! text-union-blue-50! hover:text-white! border-0! font-400!'
       case 'tertiary':
         return 'bg-theme-overlay! hover:bg-theme-border! text-theme-body! border-0! font-400!'
       case 'outline':
-        return '!bg-transparent hover:!bg-white/20 text-black! border-0! ring-1 ring-black/50 hover:ring-2 hover:ring-black font-400!'
+        return 'bg-transparent! hover:bg-white/20! text-black! border-0! ring-1 ring-black/50 hover:ring-2 hover:ring-black font-400!'
       case 'outline-dark':
-        return '!bg-transparent hover:!bg-white/20 text-white! border-0! ring-1 ring-white/50 hover:ring-2 hover:ring-white font-400!'
+        return 'bg-transparent! hover:bg-white/20! text-white! border-0! ring-1 ring-white/50 hover:ring-2 hover:ring-white font-400!'
       case 'custom':
         return 'font-400! border-0!' // Custom variant: only structural styles, parent controls colors
       default:

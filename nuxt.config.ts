@@ -319,7 +319,16 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        // Favicons — modern minimal set; manifest handles all other sizes
+        { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '192x192',
+          href: '/favicon/favicon-192x192.png',
+        },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+        { rel: 'manifest', href: '/favicon/site.webmanifest' },
         // Canonical home URL
         { rel: 'canonical', href: 'https://lovelybunchofcoconuts.com/' },
         // Preconnect to GoatCounter analytics domain — saves ~470ms DNS+TCP+TLS
@@ -336,20 +345,6 @@ export default defineNuxtConfig({
           type: 'image/svg+xml',
           fetchpriority: 'high',
         },
-        // Favicon sizes
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '32x32',
-          href: '/favicon/favicon-32x32.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '192x192',
-          href: '/favicon/favicon-192x192.png',
-        },
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
       // Inline critical styles — background is handled by CSS vars via data-theme attribute
       style: [

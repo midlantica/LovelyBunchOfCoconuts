@@ -1,17 +1,17 @@
 <!-- components/SearchBar.vue -->
 <template>
-  <div
-    class="text-union-blue-950 mt-0.5 flex h-auto w-full flex-col items-center gap-2"
-  >
+  <div class="mt-0.5 flex h-auto w-full flex-col items-center gap-2">
     <div class="relative flex w-full flex-row gap-2 overflow-visible">
       <Icon
         name="mdi:magnify"
         size="1.4rem"
-        class="text-theme-icon absolute top-1/2 left-2 -translate-y-1/2"
+        class="absolute top-1/2 left-2 -translate-y-1/2"
+        :style="{ color: 'var(--color-search-text)' }"
       />
       <!-- Tokenized input with pills -->
       <div
-        class="font-100 ring-theme-border-hover/40 text-theme-body focus-within:ring-theme-accent w-full rounded-[20px] bg-(--color-search-bg) px-9 py-[0.2rem] text-[1.02rem] leading-none tracking-wider ring-1 transition-all duration-200 outline-none focus-within:bg-(--color-search-bg) focus-within:ring-1 sm:text-[0.935rem]"
+        class="font-100 ring-theme-border-hover/40 focus-within:ring-theme-accent w-full rounded-[20px] bg-(--color-search-bg) px-9 py-[0.2rem] text-[1.02rem] leading-none tracking-wider ring-1 transition-all duration-200 outline-none focus-within:bg-(--color-search-bg) focus-within:ring-1 sm:text-[0.935rem]"
+        :style="{ color: 'var(--color-search-text)' }"
         @click="focusInnerInput"
       >
         <div
@@ -58,7 +58,8 @@
             id="search-input"
             name="q"
             aria-label="Search terms"
-            class="placeholder:text-theme-muted/60 h-[1.6rem] min-w-[6ch] flex-1 bg-transparent pb-0.5 leading-[1.6rem] outline-none focus:bg-transparent"
+            class="h-[1.6rem] min-w-[6ch] flex-1 bg-transparent pb-0.5 leading-[1.6rem] outline-none placeholder:opacity-50 focus:bg-transparent"
+            :style="{ color: 'var(--color-search-text)' }"
             :placeholder="tokens.length ? '' : 'Search...'"
             @blur="commitInputAsToken()"
             @keydown="onKeydown"
@@ -101,7 +102,8 @@
       >
         <client-only>
           <span
-            class="font-100 text-theme-body text-[.95rem] tracking-wider"
+            class="font-100 text-[.95rem] tracking-wider"
+            :style="{ color: 'var(--color-search-text)' }"
             aria-label="Total results"
           >
             {{ totalDisplay }}
@@ -123,7 +125,8 @@
         >
           <svg
             viewBox="0 0 24 24"
-            class="text-theme-icon hover:text-theme-body block h-[1.35rem] w-[1.35rem]"
+            class="block h-[1.35rem] w-[1.35rem] opacity-60 hover:opacity-100"
+            :style="{ color: 'var(--color-search-text)' }"
             fill="currentColor"
             aria-hidden="true"
           >

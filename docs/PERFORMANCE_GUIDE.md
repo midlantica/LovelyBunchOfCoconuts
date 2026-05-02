@@ -172,19 +172,6 @@ link: [
 ]
 ```
 
-```vue
-<!-- WelcomeModal.vue -->
-<img
-  src="/welcome-modal-image.svg"
-  width="590"
-  height="280"
-  style="aspect-ratio: 590 / 280"
-  loading="eager"
-  fetchpriority="high"
-  alt="Welcome to WakeUpNPC"
-/>
-```
-
 **Benefits**:
 
 - Faster LCP timing

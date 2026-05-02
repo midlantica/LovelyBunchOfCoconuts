@@ -5,7 +5,7 @@
       <template #mainPanel>
         <!-- Main Content Panel -->
         <div
-          class="card shadow-modal bg-theme-elevated text-theme-body relative z-10 w-full max-w-[800px] min-w-1/2 rounded-none p-4 sm:rounded-lg sm:px-7 sm:py-6"
+          class="card shadow-modal bg-theme-elevated text-theme-body relative z-10 w-full max-w-200 min-w-1/2 rounded-none p-4 sm:rounded-lg sm:px-7 sm:py-6"
         >
           <!-- Main content: image left, text right (stacks on mobile) -->
           <div

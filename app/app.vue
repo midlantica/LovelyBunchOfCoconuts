@@ -7,10 +7,6 @@
     </NuxtLayout>
     <!-- Modal root for teleport -->
     <div id="modal-root"></div>
-    <!-- Welcome modal for first-time visitors -->
-    <ClientOnly>
-      <ModalsWelcomeModal :show="showWelcomeModal" @close="closeWelcomeModal" />
-    </ClientOnly>
     <!-- Global toast notifications -->
     <ClientOnly>
       <UiToastContainer />
@@ -19,54 +15,6 @@
 </template>
 
 <script setup>
-  const route = useRoute()
-
-  // Welcome modal state - show on index page once per session
-  const showWelcomeModal = ref(false)
-
-  if (import.meta.client) {
-    const checkAndShowModal = () => {
-      // Only show modal on the index page (the Wall)
-      if (route.path === '/') {
-        const hasVisitedThisSession =
-          sessionStorage.getItem('lboc_wall_visited')
-        if (!hasVisitedThisSession) {
-          // Delay modal render until after LCP paint — use requestIdleCallback
-          // (or setTimeout fallback) so the modal image is NOT the LCP element.
-          // This moves the modal out of the critical rendering path entirely.
-          const showAfterPaint = () => {
-            showWelcomeModal.value = true
-          }
-          if (typeof requestIdleCallback !== 'undefined') {
-            requestIdleCallback(showAfterPaint, { timeout: 2000 })
-          } else {
-            setTimeout(showAfterPaint, 500)
-          }
-        }
-      }
-    }
-
-    // Check on mount
-    onMounted(() => {
-      checkAndShowModal()
-    })
-
-    // Watch for route changes
-    watch(
-      () => route.path,
-      () => {
-        checkAndShowModal()
-      }
-    )
-  }
-
-  const closeWelcomeModal = () => {
-    showWelcomeModal.value = false
-    if (import.meta.client) {
-      sessionStorage.setItem('lboc_wall_visited', 'true')
-    }
-  }
-
   // Production-specific loading recovery
   if (import.meta.client && !import.meta.dev) {
     onMounted(() => {

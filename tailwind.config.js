@@ -44,6 +44,8 @@ export default {
           base: 'var(--color-bg-base)',
           surface: 'var(--color-bg-surface)',
           elevated: 'var(--color-bg-elevated)',
+          header: 'var(--color-bg-header)',
+          input: 'var(--color-bg-input)',
           overlay: 'var(--color-bg-overlay)',
           accent: 'var(--color-accent)',
           'accent-hover': 'var(--color-accent-hover)',

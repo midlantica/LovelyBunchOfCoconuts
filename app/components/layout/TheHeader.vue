@@ -1,12 +1,10 @@
 <!-- components/TheHeader.vue -->
 <template>
-  <header
-    class="bg-theme-elevated sticky top-0 left-0 z-10 w-full px-2 pt-2 pb-1 sm:p-0 sm:pt-2 sm:pb-1"
-  >
-    <div class="xs:px-1 px-2 sm:px-2">
-      <!-- Flex container with three sections for balanced layout -->
+  <header class="bg-theme-header sticky top-0 left-0 z-10 w-full py-1">
+    <div class="px-2 sm:px-3 md:px-5 lg:px-8">
+      <!-- Single row: theme toggle | logo + socials | about/home icon -->
       <div class="flex items-center justify-between gap-1">
-        <!-- Left: theme toggle (mirrors hamburger on the right) -->
+        <!-- Left: theme toggle -->
         <div class="flex items-center">
           <button
             type="button"
@@ -14,14 +12,14 @@
             :aria-label="
               isDark ? 'Switch to light mode' : 'Switch to dark mode'
             "
-            class="hover:bg-theme-overlay text-theme-muted hover:text-theme-accent-light rounded-lg p-2 transition-colors focus:outline-none"
+            class="p-2 text-white focus:outline-none"
             @click="toggleTheme"
           >
             <!-- Sun icon (shown in dark mode → click to go light) -->
             <svg
               v-if="isDark"
               xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
+              class="icon-halo h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -37,7 +35,7 @@
             <svg
               v-else
               xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
+              class="icon-halo h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -52,8 +50,8 @@
           </button>
         </div>
 
-        <!-- Center logo -->
-        <div class="flex flex-1 justify-center">
+        <!-- Center: logo + social icons stacked tightly -->
+        <div class="flex flex-1 flex-col items-center gap-0.5">
           <button
             type="button"
             aria-label="Lovely Bunch of Coconuts — go to home page"
@@ -62,11 +60,42 @@
           >
             <LogoComponent />
           </button>
+          <div class="flex gap-3">
+            <a
+              href="#"
+              aria-label="Visit Lovely Bunch of Coconuts on X"
+              class="p-0.5 text-white"
+            >
+              <IconsXTwitter class="icon-halo" :size="18" />
+            </a>
+            <a
+              href="#"
+              aria-label="Visit Lovely Bunch of Coconuts on Facebook"
+              class="p-0.5 text-white"
+            >
+              <IconsFacebook class="icon-halo" :size="18" />
+            </a>
+          </div>
         </div>
 
-        <!-- Right: navigation menu (hamburger) -->
+        <!-- Right: About icon (or Home icon when on /about) -->
         <div class="flex items-center">
-          <LayoutNavigationMenu />
+          <NuxtLink
+            v-if="isOnAbout"
+            to="/"
+            aria-label="Go to home page"
+            class="p-2 text-white focus:outline-none"
+          >
+            <IconsIconHome class="icon-halo h-6 w-6" />
+          </NuxtLink>
+          <NuxtLink
+            v-else
+            to="/about"
+            aria-label="About Lovely Bunch of Coconuts"
+            class="p-2 text-white focus:outline-none"
+          >
+            <IconsIconAbout class="icon-halo h-6 w-6" />
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -77,6 +106,8 @@
   const route = useRoute()
   const { isDark, toggleTheme, init } = useTheme()
 
+  const isOnAbout = computed(() => route.path === '/about')
+
   onMounted(() => {
     init()
   })
@@ -85,17 +116,13 @@
   const isReloading = ref(false)
 
   function handleMastheadClick() {
-    if (isReloading.value) return // Ignore clicks while reload is in progress
+    if (isReloading.value) return
 
     isReloading.value = true
-    // Safety reset in case navigation is blocked or delayed
     setTimeout(() => {
       isReloading.value = false
     }, 3000)
 
-    // Full page reload — behaves exactly like Cmd-R / F5.
-    // If on a sub-page, navigate to home with a full reload;
-    // if already on home, just reload the current page.
     if (route.path !== '/') {
       window.location.href = '/'
     } else {
@@ -105,12 +132,22 @@
 </script>
 
 <style scoped>
-  /* Logo hover effects */
   .logo-hover-effect {
     transition: filter 0.5s ease-in-out;
   }
 
   .logo-hover-effect:hover {
     filter: brightness(0.8) contrast(1.1);
+  }
+
+  .icon-halo {
+    transition: filter 0.2s ease;
+  }
+
+  .icon-halo:hover,
+  button:hover .icon-halo,
+  a:hover .icon-halo {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9))
+      drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
   }
 </style>

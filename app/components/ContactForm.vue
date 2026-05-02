@@ -1,6 +1,6 @@
 <template>
-  <div class="card mb-12 px-6 py-5">
-    <h2 class="mb-6 text-3xl">Contact Us</h2>
+  <div class="mb-12 py-5">
+    <h2 class="text-theme-body mb-6 text-3xl">Contact Us</h2>
 
     <form
       @submit.prevent="handleSubmit"
@@ -26,7 +26,7 @@
         <div class="flex flex-col gap-2">
           <label
             for="firstName"
-            class="font-300 text-base tracking-wider uppercase"
+            class="font-300 text-theme-body text-base tracking-wider uppercase"
           >
             First name
           </label>
@@ -37,8 +37,7 @@
             type="text"
             autocomplete="given-name"
             required
-            class="border-union-blue-600/30 focus:border-union-blue-600/50 font-300 text-theme-body placeholder-theme-disabled w-full rounded-md border bg-black/20 px-3 pt-1 pb-2 tracking-wider focus:outline-none"
-            style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5)"
+            class="border-theme-border-subtle focus:border-union-blue-400/60 font-300 text-union-blue-950 placeholder-theme-disabled bg-theme-input w-full rounded-md border px-3 pt-1 pb-2 tracking-wider focus:outline-none"
             placeholder="First Name"
           />
         </div>
@@ -46,7 +45,7 @@
         <div class="flex flex-col gap-2">
           <label
             for="lastName"
-            class="font-300 text-base tracking-wider uppercase"
+            class="font-300 text-theme-body text-base tracking-wider uppercase"
           >
             Last name
           </label>
@@ -57,8 +56,7 @@
             type="text"
             autocomplete="family-name"
             required
-            class="border-union-blue-600/30 focus:border-union-blue-600/50 font-300 w-full rounded-md border bg-black/20 px-3 pt-1 pb-2 tracking-wider text-theme-body placeholder-theme-disabled focus:outline-none"
-            style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5)"
+            class="border-theme-border-subtle focus:border-union-blue-400/60 font-300 bg-theme-input text-union-blue-950 placeholder-theme-disabled w-full rounded-md border px-3 pt-1 pb-2 tracking-wider focus:outline-none"
             placeholder="Last Name"
           />
         </div>
@@ -66,7 +64,10 @@
 
       <!-- Email -->
       <div class="flex flex-col gap-2">
-        <label for="email" class="font-300 text-base tracking-wider uppercase">
+        <label
+          for="email"
+          class="font-300 text-theme-body text-base tracking-wider uppercase"
+        >
           Email
         </label>
         <input
@@ -76,8 +77,7 @@
           type="email"
           autocomplete="email"
           required
-          class="border-union-blue-600/30 focus:border-union-blue-600/50 font-300 w-full rounded-md border bg-black/20 px-3 pt-1 pb-2 tracking-wider text-theme-body placeholder-theme-disabled focus:outline-none"
-          style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5)"
+          class="border-theme-border-subtle focus:border-union-blue-400/60 font-300 bg-theme-input text-union-blue-950 placeholder-theme-disabled w-full rounded-md border px-3 pt-1 pb-2 tracking-wider focus:outline-none"
           placeholder="Email"
         />
       </div>
@@ -86,7 +86,7 @@
       <div class="flex flex-col gap-2">
         <label
           for="message"
-          class="font-300 text-base tracking-wider uppercase"
+          class="font-300 text-theme-body text-base tracking-wider uppercase"
         >
           Message
         </label>
@@ -96,8 +96,7 @@
           v-model="form.message"
           required
           rows="6"
-          class="border-union-blue-600/30 focus:border-union-blue-600/50 font-300 w-full resize-none rounded-md border bg-black/20 px-3 py-2 tracking-wider text-theme-body placeholder-theme-disabled focus:outline-none"
-          style="box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5)"
+          class="border-theme-border-subtle focus:border-union-blue-400/60 font-300 bg-theme-input text-union-blue-950 placeholder-theme-disabled w-full resize-none rounded-md border px-3 py-2 tracking-wider focus:outline-none"
           placeholder="Leave a message..."
         ></textarea>
       </div>
@@ -127,6 +126,11 @@
           size="xl"
           variant="primary"
           :disabled="isSubmitting"
+          :class="
+            isDark
+              ? 'text-union-blue-900! hover:bg-union-blue-50! hover:text-union-blue-950! bg-white!'
+              : 'bg-union-blue-900! hover:bg-union-blue-700! text-white! hover:text-white!'
+          "
         />
       </div>
     </form>
@@ -134,6 +138,8 @@
 </template>
 
 <script setup>
+  const { isDark } = useTheme()
+
   const form = ref({
     firstName: '',
     lastName: '',
