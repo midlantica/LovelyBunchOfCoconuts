@@ -2,13 +2,17 @@
 <!-- layouts/default.vue -->
 <template>
   <div class="grid h-screen grid-rows-[auto_1fr_auto] gap-4 overflow-hidden">
-    <LayoutTheHeader class="sticky top-0 left-0 z-10 w-full" />
+    <!-- RAF stripe — fixed left edge, full height, behind all content -->
+    <div
+      class="raf-stripe-vertical pointer-events-none fixed top-0 left-0 z-0 h-full w-[40px]"
+    ></div>
+    <LayoutTheHeader class="sticky top-0 left-0 z-20 w-full" />
 
-    <main class="min-h-0 overflow-y-auto px-0">
+    <main class="relative z-0 min-h-0 overflow-y-auto px-0">
       <slot />
     </main>
 
-    <LayoutTheFooter class="w-full" />
+    <LayoutTheFooter class="relative z-20 w-full" />
 
     <!-- Global Modals (used for hash-based opens or explicit openModal) -->
     <component

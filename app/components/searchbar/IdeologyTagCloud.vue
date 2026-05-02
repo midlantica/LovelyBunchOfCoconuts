@@ -20,24 +20,20 @@
   import { curatedTop } from '~/data/topActTags'
   const props = defineProps({ activeTerm: [String, Array] })
   const emit = defineEmits(['select'])
+  const { isDark } = useTheme()
 
   const byTerm = Object.fromEntries(acts.map((a) => [a.term, a]))
   const totalLimit = acts.length
 
-  // Visual theme by group; add new groups here. Keeps template free of hard-coded names.
-  const groupStyles = {
-    Acts: {
-      base: 'bg-theme-surface text-theme-body hover:bg-theme-overlay',
-      active: 'bg-theme-accent text-white',
-    },
-  }
-  const defaultStyles = {
-    base: 'bg-theme-surface text-theme-body hover:bg-theme-overlay',
-    active: 'bg-theme-accent text-white',
-  }
+  const baseClasses = 'bg-union-blue-900 text-white hover:bg-union-blue-700'
+  const activeClasses = computed(() =>
+    isDark.value
+      ? 'bg-union-blue-900 text-white ring-1 ring-white/80'
+      : 'bg-union-blue-900 text-white ring-1 ring-union-blue-950'
+  )
+
   function classesFor(item) {
-    const styles = groupStyles[item.group] || defaultStyles
-    return isActive(item.term) ? styles.active : styles.base
+    return isActive(item.term) ? activeClasses.value : baseClasses
   }
 
   function loadPopularity() {

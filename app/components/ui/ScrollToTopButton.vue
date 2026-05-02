@@ -1,7 +1,10 @@
 <!-- components/ui/ScrollToTopButton.vue -->
 <template>
   <button
-    class="bg-theme-elevated text-theme-icon hover:text-theme-body fixed right-3 bottom-3 z-50 flex h-[42px] w-[42px] cursor-pointer! items-center justify-center rounded-md shadow-lg transition-colors duration-200"
+    class="fixed right-3 bottom-3 z-50 flex h-[42px] w-[42px] cursor-pointer! items-center justify-center rounded-md shadow-lg transition-colors duration-200"
+    style="background-color: #a80d22; color: #ffffff"
+    onmouseover="this.style.backgroundColor = '#cf142b'"
+    onmouseout="this.style.backgroundColor = '#a80d22'"
     @click="scrollToTop"
     title="Scroll to top"
   >

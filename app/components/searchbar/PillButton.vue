@@ -23,7 +23,12 @@
 <style scoped>
   @reference '../../assets/css/main.css';
   .pill-btn {
-    @apply font-100 bg-theme-surface text-theme-body hover:bg-theme-overlay tran outline: none flex cursor-pointer! items-center justify-between gap-1 rounded-md px-3 pt-[.2rem] pb-[0.3rem] text-base tracking-wider uppercase;
+    @apply font-100 tran outline: none flex cursor-pointer! items-center justify-between gap-1 rounded-md px-3 pt-[.2rem] pb-[0.3rem] text-base tracking-wider uppercase;
+    background-color: #012169 !important; /* union-blue-900 — dark union-blue */
+    color: #ffffff !important;
+  }
+  .pill-btn:hover {
+    background-color: #162d78 !important; /* union-blue-700 — lighter on hover */
   }
   .pill-btn:focus {
     outline: none;

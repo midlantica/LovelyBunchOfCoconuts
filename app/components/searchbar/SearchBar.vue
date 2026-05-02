@@ -33,7 +33,7 @@
               >
               <button
                 type="button"
-                class="text-theme-icon group-hover:text-theme-body hover:text-theme-body -mr-1 ml-0.5 flex h-5 w-5 cursor-pointer! items-center justify-center p-0 transition-colors"
+                class="-mr-1 ml-0.5 flex h-5 w-5 cursor-pointer! items-center justify-center p-0 text-white transition-colors"
                 :aria-label="`Remove ${t}`"
                 @click.stop="removeToken(idx)"
               >

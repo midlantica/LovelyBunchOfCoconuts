@@ -1,6 +1,8 @@
 <!-- components/TheHeader.vue -->
 <template>
-  <header class="bg-theme-header sticky top-0 left-0 z-10 w-full py-1">
+  <header
+    class="bg-theme-header sticky top-0 left-0 z-20 w-full py-1 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.4)]"
+  >
     <div class="px-2 sm:px-3 md:px-5 lg:px-8">
       <!-- Single row: theme toggle | logo + socials | about/home icon -->
       <div class="flex items-center justify-between gap-1">
@@ -12,7 +14,8 @@
             :aria-label="
               isDark ? 'Switch to light mode' : 'Switch to dark mode'
             "
-            class="p-2 text-white focus:outline-none"
+            :class="isDark ? 'text-white' : 'text-union-blue-900'"
+            class="p-2 focus:outline-none"
             @click="toggleTheme"
           >
             <!-- Sun icon (shown in dark mode → click to go light) -->
@@ -51,7 +54,7 @@
         </div>
 
         <!-- Center: logo + social icons stacked tightly -->
-        <div class="flex flex-1 flex-col items-center gap-0.5">
+        <div class="flex flex-1 flex-col items-center gap-0">
           <button
             type="button"
             aria-label="Lovely Bunch of Coconuts — go to home page"
@@ -60,20 +63,22 @@
           >
             <LogoComponent />
           </button>
-          <div class="flex gap-3">
+          <div class="flex gap-3" style="margin-top: -11px">
             <a
               href="#"
               aria-label="Visit Lovely Bunch of Coconuts on X"
-              class="p-0.5 text-white"
+              :class="isDark ? 'text-white' : 'text-union-blue-900'"
+              class="p-0.5"
             >
-              <IconsXTwitter class="icon-halo" :size="18" />
+              <IconsXTwitter class="icon-halo" :size="20" />
             </a>
             <a
               href="#"
               aria-label="Visit Lovely Bunch of Coconuts on Facebook"
-              class="p-0.5 text-white"
+              :class="isDark ? 'text-white' : 'text-union-blue-900'"
+              class="p-0.5"
             >
-              <IconsFacebook class="icon-halo" :size="18" />
+              <IconsFacebook class="icon-halo" :size="20" />
             </a>
           </div>
         </div>
@@ -84,7 +89,8 @@
             v-if="isOnAbout"
             to="/"
             aria-label="Go to home page"
-            class="p-2 text-white focus:outline-none"
+            :class="isDark ? 'text-white' : 'text-union-blue-900'"
+            class="p-2 focus:outline-none"
           >
             <IconsIconHome class="icon-halo h-6 w-6" />
           </NuxtLink>
@@ -92,7 +98,8 @@
             v-else
             to="/about"
             aria-label="About Lovely Bunch of Coconuts"
-            class="p-2 text-white focus:outline-none"
+            :class="isDark ? 'text-white' : 'text-union-blue-900'"
+            class="p-2 focus:outline-none"
           >
             <IconsIconAbout class="icon-halo h-6 w-6" />
           </NuxtLink>

@@ -19,7 +19,7 @@
   --color-bg-base: #3453a8; /* union-blue-500 — page/body background */
   --color-bg-surface: #010f35; /* union-blue-950 — cards, wall items */
   --color-bg-elevated: #162d78; /* union-blue-700 — modals, popovers, footer, toasts */
-  --color-bg-header: transparent; /* header — no background in dark theme */
+  --color-bg-header: #162d78; /* union-blue-700 — dark header in dark theme */
   --color-bg-input: #5570bb; /* union-blue-400 — form inputs, lighter than body */
   --color-bg-overlay: #1f3d8f; /* union-blue-600 — hover overlays */
 
@@ -36,8 +36,8 @@
   --color-logo-npc-grey: #8a8a8a;
   --color-search-bg: #f0f0f0; /* union-white-100 — search input background */
   --color-search-text: #012169; /* union-blue-900 — search input text & icons */
-  --color-pill-bg: #a80d22; /* union-red-600 — act tag pill background */
-  --color-pill-bg-hover: #cf142b; /* union-red-500 — pill hover */
+  --color-pill-bg: #012169; /* union-blue-900 — act tag pill background */
+  --color-pill-bg-hover: #162d78; /* union-blue-700 — pill hover */
   --color-pill-text: #ffffff; /* white — pill text */
   --color-pill-font-weight: 100;
   --color-text-subtle: #f5475a; /* union-red-400 — de-emphasized / tertiary */
@@ -99,7 +99,7 @@
   --color-search-bg: #f8f8f8; /* union-white-50 — search input */
   --color-search-text: #012169; /* union-blue-900 — search input text & icons */
   --color-pill-bg: #012169; /* union-blue-900 — act tag pill background */
-  --color-pill-bg-hover: #1f3d8f; /* union-blue-600 — pill hover */
+  --color-pill-bg-hover: #162d78; /* union-blue-700 — pill hover */
   --color-pill-text: #ffffff; /* white — pill text */
   --color-pill-font-weight: 300;
   --color-text-muted: #444444; /* union-white-700 — secondary text */
